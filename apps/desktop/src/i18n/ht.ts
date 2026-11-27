@@ -13,7 +13,7 @@ export const ht = defineLocale({
       profiles: 'Pwofil',
       session: 'Sesyon',
       navigation: 'Navigasyon',
-      view: 'Afichaj',
+      view: 'Afichaj'
     },
     actions: {
       'keybinds.openPanel': 'Louvri rakourci klavye',
@@ -92,7 +92,7 @@ export const ht = defineLocale({
       'composer.slash': 'Palèt kòmand ak slash',
       'composer.help': 'Aide vite',
       'composer.history': 'Kikl popover / istwar',
-      'composer.cancel': 'Fermer popover · annul renn',
+      'composer.cancel': 'Fermer popover · annul renn'
     },
     title: 'Rakouci klavye',
     search: 'Chèche rakouci…',
@@ -101,7 +101,7 @@ export const ht = defineLocale({
     resetAll: 'Reyinisyalize tout',
     pressKey: 'Peze yon touch…',
     subtitle: open => `Klike sou yon rakousi pou rebaile li · ${open} louvri panèl sa a ankò.`,
-    conflictWith: label => `Baile tou ak “${label}”`,
+    conflictWith: label => `Baile tou ak “${label}”`
   },
   common: {
     apply: 'Aplike',
@@ -142,7 +142,7 @@ export const ht = defineLocale({
     update: 'Mete ajou',
     on: 'Sou',
     off: 'Koupe',
-    tryHint: term => `Eseye “${term}”`,
+    tryHint: term => `Eseye “${term}”`
   },
   fileMenu: {
     revealFinder: 'Montre nan Finder',
@@ -157,7 +157,7 @@ export const ht = defineLocale({
     renameLabel: 'Nouvo non',
     deleteBody: 'Li pral deplase nan Poubèl la — ou ka retabli l depi la.',
     pathCopied: 'Chemen kopye',
-    deleteTitle: name => `Efase ${name}?`,
+    deleteTitle: name => `Efase ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop prè',
@@ -166,7 +166,7 @@ export const ht = defineLocale({
       loadingSettings: 'Ap chaje paramèt OpenAmer',
       loadingSessions: 'Ap chaje sesyon resan',
       startingDesktopConnection: 'Ap kòmanse koneksyon desktop',
-      startingOpenAmerDesktop: 'Ap kòmanse OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ap kòmanse OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Pwosesis background OpenAmer te sòti.',
@@ -175,13 +175,15 @@ export const ht = defineLocale({
       desktopBootFailed: 'Demaraj desktop echwe',
       gatewayConnectionLost: 'Koneksyon ak pòtay la pèdi',
       gatewaySignInRequired: 'Idantifikasyon sou pòtay obligatwa',
-      ipcBridgeUnavailable: 'Pont IPC desktop pa disponib.',
+      ipcBridgeUnavailable: 'Pont IPC desktop pa disponib.'
     },
     failure: {
       title: 'OpenAmer pa t kapab kòmanse',
-      description: 'Pòtay background lan pa t demare. Eseye youn nan etap rekiperasyon ki anba yo. Anyen isit la pa efase konvèsasyon ou ni paramèt ou.',
+      description:
+        'Pòtay background lan pa t demare. Eseye youn nan etap rekiperasyon ki anba yo. Anyen isit la pa efase konvèsasyon ou ni paramèt ou.',
       remoteTitle: 'Idantifikasyon sou pòtay aleka obligatwa',
-      remoteDescription: 'Sesyon pòtay aleka ou a ekspire. Konekte ankò pou rekonekte. Anyen isit la pa efase konvèsasyon ou ni paramèt ou.',
+      remoteDescription:
+        'Sesyon pòtay aleka ou a ekspire. Konekte ankò pou rekonekte. Anyen isit la pa efase konvèsasyon ou ni paramèt ou.',
       retry: 'Eseye ankò',
       repairInstall: 'Repare enstalasyon',
       useLocalGateway: 'Sèvi ak pòtay lokal',
@@ -200,10 +202,11 @@ export const ht = defineLocale({
       signInFailed: 'Koneksyon echwe',
       signInToRemoteGateway: 'Konekte ak pòtay aleka',
       identityProvider: 'founisè idantite w',
-      remoteSignInHint: signInLabel => `Dekonekte sesyon navigatè distan ki anrejistre a, epi louvri ${signInLabel}. Sèvi ak pasrèl lokal la pou chanje pou backend ki enkli a.`,
-      signInWithProvider: provider => `Konekte ak ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Dekonekte sesyon navigatè distan ki anrejistre a, epi louvri ${signInLabel}. Sèvi ak pasrèl lokal la pou chanje pou backend ki enkli a.`,
+      signInWithProvider: provider => `Konekte ak ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Demanajman boot echwe: ${message}`,
+    desktopBootFailedWithMessage: message => `Demanajman boot echwe: ${message}`
   },
   notifications: {
     region: 'Notifikasyon',
@@ -215,7 +218,8 @@ export const ht = defineLocale({
     copyDetail: 'Kopye detay',
     copyDetailFailed: 'Pa t kapab kopye detay notifikasyon an',
     backendOutOfDateTitle: 'Backend pa ajou',
-    backendOutOfDateMessage: 'Backend OpenAmer ou a pi ansyen pase vèsyon desktop sa a epi li ka pa mache kòrèkteman. Mete l ajou pou aliyen yo.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer ou a pi ansyen pase vèsyon desktop sa a epi li ka pa mache kòrèkteman. Mete l ajou pou aliyen yo.',
     installMethodUnsupportedTitle: 'Metòd enstalasyon pa sipòte',
     updateOpenAmer: 'Mete OpenAmer ajou',
     updateReadyTitle: 'Mizajou prè',
@@ -224,11 +228,12 @@ export const ht = defineLocale({
       elevenLabsNeedsKey: 'STT ElevenLabs bezwen ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejte kle API a (401).',
       gatewayAuthFailed: 'Otantifikasyon pòtay la echwe — tcheke API_SERVER_KEY ou.',
-      methodNotAllowed: 'Backend desktop la rejte demann sa a (405 Method Not Allowed). Eseye rekòmanse OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend desktop la rejte demann sa a (405 Method Not Allowed). Eseye rekòmanse OpenAmer Desktop.',
       microphonePermission: 'Pèmisyon mikwofòn refize.',
       openaiRejectedApiKey: 'OpenAI rejte kle API a.',
       openaiTtsNeedsKey: 'TTS OpenAI bezwen VOICE_TOOLS_OPENAI_KEY oswa OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejte kle API a (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejte kle API a (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Konfigire transkripsyon lapawòl pou itilize mòd vwa.',
@@ -247,7 +252,7 @@ export const ht = defineLocale({
       transcriptionFailed: 'Transkripsyon vwa echwe',
       transcriptionUnavailable: 'Transkripsyon vwa poko disponib.',
       tryRecordingAgain: 'Eseye anrejistreman ankò.',
-      unavailable: 'Vwa pa disponib',
+      unavailable: 'Vwa pa disponib'
     },
     native: {
       approvalTitle: 'Apwobasyon nesesè',
@@ -260,10 +265,10 @@ export const ht = defineLocale({
       turnErrorTitle: 'Tou a echwe',
       backgroundDoneTitle: 'Tach an aryè-plan fini',
       backgroundFailedTitle: 'Tach an aryè-plan echwe',
-      creditsTitle: 'Kredi',
+      creditsTitle: 'Kredi'
     },
     more: count => `${count} anplis ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} nouvo chanjman${count === 1 ? '' : 's'} disponib.`,
+    updateReadyMessage: count => `${count} nouvo chanjman${count === 1 ? '' : 's'} disponib.`
   },
   billingBlock: {
     titleOpenamer: 'Pa gen kredi OpenAmer',
@@ -271,7 +276,7 @@ export const ht = defineLocale({
     openBilling: 'Ouvri faktirasyon',
     addCredits: 'Ajoute kredi',
     dismiss: 'Fèmen',
-    titleProvider: provider => `Kredi fini — ${provider}`,
+    titleProvider: provider => `Kredi fini — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Kache bò-panèl',
@@ -288,13 +293,15 @@ export const ht = defineLocale({
     openStarmap: 'Ouvri graf memwa',
     openKeybinds: 'Rakouci klavye',
     layoutEditor: 'Editè dispozisyon',
-    layoutEditorTitle: 'Editè dispozisyon — ⌘-klik reyinisyalize dispozisyon an',
+    layoutEditorTitle: 'Editè dispozisyon — ⌘-klik reyinisyalize dispozisyon an'
   },
   settings: {
     appearance: {
       pet: {
-        intro: 'Adopte yon maskot petdex anime ki flote sou aplikasyon an epi ki reaji a sa OpenAmer ap fè — li kouri pandan zouti yo ap egzekite, li fete lè sa reyisi, epi li boude lè gen erè.',
-        restartHint: 'Bèt kay yo bezwen yon rekòmanse rapid — aplikasyon an te kòmanse anvan yo te ajoute fonksyon sa a. Sòti epi relouvri OpenAmer, epi tounen isit.',
+        intro:
+          'Adopte yon maskot petdex anime ki flote sou aplikasyon an epi ki reaji a sa OpenAmer ap fè — li kouri pandan zouti yo ap egzekite, li fete lè sa reyisi, epi li boude lè gen erè.',
+        restartHint:
+          'Bèt kay yo bezwen yon rekòmanse rapid — aplikasyon an te kòmanse anvan yo te ajoute fonksyon sa a. Sòti epi relouvri OpenAmer, epi tounen isit.',
         on: 'Aktive',
         off: 'Dezaktive',
         scaleTitle: 'Gwosè',
@@ -327,42 +334,45 @@ export const ht = defineLocale({
         adoptFailed: slug => `Pa t kapab adopte ${slug}`,
         uninstallFailed: slug => `Pa t kapab dezenstale ${slug}`,
         renameFailed: slug => `Pa t kapab renome ${slug}`,
-        exportFailed: slug => `Pa t kapab ekspòte ${slug}`,
+        exportFailed: slug => `Pa t kapab ekspòte ${slug}`
       },
       title: 'Asirans',
       intro: 'Se prèfèras desktop-only afichaj. Mode kontrôle lumiyè; tema kontrôle palèt aksen ak styling chak chat.',
       colorMode: 'Mode Kolor',
       colorModeDesc: 'Chwazi yon mode fixe osè ou let OpenAmer sèvi paramèt sistèm ou.',
-      toolViewTitle: 'Afichaj Appèl d\'outil',
-      toolViewDesc: 'Prod kache charge utile d\'outil brut; Teknikal afiche plen entree/sortie.',
+      toolViewTitle: "Afichaj Appèl d'outil",
+      toolViewDesc: "Prod kache charge utile d'outil brut; Teknikal afiche plen entree/sortie.",
       uiScaleTitle: 'Escala UI',
       translucencyTitle: 'Translénsen fènêt',
       translucencyDesc: 'Vizite yon tout yon fènêt dezèktop ou. Sistèm macOS ak Windows only.',
       backdropTitle: 'Fond dosal chat',
       backdropDesc: 'Image statyè fènèt deryè konversasyon.',
       embedsTitle: 'Entènèt anlè',
-      embedsDesc: 'Aperitifs riches charge soti sitès tierti (YouTube, X, …). Ask afiche yon plaseholder jiska w alowChaque yon; Chakwa load automatikman; Of gard lien plain.',
+      embedsDesc:
+        'Aperitifs riches charge soti sitès tierti (YouTube, X, …). Ask afiche yon plaseholder jiska w alowChaque yon; Chakwa load automatikman; Of gard lien plain.',
       embedsAsk: 'Demand',
       embedsAlways: 'Toujours',
       embedsOff: 'Of',
       product: 'Produit',
-      productDesc: 'Aktivite d\'outil pou moun avèk résumès konciz.',
+      productDesc: "Aktivite d'outil pou moun avèk résumès konciz.",
       technical: 'Teknik',
-      technicalDesc: 'Inkluye raw args/results d\'outil ak detalye nivè low.',
+      technicalDesc: "Inkluye raw args/results d'outil ak detalye nivè low.",
       themeTitle: 'Tèm',
       themeDesc: 'Palèt dyske seul. Mode selekton ap aplike sou.',
       installTitle: 'Instal sòti VS Code',
-      installDesc: 'Coll yon id d\'extension Marketplace (e.g. dracula-theme.theme-dracula) pou konvèti tem kolòr li ak palèt dyske.',
+      installDesc:
+        "Coll yon id d'extension Marketplace (e.g. dracula-theme.theme-dracula) pou konvèti tem kolòr li ak palèt dyske.",
       installButton: 'Instal',
       installing: 'Installant…',
       installError: 'Pa kapab instal tem ki.',
       removeTheme: 'Enlevè tem',
       importedBadge: 'Importé',
-      uiScaleDesc: (percent: number) => `Chanje gwosè tèks ak kontwòl nan tout aplikasyon an. Cmd/Ctrl ak +, - ak 0 mache tou. Aktyèl: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Chanje gwosè tèks ak kontwòl nan tout aplikasyon an. Cmd/Ctrl ak +, - ak 0 mache tou. Aktyèl: ${percent}%.`,
       embedsReset: (count: number) => `Reyajiste ${count} otorize ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Anrejistre pou pwofil ${profile} la — chak pwofil kenbe tèm pa li.`,
       installPlaceholder: 'editè.ekstansyon',
-      installed: name => `Enstale “${name}”.`,
+      installed: name => `Enstale “${name}”.`
     },
     about: {
       versionUnavailable: 'Vèsyon pa disponib',
@@ -389,7 +399,7 @@ export const ht = defineLocale({
       branchCommit: (branch, commit) => `Branch ${branch} · Anrejistreman ${commit}`,
       minAgo: count => `Sa gen ${count} minit`,
       hoursAgo: count => `Sa gen ${count} èdtan`,
-      daysAgo: count => `Sa gen ${count} jou`,
+      daysAgo: count => `Sa gen ${count} jou`
     },
     gateway: {
       sshHostPickTitle: 'Òt',
@@ -410,9 +420,12 @@ export const ht = defineLocale({
       sshButtonsHint: 'Sove aplikab nan pwochen lansman. Konekte rekonekte kounye a.',
       sshIncompleteHost: 'Antre yon òt SSH anvan ou konekte.',
       sshErrUnreachable: 'Pa t kapab rive jwenn òt sa a atravè SSH. Tcheke òt la, pò a, ak rezo ou.',
-      sshErrAuth: 'Otantifikasyon SSH echwe. Chaje kle ou nan ssh-agent la (ssh-add) oswa mete yon IdentityFile nan ~/.ssh/config — OpenAmer egzekite ssh san entèaksyon.',
-      sshErrHostKey: 'Kle òt la CHANJE depi dènye fwa ou konekte. Verifye si sa te atann, epi kouri ssh-keygen -R <host> epi rekonekte.',
-      sshErrNotInstalled: 'OpenAmer pa enstale sou òt aleka a. Enstale li la (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) oswa mete chemen OpenAmer.',
+      sshErrAuth:
+        'Otantifikasyon SSH echwe. Chaje kle ou nan ssh-agent la (ssh-add) oswa mete yon IdentityFile nan ~/.ssh/config — OpenAmer egzekite ssh san entèaksyon.',
+      sshErrHostKey:
+        'Kle òt la CHANJE depi dènye fwa ou konekte. Verifye si sa te atann, epi kouri ssh-keygen -R <host> epi rekonekte.',
+      sshErrNotInstalled:
+        'OpenAmer pa enstale sou òt aleka a. Enstale li la (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) oswa mete chemen OpenAmer.',
       sshErrPlatform: 'Platfòm aleka pa sipòte. Mòd SSH OpenAmer Desktop sipòte òt aleka Linux, macOS, ak Windows.',
       sshErrTimeout: 'Koneksyon SSH pran twòp tan. Òt la ka pa rive jwenn oswa li nan dòmi.',
       sshErrUpdateRequired: 'Mete OpenAmer ajou sou òt aleka a anvan ou konekte ak SSH Desktop.',
@@ -420,7 +433,8 @@ export const ht = defineLocale({
       allProfiles: 'Tout profil',
       defaultConnection: 'Konneksyon par dèfòt pou chak profil ki pa gen override a.',
       envOverrideTitle: 'Variablès envirònman kontrôle sesyon bòò dezòf.',
-      envOverrideDesc: 'Supprime OPENAMER_DESKTOP_REMOTE_URL ak OPENAMER_DESKTOP_REMOTE_TOKEN pou utilise paramètre sauvè anbas.',
+      envOverrideDesc:
+        'Supprime OPENAMER_DESKTOP_REMOTE_URL ak OPENAMER_DESKTOP_REMOTE_TOKEN pou utilise paramètre sauvè anbas.',
       modeTitle: 'Mode konneksyon',
       localTitle: 'Gateway lokal',
       localDesc: 'Etebri backend OpenAmer priye sou localhost. Dèfòt ak marche hors ligne.',
@@ -428,8 +442,9 @@ export const ht = defineLocale({
       inheritDesc: 'Retire override pou profil ak konneksyon par dèfòt.',
       remoteTitle: 'Gateway distan',
       remoteDesc: 'Konnekte yon shell dezòf ki a ki a backend OpenAmer distan.',
-      remoteAuthHint: 'Gwayeway hosted utilise OAuth ou nom d\'utilisè ak mot de passe; self-hosted ka utilise token sesyon.',
-      cloudDesc: 'Entèn yon fwa nan OpenAmer Cloud ak piwo agent sou compte a — pa d\'URL ki pastè.',
+      remoteAuthHint:
+        "Gwayeway hosted utilise OAuth ou nom d'utilisè ak mot de passe; self-hosted ka utilise token sesyon.",
+      cloudDesc: "Entèn yon fwa nan OpenAmer Cloud ak piwo agent sou compte a — pa d'URL ki pastè.",
       cloudSignIn: 'Entèn nan OpenAmer Cloud',
       cloudSignedIn: 'Ou te entèn nan OpenAmer Cloud',
       cloudNeedsSignIn: 'Entèn nan OpenAmer Cloud pou decouvri agent sou compte a.',
@@ -440,7 +455,8 @@ export const ht = defineLocale({
       unavailableDesc: 'Pont IPC ordinateur pa expose paramèt gwatewè.',
       title: 'Koneksyon gwatewè',
       envOverride: 'Environman ovè',
-      intro: 'OpenAmer Desktop starte yon gwatewè lokal li par default. E yon gwatewè distan ou vle ki aplikasyon sa kontrôle yon OpenAmer backend déja en cours sou machine alò oswa deryè yon proxy fè. Chwazi yon profil anba pou bay li yon hôte distan li an.',
+      intro:
+        'OpenAmer Desktop starte yon gwatewè lokal li par default. E yon gwatewè distan ou vle ki aplikasyon sa kontrôle yon OpenAmer backend déja en cours sou machine alò oswa deryè yon proxy fè. Chwazi yon profil anba pou bay li yon hôte distan li an.',
       appliesTo: 'Ap li',
       cloudOrgPickerTitle: 'Chwazi organisasyon',
       cloudOrgSelect: 'Chwazi',
@@ -449,7 +465,7 @@ export const ht = defineLocale({
       cloudNoAgents: {
         before: 'Pa gen agens sou yon kay akònt. Kreye yon organisaison',
         linkText: 'OpenAmer portèl',
-        after: ', rafraîchir.',
+        after: ', rafraîchir.'
       },
       cloudRefresh: 'Rafraîchir',
       cloudConnect: 'Konekt',
@@ -457,7 +473,7 @@ export const ht = defineLocale({
       cloudDiscoverFailed: 'Pa ka chargé yon OpenAmer Cloud agens',
       cloudConnectFailed: 'Pa ka konekte agen sa',
       cloudSignInFailed: 'OpenAmer Cloud koneksyon raté',
-      cloudSignedOutTitle: 'Deconnecté d\'OpenAmer Cloud',
+      cloudSignedOutTitle: "Deconnecté d'OpenAmer Cloud",
       cloudSignedOutMessage: 'Effacé sesyon OpenAmer Cloud',
       cloudConnectedTitle: 'Konekté',
       cloudConnectedPill: 'Konekté',
@@ -467,30 +483,36 @@ export const ht = defineLocale({
       applyFailed: 'Pa kapab aplike anviwònman pòtay la',
       saveFailed: 'Pa kapab sove anviwònman pòtay la',
       sshTitle: 'Konekte via SSH',
-      sshDesc: 'OpenAmer lanse sou distans via SSH epi tunelize nan aplikasyon sa a — pa gen anyen pou kòmanse oswa ekspoze tèt ou. Bezwen aksè SSH ki fonksyone sou kle pou òtè a.',
+      sshDesc:
+        'OpenAmer lanse sou distans via SSH epi tunelize nan aplikasyon sa a — pa gen anyen pou kòmanse oswa ekspoze tèt ou. Bezwen aksè SSH ki fonksyone sou kle pou òtè a.',
       sshTrustHint: 'Premye kle òtè a ki prezante a fè konfyans e li ankre; chanjman pita yo fèmen.',
       sshHostTitle: 'Òtè',
       sshHostDesc: 'user@host, oswa yon alias òtè soti nan ~/.ssh/config.',
       sshHostPick: 'Chwazi yon òtè…',
-      profileConnection: profile => `Koneksyon an itilize sèlman lè “${profile}” se pwofil aktif la. Chwazi Sèvi ak pasrèl defo a pou retire override sa a.`,
+      profileConnection: profile =>
+        `Koneksyon an itilize sèlman lè “${profile}” se pwofil aktif la. Chwazi Sèvi ak pasrèl defo a pou retire override sa a.`,
       cloudTitle: 'OpenAmer Nenep',
       cloudSignInTitle: 'OpenAmer Nenep',
       cloudOrgRole: role => `Wòl: ${role}`,
       cloudConnectedTo: name => `Konekte ak ${name}.`,
       cloudStatusLabel: status => `Estati: ${status}`,
       probing: 'Ap tcheke kijan sa gateway a afime…',
-      probeError: 'Pa mwen te ka rive ak sa gateway la ankò. Tcheke URL la — metòd nauth la ap apeprèkliye lè li reponn.',
+      probeError:
+        'Pa mwen te ka rive ak sa gateway la ankò. Tcheke URL la — metòd nauth la ap apeprèkliye lè li reponn.',
       signedIn: 'Ou vo konekte',
       signIn: 'Konekte',
       signOut: 'Panse',
       signInWith: provider => `Konekte ak ${provider}`,
       authTitle: 'Afninite',
-      authSignedInPassword: 'Sa gateway la itilize yon itilizatè ak modè. Ou vo konekte; sesyon an ap rejwaje automatikman.',
+      authSignedInPassword:
+        'Sa gateway la itilize yon itilizatè ak modè. Ou vo konekte; sesyon an ap rejwaje automatikman.',
       authSignedInOauth: 'Sa gateway la itilize OAuth. Ou vo konekte; sesyon an ap rejwaje automatikman.',
       authNeedsPassword: 'Sa gateway la itilize yon itilizatè ak modè. Konekte pou otorize app sa a.',
-      authNeedsOauth: provider => `Pasrèl sa a sèvi ak OAuth. Konekte ak ${provider} pou otorize aplikasyon desktop sa a.`,
+      authNeedsOauth: provider =>
+        `Pasrèl sa a sèvi ak OAuth. Konekte ak ${provider} pou otorize aplikasyon desktop sa a.`,
       tokenTitle: 'Jeton sesyon',
-      tokenDesc: 'Jeton sesyon dashboard la itilize pou aksè REST ak WebSocket. Kite banyon an san pou kenbe jeton ki ou peye.',
+      tokenDesc:
+        'Jeton sesyon dashboard la itilize pou aksè REST ak WebSocket. Kite banyon an san pou kenbe jeton ki ou peye.',
       existingToken: value => `Token ki egziste ${value}`,
       savedToken: 'Enpeye',
       pasteSessionToken: 'Bije jeton sesyon',
@@ -518,12 +540,12 @@ export const ht = defineLocale({
       signInFailed: 'Soumèt pa t reyini.',
       signOutFailed: 'Soti nan pousyè pa t reyini.',
       testFailed: 'Tès gwatway laj la pa t reyini.',
-      sshReachable: (host, platform) => `Kapasite kontakte: ${host} (${platform}) — OpenAmer jwenn`,
+      sshReachable: (host, platform) => `Kapasite kontakte: ${host} (${platform}) — OpenAmer jwenn`
     },
     keys: {
       loading: 'Ap chaje kle API ak idantifyan...',
       failedLoad: 'Chajman kle API echwe',
-      empty: 'Pa gen anyen konfigire nan kategori sa a ankò.',
+      empty: 'Pa gen anyen konfigire nan kategori sa a ankò.'
     },
     mcp: {
       loading: 'Ap chaje sèvè MCP...',
@@ -549,7 +571,7 @@ export const ht = defineLocale({
       catalogNeedsInstall: 'Bezwen bati',
       catalogInstall: 'Instal',
       catalogInstalling: 'Instalman...',
-      catalogEnvRequired: 'Rempli valè reqèsman an avant d\'instal.',
+      catalogEnvRequired: "Rempli valè reqèsman an avant d'instal.",
       statusConnecting: 'Konnektan…',
       statusNeedsAuth: 'Bezwen autentifikasyon',
       statusError: 'Erè',
@@ -585,10 +607,11 @@ export const ht = defineLocale({
       catalogInstallStarted: name => `Ap enstale ${name}... aplikab pou nouvo sesyon yo lè li fini.`,
       catalogInstallFailed: name => `Echwe pou enstale ${name}`,
       catalogEnvPrompt: name => `${name} mande enfòmasyon koneksyon`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktive`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} aktive`,
       authenticatedMessage: (server, count) => `${server}: ${count} zouti`,
       enableTool: tool => `Aktive ${tool}`,
-      disableTool: tool => `Dezaktive ${tool}`,
+      disableTool: tool => `Dezaktive ${tool}`
     },
     toolsets: {
       noProviderOptions: 'Zouti sa a pa gen opsyon founisè — aktive li epi li fonksyone ak konfigirasyon ou kounye a.',
@@ -633,7 +656,7 @@ export const ht = defineLocale({
         selectedTitle: 'Backend chwazi',
         needsSetupHint: 'Ou ka chwazi backend sa a kounye a — kòmand yo ap echwe jiskaske konfigirasyon an fini.',
         selectedMessage: backend => `Kòmand tèminal yo pase pa ${backend} kounye a. Sa aplike pou nouvo sesyon yo.`,
-        failedSelect: backend => `Pa t kapab chwazi ${backend}`,
+        failedSelect: backend => `Pa t kapab chwazi ${backend}`
       },
       loadingConfig: 'Kou chaj',
       savedTitle: 'Kredansè sipoze',
@@ -650,8 +673,10 @@ export const ht = defineLocale({
       selectedMessage: provider => `${provider} aktif kounye a.`,
       failedSelect: provider => `Echwe pou seleksyone ${provider}`,
       failedLoad: 'Konfigyasyon kwas te fèli pou louvri',
-      openamerAuthNeededMessage: provider => `${provider} sove, men li pap aktive jiskaske ou konekte sou pòtay OpenAmer.`,
-      postSetupHint: step => `Backend sa a bezwen yon enstalasyon yon sèl fwa (${step}). Li kouri sou machin sa a — sa ka pran kèk minit.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} sove, men li pap aktive jiskaske ou konekte sou pòtay OpenAmer.`,
+      postSetupHint: step =>
+        `Backend sa a bezwen yon enstalasyon yon sèl fwa (${step}). Li kouri sou machin sa a — sa ka pran kèk minit.`,
       postSetupCompleteMessage: step => `${step} enstale.`,
       postSetupErrorMessage: step => `Tcheke log ${step} la.`,
       postSetupFailed: step => `Echwe pou kouri konfigirasyon ${step}`,
@@ -661,7 +686,7 @@ export const ht = defineLocale({
       failedSelectCapability: provider => `Pa t kapab defini ${provider}`,
       modelCount: count => `Modèl ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} aplike pou nouvo sesyon yo.`,
-      failedSelectModel: model => `Pa t kapab chwazi ${model}`,
+      failedSelectModel: model => `Pa t kapab chwazi ${model}`
     },
     closeSettings: 'Fermè paramèt.',
     exportConfig: 'Eksport konf.',
@@ -685,11 +710,12 @@ export const ht = defineLocale({
       billing: 'Faktür',
       notifications: 'Notifikasyon',
       plugins: 'Plugin',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Plugin Desktop',
-      blurb: 'Extansyon UI chargè nan aplikasè sa a — bundle ak biltè oswa jete nan fòlder desktop-plugins (including ones OpenAmer ekri). Desabling nonchargè plugin live ak survive restart.',
+      blurb:
+        'Extansyon UI chargè nan aplikasè sa a — bundle ak biltè oswa jete nan fòlder desktop-plugins (including ones OpenAmer ekri). Desabling nonchargè plugin live ak survive restart.',
       openFolder: 'Ouvri Fòlder Plugin',
       reveal: 'Montre nan Manèfè Fayil',
       enable: 'Active',
@@ -699,37 +725,37 @@ export const ht = defineLocale({
       kinds: {
         bundled: 'En paket',
         disk: 'An diske',
-        runtime: 'Ran-tim',
+        runtime: 'Ran-tim'
       },
       rescan: 'Re-balay',
-      count: n => `${n} enstale`,
+      count: n => `${n} enstale`
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Aksès kredi estopé oswa restauré.',
-          label: 'Alerte krediti',
+          label: 'Alerte krediti'
         },
         approval: {
           label: 'Bezwen approbasyon',
-          description: 'En komenn ap patenou pou ou approuvè oswa ou rejeèt.',
+          description: 'En komenn ap patenou pou ou approuvè oswa ou rejeèt.'
         },
         input: {
           label: 'Bezwen entènè',
-          description: 'OpenAmer te demande yon mòn oswa li bezwen mot de passe ou secret.',
+          description: 'OpenAmer te demande yon mòn oswa li bezwen mot de passe ou secret.'
         },
         turnDone: {
           label: 'Répons prèt',
-          description: 'En tour fini lè OpenAmer te an fond.',
+          description: 'En tour fini lè OpenAmer te an fond.'
         },
         turnError: {
           label: 'Tour fèk',
-          description: 'En tour fini ak erè',
+          description: 'En tour fini ak erè'
         },
         backgroundDone: {
           label: 'Tâch fond fini',
-          description: 'En komenn terminal fond fini.',
-        },
+          description: 'En komenn terminal fond fini.'
+        }
       },
       test: 'Veye yon notifikasyon test.',
       testTitle: 'OpenAmer',
@@ -740,10 +766,11 @@ export const ht = defineLocale({
       completionSoundDesc: 'Jwe lè yon tour ajen fini. Chwazi preset ak prèv li wè yè.',
       completionSoundPreview: 'Prèv',
       title: 'Notifikasyon',
-      intro: 'Notifikasyon nativ desktop, sèpare de notifikasyon an-ap. Yo se locale device — cha ordinatè garde sien paramètè.',
+      intro:
+        'Notifikasyon nativ desktop, sèpare de notifikasyon an-ap. Yo se locale device — cha ordinatè garde sien paramètè.',
       enableAll: 'Aktiw notifikasyon',
       enableAllDesc: 'Switche maitre. Desann sa pou silans tout notifikasyon anba.',
-      focusedHint: 'Alerte kompleti tire selèk lè OpenAmer an fond.',
+      focusedHint: 'Alerte kompleti tire selèk lè OpenAmer an fond.'
     },
     sections: {
       model: 'Modèl',
@@ -753,7 +780,7 @@ export const ht = defineLocale({
       safety: 'Sèfeti',
       memory: 'Memwa & Kontèks',
       voice: 'Vwa',
-      advanced: 'Avansé',
+      advanced: 'Avansé'
     },
     searchPlaceholder: {
       about: 'Deskripsyon OpenAmer Desktop',
@@ -761,21 +788,21 @@ export const ht = defineLocale({
       gateway: 'Koneksyon gwateway...',
       keys: 'Rechèch klè API...',
       mcp: 'Rechèch server MCP...',
-      sessions: 'Rechèch sesyon arkevat...',
+      sessions: 'Rechèch sesyon arkevat...'
     },
     modeOptions: {
       light: {
         label: 'Lum',
-        description: 'Surfaces desktop lumiyè',
+        description: 'Surfaces desktop lumiyè'
       },
       dark: {
         label: 'Fòn',
-        description: 'Espace piti éblouissement',
+        description: 'Espace piti éblouissement'
       },
       system: {
         label: 'Sistèm',
-        description: 'Sèvi asirans OS',
-      },
+        description: 'Sèvi asirans OS'
+      }
     },
     config: {
       none: 'Pa anyen',
@@ -791,7 +818,7 @@ export const ht = defineLocale({
       imported: 'Konfiğirasyon importé.',
       invalidJson: 'Konfiğirasyon JSON invalide.',
       keepAwakeTitle: 'Gardi ordinatè alerte.',
-      keepAwakeDesc: 'Empêche machine sa dòmi anpil oswa nwit. Ekran a toujou ka dim.',
+      keepAwakeDesc: 'Empêche machine sa dòmi anpil oswa nwit. Ekran a toujou ka dim.'
     },
     credentials: {
       pasteKey: 'Kè paste.',
@@ -801,7 +828,7 @@ export const ht = defineLocale({
       remove: 'Enlev',
       getKey: 'Kòb yon kè',
       saving: 'Sove',
-      pasteLabelKey: label => `Kole kle ${label}`,
+      pasteLabelKey: label => `Kole kle ${label}`
     },
     envActions: {
       credentialActions: 'Actions kredansyal',
@@ -812,7 +839,7 @@ export const ht = defineLocale({
       replace: 'Remplase',
       set: 'Paramèt',
       clear: 'Efface',
-      actionsFor: label => `Aksyon pou ${label}`,
+      actionsFor: label => `Aksyon pou ${label}`
     },
     model: {
       loading: 'Chèch model an konfigye mete.',
@@ -832,49 +859,50 @@ export const ht = defineLocale({
       autoUseMain: 'auto · ewe modèl men',
       providerDefault: '(defòlt fònye)',
       fallbackAdd: 'Adwèf fallback',
-      fallbackEmpty: 'Pa gen modèl fallback — modèl defòlt utilise s\'il kapab.',
+      fallbackEmpty: "Pa gen modèl fallback — modèl defòlt utilise s'il kapab.",
       notInCatalog: 'Pa gen an sou list modèl fònye — kalèl kay fallback yon backup.',
       tasks: {
         vision: {
           label: 'Vizyon',
-          hint: 'Analiz imaj',
+          hint: 'Analiz imaj'
         },
         web_extract: {
           label: 'Ekstrè entènèt',
-          hint: 'Rezime paj',
+          hint: 'Rezime paj'
         },
         compression: {
           label: 'Konpresyon',
-          hint: 'Konpaksyon kontèks',
+          hint: 'Konpaksyon kontèks'
         },
         skills_hub: {
           label: 'Sant konpetans',
-          hint: 'Rechèch konpetans',
+          hint: 'Rechèch konpetans'
         },
         approval: {
           label: 'Aprobasyon',
-          hint: 'Aprobasyon otomatik entelijan',
+          hint: 'Aprobasyon otomatik entelijan'
         },
         mcp: {
           hint: 'Routage zouti MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Jenere tit',
-          hint: 'Tit sesyon',
+          hint: 'Tit sesyon'
         },
         curator: {
           label: 'Kuratè',
-          hint: 'Revizyon itilizasyon konpetans',
-        },
-      },
+          hint: 'Revizyon itilizasyon konpetans'
+        }
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     providers: {
       connectAccount: 'Koneksyone yon kont.',
       haveApiKey: 'Gen yon API kle nan plas?',
-      intro: 'Sèviye ak yon abòn — pa gen kle API pou kopi. OpenAmer fè sitou wèp an pou ou, ri juste nan aplikasyon an.',
+      intro:
+        'Sèviye ak yon abòn — pa gen kle API pou kopi. OpenAmer fè sitou wèp an pou ou, ri juste nan aplikasyon an.',
       connected: 'Konekte',
       collapse: 'Rajo',
       connectAnother: 'Konekte yon lòt pwovidè',
@@ -884,7 +912,8 @@ export const ht = defineLocale({
       removeConfirm: provider => `Retire ${provider}?`,
       removeExternalGeneric: provider => `${provider} jere ak pwòp CLI li — retire li la.`,
       removeKeyManaged: provider => `${provider} konfigire ak yon kle API. Retire li nan Kle API.`,
-      removeTerminalConfirm: (provider, command) => `Dekonekte ${provider}? Sa ap kouri "${command}" nan tèminal la pou efase kridans yo.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Dekonekte ${provider}? Sa ap kouri "${command}" nan tèminal la pou efase kridans yo.`,
       removeTerminalRunning: provider => `Ap kouri dekoneksyon ${provider} nan tèminal la…`,
       removedTitle: 'Kont retire',
       removedMessage: provider => `${provider} te retire.`,
@@ -894,14 +923,15 @@ export const ht = defineLocale({
       noKeysMatch: 'Pa gen pwovidè ki mache chache ou.',
       localEndpoint: {
         title: 'Endpoint lokal / kustom',
-        description: 'Vize OpenAmer nan yon endpoint ki konbiyone OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Vize OpenAmer nan yon endpoint ki konbiyone OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Charg pwovidè...',
+      loading: 'Charg pwovidè...'
     },
     sessions: {
       loading: 'Charg sesyon ki te siv…',
       archivedTitle: 'Sesyon ki te siv',
-      archivedIntro: 'Chat ki te siv ap kache nan bòl lateral men kenbe tout mesaj yo. Ctrl/⌘-click yon chat nan bòl lateral pou li arkiv.',
+      archivedIntro:
+        'Chat ki te siv ap kache nan bòl lateral men kenbe tout mesaj yo. Ctrl/⌘-click yon chat nan bòl lateral pou li arkiv.',
       emptyArchivedTitle: 'Rien pa arkiv',
       emptyArchivedDesc: 'Arkiv yon chat pou li kache isit la.',
       unarchive: 'Retoun arkiv',
@@ -910,12 +940,14 @@ export const ht = defineLocale({
       restored: 'Rètore',
       deleteConfirm: title => `Efase "${title}" nèt? Aksyon sa a pa ka anile.`,
       autoArchiveTitle: 'Aro vòye chatch ki peye',
-      autoArchiveDesc: "Kobòman vòye chatch ou pa t fè konsantrasyon ane yo. Chatch ki tache yo pa janm voye, e okenn bagay pa sispann — chatch ki voye se sèl vo move isit la.",
+      autoArchiveDesc:
+        'Kobòman vòye chatch ou pa t fè konsantrasyon ane yo. Chatch ki tache yo pa janm voye, e okenn bagay pa sispann — chatch ki voye se sèl vo move isit la.',
       autoArchiveDaysLabel: 'Vòye apre',
       autoArchiveDaysUnit: 'jour pa aktivite',
       autoArchiveFailed: 'Pa kapab mete aro vòye',
       defaultDirTitle: 'Dosye pwojè default',
-      defaultDirDesc: 'Nouvo sesyon kòmanse nan katalò sa a si ou pa chwazi yon lòt. Kite li pa mete pou itilize dosye kay ou.',
+      defaultDirDesc:
+        'Nouvo sesyon kòmanse nan katalò sa a si ou pa chwazi yon lòt. Kite li pa mete pou itilize dosye kay ou.',
       defaultDirUpdated: 'Dosye pwojè default mete — kòmanse yon nouvo chat (Ctrl/⌘+N) pou li prese pou aji',
       defaultsTo: label => `Defo a se ${label}.`,
       change: 'Chanje',
@@ -926,132 +958,132 @@ export const ht = defineLocale({
       unarchiveFailed: 'Pa kapab retounen',
       deleteFailed: 'Pa kapab supprime',
       updateDirFailed: 'Pa kapab mete dosye default',
-      clearDirFailed: 'Pa kapab klar dosye default',
-    },
+      clearDirFailed: 'Pa kapab klar dosye default'
+    }
   },
   messaging: {
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Stil repons',
-        help: 'premye, tout, oswa dezaktive.',
+        help: 'premye, tout, oswa dezaktive.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Pèmèt tout itilizatè Discord',
-        help: 'Sèlman pou devlopman. Lè se vre, nenpòt moun ka DM bot la san lis otorizasyon.',
+        help: 'Sèlman pou devlopman. Lè se vre, nenpòt moun ka DM bot la san lis otorizasyon.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID chanèl prensipal',
-        help: 'Chanèl kote bot la voye mesaj proaktif (rezilta cron, rapèl).',
+        help: 'Chanèl kote bot la voye mesaj proaktif (rezilta cron, rapèl).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Non chanèl prensipal',
-        help: 'Non afichaj pou chanèl prensipal la nan jounal ak rezilta estati.',
+        help: 'Non afichaj pou chanèl prensipal la nan jounal ak rezilta estati.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Pèmèt tout itilizatè iMessage',
-        help: 'Lè se vre, sote lis otorizasyon BlueBubbles la.',
+        help: 'Lè se vre, sote lis otorizasyon BlueBubbles la.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Pèmèt tout itilizatè Mattermost',
+        label: 'Pèmèt tout itilizatè Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Chanèl prensipal',
+        label: 'Chanèl prensipal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Pèmèt tout itilizatè QQ',
+        label: 'Pèmèt tout itilizatè QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Chanèl prensipal QQ',
-        help: 'Chanèl oswa gwoup default pou livrezon cron.',
+        help: 'Chanèl oswa gwoup default pou livrezon cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Non chanèl prensipal QQ',
+        label: 'Non chanèl prensipal QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Sèvi ak token bot ki soti nan OAuth & Permissions apre ou fin enstale aplikasyon Slack ou.',
-        placeholder: 'Kole token bot Slack',
+        placeholder: 'Kole token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikasyon Slack',
         help: 'Sèvi ak token nivo aplikasyon ki nesesè pou Socket Mode.',
-        placeholder: 'Kole token aplikasyon Slack',
+        placeholder: 'Kole token aplikasyon Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID itilizatè Slack otorize',
-        help: 'Rekòmande. ID itilizatè Slack separe ak vèrgil.',
+        help: 'Rekòmande. ID itilizatè Slack separe ak vèrgil.'
       },
       MATTERMOST_URL: {
         label: 'URL sèvè',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID itilizatè otorize',
-        help: 'Rekòmande. ID itilizatè Mattermost separe ak vèrgil.',
+        help: 'Rekòmande. ID itilizatè Mattermost separe ak vèrgil.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL sèvè Matrix',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token aksè',
+        label: 'Token aksè'
       },
       MATRIX_USER_ID: {
         label: 'ID itilizatè bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID itilizatè Matrix otorize',
-        help: 'Rekòmande. ID itilizatè separe ak vèrgil nan fòma @user:server.',
+        help: 'Rekòmande. ID itilizatè separe ak vèrgil nan fòma @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL pon Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL yon pon REST signal-cli k ap fonksyone.',
+        help: 'URL yon pon REST signal-cli k ap fonksyone.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nimewo telefòn',
-        help: 'Nimew m registre avèk pont ou signal-cli.',
+        help: 'Nimew m registre avèk pont ou signal-cli.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Kreye yon bot ak @BotFather, epi kole token li ba ou a.',
-        placeholder: 'Kole token bot Telegram',
+        placeholder: 'Kole token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID itilizatè Telegram otreye',
-        help: 'Rekòmande. ID nimerik separe ak vigil ki soti nan @userinfobot. San sa, nenpòt moun ka voye mesaj dirèk bay bot ou.',
+        help: 'Rekòmande. ID nimerik separe ak vigil ki soti nan @userinfobot. San sa, nenpòt moun ka voye mesaj dirèk bay bot ou.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proksi',
-        help: 'Sèlman nesesè sou rezo kote Telegram bloke.',
+        help: 'Sèlman nesesè sou rezo kote Telegram bloke.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Kreye yon aplikasyon nan Discord Developer Portal, ajoute yon bot, epi kole token li a.',
+        help: 'Kreye yon aplikasyon nan Discord Developer Portal, ajoute yon bot, epi kole token li a.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID itilizatè Discord otreye',
-        help: 'Rekòmande. ID itilizatè Discord separe ak vigil.',
+        help: 'Rekòmande. ID itilizatè Discord separe ak vigil.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Itilizatè otorize Signal',
-        help: 'Recommande. Identifiant Signal sépar pa kòm.',
+        help: 'Recommande. Identifiant Signal sépar pa kòm.'
       },
       WHATSAPP_ENABLED: {
         label: 'Active pont WhatsApp',
-        help: 'Met deziyalman pa bas ti a. Kite l\'alone si ou konnen ou bezwen li.',
+        help: "Met deziyalman pa bas ti a. Kite l'alone si ou konnen ou bezwen li."
       },
       WHATSAPP_MODE: {
-        label: 'Mod pont',
+        label: 'Mod pont'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Itilizatè WhatsApp otorize',
-        help: 'Recommande. Nimew telefòn oswa ID WhatsApp sépar pa kòm.',
-      },
+        help: 'Recommande. Nimew telefòn oswa ID WhatsApp sépar pa kòm.'
+      }
     },
     states: {
       connecting: 'Ap konekte',
@@ -1062,7 +1094,7 @@ export const ht = defineLocale({
       pending_restart: 'Bezwen rekòmanse',
       retrying: 'Ap eseye ankò',
       startup_failed: 'Demaraj echwe',
-      connected: 'Connecte',
+      connected: 'Connecte'
     },
     unknown: 'Enkoni',
     hintPendingRestart: 'Rekòmanse pòtay la depi ba estati a pou aplike chanjman sa a.',
@@ -1074,7 +1106,8 @@ export const ht = defineLocale({
     openSetupGuide: 'Louvri gid konfigirasyon',
     required: 'Obligatwa',
     recommended: 'Rekòmande',
-    noTokenNeeded: 'Platfòm sa a pa bezwen yon token isit la. Sèvi ak gid konfigirasyon ki anwo a, epi aktive l anba a.',
+    noTokenNeeded:
+      'Platfòm sa a pa bezwen yon token isit la. Sèvi ak gid konfigirasyon ki anwo a, epi aktive l anba a.',
     enabled: 'Aktive',
     disabled: 'Dezaktive',
     unsavedChanges: 'Chanjman ki pa sove',
@@ -1100,8 +1133,7 @@ export const ht = defineLocale({
     failedUpdate: name => `Echèk pou mete ajou ${name}`,
     failedSave: name => `Echèk pou sove ${name}`,
     failedClear: key => `Echèk pou efase ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   sidebar: {
     row: {
@@ -1135,20 +1167,20 @@ export const ht = defineLocale({
       sessionActions: 'Aksyon sèsiyon',
       handoffOrigin: platform => `Depase soti nan ${platform}`,
       ownedByProfile: profile => `Pwofil: ${profile}`,
-      untitledChat: id => `Chita ${id}`,
+      untitledChat: id => `Chita ${id}`
     },
     dateDivider: {
       today: 'Pi bonè jodi a',
       yesterday: 'Yè',
       thisWeek: 'Pi bonè semèn sa a',
       lastWeek: 'Semèn pase a',
-      thisMonth: 'Pi bonè mwa sa a',
+      thisMonth: 'Pi bonè mwa sa a'
     },
     nav: {
       'new-session': 'Nouvo sèsyon',
       skills: 'Kapasite',
       messaging: 'Souvan',
-      artifacts: 'Artifakt',
+      artifacts: 'Artifakt'
     },
     searchAria: 'Chèche sèsyon',
     searchPlaceholder: 'Chèche sèsyon…',
@@ -1180,7 +1212,7 @@ export const ht = defineLocale({
       namePlaceholder: 'Egzanp Skunkworks',
       foldersLabel: 'Kateg',
       ideaLabel: 'Idye',
-      ideaPlaceholder: "Ki sa pwòj sa a? (enregistre nan IDEA.md)",
+      ideaPlaceholder: 'Ki sa pwòj sa a? (enregistre nan IDEA.md)',
       ideaGenerate: 'Jenje idye',
       ideaGenerating: 'Jenje idye…',
       ideaShuffle: 'Mélanje modè',
@@ -1200,7 +1232,8 @@ export const ht = defineLocale({
       copyPath: 'Kopie chemin',
       removeFromSidebar: 'Kache nan sidebar',
       createFailed: 'Pa kapab kriye pwog',
-      staleBackend: 'Majezi backend OpenAmer pou kriye pwog — backend ou pi ta mout pase aplikasyon deskòp sa a (Settings → Updates → Backend).',
+      staleBackend:
+        'Majezi backend OpenAmer pou kriye pwog — backend ou pi ta mout pase aplikasyon deskòp sa a (Settings → Updates → Backend).',
       deleteConfirm: 'Sa retire pwog ki tenn nan OpenAmer. Dosye yo, git repos, ak worktrees yo rete san adjouist.',
       startWork: 'Nouvo worktree',
       newWorktreeTitle: 'Nouvo worktree',
@@ -1222,19 +1255,21 @@ export const ht = defineLocale({
       noBranches: 'Pa gen bran jwenn',
       removeWorktree: 'Retire worktree',
       removeWorktreeFailed: 'Pa kapab retire worktree (chanjman ki pa ensanm?)',
-      removeWorktreeConfirm: 'Retire li nan git (supprime dosye worktree la; bran la rete), oswa pèmye fè lane a fè invis nan sidebar la epi kite worktree la sou disk la.',
-      removeWorktreeDirty: 'Worktree sa a gen chanjman ki pa ensanm. Fòs retire li (retire chanjman yo), oswa pèmye fè lane a fè invis epi kite li sou disk la.',
+      removeWorktreeConfirm:
+        'Retire li nan git (supprime dosye worktree la; bran la rete), oswa pèmye fè lane a fè invis nan sidebar la epi kite worktree la sou disk la.',
+      removeWorktreeDirty:
+        'Worktree sa a gen chanjman ki pa ensanm. Fòs retire li (retire chanjman yo), oswa pèmye fè lane a fè invis epi kite li sou disk la.',
       forceRemove: 'Fòs retire',
       enter: label => `Louvri ${label}`,
       reorder: label => `Reòdone ${label}`,
       toggle: label => `Banje ${label} sesyon`,
-      back: 'Tout pwojè',
+      back: 'Tout pwojè'
     },
     newSessionIn: label => `Sesyon nouvo nan ${label}`,
     showMoreIn: (count, label) => `Montre ${count} plis nan ${label}`,
     loading: 'Ap charg…',
     loadMore: 'Telechaje plis',
-    loadCount: step => `Chaje ${step} plis`,
+    loadCount: step => `Chaje ${step} plis`
   },
   composer: {
     message: 'Mesaj',
@@ -1275,7 +1310,7 @@ export const ht = defineLocale({
       '/resume': 'repran yon sesyon anvan',
       '/details': 'kontwole nivo detay transkripsyon an',
       '/copy': 'kopye seleksyon an oswa dènye mesaj asistan an',
-      '/quit': 'soti nan OpenAmer',
+      '/quit': 'soti nan OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'referans fichye, dosye, URL, git',
@@ -1285,7 +1320,7 @@ export const ht = defineLocale({
       'composer.sendQueued': 'voye pwochen tou ki nan ke a',
       'keybinds.openPanel': 'tout rakouci klavye',
       'composer.cancel': 'fèmen popover · anile egzekisyon',
-      'composer.history': 'sikle popover / istwa',
+      'composer.history': 'sikle popover / istwa'
     },
     attachUrlTitle: 'Atache yon URL',
     attachUrlDesc: 'OpenAmer ap rale paj la epi enkli l kòm kontèks pou tou sa a.',
@@ -1306,20 +1341,20 @@ export const ht = defineLocale({
     newSessionPlaceholders: [
       'Kisa nou ap bati?',
       'Bay OpenAmer yon travay',
-      "Kisa ki nan tèt ou?",
+      'Kisa ki nan tèt ou?',
       'Dekri sa ou bezwen',
       'Kisa nou ta dwe fè?',
       'Poze nenpòt kesyon',
-      'Kòmanse ak yon objektif',
+      'Kòmanse ak yon objektif'
     ],
     followUpPlaceholders: [
       'Voye yon swivi',
       'Ajoute plis kontèks',
       'Ranfòse demann lan',
-      "Kisa ki pwochen?",
+      'Kisa ki pwochen?',
       'Kontinye li',
       'Pouse li pi lwen',
-      'Ajiste oswa kontinye',
+      'Ajiste oswa kontinye'
     ],
     queued: count => `${count} Nan keu`,
     queuedPaused: count => `${count} Nan keu — an poz`,
@@ -1355,19 +1390,19 @@ export const ht = defineLocale({
       codeReview: {
         label: 'Revizyon kòd',
         description: 'Veyikize chanje aktuel la pou wè regrès, ka sèl ki tonbe, ak teste ki manke.',
-        text: 'Pliz revew sa a pou wè bug, regrès, ak teste ki manke.',
+        text: 'Pliz revew sa a pou wè bug, regrès, ak teste ki manke.'
       },
       implementationPlan: {
         label: 'Plan implantaasyon',
         description: 'Fòme yon apwòch anvan ou touche kòd pou diferans lan rete konpòtans.',
-        text: 'Pliske fè yon plan implémentasyon konpòtans anvan ou chanje kòd.',
+        text: 'Pliske fè yon plan implémentasyon konpòtans anvan ou chanje kòd.'
       },
       explainThis: {
         label: 'Eksplike sa a',
         description: 'Dimen kòman kòd la travay ak lyen nan fay kèk.',
-        text: 'Pliske eksplike kijan sa a travay epi bay mwen lyen nan fay kèk.',
-      },
-    },
+        text: 'Pliske eksplike kijan sa a travay epi bay mwen lyen nan fay kèk.'
+      }
+    }
   },
   shell: {
     statusbar: {
@@ -1381,18 +1416,19 @@ export const ht = defineLocale({
           subagent_definitions: 'Definisyon sou-ajan',
           system_prompt: 'Prompt sistèm',
           tool_definitions: 'Definisyon zouti',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Poko gen done kontèks',
         loading: 'Ap chaje detay…',
         title: 'Itilizasyon kontèks',
         percentFull: percent => `${percent}% plen`,
-        tokenSummary: (used, max) => `${used} / ${max} jeton`,
+        tokenSummary: (used, max) => `${used} / ${max} jeton`
       },
       openContextUsage: 'Ouvri detay itilizasyon kontèks',
       session: 'Sesyon',
       runtimeSessionElapsed: 'Tan sesyon eksekisyon pase',
-      yoloOn: 'YOLO aktive — ap apwouve kòmand danjere otomatikman. Klike pou dezaktive. Shift+click baskile li globalman.',
+      yoloOn:
+        'YOLO aktive — ap apwouve kòmand danjere otomatikman. Klike pou dezaktive. Shift+click baskile li globalman.',
       yoloOff: 'YOLO dezaktive — klike pou apwouve kòmand danjere otomatikman. Shift+click baskile li globalman.',
       modelNone: 'okenn',
       noModel: 'pa gen modèl',
@@ -1443,7 +1479,7 @@ export const ht = defineLocale({
       turnRunning: 'K ap fèt',
       currentTurnElapsed: 'Elaps tèman',
       modelTitle: (provider, model) => `Modèl · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Kontwole fenèt',
     paneControls: 'Kontwole panye',
@@ -1453,7 +1489,7 @@ export const ht = defineLocale({
       noModels: 'Pa gen modèl ki kouvri',
       editModels: 'Modifye modèl yo…',
       refreshModels: 'Rafraje modèl yo',
-      fast: 'Rapid',
+      fast: 'Rapid'
     },
     modelOptions: {
       noOptions: 'Pa gen opsyon pou modèl sa a',
@@ -1469,7 +1505,7 @@ export const ht = defineLocale({
       max: 'Mèks',
       ultra: 'Altwafè',
       updateFailed: 'Modèl opsyon pa travay',
-      fastFailed: 'Modèl rapid pa travay',
+      fastFailed: 'Modèl rapid pa travay'
     },
     gatewayMenu: {
       gateway: 'Pwon',
@@ -1484,7 +1520,7 @@ export const ht = defineLocale({
       connection: label => `Koneksyon: ${label}`,
       recentActivity: 'Aktivite rek',
       viewAllLogs: 'Wè tout jounèl →',
-      messagingPlatforms: 'Platafòm mesaj',
+      messagingPlatforms: 'Platafòm mesaj'
     },
     approvalMode: {
       title: 'Modèl apwouve',
@@ -1494,8 +1530,8 @@ export const ht = defineLocale({
       smart: 'Kòmplè',
       smartDescription: 'Soufòmanman evalye otez la epi mande lè nesesè',
       off: 'Pou',
-      offDescription: 'Mouri san imè apwòbasyon',
-    },
+      offDescription: 'Mouri san imè apwòbasyon'
+    }
   },
   rightSidebar: {
     aria: 'Bar lateral dwat',
@@ -1531,7 +1567,7 @@ export const ht = defineLocale({
     addToChat: 'Ajoute nan konvèsasyon an',
     folderTip: cwd => `${cwd} — klike pou chanje katab`,
     couldNotPreview: path => `Pa t kapab afiche apèsi ${path}`,
-    unreadableBody: error => `Pa t kapab li katab sa a (${error}).`,
+    unreadableBody: error => `Pa t kapab li katab sa a (${error}).`
   },
   zones: {
     showHeader: 'Montre an-tèt',
@@ -1539,7 +1575,8 @@ export const ht = defineLocale({
     minimize: 'Redui',
     restore: 'Retabli',
     closeRunningTitle: 'Fèmen onglet k ap fonksyone a?',
-    closeRunningBody: 'Chat sa a ap kontinye travay (oswa l ap tann antre ou). Fèmen onglet la kache l — sesyon an kenbe pwogrè li epi ou ka relouvri l nan bar lateral la.',
+    closeRunningBody:
+      'Chat sa a ap kontinye travay (oswa l ap tann antre ou). Fèmen onglet la kache l — sesyon an kenbe pwogrè li epi ou ka relouvri l nan bar lateral la.',
     closeRunningConfirm: 'Fèmen onglet',
     closeOthers: 'Fèmen lòt yo',
     closeToRight: 'Fèmen sou bò dwat la',
@@ -1576,7 +1613,7 @@ export const ht = defineLocale({
     mergeZones: count => `Fizyone ${count} zòn`,
     customZoneName: count => `Pèsonalize ak ${count} zòn`,
     layoutNamePlaceholder: fallback => `Non aranjman an (${fallback})`,
-    zoneCount: count => `${count} zòn`,
+    zoneCount: count => `${count} zòn`
   },
   assistant: {
     thread: {
@@ -1612,120 +1649,120 @@ export const ht = defineLocale({
       restoreNext: 'Ranplase pwochen pwen a',
       goForward: 'Ale nan avan',
       sendEdited: 'Voye mesaj edite',
-      attachingFile: 'Ap apoze…',
+      attachingFile: 'Ap apoze…'
     },
     tool: {
       titles: {
         browser_fill: {
           pendingAction: 'Ap ranpli',
           done: 'Plase champ fòm',
-          pending: 'Plase champ fòm',
+          pending: 'Plase champ fòm'
         },
         browser_navigate: {
           done: 'Paj ouvè',
           pending: 'Ap ouvri paj',
-          pendingAction: 'Ap ouvri',
+          pendingAction: 'Ap ouvri'
         },
         browser_snapshot: {
           done: 'Foto paj kaptire',
           pending: 'Ap kaptire foto paj',
-          pendingAction: 'Ap kaptire',
+          pendingAction: 'Ap kaptire'
         },
         browser_take_screenshot: {
           done: 'Foto ekran kaptire',
           pending: 'Ap kaptire foto ekran',
-          pendingAction: 'Ap kaptire',
+          pendingAction: 'Ap kaptire'
         },
         browser_type: {
           done: 'Te tape sou paj',
           pending: 'Ap tape sou paj',
-          pendingAction: 'Ap tape',
+          pendingAction: 'Ap tape'
         },
         clarify: {
           done: 'Te poze yon kesyon',
           pending: 'Ap poze yon kesyon',
-          pendingAction: 'Ap poze',
+          pendingAction: 'Ap poze'
         },
         cronjob: {
           done: 'Travay cron',
           pending: 'Ap pwograme travay cron',
-          pendingAction: 'Ap pwograme',
+          pendingAction: 'Ap pwograme'
         },
         edit_file: {
           done: 'Fichye modifye',
           pending: 'Ap modifye fichye',
-          pendingAction: 'Ap modifye',
+          pendingAction: 'Ap modifye'
         },
         execute_code: {
           done: 'Kòd egzekite',
           pending: 'Ap ekzekite script',
-          pendingAction: 'Ap ekzekite script',
+          pendingAction: 'Ap ekzekite script'
         },
         image_generate: {
           done: 'Imaj jenere',
           pending: 'Ap jenere imaj',
-          pendingAction: 'Ap jenere',
+          pendingAction: 'Ap jenere'
         },
         list_files: {
           done: 'Fichye liste',
           pending: 'Ap liste fichye',
-          pendingAction: 'Ap liste',
+          pendingAction: 'Ap liste'
         },
         patch: {
           done: 'Fichye patche',
           pending: 'Ap patche fichye',
-          pendingAction: 'Ap patche',
+          pendingAction: 'Ap patche'
         },
         read_file: {
           done: 'Fichye li',
           pending: 'Ap li fichye',
-          pendingAction: 'Ap li',
+          pendingAction: 'Ap li'
         },
         search_files: {
           done: 'Fichye rechèche',
           pending: 'Ap rechèche fichye',
-          pendingAction: 'Ap rechèche',
+          pendingAction: 'Ap rechèche'
         },
         browser_click: {
           done: 'Klike yon eleman peje',
           pending: 'K ap klike yon eleman peje',
-          pendingAction: 'K ap klike',
+          pendingAction: 'K ap klike'
         },
         session_search_recall: {
           done: 'Chèche istwa sesyon',
           pending: 'K ap chèche istwa sesyon',
-          pendingAction: 'K ap chèche',
+          pendingAction: 'K ap chèche'
         },
         terminal: {
           done: 'Fè komand',
           pending: 'K ap fè komand',
-          pendingAction: 'K ap ale',
+          pendingAction: 'K ap ale'
         },
         todo: {
           done: 'Petoye todo',
           pending: 'Ap petoye todo',
-          pendingAction: 'Ap petoye',
+          pendingAction: 'Ap petoye'
         },
         vision_analyze: {
           done: 'Imaj analize',
           pending: 'Ap analize imaj',
-          pendingAction: 'Ap analize',
+          pendingAction: 'Ap analize'
         },
         web_extract: {
           done: 'Lis pejie',
           pending: 'Ap lis pejie',
-          pendingAction: 'Ap lis',
+          pendingAction: 'Ap lis'
         },
         web_search: {
           done: 'Kache web',
           pending: 'Ap kache web',
-          pendingAction: 'Ap kache',
+          pendingAction: 'Ap kache'
         },
         write_file: {
           done: 'Fichier edite',
           pending: 'Ap edite fichier',
-          pendingAction: 'Ap edite',
-        },
+          pendingAction: 'Ap edite'
+        }
       },
       code: 'Kòd',
       copyCode: 'Kopie kòd',
@@ -1760,11 +1797,11 @@ export const ht = defineLocale({
         ran: 'Li te ale',
         running: 'K ap ale',
         ranCode: 'Li te ale kòd la',
-        runningCode: 'Skripte',
+        runningCode: 'Skripte'
       },
       prefixes: {
         browser: 'Navigatè',
-        web: 'Wèb',
+        web: 'Wèb'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1772,8 +1809,8 @@ export const ht = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ap egzekite ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ap egzekite ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Ap egzekite ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway pa konekte',
@@ -1786,8 +1823,9 @@ export const ht = defineLocale({
       jumpToApproval: 'Nesesite apwouveman',
       reject: 'Refize',
       alwaysTitle: 'Toujou fè kòmand sa a?',
-      alwaysDescription: pattern => `Sa ajoute modèl “${pattern}” nan lis otorizasyon pèmanan ou (~/.openamer/config.yaml). OpenAmer p ap mande w ankò pou kòmand konsa — ni nan sesyon sa a ni nan okenn lòt sesyon.`,
-      alwaysAllow: 'Toujou fè',
+      alwaysDescription: pattern =>
+        `Sa ajoute modèl “${pattern}” nan lis otorizasyon pèmanan ou (~/.openamer/config.yaml). OpenAmer p ap mande w ankò pou kòmand konsa — ni nan sesyon sa a ni nan okenn lòt sesyon.`,
+      alwaysAllow: 'Toujou fè'
     },
     clarify: {
       notReady: 'Kòmansman la pa pare toujou',
@@ -1801,8 +1839,8 @@ export const ht = defineLocale({
       continueLabel: 'Kontinye',
       lateAnswer: (question, choice) => `Repons pou "${question}" — repons mwen: ${choice}`,
       lateAnswerTip: 'Prepare repons sa a kòm yon mesaj an nesesit',
-      lateAnswerHint: 'Sa prompt la pa tann avè pi. Chwazi yon opsyon pou prepare l kòm yon mesaj an nesesit.',
-    },
+      lateAnswerHint: 'Sa prompt la pa tann avè pi. Chwazi yon opsyon pou prepare l kòm yon mesaj an nesesit.'
+    }
   },
   desktop: {
     noClipboardImage: 'Pa jwenn okenn imaj nan klipbòd la',
@@ -1813,7 +1851,7 @@ export const ht = defineLocale({
       timedOut: 'Tan an pase pandan n ap tann pòtay la. Èske `openamer gateway` ap kouri?',
       success: platform => `Transfere bay ${platform}. Rekòmanse isit la nenpòt lè.`,
       systemNote: platform => `↻ Transfere bay ${platform} — rekòmanse isit la nenpòt lè.`,
-      failed: error => `Transfè a echwe: ${error}`,
+      failed: error => `Transfè a echwe: ${error}`
     },
     audioReadFailed: 'Pa kapab li jere oud anrejistre',
     sessionUnavailable: 'Sesyon pa disponib',
@@ -1829,7 +1867,8 @@ export const ht = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} pou sesyon sa a`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Pa kapab chanje YOLO',
-    profileStatus: current => `Pwofil: ${current}. Sèvi ak /profile <non> oswa selektè "Nouvo sesyon" an pou kòmanse yon konvèsasyon nan yon lòt pwofil.`,
+    profileStatus: current =>
+      `Pwofil: ${current}. Sèvi ak /profile <non> oswa selektè "Nouvo sesyon" an pou kòmanse yon konvèsasyon nan yon lòt pwofil.`,
     unknownProfile: 'Profile inconnou',
     noProfileNamed: (target, available) => `Pa gen pwofil ki rele "${target}". Sa ki disponib: ${available}`,
     newChatsProfile: name => `Nouvo konvèsasyon yo ap itilize pwofil ${name}.`,
@@ -1839,8 +1878,9 @@ export const ht = defineLocale({
     regenerateFailed: 'Renouvli pa kapab',
     editFailed: 'Edite pa kapab',
     resumeFailed: 'Repanm pa kapab',
-    resumeStrandedTitle: "Pa kapab louvri sesyon sa a",
-    resumeStrandedBody: 'Koneksyon nan sesyon sa a te ech de epi reèt automatik la te bay up. Verifyke ke gateway la ap kòmanse, lèsa eseye ankò.',
+    resumeStrandedTitle: 'Pa kapab louvri sesyon sa a',
+    resumeStrandedBody:
+      'Koneksyon nan sesyon sa a te ech de epi reèt automatik la te bay up. Verifyke ke gateway la ap kòmanse, lèsa eseye ankò.',
     resumeRetry: 'Esaie ankò',
     nothingToBranch: 'Pa gen bagay pou branchan',
     branchNeedsChat: 'Kòmanse oswa repwann yon chit anvan ou branchan.',
@@ -1871,31 +1911,31 @@ export const ht = defineLocale({
     imageWriteFailed: 'Pa kapab ekri imaj sou disk la.',
     imageAttachFailed: 'Konekte imaj ekoul',
     attachImages: 'Konekte imaj yo',
-    clipboard: 'Klepre',
+    clipboard: 'Klepre'
   },
   errors: {
     genericFailure: 'Yon bagay mal pase',
     boundaryTitle: 'Yon bagay kase nan entèfas la',
     boundaryDesc: 'Vi a rankontre yon erè inatandi. Chat ou yo ak paramèt ou yo an sekirite.',
     reloadWindow: 'Rechaje fenèt la',
-    openLogs: 'Louvri jounal yo',
+    openLogs: 'Louvri jounal yo'
   },
   ui: {
     search: {
-      clear: 'Efase rechèch la',
+      clear: 'Efase rechèch la'
     },
     pagination: {
       label: 'pajinasyon',
       previous: 'Anvan',
       previousAria: 'Ale nan paj anvan an',
       next: 'Swivan',
-      nextAria: 'Ale nan paj swivan an',
+      nextAria: 'Ale nan paj swivan an'
     },
     sidebar: {
       title: 'Bà lateral',
       description: 'Montre bà lateral mobil la.',
-      toggle: 'Baskile bà lateral',
-    },
+      toggle: 'Baskile bà lateral'
+    }
   },
   preview: {
     tab: 'Apèsi',
@@ -1923,7 +1963,8 @@ export const ht = defineLocale({
     editing: 'Ap modifye',
     unsavedChanges: 'Chanjman ki pa anrejistre',
     diskChangedTitle: 'Fichye chanje sou disk la',
-    diskChangedBody: 'Fichye sa a chanje depi ou ouvri l. Ekraze l ak vèsyon ou a, oswa abandone chanjman ou yo epi rechaje?',
+    diskChangedBody:
+      'Fichye sa a chanje depi ou ouvri l. Ekraze l ak vèsyon ou a, oswa abandone chanjman ou yo epi rechaje?',
     linkHint: '⌘/Ctrl-click pou panèl apèsi a',
     closeTab: label => `Fèmen ${label}`,
     binaryBody: label => `Apèsi ${label} ka montre tèks ki pa lizib.`,
@@ -1950,7 +1991,7 @@ export const ht = defineLocale({
       empty: 'Pa gen okenn mesaj sou konsòl ankò.',
       promptHeader: 'Konsòl prevwa:',
       sentTitle: 'Voye te nan chat',
-      sentMessage: count => `${count} antre jounal ${count === 1 ? 'y' : 'ies'} ajoute nan editè mesaj la`,
+      sentMessage: count => `${count} antre jounal ${count === 1 ? 'y' : 'ies'} ajoute nan editè mesaj la`
     },
     web: {
       appFailedToBoot: 'Prevwa aplikasyon te echoule pou kòmanse',
@@ -1975,17 +2016,19 @@ export const ht = defineLocale({
       reloadingNow: 'Rechaje preview a kounye a.',
       restartFailedTitle: 'Preview pa t reyalize ravwaz',
       restartFailedMessage: 'OpenAmer pa t ka ravwaz server la.',
-      stillWorking: 'OpenAmer toujou travay, men pa gen yon rezilta ravwaz poko. Komanda server la ka k ap fonksyone nan vant.',
+      stillWorking:
+        'OpenAmer toujou travay, men pa gen yon rezilta ravwaz poko. Komanda server la ka k ap fonksyone nan vant.',
       workspaceReloading: 'Espace travay si chanje, rechaje preview a',
       fileChanged: url => `Fichye a chanje, ap rechaje apèsi a: ${url}`,
       filesChanged: (count, url) => `${count} chanjman nan fichye yo, ap rechaje apèsi a: ${url}`,
       watchFailed: message => `Pa t kapab siveye fichye apèsi a: ${message}`,
-      moduleMimeDescription: 'Module scripts yo peye ak MIME ki pa kòrèk. Sa gen anjeneral yon static file server ap peye yon Vite/React app anplis pase dev server pwojekt la.',
+      moduleMimeDescription:
+        'Module scripts yo peye ak MIME ki pa kòrèk. Sa gen anjeneral yon static file server ap peye yon Vite/React app anplis pase dev server pwojekt la.',
       loadFailedConsole: (code, message) => `Chajman echwe${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Paj preview la pa kapab yon.',
       openTarget: url => `Louvri ${url}`,
-      fallbackTitle: 'Aperçu',
-    },
+      fallbackTitle: 'Aperçu'
+    }
   },
   language: {
     label: 'Langwè',
@@ -1994,7 +2037,7 @@ export const ht = defineLocale({
     saveError: 'Mise a jour langwè a raté.',
     switchTo: 'Chanje langwè',
     searchPlaceholder: 'Rechèch langwè…',
-    noResults: 'Pa gen langwè trouvé.',
+    noResults: 'Pa gen langwè trouvé.'
   },
   onboarding: {
     featuredPitch: 'Yon abònman, plis pase 300 modèl frontier — fason rekòmande pou kouri OpenAmer',
@@ -2003,28 +2046,29 @@ export const ht = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API modèl dirèk',
-        description: 'Aksè dirèk a modèl ki aloje pa Fireworks AI.',
+        description: 'Aksè dirèk a modèl ki aloje pa Fireworks AI.'
       },
       openrouter: {
         short: 'yon kle, anpil modèl',
-        description: 'Alòje plizyè santèn modèl dèyè yon sèl kle. Bon default pou nouvo enstalasyon.',
+        description: 'Alòje plizyè santèn modèl dèyè yon sèl kle. Bon default pou nouvo enstalasyon.'
       },
       openai: {
         short: 'Modèl klas GPT',
-        description: 'Aksè dirèk a modèl OpenAI.',
+        description: 'Aksè dirèk a modèl OpenAI.'
       },
       gemini: {
         short: 'Modèl Gemini',
-        description: 'Aksè dirèk a modèl Google Gemini.',
+        description: 'Aksè dirèk a modèl Google Gemini.'
       },
       xai: {
         short: 'Modèl Grok',
-        description: 'Aksè dirèk a modèl xAI Grok.',
+        description: 'Aksè dirèk a modèl xAI Grok.'
       },
       local: {
         short: 'Alòje tèt ou',
-        description: 'Dirije OpenAmer sou yon pwen final lokal oswa alòje tèt ou ki konpatib ak OpenAI (vLLM, llama.cpp, Ollama, elatriye).',
-      },
+        description:
+          'Dirije OpenAmer sou yon pwen final lokal oswa alòje tèt ou ki konpatib ak OpenAI (vLLM, llama.cpp, Ollama, elatriye).'
+      }
     },
     backToSignIn: 'Retounen pou konekte',
     getKey: 'Jwenn yon kle',
@@ -2037,7 +2081,7 @@ export const ht = defineLocale({
     flowSubtitles: {
       pkce: 'Li louvri navigatè ou pou konekte, epi kontinye isit la',
       device_code: 'Louvri yon paj verifikasyon nan navigatè ou — OpenAmer konekte otomatikman',
-      external: 'Konekte yon sèl fwa nan tèminal ou, epi retounen pou chat',
+      external: 'Konekte yon sèl fwa nan tèminal ou, epi retounen pou chat'
     },
     signInFailed: 'Koneksyon echwe. Eseye ankò.',
     pickDifferentProvider: 'Chwazi yon founisè diferan',
@@ -2052,7 +2096,7 @@ export const ht = defineLocale({
     copy: 'Kopye',
     defaultModel: 'Modèl default',
     freeTier: 'Tier gratis',
-    headerTitle: "Ann fè w mete ak OpenAmer Agent",
+    headerTitle: 'Ann fè w mete ak OpenAmer Agent',
     headerDesc: 'Konekte yon founir modè pou kòmanse chitay. Nou anpil opsyon pran yon klik.',
     preparingInstall: 'OpenAmer ap fini instalasyon. Sa anjeneral pran pase yon minit nan premye ekzekision.',
     starting: 'Kòmanse OpenAmer…',
@@ -2060,7 +2104,7 @@ export const ht = defineLocale({
     collapse: 'Koupe',
     otherProviders: 'Lwen founir modè',
     haveApiKey: 'M gen yon kle API',
-    chooseLater: "M ap chwazi yon founir modè plus tard",
+    chooseLater: 'M ap chwazi yon founir modè plus tard',
     recommended: 'Rekomande',
     connected: 'Konekte',
     startingSignIn: provider => `Kòmanse koneksyon pou ${provider}...`,
@@ -2069,18 +2113,21 @@ export const ht = defineLocale({
     connectedPicking: provider => `${provider} konekte. Ap chwazi yon modèl pa defo...`,
     signInWith: provider => `Konekte avèk ${provider}`,
     openedBrowser: provider => `Nou louvri ${provider} nan navigatè w la.`,
-    autoBrowser: provider => `Nou louvri ${provider} nan navigatè w la. Otorize OpenAmer la epi w ap konekte otomatikman — pa gen anyen pou kopye ni kole.`,
-    externalPending: provider => `${provider} konekte atravè pwòp CLI li. Egzekite kòmand sa a nan yon tèminal, apre sa retounen epi chwazi "Mwen konekte":`,
+    autoBrowser: provider =>
+      `Nou louvri ${provider} nan navigatè w la. Otorize OpenAmer la epi w ap konekte otomatikman — pa gen anyen pou kopye ni kole.`,
+    externalPending: provider =>
+      `${provider} konekte atravè pwòp CLI li. Egzekite kòmand sa a nan yon tèminal, apre sa retounen epi chwazi "Mwen konekte":`,
     deviceCodeOpened: provider => `Nou louvri ${provider} nan navigatè w la. Antre kòd sa a la:`,
     pro: 'Pwo',
     free: 'Gratis',
     price: (input, output) => `${input} antre / ${output} sòti pou chak milyon jeton`,
     change: 'Chanje',
     startChatting: 'Kòmanse',
-    docs: provider => `Dokimantasyon ${provider}`,
+    docs: provider => `Dokimantasyon ${provider}`
   },
   remoteDisplayBanner: {
-    message: reason => `Rannaj lojisyèl aktif — ekran distan detekte (${reason}). Akselerasyon GPU dezaktive pou evite flikè.`,
+    message: reason =>
+      `Rannaj lojisyèl aktif — ekran distan detekte (${reason}). Akselerasyon GPU dezaktive pou evite flikè.`
   },
   skills: {
     tabSkills: 'Abilite',
@@ -2100,7 +2147,8 @@ export const ht = defineLocale({
     noDescription: 'Pa gen deskripsyon.',
     configured: 'Konfigire',
     needsKeys: 'Bezwen kle',
-    visionModelHint: 'Sèvi sou konfigirasyon modèl òganal ou — modèl ki kapab imaj la chwazi l la, pa paske pwovider la la.',
+    visionModelHint:
+      'Sèvi sou konfigirasyon modèl òganal ou — modèl ki kapab imaj la chwazi l la, pa paske pwovider la la.',
     visionModelLink: 'Chwazi modèl vizyon nan Paramèt → Modèl',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} gwoup zouti aktive`,
     configureToolset: label => `Konfigire ${label}`,
@@ -2126,7 +2174,7 @@ export const ht = defineLocale({
     provenance: {
       agent: 'Anvlize',
       bundled: 'Natif',
-      hub: 'Kèb',
+      hub: 'Kèb'
     },
     emptyNoneFound: noun => `Pa jwenn okenn ${noun}`,
     emptyNothingMatches: query => `Pa gen anyen ki koresponn ak “${query}”.`,
@@ -2164,7 +2212,7 @@ export const ht = defineLocale({
       trust: {
         builtin: 'Natif',
         trusted: 'Itil',
-        community: 'Kominote',
+        community: 'Kominote'
       },
       verdictSafe: 'Sekir',
       verdictCaution: 'Konfyans',
@@ -2182,8 +2230,8 @@ export const ht = defineLocale({
       loadFailed: 'Skill hub pa t kapab chwazi',
       previewFailed: 'Skill preview pa t kapab',
       scanFailed: 'Eseye sekirite pa t kapab',
-      searchFailed: 'Chèche nan Hub pa t kapab',
-    },
+      searchFailed: 'Chèche nan Hub pa t kapab'
+    }
   },
   starmap: {
     title: 'Mèmwa Grafi',
@@ -2200,7 +2248,8 @@ export const ht = defineLocale({
     emptyTitle: 'Pa janm an aprann',
     emptyDesc: 'Pou OpenAmer bati fèb syans ak mèmwa pou travay ou, yo ap apare la.',
     share: 'Patije Map',
-    shareHint: 'Kopiyate kòd la pou patije map sa a, oswa pote yon pou chwazi. Li sèlman incliz layout la, pa mèmwa ou oswa tekst fèb ou.',
+    shareHint:
+      'Kopiyate kòd la pou patije map sa a, oswa pote yon pou chwazi. Li sèlman incliz layout la, pa mèmwa ou oswa tekst fèb ou.',
     shareTitle: 'I mete / eksporte Map',
     sharePlaceholder: 'Pote yon kòd map…',
     copy: 'Kopye kòd map la',
@@ -2210,7 +2259,7 @@ export const ht = defineLocale({
     importEmpty: 'Pèmèt yon kòd map pou li tél.',
     importSuccess: nodes => `Chaje yon kat ki gen ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'Map enpòté',
-    resetToMine: 'Retounen nan map mwen',
+    resetToMine: 'Retounen nan map mwen'
   },
   agents: {
     close: 'Fèmen ajans yo',
@@ -2240,7 +2289,7 @@ export const ht = defineLocale({
     ageDays: days => `sa gen ${days} jou`,
     durationSeconds: seconds => `${seconds} segonn`,
     durationMinutes: (minutes, seconds) => `${minutes} minit ${seconds} segonn`,
-    tokens: value => `${value} jeton`,
+    tokens: value => `${value} jeton`
   },
   commandCenter: {
     close: 'Fèmen santiman komand',
@@ -2270,7 +2319,7 @@ export const ht = defineLocale({
       generatedTag: 'Jenere',
       adoptFailed: 'Pa kapab adopte sa pet.',
       toggleFailed: 'Pa kapab chanje sa pet.',
-      noneAvailable: 'Pa gen pets dispo — chwazi yon nan anba a pou enstale.',
+      noneAvailable: 'Pa gen pets dispo — chwazi yon nan anba a pou enstale.'
     },
     generatePet: {
       title: 'Jenere yon pet',
@@ -2299,7 +2348,7 @@ export const ht = defineLocale({
       referenceImageTooLarge: 'Imaj referans lan twò gwo. Sèvi ak yon imaj anba 16 MB.',
       referenceImageInvalid: 'Pa kapab li li imaj referans sa a. Eseye yon PNG, JPG, WebP, oswa GIF.',
       adopt: 'Adopte',
-      startOver: 'Kòmanse ankò',
+      startOver: 'Kòmanse ankò'
     },
     installTheme: {
       title: 'Instal tèma…',
@@ -2311,7 +2360,7 @@ export const ht = defineLocale({
       install: 'Instal',
       installing: 'Instalasyon...',
       installed: 'Instal',
-      installs: count => `${count} enstalasyon`,
+      installs: count => `${count} enstalasyon`
     },
     settingsFields: 'Zòn paramèt',
     mcpServers: 'Serwè MCP',
@@ -2320,49 +2369,49 @@ export const ht = defineLocale({
       maintenance: 'Entretènman',
       sessions: 'Sesyon',
       system: 'Sistèm',
-      usage: 'Itilizasyon',
+      usage: 'Itilizasyon'
     },
     sectionDescriptions: {
       maintenance: 'Diagnòstik, pwndediksyon, kourè, ak done memorie',
       sessions: 'Chèche ak jere sesyon yo',
       system: 'Estati, jounal, ak aksyon sistèm',
-      usage: 'Token, kost, ak aktivite abilite sou tan',
+      usage: 'Token, kost, ak aktivite abilite sou tan'
     },
     nav: {
       newChat: {
         title: 'Nouvo sesyon',
-        detail: 'Kòmanse yon sesyon nouvo',
+        detail: 'Kòmanse yon sesyon nouvo'
       },
       settings: {
         title: 'Paramèt',
-        detail: 'Konfigere OpenAmer imèn',
+        detail: 'Konfigere OpenAmer imèn'
       },
       skills: {
         title: 'Kapabilite',
-        detail: 'Abilite, ensyè, ak Serwè MCP',
+        detail: 'Abilite, ensyè, ak Serwè MCP'
       },
       messaging: {
         title: 'Meseaj',
-        detail: 'Prepare Telegram, Slack, Discord, ak plis',
+        detail: 'Prepare Telegram, Slack, Discord, ak plis'
       },
       artifacts: {
         title: 'Artifakt',
-        detail: 'Breg sou otorite jenere',
-      },
+        detail: 'Breg sou otorite jenere'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panèl sesyon',
-        detail: 'Chache, panye, ak jere sesyon',
+        detail: 'Chache, panye, ak jere sesyon'
       },
       system: {
         title: 'Panèl sis',
-        detail: 'Status gatewè, log, redebat/chanj',
+        detail: 'Status gatewè, log, redebat/chanj'
       },
       usage: {
         title: 'Panèl itil',
-        detail: 'Token, kost, ak aktivite abilite',
-      },
+        detail: 'Token, kost, ak aktivite abilite'
+      }
     },
     providerNavigate: 'Navige',
     providerSessions: 'Sesyon',
@@ -2450,8 +2499,8 @@ export const ht = defineLocale({
       actionStarted: name => `${name} demare — ap swiv jounal la...`,
       actionFailed: name => `${name} pa t ka demare`,
       running: 'Kou...',
-      viewLog: 'Jounal aksyon',
-    },
+      viewLog: 'Jounal aksyon'
+    }
   },
   webhooks: {
     search: 'Chache webhook...',
@@ -2461,7 +2510,8 @@ export const ht = defineLocale({
     hint: 'Chanje abònman yo hot-reload lè resevè a ap mache. Abònman ki desaktive rejekte evèn ki soti.',
     empty: 'Pa gen abònman webhook ankò.',
     disabledTitle: 'Recep webhook desaktive',
-    disabledBody: 'Webhook yo se plazm pont poukòm. Pèmèt yo iskè pou aksepte evèn HTTP ki soti; chann chat sèlman nesesè lè abònman an delivere a nan Telegram, Discord, Slack, oswa yon kanòl.',
+    disabledBody:
+      'Webhook yo se plazm pont poukòm. Pèmèt yo iskè pou aksepte evèn HTTP ki soti; chann chat sèlman nesesè lè abònman an delivere a nan Telegram, Discord, Slack, oswa yon kanòl.',
     enable: 'Active webhook yo',
     enabling: 'Aktive...',
     enabled: (name: string) => `Aktive: "${name}"`,
@@ -2514,8 +2564,8 @@ export const ht = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Imèl',
-      github_comment: 'Kòman GitHub',
-    },
+      github_comment: 'Kòman GitHub'
+    }
   },
   profiles: {
     close: 'Fèmen profil yo',
@@ -2593,7 +2643,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     failedLoadSoul: 'Echè pou pa kapab louvri SOUL.md',
     failedSaveSoul: 'Echè pou pa kapab enregistre SOUL.md',
     failedCreate: 'Echè pou pa kapab kreye pwofile',
-    failedRename: 'Echè pou pa kapab renòm pwofile',
+    failedRename: 'Echè pou pa kapab renòm pwofile'
   },
   cron: {
     close: 'Fèmen cron',
@@ -2608,14 +2658,14 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       paused: 'Paus',
       disabled: 'Desaktif',
       error: 'Erè',
-      completed: 'Konplè',
+      completed: 'Konplè'
     },
     deliveryLabels: {
       local: 'Sa aparèy',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Imèl',
+      email: 'Imèl'
     },
     scheduleLabels: {
       daily: 'Pasi',
@@ -2624,7 +2674,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       monthly: 'Mwayen',
       hourly: 'Èdtan',
       'every-15-minutes': 'Chak 15 minit',
-      custom: 'Koustom',
+      custom: 'Koustom'
     },
     scheduleHints: {
       daily: 'Pati jou ak 9:00 AM',
@@ -2633,7 +2683,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       monthly: 'Premye jou nan chak mwayen ak 9:00 AM',
       hourly: 'A chit laj chak èdtan',
       'every-15-minutes': 'Chak 15 minit',
-      custom: 'Syntax Cron oswa lang natirèl',
+      custom: 'Syntax Cron oswa lang natirèl'
     },
     days: {
       '0': 'Alandvit',
@@ -2643,7 +2693,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       '4': 'Jèd',
       '5': 'Ven',
       '6': 'Sèdi',
-      '7': 'Dime',
+      '7': 'Dime'
     },
     dayFallback: value => `jou ${value}`,
     everyDayAt: time => `Chak jou a ${time}`,
@@ -2653,7 +2703,8 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     topOfHour: 'Nan debaz chak èdtan',
     everyHourAt: minute => `Chak èdtan a :${minute}`,
     newCron: 'Nouvo cron',
-    emptyDescNew: 'Planifye yon prompt pou l itron sou yon eksprè cron. OpenAmer ap itron li e bay rezilta a nan destinasyon ou chwazi.',
+    emptyDescNew:
+      'Planifye yon prompt pou l itron sou yon eksprè cron. OpenAmer ap itron li e bay rezilta a nan destinasyon ou chwazi.',
     emptyDescSearch: 'Eseye yon kesyon rechèch ki pi gwo.',
     emptyTitleNew: 'Pa gen travay planifye poko.',
     emptyTitleSearch: 'Pa gen koresponn',
@@ -2689,8 +2740,10 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     failedSave: 'Echè kenbe cron mason',
     editTitle: 'Edite cron mason',
     createTitle: 'Nouv cron mason',
-    editDesc: 'Mete ajou nan kalandriye, pwomp, oswa destinasyon livry. Chanj yo pral s\'applike nan kalandriye kap vini.',
-    createDesc: 'Planify yon prompt pou lanse otomatikman. Sèvi ak sintak cron oswa yon fraz natirèl tankou "chak 15 minit".',
+    editDesc:
+      "Mete ajou nan kalandriye, pwomp, oswa destinasyon livry. Chanj yo pral s'applike nan kalandriye kap vini.",
+    createDesc:
+      'Planify yon prompt pou lanse otomatikman. Sèvi ak sintak cron oswa yon fraz natirèl tankou "chak 15 minit".',
     nameLabel: 'Non',
     namePlaceholder: 'Briefing matin',
     promptLabel: 'Sak',
@@ -2712,7 +2765,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     createAction: 'Kriye cron',
     tabs: {
       jobs: 'Aswè',
-      blueprints: 'Plannen',
+      blueprints: 'Plannen'
     },
     blueprints: {
       tab: 'Plannen',
@@ -2726,8 +2779,8 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       loading: 'Kargantize plannen...',
       failedLoad: 'Echè kargantize plannen',
       emptyTitle: 'Pa gen plannen',
-      emptyDesc: 'Pa gen plannen awtomat dispozib sou serveur sa a.',
-    },
+      emptyDesc: 'Pa gen plannen awtomat dispozib sou serveur sa a.'
+    }
   },
   artifacts: {
     search: 'Chèche artefakt...',
@@ -2761,7 +2814,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     kindLink: 'Lyen',
     chat: 'Kominote',
     copyUrl: 'Kopi URL',
-    copyPath: 'Kopi chemin',
+    copyPath: 'Kopi chemin'
   },
   statusStack: {
     agents: 'Ajan',
@@ -2809,13 +2862,14 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       openPr: 'Louvri PR',
       ghMissing: 'Instale GitHub CLI (gh) ak sig in pou ouv PR',
       agentShip: 'Mandre OpenAmer pou ouv PR',
-      agentShipPrompt: 'Revize chanje aktuel yo, konvèmite yo ak yon mesaj konvansyonèl klè, pouse branch la, epi ouv yon pull request.',
+      agentShipPrompt:
+        'Revize chanje aktuel yo, konvèmite yo ak yon mesaj konvansyonèl klè, pouse branch la, epi ouv yon pull request.',
       newBranch: 'Nouvo branch',
       branchOffFrom: base => `Nouvo branch soti nan ${base}`,
       switchTo: branch => `Chanje pou ${branch}`,
       switchFailed: branch => `Pa kapab chanje pou ${branch}`,
-      worktrees: 'Travay',
-    },
+      worktrees: 'Travay'
+    }
   },
   updates: {
     stages: {
@@ -2830,7 +2884,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       done: 'Mete ajou konplè',
       manual: 'Mete ajou nan terminal ou',
       guiSkew: 'Mete ajou app desktop',
-      error: 'Mete ajou an paus',
+      error: 'Mete ajou an paus'
     },
     checking: 'Ap chache ajou…',
     checkFailedTitle: 'Pa kapab tcheke ajou yo',
@@ -2850,15 +2904,19 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     maybeLater: 'Pei pwòp',
     moreChanges: count => `+ ${count} chanjman plis${count === 1 ? '' : 's'} enkli.`,
     manualTitle: 'Mizaj nan terminal ou',
-    manualBody: 'Ou te enstale OpenAmer nan kòmand lè, kidonk mizaj yo pral lè nan men ou tou. Apeche sa nan terminal ou:',
+    manualBody:
+      'Ou te enstale OpenAmer nan kòmand lè, kidonk mizaj yo pral lè nan men ou tou. Apeche sa nan terminal ou:',
     manualPickedUp: 'OpenAmer ap pral pran nouvo vèsyon nan nèt li lanvoye li.',
     guiSkewTitle: 'Mizaj app desktop',
-    guiSkewBody: 'Backend la te mete aksè, men pa mwayen pakèt app desktop sa a te chanje. Mizaj oswa enstale deziyè OpenAmer desktop app (your AppImage / .deb / .rpm) pou yo koresponn.',
+    guiSkewBody:
+      'Backend la te mete aksè, men pa mwayen pakèt app desktop sa a te chanje. Mizaj oswa enstale deziyè OpenAmer desktop app (your AppImage / .deb / .rpm) pou yo koresponn.',
     copy: 'Kopiy.',
     copied: 'Kopiye.',
     done: 'Fèm',
-    applyingBody: 'Mouvman OpenAmer pran kòlòw li nan pwòp fenèt li epi reouvre OpenAmer otoatifi lè l fini. Souple pa janm ouvri OpenAmer oumè pandan li ap mete ajou.',
-    applyingBodyBackend: 'Backend la ki elo ap applike yon moud epi li pral redemarre. OpenAmer ap rekonekte otoatifi lè li reyini.',
+    applyingBody:
+      'Mouvman OpenAmer pran kòlòw li nan pwòp fenèt li epi reouvre OpenAmer otoatifi lè l fini. Souple pa janm ouvri OpenAmer oumè pandan li ap mete ajou.',
+    applyingBodyBackend:
+      'Backend la ki elo ap applike yon moud epi li pral redemarre. OpenAmer ap rekonekte otoatifi lè li reyini.',
     applyingClose: 'Aksyon sa a pral fonkone pandan yon moud, apre sa OpenAmer ap reouvre lavi.',
     errorTitle: 'Moud la pa t fini',
     errorBody: 'Pa enpòt — rien pa pèdi. Ou ka eseye ankò kounye a.',
@@ -2869,12 +2927,13 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       restarting: 'Redemarre backend la pou louvri moud la…',
       notAvailable: 'Moud la pa disponib pou backend sa a.',
       failed: 'Mete backend la te fèk fè.',
-      noReturn: 'Backend la pa t vini ankouras. Moud la ka pa t fini — jere sou mun tè backend la.',
+      noReturn: 'Backend la pa t vini ankouras. Moud la ka pa t fini — jere sou mun tè backend la.'
     },
     appErrors: {
-      updateLocked: 'Moud la te annule: yon lòv OpenAmer lòt oswa yon terminal ki ap mache openamer pèdi aksyon sa a. Fèk li epi eseye ankò.',
-      updateFailed: 'Moud la pa t konplè. Pa enpòt — rien pa pèdi. Ou ka eseye ankò kounye a.',
-    },
+      updateLocked:
+        'Moud la te annule: yon lòv OpenAmer lòt oswa yon terminal ki ap mache openamer pèdi aksyon sa a. Fèk li epi eseye ankò.',
+      updateFailed: 'Moud la pa t konplè. Pa enpòt — rien pa pèdi. Ou ka eseye ankò kounye a.'
+    }
   },
   install: {
     stageStates: {
@@ -2882,20 +2941,23 @@ Lè ou kite li vid, rete ak default ${mode}.`,
       running: 'M ap mete',
       succeeded: 'Fèm',
       skipped: 'Sklis',
-      failed: 'Fèk fè',
+      failed: 'Fèk fè'
     },
     oneTimeTitle: 'OpenAmer bezwen yon sèlman imèlasyon',
-    unsupportedDesc: platform => `Enstalasyon otomatik nan premye lansman an poko disponib sou ${platform}. Louvri Tèminal epi egzekite kòmand ki anba a, apre sa relanse aplikasyon sa a. Pwochen lansman yo ap sote etap sa a.`,
+    unsupportedDesc: platform =>
+      `Enstalasyon otomatik nan premye lansman an poko disponib sou ${platform}. Louvri Tèminal epi egzekite kòmand ki anba a, apre sa relanse aplikasyon sa a. Pwochen lansman yo ap sote etap sa a.`,
     installCommand: 'Kòmand instalasyon',
     copyCommand: 'Kòmand kopi',
     viewDocs: 'Gade dokiman instalasyon',
     installTo: 'Ap mete nan',
     retryAfterRun: 'Mwen lage li -- esye',
     setupChoiceTitle: 'Mamete OpenAmer Desktop',
-    setupChoiceDesc: 'Konekte app sa a ak yon gateway OpenAmer ou deja kòmanse, oswa mete OpenAmer lokalman sou òdinatè sa a.',
+    setupChoiceDesc:
+      'Konekte app sa a ak yon gateway OpenAmer ou deja kòmanse, oswa mete OpenAmer lokalman sou òdinatè sa a.',
     connectExistingTitle: 'Konekte ak OpenAmer egziste',
     connectExistingShort: 'Konekte egziste',
-    connectExistingDesc: 'Sèvi ak yon backend ki ap avèk yon token sessyon oswa sitran navigatè. Pa egzanp lokal instalasyon ap kòmanse.',
+    connectExistingDesc:
+      'Sèvi ak yon backend ki ap avèk yon token sessyon oswa sitran navigatè. Pa egzanp lokal instalasyon ap kòmanse.',
     installLocalTitle: 'Mete OpenAmer lokalman',
     installLocalDesc: 'Telecharge OpenAmer, kreye envèyans Python li, epi kòmanse backend la sou òdinatè sa a.',
     localStartUnavailable: 'Instalasyon lokal la pa kapab kòmanse. Redemarre OpenAmer Desktop epi eseye ankò.',
@@ -2927,8 +2989,10 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     failedTitle: 'Enpòtasyon an te echèk.',
     settingUpTitle: 'Ap prepare OpenAmer Agent',
     finishingTitle: 'An fini',
-    failedDesc: 'Yon nan etap yo te echèk. Nan Windows, sa ka fèt si yon lòt OpenAmer CLI oswa yon egzanp birè la ap mache. Sispann tout egzanp OpenAmer ki ap mache, lèsa re-eseye. Kontwole detay yo anba oswa logon birè a pou transkript konplè.',
-    activeDesc: 'Sa se yon sèten apèyèk. Instalasyon OpenAmer an teletele charg depannans ak konfigire machin ou. Lans ki annapre sa a ap sipoze etap sa a.',
+    failedDesc:
+      'Yon nan etap yo te echèk. Nan Windows, sa ka fèt si yon lòt OpenAmer CLI oswa yon egzanp birè la ap mache. Sispann tout egzanp OpenAmer ki ap mache, lèsa re-eseye. Kontwole detay yo anba oswa logon birè a pou transkript konplè.',
+    activeDesc:
+      'Sa se yon sèten apèyèk. Instalasyon OpenAmer an teletele charg depannans ak konfigire machin ou. Lans ki annapre sa a ap sipoze etap sa a.',
     progress: (completed, total) => `${completed} sou ${total} etap fini`,
     currentStage: stage => ` -- kounye a: ${stage}`,
     fetchingManifest: 'Ap chèche manifest instalasyon...',
@@ -2942,7 +3006,7 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     transcriptSaved: 'Konplè transkripsyen ki tepte nan',
     copiedOutput: 'Kopiye!',
     copyOutput: 'Kopiye wòpò',
-    reloadRetry: 'Rechaje ak eseye ankò',
+    reloadRetry: 'Rechaje ak eseye ankò'
   },
   modelPicker: {
     title: 'Chanje modè',
@@ -2958,13 +3022,13 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     free: 'Gratis',
     freeTier: 'Tier gratis',
     priceTitle: 'Pri enpò / pwazon per milyon jwèt',
-    wasPrice: 'te',
+    wasPrice: 'te'
   },
   modelVisibility: {
     title: 'Modèl',
     search: 'Chache modèl yo',
     noAuthenticatedProviders: 'Pa gen founis elijab.',
-    addProvider: 'Ajoute founis…',
+    addProvider: 'Ajoute founis…'
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway pa konekt',
@@ -2975,6 +3039,6 @@ Lè ou kite li vid, rete ak default ${mode}.`,
     sudoPlaceholder: 'M epè sudo',
     secretTitle: 'Sekret obligatwa',
     secretDesc: 'OpenAmer bezwen yon kredyè pou kontinye.',
-    secretPlaceholder: 'Valè sekret',
-  },
+    secretPlaceholder: 'Valè sekret'
+  }
 })

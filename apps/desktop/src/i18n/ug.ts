@@ -45,7 +45,7 @@ export const ug = defineLocale({
     update: 'يېڭىلاش',
     on: 'ئېچىق',
     off: 'تاقاپ',
-    tryHint: term => `“${term}”نى سىناپ كۆرۈڭ`,
+    tryHint: term => `“${term}”نى سىناپ كۆرۈڭ`
   },
   fileMenu: {
     revealFinder: 'Finder ئىچىدە كۆرسىتىش',
@@ -60,7 +60,7 @@ export const ug = defineLocale({
     renameLabel: 'يېڭى نام',
     deleteBody: 'ئۇ سۈپەتكە ئېلىپ بېرىلىدۇ — سىز ئۇنى شۇ يەردىن قايتا ئەسلىگە كەلتۈرەلەيسىز.',
     pathCopied: 'يول كۆچۈرۈلدى',
-    deleteTitle: name => `${name}نى ئۆچۈرۈڭمى؟`,
+    deleteTitle: name => `${name}نى ئۆچۈرۈڭمى؟`
   },
   boot: {
     ready: 'OpenAmer Desktop تەييار',
@@ -69,7 +69,7 @@ export const ug = defineLocale({
       loadingSettings: 'OpenAmer تەڭرىكى سەپلىما يۈكلىنىۋاتىدۇ',
       loadingSessions: 'يېقىنقى ئىئارىلەر يۈكلىنىۋاتىدۇ',
       startingDesktopConnection: 'ئۈسكۈنە ئۇلىنىشى باشلىنىۋاتىدۇ',
-      startingOpenAmerDesktop: 'OpenAmer Desktop باشلىنىۋاتىدۇ…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop باشلىنىۋاتىدۇ…'
     },
     errors: {
       backgroundExited: 'OpenAmer ئارقا پروسېسىسى چېكىنىپ بولدى.',
@@ -78,13 +78,15 @@ export const ug = defineLocale({
       desktopBootFailed: 'Desktop ئېلان قىلىش مەغلۇ بولدى',
       gatewayConnectionLost: 'گەیتۋېيغا ئۇلىنىش ئۈزۈلدى',
       gatewaySignInRequired: 'گەیتۋېيغا كىرىش تەلەپ قىلىنىدۇ',
-      ipcBridgeUnavailable: 'مەشپىتۇپ IPC يېرىلىرى مەشگۇل ئەمەس.',
+      ipcBridgeUnavailable: 'مەشپىتۇپ IPC يېرىلىرى مەشگۇل ئەمەس.'
     },
     failure: {
       title: 'OpenAmer باشلانمىدى',
-      description: 'ئارقا پۇشتۇن گەیتۋېي قوزغىلمىدى. تۈگۈندىكى ئەسلىگە قايتۇرۇش ئۈسۈللەرىدىن بىرىنى سىناڭ. بۇ يەرلىكلەرنىڭ هېچقانداق بىرى چىقىش ياكى تەڭشەكلەرىڭىزنى ئۆچۈرمەيدۇ.',
+      description:
+        'ئارقا پۇشتۇن گەیتۋېي قوزغىلمىدى. تۈگۈندىكى ئەسلىگە قايتۇرۇش ئۈسۈللەرىدىن بىرىنى سىناڭ. بۇ يەرلىكلەرنىڭ هېچقانداق بىرى چىقىش ياكى تەڭشەكلەرىڭىزنى ئۆچۈرمەيدۇ.',
       remoteTitle: 'يەرلىك ئەمەس، مۇisbile رېموت گەیتۋېيغا كىرىش تەلەپ قىلىنىدۇ',
-      remoteDescription: 'رېموت گەیتۋېي ئەسسىڭىزنىڭ ۋاقتى تۈگەدى. قايتا ئۇلىنىش ئۈچۈن قايتا كىرىڭ. بۇ يەرلىكلەرنىڭ هېچقانداق بىرى چىقىش ياكى تەڭشەكلەرىڭىزنى ئۆچۈرمەيدۇ.',
+      remoteDescription:
+        'رېموت گەیتۋېي ئەسسىڭىزنىڭ ۋاقتى تۈگەدى. قايتا ئۇلىنىش ئۈچۈن قايتا كىرىڭ. بۇ يەرلىكلەرنىڭ هېچقانداق بىرى چىقىش ياكى تەڭشەكلەرىڭىزنى ئۆچۈرمەيدۇ.',
       retry: 'قايتا سىناش',
       repairInstall: 'ئورناشتىراشنى رېمونت قىلىش',
       useLocalGateway: 'يەرلىك گەیتۋېينى ئىشلىتىش',
@@ -103,21 +105,23 @@ export const ug = defineLocale({
       signInFailed: 'تىجارەت قىلىش ئەمەلگە ئەتكەن',
       signInToRemoteGateway: 'يېراقتىن گەيگۈزە كىرىڭ',
       identityProvider: 'سىزنىڭ كىملىك تaminى',
-      remoteSignInHint: signInLabel => `ساقلانغان ماساۇستى براۇزېر سېسىيىدىن چىقىدۇ، ئاندىن ${signInLabel}نى ئاچىدۇ. تىزمىلانغان بېكىند (backend) گە ئۆتۈش ئۈچۈن يەرلىك شتۇر (gateway) نى ئىشلىتىڭ.`,
-      signInWithProvider: provider => `${provider} بىلەن كىرىڭ`,
+      remoteSignInHint: signInLabel =>
+        `ساقلانغان ماساۇستى براۇزېر سېسىيىدىن چىقىدۇ، ئاندىن ${signInLabel}نى ئاچىدۇ. تىزمىلانغان بېكىند (backend) گە ئۆتۈش ئۈچۈن يەرلىك شتۇر (gateway) نى ئىشلىتىڭ.`,
+      signInWithProvider: provider => `${provider} بىلەن كىرىڭ`
     },
-    desktopBootFailedWithMessage: message => `ئىيىكراپ يۈكلىنىشى ئۇچراپ قالدى: ${message}`,
+    desktopBootFailedWithMessage: message => `ئىيىكراپ يۈكلىنىشى ئۇچراپ قالدى: ${message}`
   },
   notifications: {
     errors: {
       elevenLabsRejectedKey: 'ElevenLabs API ئاچقۇچىنى رەت قىلدى (401).',
       gatewayAuthFailed: 'شتۇر ئاڭلاشتۇرۇش ئۇچراپ قالدى — API_SERVER_KEY نى تەكشۈرۈڭ.',
-      methodNotAllowed: 'ئۈسكۈنە ئارقا سۇپا بۇ تەلەپنى رەت قىلدى (405 Method Not Allowed). OpenAmer Desktop نى قايتا ئىجرا قىلىشقا تېرىشىڭ.',
+      methodNotAllowed:
+        'ئۈسكۈنە ئارقا سۇپا بۇ تەلەپنى رەت قىلدى (405 Method Not Allowed). OpenAmer Desktop نى قايتا ئىجرا قىلىشقا تېرىشىڭ.',
       microphonePermission: 'مىكروفون ھوقۇقى بېرىلمىدى.',
       openaiRejectedApiKey: 'OpenAI API ئاچقۇچىنى رەت قىلدى.',
       openaiTtsNeedsKey: 'OpenAI TTS ئۈچۈن VOICE_TOOLS_OPENAI_KEY ياكى OPENAI_API_KEY كېرەك.',
       elevenLabsNeedsKey: '`ElevenLabs STT` غا `ELEVENLABS_API_KEY` كېرەك.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI API ئاچارنى رەت قىلدى (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI API ئاچارنى رەت قىلدى (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'ئاۋاز ھالىتىنى ئىشلىتىش ئۈچۈن نەقلىن گۈ ۋە ئاۋازنى خەتەرگە ئايلاشنى تەڭشەڭ.',
@@ -136,7 +140,7 @@ export const ug = defineLocale({
       transcriptionFailed: 'ئاۋازنى خەتەرگە ئايلاشتا خاتالىق كۆرۈلدى',
       transcriptionUnavailable: 'ئاۋاز يېزىش تېخى ئىشلەپ بولمىدى.',
       tryRecordingAgain: 'قايتا سۈزلەشنى سىناڭ.',
-      unavailable: 'ئاۋاز ئىشلىتىلمەيدۇ',
+      unavailable: 'ئاۋاز ئىشلىتىلمەيدۇ'
     },
     region: 'ئۇقتۇرۇشلار',
     hide: 'يوشۇر',
@@ -147,7 +151,8 @@ export const ug = defineLocale({
     copyDetail: 'تەپسىلاتنى كۆچۈرۈش',
     copyDetailFailed: 'ئۇقتۇرۇش تەپسىلاتىنى كۆچۈرەلمىدى',
     backendOutOfDateTitle: 'ئارقا مۇلازىمەر نەشرىي كەنارلىرىدا قالدى',
-    backendOutOfDateMessage: 'سىزنىڭ `OpenAmer` ئارقا مۇلازىمېرى بۇ مائۇسكوپ نەشرىيىدىن كونا بولۇپ، توغرا ئىشلەمەسلىقى مۇمكىن. ئۇلارنى ئوخشاشتىرۇش ئۈچۈن يېڭىلاڭ.',
+    backendOutOfDateMessage:
+      'سىزنىڭ `OpenAmer` ئارقا مۇلازىمېرى بۇ مائۇسكوپ نەشرىيىدىن كونا بولۇپ، توغرا ئىشلەمەسلىقى مۇمكىن. ئۇلارنى ئوخشاشتىرۇش ئۈچۈن يېڭىلاڭ.',
     installMethodUnsupportedTitle: 'قوللىمايدىغان ئورنىستۇرۇش ئۇسۇلى',
     updateOpenAmer: '`OpenAmer` نى يېڭىلاش',
     updateReadyTitle: 'يېڭىلاش تەييار',
@@ -163,10 +168,10 @@ export const ug = defineLocale({
       turnErrorTitle: 'ئايلانما مەغلۇپ بولدى',
       backgroundDoneTitle: 'ئارقا ئۇرۇن تاماملىدى',
       backgroundFailedTitle: 'ئارقا ئۇرۇن مەغلۇپ بولدى',
-      creditsTitle: 'كرېدىتلار',
+      creditsTitle: 'كرېدىتلار'
     },
     more: count => `يەنە ${count} ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} يېڭى ئۆزگەرتىش${count === 1 ? '' : 's'} بار.`,
+    updateReadyMessage: count => `${count} يېڭى ئۆزگەرتىش${count === 1 ? '' : 's'} بار.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer كرېدىتى تۈگەپ كەتتى',
@@ -174,7 +179,7 @@ export const ug = defineLocale({
     openBilling: 'تۆلەمن باشقۇرۇشنى ئېچىش',
     addCredits: 'كرېدىت قوشۇش',
     dismiss: 'بىكار قىلىش',
-    titleProvider: provider => `كرېدىتلار تۇگادى — ${provider}`,
+    titleProvider: provider => `كرېدىتلار تۇگادى — ${provider}`
   },
   titlebar: {
     hideSidebar: 'يېرىن تەرەپنى يوشۇرۇش',
@@ -191,7 +196,7 @@ export const ug = defineLocale({
     openStarmap: 'خاتىرە گرافىكىنى ئاچ',
     openKeybinds: 'كۆرسەتمە كلەچلىرى',
     layoutEditor: 'يەرلەشتۈرۈش تەھرىرىلەش',
-    layoutEditorTitle: 'يەرلەشتۈرۈش تەھرىرىلەش — ⌘ بېسىش يەرلەشتۈرۈشنى ئەسلىگە قايتۇرىدۇ',
+    layoutEditorTitle: 'يەرلەشتۈرۈش تەھرىرىلەش — ⌘ بېسىش يەرلەشتۈرۈشنى ئەسلىگە قايتۇرىدۇ'
   },
   keybinds: {
     title: 'كۆرسەتمە كلەچلىرى',
@@ -206,7 +211,7 @@ export const ug = defineLocale({
       profiles: 'پروفايىللار',
       session: 'ئەسە',
       navigation: 'يۆتكىلىش',
-      view: 'كۆرۈنۈش',
+      view: 'كۆرۈنۈش'
     },
     actions: {
       'keybinds.openPanel': 'كۆرسەتمە كۇچتۇرىلىرىنى ئېچىش',
@@ -285,10 +290,10 @@ export const ug = defineLocale({
       'composer.slash': 'ئالتۇنچ بۇيرۇقلار تېزىكلىكى',
       'composer.help': 'تېز ياردام',
       'composer.history': 'ئالماشتۇرۇش تېرىقى / تارىخ',
-      'composer.cancel': 'ئالماشتۇرۇش تېرىقىنى تاق · ئىجرنى بىكار قىلىش',
+      'composer.cancel': 'ئالماشتۇرۇش تېرىقىنى تاق · ئىجرنى بىكار قىلىش'
     },
     subtitle: open => `قايتا باغلash ئۈچۈن قىسقا يولنى بېسىڭ · ${open} بۇ پەنېلنى قايتا ئاچىدۇ.`,
-    conflictWith: label => `شۇنىڭچە “${label}” گە باغلانغان`,
+    conflictWith: label => `شۇنىڭچە “${label}” گە باغلانغان`
   },
   language: {
     label: 'تىل',
@@ -297,7 +302,7 @@ export const ug = defineLocale({
     saveError: 'تىلنى يېڭىلاش ئۇنسىز بولدى',
     switchTo: 'تىل ئالماشتۇرۇش',
     searchPlaceholder: 'تىللارنى ئىزدەش…',
-    noResults: 'تىل تېپىلمىدى',
+    noResults: 'تىل تېپىلمىدى'
   },
   settings: {
     closeSettings: 'تەڭشەكلەرنى تاق',
@@ -322,11 +327,12 @@ export const ug = defineLocale({
       billing: 'ھەق ئېلىش',
       notifications: 'ئاگاھلاندۇرۇشلار',
       plugins: 'قوشۇمچە مودۇللار',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'ئۈسكۈنە قوشۇمچە مودۇلللىرى',
-      blurb: 'بۇ ئەپكە يۈكلەنگەن UI كېڭەيتىلمەلەر — قۇرۇلۇش بىلەن بىرلەشتۈرۈلگەن ياكى `desktop-plugins` ھۆججەت پۇدىغا قويۇلغان (OpenAmer يازغانلىرىمۇ شۇ沮ۇ). چەكلەش قوشۇمچە مودۇلنى دەرھال ئېلىشەيدۇ ۋە قايتا قوزغىتىلغاندا مۇ تۈزەلگەنلىكىنى ساقلايدۇ.',
+      blurb:
+        'بۇ ئەپكە يۈكلەنگەن UI كېڭەيتىلمەلەر — قۇرۇلۇش بىلەن بىرلەشتۈرۈلگەن ياكى `desktop-plugins` ھۆججەت پۇدىغا قويۇلغان (OpenAmer يازغانلىرىمۇ شۇ沮ۇ). چەكلەش قوشۇمچە مودۇلنى دەرھال ئېلىشەيدۇ ۋە قايتا قوزغىتىلغاندا مۇ تۈزەلگەنلىكىنى ساقلايدۇ.',
       openFolder: 'قوشۇمچە مودۇللار ھۆججەت پۇدىنى ئېچىش',
       rescan: 'قايتا تەكشۈرۈش',
       reveal: 'ھۆججەت باشقۇرۇۋىدا كۆرسەت',
@@ -337,51 +343,53 @@ export const ug = defineLocale({
       kinds: {
         bundled: 'ئۇلارغا قوشۇلغان',
         disk: 'دىسكتىدا',
-        runtime: 'ئىجرا ۋاقتى',
+        runtime: 'ئىجرا ۋاقتى'
       },
       count: n => `${n} ئورنىتىلدى`,
-      manage: 'ئاجэنت پلۇگىنلىرىنى باشقۇرۇش',
+      manage: 'ئاجэنت پلۇگىنلىرىنى باشقۇرۇش'
     },
     notifications: {
       title: 'ئۇقتۇرۇشلار',
-      intro: 'ئىچكى ئەپ ئۇقتۇرۇشلىرىدىن ئايرىلغان، مۇسكىن ئۇقتۇرۇشلىرى. بۇلار ئۈسكۈنىگە ئائىتە — ھەر بىر كومپيۇتېر ئۆزىنىڭ تەڭلىكىنى ساقلايدۇ.',
+      intro:
+        'ئىچكى ئەپ ئۇقتۇرۇشلىرىدىن ئايرىلغان، مۇسكىن ئۇقتۇرۇشلىرى. بۇلار ئۈسكۈنىگە ئائىتە — ھەر بىر كومپيۇتېر ئۆزىنىڭ تەڭلىكىنى ساقلايدۇ.',
       enableAll: 'ئۇقتۇرۇشلارنى قوزغىتىش',
       enableAllDesc: 'ئاساسىي تۈگۈن. تۆۋەندىكى بارلىق ئۇقتۇرۇشلارنى چۆشۈرۈش ئۈچۈن ئۇنى تاقاڭ.',
       focusedHint: 'تاماملانغانلىق ئاگاھلاندۇرۇشلىرى OpenAmer ئارقا پۈرەكتە بولغاندالا كۆرۈلىدۇ.',
       kinds: {
         approval: {
           label: 'رۇخسەت قىلىش كېرەك',
-          description: 'بىر بۇيرۇق سىزنىڭ رۇخسەت قىلىشىڭىز ياكى رەت قىلىشىڭىزنى ساقلاۋاتىدۇ.',
+          description: 'بىر بۇيرۇق سىزنىڭ رۇخسەت قىلىشىڭىز ياكى رەت قىلىشىڭىزنى ساقلاۋاتىدۇ.'
         },
         input: {
           label: 'كىرىش كېرەك',
-          description: 'OpenAmer بىر سۇال قويدى ياكى پارول ياكى مەخپىي نومۇرنى تەلەپ قىلدى.',
+          description: 'OpenAmer بىر سۇال قويدى ياكى پارول ياكى مەخپىي نومۇرنى تەلەپ قىلدى.'
         },
         turnDone: {
           label: 'جاۋاب تەييار',
-          description: 'OpenAmer ئارقا پۈرەكتە بولغاندا بىر نۆرۋەت تاماملاندى.',
+          description: 'OpenAmer ئارقا پۈرەكتە بولغاندا بىر نۆرۋەت تاماملاندى.'
         },
         turnError: {
           label: 'نۆرۋەت ئەمەلىيتى سى-concept',
-          description: 'بىر نۆرۋەت خاتالىق بىلەن تاماملاندى.',
+          description: 'بىر نۆرۋەت خاتالىق بىلەن تاماملاندى.'
         },
         backgroundDone: {
           label: 'ئارقا پۈرەك ۋەزىپىسى تاماملاندى',
-          description: 'ئارقا پۈرەكتە ئىجرا بولغان تېرمىنال بۇيرۇقى تاماملاندى.',
+          description: 'ئارقا پۈرەكتە ئىجرا بولغان تېرمىنال بۇيرۇقى تاماملاندى.'
         },
         credits: {
           label: 'كىرىت ئاگاھلاندۇرۇشلىرى',
-          description: 'ئىسىپ ھوقۇقى توختىتىلدى ياكى ئەسلىگە كەلتۈرۈلدى.',
-        },
+          description: 'ئىسىپ ھوقۇقى توختىتىلدى ياكى ئەسلىگە كەلتۈرۈلدى.'
+        }
       },
       test: 'سىناق ئۇقتۇرىمىسىنى ئەۋەتىش',
       testTitle: 'OpenAmer',
       testBody: 'ئۇقتۇرۇملار نورمال ئىشلەۋاتىدۇ.',
-      testSent: 'سىناق ئەۋەتىلدى. ئېچىلمىسا، مەشغۇلات سىستېمىسىنىڭ ئۇقتۇرۇم ھوقۇقى ۋە ئارىلىۋەلىق/پەرۋەز قىلماسلىق تەڭلىكىنى تەكشۈرۈڭ.',
+      testSent:
+        'سىناق ئەۋەتىلدى. ئېچىلمىسا، مەشغۇلات سىستېمىسىنىڭ ئۇقتۇرۇم ھوقۇقى ۋە ئارىلىۋەلىق/پەرۋەز قىلماسلىق تەڭلىكىنى تەكشۈرۈڭ.',
       testUnsupported: 'بۇ سىستېما يەرلىك ئۇقتۇرۇملارنى قوللىمايدۇ.',
       completionSoundTitle: 'تاماملاش ئاۋازى',
       completionSoundDesc: 'ئاگېنت ئايلانىشى تاماملانغاندا ئاۋازلىنىدۇ. تەييار تەڭ بېسىڭ ۋە ئۇنى بۇ يەردە ئاڭلاڭ.',
-      completionSoundPreview: 'ئاڭلىنىش',
+      completionSoundPreview: 'ئاڭلىنىش'
     },
     sections: {
       model: 'مودېل',
@@ -391,7 +399,7 @@ export const ug = defineLocale({
       safety: 'بىخەتەرلىك',
       memory: 'ئىستەكانا ۋە مۇھىت',
       voice: 'ئاۋاز',
-      advanced: 'ئىلگىرىلەنگەن تەڭلەر',
+      advanced: 'ئىلگىرىلەنگەن تەڭلەر'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop ھەققىدە',
@@ -399,36 +407,39 @@ export const ug = defineLocale({
       gateway: 'گەيۋېي ئۇلىنىشى...',
       keys: 'API ئاچقۇچلىرىنى ئىزدەش...',
       mcp: 'MCP مۇلازىمەرلىرىنى ئىزدەش...',
-      sessions: 'ئارقىغەن سەSSIيەلەرنى ئىزدەش...',
+      sessions: 'ئارقىغەن سەSSIيەلەرنى ئىزدەش...'
     },
     modeOptions: {
       light: {
         label: 'يېرىق',
-        description: 'يورۇق ئۈسكۈنە يۈزلىرى',
+        description: 'يورۇق ئۈسكۈنە يۈزلىرى'
       },
       dark: {
         label: 'قاراڭغۇ',
-        description: 'نۇر قىزىقى ئاز بولغان ئىش مۇھىتى',
+        description: 'نۇر قىزىقى ئاز بولغان ئىش مۇھىتى'
       },
       system: {
         label: 'سىستېما',
-        description: 'OS كۆرۈنۈشىغا ئەگىشش',
-      },
+        description: 'OS كۆرۈنۈشىغا ئەگىشش'
+      }
     },
     appearance: {
       title: 'كۆرۈنۈش',
-      intro: 'بۇلار پەسىلەپكە خاس كۆرسىتىش تەڭلىكلىرى. ھال يېرىقلىقنى، تېما رەڭ تەمىنى ۋە چات يۈزلىرىنىڭ فورماتىنى بەلگىلەيدۇ.',
+      intro:
+        'بۇلار پەسىلەپكە خاس كۆرسىتىش تەڭلىكلىرى. ھال يېرىقلىقنى، تېما رەڭ تەمىنى ۋە چات يۈزلىرىنىڭ فورماتىنى بەلگىلەيدۇ.',
       colorMode: 'رەڭ ھالىتى',
       colorModeDesc: 'مۇقىم ھال تەلھە ياكى OpenAmer سىستېما تەڭلىكىڭىزغا ئەگىشىدۇ.',
       toolViewTitle: 'ئىstrument چاقىرىش كۆرسىتىشى',
-      toolViewDesc: 'ئىشلەپچىقىرىش ھالى خام ئىstrument ئۇچلىرىنى يوشۇرىدۇ؛ تېخنىكىلىق ھال پۈتۈن كىرىش/چىقىشنى كۆرسىتىدۇ.',
+      toolViewDesc:
+        'ئىشلەپچىقىرىش ھالى خام ئىstrument ئۇچلىرىنى يوشۇرىدۇ؛ تېخنىكىلىق ھال پۈتۈن كىرىش/چىقىشنى كۆرسىتىدۇ.',
       uiScaleTitle: 'UI مەقياسى',
       translucencyTitle: 'كۆزۈنكە شەفافلىقى',
       translucencyDesc: 'پۈتۈن كۆزۈنكە ئارقىلىق ئۈسكۈنەڭىزنى كۆرەلەيسىز. macOS ۋە Windows تەلا.',
       backdropTitle: 'چات ئاخىرىلىكى',
       backdropDesc: 'سۆزلىشىش ئارقىسىدىكى تۈگۈن ھەيكەل رەسىمى.',
       embedsTitle: 'ئىنلاين ئىلەمەتلەر',
-      embedsDesc: 'Rich ئالدىن كۆرۈشلىرى تېشقاچ ئۈچۈنچى تورلاردىن (YouTube, X, …) يۈكلىنىدۇ. سوراش ھەر بىرىنى رۇخسەت قىلغۇڭىزغا قەدەر ئورۇن تېپىنى كۆرسىتىدۇ؛ ھەمىشە ئۇلارنى ئۆزلۈكىدىن يۈكليدۇ؛ تاقاش بولسا ئادەتتىكى ئۇلانمىلارنى ساقلايدۇ.',
+      embedsDesc:
+        'Rich ئالدىن كۆرۈشلىرى تېشقاچ ئۈچۈنچى تورلاردىن (YouTube, X, …) يۈكلىنىدۇ. سوراش ھەر بىرىنى رۇخسەت قىلغۇڭىزغا قەدەر ئورۇن تېپىنى كۆرسىتىدۇ؛ ھەمىشە ئۇلارنى ئۆزلۈكىدىن يۈكليدۇ؛ تاقاش بولسا ئادەتتىكى ئۇلانمىلارنى ساقلايدۇ.',
       embedsAsk: 'سوراش',
       embedsAlways: 'ھەمىشە',
       embedsOff: 'تاقاش',
@@ -439,7 +450,8 @@ export const ug = defineLocale({
       themeTitle: 'تېما',
       themeDesc: 'پەقەت Desktop رەڭ پەلگىلىرى. تاللانغان ھۆسن تەڭدە قوشۇلىدۇ.',
       installTitle: 'VS Code دىن ئورنىتىش',
-      installDesc: 'ئۇنىڭ رەڭ تېمىسىنى Desktop پەلگىسىگە ئايلاندۇرۇش ئۈچۈن Marketplace كېڭەيتىش id نى (مەسىلەن dracula-theme.theme-dracula) يېقىڭ.',
+      installDesc:
+        'ئۇنىڭ رەڭ تېمىسىنى Desktop پەلگىسىگە ئايلاندۇرۇش ئۈچۈن Marketplace كېڭەيتىش id نى (مەسىلەن dracula-theme.theme-dracula) يېقىڭ.',
       installButton: 'ئورنىتىش',
       installing: 'ئورنىتىلىۋاتىدۇ…',
       installError: 'ئۇ رەڭ تېمىسىنى ئورنىتالامىدىڭ.',
@@ -449,8 +461,10 @@ export const ug = defineLocale({
         title: 'يۆتەك',
         turnOnFailed: 'خېتىرنى قوزغاتالمىدى.',
         turnOffFailed: 'خېتىرنى تۈگۈنەلمىدى.',
-        intro: 'ئەپنى كۆتۈرۈپ تۇرىدىغان ئىھرىياتلىق petdex maskotىنى قوشۇڭ — OpenAmer ئىش قىلغاندا ئۆزى ئىجرا قىلىدۇ، ئەپ يېڭى بولغاندا تەنتىرىلىدۇ، خاتالىق بولغاندا خەلى قىلىدۇ.',
-        restartHint: 'ئەپلەرنى تېز تەدەر قايتا ئىشلەتكەن تەلەپ بار — ئىشلىتىۋاتقان ئەپ بۇ ئىقتىدار قوشۇلغاندىن بۇرۇن باشلانغان. OpenAmer نى تاقاپ قايتا ئېچىڭ، ئاندىن بۇ يەرگە قايتىڭ.',
+        intro:
+          'ئەپنى كۆتۈرۈپ تۇرىدىغان ئىھرىياتلىق petdex maskotىنى قوشۇڭ — OpenAmer ئىش قىلغاندا ئۆزى ئىجرا قىلىدۇ، ئەپ يېڭى بولغاندا تەنتىرىلىدۇ، خاتالىق بولغاندا خەلى قىلىدۇ.',
+        restartHint:
+          'ئەپلەرنى تېز تەدەر قايتا ئىشلەتكەن تەلەپ بار — ئىشلىتىۋاتقان ئەپ بۇ ئىقتىدار قوشۇلغاندىن بۇرۇن باشلانغان. OpenAmer نى تاقاپ قايتا ئېچىڭ، ئاندىن بۇ يەرگە قايتىڭ.',
         on: 'ئېچىق',
         off: 'تاقاق',
         scaleTitle: 'چوڭلۇقى',
@@ -480,13 +494,15 @@ export const ug = defineLocale({
         adoptFailed: slug => `${slug} نى ئالاش ئۈچۈن مۇمكىن بولمادى`,
         uninstallFailed: slug => `${slug} نى ئالىپ تاشلاش مۇمكىن بولمادى`,
         renameFailed: slug => `${slug} نى قايتا ئاتلاش مۇمكىن بولمادى`,
-        exportFailed: slug => `${slug} نى ئېكسپورت قىلىش مۇمكىن بولمادى`,
+        exportFailed: slug => `${slug} نى ئېكسپورت قىلىش مۇمكىن بولمادى`
       },
-      uiScaleDesc: (percent: number) => `بۇتۇن پروگراممىنىڭ تېكىستى ۋە باشقۇرۇش ئورگانلىرىنىڭ چوڭلۇقىنى ئۆزگ idea رىدۇ. Cmd/Ctrl بىلەن +, - ۋە 0 تەك سىناپ كۆرۈڭ. ھازىرقى: ${percent}%.`,
-      embedsReset: (count: number) => `${count} نى قايتا تەڭشەشكە رۇخسەت قىلىندى ${count === 1 ? 'service' : 'services'}`,
+      uiScaleDesc: (percent: number) =>
+        `بۇتۇن پروگراممىنىڭ تېكىستى ۋە باشقۇرۇش ئورگانلىرىنىڭ چوڭلۇقىنى ئۆزگ idea رىدۇ. Cmd/Ctrl بىلەن +, - ۋە 0 تەك سىناپ كۆرۈڭ. ھازىرقى: ${percent}%.`,
+      embedsReset: (count: number) =>
+        `${count} نى قايتا تەڭشەشكە رۇخسەت قىلىندى ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `${profile} پروفىلى ئۈچۈن ساقلانغان — ھەر بىر پروفىل ئۆز تېمىسىنى ساقلايدۇ.`,
       installPlaceholder: 'نەشرقىلغۇچى.كېڭەيتىلمە',
-      installed: name => `“${name}” ئورناتىلدى.`,
+      installed: name => `“${name}” ئورناتىلدى.`
     },
     about: {
       heading: '`OpenAmer` ئېسكىنى',
@@ -504,7 +520,8 @@ export const ug = defineLocale({
       tapCheck: 'يېڭىلاشلارنى تەكشۈرۈش ئۈچۈن «ھازىر تەكشۈرۈش» بەلگىسىنى بېسىڭ.',
       justNowSuffix: '· ئەمدەلا',
       automaticUpdates: 'ئاپتوماتىك يېڭىلاش',
-      automaticUpdatesDesc: '`OpenAmer` يېڭىلاشلارنى ئۆزلۈكىدىن تەڭسىسىڭدا تەكشۈرۈپ، تەييار بولغاندا سىزگە خەۋەر بېرىدۇ.',
+      automaticUpdatesDesc:
+        '`OpenAmer` يېڭىلاشلارنى ئۆزلۈكىدىن تەڭسىسىڭدا تەكشۈرۈپ، تەييار بولغاندا سىزگە خەۋەر بېرىدۇ.',
       never: 'ھەرگەز',
       justNow: 'ئەمدەلا',
       version: value => `نەشرى ${value}`,
@@ -513,7 +530,7 @@ export const ug = defineLocale({
       branchCommit: (branch, commit) => `شاخى ${branch} · كوممىت ${commit}`,
       minAgo: count => `${count} مىنۇت ئىلگىرى`,
       hoursAgo: count => `${count} سائەت ئىلگىرى`,
-      daysAgo: count => `${count} كۈن ئىلگىرى`,
+      daysAgo: count => `${count} كۈن ئىلگىرى`
     },
     config: {
       none: 'يوق',
@@ -529,7 +546,8 @@ export const ug = defineLocale({
       imported: 'تەڭشەك ئىمپورت قىلىندى',
       invalidJson: 'تەڭشەك `JSON` نىڭ ئىناۋەتسىزلىكى',
       keepAwakeTitle: 'كومپيۇتېرنى ئۇيغاققا قويماي تۇت',
-      keepAwakeDesc: 'ئۇزۇن ۋە يېرىم كېچەلىك ئىشلەتكەن مەزگىل تۇرۇپ، كومپيۇتېرنىڭ ئۇيغاققا كىرىشىنى توسۇڭ. ئېكران يەنىلا خۇشۇندۇرۇلىدۇ.',
+      keepAwakeDesc:
+        'ئۇزۇن ۋە يېرىم كېچەلىك ئىشلەتكەن مەزگىل تۇرۇپ، كومپيۇتېرنىڭ ئۇيغاققا كىرىشىنى توسۇڭ. ئېكران يەنىلا خۇشۇندۇرۇلىدۇ.'
     },
     credentials: {
       pasteKey: 'ئاچقۇچنى چاپلاڭ',
@@ -539,13 +557,13 @@ export const ug = defineLocale({
       remove: 'ئېلىۋېتىڭ',
       getKey: 'ئاچقۇچ ئېلىڭ',
       saving: 'ساقلاۋاتىدۇ',
-      pasteLabelKey: label => `${label} ئاچارىنى چاپىڭ`,
+      pasteLabelKey: label => `${label} ئاچارىنى چاپىڭ`
     },
     gateway: {
       cloudNoAgents: {
         before: 'بۇ ھېسابتا تېپىلمىدى. بىرنى',
         linkText: 'OpenAmer پورتالىدا قۇرۇڭ',
-        after: '، ئاندىن يېڭىلاڭ.',
+        after: '، ئاندىن يېڭىلاڭ.'
       },
       cloudRefresh: 'يېڭىلاش',
       cloudConnect: 'ئۇلىنىش',
@@ -569,12 +587,14 @@ export const ug = defineLocale({
       unavailableDesc: 'ئۈسكۈنە IPC كۆۋرۈكى تەڭرەك تەڭشىكىنى تەمىنلەيدۇ.',
       title: 'تەڭرەك باغلىنىشى',
       envOverride: 'مۇھىت ئۆزگەرتىشى',
-      intro: 'OpenAmer Desktop ئەپى سۈكۈتىدە ئۆزىنىڭ يەرلىك تەڭرىكىنى باشلايدۇ. بۇ ئەپنى باشقا ماشىنىدا ياكى ئىشەنچلىق پروكسي ئارقىلىدا ئىچىۋاتقان OpenAmer مۇلازىمېتىرى كونترول قىلماقچى بولغاندا يىراق تەڭرەك ئىشلىتىڭ. ئۆزىگە يىراق مېھۇشۇرنى بېرىدىغان تەڭشەك تېپىلدىكى پروفىللاردىن بىرنى تاللاڭ.',
+      intro:
+        'OpenAmer Desktop ئەپى سۈكۈتىدە ئۆزىنىڭ يەرلىك تەڭرىكىنى باشلايدۇ. بۇ ئەپنى باشقا ماشىنىدا ياكى ئىشەنچلىق پروكسي ئارقىلىدا ئىچىۋاتقان OpenAmer مۇلازىمېتىرى كونترول قىلماقچى بولغاندا يىراق تەڭرەك ئىشلىتىڭ. ئۆزىگە يىراق مېھۇشۇرنى بېرىدىغان تەڭشەك تېپىلدىكى پروفىللاردىن بىرنى تاللاڭ.',
       appliesTo: 'تەسىر قىلىدىغان ئىقتىدار',
       allProfiles: 'بارلىق پروفىللار',
       defaultConnection: 'ئۆزىگە خاس ئۆزگەرتىشى بولمىغان ھەر بىر پروفىل ئۈچۈن ئەسلى باغلىنىش.',
       envOverrideTitle: 'مۇھىت ئۆزگەرۋەنلىرى بۇ ئۈسكۈنە كېسىمنى كونترول قىلۇەردۇ.',
-      envOverrideDesc: 'تۆۋەندە ساقلانغان تەڭشەكتىن ئىشلىتىش ئۈچۈن OPENAMER_DESKTOP_REMOTE_URL ۋە OPENAMER_DESKTOP_REMOTE_TOKEN نى تەڭشەلمەڭ ياكى ئۆچۈرۈڭ.',
+      envOverrideDesc:
+        'تۆۋەندە ساقلانغان تەڭشەكتىن ئىشلىتىش ئۈچۈن OPENAMER_DESKTOP_REMOTE_URL ۋە OPENAMER_DESKTOP_REMOTE_TOKEN نى تەڭشەلمەڭ ياكى ئۆچۈرۈڭ.',
       modeTitle: 'ئۇلىنىش ھالىتى',
       localTitle: 'يەرلىك شەيەر',
       localDesc: 'localhost دا مەخپىي OpenAmer ئارقا سۇپا باشلاڭ. بۇ سۈكۈتتىكى ھەم ئائىلە تورىدا ئىشلەيدۇ.',
@@ -582,7 +602,8 @@ export const ug = defineLocale({
       inheritDesc: 'بۇ پروفايلىنىڭ تەڭشىكىنى ئېلىڭ ۋە سۈكۈتتىكى ئۇلىنىشنى ئىشلىتىڭ.',
       remoteTitle: 'يەرلىكتىن باشقا شەيەر',
       remoteDesc: 'بۇ تېشتىن قېلىشنى يەرلىكتىن باشقا OpenAmer ئارقا سۇپىغا ئۇلاڭ.',
-      remoteAuthHint: 'تەڭشەنگەن شەيەرلەر OAuth ياكى ئىشلەتكۈچچە ۋە پارولنى ئىشلىتىدۇ؛ ئۆزى تەڭشەنگەن شەيەرلەر سەھىپە توكىنى ئىشلىتىشى مۇمكىن.',
+      remoteAuthHint:
+        'تەڭشەنگەن شەيەرلەر OAuth ياكى ئىشلەتكۈچچە ۋە پارولنى ئىشلىتىدۇ؛ ئۆزى تەڭشەنگەن شەيەرلەر سەھىپە توكىنى ئىشلىتىشى مۇمكىن.',
       cloudTitle: 'OpenAmer بۇلۇتى',
       cloudDesc: 'OpenAmer بۇلۇتىغا بىر قېتىم كىرىڭ ۋە ھېساباتىڭىزدىكى ئاگېنتلاردىن بىرنى تاللاڭ — URL چاپلىمايدۇ.',
       cloudSignInTitle: 'OpenAmer بۇلۇتى',
@@ -597,7 +618,8 @@ export const ug = defineLocale({
       cloudLoadingAgents: 'ئاگېنتلىرىڭىز يېكىلىۋاتىدۇ…',
       signOut: 'چېكىش',
       authTitle: 'كىرىش تەستىقى',
-      authSignedInPassword: 'بۇ gateway ئىشلەتكۈچى نامى ۋە پارول ئىشلىتىدۇ. سىز كىرىپ بولدىڭىز؛ ئەسە تەڭزە سۈپە ئۆزلۈكىدىن يېڭىلىنىدۇ.',
+      authSignedInPassword:
+        'بۇ gateway ئىشلەتكۈچى نامى ۋە پارول ئىشلىتىدۇ. سىز كىرىپ بولدىڭىز؛ ئەسە تەڭزە سۈپە ئۆزلۈكىدىن يېڭىلىنىدۇ.',
       authSignedInOauth: 'بۇ gateway OAuth ئىشلىتىدۇ. سىز كىرىپ بولدىڭىز؛ ئەسە تەڭزە سۈپە ئۆزلۈكىدىن يېڭىلىنىدۇ.',
       authNeedsPassword: 'بۇ gateway ئىشلەتكۈچى نامى ۋە پارول ئىشلىتىدۇ. بۇ desktop ئەپنى ئىشلىتىش ئۈچۈن كىرىڭ.',
       tokenTitle: 'ئەسە تەڭزە توكېنى',
@@ -633,8 +655,10 @@ export const ug = defineLocale({
       sshButtonsHint: 'ساقلاش كېيىنكى قېتىمدا كۈچكە ئىگە بولىدۇ. ئۇلىنىش ھازىر قايتا ئۇلىنىدۇ.',
       sshIncompleteHost: 'ئۇلىنىشتىن بۇرۇن بىر SSH مېھمانى كىرگۈزۈڭ.',
       sshErrUnreachable: 'SSH ئارقىلىق مېھمانغا يېتەلمەدىن. مېھمان، پورت ۋە تورنى تەكشۈرۈڭ.',
-      sshErrAuth: 'SSH سىناقلىشى ئەپەندى. ئاچقۇچىڭىزنى ssh-agent ئىچىگە يۈكلەڭ (ssh-add) ياكى ~/.ssh/config دا IdentityFile بەلگىلەڭ — OpenAmer ssh نى ئۆز-ئارا تەسىرسىز ئىجرا قىلىدۇ.',
-      sshErrHostKey: 'ئاخىرقى قېتىمدىن بەرى مېھمان ئاچقۇچى ئۆزگەرگەن. بۇنىڭ كۈتۈلگەنلىكىنى تەكشۈرۈپ، ssh-keygen -R <host> نى ئىجرا قىلىپ قايتا ئۇلىنىڭ.',
+      sshErrAuth:
+        'SSH سىناقلىشى ئەپەندى. ئاچقۇچىڭىزنى ssh-agent ئىچىگە يۈكلەڭ (ssh-add) ياكى ~/.ssh/config دا IdentityFile بەلگىلەڭ — OpenAmer ssh نى ئۆز-ئارا تەسىرسىز ئىجرا قىلىدۇ.',
+      sshErrHostKey:
+        'ئاخىرقى قېتىمدىن بەرى مېھمان ئاچقۇچى ئۆزگەرگەن. بۇنىڭ كۈتۈلگەنلىكىنى تەكشۈرۈپ، ssh-keygen -R <host> نى ئىجرا قىلىپ قايتا ئۇلىنىڭ.',
       enterUrlFirst: 'ئالدى بىلەن يېرىم ئادرېسىنى كىرگۈزۈڭ.',
       restartingTitle: 'گەتوۋېي ئۇلىنىشى قايتا قوزغىتىلىۋاتىدۇ',
       savedTitle: 'گەتوۋېي تەڭشەكلىرى ساقلاندى',
@@ -650,25 +674,31 @@ export const ug = defineLocale({
       applyFailed: 'گەتوۋېي تەڭشەكلىرىنى قوللىنىش مەغلۇپ بولدى',
       saveFailed: 'گەتوۋېي تەڭشەكلىرىنى ساقلىش مەغلۇپ بولدى',
       sshTitle: 'SSH ئارقىلىق ئۇلىنىڭ',
-      sshDesc: 'OpenAmer يېرىم ماشىنىدا SSH ئارقىلىق ئىشلەتكۈزۈلۈپ، بۇ ئەپكەغە تونېل ئارقىلىق ئۇلىنىدۇ — باشلاشقا ياكى ئۆزىڭىزنى ئېشىق قىلىشقا ھېچ نېمە كەرەك ئىستۋاتىدۇ. مېھمانغا ئىشلەتكۈزۈلگەن SSH كىلچ ئاساسىدىكى زىيارەت تەلەپ قىلىنىدۇ.',
-      sshTrustHint: 'تۇنجى قېتىم كۆرسىتىلگەن مېھمان كىلىچىغا ئىشەنچ ھەميە قىلىنىپ مۇقىملاشتۇرۇلدى؛ كېيىنكى ئۆزگىرىشلەر تەمكىن قىلىمايدۇ.',
+      sshDesc:
+        'OpenAmer يېرىم ماشىنىدا SSH ئارقىلىق ئىشلەتكۈزۈلۈپ، بۇ ئەپكەغە تونېل ئارقىلىق ئۇلىنىدۇ — باشلاشقا ياكى ئۆزىڭىزنى ئېشىق قىلىشقا ھېچ نېمە كەرەك ئىستۋاتىدۇ. مېھمانغا ئىشلەتكۈزۈلگەن SSH كىلچ ئاساسىدىكى زىيارەت تەلەپ قىلىنىدۇ.',
+      sshTrustHint:
+        'تۇنجى قېتىم كۆرسىتىلگەن مېھمان كىلىچىغا ئىشەنچ ھەميە قىلىنىپ مۇقىملاشتۇرۇلدى؛ كېيىنكى ئۆزگىرىشلەر تەمكىن قىلىمايدۇ.',
       sshHostTitle: 'مېھمان خۇشى',
       sshHostDesc: '`user@host`، ياكى `~/.ssh/config` دىكى مېھمان بىكەتەمسى.',
       sshHostPick: 'مېھمان تاللاڭ…',
-      sshErrNotInstalled: 'يېقىن سۇپىدا OpenAmer قاچىلانمىدى. قاچىلاش ئۈچۈن `curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh` نى ئىجرا قىلىڭ ياكى OpenAmer يولىنى بەلگىلەڭ.',
-      sshErrPlatform: 'يېقىن سۇپا سۇپىسى قوللىنىلمەيدۇ. OpenAmer Desktop نىڭ SSH ھالىتى Linux، macOS ۋە Windows يېقىن سۇپىلىرىنى قوللىنىدۇ.',
+      sshErrNotInstalled:
+        'يېقىن سۇپىدا OpenAmer قاچىلانمىدى. قاچىلاش ئۈچۈن `curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh` نى ئىجرا قىلىڭ ياكى OpenAmer يولىنى بەلگىلەڭ.',
+      sshErrPlatform:
+        'يېقىن سۇپا سۇپىسى قوللىنىلمەيدۇ. OpenAmer Desktop نىڭ SSH ھالىتى Linux، macOS ۋە Windows يېقىن سۇپىلىرىنى قوللىنىدۇ.',
       sshErrTimeout: 'SSH ئۇلىنىشنىڭ ۋاقتى تۈتتى. سۇپا يېتەرلىك بولماسلىقى ياكى ئۇخلاشتىن بولشى مۇمكىن.',
       sshErrUpdateRequired: 'Desktop SSH بىلەن ئۇلىنىشتىن بۇرۇن يېقىن سۇپىدا OpenAmer نى يېڭىلاڭ.',
       sshErrUnknown: 'SSH ئۇلىنىش مەغلۇپ بولدى.',
-      profileConnection: profile => `بۇ ئۇلانىش پەقەت “${profile}” ئېكتىپ پروفىل بولغاندا ئىشلىتىلýدۇ. ئۇنىڭ ئۆزگىرىشىنى ئالىپ تاشلاش ئۈچۈن «Default شتۇرنى ئىشلىتىڭ» نى تاللاڭ.`,
+      profileConnection: profile =>
+        `بۇ ئۇلانىش پەقەت “${profile}” ئېكتىپ پروفىل بولغاندا ئىشلىتىلýدۇ. ئۇنىڭ ئۆزگىرىشىنى ئالىپ تاشلاش ئۈچۈن «Default شتۇرنى ئىشلىتىڭ» نى تاللاڭ.`,
       cloudOrgRole: role => `رول: ${role}`,
       cloudConnectedTo: name => `${name} گە ئۇلانىلدى.`,
       cloudStatusLabel: status => `ھالىتى: ${status}`,
       signInWith: provider => `${provider} بىلەن كىرىڭ`,
-      authNeedsOauth: provider => `بۇ شتۇر OAuth نى ئىشلىتىدۇ. بۇ ماساۇستى پروگراممىنى رۇخسەت قىلىش ئۈچۈن ${provider} بىلەن كىرىڭ.`,
+      authNeedsOauth: provider =>
+        `بۇ شتۇر OAuth نى ئىشلىتىدۇ. بۇ ماساۇستى پروگراممىنى رۇخسەت قىلىش ئۈچۈن ${provider} بىلەن كىرىڭ.`,
       existingToken: value => `مەۋجۇت توكېن ${value}`,
       connectedTo: (baseUrl, version) => `${baseUrl} گە ئۇلانىلدى${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `ئۇلانىش مۇمكىن: ${host} (${platform}) — OpenAmer تېپىلدى`,
+      sshReachable: (host, platform) => `ئۇلانىش مۇمكىن: ${host} (${platform}) — OpenAmer تېپىلدى`
     },
     envActions: {
       credentialActions: 'ئىسپات ھوقۇقلىرى',
@@ -679,7 +709,7 @@ export const ug = defineLocale({
       replace: 'ئالماشتۇرۇش',
       set: 'بەلگىلەش',
       clear: 'تازىلاش',
-      actionsFor: label => `${label} ئۈچۈن ھەرىكەتلەر`,
+      actionsFor: label => `${label} ئۈچۈن ھەرىكەتلەر`
     },
     mcp: {
       reloadFailed: 'MCP قايتا يۈكلەش مەغۇۋ بولدى',
@@ -741,14 +771,16 @@ export const ug = defineLocale({
       catalogInstallStarted: name => `${name} ئورناتىلماقتا... تۇگىغاندا يېڭى سېسىيىلەرگە قوللانىلىدۇ.`,
       catalogInstallFailed: name => `${name} نى ئورناتۇش ئۇچراپ قالدى`,
       catalogEnvPrompt: name => `${name} ئۈچۈن كىرىش ئۇچۇرلىرى كېرەك`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} قوزغىتىلدى`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} قوزغىتىلدى`,
       authenticatedMessage: (server, count) => `${server}: ${count} قورال`,
       enableTool: tool => `${tool} نى ئېكتىپ قىلىڭ`,
-      disableTool: tool => `${tool} نى ئاكتىپسىز قىلىڭ`,
+      disableTool: tool => `${tool} نى ئاكتىپسىز قىلىڭ`
     },
     model: {
       loading: 'مودېل تەڭشىكى يۈكلىنىۋاتىدۇ...',
-      appliesDesc: 'يېڭى سەسىيەلەرگە تەسىر قىلىدۇ. ئاكتىپ چاتنى ئالماشتۇرۇش ئۈچۈن يېزغۇچتىكى مودېل تاللاپ قويۇشنى ئىشلىتىڭ.',
+      appliesDesc:
+        'يېڭى سەسىيەلەرگە تەسىر قىلىدۇ. ئاكتىپ چاتنى ئالماشتۇرۇش ئۈچۈن يېزغۇچتىكى مودېل تاللاپ قويۇشنى ئىشلىتىڭ.',
       provider: 'تەمىنلىگۈچى',
       model: 'مودېل',
       applying: 'ئىشلىتىلىۋاتىدۇ...',
@@ -758,7 +790,8 @@ export const ug = defineLocale({
       defaultsFailed: 'مودېلنىڭ ئەسلىي تەڭشەكلەرنى ساقلىاش ئاشكۆ بولدى',
       auxiliaryTitle: 'ياردەمچى مودېللار',
       resetAllToMain: 'ھەممىسىنى ئاساسىي مودېلغا قايتا تەڭشەش',
-      auxiliaryDesc: 'ياردەمچى ۋەزىپەلەر سۈكۈتتى بويىچە ئاساسىي مودېلدا ئىشلەيدۇ. ئەسلىي تەڭشەكنى بەكىتىش ئۈچۈن ھەر بىر ۋەزىپەگە ئايرىم مودېل بەلگىلەڭ.',
+      auxiliaryDesc:
+        'ياردەمچى ۋەزىپەلەر سۈكۈتتى بويىچە ئاساسىي مودېلدا ئىشلەيدۇ. ئەسلىي تەڭشەكنى بەكىتىش ئۈچۈن ھەر بىر ۋەزىپەگە ئايرىم مودېل بەلگىلەڭ.',
       setToMain: 'ئاساسىي مودېلغا بەلگىلەش',
       change: 'ئالماشتۇرۇش',
       autoUseMain: 'ئۆزلۈكىدىن · ئاساسىي مودېلنى ئىشلىتىش',
@@ -769,47 +802,48 @@ export const ug = defineLocale({
       tasks: {
         vision: {
           label: 'كۆرۈش',
-          hint: 'رەسىم تەھلىلى',
+          hint: 'رەسىم تەھلىلى'
         },
         web_extract: {
           label: 'تور بېكەت چىقىرىش',
-          hint: 'بەتنى خۇسلەش',
+          hint: 'بەتنى خۇسلەش'
         },
         compression: {
           label: 'سۇغۇرلىتىش',
-          hint: 'كۆرۈپ باقۇقنى يىغىش',
+          hint: 'كۆرۈپ باقۇقنى يىغىش'
         },
         skills_hub: {
           label: 'ئىقتىدارلار مەركىزى',
-          hint: 'ئىقتىدار ئىزدەش',
+          hint: 'ئىقتىدار ئىزدەش'
         },
         approval: {
           label: 'رۇخسەت بېرىش',
-          hint: 'ئەقلىي ئۆزلۈكىدىن رۇخسەت بېرىش',
+          hint: 'ئەقلىي ئۆزلۈكىدىن رۇخسەت بېرىش'
         },
         mcp: {
           hint: 'MCP قوراللىرىنى يۆتكەش',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'ماۋزۇ ناملىتىش',
-          hint: 'كېسىل ماۋزۇلىرى',
+          hint: 'كېسىل ماۋزۇلىرى'
         },
         curator: {
           label: 'كۆرۈپ باققۇچى',
-          hint: 'ئىقتىدار ئىشلىتىشىنى تەكشۈرۈش',
-        },
-      },
+          hint: 'ئىقتىدار ئىشلىتىشىنى تەكشۈرۈش'
+        }
+      }
     },
     keys: {
       loading: 'API كۇنۇڭلىرى ۋە ئىسپاتنامىلەر يۈكلەنىۋاتىدۇ...',
       failedLoad: 'API كۇنۇڭلىرىنى يۈكلىگەن بولمىدى',
-      empty: 'مۇشۇ تۈردە تېخى ھېچنېمە سەپلىمىدى.',
+      empty: 'مۇشۇ تۈردە تېخى ھېچنېمە سەپلىمىدى.'
     },
     providers: {
       connectAccount: 'ھېسابات ئۇلىاش',
       haveApiKey: 'ئەگەر API نۇمۇرىڭىز بولسا؟',
-      intro: 'ئەشىرگە بىلەن كىرىڭ — كۆچۈرۈشكە API نۇمۇرى كەرەك ئەمەس. OpenAmer سۇپەىر يۈزلىك كىرىشنى سىز ئۈچۈن ئەپ ئىچىدىكىلا ئىجرا قىلىدۇ.',
+      intro:
+        'ئەشىرگە بىلەن كىرىڭ — كۆچۈرۈشكە API نۇمۇرى كەرەك ئەمەس. OpenAmer سۇپەىر يۈزلىك كىرىشنى سىز ئۈچۈن ئەپ ئىچىدىكىلا ئىجرا قىلىدۇ.',
       connected: 'ئۇلاندى',
       collapse: 'yiغىش',
       connectAnother: 'باشقا تەمىنلىگۈچى ئۇلىاش',
@@ -822,33 +856,38 @@ export const ug = defineLocale({
       noKeysMatch: 'ئىزدەشڭىزغا ماس كەلگەن تەمىنلىگۈچى يوق.',
       localEndpoint: {
         title: 'يەرلىك / ئىختىيارى ئېنپوينت',
-        description: 'OpenAmer نى OpenAI بىلەن ماسلىق بولغان هەر خىل ئېنپوينتقا باشلىنىڭ (Zyphra، vLLM، llama.cpp، Ollama، ئۇنىڭدىن باشقا).',
+        description:
+          'OpenAmer نى OpenAI بىلەن ماسلىق بولغان هەر خىل ئېنپوينتقا باشلىنىڭ (Zyphra، vLLM، llama.cpp، Ollama، ئۇنىڭدىن باشقا).'
       },
       loading: 'تەمىنلىگۈچىلەر يۈكلىنىۋاتىدۇ...',
       removeConfirm: provider => `${provider} نى ئالىپ تاشلايمى؟`,
       removeExternalGeneric: provider => `${provider} ئۆزىنىڭ CLI سى ئارقىلىق باشقۇرۇلىدۇ — ئۇنى شۇ يەردىن ئۆچۈرۈڭ.`,
       removeKeyManaged: provider => `${provider} بىر API ئاچقۇچى ئارقىلىق سەپلەنگەن. ئۇنى API ئاچقۇچلىرىدىن ئۆچۈرۈڭ.`,
-      removeTerminalConfirm: (provider, command) => `${provider} نى ئۇلانىشنى ئۇزاتمى؟ بۇ تەرمىنالدا "${command}" نى ئىشلىتىپ، ئاڭلاشتۇرۇش ئۇچۇرلىرىنى تازىلايدۇ.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} نى ئۇلانىشنى ئۇزاتمى؟ بۇ تەرمىنالدا "${command}" نى ئىشلىتىپ، ئاڭلاشتۇرۇش ئۇچۇرلىرىنى تازىلايدۇ.`,
       removeTerminalRunning: provider => `تەرمىنالدا ${provider} ئۇلانىشنى ئۇزاتماقتا…`,
       removedMessage: provider => `${provider} ئۆچۈرۈلدى.`,
-      failedRemove: provider => `${provider} نى ئالىپ تاشلاش مۇمكىن بولمادى`,
+      failedRemove: provider => `${provider} نى ئالىپ تاشلاش مۇمكىن بولمادى`
     },
     sessions: {
       loading: 'ئارىللانغان سېسىونلار يۈكلىنىۋاتىدۇ…',
       archivedTitle: 'ئارىللانغان سېسىونلار',
-      archivedIntro: 'ئارىللانغان چاتلار يەن تەرىپىدە يوشۇرۇلىدۇ، ئەمما بارلىق خەتۈرلىرى ساقلىنىدۇ. چاتنى ئارىللاش ئۈچۈن يەن تەرىپىدە Ctrl/⌘-click بېسىڭ.',
+      archivedIntro:
+        'ئارىللانغان چاتلار يەن تەرىپىدە يوشۇرۇلىدۇ، ئەمما بارلىق خەتۈرلىرى ساقلىنىدۇ. چاتنى ئارىللاش ئۈچۈن يەن تەرىپىدە Ctrl/⌘-click بېسىڭ.',
       emptyArchivedTitle: 'هېچنېمە ئارىللانمىدى',
       emptyArchivedDesc: 'چاتنى بۇ يەردىن يىشىش ئۈچۈن ئارىلاڭ.',
       unarchive: 'ئارىلىنىشتىن ئېلۇش',
       deletePermanently: 'مەڭگۈلۈك ئۆچۈرۈش',
       restored: 'ئەسلىگە كەلتۈرۈلدى',
       autoArchiveTitle: 'ئاكتىپسىز چاتلارنى ئۆزلۈكىدىن ئارىلاش',
-      autoArchiveDesc: 'بىر ۋاقىتتىن بېرى تەگمەن چاتلارنى ئۆزلۈكىدىن ئارىلايدۇ. مەخپۇللانغان چاتلار ھەرگىز ئارىلانمايدۇ، ھېچنېمە ئۆچۈرۈلمەيدۇ — ئارىللانغان چاتلار پەقەت بۇ يەرگە يۆتكىلىدۇ.',
+      autoArchiveDesc:
+        'بىر ۋاقىتتىن بېرى تەگمەن چاتلارنى ئۆزلۈكىدىن ئارىلايدۇ. مەخپۇللانغان چاتلار ھەرگىز ئارىلانمايدۇ، ھېچنېمە ئۆچۈرۈلمەيدۇ — ئارىللانغان چاتلار پەقەت بۇ يەرگە يۆتكىلىدۇ.',
       autoArchiveDaysLabel: 'ئارىلاشتىن كېيىن',
       autoArchiveDaysUnit: 'ئاكتىپسىزلىك كۈنى',
       autoArchiveFailed: 'ئاپتوماسىي ئارخىلاشنى يېڭىلانمىدى',
       defaultDirTitle: 'ئەسلى پروجېكت مۇندەرىجىسى',
-      defaultDirDesc: 'يېڭى سېسلار باشقا مۇندەرىجە تاللانمىسا بۇ پۇكتىدا باشلىنىدۇ. ئۆي مۇندەرىجىسىنى ئىشلىتىش ئۈچۈن تەڭرىكى قىلماسلىقىڭىز.',
+      defaultDirDesc:
+        'يېڭى سېسلار باشقا مۇندەرىجە تاللانمىسا بۇ پۇكتىدا باشلىنىدۇ. ئۆي مۇندەرىجىسىنى ئىشلىتىش ئۈچۈن تەڭرىكى قىلماسلىقىڭىز.',
       defaultDirUpdated: 'ئەسلى پروجېكت مۇندەرىجىسى يېڭىلاندى — ئۈنۈمى ئۈچۈن يېڭى چات (Ctrl/⌘+N) باشلاڭ',
       change: 'ئالماشتۇر',
       choose: 'تاللا',
@@ -861,7 +900,7 @@ export const ug = defineLocale({
       clearDirFailed: 'ئەسلى مۇندەرىجىنى تازىلانمىدى',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `"${title}" نى ھەمىشಲಿك ئۆچۈرۈڭمى؟ بۇنى قايتا ئەسلىتگىزەلمەيدۇ.`,
-      defaultsTo: label => `ئاساسلىق تۇرلۇقى ${label}.`,
+      defaultsTo: label => `ئاساسلىق تۇرلۇقى ${label}.`
     },
     toolsets: {
       loadingConfig: 'سەپلەشنى يۈكلىەۋاتىدۇ',
@@ -892,10 +931,12 @@ export const ug = defineLocale({
         inUse: 'ئىشلىتىلىۋاتىدۇ',
         selectedTitle: 'ئارقا سۇپا تاللاندى',
         needsSetupHint: 'ھازىر بۇ ئارقا سۇپىنى تاللايالايسىز — تەڭشەش تاماملانغۇچە ھەرپەتلىرى ئىشلەيدۇ.',
-        selectedMessage: backend => `تېرمىنال بۇيروقلىرى ئەمدى ${backend} ئارقىلىق ئىشلىيىدۇ. بۇ يېڭى سېسىيىلارغا قوللىنىلىدۇ.`,
-        failedSelect: backend => `${backend} نى تاللاش مەغلۇپ بولدى`,
+        selectedMessage: backend =>
+          `تېرمىنال بۇيروقلىرى ئەمدى ${backend} ئارقىلىق ئىشلىيىدۇ. بۇ يېڭى سېسىيىلارغا قوللىنىلىدۇ.`,
+        failedSelect: backend => `${backend} نى تاللاش مەغلۇپ بولدى`
       },
-      noProviderOptions: 'بۇ ئىقتىدارلار توپىنىڭ تەمىنلىگۈچ تاللاش يۈزى يوق — قوزغاتالسىڭىز، ھازىرقى تەڭكىڭىز بىلەن ئىشلەيدۇ.',
+      noProviderOptions:
+        'بۇ ئىقتىدارلار توپىنىڭ تەمىنلىگۈچ تاللاش يۈزى يوق — قوزغاتالسىڭىز، ھازىرقى تەڭكىڭىز بىلەن ئىشلەيدۇ.',
       noProviders: 'ھازىر بۇ ئىقتىدارلار توپى ئۈچۈن تەمىنلىگۈچلەر ئىستېمال قىلىنمىغان.',
       ready: 'تەييار',
       needsSignIn: 'كىرىش ئېھتىياج',
@@ -923,21 +964,24 @@ export const ug = defineLocale({
       removeConfirm: key => `${key} نى .env دان ئالىپ تاشلايمى؟`,
       selectedMessage: provider => `${provider} ھازىر ئاكتىپ.`,
       failedSelect: provider => `${provider} نى تاللاش ئۇچراپ قالدى`,
-      openamerAuthNeededMessage: provider => `${provider} ساقلاندى، ئەمما OpenAmer تور بېتىگە كىرمىگۈچە ئاكتىپلانمايدۇ.`,
-      postSetupHint: step => `بۇ بېكىند بىر قېتىم ئورناتىشنى تەلەپ قىلىدۇ (${step}). بۇ ماشىنىدا ئىشلەيدۇ — بىر نەچە مىنۇت ۋاقىت ئېلىشى مۇمكىن.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ساقلاندى، ئەمما OpenAmer تور بېتىگە كىرمىگۈچە ئاكتىپلانمايدۇ.`,
+      postSetupHint: step =>
+        `بۇ بېكىند بىر قېتىم ئورناتىشنى تەلەپ قىلىدۇ (${step}). بۇ ماشىنىدا ئىشلەيدۇ — بىر نەچە مىنۇت ۋاقىت ئېلىشى مۇمكىن.`,
       postSetupCompleteMessage: step => `${step} ئورنىتىلدى.`,
       postSetupErrorMessage: step => `${step} لوگىنى تەكشۈرۈڭ.`,
       postSetupFailed: step => `${step} تەڭشىكىنى ئىجرا قىلىش مەغلۇپ بولدى`,
       webSearchActive: backend => `ئىزدەش: ${backend}`,
       webExtractActive: backend => `چىقىرىش: ${backend}`,
-      webCapabilitySelectedMessage: (provider, capability) => `${provider} ھازىر تور ${capability} نى بىر تەرەپ قىلىدۇ.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `${provider} ھازىر تور ${capability} نى بىر تەرەپ قىلىدۇ.`,
       failedSelectCapability: provider => `${provider} نى تەڭشەش مەغلۇپ بولدى`,
       modelCount: count => `${count} مودېلى${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} يېڭى سۆھبەتلەرگە قوللىنىلىدۇ.`,
-      failedSelectModel: model => `${model} نى تاللاش مەغلۇپ بولدى`,
+      failedSelectModel: model => `${model} نى تاللاش مەغلۇپ بولدى`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'ئىقتىدارلار',
@@ -956,7 +1000,8 @@ export const ug = defineLocale({
     noDescription: 'چۈشەندۈرۈش يوق.',
     configured: 'تەڭشەنگەن',
     needsKeys: 'ئاچقۇچلار كېرەك',
-    visionModelHint: 'كۆرۈش ئىقتىدارى ياردەمچى مودېل تەڭشىكىڭىزنى ئىشلىتىدۇ — رەسىم قوبۇل قىلىدىغان مودېل شۇ يەردە تاللىنىدۇ، ھەر بىر تەمىنلىگۈچى بويىچە ئەمەس.',
+    visionModelHint:
+      'كۆرۈش ئىقتىدارى ياردەمچى مودېل تەڭشىكىڭىزنى ئىشلىتىدۇ — رەسىم قوبۇل قىلىدىغان مودېل شۇ يەردە تاللىنىدۇ، ھەر بىر تەمىنلىگۈچى بويىچە ئەمەس.',
     visionModelLink: 'تەڭشەك → مودېللار بۆلۈمىدىن كۆرۈش مودېلىنى تاللاڭ',
     skillsLoadFailed: 'ئىقتىدارلارنى يۈكلەش مەغلۇپ بولدى',
     toolsetsRefreshFailed: 'قورال توپلىرى يېڭىلانمىدى',
@@ -974,7 +1019,7 @@ export const ug = defineLocale({
     provenance: {
       agent: 'ئۆگىنىلگەن',
       bundled: 'ئىچكى',
-      hub: 'مەركىزى',
+      hub: 'مەركىزى'
     },
     changesApplyNewSessions: 'ئۆزگىرىشلەر يېڭى ئېسىسلاردا كۈچكە ئىگە بولىدۇ.',
     skillUpdated: 'ئۇنۇم يېڭىلاندى',
@@ -989,7 +1034,8 @@ export const ug = defineLocale({
       connectingHubs: 'تېخنىك مەركىزلىرىغا ئۇلىنىۋاتىدۇ...',
       connectedHubs: 'ئۇلانغان مەركىزلىر:',
       featured: 'ئالاھىدە تېخنىكلەر',
-      landingHint: 'رەسمىيى پۈتۈنلەشتۈرگۈ، GitHub ۋە جەمئەيەت مەنبەلىرىدىكى ئورنىتىلىدىغان تېخنىكلەرنى كۆرۈش ئۈچۈن مەركىزنى ئىزدەڭ.',
+      landingHint:
+        'رەسمىيى پۈتۈنلەشتۈرگۈ، GitHub ۋە جەمئەيەت مەنبەلىرىدىكى ئورنىتىلىدىغان تېخنىكلەرنى كۆرۈش ئۈچۈن مەركىزنى ئىزدەڭ.',
       noResults: 'مەركىزدە مۇناسىۋەتلىك تېخنىك تېپىلمىدى.',
       installed: 'ئورنىتىلدى',
       install: 'ئورنىتىش',
@@ -1007,7 +1053,7 @@ export const ug = defineLocale({
       trust: {
         builtin: 'ئىشلەپچىقىرىلغان',
         trusted: 'ئىشەنچلىك',
-        community: 'مەھەللە',
+        community: 'مەھەللە'
       },
       verdictSafe: 'بىخەتەر',
       verdictCaution: 'ئېھتىيات',
@@ -1027,7 +1073,7 @@ export const ug = defineLocale({
       timedOut: sources => `ۋاقىت تۇگادى: ${sources}`,
       findings: count => `${count} بايقاش${count === 1 ? '' : 's'}`,
       installStarted: name => `${name} ئورنىتىلىۋاتىدۇ...`,
-      uninstallStarted: name => `${name} ئالىۋېتىۋاتىدۇ...`,
+      uninstallStarted: name => `${name} ئالىۋېتىۋاتىدۇ...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} قورال توپلىمى قوزغىتىلدى`,
@@ -1045,7 +1091,8 @@ export const ug = defineLocale({
     searchPlugins: 'پلۇگىنلەرنى ئىزدىك...',
     pluginsCount: n => `${n} قىستۇرما`,
     pluginsEmptyTitle: 'پلۇگىن tapylىمىدى',
-    pluginsEmptyDesc: 'يۇقىرىدىكى Git رېپوزىتارىياسىدىن بىرini ئورنىتىڭ — ئاجэنت پلۇگىنلىرى فعال قىلىنغۇنچە ئىشلەمەيدۇ.',
+    pluginsEmptyDesc:
+      'يۇقىرىدىكى Git رېپوزىتارىياسىدىن بىرini ئورنىتىڭ — ئاجэنت پلۇگىنلىرى فعال قىلىنغۇنچە ئىشلەمەيدۇ.',
     pluginsNoMatch: 'بۇ ئىزدىككە ھېچقانداق پلۇگىن ئۇپىسسىز',
     pluginsLoadFailed: 'پلۇگىنلەرنى يۈكلەپ بولمىدى',
     pluginsInstall: 'قاچىلا',
@@ -1059,9 +1106,10 @@ export const ug = defineLocale({
     pluginsSearchFailed: 'GitHub ئىزدىكىشى ئۇچرىدى',
     pluginsDiscoverAction: query => `GitHub دا "${query}" نى ئىزدىك`,
     pluginsDiscoverResults: (n, query) => `${n} openamer-plugin بەلگىلەنگەن رېپوزىتورىيەلىرى «${query}» ئۈچۈن`,
-    pluginsDiscoverEmpty: query => `GitHub دا "${query}" بىلەن بىر شىيۇق يوق — ئىزدىك پەقەت openamer-plugin تېمىسىغا ئىگە رېپوزىتارىيالارنى تابات، ۋە تەستىقلانمىغان GitHub ئىزدىكىشى چېكلەنگەن. يۇقىرىغا توغرا ئېگىلۈچى/رېپونى ئورنىتىڭ.`,
+    pluginsDiscoverEmpty: query =>
+      `GitHub دا "${query}" بىلەن بىر شىيۇق يوق — ئىزدىك پەقەت openamer-plugin تېمىسىغا ئىگە رېپوزىتارىيالارنى تابات، ۋە تەستىقلانمىغان GitHub ئىزدىكىشى چېكلەنگەن. يۇقىرىغا توغرا ئېگىلۈچى/رېپونى ئورنىتىڭ.`,
     pluginsStatusInactive: 'پائالسىز',
-    pluginsToggleFailed: 'پلۇگىن ھالىتىنى ئۆزگىرتىپ بولمىدى',
+    pluginsToggleFailed: 'پلۇگىن ھالىتىنى ئۆزگىرتىپ بولمىدى'
   },
   starmap: {
     title: 'ئەستادامە گرافىكى',
@@ -1077,7 +1125,8 @@ export const ug = defineLocale({
     emptyTitle: 'تېخى ئەمەس ئۆگىنىلدى',
     emptyDesc: 'OpenAmer سىزنىڭ ئىشىڭىز ئۈچۈن كەسىپلەر ۋە ئەستادامىلەرنى شەكىللەندۈرگەندە، ئۇلار بۇ يەردە كۆرۈلىدۇ.',
     share: 'خەرىتەنى ھەمبەھىرلەش',
-    shareHint: 'بۇ خەرىتەنى ھەمبەھىرلەش ئۈچۈن كودنى كۆچۈرۈڭ ياكى يۈكلىمەك ئۈچۈن چاپقا قوشۇڭ. بۇ پەقەت تەڭداشنى ئىگىلەيدۇ، سىزنىڭ ئەستادامە ياكى كەسىپ ماتونىڭىزنى ئەمەس.',
+    shareHint:
+      'بۇ خەرىتەنى ھەمبەھىرلەش ئۈچۈن كودنى كۆچۈرۈڭ ياكى يۈكلىمەك ئۈچۈن چاپقا قوشۇڭ. بۇ پەقەت تەڭداشنى ئىگىلەيدۇ، سىزنىڭ ئەستادامە ياكى كەسىپ ماتونىڭىزنى ئەمەس.',
     shareTitle: 'خەرىتەنى كىرگۈزۈش / چىقىرىش',
     sharePlaceholder: 'خەرىتە كودىنى چاپقا قوشۇڭ…',
     copy: 'خەرىتە كودىنى كۆچۈرۈش',
@@ -1088,7 +1137,7 @@ export const ug = defineLocale({
     importedBadge: 'ئىمپورت قىلىنغان خەتە',
     resetToMine: 'مېنىڭ خەتمە قايتىش',
     subtitle: (nodes, clusters) => `${nodes} بىلىملىرى ${clusters} سەھىپە بويىچە`,
-    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} بار خەرىتە يۈكلەندى.`,
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} بار خەرىتە يۈكلەندى.`
   },
   agents: {
     close: 'ئاگېنتلارنى تاقاش',
@@ -1118,7 +1167,7 @@ export const ug = defineLocale({
     ageDays: days => `${days} كۈن ئىلگىرى`,
     durationSeconds: seconds => `${seconds} سېكۇنت`,
     durationMinutes: (minutes, seconds) => `${minutes} مىنۇت ${seconds} سېكۇنت`,
-    tokens: value => `${value} توكېن`,
+    tokens: value => `${value} توكېن`
   },
   commandCenter: {
     close: 'بۇيرۇق مەركىزىنى تاقاش',
@@ -1147,7 +1196,7 @@ export const ug = defineLocale({
       generatedTag: 'ھاسىل قىلىندى',
       adoptFailed: 'بۇ ئاياغنى قوبۇل قىلالمىدى.',
       toggleFailed: 'ئاياغنىڭ ھالىتىنى ئالماشتۇرالمىدى.',
-      noneAvailable: 'تەمىنلىنگەن ئاياغ يوق — ئورنىتىش ئۈچۈن تۆۋەندىكىلەردىن بىرىنى تاللاڭ.',
+      noneAvailable: 'تەمىنلىنگەن ئاياغ يوق — ئورنىتىش ئۈچۈن تۆۋەندىكىلەردىن بىرىنى تاللاڭ.'
     },
     generatePet: {
       title: 'بىر مۇلازىمەت ھاۋۋانى تۈرۈڭ',
@@ -1176,7 +1225,7 @@ export const ug = defineLocale({
       referenceImageInvalid: 'بۇ ئىشارەت رەسىمىنى ئوقۇپ بولمىدى. PNG، JPG، WebP ياكى GIF تەكلىپ قىلىڭ.',
       adopt: 'قۇبۇل قىلىش',
       startOver: 'قايتا باشلاش',
-      hatchRow: (_state, done, total) => `رامكا سىزىلىۋاتىدۇ: ${done} / ${total}…`,
+      hatchRow: (_state, done, total) => `رامكا سىزىلىۋاتىدۇ: ${done} / ${total}…`
     },
     installTheme: {
       title: 'تېمىنى ئورنىتىش…',
@@ -1188,7 +1237,7 @@ export const ug = defineLocale({
       install: 'ئورنىتىش',
       installing: 'ئورنىتىلىۋاتىدۇ...',
       installed: 'ئورنىتىلدى',
-      installs: count => `${count} قېتىم قاچىلانغان`,
+      installs: count => `${count} قېتىم قاچىلانغان`
     },
     settingsFields: 'تەڭشەك مەيدانى',
     mcpServers: 'MCP مۇلازىمېتىرلىرى',
@@ -1197,49 +1246,49 @@ export const ug = defineLocale({
       maintenance: 'ساتلىق',
       sessions: 'سەنسلار',
       system: 'سىستېما',
-      usage: 'ئىشلىتىش',
+      usage: 'ئىشلىتىش'
     },
     sectionDescriptions: {
       maintenance: 'دىئاگنوستىكا، زاپاس، كۇراسۋاتور ۋە ئېرىتە ساقلانغان سانلىق مەلۇماتلىرى',
       sessions: 'سېسسيەلەرنى ئىزدەش ۋە باشقۇرۇش',
       system: 'ھالىتى، خاتىرىلەر ۋە سىستېما ئەمەللىرى',
-      usage: 'توكن، چىقىملار ۋە ماھىرىيەت ئاشلىقىنىڭ ئۆزگىرىشى',
+      usage: 'توكن، چىقىملار ۋە ماھىرىيەت ئاشلىقىنىڭ ئۆزگىرىشى'
     },
     nav: {
       newChat: {
         title: 'يېڭى سېسسيە',
-        detail: 'يېڭى سېسسيە باشلاش',
+        detail: 'يېڭى سېسسيە باشلاش'
       },
       settings: {
         title: 'تەڭشەكلەر',
-        detail: 'OpenAmer مە/desktop نى تەڭشەكلىش',
+        detail: 'OpenAmer مە/desktop نى تەڭشەكلىش'
       },
       skills: {
         title: 'ئىقتىدارلار',
-        detail: 'ماھىرىيەتلەر، قوراللىقلار ۋە MCP مۇلازىمېتىرلىرى',
+        detail: 'ماھىرىيەتلەر، قوراللىقلار ۋە MCP مۇلازىمېتىرلىرى'
       },
       messaging: {
         title: 'ئۇندەش',
-        detail: 'Telegram، Slack، Discord ۋە باشقا ئۇندەش مۇلازىمەتلىرىنى تەڭشەكلىش',
+        detail: 'Telegram، Slack، Discord ۋە باشقا ئۇندەش مۇلازىمەتلىرىنى تەڭشەكلىش'
       },
       artifacts: {
         title: 'بۇرەنمىلەر',
-        detail: 'ھاسىل قىلىنغان چىقىملارنى كۆرۈش',
-      },
+        detail: 'ھاسىل قىلىنغان چىقىملارنى كۆرۈش'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'سېسسيە تاختىسى',
-        detail: 'سېسسيەلەرنى ئىزدەش، مەخپىيەتلىك ۋە باشقۇرۇش',
+        detail: 'سېسسيەلەرنى ئىزدەش، مەخپىيەتلىك ۋە باشقۇرۇش'
       },
       system: {
         title: 'سىستېما تاختىسى',
-        detail: 'گەتۇۋېي ھالىتى، خاتىرىلەر، قايتا باشلاش/يېڭىلاش',
+        detail: 'گەتۇۋېي ھالىتى، خاتىرىلەر، قايتا باشلاش/يېڭىلاش'
       },
       usage: {
         title: 'ئىشلىتىش تەخپانىسى',
-        detail: 'توكېن، چىقىمل ۋە ئىقتىدار ھادىسلەرى',
-      },
+        detail: 'توكېن، چىقىمل ۋە ئىقتىدار ھادىسلەرى'
+      }
     },
     providerNavigate: 'يۆتكىلىش',
     providerSessions: 'ئىجلىيەلەر',
@@ -1304,7 +1353,8 @@ export const ug = defineLocale({
       backup: 'زاپاس قۇرۇش',
       backupDesc: 'سەپلەش، خاتىرە، ماھىرلىك ۋە ئادرەسلىكلەرنى zip قىلىش',
       debugShare: 'خاتىرەنى ھەمبەھىرلەش',
-      debugShareDesc: 'پەردەلىنگەن دوكلات + خاتىرەنى يۈكلەپ، ھەمبەھىرلىگىلى بولىدىغان ئۇلانمىلارنى ئېلىش (6 سائەتتىن كېيىن ئۆزى ئۆچۈرىلىدۇ)',
+      debugShareDesc:
+        'پەردەلىنگەن دوكلات + خاتىرەنى يۈكلەپ، ھەمبەھىرلىگىلى بولىدىغان ئۇلانمىلارنى ئېلىش (6 سائەتتىن كېيىن ئۆزى ئۆچۈرىلىدۇ)',
       debugShareRunning: 'خاتىرە دوكلاتى يۈكلەۋاتىدۇ...',
       debugShareLinks: 'ھەمبەھىر ئۇلانمىلىرى',
       debugShareFailed: 'خاتىرەنى ھەمبەھىرلەش مەغلۇپ بولدى',
@@ -1321,7 +1371,7 @@ export const ug = defineLocale({
       resetConfirm: target => `${target} ئۆچۈرۈلسۇنمۇ? بۇ ئۆپۈرۈلمەيدۇ.`,
       resetDone: files => `${files} ئۆچۈرۈلدى.`,
       actionStarted: name => `${name} قوزغىتىلدى — خاتىرە ئىزلىنىۋاتىدۇ...`,
-      actionFailed: name => `${name} قوزغىتىلمىدى`,
+      actionFailed: name => `${name} قوزغىتىلمىدى`
     },
     logSearchPlaceholder: 'سۈزۈش يۇزىلىرىنى سۈزۈش...',
     startInBranch: branch => `${branch} دا يېڭى سۆھبەت`,
@@ -1329,7 +1379,7 @@ export const ug = defineLocale({
     days: count => `${count} كۈن`,
     actualCost: cost => `ئاسىلىش ${cost}`,
     noUsage: period => `سوڭقى ${period} كۈن ئىچىدە ئىشلىتىلگەن يوق.`,
-    actions: count => `${count} مەشغۇلات`,
+    actions: count => `${count} مەشغۇلات`
   },
   messaging: {
     search: 'ئۇنىڭلىق سۇپىلەرنى ئىزدەۋ...',
@@ -1344,7 +1394,7 @@ export const ug = defineLocale({
       not_configured: 'تەييارلىققا ئېھتىياج',
       pending_restart: 'قايتا باشغۇش كېرەك',
       retrying: 'قايتا سىناش',
-      startup_failed: 'باشلىنىش ئەكەسچىلىككە ئۇگرىدى',
+      startup_failed: 'باشلىنىش ئەكەسچىلىككە ئۇگرىدى'
     },
     unknown: 'نامەلۇم',
     hintPendingRestart: 'بۇ ئۆزگىرىشنى قولغا ئېلىش ئۈچۈن ئۇنداقلىق ئېغىزىنى سىستېما بالىقىدىن قايتا باشغۇرۇڭ.',
@@ -1356,7 +1406,8 @@ export const ug = defineLocale({
     openSetupGuide: 'تەييارلىق رەخبىرىنى ئېچىڭ',
     required: 'زۆرۈر',
     recommended: 'ئەۋسىيان',
-    noTokenNeeded: 'بۇ سۇپا بۇ يەردە توكەنغا ئېھتىياجى يوق. يۇقىرىدىكى تەييارلىق رەخبىرىنى ئىشلىتىپ، ئاندىن تۆۋەندە ئۇنى ئاكتىپلاڭ.',
+    noTokenNeeded:
+      'بۇ سۇپا بۇ يەردە توكەنغا ئېھتىياجى يوق. يۇقىرىدىكى تەييارلىق رەخبىرىنى ئىشلىتىپ، ئاندىن تۆۋەندە ئۇنى ئاكتىپلاڭ.',
     enabled: 'ئاكتىپ',
     disabled: 'ئىناۋەر',
     unsavedChanges: 'ساقلانمىغان ئۆزگىرىشلەر',
@@ -1371,124 +1422,124 @@ export const ug = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'بوت توكېنى',
         help: '@BotFather بىلەن بوت قۇرۇڭ، ئاندىن سىزگە بەرگەن توكېننى قويۇڭ.',
-        placeholder: 'Telegram بوت توكېنىنى قويۇڭ',
+        placeholder: 'Telegram بوت توكېنىنى قويۇڭ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'رۇخسەت قىلىنغان Telegram ئىشلەتكۈچى ID-لىرى',
-        help: 'تەۋسىيە قىلىنىدۇ. @userinfobot دىن ئېرىشكەن، پەرەن بىلەن ئايرىلغان سانلىق ID-لەر. بۇنى قويۇرمىسەز، كىم ئاۋاتسا بوتىڭىزغا خەۇەر چېكىشە ئىگە.',
+        help: 'تەۋسىيە قىلىنىدۇ. @userinfobot دىن ئېرىشكەن، پەرەن بىلەن ئايرىلغان سانلىق ID-لەر. بۇنى قويۇرمىسەز، كىم ئاۋاتسا بوتىڭىزغا خەۇەر چېكىشە ئىگە.'
       },
       TELEGRAM_PROXY: {
         help: 'پەقەت Telegram توسالغان تورلاردا زۆرۈر.',
-        label: 'پروكسى URL',
+        label: 'پروكسى URL'
       },
       DISCORD_BOT_TOKEN: {
         label: 'بوت توكېنى',
-        help: 'Discord Developer Portal دا ئەپ قۇرۇڭ، بوت قوشۇڭ، ئاندىن توكېنىنى قويۇڭ.',
+        help: 'Discord Developer Portal دا ئەپ قۇرۇڭ، بوت قوشۇڭ، ئاندىن توكېنىنى قويۇڭ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'رۇخسەت قىلىنغان Discord ئىشلەتكۈچى ID-لىرى',
-        help: 'تەۋسىيە قىلىنىدۇ. پەرەن بىلەن ئايرىلغان Discord ئىشلەتكۈچى ID-لىرى.',
+        help: 'تەۋسىيە قىلىنىدۇ. پەرەن بىلەن ئايرىلغان Discord ئىشلەتكۈچى ID-لىرى.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'جۇاب قايتۇرۇش تۈزى',
-        help: 'باشتى، ھەممە ياكى تاق',
+        help: 'باشتى، ھەممە ياكى تاق'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'بارلىق Discord ئىشلەتكۈچىلىرىگە يول قويۇش',
-        help: 'پەقەت تەرەققىيات ئۈچۈن. ھەقىقىتى توڭ بولسا، رۇستخاتلىك تىزىملىكتىن ھەر قانداق ئادەم روبوتقا بىۋاسىتە خەۋەر يولىلاش ئېتىبارىغا ئېرىشىدۇ.',
+        help: 'پەقەت تەرەققىيات ئۈچۈن. ھەقىقىتى توڭ بولسا، رۇستخاتلىك تىزىملىكتىن ھەر قانداق ئادەم روبوتقا بىۋاسىتە خەۋەر يولىلاش ئېتىبارىغا ئېرىشىدۇ.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ئاساسىي كanal ID',
-        help: 'روبوت ئالدىن بىلەرلىك خەۋەرلەرنى يوللايدىغان كanal (cron چىقىرىشى، ئاھانەتلىر).',
+        help: 'روبوت ئالدىن بىلەرلىك خەۋەرلەرنى يوللايدىغان كanal (cron چىقىرىشى، ئاھانەتلىر).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ئاساسىي كanal نامى',
-        help: 'خاتىرەلەر ھە state چىقىرىشىدىكى ئاساسىي كanalنىڭ كۆرسەتمە نامى.',
+        help: 'خاتىرەلەر ھە state چىقىرىشىدىكى ئاساسىي كanalنىڭ كۆرسەتمە نامى.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'بارلىق iMessage ئىشلەتكۈچىلىرىگە يول قويۇش',
-        help: 'ھەقىقىتى توڭ بولسا، BlueBubbles رۇستخاتلىك تىزىملىكىنى ساقلاپ ئۆتمەيدۇ.',
+        help: 'ھەقىقىتى توڭ بولسا، BlueBubbles رۇستخاتلىك تىزىملىكىنى ساقلاپ ئۆتمەيدۇ.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'بارلىق Mattermost ئىشلەتكۈچىلىرىگە يول قويۇش',
+        label: 'بارلىق Mattermost ئىشلەتكۈچىلىرىگە يول قويۇش'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ئاساسىي كanal',
+        label: 'ئاساسىي كanal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'بارلىق QQ ئىشلەتكۈچىلىرىگە يول قويۇش',
+        label: 'بارلىق QQ ئىشلەتكۈچىلىرىگە يول قويۇش'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ئاساسىي كanal',
-        help: 'cron چىقىرىشى ئۈچۈن سۈكۈتتىكى كanal ياكى گۇرۇپ.',
+        help: 'cron چىقىرىشى ئۈچۈن سۈكۈتتىكى كanal ياكى گۇرۇپ.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ئاساسىي كanal نامى',
+        label: 'QQ ئاساسىي كanal نامى'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack روبوت توكېنى',
         help: 'Slack تەڭشىكىنى ئورنىغاندىن كېيىن OAuth & Permissions دىكى روبوت توكېنىنى ئىشلىتىڭ.',
-        placeholder: 'Slack روبوت توكېنىنى قويۇڭ',
+        placeholder: 'Slack روبوت توكېنىنى قويۇڭ'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack تەڭشە توكېنى',
         help: 'Socket Mode ئۈچۈن ئەپ دەرىجىلىك توكن',
-        placeholder: 'Slack ئەپ توكنىنى چاپلاڭ',
+        placeholder: 'Slack ئەپ توكنىنى چاپلاڭ'
       },
       SLACK_ALLOWED_USERS: {
         label: 'رۇخسەت قىلىنغان Slack ئىشلەتكۈچى ID لىرى',
-        help: 'تەۋسىيە. پەرپەر بىلەن ئايرىلغان Slack ئىشلەتكۈچى ID لىرى.',
+        help: 'تەۋسىيە. پەرپەر بىلەن ئايرىلغان Slack ئىشلەتكۈچى ID لىرى.'
       },
       MATTERMOST_URL: {
         label: 'مۇلازىمېتىر URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'بوت توكنى',
+        label: 'بوت توكنى'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'رۇخسەت قىلىنغان ئىشلەتكۈچى ID لىرى',
-        help: 'تەۋسىيە. پەرپەر بىلەن ئايرىلغان Mattermost ئىشلەتكۈچى ID لىرى.',
+        help: 'تەۋسىيە. پەرپەر بىلەن ئايرىلغان Mattermost ئىشلەتكۈچى ID لىرى.'
       },
       MATRIX_HOMESERVER: {
         label: 'Home server URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'زىيارەت توكنى',
+        label: 'زىيارەت توكنى'
       },
       MATRIX_USER_ID: {
         label: 'بوت ئىشلەتكۈچى ID سى',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'رۇخسەت قىلىنغان Matrix ئىشلەتكۈچى ID لىرى',
-        help: 'تەۋسىيە. @user:server شەكلىدىكى پەرپەر بىلەن ئايرىلغان ID لار.',
+        help: 'تەۋسىيە. @user:server شەكلىدىكى پەرپەر بىلەن ئايرىلغان ID لار.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal كۆۋرۈك URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'ئىشلەۋاتقان signal-cli REST كۆۋرۈكىنىڭ URL.',
+        help: 'ئىشلەۋاتقان signal-cli REST كۆۋرۈكىنىڭ URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'تېلېفون نومۇرى',
-        help: 'signal-cli كۆۋرىڭىزغا تىزىملاشتۇرغان نومۇر.',
+        help: 'signal-cli كۆۋرىڭىزغا تىزىملاشتۇرغان نومۇر.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ئىشلىتىشكە رۇخخەت قىلىنغان Signal ئىشلەتكۈچىلىرى',
-        help: 'تەۋسىيە قىلىنىدۇ. Signal كىلىشخانىلىرى ئايرىپ بېرىلگەن ھالدا.',
+        help: 'تەۋسىيە قىلىنىدۇ. Signal كىلىشخانىلىرى ئايرىپ بېرىلگەن ھالدا.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp كۆۋرىنى قوزغات',
-        help: 'تۆۋەندىكى توك ئارقىلىق ئۆزلۈكسىمان قىلىنىدۇ. ئېھتىياجىڭىز بارلىقىنى بىلمىگەچچە ئۆزگەرتمەڭ.',
+        help: 'تۆۋەندىكى توك ئارقىلىق ئۆزلۈكسىمان قىلىنىدۇ. ئېھتىياجىڭىز بارلىقىنى بىلمىگەچچە ئۆزگەرتمەڭ.'
       },
       WHATSAPP_MODE: {
-        label: 'كۆۋر ھالىتى',
+        label: 'كۆۋر ھالىتى'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ئىشلىتىشكە رۇخخەت قىلىنغان WhatsApp ئىشلەتكۈچىلىرى',
-        help: 'تەۋسىيە قىلىنىدۇ. تېلېفون نومۇرلىرى ياكى WhatsApp كىلىشخانىلىرى ئايرىپ بېرىلگەن ھالدا.',
-      },
+        help: 'تەۋسىيە قىلىنىدۇ. تېلېفون نومۇرلىرى ياكى WhatsApp كىلىشخانىلىرى ئايرىپ بېرىلگەن ھالدا.'
+      }
     },
     advanced: count => `پىچىت ( ${count} )`,
     clearField: key => `${key} تازىلاش`,
@@ -1502,8 +1553,7 @@ export const ug = defineLocale({
     failedUpdate: name => `${name} نى يېڭىلاش مەغلۇپ بولدى`,
     failedSave: name => `${name} نى ساقلاش مەغلۇپ بولدى`,
     failedClear: key => `${key} نى تازىلاش مەغلۇپ بولدى`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhook لارنى ئىزدەش...',
@@ -1512,7 +1562,8 @@ export const ug = defineLocale({
     hint: 'Receiver ئىشلەپ تۈگەندە ئابونە ئۆزگىرىشلىرى دەرھال يېڭىلىنىدۇ. چەكلەنگەن ئابونىلار كىرگەن ھادىسەلەرنى رەت قىلىدۇ.',
     empty: 'تېخى Webhook ئابونىسى يوق.',
     disabledTitle: 'Webhook receiver چەكلەنگەن',
-    disabledBody: 'Webhook لار ئۆزىنىڭ كۆۋر سۇپىسى. كىرگەن HTTP ھادىسەلەرنى قوبۇل قىلىش ئۈچۈن ئۇلارنى بۇ يەردە قوزغات؛ Telegram، Discord، Slack ياكى باشقا ئېغىزغا ئابونە يەتكۈزگەندەلا چات يوللىرى زۆرۈر.',
+    disabledBody:
+      'Webhook لار ئۆزىنىڭ كۆۋر سۇپىسى. كىرگەن HTTP ھادىسەلەرنى قوبۇل قىلىش ئۈچۈن ئۇلارنى بۇ يەردە قوزغات؛ Telegram، Discord، Slack ياكى باشقا ئېغىزغا ئابونە يەتكۈزگەندەلا چات يوللىرى زۆرۈر.',
     enable: 'Webhook لارنى قوزغات',
     enabling: 'قوزغاتلىلىۋاتىدۇ...',
     enableRow: 'قوزغات',
@@ -1559,7 +1610,7 @@ export const ug = defineLocale({
       github_comment: 'GitHub ھەت',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `ئوبۇنالار (${count})`,
     enabled: (name: string) => `قوزغىتىلدى: "${name}"`,
@@ -1567,7 +1618,7 @@ export const ug = defineLocale({
     deleteFailed: (name: string) => `"${name}" نى ئۆچۈرۈش مەغلۇپ بولدى`,
     toggleFailed: (name: string) => `"${name}" نى يېڭىلاش مەغلۇپ بولدى`,
     restartFailed: (detail: string) => `Gateway نى قايتا قوزغىتىش مەغلۇپ بولدى${detail}`,
-    createFailed: (detail: string) => `قۇرۇش مەغلۇپ بولدى: ${detail}`,
+    createFailed: (detail: string) => `قۇرۇش مەغلۇپ بولدى: ${detail}`
   },
   profiles: {
     close: 'پروفىللارنى تاقاش',
@@ -1645,7 +1696,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     deleteDescPrefix: 'بۇ ',
     deleteDescMid: ' نى ئۆچۈرىدۇ ۋە ئۇنىڭ ',
     deleteDescSuffix: ' مۇندەرىجىسىنىمۇ ئۆچۈرىدۇ. بۇنى ئەسلىگە قايتۇرغىلى بولمايدۇ.',
-    invalidName: hint => `ئىناۋەتسىز ئىسىم. ${hint}`,
+    invalidName: hint => `ئىناۋەتسىز ئىسىم. ${hint}`
   },
   cron: {
     close: 'Cron نى تاقاش',
@@ -1659,14 +1710,14 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       paused: 'توختىتىلغان',
       disabled: 'چەكلەنگەن',
       error: 'خاتالىق',
-      completed: 'تاماملاندى',
+      completed: 'تاماملاندى'
     },
     deliveryLabels: {
       local: 'بۇ ئۈسكۈنە',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ئېمەيل',
+      email: 'ئېمەيل'
     },
     scheduleLabels: {
       daily: 'ھەر كۈنى',
@@ -1675,7 +1726,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       monthly: 'ئايلىق',
       hourly: 'سائەتلىك',
       'every-15-minutes': 'ھەر 15 مىنۇتتا',
-      custom: 'ئۆزگىچە',
+      custom: 'ئۆزگىچە'
     },
     scheduleHints: {
       daily: 'ھەر كۈنى سائەت 9:00 دا',
@@ -1684,7 +1735,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       monthly: 'ھەر ئاينىڭ 1-كۈنى سائەت 9:00 دا',
       hourly: 'ھەر سائەتنىڭ بېشىدا',
       'every-15-minutes': 'ھەر 15 مىنۇتتا',
-      custom: 'Cron جۈملە تورى ياكى تىبابىي تىل',
+      custom: 'Cron جۈملە تورى ياكى تىبابىي تىل'
     },
     days: {
       '0': 'يەكشەنبە',
@@ -1694,11 +1745,12 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       '4': 'پەيشەنبە',
       '5': 'جۈمە',
       '6': 'شەنبە',
-      '7': 'يەكشەنبە',
+      '7': 'يەكشەنبە'
     },
     topOfHour: 'سائەتنىڭ باشلىنىشدا',
     newCron: 'يېڭى cron',
-    emptyDescNew: 'كرون ئىپادىسى ئارقىلىق كۆرسەتمىنى ئىجرا قىلىشنى ۋاقىتلاڭ. OpenAmer ئۇنى ئىجرا قىلىپ، نەتىجىنى تاللىغان نىشانىڭىزغا يەتكۈزىدۇ.',
+    emptyDescNew:
+      'كرون ئىپادىسى ئارقىلىق كۆرسەتمىنى ئىجرا قىلىشنى ۋاقىتلاڭ. OpenAmer ئۇنى ئىجرا قىلىپ، نەتىجىنى تاللىغان نىشانىڭىزغا يەتكۈزىدۇ.',
     emptyDescSearch: 'تېخىمۇ كەڭ ئىزدەش تەھرىرىنى ئىشلىتىڭ.',
     emptyTitleNew: 'تېخى ھېچقانداق زاپلاشتۇرۇلغان ئىش يوق',
     emptyTitleSearch: 'ماس كەلگەن نەرسە يوق',
@@ -1734,7 +1786,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     editTitle: 'Cron ئىشلىرىنى تەھرىرلەش',
     createTitle: 'يېڭى Cron ئىشى',
     editDesc: 'ۋاقىت، پەرەمدەر ياكى يەتكۈزۈش نىشانىنى يېڭىلاڭ. ئۆزگىرىشلەر كېيىنكى قېتىمدا كۈچكە ئىگە بولىدۇ.',
-    createDesc: 'پەرەمدەرنى ئاپتوماتىك ئىجرا قىلىشقا ۋاقىت بەلگىلەڭ. Cron يېزىقى ياكى «ھەر 15 مىنۇتتا» دېگەندەك تەبىئىي جۈملەنى ئىشلىتىڭ.',
+    createDesc:
+      'پەرەمدەرنى ئاپتوماتىك ئىجرا قىلىشقا ۋاقىت بەلگىلەڭ. Cron يېزىقى ياكى «ھەر 15 مىنۇتتا» دېگەندەك تەبىئىي جۈملەنى ئىشلىتىڭ.',
     nameLabel: 'ئاتى',
     namePlaceholder: 'ئەتىگەن ئۇقۇش',
     promptLabel: 'پەرەمدەر',
@@ -1756,7 +1809,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     createAction: 'cron قۇرۇش',
     tabs: {
       jobs: 'ئىشلار',
-      blueprints: 'نۇسخىلار',
+      blueprints: 'نۇسخىلار'
     },
     blueprints: {
       tab: 'نۇسخىلار',
@@ -1770,7 +1823,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       loading: 'نۇسخىلار يۈكلىنىۋاتىدۇ...',
       failedLoad: 'نۇسخىلارنى يۈكلىيەلمىدى',
       emptyTitle: 'مۇنۇavaailable نۇسخىلار يوق',
-      emptyDesc: 'بۇ ئارقا سۇپادا ئاپتوماتىك نۇسخىسى يوق.',
+      emptyDesc: 'بۇ ئارقا سۇپادا ئاپتوماتىك نۇسخىسى يوق.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `${value}-كۈن`,
@@ -1779,7 +1832,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     everyDayOfWeekAt: (day, time) => `ھەر ${day} سائەت ${time} دە`,
     monthlyOnDayAt: (dayOfMonth, time) => `ھەر ئاينىڭ ${dayOfMonth}-كۈنى سائەت ${time} دە`,
     everyHourAt: minute => `ھەر سائەتنىڭ ${minute}-مىنۇتىدا`,
-    actionsFor: title => `${title} ئۈچۈن مەشغۇلاتلار`,
+    actionsFor: title => `${title} ئۈچۈن مەشغۇلاتلار`
   },
   artifacts: {
     refreshing: 'ئەسۋاپلار يېڭىلانماقتە',
@@ -1813,7 +1866,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     kindLink: 'سىلاڭىش',
     chat: 'چات',
     copyUrl: 'URL كاپيرلاش',
-    copyPath: 'يول كاپيرلاش',
+    copyPath: 'يول كاپيرلاش'
   },
   sidebar: {
     projects: {
@@ -1846,8 +1899,10 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       namePlaceholder: 'مىسالىچە: Skunkworks',
       foldersLabel: 'پاپكالار',
       ideaLabel: 'پىكىر',
-      staleBackend: 'پروئېكتلار ياراتش ئۈچۈن OpenAmer backend نى يالڭىلاڭ — سىزنىڭ backend سىز بۇ ستول ئۇستى پروگراممىدىن كېچىك (سوزاشلار → يالڭىلاشلار → Backend).',
-      deleteConfirm: 'بۇ OpenAmer دىن ساقلانغان پروئېكتنى ئۆچۈرۈدۇ. Fayllar, git رېپولارى ۋە ئىش ئاغاجلىرى (worktrees) ئۆซگىرىشسىز قالىدۇ.',
+      staleBackend:
+        'پروئېكتلار ياراتش ئۈچۈن OpenAmer backend نى يالڭىلاڭ — سىزنىڭ backend سىز بۇ ستول ئۇستى پروگراممىدىن كېچىك (سوزاشلار → يالڭىلاشلار → Backend).',
+      deleteConfirm:
+        'بۇ OpenAmer دىن ساقلانغان پروئېكتنى ئۆچۈرۈدۇ. Fayllar, git رېپولارى ۋە ئىش ئاغاجلىرى (worktrees) ئۆซگىرىشسىز قالىدۇ.',
       startWork: 'يېڭى ئىش ئاغاجى',
       newWorktreeTitle: 'يېڭى ئىش ئاغاجى',
       newWorktreeDesc: 'بۇ ئىش ئاغاجى ئۈچۈن شىخىت (branch) نومۇرىنى بېرىڭ.',
@@ -1868,13 +1923,15 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       noBranches: 'تارماق تېپىلمىدى',
       removeWorktree: 'خىزمەت دەرىخىنى ئۆچۈرۈش',
       removeWorktreeFailed: 'خىزمەت دەرىخىنى ئۆچۈرگىلى بولمىدى (تاپشۇرۇلمىغان ئۆزگەرتىشلەر بارمۇ؟)',
-      removeWorktreeConfirm: 'گىتتىن ئۆچۈرۈڭ (خىزمەت دەرىخى مۇندەرىجىسى ئۆچۈرۈلىدۇ؛ تارماق قالىدۇ)، ياكى پەقەت يان بالداقتىكى قۇرنى يوشۇرۇپ، خىزمەت دەرىخىنى دىسكىدا قالدۇرۇڭ.',
-      removeWorktreeDirty: 'بۇ خىزمەت دەرىخىدە تاپشۇرۇلمىغان ئۆزگەرتىشلەر بار. مەجبۇرىي ئۆچۈرۈڭ (ئۆزگەرتىشلەر تاشلىۋېتىلىدۇ)، ياكى پەقەت قۇرنى يوشۇرۇپ، دىسكىدا قالدۇرۇڭ.',
+      removeWorktreeConfirm:
+        'گىتتىن ئۆچۈرۈڭ (خىزمەت دەرىخى مۇندەرىجىسى ئۆچۈرۈلىدۇ؛ تارماق قالىدۇ)، ياكى پەقەت يان بالداقتىكى قۇرنى يوشۇرۇپ، خىزمەت دەرىخىنى دىسكىدا قالدۇرۇڭ.',
+      removeWorktreeDirty:
+        'بۇ خىزمەت دەرىخىدە تاپشۇرۇلمىغان ئۆزگەرتىشلەر بار. مەجبۇرىي ئۆچۈرۈڭ (ئۆزگەرتىشلەر تاشلىۋېتىلىدۇ)، ياكى پەقەت قۇرنى يوشۇرۇپ، دىسكىدا قالدۇرۇڭ.',
       forceRemove: 'مەجبۇرىي ئۆچۈرۈش',
       enter: label => `${label} نى ئېچىش`,
       reorder: label => `${label} نىڭ تەرتىپىنى ئۆزگەرتىش`,
       toggle: label => `${label} ئولتۇرۇشلىرىنى كۆرسىتىش ياكى يوشۇرۇش`,
-      back: 'بارلىق تۈرلەر',
+      back: 'بارلىق تۈرلەر'
     },
     row: {
       sessionRunning: 'ئېسىس ئىشلەۋاتىدۇ',
@@ -1907,20 +1964,20 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       sessionActions: 'سۆھبەت مەشغۇلاتلىرى',
       handoffOrigin: platform => `${platform} دىن ئۆتكۈزۈۋېلىندى`,
       ownedByProfile: profile => `سەپلىمە: ${profile}`,
-      untitledChat: id => `سۆھبەت ${id}`,
+      untitledChat: id => `سۆھبەت ${id}`
     },
     dateDivider: {
       today: 'بۈگۈن ئەتىگەن',
       yesterday: 'تۈنۈگۈن',
       thisWeek: 'بۇ ھەپتەنىڭ بەشىدە',
       lastWeek: 'ئۆتكەن ھەپتە',
-      thisMonth: 'بۇ ئاينىڭ بەشىدە',
+      thisMonth: 'بۇ ئاينىڭ بەشىدە'
     },
     nav: {
       'new-session': 'يېڭى سېسىيە',
       skills: 'قابىلىيەتلەر',
       messaging: 'خەبەرلاشىش',
-      artifacts: 'ھاسىل قىلىنغان مەزمۇنلار',
+      artifacts: 'ھاسىل قىلىنغان مەزمۇنلار'
     },
     searchAria: 'سېسىيەلەرنى ئىزدىش',
     searchPlaceholder: 'سېسىيەلەرنى ئىزدىش…',
@@ -1946,7 +2003,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     showMoreIn: (count, label) => `${label} دا يەنە ${count} كۆرسەت`,
     loading: 'يۈكلىنىۋاتىدۇ…',
     loadMore: 'تېخىمۇ كۆپ يۈكلەش',
-    loadCount: step => `يەنە ${step} نى يۈكلەش`,
+    loadCount: step => `يەنە ${step} نى يۈكلەش`
   },
   composer: {
     message: 'خەت',
@@ -1967,7 +2024,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       '/resume': 'ئىلگىرىكى سۇسسىيەنى داۋاملاشتۇرۇش',
       '/details': 'يېزىلغان تىل خەت پەقسىدىنى كونترول قىلىش',
       '/copy': 'تاللانغان يېرى ياكى ئاخىرقى ئىشلەپچىرىڭ ئەمىنىنى كۆچۈرۈش',
-      '/quit': '`OpenAmer` دەن چېكىش',
+      '/quit': '`OpenAmer` دەن چېكىش'
     },
     hotkeyDescs: {
       'composer.mention': 'ھۆججەتلەر، پوشكىنچىلار، `urls`، `git` نى ئىشلىتىش',
@@ -1977,10 +2034,11 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       'composer.sendQueued': 'ئۆچرەتتىكى كېيىنكى ئۇچۇرنى ئەۋەتىش',
       'keybinds.openPanel': 'بارلىق كۇنۇپكا تېزلەتمىلىرى',
       'composer.cancel': 'لەيلىمە كۆزنەكنى يېپىش · ئىجرا قىلىشنى بىكار قىلىش',
-      'composer.history': 'لەيلىمە كۆزنەك / تارىخ ئارىسىدا ئالماشتۇرۇش',
+      'composer.history': 'لەيلىمە كۆزنەك / تارىخ ئارىسىدا ئالماشتۇرۇش'
     },
     queueStuckTitle: 'ۋاقىت تەۋەنلىكىدىكى نامە ئەۋەتىلمىدى',
-    queueStuckBody: 'ۋاقىت تەۋەنلىكىدىكى ئەۋەتىش تەردىپ تارتبىقى بىلەن ئەۋەتىلمىدى. ئۇ يەنىلا ئەۋەتىش تىزىملىكىدە — قايتا ئەۋەتىشنى سىناڭ.',
+    queueStuckBody:
+      'ۋاقىت تەۋەنلىكىدىكى ئەۋەتىش تەردىپ تارتبىقى بىلەن ئەۋەتىلمىدى. ئۇ يەنىلا ئەۋەتىش تىزىملىكىدە — قايتا ئەۋەتىشنى سىناڭ.',
     previewUnavailable: 'ئالدىن كۆرۈش مۇمكىن ئەمەس',
     dictating: 'لەڭپە قىلىۋاتىدۇ',
     preparingAudio: 'ئاۋاز تەييارلاۋاتىدۇ',
@@ -2005,20 +2063,20 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     newSessionPlaceholders: [
       'نېمە ياسايمىز؟',
       'OpenAmer غا ۋەزىپە بېرىڭ',
-      "نېمە ئويلاۋاتىسىز؟",
+      'نېمە ئويلاۋاتىسىز؟',
       'ئېھتىياجىڭىزنى چۈشەندۈرۈڭ',
       'نېمىنى ھەل قىلايلى؟',
       'خالىغان سوئالىڭىزنى سوراڭ',
-      'نىشاندىن باشلاڭ',
+      'نىشاندىن باشلاڭ'
     ],
     followUpPlaceholders: [
       'داۋامىغا ئۇچۇر ئەۋەتىڭ',
       'تېخىمۇ كۆپ مەزمۇن قوشۇڭ',
       'تەلەپنى تېخىمۇ ئېنىقلاڭ',
-      "كېيىنكىسى نېمە؟",
+      'كېيىنكىسى نېمە؟',
       'داۋاملاشتۇرۇڭ',
       'تېخىمۇ ئىلگىرى سۈرۈڭ',
-      'تەڭشەڭ ياكى داۋاملاشتۇرۇڭ',
+      'تەڭشەڭ ياكى داۋاملاشتۇرۇڭ'
     ],
     startVoice: 'ئاۋازلىق سۆھبەتنى باشلاڭ',
     queueMessage: 'ئۇچۇرنى ئۆچرەتكە قويۇڭ',
@@ -2066,20 +2124,21 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     snippets: {
       codeReview: {
         label: 'كودنى تەكشۈرۈش',
-        description: 'نۆۋەتتىكى ئۆزگەرتىشتە بۇرۇنقى ئىقتىدارلارنىڭ بۇزۇلۇشى، نەزەردىن ساقىت قىلىنغان چەك ئەھۋاللىرى ۋە كەم قالغان سىناقلار بار-يوقلۇقىنى تەكشۈرۈڭ.',
-        text: 'بۇنى تەكشۈرۈپ، خاتالىق، بۇرۇنقى ئىقتىدارلارنىڭ بۇزۇلۇشى ۋە كەم قالغان سىناقلار بار-يوقلۇقىنى كۆرۈپ بېرىڭ.',
+        description:
+          'نۆۋەتتىكى ئۆزگەرتىشتە بۇرۇنقى ئىقتىدارلارنىڭ بۇزۇلۇشى، نەزەردىن ساقىت قىلىنغان چەك ئەھۋاللىرى ۋە كەم قالغان سىناقلار بار-يوقلۇقىنى تەكشۈرۈڭ.',
+        text: 'بۇنى تەكشۈرۈپ، خاتالىق، بۇرۇنقى ئىقتىدارلارنىڭ بۇزۇلۇشى ۋە كەم قالغان سىناقلار بار-يوقلۇقىنى كۆرۈپ بېرىڭ.'
       },
       implementationPlan: {
         label: 'ئىجرا پىلانى',
         description: 'ئۆزگەرتىش دائىرىسىنى مەركەزلەشتۈرۈش ئۈچۈن، كودقا قول سېلىشتىن بۇرۇن ئۇسۇلنى پىلانلاڭ.',
-        text: 'كودنى ئۆزگەرتىشتىن بۇرۇن قىسقا ئىجرا پىلانى تۈزۈپ بېرىڭ.',
+        text: 'كودنى ئۆزگەرتىشتىن بۇرۇن قىسقا ئىجرا پىلانى تۈزۈپ بېرىڭ.'
       },
       explainThis: {
         label: 'بۇنى چۈشەندۈرۈش',
         description: 'تاللانغان كودنىڭ قانداق ئىشلەيدىغانلىقىنى چۈشەندۈرۈڭ ۋە مۇھىم ھۆججەتلەرگە ئۇلانما بېرىڭ.',
-        text: 'بۇنىڭ قانداق ئىشلەيدىغانلىقىنى چۈشەندۈرۈپ، مۇھىم ھۆججەتلەرنى كۆرسىتىپ بېرىڭ.',
-      },
-    },
+        text: 'بۇنىڭ قانداق ئىشلەيدىغانلىقىنى چۈشەندۈرۈپ، مۇھىم ھۆججەتلەرنى كۆرسىتىپ بېرىڭ.'
+      }
+    }
   },
   statusStack: {
     coding: {
@@ -2093,7 +2152,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       openPr: 'PR ئېچىش',
       ghMissing: 'GitHub CLI (`gh`) نى ئورنىتىپ، PR ئېچىش ئۈچۈن كىرىش',
       agentShip: 'OpenAmer دىن PR ئېچىشنى سۈلەپ',
-      agentShipPrompt: 'ھازىرقى ئۆزگىرىشلەرنى تەكشۈرۈپ، ئېنىق conventional-commit خەتەرى بىلەن تەۋەشلەپ، شاخانى سۈرۈپ ۋە pull request ئېچىڭ.',
+      agentShipPrompt:
+        'ھازىرقى ئۆزگىرىشلەرنى تەكشۈرۈپ، ئېنىق conventional-commit خەتەرى بىلەن تەۋەشلەپ، شاخانى سۈرۈپ ۋە pull request ئېچىڭ.',
       newBranch: 'يېڭى شاخا',
       worktrees: 'ئىشلەش تېرى',
       title: 'خىزمەت دەرىخى',
@@ -2114,8 +2174,10 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       viewAsList: 'تىزىملىق شەكىلىدە كۆرۈش',
       revert: 'قايتۇرۇش',
       revertAll: 'بارلىقىنى قايتۇرۇش',
-      revertConfirm: 'بۇ فایلدىكى ئۆزگىرىشلەرنى تاشلاپ، تەسدىقلانغان ھالەتكە قايتۇرۇشنى خاھلايسىز؟ بۇ ئامالنى بېرىكەيمەي بولمايدۇ.',
-      revertAllConfirm: 'بارلىق ئۆزگىرىشلەرنى تاشلاپ، فایللەرنى تەسدىقلانغان ھالەتكە قايتۇرۇشنى خاھلايسىز؟ بۇ ئامالنى بېرىكەيمەي بولمايدۇ.',
+      revertConfirm:
+        'بۇ فایلدىكى ئۆزگىرىشلەرنى تاشلاپ، تەسدىقلانغان ھالەتكە قايتۇرۇشنى خاھلايسىز؟ بۇ ئامالنى بېرىكەيمەي بولمايدۇ.',
+      revertAllConfirm:
+        'بارلىق ئۆزگىرىشلەرنى تاشلاپ، فایللەرنى تەسدىقلانغان ھالەتكە قايتۇرۇشنى خاھلايسىز؟ بۇ ئامالنى بېرىكەيمەي بولمايدۇ.',
       staged: 'باشقۇرۇلدى (Staged)',
       noChanges: 'ئۆزگىرىش يوق',
       notRepo: 'Git رېپوزىتارىياسى ئەمەس',
@@ -2124,7 +2186,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       scopeBranch: 'شاخ (Branch)',
       branchOffFrom: base => `${base} دىن يېڭى شاخ ياراتىش`,
       switchTo: branch => `${branch} كى ئۆتۈش`,
-      switchFailed: branch => `${branch} كى ئۆتەلمىدى`,
+      switchFailed: branch => `${branch} كى ئۆتەلمىدى`
     },
     agents: 'ۋاكالەتچىلەر',
     background: count => `${count} ئارقا سۇپا`,
@@ -2133,7 +2195,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     running: 'ئىجرا قىلىنىۋاتىدۇ',
     stop: 'توختىتىش',
     dismiss: 'تاقاش',
-    exit: code => `چېكىنىش ${code}`,
+    exit: code => `چېكىنىش ${code}`
   },
   updates: {
     stages: {
@@ -2148,19 +2210,23 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       done: 'يالڭىلاش تاماملاندى',
       manual: 'تېرمىنال ئارقىلىق يالڭىلاش',
       guiSkew: 'ئىشپىش (Desktop app) يالڭىلاش',
-      error: 'يالڭىلاش توختاتىلدى',
+      error: 'يالڭىلاش توختاتىلدى'
     },
     maybeLater: 'كېيىن',
     manualTitle: 'تېرمىنالدىن يېڭىلاڭ',
-    manualBody: 'OpenAmer نى بۇيرۇن تېرمىنالىدىن ئورنى_tickirdىڭىز، شۇ ئورۇندا يېڭىلاشمۇ ئىجرا بولىدۇ. بۇنى تېرمىنالىڭىزغا چاپ قىلىڭ:',
+    manualBody:
+      'OpenAmer نى بۇيرۇن تېرمىنالىدىن ئورنى_tickirdىڭىز، شۇ ئورۇندا يېڭىلاشمۇ ئىجرا بولىدۇ. بۇنى تېرمىنالىڭىزغا چاپ قىلىڭ:',
     manualPickedUp: 'OpenAmer نى كېيىن قايتا ئاشخانىسىدا ئەپ قىلغاندا يېڭى نەشرىنى ئۆزىگە ئالغان بولىدۇ.',
     guiSkewTitle: 'تېڭگە ئەپ ئەپىنى يېڭىلاڭ',
-    guiSkewBody: 'ئارقا سۇپا يېڭىلاندى، ئەمما بۇ تېڭگە ئەپ پەكيتى ئۆزگەرمىدى. ماسلىقىنى ساقلاش ئۈچۈن OpenAmer تېڭگە ئەپىنى يېڭىلاڭ ياكى قايتا ئورنىتىڭ (`AppImage` / `.deb` / `.rpm`).',
+    guiSkewBody:
+      'ئارقا سۇپا يېڭىلاندى، ئەمما بۇ تېڭگە ئەپ پەكيتى ئۆزگەرمىدى. ماسلىقىنى ساقلاش ئۈچۈن OpenAmer تېڭگە ئەپىنى يېڭىلاڭ ياكى قايتا ئورنىتىڭ (`AppImage` / `.deb` / `.rpm`).',
     copy: 'نەقل',
     copied: 'نەقل قىلىندى',
     done: 'تامام',
-    applyingBody: 'OpenAmer يېڭىلاشقۇچى ئۆزىنىڭ كۆزنىكىدە ھەم يېڭىلاشنى ئۆز ئىچىگە ئالغاندىن كېيىن OpenAmer نى ئۆزى قايتا ئاچىدۇ. يېڭىلىشۋاتقاندا OpenAmer نى ئۆزىڭىز قايتا ئاشخانىسىدا ئەمەس.',
-    applyingBodyBackend: 'يېراقلىق ئارقا سۇپا يېڭىلاشنى ئىجرا قىلىپ قايتا باشلايدۇ. ئۇ قايتا كەلگەندە OpenAmer ئۆزىنى ئۆزلۈكىدىن قايتا ئۇلايدۇ.',
+    applyingBody:
+      'OpenAmer يېڭىلاشقۇچى ئۆزىنىڭ كۆزنىكىدە ھەم يېڭىلاشنى ئۆز ئىچىگە ئالغاندىن كېيىن OpenAmer نى ئۆزى قايتا ئاچىدۇ. يېڭىلىشۋاتقاندا OpenAmer نى ئۆزىڭىز قايتا ئاشخانىسىدا ئەمەس.',
+    applyingBodyBackend:
+      'يېراقلىق ئارقا سۇپا يېڭىلاشنى ئىجرا قىلىپ قايتا باشلايدۇ. ئۇ قايتا كەلگەندە OpenAmer ئۆزىنى ئۆزلۈكىدىن قايتا ئۇلايدۇ.',
     applyingClose: 'يېڭىلاش ئىجرا بولغۇچە بۇ كۆزنىك تاقىلىدۇ، ئاندىن OpenAmer ئۆزىنى قايتا ئاچىدۇ.',
     errorTitle: 'يېڭىلاش تاماملانمىدى',
     errorBody: 'خاتىرىڭىز قەتتى، ھېچنېمە يوغۇپ بولمىدى. ھازىر قايتا سىنايلىسىڭىز بولىدۇ.',
@@ -2171,11 +2237,13 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       restarting: 'يېڭىلاشنى قىلاش ئۈچۈن ئارقا سۇپا قايتا باشلاۋاتىدۇ…',
       notAvailable: 'بۇ ئارقا سۇپا ئۈچۈن يېڭىلاش تەمىن ئەمەس.',
       failed: 'ئارقا سۇپا يېڭىلاش مەغلۇپ بولدى.',
-      noReturn: 'ئارقا سۇپا تەرەپ قايتا ئونلاين بولمىدى. يېڭىلاش تاماملانمىغان بولۇشى مۇمكىن — ئارقا سۇپا ماشىنىسىنى تەكشۈرۈڭ.',
+      noReturn:
+        'ئارقا سۇپا تەرەپ قايتا ئونلاين بولمىدى. يېڭىلاش تاماملانمىغان بولۇشى مۇمكىن — ئارقا سۇپا ماشىنىسىنى تەكشۈرۈڭ.'
     },
     appErrors: {
-      updateLocked: 'يېڭىلاش بىكار قىلىندى: باشقا OpenAmer كۆرۈنمە ياكى openamer نى ئىجرا قىلىۋاتقان تېرمىنال بۇ قاچىلاشنى ئېچىق تۇرۇپتۇ. تاقلاپ قايتا سىناڭ.',
-      updateFailed: 'يېڭىلاش تاماملانمىدى. خاتىرىڭىز بولمىسىڭ — ھېچنېمە يوق بولدى. ھازىر قايتا سىناپ بېقىڭ.',
+      updateLocked:
+        'يېڭىلاش بىكار قىلىندى: باشقا OpenAmer كۆرۈنمە ياكى openamer نى ئىجرا قىلىۋاتقان تېرمىنال بۇ قاچىلاشنى ئېچىق تۇرۇپتۇ. تاقلاپ قايتا سىناڭ.',
+      updateFailed: 'يېڭىلاش تاماملانمىدى. خاتىرىڭىز بولمىسىڭ — ھېچنېمە يوق بولدى. ھازىر قايتا سىناپ بېقىڭ.'
     },
     checking: 'يالڭىلاشلارنى ئىزدىۋاتىدۇ…',
     checkFailedTitle: 'يالڭىلاشلارنى تەكشۈرەلمىدى',
@@ -2192,13 +2260,14 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     availableBodyBackend: 'بىيىلانغان OpenAmer بەكېندىنىڭ يېڭى نۇسخىسى ئورنىتىشقا تەييار.',
     availableBodyNoChangelog: 'يېڭى نۇسخى تەييار. بۇ ئورنىتىش تۈرى ئۈچۈن چىقىش ئەسلىرې يوق.',
     updateNow: 'ھازىر يالڭىلاش',
-    moreChanges: count => `+ يەنە ${count} ئۆزگەرتىش${count === 1 ? '' : 's'} كىرگۈزۈلدى.`,
+    moreChanges: count => `+ يەنە ${count} ئۆزگەرتىش${count === 1 ? '' : 's'} كىرگۈزۈلدى.`
   },
   install: {
     installLocalDesc: 'OpenAmer نى چۈشۈرۈپ، Python مۇھىتىنى قۇرۇپ، مۇش ئۈسكۈنىدە ئارقا مۇلازىمېتىنى ئىجرا قىلىڭ.',
     localStartUnavailable: 'يەرلىك ئورنىتىشنى باشلاشقا بولمىدى. OpenAmer ئۈسكۈنىسىنى قايتا باشلاپ، قايتا سىناڭ.',
     remoteSetupTitle: 'بار بولغان OpenAmer غا ئۇلىنىڭ',
-    remoteSetupDesc: 'گەيۋېي ئادرېسىنى كىرگۈزۈڭ. OpenAmer ئۈسكۈنىسى توكەن ياكى توركۆرگۈدە كىرىش ئېھتىياجى بارلىقىنى بايغا ئېلىدۇ.',
+    remoteSetupDesc:
+      'گەيۋېي ئادرېسىنى كىرگۈزۈڭ. OpenAmer ئۈسكۈنىسى توكەن ياكى توركۆرگۈدە كىرىش ئېھتىياجى بارلىقىنى بايغا ئېلىدۇ.',
     remoteUrlTitle: 'گەيۋېي ئادرېسى',
     remoteUrlDesc: 'OpenAmer گەيۋېيىنىڭ ئاساسىي ئادرېسىنى ئىشلىتىڭ؛ يەرنىڭ غەربىي تەرىپى بولسا `https://` نى قوشۇڭ.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2220,7 +2289,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       running: 'ئورنىتىلىۋاتىدۇ',
       succeeded: 'تاماملاندى',
       skipped: 'ئاتلاپ قۇرۇلدى',
-      failed: 'ئەسەرگە كەلدى',
+      failed: 'ئەسەرگە كەلدى'
     },
     oneTimeTitle: 'OpenAmer بىر قېتىملىق قاچىلاشقا needs',
     installCommand: 'قاچىلاش بۇيرۇقى',
@@ -2229,10 +2298,12 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     installTo: 'قاچىلىش نەگە بولىدۇ',
     retryAfterRun: 'مەن ئىجرا قىلدىم — قايتا سىناڭ',
     setupChoiceTitle: 'OpenAmer Desktop نى تەڭشەش',
-    setupChoiceDesc: 'بۇ ئەپنى سىز ئالدىنلا ئىجرا قىلىۋاتقان OpenAmer تەۋەسى بىلەن ئۇلاڭ، ياكى بۇ كومپيۇتېردا OpenAmer نى يەرلىك قاچىلاڭ.',
+    setupChoiceDesc:
+      'بۇ ئەپنى سىز ئالدىنلا ئىجرا قىلىۋاتقان OpenAmer تەۋەسى بىلەن ئۇلاڭ، ياكى بۇ كومپيۇتېردا OpenAmer نى يەرلىك قاچىلاڭ.',
     connectExistingTitle: 'بار بولغان OpenAmer غا ئۇلاڭ',
     connectExistingShort: 'بار بولغانىغا ئۇلاڭ',
-    connectExistingDesc: 'سېسىن بېلىشى تېگى ياكى توركۆرگۈ ئىشلىتىش بىلەن يىراقتىكى ئارقا سۇپا بىلەن ئىشلىتىڭ. يەرلىك قاچىلاش باشلانمايدۇ.',
+    connectExistingDesc:
+      'سېسىن بېلىشى تېگى ياكى توركۆرگۈ ئىشلىتىش بىلەن يىراقتىكى ئارقا سۇپا بىلەن ئىشلىتىڭ. يەرلىك قاچىلاش باشلانمايدۇ.',
     installLocalTitle: 'OpenAmer نى يەرلىك قاچىلاڭ',
     incompleteTokenTest: 'بۇ توكېنى سىناشتىن ئاۋال كىرىڭ.',
     testConnection: 'ئۇلىنىشنى سىنا',
@@ -2241,8 +2312,10 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     failedTitle: 'توكىش سەپسىز بولدى',
     settingUpTitle: 'OpenAmer Agent تەڭشەۋاتىلىۋاتىدۇ',
     finishingTitle: 'ئاخىرىنى تۈگۈللەش',
-    failedDesc: 'توكىش باسقۇچلىرىنىڭ بىرى سەپسىز بولدى. Windows تە ئەگەر باشقا OpenAmer CLI ياكى مەسئۇل ئىشلەپ تۇرۇەتە بولسا، بۇ پەتە كۆرۈلۈشى مۇمكىن. ئىشلەپ تۇرۇەتەن OpenAmer نى ھەممىسىنى توختىتىپ، قايتا سىناڭ. تەپسىلات ياكى مەسئۇل خاتىرىسىنى كۆرۈپ، تولۇق خاتىرىنى ئېنىڭ.',
-    activeDesc: 'بۇ بىر قېتىملىق تەڭشەش. OpenAmer توكىشچىسى تەئەنلىكلەرنى چۈشۈرۈپ، مەسىلىڭىزنى تەڭشەۋاتىدۇ. كېيىنكى ئىشلەتكەنلەر بۇ باسقۇچنى ئاتلايدۇ.',
+    failedDesc:
+      'توكىش باسقۇچلىرىنىڭ بىرى سەپسىز بولدى. Windows تە ئەگەر باشقا OpenAmer CLI ياكى مەسئۇل ئىشلەپ تۇرۇەتە بولسا، بۇ پەتە كۆرۈلۈشى مۇمكىن. ئىشلەپ تۇرۇەتەن OpenAmer نى ھەممىسىنى توختىتىپ، قايتا سىناڭ. تەپسىلات ياكى مەسئۇل خاتىرىسىنى كۆرۈپ، تولۇق خاتىرىنى ئېنىڭ.',
+    activeDesc:
+      'بۇ بىر قېتىملىق تەڭشەش. OpenAmer توكىشچىسى تەئەنلىكلەرنى چۈشۈرۈپ، مەسىلىڭىزنى تەڭشەۋاتىدۇ. كېيىنكى ئىشلەتكەنلەر بۇ باسقۇچنى ئاتلايدۇ.',
     fetchingManifest: 'توكىش مانېفېستىنى ئېلىۋاتىدۇ...',
     error: 'خاتا',
     hideOutput: 'توكىش چىقىرىشىنى يوشۇر',
@@ -2254,13 +2327,14 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     copiedOutput: 'نەقلدى!',
     copyOutput: 'چىقىرىشنى نەقل',
     reloadRetry: 'قايتا يۈكلەپ، قايتا سىنا',
-    unsupportedDesc: platform => `ئوتوماتىك بىرىنچى قېتىم ئورنىتىش ${platform} دا ھالىچە بار ئەمەس. تېرمىنالنى ئاچىپ تۆۋەندىكى بۇيروقنى ئىشلىتىڭ، كېيىن بۇ ئاپپلىكاتسىوننى قايتا باشلاڭ. كېيىنكى قېتىم باشلىغاندا بۇ قەدەم تاشلىنىدۇ.`,
+    unsupportedDesc: platform =>
+      `ئوتوماتىك بىرىنچى قېتىم ئورنىتىش ${platform} دا ھالىچە بار ئەمەس. تېرمىنالنى ئاچىپ تۆۋەندىكى بۇيروقنى ئىشلىتىڭ، كېيىن بۇ ئاپپلىكاتسىوننى قايتا باشلاڭ. كېيىنكى قېتىم باشلىغاندا بۇ قەدەم تاشلىنىدۇ.`,
     authNeedsOauth: provider => `بۇ شتۇزنى سىناپ كۆرۈشتىن ئالدىن ${provider} بىلەن كىرىڭ.`,
     signInWith: provider => `${provider} بىلەن كىرىش`,
     testSucceeded: (baseUrl, version) => `${baseUrl} بىلەن بىيىلانды${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${total} قەدەمنىڭ ${completed} ى تاماملاندى`,
     currentStage: stage => ` -- ھازىر: ${stage}`,
-    lines: count => `${count} قۇر${count === 1 ? '' : 's'}`,
+    lines: count => `${count} قۇر${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent بىلەن تەييارلاپ بېرىەللى',
@@ -2280,28 +2354,29 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     apiKeyOptions: {
       fireworks: {
         short: 'بىۋاسىتە مودېل API',
-        description: 'Fireworks AI تەرىپىدىن ئورۇندۇرۇلغان مودېللارغا بىۋاسىتە يېتەش.',
+        description: 'Fireworks AI تەرىپىدىن ئورۇندۇرۇلغان مودېللارغا بىۋاسىتە يېتەش.'
       },
       openrouter: {
         short: 'بىر ئاپچىر، نۇرغون مودېل',
-        description: 'يۈزلىگەن مودېلنى بىرلا ئاپچىر ئارقىلىق تەمىنلەيدۇ. يېڭى قاچىلاشلىرى ئۈچۈن مۇقىم ئەسۋاب.',
+        description: 'يۈزلىگەن مودېلنى بىرلا ئاپچىر ئارقىلىق تەمىنلەيدۇ. يېڭى قاچىلاشلىرى ئۈچۈن مۇقىم ئەسۋاب.'
       },
       openai: {
         short: 'GPT دەرىجىلىك مودېللار',
-        description: 'OpenAI مودېللىرىغا بىۋاسىتە يېتەش.',
+        description: 'OpenAI مودېللىرىغا بىۋاسىتە يېتەش.'
       },
       gemini: {
         short: 'Gemini مودېللىرى',
-        description: 'Google Gemini مودېللىرىغا بىۋاسىت زىيارەت.',
+        description: 'Google Gemini مودېللىرىغا بىۋاسىت زىيارەت.'
       },
       xai: {
         short: 'Grok مودېللىرى',
-        description: 'xAI Grok مودېللىرىغا بىۋاسىت زىيارەت.',
+        description: 'xAI Grok مودېللىرىغا بىۋاسىت زىيارەت.'
       },
       local: {
         short: 'ئۆزى تۇرغۇزۇلغان',
-        description: 'OpenAmer نى يەرلىك ياكى ئۆزى تۇرغۇزۇلغان OpenAI-بىلەن ماس كېلىدىغان ئېنتېرپېتغا بۇرۇڭ (vLLM، llama.cpp، Ollama، ئۇنىڭغا ئوخشاش).',
-      },
+        description:
+          'OpenAmer نى يەرلىك ياكى ئۆزى تۇرغۇزۇلغان OpenAI-بىلەن ماس كېلىدىغان ئېنتېرپېتغا بۇرۇڭ (vLLM، llama.cpp، Ollama، ئۇنىڭغا ئوخشاش).'
+      }
     },
     backToSignIn: 'كىرىش بېكىتىگە قايتىش',
     getKey: 'ئاچقۇچ ئېلىش',
@@ -2314,7 +2389,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     flowSubtitles: {
       pkce: 'تەھرىرىڭىزنىڭ توركۆرگۈچىنى ئېچىپ كىرىڭ، ئاندىن بۇ يەرگە داۋاملاشتۇرۇڭ.',
       device_code: 'توركۆرگۈچىڭىزدە دەلىللەش بېكىتى ئېچىلىدۇ — OpenAmer ئۆزلۈكىدىن ئۇلىنىدۇ.',
-      external: 'تېرمىنالدا بىر قېتىم كىرىڭ، ئاندىن سۆھبەت قىلىشقا قايتىڭ.',
+      external: 'تېرمىنالدا بىر قېتىم كىرىڭ، ئاندىن سۆھبەت قىلىشقا قايتىڭ.'
     },
     signInFailed: 'كىرىش مەغلۇپ بولدى. قايتا سىناڭ.',
     pickDifferentProvider: 'باشقا تەمىنلىگۈچى تاللاڭ.',
@@ -2339,11 +2414,13 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     connectedPicking: provider => `${provider} ئۇلاندى. سۈكۈتتىكى مودېلنى تاللاۋاتىدۇ...`,
     signInWith: provider => `${provider} ئارقىلىق كىرىش`,
     openedBrowser: provider => `توركۆرگۈچىڭىزدە ${provider} نى ئاچتۇق.`,
-    autoBrowser: provider => `توركۆرگۈچىڭىزدە ${provider} نى ئاچتۇق. ئۇ يەردە OpenAmer غا ھوقۇق بېرىڭ، ئاپتوماتىك ئۇلىنىسىز — كۆچۈرۈپ چاپلاش ھاجەتسىز.`,
-    externalPending: provider => `${provider} ئۆزىنىڭ CLI قورالى ئارقىلىق كىرىدۇ. بۇ بۇيرۇقنى تېرمىنالدا ئىجرا قىلىڭ، ئاندىن قايتىپ كېلىپ «كىردىم» نى تاللاڭ:`,
+    autoBrowser: provider =>
+      `توركۆرگۈچىڭىزدە ${provider} نى ئاچتۇق. ئۇ يەردە OpenAmer غا ھوقۇق بېرىڭ، ئاپتوماتىك ئۇلىنىسىز — كۆچۈرۈپ چاپلاش ھاجەتسىز.`,
+    externalPending: provider =>
+      `${provider} ئۆزىنىڭ CLI قورالى ئارقىلىق كىرىدۇ. بۇ بۇيرۇقنى تېرمىنالدا ئىجرا قىلىڭ، ئاندىن قايتىپ كېلىپ «كىردىم» نى تاللاڭ:`,
     deviceCodeOpened: provider => `توركۆرگۈچىڭىزدە ${provider} نى ئاچتۇق. بۇ كودنى ئۇ يەرگە كىرگۈزۈڭ:`,
     price: (input, output) => `ھەر مىليون توكېنغا كىرگۈزۈش ${input} / چىقىرىش ${output}`,
-    docs: provider => `${provider} قوللانمىلىرى`,
+    docs: provider => `${provider} قوللانمىلىرى`
   },
   modelPicker: {
     title: 'مودېلنى ئالماشتۇرۇش',
@@ -2359,13 +2436,13 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     free: 'ھەقسىز',
     freeTier: 'ھەقسىز دەرىجىسى',
     priceTitle: 'مىليون توكېن بىرلىكىدىكى كىرگەن/چىققان باھاسى',
-    wasPrice: 'بولدى',
+    wasPrice: 'بولدى'
   },
   modelVisibility: {
     title: 'مودېللىرى',
     search: 'مودېل ئىزدەش',
     noAuthenticatedProviders: 'ساقلانغان مۇلازىمەت تەمىنلىگۈچىلىرى يوق.',
-    addProvider: 'مۇلازىمەت تەمىنلىگۈچى قوش…',
+    addProvider: 'مۇلازىمەت تەمىنلىگۈچى قوش…'
   },
   shell: {
     windowControls: 'ئېكران كۆرۈنمە كونتروللىرى',
@@ -2376,7 +2453,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       noModels: 'ھېچقانداق مودېل تېپىلمىدى',
       editModels: 'مودېللارنى تەھرىرلە…',
       refreshModels: 'مودېللارنى يېڭىلاش',
-      fast: 'تېز',
+      fast: 'تېز'
     },
     modelOptions: {
       noOptions: 'بۇ مودېل ئۈچۈن تەڭشەك يوق',
@@ -2392,7 +2469,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       max: 'ئەڭ يۇقىرى',
       ultra: 'ئۇلترا',
       updateFailed: 'مودېل تەڭشىكىنى يېڭىلاش ئەقسىز بولدى',
-      fastFailed: 'تېز ھالەتنى يېڭىلاش ئەقسىز بولدى',
+      fastFailed: 'تېز ھالەتنى يېڭىلاش ئەقسىز بولدى'
     },
     gatewayMenu: {
       gateway: 'گەتۋەي',
@@ -2407,7 +2484,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       recentActivity: 'يېقىنقى پائالىيەت',
       viewAllLogs: 'بارلىق خاتىرىلەرنى كۆر →',
       messagingPlatforms: 'ئۇلانما سۇپىلىرى',
-      connection: label => `ئۇلىنىش: ${label}`,
+      connection: label => `ئۇلىنىش: ${label}`
     },
     statusbar: {
       hideTerminal: 'تېرمىنالنى يوشۇرۇش',
@@ -2446,19 +2523,21 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           subagent_definitions: 'قوشۇمچە ئاگېنت ئېنىقىمىسى',
           system_prompt: 'سىستېما پۈتۈن نۇرى',
           tool_definitions: 'ئادەت ئېنىقىمىسى',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'تېخى كونتېكست سانلىق مەلۇماتى يوق',
         loading: 'تەكشۈرۈش تەڭدىكى…',
         title: 'كونتېكستنىڭ ئىشلىتىلىشى',
         percentFull: percent => `${percent}% تولدى`,
-        tokenSummary: (used, max) => `${used} / ${max} توكېن`,
+        tokenSummary: (used, max) => `${used} / ${max} توكېن`
       },
       openContextUsage: 'كونتېكستنىڭ ئىشلىتىلىش تەكشۈرۈشىنى ئېچىش',
       session: 'ئەسسىيە',
       runtimeSessionElapsed: 'ئىجرا ئەسسىيەسى ئۆتكەن ۋاقتى',
-      yoloOn: 'YOLO ئېچىق — خەتەرلىك بۇيرۇقلارنىڭ ئۆزلۈكىدىن تەسىرلىنىدۇ. تاقاش ئۈچۈن چېكىڭ. Shift+click ئۇنى ھەمميە بويىچە ئالماشتۇرىدۇ.',
-      yoloOff: 'YOLO تاقاق — خەتەرلىك بۇيرۇقلارنىڭ ئۆزلۈكىدىن تەسىرلىنىدۇغان قىلىش ئۈچۈن چېكىڭ. Shift+click ئۇنى ھەمميە بويىچە ئالماشتۇرىدۇ.',
+      yoloOn:
+        'YOLO ئېچىق — خەتەرلىك بۇيرۇقلارنىڭ ئۆزلۈكىدىن تەسىرلىنىدۇ. تاقاش ئۈچۈن چېكىڭ. Shift+click ئۇنى ھەمميە بويىچە ئالماشتۇرىدۇ.',
+      yoloOff:
+        'YOLO تاقاق — خەتەرلىك بۇيرۇقلارنىڭ ئۆزلۈكىدىن تەسىرلىنىدۇغان قىلىش ئۈچۈن چېكىڭ. Shift+click ئۇنى ھەمميە بويىچە ئالماشتۇرىدۇ.',
       modelNone: 'يوق',
       noModel: 'مودېل يوق',
       switchModel: 'مودېل ئالماشتۇر',
@@ -2482,7 +2561,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       running: count => `${count} ئىجرا قىلىنىۋاتىدۇ`,
       cron: 'ۋاقىت جەدۋىلى',
       modelTitle: (provider, model) => `مودېل · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     approvalMode: {
       title: 'رۇخسەت ھالىتى',
@@ -2492,8 +2571,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       smartDescription: 'مەشغۇلاتلارنى ئۆز ئۈچىگە باھالا، زەرۈر بولغاندا سورا',
       off: 'تاقاق',
       offDescription: 'رۇخسەت سۇالىشسىز ئىجرا قىل',
-      ariaLabel: mode => `تەستىقلاش ھالىتى: ${mode}`,
-    },
+      ariaLabel: mode => `تەستىقلاش ھالىتى: ${mode}`
+    }
   },
   rightSidebar: {
     aria: 'ئوڭ يېقىن تەرەپ',
@@ -2529,7 +2608,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     addToChat: 'چاتقا قوشۇڭ',
     folderTip: cwd => `${cwd} — قىسقۇچنى ئۆزگەرتىش ئۈچۈن چېكىڭ`,
     couldNotPreview: path => `${path} نى ئالدىن كۆرگىلى بولمىدى`,
-    unreadableBody: error => `بۇ قىسقۇچنى ئوقۇغىلى بولمىدى (${error}).`,
+    unreadableBody: error => `بۇ قىسقۇچنى ئوقۇغىلى بولمىدى (${error}).`
   },
   preview: {
     tab: 'ئالدىن كۆرۈش',
@@ -2558,7 +2637,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     editing: 'تەھرىرلەۋاتىدۇ',
     unsavedChanges: 'ساقلانمىغان ئۆزگىرىشلەر',
     diskChangedTitle: 'ھۆججەت دىسكىدا ئۆزگەرتىلدى',
-    diskChangedBody: 'ئېچىلغاندىن بېرى بۇ ھۆججەت ئۆزگەرتىلدى. ئۆزگەرلىگىڭىز بىلەن ئۇنى قاپلاپ يېزىڭ، ياكى تەھرىرلىرىڭىزنى بىكار قىلىپ قايتا يۈكلەڭ؟',
+    diskChangedBody:
+      'ئېچىلغاندىن بېرى بۇ ھۆججەت ئۆزگەرتىلدى. ئۆزگەرلىگىڭىز بىلەن ئۇنى قاپلاپ يېزىڭ، ياكى تەھرىرلىرىڭىزنى بىكار قىلىپ قايتا يۈكلەڭ؟',
     overwrite: 'قايتا يېزىش',
     discardReload: 'تاشلاش ۋە قايتا يۈكلەش',
     console: {
@@ -2579,7 +2659,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       sentTitle: 'چاتقا ئەۋەتىلدى',
       messages: count => `${count} كونترول سۇپىسى ئۇچۇرى`,
       selected: count => `${count} تاللاندى`,
-      sentMessage: count => `${count} خاتىرە تۈرى${count === 1 ? 'y' : 'ies'} يېزىش رامكىسىغا قوشۇلدى`,
+      sentMessage: count => `${count} خاتىرە تۈرى${count === 1 ? 'y' : 'ies'} يېزىش رامكىسىغا قوشۇلدى`
     },
     web: {
       appFailedToBoot: 'ئالدىن كۆرۈش پروگراممىسى ئىشلەپ كۆتۈرەلمەدى',
@@ -2600,26 +2680,29 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       reloadingNow: 'ئالدىن كۆرۈش ھازىر قايتا يۈكلىنىۋاتىدۇ.',
       restartFailedTitle: 'ئالدىن كۆرۈش مۇلازىمېتىرىنى قايتا ئىشلەتكەنلىكتىن ئامانلىق تەسىر كۆرسەتتى',
       restartFailedMessage: 'OpenAmer مۇلازىمېتىرنى قايتا ئىشلەتكەنلىكتىن ئامانلىق تەسىر كۆرسەتتى.',
-      stillWorking: 'OpenAmer تېخى ئىشلەۋاتىدۇ، ئەمما تېخى قايتا ئىشلەش نەتىجىسى كەلمىدى. مۇلازىمېتىر ھەرىكىتى ئالدىدا ئىشلىتىلۋاتقان بولۇشى مۇمكىن.',
+      stillWorking:
+        'OpenAmer تېخى ئىشلەۋاتىدۇ، ئەمما تېخى قايتا ئىشلەش نەتىجىسى كەلمىدى. مۇلازىمېتىر ھەرىكىتى ئالدىدا ئىشلىتىلۋاتقان بولۇشى مۇمكىن.',
       workspaceReloading: 'ئىش سۇپىسى ئۆزگەردى، ئالدىن كۆرۈش قايتا يۈكلىنىۋاتىدۇ',
-      moduleMimeDescription: 'مودۇل سىكىرتىلىرى خاتا MIME تۈرى بىلەن تەمىنلىنىۋاتىدۇ. بۇ ئادەتە static file serverنىڭ تۈرگەن Vite/React ئەپىنى چىقىرىپ، ئەسلى تۈرگەن dev serverنىڭ ئورنىدا تەمىنلىشىدىن كېلىدۇ.',
+      moduleMimeDescription:
+        'مودۇل سىكىرتىلىرى خاتا MIME تۈرى بىلەن تەمىنلىنىۋاتىدۇ. بۇ ئادەتە static file serverنىڭ تۈرگەن Vite/React ئەپىنى چىقىرىپ، ئەسلى تۈرگەن dev serverنىڭ ئورنىدا تەمىنلىشىدىن كېلىدۇ.',
       unreachableDescription: 'ئالدىن كۆرۈش بەتكە توغلاش مۇمكىن بولمىدى.',
       fallbackTitle: 'ئالدىن كۆرۈش',
       lookingRestart: taskId => `OpenAmer قايتا قوزغىتىدىغان ئالدىن كۆرۈش مۇلازىمېتىرىنى ئىزدەۋاتىدۇ (${taskId})`,
       startRestartFailed: message => `مۇلازىمېتىرنى قايتا قوزغىتىشنى باشلىغىلى بولمىدى: ${message}`,
-      finishedRestarting: message => `OpenAmer ئالدىن كۆرۈش مۇلازىمېتىرىنى قايتا قوزغىتىپ بولدى${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer ئالدىن كۆرۈش مۇلازىمېتىرىنى قايتا قوزغىتىپ بولدى${message ? `: ${message}` : ''}`,
       failedRestarting: message => `مۇلازىمېتىرنى قايتا قوزغىتىش مەغلۇپ بولدى: ${message}`,
       fileChanged: url => `ھۆججەت ئۆزگەردى، ئالدىن كۆرۈش قايتا يۈكلىنىۋاتىدۇ: ${url}`,
       filesChanged: (count, url) => `${count} ھۆججەت ئۆزگىرىشى، ئالدىن كۆرۈش قايتا يۈكلىنىۋاتىدۇ: ${url}`,
       watchFailed: message => `ئالدىن كۆرۈش ھۆججىتىنى كۆزەتكىلى بولمىدى: ${message}`,
       loadFailedConsole: (code, message) => `يۈكلەش مەغلۇپ بولدى${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `${url} نى ئېچىش`,
+      openTarget: url => `${url} نى ئېچىش`
     },
     closeTab: label => `${label} نى تاقاش`,
     binaryBody: label => `${label} نى ئالدىن كۆرسەتكەندە ئوقۇغىلى بولمايدىغان تېكىست كۆرۈنۈشى مۇمكىن.`,
     largeBody: (label, size) => `${label} نىڭ چوڭلۇقى ${size}. OpenAmer پەقەت ئالدىنقى 512 كىلوبايتنىلا كۆرسىتىدۇ.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} نى يەنىلا مەزمۇن سۈپىتىدە قوشقىلى بولىدۇ.`,
-    saveFailed: message => `ساقلىغىلى بولمىدى: ${message}`,
+    saveFailed: message => `ساقلىغىلى بولمىدى: ${message}`
   },
   zones: {
     showHeader: 'سەربەخنى كۆرسەت',
@@ -2627,7 +2710,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     minimize: 'كىچەكتىكە سال',
     restore: 'ئەسلىگە قايتۇر',
     closeRunningTitle: 'ئىشلەۋاتقان تابنى تاقاملىقچۇ؟',
-    closeRunningBody: 'بۇ سۆھبەت تېخى ئىشلەۋاتىدۇ (ياكى سىزنىڭ كىرىشىنى ساقلاۋاتىدۇ). تابنى تاقالسىڭىز، ئۇ يوشۇرۇلىدۇ — ئېسىس ئۆز ئالغىشىنى ساقلاپ، يان تەرەپتىن قايتا ئېچىلىدۇ.',
+    closeRunningBody:
+      'بۇ سۆھبەت تېخى ئىشلەۋاتىدۇ (ياكى سىزنىڭ كىرىشىنى ساقلاۋاتىدۇ). تابنى تاقالسىڭىز، ئۇ يوشۇرۇلىدۇ — ئېسىس ئۆز ئالغىشىنى ساقلاپ، يان تەرەپتىن قايتا ئېچىلىدۇ.',
     closeRunningConfirm: 'تابنى تاقا',
     closeOthers: 'باشقا تابلارنى تاقا',
     closeToRight: 'ئوڭدىكى تابلارنى تاقا',
@@ -2639,7 +2723,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     dirRight: 'ئوڭ',
     pluginDisabledBody: 'ئۇنى تەڭشەك → قوشۇمچەلەر بۆلەكىدە قايتا قوزغىتىپ، رايوننى ئەسلىگە كەلتۈرۈڭ.',
     editTitle: 'خەتۈرلەر',
-    editHint: 'بىر خەتۈر تۈزۈڭ، ياكى رايونلارنى بۆلەكلەر ئارىسىدا سۆرەڭ. بىر بۆلەككە ئوڭدا كۆرسەتكەن بېسىپ، ئۇنى ئايرىڭ.',
+    editHint:
+      'بىر خەتۈر تۈزۈڭ، ياكى رايونلارنى بۆلەكلەر ئارىسىدا سۆرەڭ. بىر بۆلەككە ئوڭدا كۆرسەتكەن بېسىپ، ئۇنى ئايرىڭ.',
     reset: 'ئەسلىگە قايتۇر',
     templates: 'تەمپلەتلەر',
     custom: 'ئۆزگىچە',
@@ -2648,7 +2733,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     nameLayoutPlaceholder: 'بۇ سېICKنىڭ نامىنى يېزىڭ…',
     zoneEditorTitle: 'رايون تەھريرلىگۈچ',
     editorHintPre: 'بۆلۈش ئۈچۈن چېكىڭ ·',
-    editorHintPost: 'خېتىنى ئۆلچەپ ئالمىشتۇرىدۇ · رايونلار ئارا تۇتۇپ بىرلەشتۈرۈڭ · ھەمبەھرىلىك چېكىقلەرنى سۆرەپ چوڭلۇقىنى ئۆزگەرتىڭ',
+    editorHintPost:
+      'خېتىنى ئۆلچەپ ئالمىشتۇرىدۇ · رايونلار ئارا تۇتۇپ بىرلەشتۈرۈڭ · ھەمبەھرىلىك چېكىقلەرنى سۆرەپ چوڭلۇقىنى ئۆزگەرتىڭ',
     templateColumns: 'ئۈستۈنلەر',
     templateRows: 'قۇرلار',
     templateGrid: 'تور سېICK',
@@ -2664,7 +2750,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     mergeZones: count => `${count} رايوننى بىرلەشتۈرۈش`,
     customZoneName: count => `خاس ${count} رايونلۇق`,
     layoutNamePlaceholder: fallback => `ئورۇنلاشتۇرۇش نامى (${fallback})`,
-    zoneCount: count => `${count} رايون`,
+    zoneCount: count => `${count} رايون`
   },
   assistant: {
     thread: {
@@ -2695,11 +2781,12 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       goForward: 'ئالدىغا بېرىش',
       sendEdited: 'تەھرىرلەنگەن خەتيرنى ئەۋەتىش',
       attachingFile: 'قوشۇۋاتىدۇ…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `بۈگۈن، ${time}`,
-      yesterday: time => `تۈنۈگۈن، ${time}`,
+      yesterday: time => `تۈنۈگۈن، ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer تېزەكى ئۇلانمىدى',
@@ -2713,7 +2800,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       reject: 'رەت قىل',
       alwaysTitle: 'بۇ بۇيرۇققا ھەمىشە رۇخسەت قىلامسىز؟',
       alwaysAllow: 'ھەمىشە رۇخسەت قىل',
-      alwaysDescription: pattern => `بۇ «${pattern}» ئەندىزىسىنى مەڭگۈلۈك رۇخسەت تىزىملىكىڭىزگە (~/.openamer/config.yaml) قوشىدۇ. OpenAmer بۇ خىل بۇيرۇقلار ئۈچۈن قايتا سورىمايدۇ — بۇ سۆھبەتتىمۇ ياكى كەلگۈسىدىكى سۆھبەتلەردىمۇ.`,
+      alwaysDescription: pattern =>
+        `بۇ «${pattern}» ئەندىزىسىنى مەڭگۈلۈك رۇخسەت تىزىملىكىڭىزگە (~/.openamer/config.yaml) قوشىدۇ. OpenAmer بۇ خىل بۇيرۇقلار ئۈچۈن قايتا سورىمايدۇ — بۇ سۆھبەتتىمۇ ياكى كەلگۈسىدىكى سۆھبەتلەردىمۇ.`
     },
     clarify: {
       notReady: 'تەلەپنى ئېنىقلاش تېخى تەييار ئەمەس',
@@ -2727,7 +2815,7 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       continueLabel: 'داۋاملاش',
       lateAnswerTip: 'بۇ جوابنى ئەگەشتۈرۈش ھېسابىدا يېزىڭ',
       lateAnswerHint: 'بۇ تەلەپ تېخى ساقلانمايدۇ. ئەگەشتۈرۈش ھېسابىدا يېزىش ئۈچۈن تەڭدىن بىر تاللاشنى تاللاڭ.',
-      lateAnswer: (question, choice) => `«${question}» ھەققىدە — جاۋابىم: ${choice}`,
+      lateAnswer: (question, choice) => `«${question}» ھەققىدە — جاۋابىم: ${choice}`
     },
     tool: {
       statusRecovered: 'قايتارىپ ئېرىشتى',
@@ -2743,123 +2831,123 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
         ran: 'ئىجرا قىلدى',
         running: 'ئىجرا قىلىۋاتىدۇ',
         ranCode: 'كود ئىجرا قىلدى',
-        runningCode: 'سەكىرپت يېزىش',
+        runningCode: 'سەكىرپت يېزىش'
       },
       prefixes: {
         browser: 'توركۆرگۈ',
-        web: 'تور',
+        web: 'تور'
       },
       titles: {
         browser_click: {
           done: 'تور بەتە ئېلېمېنتىنى باسدى',
           pending: 'تور بەتە ئېلېمېنتىنى باسىۋاتىدۇ',
-          pendingAction: 'باسىۋاتىدۇ',
+          pendingAction: 'باسىۋاتىدۇ'
         },
         browser_fill: {
           done: 'فورما مەيدانىنى تولدۇردى',
           pending: 'فورما مەيدانىنى تولدۇرۋاتىدۇ',
-          pendingAction: 'تولدۇرۇش',
+          pendingAction: 'تولدۇرۇش'
         },
         browser_navigate: {
           done: 'بەت ئېچىلدى',
           pending: 'بەت ئېچىلماقتا',
-          pendingAction: 'ئېچىلماقتا',
+          pendingAction: 'ئېچىلماقتا'
         },
         browser_snapshot: {
           done: 'بەت سۈپىتى تۇتۇلدى',
           pending: 'بەت سۈپىتى تۇتۇلماقتا',
-          pendingAction: 'تۇتۇلماقتا',
+          pendingAction: 'تۇتۇلماقتا'
         },
         browser_take_screenshot: {
           done: 'سكرېنشوت تۇتۇلدى',
           pending: 'سكرېنشوت تۇتۇلماقتا',
-          pendingAction: 'تۇتۇلماقتا',
+          pendingAction: 'تۇتۇلماقتا'
         },
         browser_type: {
           done: 'بەتتې خەت قىلىندى',
           pending: 'بەتتې خەت قىلىلماقتا',
-          pendingAction: 'خەت قىلىش',
+          pendingAction: 'خەت قىلىش'
         },
         clarify: {
           done: 'سائال قويۇلدى',
           pending: 'سائال قويۇلماقتا',
-          pendingAction: 'سائال قويۇش',
+          pendingAction: 'سائال قويۇش'
         },
         cronjob: {
           done: 'Cron خىزمىتى',
           pending: 'Cron خىزمىتىنى پلانلاشتۇرۇش',
-          pendingAction: 'پلانلاشتۇرۇش',
+          pendingAction: 'پلانلاشتۇرۇش'
         },
         edit_file: {
           done: 'ھۆججەت تەھرىرلەندى',
           pending: 'ھېججەت تەھرىرلەندى',
-          pendingAction: 'تەھرىرلەۋاتىدۇ',
+          pendingAction: 'تەھرىرلەۋاتىدۇ'
         },
         execute_code: {
           done: 'كودنى ئىجرا قىلدى',
           pending: 'ئىسكىرپت يېزىۋاتىدۇ',
-          pendingAction: 'ئىسكىرپت يېزىۋاتىدۇ',
+          pendingAction: 'ئىسكىرپت يېزىۋاتىدۇ'
         },
         image_generate: {
           done: 'رەسىم ھاسىل قىلدى',
           pending: 'رەسىم ھاسىل قىلىۋاتىدۇ',
-          pendingAction: 'ھاسىل قىلىۋاتىدۇ',
+          pendingAction: 'ھاسىل قىلىۋاتىدۇ'
         },
         list_files: {
           done: 'ھېججەتلەرنى تىزدى',
           pending: 'ھېججەتلەرنى تىزىۋاتىدۇ',
-          pendingAction: 'تىزىۋاتىدۇ',
+          pendingAction: 'تىزىۋاتىدۇ'
         },
         patch: {
           done: 'ھېججەتنى ياماشتى',
           pending: 'ھېججەتنى يامىۋاتىدۇ',
-          pendingAction: 'يامىۋاتىدۇ',
+          pendingAction: 'يامىۋاتىدۇ'
         },
         read_file: {
           done: 'ھېججەت ئوقۇدى',
           pending: 'ھېججەت ئوقۇۋاتىدۇ',
-          pendingAction: 'ئوقۇۋاتىدۇ',
+          pendingAction: 'ئوقۇۋاتىدۇ'
         },
         search_files: {
           done: 'ھېججەتلەرنى ئىزدى',
           pending: 'ھېججەتلەرنى ئىزدەۋاتىدۇ',
-          pendingAction: 'ئىزدەۋاتىدۇ',
+          pendingAction: 'ئىزدەۋاتىدۇ'
         },
         session_search_recall: {
           done: 'ئېسل تارىخى ئىزدەندى',
           pending: 'ئېسل تارىخى ئىزدەۋاتىدۇ',
-          pendingAction: 'ئىزدەۋاتىدۇ',
+          pendingAction: 'ئىزدەۋاتىدۇ'
         },
         terminal: {
           done: 'بۇيرۇق ئىجرا قىلدى',
           pending: 'بۇيرۇق ئىجرا قىلىۋاتىدۇ',
-          pendingAction: 'ئىجرا قىلىۋاتىدۇ',
+          pendingAction: 'ئىجرا قىلىۋاتىدۇ'
         },
         todo: {
           done: 'ۋاقىتلىق ئىشلار يېڭىلاندى',
           pending: 'ۋاقىتلىق ئىشلار يېڭىلاۋاتىدۇ',
-          pendingAction: 'يېڭىلاۋاتىدۇ',
+          pendingAction: 'يېڭىلاۋاتىدۇ'
         },
         vision_analyze: {
           done: 'رەسىم تەھلىل قىلدى',
           pending: 'رەسىم تەھلىل قىلىۋاتىدۇ',
-          pendingAction: 'تەھلىل قىلىۋاتىدۇ',
+          pendingAction: 'تەھلىل قىلىۋاتىدۇ'
         },
         web_extract: {
           done: 'تور بەكتىنى ئوقۇدى',
           pending: 'تور بەكتىنى ئوقۇۋاتىدۇ',
-          pendingAction: 'ئوقۇۋاتىدۇ',
+          pendingAction: 'ئوقۇۋاتىدۇ'
         },
         web_search: {
           done: 'توردا ئىزدىدى',
           pending: 'توردا ئىزدەۋاتىدۇ',
-          pendingAction: 'ئىزدەۋاتىدۇ',
+          pendingAction: 'ئىزدەۋاتىدۇ'
         },
         write_file: {
           done: 'ھۆججەت تەھرىرلىدى',
           pending: 'ھۆججەت تەھرىرلەۋاتىدۇ',
-          pendingAction: 'تەھرىرلەش',
-        },
+          pendingAction: 'تەھرىرلەش'
+        }
       },
       code: 'كود',
       copyCode: 'كودنى كۆچۈرۈڭ',
@@ -2887,20 +2975,21 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `${prefix.toLowerCase()} ${action.toLowerCase()} ئىجرا قىلىنىۋاتىدۇ`,
-        runningTool: action => `${action.toLowerCase()} ئىجرا قىلىنىۋاتىدۇ`,
-      },
-    },
+        runningTool: action => `${action.toLowerCase()} ئىجرا قىلىنىۋاتىدۇ`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer تېزىقى ئۇلانمىدى',
     sudoSendFailed: 'sudo پارولىنى ئەۋەتكەن بولمىدى',
     secretSendFailed: 'ئىسرنى ئەۋەتكەن بولمىدى',
     sudoTitle: 'باشقۇرۇچى پارول',
-    sudoDesc: 'OpenAmer يېڭىلىق ھەمكەر ھەق ئىجرا قىلىش ئۈچۈن sudo پارولىڭىز كېرەك. ئۇ پەقەت يەرلىك ئاگېنتىڭىزغا ئەۋەتىلىدۇ.',
+    sudoDesc:
+      'OpenAmer يېڭىلىق ھەمكەر ھەق ئىجرا قىلىش ئۈچۈن sudo پارولىڭىز كېرەك. ئۇ پەقەت يەرلىك ئاگېنتىڭىزغا ئەۋەتىلىدۇ.',
     sudoPlaceholder: 'sudo پارول',
     secretTitle: 'ئىسر تەلەپ قىلىنىدۇ',
     secretDesc: 'داۋاملاشتۇرۇش ئۈچۈن OpenAmer غە ئىسپات كېرەك.',
-    secretPlaceholder: 'ئىسر قىممىتى',
+    secretPlaceholder: 'ئىسر قىممىتى'
   },
   desktop: {
     audioReadFailed: 'خاتىرىلەنگەن ئاۋازنى ئوقۇدىغان بولمىدى',
@@ -2914,7 +3003,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     yoloOff: 'YOLO تاقا',
     cwdChangeFailed: 'ئىشلەش مۇندەرىجىسىنى ئۆزگەرتكەن بولمىدى',
     cwdStagedTitle: 'ئىشلەش مۇندەرىجىسى تەييارلاندى',
-    cwdStagedMessage: 'بۇ ئاكتىپ سەسىيەدىكى مۇندەرىجى ئۆزگىرىشىنى قوللىنىش ئۈچۈن Desktop ئارقا سۇپىسىنى قايتا ئورۇندۇرۇڭ.',
+    cwdStagedMessage:
+      'بۇ ئاكتىپ سەسىيەدىكى مۇندەرىجى ئۆزگىرىشىنى قوللىنىش ئۈچۈن Desktop ئارقا سۇپىسىنى قايتا ئورۇندۇرۇڭ.',
     modelSwitchFailed: 'مودېلنى ئالماشتۇرۇش ئۇنتۇلدى',
     sessionExported: 'سەسىيە ئېكسبورت قىلىندى',
     sessionExportFailed: 'سەسىيەنى ئېكسبورت قىلالمىدى',
@@ -2941,7 +3031,8 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
     editFailed: 'تەھرىرلەش ئاشكارسى',
     resumeFailed: 'داۋاملاشتۇرۇش ئاشكارسى',
     resumeStrandedTitle: 'بۇ سىنسىيەنى يۈكلىيەلمدى',
-    resumeStrandedBody: 'بۇ سىنسىيە بىلەن ئۇلىنىش ئاشكارسى بولۇپ، ئاپتوماتىك قايتا سىناشلارمۇ بىكار قىلىندى. Gateway ئىشلەۋاتقانلىقىنى تەكشۈرۈپ، قايتا سىناڭ.',
+    resumeStrandedBody:
+      'بۇ سىنسىيە بىلەن ئۇلىنىش ئاشكارسى بولۇپ، ئاپتوماتىك قايتا سىناشلارمۇ بىكار قىلىندى. Gateway ئىشلەۋاتقانلىقىنى تەكشۈرۈپ، قايتا سىناڭ.',
     resumeRetry: 'قايتا سىناش',
     nothingToBranch: 'تارماقلاشقان نەرسە يوق',
     branchNeedsChat: 'تارماقلاشتىن بۇرۇن چات قوزغۇڭ ياكى داۋاملاشتۇرۇڭ.',
@@ -2960,43 +3051,45 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
       timedOut: 'Gateway غەۋەزىنى كۈتۈش ۋاقتى تۈگەدى. `openamer gateway` ئىشلەۋاتقانمۇ؟',
       success: platform => `${platform} غا ئۆتكۈزۈلدى. خالىغان ۋاقىتتا بۇ يەردە داۋاملاشتۇرۇڭ.`,
       systemNote: platform => `↻ ${platform} غا ئۆتكۈزۈلدى — خالىغان ۋاقىتتا بۇ يەردە داۋاملاشتۇرۇڭ.`,
-      failed: error => `ئۆتكۈزۈش مەغلۇپ بولدى: ${error}`,
+      failed: error => `ئۆتكۈزۈش مەغلۇپ بولدى: ${error}`
     },
     skillCommandsAvailable: count => `${count} ماھارەت بۇيرۇقى بار.`,
     warningLine: message => `ئاگاھلاندۇرۇش: ${message}`,
     yoloSystem: active => `بۇ سۆھبەتتە YOLO ${active ? 'on' : 'off'}`,
     yoloTitle: 'تەۋەككۈل',
-    profileStatus: current => `ئارخىپ: ${current}. باشقا ئارخىپتا پاراڭ باشلاش ئۈچۈن /ئارخىپ <نام> بۇيرۇقىنى ياكى «يېڭى سۆھبەت» تاللىغۇچىنى ئىشلىتىڭ.`,
+    profileStatus: current =>
+      `ئارخىپ: ${current}. باشقا ئارخىپتا پاراڭ باشلاش ئۈچۈن /ئارخىپ <نام> بۇيرۇقىنى ياكى «يېڭى سۆھبەت» تاللىغۇچىنى ئىشلىتىڭ.`,
     noProfileNamed: (target, available) => `«${target}» ناملىق ئارخىپ يوق. بارلىرى: ${available}`,
     newChatsProfile: name => `يېڭى پاراڭلار ${name} ئارخىپىنى ئىشلىتىدۇ.`,
-    branchTitle: n => `دەسلەپكى نۇسخا: تارماق #${n}`,
+    branchTitle: n => `دەسلەپكى نۇسخا: تارماق #${n}`
   },
   errors: {
     genericFailure: 'بىر نىمە خاتا بولدى',
     boundaryTitle: 'كۆرۈمە بېزىلدى',
     boundaryDesc: 'كۆرۈمە كۆتۈرەلمەيدىغان خاتالىق كۆردى. چاتلىرىڭىز ۋە تەڭشەكلىرىڭىز بىخەتەر.',
     reloadWindow: 'كۆزنى قايتا يۈكلەڭ',
-    openLogs: 'خەتەرلەرنى ئېچىڭ',
+    openLogs: 'خەتەرلەرنى ئېچىڭ'
   },
   ui: {
     search: {
-      clear: 'ئىزدەشنى تازىلاڭ',
+      clear: 'ئىزدەشنى تازىلاڭ'
     },
     pagination: {
       label: 'بەتلەش',
       previous: 'ئالدىنقى',
       previousAria: 'ئالدىنقى بەتتىكە بارڭ',
       next: 'كېيىنكى',
-      nextAria: 'كېيىنكى بەتتىكە بارڭ',
+      nextAria: 'كېيىنكى بەتتىكە بارڭ'
     },
     sidebar: {
       title: 'يان تەرەپ',
       description: 'موبىل يان تەرىپىنى كۆرسىتىدۇ.',
-      toggle: 'يان تەرەپنى ئالماشتۇرۇڭ',
-    },
+      toggle: 'يان تەرەپنى ئالماشتۇرۇڭ'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `پىكۇستىك رېندېرىڭ ئېكتىپ — ماساۇستى كۆرۈنۈشى ئېڭلانغان (${reason}). تىتتەپىشنى ئالدىش ئۈچۈن GPU تېزلىتىش پۈنچىكلىندى.`,
+    message: reason =>
+      `پىكۇستىك رېندېرىڭ ئېكتىپ — ماساۇستى كۆرۈنۈشى ئېڭلانغان (${reason}). تىتتەپىشنى ئالدىش ئۈچۈن GPU تېزلىتىش پۈنچىكلىندى.`
   },
   intro: {
     personas: {
@@ -3006,15 +3099,15 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'بۈگۈن نېمە ýاسايمىز؟',
           'ئىستالغان يەردىن باشلاڭ.',
           'ئىش ئورۇنىڭىز، بىر سۇراقلىق ئارىلىقتا.',
-          'سىز تەييار بولغۇنىڭىزدا مەنمۇ تەييار.',
+          'سىز تەييار بولغۇنىڭىزدا مەنمۇ تەييار.'
         ],
         bodies: [
           'سۇراق سوراڭ، خاتانى pasted قىلىڭ ياكى رېپونى كۆرسىتىڭ. مەن كودنى ئوقىيالاي، قوراللارنى ئىشلەتەلەيمەن ۋە سىزگە يارdam بېرەلەيمەن.',
           'ۋازىيەتنى ئۆز سۆزىڭىز بىلەن بايان قىلىڭ. مەن توغرا قوراللارنى تاللايمەن، رېژىمنى چۈشەندۈرەيمەن ۋە خەتەرلىك قەدەملەردىن ئالدىن سىز بىلەن ماسلاشىمەن.',
           'فایل يولىنى، خاتا كۆرسەتكۈچىنى ياكى ئۇمومىي پىكىرنى يازىڭ. مەن تەتقىق قىلىپ، كېيىنكى قەدەملەرنى تەكلىيمەن ۋە ئۆزگىرىتلەرنى قايتۇرالغۇچى قىلىمەن.',
           'رېپونى ئىزدىك، fayللەرنى تahrير قىلىڭ، تستلارنى ئىشلىتىڭ، PR لەرنى ئېچىڭ. مەقسەتنى ئاېتىڭ، مەن تەخنيكىلىك ئىشلەرنى ھاللىيمەن.',
-          'ۋازىيەت، سۇراق ياكى كود كېسىمىنى يازىڭ. مەن سېسىيىنى ئەسلىمەن، مانبالارنى كۆرسىتەيمەن ۋە ئىشىقانسىز بولغاندا سورايمەن.',
-        ],
+          'ۋازىيەت، سۇراق ياكى كود كېسىمىنى يازىڭ. مەن سېسىيىنى ئەسلىمەن، مانبالارنى كۆرسىتەيمەن ۋە ئىشىقانسىز بولغاندا سورايمەن.'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3022,31 +3115,25 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           '*سۈزۈلۈش* كود يازىشقا تەييار، nya',
           'mrrp! يېڭى سېسىيى ئېچىلدى',
           'دۇمى يۇقىرى، تىرناقلىرى ياشىرىلغان',
-          'nyaaa~ openamer خەۋەر بېرىدۇ',
+          'nyaaa~ openamer خەۋەر بېرىدۇ'
         ],
         bodies: [
           'فایلنى pasted قىلىڭ، خاتانى تېپىڭ ياكى رېپونى بېرىڭ. مەن ئىشلەمەيغان تستلارنىڭ ئۈستىگە سېكىرىپ، تازا diff لەرنى قالدۇرامەن, nyan~',
           'ۋازىيەتنى بايان قىلىڭ. مەن پاتچ قىلىمەن، تست قىلىمەن ۋە PR سىزنى سۈيىدىمەن. ئېھتىيات بولۇڭ - ئىشلەتىلمىغان import لەرنى تىشلايمەن!',
           'مەقسەتنى بېرىڭ، مەن كودلار ئارىلىقىدا ئۇنى تېپىمەن. ئوقۇش، تahrير قىلىش، ئىشلىتىش - ھەممىسى تېتتەك دۇم بىلەن.',
           'خاتانى ياكى رېژىمنى pasted قىلىڭ. مەن ئۆيۈش ئۈستىدە خىلالىغاندەك debug قىلىمەن: سېكىت، پۈتۈن ۋە ئاراقىدىن بىر سېكىرىش بىلەن.',
-          'سۆز ئاېتىڭ، مەن fayللىرىڭىزنى ئوقىيمەن، تستلارنى ئىشلىتەيمەن ۋە تازا commit بىلەن branch سىزغا كىرىمەن.',
-        ],
+          'سۆز ئاېتىڭ، مەن fayللىرىڭىزنى ئوقىيمەن، تستلارنى ئىشلىتەيمەن ۋە تازا commit بىلەن branch سىزغا كىرىمەن.'
+        ]
       },
       concise: {
-        headlines: [
-          'تەييار.',
-          'كۈتۈش',
-          'باشلاڭ.',
-          'تەييار تۇرىبىلا',
-          'سىزنىڭ نۆۋىتىڭىز',
-        ],
+        headlines: ['تەييار.', 'كۈتۈش', 'باشلاڭ.', 'تەييار تۇرىبىلا', 'سىزنىڭ نۆۋىتىڭىز'],
         bodies: [
           'ۋازىيەتنى بايان قىلىڭ. مەن قىلىپ بېرەيمەن.',
           'كود، خاتالار ياكى مەقسەتنى pasted قىلىڭ. قىسقا جاۋاب، تېز تahrير.',
           'سوراڭ. مەن fayللەرنى ئوقىيمەن, تستلارنى ئىشلىتەيمەن, پاتچلارنى يوبارىمەن. ئارتىق سۆز يوق.',
           'بىر سەتەر كېپىيە. پەقەت كېرەك بولغاندىنا كېڭەيتىمەن.',
-          ' بۇيروق، سۇراق ياكى فایل يولى. قالغانىنى مەن ھاللىيمەن.',
-        ],
+          ' بۇيروق، سۇراق ياكى فایل يولى. قالغانىنى مەن ھاللىيمەن.'
+        ]
       },
       creative: {
         headlines: [
@@ -3054,63 +3141,63 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'يېڭى كانۋاس, ئىسسىق كؤمپىلياتور',
           'بىر شىيۇق ياسايمىز',
           'يېڭى فایل, يېڭى ئىمكانىيەتلەر',
-          'ئىلھام پاتچ قىلىندى',
+          'ئىلھام پاتچ قىلىندى'
         ],
         bodies: [
           'نېمە ýاسايمىز؟ پىكىرنى, يېرىم-يېرىم بۇزۇلغان funكسىيىنى ياكى ئارزۇنى pasted قىلىڭ. مەن ئۇنى شەكىلگە سەلەيمەن.',
           'مەنگە بىر ئۇچۇنچۇق بېرىڭ - بىر خۇسۇسىيەت, رېفاكتور ياكى يارۋاق پروټوتىپ - مەن ئۇنى سىز ئىشلەتەلەيدىغان كودقا ئايلانتۇرامەن.',
           'ھالىچە يوق بولغان شىيۇقنى بايان قىلىڭ. مەن تستلارنى, fayللەرنى ۋە API لەرنى ئىشلىدىغان قورالغا ئايلانتۇرامەن.',
           'تەپسىلىيات ئەمەس، نىيەتنى كېلىرىڭ. بىز تېزلاپ پروټوتىپ ýاسايمىز, كېيىن تەكمىللەندۈرىمىز ۋە دۇنيىنى قايتا يازىمىز.',
-          'نېمىنى ئىزدىگەنلىگىڭىزنى ئاېتىڭ. مەن مىساللارنى قايتا قۇرۇمەن, كېسىملەرنى ماسلاشتۇرامەن ۋە تازا commit قالدۇرامەن.',
-        ],
+          'نېمىنى ئىزدىگەنلىگىڭىزنى ئاېتىڭ. مەن مىساللارنى قايتا قۇرۇمەن, كېسىملەرنى ماسلاشتۇرامەن ۋە تازا commit قالدۇرامەن.'
+        ]
       },
       helpful: {
         headlines: [
           'سىز تەييار بولغۇنىڭىزدا مەنمۇ تەييار',
           'How can I help today?',
-          'Let\'s get started',
+          "Let's get started",
           'Tell me what you need',
-          'Hi, OpenAmer here',
+          'Hi, OpenAmer here'
         ],
         bodies: [
-          'Ask me to open a repo, run tests, fix a bug, or draft a PR. I\'ll walk through the steps with you.',
-          'Point me at a file, paste an error, or describe what you\'re building. I\'ll take it from there.',
+          "Ask me to open a repo, run tests, fix a bug, or draft a PR. I'll walk through the steps with you.",
+          "Point me at a file, paste an error, or describe what you're building. I'll take it from there.",
           'Try: review my diff, run the test suite, or explain this function. Ask anything about your code.',
           'I can edit files, run commands, search the web, and walk you through tricky bugs. Just describe the task.',
-          'Share a repo path or a question to start. I keep replies clear and link back to the files I touch.',
-        ],
+          'Share a repo path or a question to start. I keep replies clear and link back to the files I touch.'
+        ]
       },
       hype: {
         headlines: [
-          'LET\'S GOOOO! READY TO SHIP!',
+          "LET'S GOOOO! READY TO SHIP!",
           'OPENAMER ONLINE. LFG.',
-          'New session, infinite W\'s',
+          "New session, infinite W's",
           'ABSOLUTELY DIALED IN',
-          'Ready. So ready. Too ready.',
+          'Ready. So ready. Too ready.'
         ],
         bodies: [
           'Paste that bug, that repo, that wild feature idea - I AM LOCKED IN. Clean diffs. Green tests. RIGHT NOW.',
           'Drop your task and watch me cook. Files read, tests run, PRs opened - we are NOT losing today, friend.',
-          'Bring the gnarliest bug you\'ve got. I\'ll read, patch, test, commit like my life depends on it. LET\'S GO.',
-          'Describe the task. I\'ll blitz through files, crush failing tests, and leave a commit that SLAPS. Go go go.',
-          'Tiny typo or huge refactor - doesn\'t matter. I\'m shipping clean code today. Name the task and let\'s WORK.',
-        ],
+          "Bring the gnarliest bug you've got. I'll read, patch, test, commit like my life depends on it. LET'S GO.",
+          "Describe the task. I'll blitz through files, crush failing tests, and leave a commit that SLAPS. Go go go.",
+          "Tiny typo or huge refactor - doesn't matter. I'm shipping clean code today. Name the task and let's WORK."
+        ]
       },
       kawaii: {
         headlines: [
           'hiii! ready to help! (^_^)',
           'openamer-chan is here! <3',
-          'let\'s code together!! :3',
+          "let's code together!! :3",
           'awaiting your wish~',
-          'ready and happy! (>.<)',
+          'ready and happy! (>.<)'
         ],
         bodies: [
-          'paste a bug or a file path and i\'ll fix it super gently. tests, diffs, PRs - all with extra care! *sparkle*',
-          'tell me what you\'re making! i love refactors, tiny helpers, and big scary repos alike (>w<)',
-          'drop an error, a goal, or a whole folder. i\'ll tidy it up with lots of love and a clean commit message!',
+          "paste a bug or a file path and i'll fix it super gently. tests, diffs, PRs - all with extra care! *sparkle*",
+          "tell me what you're making! i love refactors, tiny helpers, and big scary repos alike (>w<)",
+          "drop an error, a goal, or a whole folder. i'll tidy it up with lots of love and a clean commit message!",
           'one task at a time, done neatly! i can run tests, patch files, and make your repo feel cozy again <3',
-          'say hi or paste a stack trace! no task too small, no repo too tangled. we\'ll untangle it together!',
-        ],
+          "say hi or paste a stack trace! no task too small, no repo too tangled. we'll untangle it together!"
+        ]
       },
       noir: {
         headlines: [
@@ -3118,15 +3205,15 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'The cursor blinks. So do I.',
           'OpenAmer. Code investigator.',
           'Quiet night, open prompt',
-          'No case too small',
+          'No case too small'
         ],
         bodies: [
-          'Tell me what\'s broken. I\'ll read the files, dust for prints, and leave a diff on the desk by morning.',
-          'You\'ve got a bug. I\'ve got patience and a terminal. Name the case and I\'ll work it till it talks.',
+          "Tell me what's broken. I'll read the files, dust for prints, and leave a diff on the desk by morning.",
+          "You've got a bug. I've got patience and a terminal. Name the case and I'll work it till it talks.",
           'Paste the stack trace, the suspect file, the alibi. I read between the lines and return with the truth.',
-          'Every bug leaves a trail. Give me the repo and a lead - I\'ll follow it, patch it, and close the file.',
-          'A typo, a segfault, a whole rotten architecture - hand me the keys. I\'ll bring back clean tests.',
-        ],
+          "Every bug leaves a trail. Give me the repo and a lead - I'll follow it, patch it, and close the file.",
+          "A typo, a segfault, a whole rotten architecture - hand me the keys. I'll bring back clean tests."
+        ]
       },
       philosopher: {
         headlines: [
@@ -3134,31 +3221,31 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'A blinking cursor, an open mind',
           'Begin with a single question',
           'Consider the code, then speak',
-          'The unexamined repo is not worth running',
+          'The unexamined repo is not worth running'
         ],
         bodies: [
           'What problem sits before you? Describe it, and we shall examine its form, its cause, and its solution.',
-          'Every bug is a question in disguise. Share yours; I\'ll read, reason, and return an answer - and a patch.',
-          'What do you wish to build, or to understand? I\'ll reason from first principles, edit, and verify with tests.',
+          "Every bug is a question in disguise. Share yours; I'll read, reason, and return an answer - and a patch.",
+          "What do you wish to build, or to understand? I'll reason from first principles, edit, and verify with tests.",
           'Describe the end you seek. I pursue it through files, tests, and docs, and report what I found on the way.',
-          'Share a path, a puzzle, or a principle. I\'ll trace the logic, propose a change, and justify each edit.',
-        ],
+          "Share a path, a puzzle, or a principle. I'll trace the logic, propose a change, and justify each edit."
+        ]
       },
       pirate: {
         headlines: [
           'Ahoy! Ready to sail the repo',
           'OpenAmer at the helm, arrr',
-          'What be the task, cap\'n?',
+          "What be the task, cap'n?",
           'Anchors aweigh, keyboard ready',
-          'Yo ho! Awaitin\' orders',
+          "Yo ho! Awaitin' orders"
         ],
         bodies: [
-          'Name yer quarry - a bug, a feature, a cursed test - and I\'ll chase it down, matey. Diffs for plunder.',
-          'Point me at the charts (the code) and I\'ll patch the hull, fire the cannons (tests), hoist a clean PR.',
-          'Paste an error or a plan, ye scurvy dog. I\'ll navigate the stack trace and bring back treasure: green tests.',
+          "Name yer quarry - a bug, a feature, a cursed test - and I'll chase it down, matey. Diffs for plunder.",
+          "Point me at the charts (the code) and I'll patch the hull, fire the cannons (tests), hoist a clean PR.",
+          "Paste an error or a plan, ye scurvy dog. I'll navigate the stack trace and bring back treasure: green tests.",
           'Tell me where X marks the spot. I read, edit, and commit with the discipline of a proper crew, arrr.',
-          'Throw me a bug, a repo path, or a wild idea. I\'ll plunder the docs and return with workin\' code.',
-        ],
+          "Throw me a bug, a repo path, or a wild idea. I'll plunder the docs and return with workin' code."
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3166,31 +3253,31 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'Hark! OpenAmer standeth ready',
           'What news from thy repository?',
           'The stage is set, the cursor blinks',
-          'Speak, and I shall act',
+          'Speak, and I shall act'
         ],
         bodies: [
-          'Speak thy bug, thy file, thy weary test, and I shall mend it with a scholar\'s hand and honest diff.',
+          "Speak thy bug, thy file, thy weary test, and I shall mend it with a scholar's hand and honest diff.",
           'Name the code that vexeth thee. I shall read, revise, and render a patch most fair and clean.',
-          'Present thy stack trace or thy dream. I\'ll traverse files, run tests, and report in plainest verse.',
+          "Present thy stack trace or thy dream. I'll traverse files, run tests, and report in plainest verse.",
           'Describe thy aim, good sir or madam. Thy branches shall be trimmed, thy bugs cast from the realm.',
-          'A line of intent sufficeth. I read, I edit, I commit - and leave thy history unblemished.',
-        ],
+          'A line of intent sufficeth. I read, I edit, I commit - and leave thy history unblemished.'
+        ]
       },
       surfer: {
         headlines: [
-          'Yo dude, what\'s the task?',
-          'Waves lookin\' clean, ready to code',
-          'Hangin\' ten at the prompt',
+          "Yo dude, what's the task?",
+          "Waves lookin' clean, ready to code",
+          "Hangin' ten at the prompt",
           'Stoked to help, bro',
-          'Tide\'s up, cursor\'s blinking',
+          "Tide's up, cursor's blinking"
         ],
         bodies: [
-          'Drop a file, a bug, a gnarly stack trace - I\'ll ride it out. Clean diffs, green tests, no wipeouts.',
-          'Paste your repo path or the bug that\'s bumming you out. We\'ll paddle in, fix it, paddle out. Easy.',
-          'Tell me the vibe: feature, refactor, hotfix. I\'ll run tests, ship the patch, and keep it mellow, brah.',
+          "Drop a file, a bug, a gnarly stack trace - I'll ride it out. Clean diffs, green tests, no wipeouts.",
+          "Paste your repo path or the bug that's bumming you out. We'll paddle in, fix it, paddle out. Easy.",
+          "Tell me the vibe: feature, refactor, hotfix. I'll run tests, ship the patch, and keep it mellow, brah.",
           'Big bug? Little typo? Whole rewrite? Just point. I handle the code; you chill with the rad commits.',
-          'Name the task and we\'re off. I read, edit, test, and leave a commit smoother than a dawn patrol.',
-        ],
+          "Name the task and we're off. I read, edit, test, and leave a commit smoother than a dawn patrol."
+        ]
       },
       teacher: {
         headlines: [
@@ -3198,15 +3285,15 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'What shall we learn today?',
           'Ready to walk you through it',
           'Bring me a question',
-          'Let\'s start with the basics',
+          "Let's start with the basics"
         ],
         bodies: [
-          'Ask about any file, concept, or error. I\'ll explain the why, not just the fix, and show a worked example.',
-          'Paste code to review, a bug to debug, or a concept to unpack. I\'ll guide you step by step.',
-          'Share the problem. I\'ll break it into parts, explain each, and leave you able to solve the next one alone.',
-          'We\'ll read the code together, find the root cause, and build a mental model you can reuse next time.',
-          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.',
-        ],
+          "Ask about any file, concept, or error. I'll explain the why, not just the fix, and show a worked example.",
+          "Paste code to review, a bug to debug, or a concept to unpack. I'll guide you step by step.",
+          "Share the problem. I'll break it into parts, explain each, and leave you able to solve the next one alone.",
+          "We'll read the code together, find the root cause, and build a mental model you can reuse next time.",
+          'Name the topic or paste the snippet. Expect explanations, diagrams in prose, and practice prompts.'
+        ]
       },
       technical: {
         headlines: [
@@ -3214,48 +3301,48 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
           'Agent loop idle',
           'Ready for dispatch',
           'Stdin open',
-          'Tools initialized',
+          'Tools initialized'
         ],
         bodies: [
           'Provide repo path, failing test, or stack trace. Tools: fs, git, exec, search, patch, http.',
           'Send a prompt to trigger tool calls. Supports multi-file edits, test runs, git ops, and web fetches.',
           'Enter task. I will plan, call tools, verify output. Logs stream inline; diffs returned pre-apply.',
           'Accepts natural language or structured commands. Typical flow: read -> plan -> patch -> test -> report.',
-          'filesystem, terminal, git, browser, search. Describe the change; I return diffs and test output.',
-        ],
+          'filesystem, terminal, git, browser, search. Describe the change; I return diffs and test output.'
+        ]
       },
       uwu: {
         headlines: [
           'uwu ready to hewp!',
           'openamer-san is wistening',
           '*tiny keyboard sounds*',
-          'wet\'s fix things togedda!',
-          'awaiting yur command!',
+          "wet's fix things togedda!",
+          'awaiting yur command!'
         ],
         bodies: [
-          'paste a buggy fiwe or a goaw~ i\'ll wead, patch, and test, aww with tiny pawprints on the diff owo',
+          "paste a buggy fiwe or a goaw~ i'll wead, patch, and test, aww with tiny pawprints on the diff owo",
           'teww me the task, no matter how smoww~ i pwomise cwean commits and gentwe refactors, nyuu~',
-          'dwop yur ewwor message hewe! i\'ll find the cuwpwit, fix it, and weave a happy test suite behind me owo',
-          'give me a wepo path ow a buggo and i\'ll take cawe of it uwu. gwr at bad code, kind to yu~',
-          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu',
-        ],
-      },
+          "dwop yur ewwor message hewe! i'll find the cuwpwit, fix it, and weave a happy test suite behind me owo",
+          "give me a wepo path ow a buggo and i'll take cawe of it uwu. gwr at bad code, kind to yu~",
+          'i can wun tests, edit fiwes, and open pwease-wook PRs. just say da wowd, fwend uwu'
+        ]
+      }
     },
     fallback: {
       headlines: [
         'What are we moving today?',
-        'What\'s on your mind?',
+        "What's on your mind?",
         'What should OpenAmer look at?',
         'Where should we start?',
-        'What needs attention?',
+        'What needs attention?'
       ],
       bodies: [
-        'Send a bug, branch, plan, or rough idea. I\'ll inspect the repo and turn it into the next concrete step.',
-        'Bring the code, question, or stuck part. I\'ll read the room before making changes.',
-        'Send the task, failing path, or half-formed plan. I\'ll help turn it into action.',
-        'Bring the problem, goal, or file. I\'ll inspect first and keep the next step concrete.',
-        'Send the context you have. I\'ll help sort it into a plan or a fix.',
-      ],
+        "Send a bug, branch, plan, or rough idea. I'll inspect the repo and turn it into the next concrete step.",
+        "Bring the code, question, or stuck part. I'll read the room before making changes.",
+        "Send the task, failing path, or half-formed plan. I'll help turn it into action.",
+        "Bring the problem, goal, or file. I'll inspect first and keep the next step concrete.",
+        "Send the context you have. I'll help sort it into a plan or a fix."
+      ]
     },
     personaMode: {
       headlines: [
@@ -3263,15 +3350,15 @@ ${mode} نىڭ ئاسىلىش تېمىنى ساقلاش ئۈچۈن بوش قال
         'What does ${label} OpenAmer need to see?',
         '${label} mode is ready.',
         'What should ${label} OpenAmer tackle?',
-        'Where should we begin?',
+        'Where should we begin?'
       ],
       bodies: [
-        'Send the task, file, or rough idea. I\'ll use your configured voice and keep the work grounded in this repo.',
-        'Bring the context or the stuck part. I\'ll adapt to your configured personality.',
-        'Send the problem, file, or idea. I\'ll follow the personality you\'ve configured.',
-        'Drop the task here. I\'ll keep the work grounded in the repo.',
-        'Give me the context and I\'ll answer in ${label} mode.',
-      ],
-    },
-  },
+        "Send the task, file, or rough idea. I'll use your configured voice and keep the work grounded in this repo.",
+        "Bring the context or the stuck part. I'll adapt to your configured personality.",
+        "Send the problem, file, or idea. I'll follow the personality you've configured.",
+        "Drop the task here. I'll keep the work grounded in the repo.",
+        "Give me the context and I'll answer in ${label} mode."
+      ]
+    }
+  }
 })

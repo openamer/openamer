@@ -14,9 +14,11 @@ export const ta = defineLocale({
       signInToRemoteGateway: 'தொலைவழி வாயில் உள்நுழையவும்',
       identityProvider: 'உங்கள் அடையாள வழங்கி',
       title: 'OpenAmer தொடங்க முடியவில்லை',
-      description: 'பின்னணி கேட்வே இயங்கவில்லை. கீழேயுள்ள மீட்பு நடவடிக்கைகளில் ஒன்றை முயற்சிக்கவும். இங்கு உங்கள் வர்த்தகங்கள் அல்லது அமைப்புகள் நீக்கப்படுவதில்லை.',
+      description:
+        'பின்னணி கேட்வே இயங்கவில்லை. கீழேயுள்ள மீட்பு நடவடிக்கைகளில் ஒன்றை முயற்சிக்கவும். இங்கு உங்கள் வர்த்தகங்கள் அல்லது அமைப்புகள் நீக்கப்படுவதில்லை.',
       remoteTitle: 'ரிமோட் கேட்வேக்கு உள்நுழைவு தேவை',
-      remoteDescription: 'உங்கள் ரிமோட் கேட்வே அமர்வின் காலம் முடிந்துவிட்டது. மீண்டும் இணைக்க உள்நுழையவும். இங்கு உங்கள் வர்த்தகங்கள் அல்லது அமைப்புகள் நீக்கப்படுவதில்லை.',
+      remoteDescription:
+        'உங்கள் ரிமோட் கேட்வே அமர்வின் காலம் முடிந்துவிட்டது. மீண்டும் இணைக்க உள்நுழையவும். இங்கு உங்கள் வர்த்தகங்கள் அல்லது அமைப்புகள் நீக்கப்படுவதில்லை.',
       retry: 'மீண்டும் முயற்சி',
       repairInstall: 'நிறுவனத்தை மீண்டும் நிறுவு',
       useLocalGateway: 'உள்ளூரக் கேட்வேவைப் பயன்படுத்து',
@@ -25,13 +27,15 @@ export const ta = defineLocale({
       openLogs: 'பதிவுகளைத் திற',
       repairHint: 'பழுதுபாரிப்பு நிறுவனத்தை மீண்டும் இயக்கும்; புதிய இயந்திரத்தில் இது சில நிமிடங்கள் ஆகலாம்.',
       signOutAndSignIn: 'வெளியேறு & உள்நுழை',
-      remoteFailureHint: 'கேட்வே URL-ஐயும், கேட்வே அமைப்புகளின் கீழ் உள்ள உள்நுழைவையும் சரிபார்க்கவும் அல்லது உள்ளூரக் கேட்வேவுக்கு மாறவும்.',
+      remoteFailureHint:
+        'கேட்வே URL-ஐயும், கேட்வே அமைப்புகளின் கீழ் உள்ள உள்நுழைவையும் சரிபார்க்கவும் அல்லது உள்ளூரக் கேட்வேவுக்கு மாறவும்.',
       hideRecentLogs: 'சமீபத்திய பதிவுகளை மறை',
       showRecentLogs: 'சமீபத்திய பதிவுகளைக் காட்டு',
       signedInTitle: 'உள்நுழைந்துள்ளது',
       signedInMessage: 'ரிமோட் கேட்வேவுடன் மீண்டும் இணைக்கப்படுகிறது…',
-      remoteSignInHint: signInLabel => `சேமிக்கப்பட்ட ரிமோட் பிரவுசர் அமர்விலிருந்து வெளியேறி, பின்னர் ${signInLabel} ஐத் திறக்கிறது. பண்டில் செய்யப்பட்ட பேக்எண்டிற்கு மாற லோக்கல் கேட்வேயைப் பயன்படுத்தவும்.`,
-      signInWithProvider: provider => `${provider} மூலம் உள்நுழையவும்`,
+      remoteSignInHint: signInLabel =>
+        `சேமிக்கப்பட்ட ரிமோட் பிரவுசர் அமர்விலிருந்து வெளியேறி, பின்னர் ${signInLabel} ஐத் திறக்கிறது. பண்டில் செய்யப்பட்ட பேக்எண்டிற்கு மாற லோக்கல் கேட்வேயைப் பயன்படுத்தவும்.`,
+      signInWithProvider: provider => `${provider} மூலம் உள்நுழையவும்`
     },
     ready: 'OpenAmer டெஸ்க்டாப் தயாராக உள்ளது',
     steps: {
@@ -39,7 +43,7 @@ export const ta = defineLocale({
       loadingSettings: 'OpenAmer அமைப்புகள் ஏற்றப்படுகின்றன',
       loadingSessions: 'சமீபத்திய அமர்வுகள் ஏற்றப்படுகின்றன',
       startingDesktopConnection: 'டெஸ்க்டாப் இணைப்பு தொடங்கப்படுகிறது',
-      startingOpenAmerDesktop: 'OpenAmer டெஸ்க்டாப் தொடங்கப்படுகிறது…',
+      startingOpenAmerDesktop: 'OpenAmer டெஸ்க்டாப் தொடங்கப்படுகிறது…'
     },
     errors: {
       backgroundExited: 'OpenAmer பின்னணிச் செயல்முறை முடிந்தது.',
@@ -48,9 +52,9 @@ export const ta = defineLocale({
       desktopBootFailed: 'டெஸ்க்டாப் தொடங்க முடியவில்லை',
       gatewayConnectionLost: 'கேட்வேவுடனான இணைப்பு இழக்கப்பட்டது',
       gatewaySignInRequired: 'கேட்வேக்கு உள்நுழைவு தேவை',
-      ipcBridgeUnavailable: 'டெஸ்க்டாப் IPC பாலம் கிடைக்கவில்லை.',
+      ipcBridgeUnavailable: 'டெஸ்க்டாப் IPC பாலம் கிடைக்கவில்லை.'
     },
-    desktopBootFailedWithMessage: message => `டெஸ்க்டாப் பூட் தோல்வியுற்றது: ${message}`,
+    desktopBootFailedWithMessage: message => `டெஸ்க்டாப் பூட் தோல்வியுற்றது: ${message}`
   },
   notifications: {
     region: 'அறிவிப்புகள்',
@@ -62,7 +66,8 @@ export const ta = defineLocale({
     copyDetail: 'விவரத்தை நகலெடு',
     copyDetailFailed: 'அறிவிப்பு விவரத்தை நகலெடுக்க முடியவில்லை',
     backendOutOfDateTitle: 'பின்புறம் காலமுறைக்குரியது',
-    backendOutOfDateMessage: 'உங்கள் OpenAmer பின்புறம் இந்த டெஸ்க்டாப் பதிப்பைவிடப் பழையது; சரியாகச் செயல்படாமல் இருக்கலாம். இரண்டையும் பொருத்த பொருத்தத்திற்கு புதுப்பிடுங்கள்.',
+    backendOutOfDateMessage:
+      'உங்கள் OpenAmer பின்புறம் இந்த டெஸ்க்டாப் பதிப்பைவிடப் பழையது; சரியாகச் செயல்படாமல் இருக்கலாம். இரண்டையும் பொருத்த பொருத்தத்திற்கு புதுப்பிடுங்கள்.',
     installMethodUnsupportedTitle: 'ஆதரிக்கப்படாத நிறுவன முறை',
     updateOpenAmer: 'OpenAmer-ஐப் புதுப்பி',
     updateReadyTitle: 'புதுப்பாண்வு தயார்',
@@ -71,11 +76,12 @@ export const ta = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-க்கு ELEVENLABS_API_KEY தேவை.',
       elevenLabsRejectedKey: 'ElevenLabs API விசையை நிராகரித்தது (401).',
       gatewayAuthFailed: 'வாயில் அடையாளச் சரிபார்ப்பு தோல்வியடைந்தது — உங்கள் API_SERVER_KEY-ஐச் சரிபார்க்கவும்.',
-      methodNotAllowed: 'டெஸ்க்டாப் பின்புறம் அந்தக் கோரிக்கையை நிராகரித்தது (405 Method Not Allowed). OpenAmer Desktop-ஐ மீண்டும் தொடங்க முயற்சிக்கவும்.',
+      methodNotAllowed:
+        'டெஸ்க்டாப் பின்புறம் அந்தக் கோரிக்கையை நிராகரித்தது (405 Method Not Allowed). OpenAmer Desktop-ஐ மீண்டும் தொடங்க முயற்சிக்கவும்.',
       microphonePermission: 'மைக்ரோஃபோன் அனுமதி மறுக்கப்பட்டது.',
       openaiRejectedApiKey: 'OpenAI API விசையை நிராகரித்தது.',
       openaiTtsNeedsKey: 'OpenAI TTS-க்கு VOICE_TOOLS_OPENAI_KEY அல்லது OPENAI_API_KEY தேவை.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI API கீயை நிராகரித்தது (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI API கீயை நிராகரித்தது (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'குரல் முறையைப் பயன்படுத்த பேச்சு எழுத்தாக்கத்தை அமைக்கவும்.',
@@ -94,7 +100,7 @@ export const ta = defineLocale({
       transcriptionFailed: 'குரல் பெயர்ப்பு தோல்வியடைந்தது',
       transcriptionUnavailable: 'குரல் உரைமாற்றம் இன்னும் கிடைக்கவில்லை.',
       tryRecordingAgain: 'மீண்டும் பதிவு செய்ய முயற்சிக்கவும்.',
-      unavailable: 'குரல் கிடைக்கவில்லை',
+      unavailable: 'குரல் கிடைக்கவில்லை'
     },
     more: count => `மேலும் ${count} ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} புதிய மாற்றம்${count === 1 ? '' : 's'} உள்ளது.`,
@@ -109,8 +115,8 @@ export const ta = defineLocale({
       turnErrorTitle: 'சுற்று தோல்வியடைந்தது',
       backgroundDoneTitle: 'பின்னணி பணி முடிந்தது',
       backgroundFailedTitle: 'பின்னணி பணி தோல்வியடைந்தது',
-      creditsTitle: 'கிரெடிட்கள்',
-    },
+      creditsTitle: 'கிரெடிட்கள்'
+    }
   },
   fileMenu: {
     revealFileManager: 'உள்ளடக்கும் கோப்புறையைத் திற',
@@ -125,7 +131,7 @@ export const ta = defineLocale({
     pathCopied: 'பாதை நகலெடுக்கப்பட்டது',
     revealFinder: 'Finder-இல் காட்டு',
     revealExplorer: 'File Explorer-இல் காட்டு',
-    deleteTitle: name => `${name} ஐ நீக்க வேண்டுமா?`,
+    deleteTitle: name => `${name} ஐ நீக்க வேண்டுமா?`
   },
   keybinds: {
     actions: {
@@ -205,7 +211,7 @@ export const ta = defineLocale({
       'composer.queue': 'செய்தியை வரிசைப்படுத்து',
       'composer.sendQueued': 'அடுத்த வரிசைச் சுற்றை அனுப்பு',
       'composer.mention': 'கோப்புகள், கோப்புறைகள், URLகளைக் குறிப்பிடு',
-      'composer.slash': 'ஸ்லாஷ் கட்டளைத் தட்டு',
+      'composer.slash': 'ஸ்லாஷ் கட்டளைத் தட்டு'
     },
     title: 'விசைப்பலகைக் குறுக்குவழிகள்',
     subtitle: open => `மறுபடியும் இணைக்க ஷார்ட்கட்டை கிளிக் செய்யவும் · ${open} இந்த பேனலை மீண்டும் திறக்கும்.`,
@@ -221,8 +227,8 @@ export const ta = defineLocale({
       profiles: 'சுயவிவரங்கள்',
       session: 'அமர்வு',
       navigation: 'வழிசெலுத்தல்',
-      view: 'காட்சி',
-    },
+      view: 'காட்சி'
+    }
   },
   language: {
     label: 'மொழி',
@@ -231,7 +237,7 @@ export const ta = defineLocale({
     saveError: 'மொழி புதுப்பிப்பு தோல்வியடைந்தது',
     switchTo: 'மொழியை மாற்று',
     searchPlaceholder: 'மொழிகளைத் தேடு…',
-    noResults: 'மொழிகள் எதுவும் கிடைக்கவில்லை',
+    noResults: 'மொழிகள் எதுவும் கிடைக்கவில்லை'
   },
   settings: {
     closeSettings: 'அமைப்புகளை மூடு',
@@ -256,11 +262,12 @@ export const ta = defineLocale({
       billing: 'கட்டணம்',
       notifications: 'அறிவிப்புகள்',
       plugins: 'செplug-inகள்',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'டெஸ்க்டாப் செplug-inகள்',
-      blurb: 'இந்தச் செயலிக்கு ஏற்றப்பட்ட UI நீட்சிகள் — பில்டுடன் இணைக்கப்பட்டவை அல்லது desktop-plugins கோப்புறையில் வைக்கப்பட்டவை (OpenAmer எழுதுபவை உட்பட). செயலிழக்கும்போது அந்த plug-in உடனடியாக அகற்றப்பட்டு, மறுதொடர்களிலும் இதுவே இருக்கும்.',
+      blurb:
+        'இந்தச் செயலிக்கு ஏற்றப்பட்ட UI நீட்சிகள் — பில்டுடன் இணைக்கப்பட்டவை அல்லது desktop-plugins கோப்புறையில் வைக்கப்பட்டவை (OpenAmer எழுதுபவை உட்பட). செயலிழக்கும்போது அந்த plug-in உடனடியாக அகற்றப்பட்டு, மறுதொடர்களிலும் இதுவே இருக்கும்.',
       openFolder: 'செplug-in கோப்புறையைத் திற',
       rescan: 'மீண்டும் ஆய்கு',
       reveal: 'கோப்பு மேலாணியில் காட்டு',
@@ -271,50 +278,53 @@ export const ta = defineLocale({
       kinds: {
         bundled: 'பொருந்தப்பட்டது',
         disk: 'வெற்றிடத்தில் உள்ளது',
-        runtime: 'இயக்க நேரம்',
+        runtime: 'இயக்க நேரம்'
       },
-      count: n => `${n} நிறுவப்பட்டது`,
+      count: n => `${n} நிறுவப்பட்டது`
     },
     notifications: {
       title: 'அறிவிப்புகள்',
-      intro: 'உள்ளப் பயன்பாட்டு செய்திகளிலிருந்து தனிப்பட்ட, இயற்கையான டெஸ்க்டாப் அறிவிப்புகள். இவை சாதனத்திற்குரியவை — ஒவ்வொரு கணினியும் தனது அமைப்புகளைத் தனித்து வைத்திருக்கும்.',
+      intro:
+        'உள்ளப் பயன்பாட்டு செய்திகளிலிருந்து தனிப்பட்ட, இயற்கையான டெஸ்க்டாப் அறிவிப்புகள். இவை சாதனத்திற்குரியவை — ஒவ்வொரு கணினியும் தனது அமைப்புகளைத் தனித்து வைத்திருக்கும்.',
       enableAll: 'அறிவிப்புகளை இயக்கு',
       enableAllDesc: 'முதன்மை நிலைமாற்றி. அனைத்து அறிவிப்புகளையும் நிச்சூக்க இதை முறக்கவும்.',
       focusedHint: 'OpenAmer பின்னணியில் இருக்கும்போதே முடிவு அறிவிப்புகள் வழங்கப்படும்.',
       kinds: {
         approval: {
           label: 'ஒப்புதல் தேவை',
-          description: 'ஒரு கட்டளைய ஒப்புதல் அல்லது நிராகரிப்பதற்காகக் காத்திருக்கிறது.',
+          description: 'ஒரு கட்டளைய ஒப்புதல் அல்லது நிராகரிப்பதற்காகக் காத்திருக்கிறது.'
         },
         input: {
           label: 'உள்ளீடு தேவை',
-          description: 'OpenAmer ஒரு கேள்வியைக் கேட்டுள்ளது அல்லது கடவுச்சொல் அல்லது ரகசியத்தைத் தேவைப்படுகிறது.',
+          description: 'OpenAmer ஒரு கேள்வியைக் கேட்டுள்ளது அல்லது கடவுச்சொல் அல்லது ரகசியத்தைத் தேவைப்படுகிறது.'
         },
         turnDone: {
           label: 'பதில் தயார்',
-          description: 'OpenAmer பின்னணியில் இருக்கும்போது ஒரு சுற்று முடிந்தது.',
+          description: 'OpenAmer பின்னணியில் இருக்கும்போது ஒரு சுற்று முடிந்தது.'
         },
         turnError: {
           label: 'சுற்று தோல்வியடைந்தது',
-          description: 'ஒரு சுற்று பிழையுடன் முடிந்தது.',
+          description: 'ஒரு சுற்று பிழையுடன் முடிந்தது.'
         },
         backgroundDone: {
           label: 'பின்னணிப் பணி முடிந்தது',
-          description: 'பின்னணியில் இயக்கப்பட்ட முனைக்கட்டளை முடிந்தது.',
+          description: 'பின்னணியில் இயக்கப்பட்ட முனைக்கட்டளை முடிந்தது.'
         },
         credits: {
           label: 'கிரெடிட் அறிவிப்புகள்',
-          description: 'கிரெடிட் அணுகல் இடமூற்றப்பட்டது அல்லது மீட்டமைக்கப்பட்டது.',
-        },
+          description: 'கிரெடிட் அணுகல் இடமூற்றப்பட்டது அல்லது மீட்டமைக்கப்பட்டது.'
+        }
       },
       test: 'சோதனை அறிவிப்பு அனுப்பு',
       testTitle: 'OpenAmer',
       testBody: 'அறிவிப்புகள் சரியாகச் செயல்படுகின்றன.',
-      testSent: 'சோதனை அனுப்பப்பட்டது. எதுவும் தெரியவில்லைந்தால், உங்கள் OS அறிவிப்பு அனுமதிகளையும் Focus/Do Not Disturb அமைப்புகளையும் சரிபார்க்கவும்.',
+      testSent:
+        'சோதனை அனுப்பப்பட்டது. எதுவும் தெரியவில்லைந்தால், உங்கள் OS அறிவிப்பு அனுமதிகளையும் Focus/Do Not Disturb அமைப்புகளையும் சரிபார்க்கவும்.',
       testUnsupported: 'இந்தக் கணினி இயற்கையான அறிவிப்புகளை ஆதரிக்கவில்லை.',
       completionSoundTitle: 'முடிவுச் சத்தம்',
-      completionSoundDesc: 'ஒரு முக்கியச் சுற்று முடியும்போது இது இயக்கப்படும். ஒரு முன்னமைவைத் தேர்ந்தெடுத்து இங்கு முன்னோட்டம் செய்யவும்.',
-      completionSoundPreview: 'முன்னோட்டம்',
+      completionSoundDesc:
+        'ஒரு முக்கியச் சுற்று முடியும்போது இது இயக்கப்படும். ஒரு முன்னமைவைத் தேர்ந்தெடுத்து இங்கு முன்னோட்டம் செய்யவும்.',
+      completionSoundPreview: 'முன்னோட்டம்'
     },
     sections: {
       model: 'மாதிரி',
@@ -324,7 +334,7 @@ export const ta = defineLocale({
       safety: 'பாதுகாப்பு',
       memory: 'நினைவு & சூழல்',
       voice: 'குரல்',
-      advanced: 'மேம்பட்டமான',
+      advanced: 'மேம்பட்டமான'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop பற்றி',
@@ -332,36 +342,39 @@ export const ta = defineLocale({
       gateway: 'Gateway இணைப்பு...',
       keys: 'API விசைகளைத் தேடு...',
       mcp: 'MCP சர்வர்களைத் தேடு...',
-      sessions: 'ச|archive செய்யப்பட்ட அமர்வுகளைத் தேடு...',
+      sessions: 'ச|archive செய்யப்பட்ட அமர்வுகளைத் தேடு...'
     },
     modeOptions: {
       light: {
         label: 'ஒளி',
-        description: 'ஒளியுள்ள டெஸ்க்டாப் மேற்பரப்புகள்',
+        description: 'ஒளியுள்ள டெஸ்க்டாப் மேற்பரப்புகள்'
       },
       dark: {
         label: 'இருள்',
-        description: 'குறைந்த கதிர்வுடைய வேலைப்பளம்',
+        description: 'குறைந்த கதிர்வுடைய வேலைப்பளம்'
       },
       system: {
         label: 'கணினி',
-        description: 'OS தோற்றத்தைப் பின்பற்று',
-      },
+        description: 'OS தோற்றத்தைப் பின்பற்று'
+      }
     },
     appearance: {
       title: 'தோற்றம்',
-      intro: 'இவை டெஸ்க்டாப் மட்டுமான காட்சி விருப்பங்கள். பயன்முறை ஒளித்தன்மையைக் கட்டுப்படுத்துகிறது; தீம் விருப்பத்தின் விபர நிறவரிசையையும் சாட்டின் பின்னணி வடிவமையையும் கட்டுப்படுத்துகிறது.',
+      intro:
+        'இவை டெஸ்க்டாப் மட்டுமான காட்சி விருப்பங்கள். பயன்முறை ஒளித்தன்மையைக் கட்டுப்படுத்துகிறது; தீம் விருப்பத்தின் விபர நிறவரிசையையும் சாட்டின் பின்னணி வடிவமையையும் கட்டுப்படுத்துகிறது.',
       colorMode: 'நிற முறை',
       colorModeDesc: 'ஒரு நிலையான முறையைத் தேர்வு செய் அல்லது OpenAmer உங்கள் கணினியின் அமைப்பைப் பின்பற்றச் செய்.',
       toolViewTitle: 'கருவி அழைப்புக் காட்சி',
-      toolViewDesc: 'செயல்முறை முறை அசல் கருவிப் பொருட்களை மறைக்கும்; தொழில்நுட்ப முறை முழு உள்ளீடு/வெளியீட்டைக் காட்டும்.',
+      toolViewDesc:
+        'செயல்முறை முறை அசல் கருவிப் பொருட்களை மறைக்கும்; தொழில்நுட்ப முறை முழு உள்ளீடு/வெளியீட்டைக் காட்டும்.',
       uiScaleTitle: 'UI அளவு',
       translucencyTitle: 'சாளி ந Translucency',
       translucencyDesc: 'சாளியின் முழுவதும் உங்கள் டெஸ்க்டாபைப் பார்க்கலாம். macOS மற்றும் Windows மட்டும்.',
       backdropTitle: 'சாட்டின் பின்னணி',
       backdropDesc: 'உரையாடலுக்குப் பின்னால் உள்ள மங்கலமான சிலைப் படம்.',
       embedsTitle: 'உட்செருகல்கள்',
-      embedsDesc: 'மூன்றாம் தரப்பு தளங்களிலிருந்து (YouTube, X, …) செறிவான முன்னோட்டங்கள் ஏற்றப்படும். கேட்டு ஒவ்வொன்றையும் அனுமதிக்கும் வரை placeholder காட்டும்; எப்போதும் அவற்றைத் தானியாக ஏற்றும்; மூடு வழக்கமான இணைப்புகளையே வைத்திருக்கும்.',
+      embedsDesc:
+        'மூன்றாம் தரப்பு தளங்களிலிருந்து (YouTube, X, …) செறிவான முன்னோட்டங்கள் ஏற்றப்படும். கேட்டு ஒவ்வொன்றையும் அனுமதிக்கும் வரை placeholder காட்டும்; எப்போதும் அவற்றைத் தானியாக ஏற்றும்; மூடு வழக்கமான இணைப்புகளையே வைத்திருக்கும்.',
       embedsAsk: 'கேட்டு',
       embedsAlways: 'எப்போதும்',
       embedsOff: 'மூடு',
@@ -372,7 +385,8 @@ export const ta = defineLocale({
       themeTitle: 'தீம்',
       themeDesc: 'டெஸ்க்டாப் நிறவரிசைகள் மட்டும். தேர்ந்தெடுக்கப்பட்ட முறை அவற்றின் மேல் பயன்படுத்தப்படும்.',
       installTitle: 'VS Code-இலிருந்து நிறுவி',
-      installDesc: 'ஒரு Marketplace விதிவிருத்தி id-ஐ (எ.கா. dracula-theme.theme-dracula) ஒட்டி, அதன் நிறத் தீமை டெஸ்க்டாப் நிறவரிசையாக மாற்றுங்கள்.',
+      installDesc:
+        'ஒரு Marketplace விதிவிருத்தி id-ஐ (எ.கா. dracula-theme.theme-dracula) ஒட்டி, அதன் நிறத் தீமை டெஸ்க்டாப் நிறவரிசையாக மாற்றுங்கள்.',
       installButton: 'நிறுவி',
       installing: 'நிறுவிக்கிறது…',
       installError: 'அந்தத் தீமை நிறுவ முடியவில்லை.',
@@ -380,8 +394,10 @@ export const ta = defineLocale({
       importedBadge: 'இறக்குமதி செய்யப்பட்டது',
       pet: {
         title: 'செல்லப்பெரி',
-        intro: 'ஆப் மீது மிதவை மேலே மிதவை நகரும் விலங்கு வடிவத்தைப் பதிவிசெய்யவும் — கருவிகள் செயல்படும்போது ஓடும், வெற்றியில் மகிந்து, பிழைகளில் வருத்தப்படும்.',
-        restartHint: 'விலங்குகளுக்கு விரைவாக மீண்டும் தொடங்க வேண்டும் — இந்த அமைப்பு சேர்க்கப்படுவதற்கு முன் பயன்பாடு தொடங்கப்பட்டது. OpenAmer-ஐ மூடி மீண்டும் திறந்து, பின்னர் மீண்டும் இங்கே வரவும்.',
+        intro:
+          'ஆப் மீது மிதவை மேலே மிதவை நகரும் விலங்கு வடிவத்தைப் பதிவிசெய்யவும் — கருவிகள் செயல்படும்போது ஓடும், வெற்றியில் மகிந்து, பிழைகளில் வருத்தப்படும்.',
+        restartHint:
+          'விலங்குகளுக்கு விரைவாக மீண்டும் தொடங்க வேண்டும் — இந்த அமைப்பு சேர்க்கப்படுவதற்கு முன் பயன்பாடு தொடங்கப்பட்டது. OpenAmer-ஐ மூடி மீண்டும் திறந்து, பின்னர் மீண்டும் இங்கே வரவும்.',
         on: 'இயக்கு',
         off: 'நிறுத்து',
         scaleTitle: 'அளவு',
@@ -413,13 +429,15 @@ export const ta = defineLocale({
         adoptFailed: slug => `${slug} ஐ ஏற்றுக்கொள்ள முடியவில்லை`,
         uninstallFailed: slug => `${slug} ஐ நிறுக்கு நீக்கம் செய்ய முடியவில்லை`,
         renameFailed: slug => `${slug} ஐ பெயர் மாற்றம் செய்ய முடியவில்லை`,
-        exportFailed: slug => `${slug} ஐ ஏற்றுமதி செய்ய முடியவில்லை`,
+        exportFailed: slug => `${slug} ஐ ஏற்றுமதி செய்ய முடியவில்லை`
       },
-      uiScaleDesc: (percent: number) => `ஆப் முழுவதும் உள்ள உரை மற்றும் கட்டுப்பாடுகளை அளவிடுகிறது. Cmd/Ctrl உடன் +, - மற்றும் 0-வும் வேலை செய்யும். தற்போது: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `ஆப் முழுவதும் உள்ள உரை மற்றும் கட்டுப்பாடுகளை அளவிடுகிறது. Cmd/Ctrl உடன் +, - மற்றும் 0-வும் வேலை செய்யும். தற்போது: ${percent}%.`,
       embedsReset: (count: number) => `மீட்டமை ${count} அனுமதிக்கப்பட்டது ${count === 1 ? 'service' : 'services'}`,
-      themeProfileNote: profile => `${profile} புரொஃபைலுக்காக சேமிக்கப்பட்டது — ஒவ்வொரு புரொஃபைலும் அதன் சொந்த தீம்களை வைத்திருக்கும்.`,
+      themeProfileNote: profile =>
+        `${profile} புரொஃபைலுக்காக சேமிக்கப்பட்டது — ஒவ்வொரு புரொஃபைலும் அதன் சொந்த தீம்களை வைத்திருக்கும்.`,
       installPlaceholder: 'வெளியீட்டாளர்.நீட்சி',
-      installed: name => `“${name}” நிறுவப்பட்டது.`,
+      installed: name => `“${name}” நிறுவப்பட்டது.`
     },
     about: {
       heading: 'OpenAmer டெஸ்க்டாப்',
@@ -437,7 +455,8 @@ export const ta = defineLocale({
       tapCheck: 'புதுப்பிப்புகளைத் தேட "இப்போது சரிபார்க்கவும்" என்பதைத் தட்டவும்.',
       justNowSuffix: '· இப்போதுதான்',
       automaticUpdates: 'தானியான புதுப்பிப்புகள்',
-      automaticUpdatesDesc: 'OpenAmer பின்னணியில் தானியாகப் புதுப்பிப்புகளைச் சரிபார்த்து, ஒன்று தயாராகும்போது உங்களுக்குத் தெரிவிக்கும்.',
+      automaticUpdatesDesc:
+        'OpenAmer பின்னணியில் தானியாகப் புதுப்பிப்புகளைச் சரிபார்த்து, ஒன்று தயாராகும்போது உங்களுக்குத் தெரிவிக்கும்.',
       never: 'எப்போதும் இல்லை',
       justNow: 'இப்போதுதான்',
       version: value => `பதிப்பு ${value}`,
@@ -446,22 +465,26 @@ export const ta = defineLocale({
       branchCommit: (branch, commit) => `கிளை ${branch} · கமிட் ${commit}`,
       minAgo: count => `${count} நிமிடங்களுக்கு முன்`,
       hoursAgo: count => `${count} மணிநேரங்களுக்கு முன்`,
-      daysAgo: count => `${count} நாட்களுக்கு முன்`,
+      daysAgo: count => `${count} நாட்களுக்கு முன்`
     },
     gateway: {
       modeTitle: 'இணைப்பு முறை',
       localTitle: 'உள்ளூர் கேட்வி',
-      localDesc: 'localhost-இல் தனியான OpenAmer பின்னணியைத் தொடங்குங்கள். இது இயல்பான அமைப்பாகும், இணைப்பிலி வேலை செய்கிறது.',
+      localDesc:
+        'localhost-இல் தனியான OpenAmer பின்னணியைத் தொடங்குங்கள். இது இயல்பான அமைப்பாகும், இணைப்பிலி வேலை செய்கிறது.',
       inheritTitle: 'வழக்கமான கேட்வியைப் பயன்படுத்து',
       inheritDesc: 'இந்தச் சுயவடிவத்தின் மாற்றத்தை நீக்கி, வழக்கமான இணைப்பைப் பயன்படுத்துங்கள்.',
       remoteTitle: 'தொலைநிலை கேட்வி',
       remoteDesc: 'இந்த டெஸ்க்டாப் ஷெலைத் தொலைநிலை OpenAmer பின்னணியுடன் இணைக்குங்கள்.',
-      remoteAuthHint: 'ஹோஸ்ட் செய்யப்பட்ட கேட்விகள் OAuth அல்லது பயனரின் பெயர், கடவுச்சொல்லைப் பயன்படுத்தும்; சுய-ஹோஸ்ட் செய்யப்பட்டவை அமர்வு டோக்கனைப் பயன்படுத்தலாம்.',
-      cloudDesc: 'OpenAmer Cloud-இல் ஒருமுறை உள்நுழைந்து, உங்கள் கணக்கின் ஏஜென்ட்களைத் தேர்ந்தெடுக்குங்கள் — URL-ஐpaste செய்ய வேண்டியதில்லை.',
+      remoteAuthHint:
+        'ஹோஸ்ட் செய்யப்பட்ட கேட்விகள் OAuth அல்லது பயனரின் பெயர், கடவுச்சொல்லைப் பயன்படுத்தும்; சுய-ஹோஸ்ட் செய்யப்பட்டவை அமர்வு டோக்கனைப் பயன்படுத்தலாம்.',
+      cloudDesc:
+        'OpenAmer Cloud-இல் ஒருமுறை உள்நுழைந்து, உங்கள் கணக்கின் ஏஜென்ட்களைத் தேர்ந்தெடுக்குங்கள் — URL-ஐpaste செய்ய வேண்டியதில்லை.',
       cloudSignIn: 'OpenAmer Cloud-இல் உள்நுழைக',
       cloudSignedIn: 'OpenAmer Cloud-இல் உள்நுழைந்துள்ளீர்கள்',
       cloudNeedsSignIn: 'உங்கள் கணக்கின் ஏஜென்ட்களைக் கண்டறிய, OpenAmer Cloud-இல் உள்நுழைக.',
-      cloudSignedInDesc: 'நீங்கள் உள்நுழைந்துள்ளீர்கள். கீழே ஒரு ஏஜென்டைத் தேர்ந்தெடுக்குங்கள்; அமர்வு தானாகப் புதுப்பிக்கப்படும்.',
+      cloudSignedInDesc:
+        'நீங்கள் உள்நுழைந்துள்ளீர்கள். கீழே ஒரு ஏஜென்டைத் தேர்ந்தெடுக்குங்கள்; அமர்வு தானாகப் புதுப்பிக்கப்படும்.',
       cloudAgentsTitle: 'உங்கள் ஏஜென்ட்கள்',
       cloudOrgPickerTitle: 'ஒரு அமைப்பைத் தேர்ந்தெடுக்குங்கள்',
       cloudOrgSelect: 'தேர்ந்தெடு',
@@ -470,7 +493,7 @@ export const ta = defineLocale({
       cloudNoAgents: {
         before: 'இந்தக் கணக்கில் ஏஜென்ட்கள் எதுவும் கிடைக்கவில்லை.',
         linkText: 'OpenAmer போர்டலில் ஒன்றை உருவாக்குங்கள்',
-        after: ', பின்னர் புதுப்பித்து.',
+        after: ', பின்னர் புதுப்பித்து.'
       },
       cloudRefresh: 'புதுப்பி',
       cloudConnect: 'இணை',
@@ -484,25 +507,32 @@ export const ta = defineLocale({
       cloudConnectedPill: 'இணைக்கப்பட்டது',
       cloudAgentProvisioning: 'வழங்கப்படுகிறது…',
       remoteUrlTitle: 'தொலைநிலை URL',
-      remoteUrlDesc: 'தொலைநிலை டாஷ்போர்டு பின்னணிக்கான Base URL. பாதை முன்னொடிகள் ஆதரிக்கப்படுகின்றன, எடுத்துக்காட்டாக /openamer.',
+      remoteUrlDesc:
+        'தொலைநிலை டாஷ்போர்டு பின்னணிக்கான Base URL. பாதை முன்னொடிகள் ஆதரிக்கப்படுகின்றன, எடுத்துக்காட்டாக /openamer.',
       probing: 'இந்தக் கேட்வி எவ்வாறு அங்கீகரிக்கிறது என்பது சரிபார்க்கப்படுகிறது…',
-      probeError: 'இந்தக் கேட்வியை இன்னும் அடைய முடியவில்லை. URL-ஐச் சரிபார்க்குங்கள் — அது பதிலளித்தவும் அங்கீகரிக்கும் முறை தெரியும்.',
+      probeError:
+        'இந்தக் கேட்வியை இன்னும் அடைய முடியவில்லை. URL-ஐச் சரிபார்க்குங்கள் — அது பதிலளித்தவும் அங்கீகரிக்கும் முறை தெரியும்.',
       signedIn: 'உள்நுழைந்துள்ளீர்கள்',
       signIn: 'உள்நுழை',
       signOut: 'வெளியேறு',
       authTitle: 'உறுதிப்படுத்தல்',
-      authSignedInPassword: 'இந்த கேட்வேயில் பயனர்பெயர் மற்றும் கடவுச்சொல் பயன்படுத்தப்படுகிறது. நீங்கள் உள்நுழைந்துள்ளீர்; அமர்வு தானாக புதுப்பிக்கப்படும்.',
-      authSignedInOauth: 'இந்த கேட்வேயில் OAuth பயன்படுத்தப்படுகிறது. நீங்கள் உள்நுழைந்துள்ளீர்; அமர்வு தானாக புதுப்பிக்கப்படும்.',
-      authNeedsPassword: 'இந்த கேட்வேயில் பயனர்பெயர் மற்றும் கடவுச்சொல் பயன்படுத்தப்படுகிறது. இந்தச் செயலிட்டை அனுமதிக்க உள்நுழையவும்.',
+      authSignedInPassword:
+        'இந்த கேட்வேயில் பயனர்பெயர் மற்றும் கடவுச்சொல் பயன்படுத்தப்படுகிறது. நீங்கள் உள்நுழைந்துள்ளீர்; அமர்வு தானாக புதுப்பிக்கப்படும்.',
+      authSignedInOauth:
+        'இந்த கேட்வேயில் OAuth பயன்படுத்தப்படுகிறது. நீங்கள் உள்நுழைந்துள்ளீர்; அமர்வு தானாக புதுப்பிக்கப்படும்.',
+      authNeedsPassword:
+        'இந்த கேட்வேயில் பயனர்பெயர் மற்றும் கடவுச்சொல் பயன்படுத்தப்படுகிறது. இந்தச் செயலிட்டை அனுமதிக்க உள்நுழையவும்.',
       tokenTitle: 'அமர்வு டோக்கன்',
-      tokenDesc: 'REST மற்றும் WebSocket அணுகலுக்குப் பயன்படுத்தப்படும் டாஷ்போர்டு அமர்வு டோக்கன். சேமித்த டோக்கனை வைத்திருக்க காலியாக விடவும்.',
+      tokenDesc:
+        'REST மற்றும் WebSocket அணுகலுக்குப் பயன்படுத்தப்படும் டாஷ்போர்டு அமர்வு டோக்கன். சேமித்த டோக்கனை வைத்திருக்க காலியாக விடவும்.',
       savedToken: 'சேமிக்கப்பட்டது',
       pasteSessionToken: 'அமர்வு டோக்கனை ஒட்டவும்',
       testRemote: 'தூரநிலைச் சோதனை',
       saveForRestart: 'அடுத்த மறுபூக்கத்திற்குச் சேமி',
       saveAndReconnect: 'சேமித்து மீண்டும் இணைக்கவும்',
       diagnostics: 'நோயறிதல்',
-      diagnosticsDesc: 'கேட்வே தொடங்க முடியாதபோது பயனுள்ளதாக இருக்கும், உங்கள் கோப்பு மேலாணலில் `desktop.log`ஐக் காட்டவும்.',
+      diagnosticsDesc:
+        'கேட்வே தொடங்க முடியாதபோது பயனுள்ளதாக இருக்கும், உங்கள் கோப்பு மேலாணலில் `desktop.log`ஐக் காட்டவும்.',
       openLogs: 'பதிவுகளைத் திற',
       incompleteTitle: 'தூரநிலைக் கேட்வே முழுமையாக இல்லை',
       incompleteSignIn: 'தூரநிலைக்கு மாறுவதற்கு முன் ஒரு தூரநிலை URL-ஐ உள்ளிட்டு உள்நுழையவும்.',
@@ -512,7 +542,8 @@ export const ta = defineLocale({
       enterUrlFirst: 'முதலில் ஒரு தூரநிலை URL-ஐ உள்ளிடவும்.',
       restartingTitle: 'கேட்வே இணைப்பு மறுபூக்கப்படுகிறது',
       savedTitle: 'கேட்வே அமைப்புகள் சேமிக்கப்பட்டன',
-      restartingMessage: 'OpenAmer Desktop சேமித்த அமைப்புகளைப் பயன்படுத்தி மீண்டும் இணைக்கும் — செயலிட்டு திறந்தே இருக்கும்.',
+      restartingMessage:
+        'OpenAmer Desktop சேமித்த அமைப்புகளைப் பயன்படுத்தி மீண்டும் இணைக்கும் — செயலிட்டு திறந்தே இருக்கும்.',
       savedMessage: 'அடுத்த மறுபூக்கத்திற்காகச் சேமிக்கப்பட்டது.',
       reachableTitle: 'தூரநிலைக் கேட்வே அணுகலாம்',
       signedOutTitle: 'வெளியேறியீர்',
@@ -524,8 +555,10 @@ export const ta = defineLocale({
       applyFailed: 'கேட்வே அமைப்புகளைப் பயன்படுத்த முடியவில்லை',
       saveFailed: 'கேட்வே அமைப்புகளைச் சேமிக்க முடியவில்லை',
       sshTitle: 'SSH வழியாக இணைக்கவும்',
-      sshDesc: 'OpenAmer தூரநிலையில் SSH வழியாகத் தொடங்கி, இந்தச் செயலிட்டிற்குள் சுருக்கம் வழியாக இணைக்கப்படுகிறது — தொடங்க வேண்டியதோ குறிப்பிட வேண்டியதோ எதுவும் இல்லை. பேட்டையில் விசை அடிப்படையிலான SSH அணுகல் தேவை.',
-      sshTrustHint: 'முதலில் காட்டப்படும் பேட்டை விசை நம்பப்படுகிறது மற்றும் நிலைப்படுத்தப்படுகிறது; பின்னர் மாற்றம் இருந்தால் இணைப்பு மறுக்கப்படும்.',
+      sshDesc:
+        'OpenAmer தூரநிலையில் SSH வழியாகத் தொடங்கி, இந்தச் செயலிட்டிற்குள் சுருக்கம் வழியாக இணைக்கப்படுகிறது — தொடங்க வேண்டியதோ குறிப்பிட வேண்டியதோ எதுவும் இல்லை. பேட்டையில் விசை அடிப்படையிலான SSH அணுகல் தேவை.',
+      sshTrustHint:
+        'முதலில் காட்டப்படும் பேட்டை விசை நம்பப்படுகிறது மற்றும் நிலைப்படுத்தப்படுகிறது; பின்னர் மாற்றம் இருந்தால் இணைப்பு மறுக்கப்படும்.',
       sshHostTitle: 'பேட்டை',
       sshHostDesc: 'user@host, அல்லது `~/.ssh/config` இல் உள்ள பேட்டை பெயர்ச்சி.',
       sshHostPick: 'ஒரு பேட்டையைத் தேர்வு செய்யவும்…',
@@ -546,11 +579,16 @@ export const ta = defineLocale({
       sshConnect: 'இணைக்கவும்',
       sshButtonsHint: 'சேமித்தால் அடுத்த தொடக்கத்தில் பயன்படும். இணைக்கவும் என்பது இப்போது மீண்டும் இணைக்கும்.',
       sshIncompleteHost: 'இணைவதற்கு முன் ஒரு SSH ஹோஸ்டை உள்ளிடவும்.',
-      sshErrUnreachable: 'SSH வழியாக அந்த ஹோஸ்டை அணுக முடியவில்லை. ஹோஸ்ட், போர்ட் மற்றும் உங்கள் ப networkspace ஐச் சரிபார்க்கவும்.',
-      sshErrAuth: 'SSH அங்கீகாரம் தோல்வியடைந்தது. உங்கள் விசையை ssh-agent-ல் ஏற்றவும் (ssh-add), அல்லது ~/.ssh/config-இல் IdentityFile அமைக்கவும் — OpenAmer ssh-ஐ அல்லாமல் இயக்கும்.',
-      sshErrHostKey: 'கடந்த முறையாக இணைந்ததிலிருந்து ஹோஸ்ட் விசை மாறியுள்ளது. இது எதிர்பார்க்கப்படுவதா என்பதைச் சரிபார்த்து, பின்னர் `ssh-keygen -R <host>` என்று இயக்கி மீண்டும் இணைக்கவும்.',
-      sshErrNotInstalled: 'தொலைநிலை ஹோஸ்டில் OpenAmer நிறுவப்படவில்லை. அங்கு நிறுவவும் (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) அல்லது OpenAmer பாதையை அமைக்கவும்.',
-      sshErrPlatform: 'தொலைநிலை தளம் ஆதரிக்கப்படவில்லை. OpenAmer Desktop SSH முறை Linux, macOS மற்றும் Windows தொலைநிலை ஹோஸ்ட்களை ஆதரிக்கிறது.',
+      sshErrUnreachable:
+        'SSH வழியாக அந்த ஹோஸ்டை அணுக முடியவில்லை. ஹோஸ்ட், போர்ட் மற்றும் உங்கள் ப networkspace ஐச் சரிபார்க்கவும்.',
+      sshErrAuth:
+        'SSH அங்கீகாரம் தோல்வியடைந்தது. உங்கள் விசையை ssh-agent-ல் ஏற்றவும் (ssh-add), அல்லது ~/.ssh/config-இல் IdentityFile அமைக்கவும் — OpenAmer ssh-ஐ அல்லாமல் இயக்கும்.',
+      sshErrHostKey:
+        'கடந்த முறையாக இணைந்ததிலிருந்து ஹோஸ்ட் விசை மாறியுள்ளது. இது எதிர்பார்க்கப்படுவதா என்பதைச் சரிபார்த்து, பின்னர் `ssh-keygen -R <host>` என்று இயக்கி மீண்டும் இணைக்கவும்.',
+      sshErrNotInstalled:
+        'தொலைநிலை ஹோஸ்டில் OpenAmer நிறுவப்படவில்லை. அங்கு நிறுவவும் (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`) அல்லது OpenAmer பாதையை அமைக்கவும்.',
+      sshErrPlatform:
+        'தொலைநிலை தளம் ஆதரிக்கப்படவில்லை. OpenAmer Desktop SSH முறை Linux, macOS மற்றும் Windows தொலைநிலை ஹோஸ்ட்களை ஆதரிக்கிறது.',
       sshErrTimeout: 'SSH இணைப்பு காலநிறுத்தமடைந்தது. ஹோஸ்ட் அணுக முடியாமல் இருக்கலாம் அல்லது உறக்கத்தில் இருக்கலாம்.',
       sshErrUpdateRequired: 'Desktop SSH-இல் இணைப்பதற்கு முன் தொலைநிலை ஹோஸ்டில் OpenAmer-ஐப் புதுப்பிக்கவும்.',
       sshErrUnknown: 'SSH இணைப்பு தோல்வியடைந்தது.',
@@ -559,23 +597,27 @@ export const ta = defineLocale({
       unavailableDesc: 'டெஸ்க்டாப் IPC பாலம் கேட்வே அமைப்புகளை வெளிப்படுத்தாது.',
       title: 'கேட்வே இணைப்பு',
       envOverride: 'env மேலெழுதல்',
-      intro: 'OpenAmer Desktop இயல்பாக அதன் சொந்த உள்ளூர் கேட்வேயைத் தொடங்குகிறது. மற்றொரு கணினியில் அல்லது நம்பகமான ப்ராக்ஸிக்குப் பின்னால் ஏற்கனவே இயங்கும் OpenAmer பின்தளத்தை இந்தச் செயலி கட்டுப்படுத்த வேண்டுமெனில் தொலை கேட்வேயைப் பயன்படுத்தவும். அதற்குத் தனி தொலை ஹோஸ்ட் வழங்க கீழே ஒரு சுயவிவரத்தைத் தேர்ந்தெடுக்கவும்.',
+      intro:
+        'OpenAmer Desktop இயல்பாக அதன் சொந்த உள்ளூர் கேட்வேயைத் தொடங்குகிறது. மற்றொரு கணினியில் அல்லது நம்பகமான ப்ராக்ஸிக்குப் பின்னால் ஏற்கனவே இயங்கும் OpenAmer பின்தளத்தை இந்தச் செயலி கட்டுப்படுத்த வேண்டுமெனில் தொலை கேட்வேயைப் பயன்படுத்தவும். அதற்குத் தனி தொலை ஹோஸ்ட் வழங்க கீழே ஒரு சுயவிவரத்தைத் தேர்ந்தெடுக்கவும்.',
       appliesTo: 'இதற்குப் பொருந்தும்',
       allProfiles: 'அனைத்து சுயவிவரங்களும்',
       defaultConnection: 'தனக்கென மேலெழுதல் இல்லாத ஒவ்வொரு சுயவிவரத்திற்கும் இயல்புநிலை இணைப்பு.',
-      profileConnection: profile => `“${profile}” ஆக்டிவ் புரொஃபைலாக இருக்கும்போது மட்டுமே இந்த இணைப்பு பயன்படுத்தப்படும். அதன் ஓவர்ரைடை நீக்க Use default gateway என்பதைத் தேர்ந்தெடுக்கவும்.`,
+      profileConnection: profile =>
+        `“${profile}” ஆக்டிவ் புரொஃபைலாக இருக்கும்போது மட்டுமே இந்த இணைப்பு பயன்படுத்தப்படும். அதன் ஓவர்ரைடை நீக்க Use default gateway என்பதைத் தேர்ந்தெடுக்கவும்.`,
       envOverrideTitle: 'சூழல் மாறிகள் இந்த டெஸ்க்டாப் அமர்வைக் கட்டுப்படுத்துகின்றன.',
-      envOverrideDesc: 'கீழே சேமித்த அமைப்பைப் பயன்படுத்த OPENAMER_DESKTOP_REMOTE_URL மற்றும் OPENAMER_DESKTOP_REMOTE_TOKEN ஆகியவற்றை அமைக்காதே.',
+      envOverrideDesc:
+        'கீழே சேமித்த அமைப்பைப் பயன்படுத்த OPENAMER_DESKTOP_REMOTE_URL மற்றும் OPENAMER_DESKTOP_REMOTE_TOKEN ஆகியவற்றை அமைக்காதே.',
       cloudTitle: 'OpenAmer கிளவுட்',
       cloudSignInTitle: 'OpenAmer கிளவுட்',
       cloudOrgRole: role => `பங்கு: ${role}`,
       cloudConnectedTo: name => `${name} உடன் இணைக்கப்பட்டது.`,
       cloudStatusLabel: status => `நிலை: ${status}`,
       signInWith: provider => `${provider} மூலம் உள்நுழையவும்`,
-      authNeedsOauth: provider => `இந்த கேட்வே OAuth-ஐப் பயன்படுத்துகிறது. இந்த டெஸ்க்டாப் ஆப்பை அங்கீகரிக்க ${provider} மூலம் உள்நுழையவும்.`,
+      authNeedsOauth: provider =>
+        `இந்த கேட்வே OAuth-ஐப் பயன்படுத்துகிறது. இந்த டெஸ்க்டாப் ஆப்பை அங்கீகரிக்க ${provider} மூலம் உள்நுழையவும்.`,
       existingToken: value => `தற்போதுள்ள டோக்கன் ${value}`,
       connectedTo: (baseUrl, version) => `${baseUrl}${version ? ` · OpenAmer ${version}` : ''} உடன் இணைக்கப்பட்டது`,
-      sshReachable: (host, platform) => `தொடர்பு கொள்ள முடிகிறது: ${host} (${platform}) — OpenAmer கண்டறியப்பட்டது`,
+      sshReachable: (host, platform) => `தொடர்பு கொள்ள முடிகிறது: ${host} (${platform}) — OpenAmer கண்டறியப்பட்டது`
     },
     mcp: {
       reloadFailed: 'MCP ரீலோடு தோல்வியடைந்தது',
@@ -637,14 +679,16 @@ export const ta = defineLocale({
       catalogInstallStarted: name => `${name} நிறுவப்படுகிறது... முடிந்ததும் புதிய அமர்வுகளுக்குப் பொருந்தும்.`,
       catalogInstallFailed: name => `${name} ஐ நிறுவுவதில் தோல்வி`,
       catalogEnvPrompt: name => `${name} பயன்படுத்த உள்நுழைவுச் சான்றுகள் தேவை`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} இயக்கப்பட்டது`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} இயக்கப்பட்டது`,
       authenticatedMessage: (server, count) => `${server}: ${count} கருவிகள்`,
       enableTool: tool => `${tool} ஐ இயக்கு`,
-      disableTool: tool => `${tool} ஐ முடக்கு`,
+      disableTool: tool => `${tool} ஐ முடக்கு`
     },
     model: {
       loading: 'மாடல் அமைப்பு ஏற்றப்படுகிறது...',
-      appliesDesc: 'புதிய அமர்வுகளுக்குப் பொருந்தும். செயலிலுள்ள சாட்டை ஒட்ற மாடல் தேர்வியை இணைப்பாளரில் பயன்படுத்தவும்.',
+      appliesDesc:
+        'புதிய அமர்வுகளுக்குப் பொருந்தும். செயலிலுள்ள சாட்டை ஒட்ற மாடல் தேர்வியை இணைப்பாளரில் பயன்படுத்தவும்.',
       provider: 'வழங்குநர்',
       model: 'மாதிரி',
       applying: 'பயன்படுத்தப்படுகிறது...',
@@ -654,7 +698,8 @@ export const ta = defineLocale({
       defaultsFailed: 'மாதிரி இயல்புகளைச் சேமிக்க முடியவில்லை',
       auxiliaryTitle: 'துணை மாதிரிகள்',
       resetAllToMain: 'அனைத்தையும் முக்கிய மாதிரிக்கு மீட்டமை',
-      auxiliaryDesc: 'துணைப் பணிகள் இயல்பாக முக்கிய மாதிரியில் இயங்கும். மாற்றுவதற்கு ஒவ்வொரு பணிக்கும் தனித்த மாதிரியைக் குறிப்பிடுங்கள்.',
+      auxiliaryDesc:
+        'துணைப் பணிகள் இயல்பாக முக்கிய மாதிரியில் இயங்கும். மாற்றுவதற்கு ஒவ்வொரு பணிக்கும் தனித்த மாதிரியைக் குறிப்பிடுங்கள்.',
       setToMain: 'முக்கிய மாதிரிக்கு அமை',
       change: 'மாற்று',
       autoUseMain: 'தானியங்கு · முக்கிய மாதிரியைப் பயன்படுத்து',
@@ -665,47 +710,48 @@ export const ta = defineLocale({
       tasks: {
         vision: {
           label: 'பார்வை',
-          hint: 'படம் ஆய்வு',
+          hint: 'படம் ஆய்வு'
         },
         web_extract: {
           label: 'வெப் உரைப் பிரிப்பு',
-          hint: 'பக்கம் சுருக்கம்',
+          hint: 'பக்கம் சுருக்கம்'
         },
         compression: {
           label: 'சுருக்கம்',
-          hint: 'சூழல் சுருக்கம்',
+          hint: 'சூழல் சுருக்கம்'
         },
         skills_hub: {
           label: 'திறன்கள் மையம்',
-          hint: 'திறன் தேடல்',
+          hint: 'திறன் தேடல்'
         },
         approval: {
           label: 'ஒப்புதல்',
-          hint: 'ஸ்மார்ட் தானியங்கு ஒப்புதல்',
+          hint: 'ஸ்மார்ட் தானியங்கு ஒப்புதல்'
         },
         mcp: {
           hint: 'MCP கருவி வழிப்பாடு',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'தலைப்பு உருவாக்கம்',
-          hint: 'அமர்வு தலைப்புகள்',
+          hint: 'அமர்வு தலைப்புகள்'
         },
         curator: {
           label: 'பராமரிப்பாளர்',
-          hint: 'திறன் பயன்பாடு மதிப்பாய்வு',
-        },
-      },
+          hint: 'திறன் பயன்பாடு மதிப்பாய்வு'
+        }
+      }
     },
     keys: {
       loading: 'API விசைகள் மற்றும் சான்றுகள் ஏற்றப்படுகின்றன...',
       failedLoad: 'API விசைகளை ஏற்ற முடியவில்லை',
-      empty: 'இந்த வகையில் இதுவரை எதுவும் அமைக்கப்படவில்லை.',
+      empty: 'இந்த வகையில் இதுவரை எதுவும் அமைக்கப்படவில்லை.'
     },
     providers: {
       connectAccount: 'கணக்கை இணை',
       haveApiKey: 'மாற்று API விசை உள்ளீரா?',
-      intro: 'சந்தா கையொப்பத்தால் உள்நுழை — நகலெடுக்க API விசை தேவையில்லை. OpenAmer உங்களுக்காக உலாவி உள்நுழைவைச் செய்கிறது, சரியாக இந்தச் செயலியில்.',
+      intro:
+        'சந்தா கையொப்பத்தால் உள்நுழை — நகலெடுக்க API விசை தேவையில்லை. OpenAmer உங்களுக்காக உலாவி உள்நுழைவைச் செய்கிறது, சரியாக இந்தச் செயலியில்.',
       connected: 'இணைக்கப்பட்டது',
       collapse: 'சுருக்கு',
       connectAnother: 'மற்றொரு வழங்குநரை இணை',
@@ -713,9 +759,12 @@ export const ta = defineLocale({
       disconnect: 'இணைப்பைத் துண்டி',
       disconnectInTerminal: 'இணைப்பைத் துண்டி (முனையத்தில் அகற்றும் கட்டளையை இயக்கும்)',
       removeConfirm: provider => `${provider} ஐ நீக்க வேண்டுமா?`,
-      removeExternalGeneric: provider => `${provider} அதன் சொந்த CLI மூலம் நிர்வகிக்கப்படுகிறது — அங்கேயே அதை அகற்றவும்.`,
-      removeKeyManaged: provider => `${provider} ஓர் API விசையால் அமைக்கப்பட்டுள்ளது. API விசைகள் பகுதியிலிருந்து அதை அகற்றவும்.`,
-      removeTerminalConfirm: (provider, command) => `${provider} ஐ துண்டிக்க வேண்டுமா? இது கிரெடென்ஷியலை நீக்க டெர்மினலில் "${command}" ஐ இயக்கும்.`,
+      removeExternalGeneric: provider =>
+        `${provider} அதன் சொந்த CLI மூலம் நிர்வகிக்கப்படுகிறது — அங்கேயே அதை அகற்றவும்.`,
+      removeKeyManaged: provider =>
+        `${provider} ஓர் API விசையால் அமைக்கப்பட்டுள்ளது. API விசைகள் பகுதியிலிருந்து அதை அகற்றவும்.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} ஐ துண்டிக்க வேண்டுமா? இது கிரெடென்ஷியலை நீக்க டெர்மினலில் "${command}" ஐ இயக்கும்.`,
       removeTerminalRunning: provider => `டெர்மினலில் ${provider} துண்டிப்பு இயங்குகிறது…`,
       removedTitle: 'கணக்கு அகற்றப்பட்டது',
       removedMessage: provider => `${provider} அகற்றப்பட்டது.`,
@@ -725,12 +774,13 @@ export const ta = defineLocale({
       noKeysMatch: 'உங்கள் தேடலுக்கு எந்த வழங்குநரும் பொருந்தவில்லை.',
       localEndpoint: {
         title: 'உள்ளூர் / தனிப்பயன் முனை',
-        description: 'OpenAmer-ஐ எந்த OpenAI-இணக்கமான முனைக்கும் சுட்டவும் (Zyphra, vLLM, llama.cpp, Ollama போன்றவை).',
+        description: 'OpenAmer-ஐ எந்த OpenAI-இணக்கமான முனைக்கும் சுட்டவும் (Zyphra, vLLM, llama.cpp, Ollama போன்றவை).'
       },
-      loading: 'வழங்குநர்கள் ஏற்றப்படுகிறார்கள்...',
+      loading: 'வழங்குநர்கள் ஏற்றப்படுகிறார்கள்...'
     },
     toolsets: {
-      noProviderOptions: 'இந்த கருவிக்கூட்டில் எந்த provider விருப்பங்களும் இல்லை — அதை இயக்கவும், உங்கள் தற்போதைய அமைப்புடன் அது செயல்படும்.',
+      noProviderOptions:
+        'இந்த கருவிக்கூட்டில் எந்த provider விருப்பங்களும் இல்லை — அதை இயக்கவும், உங்கள் தற்போதைய அமைப்புடன் அது செயல்படும்.',
       noProviders: 'இந்த கருவிக்கூட்டிற்கு இப்போது எந்த provider-களும் கிடைக்கவில்லை.',
       ready: 'தயார்',
       needsSignIn: 'உள்நுழைவு தேவை',
@@ -769,8 +819,9 @@ export const ta = defineLocale({
         inUse: 'பயன்பாட்டில்',
         selectedTitle: 'Backend தேர்ந்தெடுக்கப்பட்டது',
         needsSetupHint: 'இந்த backend-ஐ இப்போது தேர்ந்தெடுக்கலாம் — அமைப்பு முடியும் வரை commands தோல்வியடையும்.',
-        selectedMessage: backend => `முனையக் கட்டளைகள் இப்போது ${backend} வழியாக இயங்கும். புதிய அமர்வுகளுக்குப் பொருந்தும்.`,
-        failedSelect: backend => `${backend} ஐத் தேர்ந்தெடுப்பதில் தோல்வி`,
+        selectedMessage: backend =>
+          `முனையக் கட்டளைகள் இப்போது ${backend} வழியாக இயங்கும். புதிய அமர்வுகளுக்குப் பொருந்தும்.`,
+        failedSelect: backend => `${backend} ஐத் தேர்ந்தெடுப்பதில் தோல்வி`
       },
       loadingConfig: 'கட்டமைப்பு ஏற்றப்படுகிறது',
       savedTitle: 'சான்று சேமிக்கப்பட்டது',
@@ -787,8 +838,10 @@ export const ta = defineLocale({
       selectedMessage: provider => `${provider} இப்போது செயலில் உள்ளது.`,
       failedSelect: provider => `${provider} ஐ தேர்ந்தெடுப்பதில் தோல்வி`,
       failedLoad: 'கருவி உள்ளமைவை ஏற்ற முடியவில்லை',
-      openamerAuthNeededMessage: provider => `${provider} சேமிக்கப்பட்டது. ஆனால் OpenAmer இணையவாயிலில் உள்நுழையும் வரை செயல்படாது.`,
-      postSetupHint: step => `இந்த பேக்எண்டிற்கு ஒருமுறை நிறுவல் தேவை (${step}). இது இந்த இயந்திரத்தில் இயங்கும் — சில நிமிடங்கள் ஆகலாம்.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} சேமிக்கப்பட்டது. ஆனால் OpenAmer இணையவாயிலில் உள்நுழையும் வரை செயல்படாது.`,
+      postSetupHint: step =>
+        `இந்த பேக்எண்டிற்கு ஒருமுறை நிறுவல் தேவை (${step}). இது இந்த இயந்திரத்தில் இயங்கும் — சில நிமிடங்கள் ஆகலாம்.`,
       postSetupCompleteMessage: step => `${step} நிறுவப்பட்டது.`,
       postSetupErrorMessage: step => `${step} லாக்-ஐ சரிபார்க்கவும்.`,
       postSetupFailed: step => `${step} செட்டப்பை இயக்குவதில் தோல்வி`,
@@ -796,11 +849,12 @@ export const ta = defineLocale({
       webExtractActive: backend => `எக்ஸ்ட்ராக்ட்: ${backend}`,
       webUsedForSearch: 'தேடல் பின்தளம்',
       webUsedForExtract: 'பிரித்தெடுப்பு பின்தளம்',
-      webCapabilitySelectedMessage: (provider, capability) => `${provider} இப்போது இணைய ${capability} பணிகளைக் கையாளுகிறது.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `${provider} இப்போது இணைய ${capability} பணிகளைக் கையாளுகிறது.`,
       failedSelectCapability: provider => `${provider} அமைக்க முடியவில்லை`,
       modelCount: count => `${count} மாதிரி${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} புதிய அமர்வுகளுக்குப் பொருந்தும்.`,
-      failedSelectModel: model => `${model} தேர்ந்தெடுக்க முடியவில்லை`,
+      failedSelectModel: model => `${model} தேர்ந்தெடுக்க முடியவில்லை`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -818,7 +872,8 @@ export const ta = defineLocale({
       imported: 'உள்ளமைப்பு இறக்குமதி செய்யப்பட்டது',
       invalidJson: 'தவறான உள்ளமைப்பு JSON',
       keepAwakeTitle: 'கணினியை விழித்திருக்க வை',
-      keepAwakeDesc: 'நீண்ட அல்லது இரவு முழுவதும் இயங்கும் செயல்கள் தொடர, இந்த இயந்திரம் உறங்காமல் தடுக்கவும். திரை இன்னும் மங்கலாம்.',
+      keepAwakeDesc:
+        'நீண்ட அல்லது இரவு முழுவதும் இயங்கும் செயல்கள் தொடர, இந்த இயந்திரம் உறங்காமல் தடுக்கவும். திரை இன்னும் மங்கலாம்.'
     },
     credentials: {
       pasteKey: 'விசையை ஒட்டு',
@@ -828,7 +883,7 @@ export const ta = defineLocale({
       couldNotSave: 'சான்றுகளைச் சேமிக்க முடியவில்லை.',
       remove: 'நீக்கு',
       getKey: 'விசையைப் பெறு',
-      saving: 'சேமிக்கிறது',
+      saving: 'சேமிக்கிறது'
     },
     envActions: {
       actionsFor: label => `${label} க்கான செயல்பாடுகள்`,
@@ -839,12 +894,13 @@ export const ta = defineLocale({
       revealValue: 'மதிப்பைக் காட்டு',
       replace: 'மாற்று',
       set: 'அமை',
-      clear: 'அழி',
+      clear: 'அழி'
     },
     sessions: {
       loading: 'காப்பகப்படுத்தப்பட்ட அமர்வுகள் ஏற்றப்படுகின்றன…',
       archivedTitle: 'காப்பகப்படுத்தப்பட்ட அமர்வுகள்',
-      archivedIntro: 'காப்பகப்படுத்தப்பட்ட அரட்டைகள் பக்கப்பட்டியில் மறைக்கப்படும், ஆனால் அவற்றின் அனைத்து செய்திகளும் தக்கவைக்கப்படும். காப்பகப்படுத்த, பக்கப்பட்டியில் ஒரு அரட்டையை Ctrl/⌘-click செய்யவும்.',
+      archivedIntro:
+        'காப்பகப்படுத்தப்பட்ட அரட்டைகள் பக்கப்பட்டியில் மறைக்கப்படும், ஆனால் அவற்றின் அனைத்து செய்திகளும் தக்கவைக்கப்படும். காப்பகப்படுத்த, பக்கப்பட்டியில் ஒரு அரட்டையை Ctrl/⌘-click செய்யவும்.',
       emptyArchivedTitle: 'எதுவும் காப்பகப்படுத்தப்படவில்லை',
       emptyArchivedDesc: 'இங்கே மறைக்க ஒரு அரட்டையைக் காப்பகப்படுத்தவும்.',
       unarchive: 'காப்பகத்திலிருந்து மீட்டெடு',
@@ -853,13 +909,16 @@ export const ta = defineLocale({
       restored: 'மீட்டெடுக்கப்பட்டது',
       deleteConfirm: title => `"${title}" ஐ நிரந்தரமாக நீக்க வேண்டுமா? இதை மாற்ற முடியாது.`,
       autoArchiveTitle: 'பழைய அரட்டைகளைத் தானாகக் காப்பகப்படுத்து',
-      autoArchiveDesc: "சிறிது காலமாக நீங்கள் தொடாத அரட்டைகளைத் தானாகக் காப்பகப்படுத்தும். பின்னிட் செய்யப்பட்ட அரட்டைகள் ஒருபோதும் காப்பகப்படுத்தப்படாது, எதுவும் நீக்கப்படாது — காப்பகப்படுத்தப்பட்ட அரட்டைகள் இங்கே மட்டும் நகரும்.",
+      autoArchiveDesc:
+        'சிறிது காலமாக நீங்கள் தொடாத அரட்டைகளைத் தானாகக் காப்பகப்படுத்தும். பின்னிட் செய்யப்பட்ட அரட்டைகள் ஒருபோதும் காப்பகப்படுத்தப்படாது, எதுவும் நீக்கப்படாது — காப்பகப்படுத்தப்பட்ட அரட்டைகள் இங்கே மட்டும் நகரும்.',
       autoArchiveDaysLabel: 'இதற்குப் பிறகு காப்பகப்படுத்து',
       autoArchiveDaysUnit: 'செயல்படாத நாட்கள்',
       autoArchiveFailed: 'தானியங்கு காப்பகத்தைப் புதுப்பிக்க முடியவில்லை',
       defaultDirTitle: 'இயல்புநிலை திட்டக் கோப்பகம்',
-      defaultDirDesc: 'நீங்கள் வேறொன்றைத் தேர்ந்தெடுக்காத வரை புதிய அமர்வுகள் இந்தக் கோப்புறையில் தொடங்கும். உங்கள் முகப்புக் கோப்பகத்தைப் பயன்படுத்த இதை அமைக்காமல் விடவும்.',
-      defaultDirUpdated: 'இயல்புநிலை திட்டக் கோப்பகம் புதுப்பிக்கப்பட்டது — அது நடைமுறைக்கு வர புதிய அரட்டையைத் தொடங்கவும் (Ctrl/⌘+N)',
+      defaultDirDesc:
+        'நீங்கள் வேறொன்றைத் தேர்ந்தெடுக்காத வரை புதிய அமர்வுகள் இந்தக் கோப்புறையில் தொடங்கும். உங்கள் முகப்புக் கோப்பகத்தைப் பயன்படுத்த இதை அமைக்காமல் விடவும்.',
+      defaultDirUpdated:
+        'இயல்புநிலை திட்டக் கோப்பகம் புதுப்பிக்கப்பட்டது — அது நடைமுறைக்கு வர புதிய அரட்டையைத் தொடங்கவும் (Ctrl/⌘+N)',
       defaultsTo: label => `${label} என இயல்பாக உள்ளது.`,
       change: 'மாற்று',
       choose: 'தேர்ந்தெடு',
@@ -869,8 +928,8 @@ export const ta = defineLocale({
       unarchiveFailed: 'காப்பகத்திலிருந்து மீட்க முடியவில்லை',
       deleteFailed: 'நீக்க முடியவில்லை',
       updateDirFailed: 'இயல்புநிலை கோப்பகத்தைப் புதுப்பிக்க முடியவில்லை',
-      clearDirFailed: 'இயல்புநிலை கோப்பகத்தை அழிக்க முடியவில்லை',
-    },
+      clearDirFailed: 'இயல்புநிலை கோப்பகத்தை அழிக்க முடியவில்லை'
+    }
   },
   skills: {
     tabSkills: 'திறன்கள்',
@@ -889,7 +948,8 @@ export const ta = defineLocale({
     noDescription: 'விவரம் இல்லை.',
     configured: 'கட்டமைக்கப்பட்டது',
     needsKeys: 'சாவிகள் தேவை',
-    visionModelHint: 'பார்வைக்கு உங்கள் துணை மாதிரி அமைப்பு பயன்படுகிறது — படத்தைப் புரிந்துகொள்ளும் மாதிரி அங்கே தேர்ந்தெடுக்கப்படுகிறது, ஒவ்வொரு வழங்கியிலும் அல்ல.',
+    visionModelHint:
+      'பார்வைக்கு உங்கள் துணை மாதிரி அமைப்பு பயன்படுகிறது — படத்தைப் புரிந்துகொள்ளும் மாதிரி அங்கே தேர்ந்தெடுக்கப்படுகிறது, ஒவ்வொரு வழங்கியிலும் அல்ல.',
     visionModelLink: 'அமைப்புகளில் → மாதிரிகளில் பார்வை மாதிரியைத் தேர்ந்தெடுக்கவும்',
     skillsLoadFailed: 'திறன்களை ஏற்ற முடியவில்லை',
     toolsetsRefreshFailed: 'கருவித் தொகுதிகளைப் புதுப்பிக்க முடியவில்லை',
@@ -908,7 +968,7 @@ export const ta = defineLocale({
     provenance: {
       agent: 'கற்றவை',
       bundled: 'உள்ளமைந்தவை',
-      hub: 'ஹப்',
+      hub: 'ஹப்'
     },
     changesApplyNewSessions: 'மாற்றங்கள் புதிய அமர்வுகளில் பொருந்தும்.',
     skillUpdated: 'திறன் புதுப்பிக்கப்பட்டது',
@@ -934,7 +994,8 @@ export const ta = defineLocale({
       connectingHubs: 'திறன் மையங்களுடன் இணைக்கிறது...',
       connectedHubs: 'இணைக்கப்பட்ட மையங்கள்:',
       featured: 'சிறப்புத் திறன்கள்',
-      landingHint: 'அதிகாரப்பூர்வ அட்டவணை, GitHub மற்றும் சமூக ஆதாரங்களிலிருந்து நிறுவக்கூடிய திறன்களை உலாவ மையத்தில் தேடு.',
+      landingHint:
+        'அதிகாரப்பூர்வ அட்டவணை, GitHub மற்றும் சமூக ஆதாரங்களிலிருந்து நிறுவக்கூடிய திறன்களை உலாவ மையத்தில் தேடு.',
       noResults: 'மையத்தில் பொருந்தும் திறன்கள் எதுவும் கிடைக்கவில்லை.',
       resultCount: (count, ms) => `${count} முடிவு${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `காலாவதியானது: ${sources}`,
@@ -954,7 +1015,7 @@ export const ta = defineLocale({
       trust: {
         builtin: 'உள்ளமைந்தது',
         trusted: 'நம்பகமானது',
-        community: 'சமூகம்',
+        community: 'சமூகம்'
       },
       verdictSafe: 'பாதுகாப்பானது',
       verdictCaution: 'எச்சரிக்கை',
@@ -972,8 +1033,8 @@ export const ta = defineLocale({
       loadFailed: 'திறன் மையத்தை ஏற்ற முடியவில்லை',
       previewFailed: 'திறன் முன்னோட்டம் தோல்வியடைந்தது',
       scanFailed: 'பாதுகாப்பு ஸ்கேன் தோல்வியடைந்தது',
-      searchFailed: 'மையத் தேடல் தோல்வியடைந்தது',
-    },
+      searchFailed: 'மையத் தேடல் தோல்வியடைந்தது'
+    }
   },
   commandCenter: {
     branches: 'கிளைகள்',
@@ -988,7 +1049,8 @@ export const ta = defineLocale({
       placeholder: 'விலங்குகளைத் தேடு…',
       loading: 'petdex தளக்காட்சி ஏற்றப்படுகிறது…',
       error: 'petdex தளக்காட்சியை அணுக முடியவில்லை.',
-      staleBackend: 'விலங்குகளைப் பயன்படுத்த OpenAmer-ஐ மீண்டும் தொடங்கவும் — பின்புற அமைப்பு இந்த அம்சத்திற்கு முன்பானது.',
+      staleBackend:
+        'விலங்குகளைப் பயன்படுத்த OpenAmer-ஐ மீண்டும் தொடங்கவும் — பின்புற அமைப்பு இந்த அம்சத்திற்கு முன்பானது.',
       empty: 'பொருந்தும் விலங்குகள் இல்லை.',
       turnOff: 'அணை',
       turnOn: 'இயக்கு',
@@ -996,7 +1058,7 @@ export const ta = defineLocale({
       generatedTag: 'உருவாக்கப்பட்டது',
       adoptFailed: 'அந்த விலங்கைத் தத்தெடுக்க முடியவில்லை.',
       toggleFailed: 'விலங்கை இயக்கவோ அணைக்கவோ முடியவில்லை.',
-      noneAvailable: 'விலங்குகள் எதுவும் கிடைப்பதில்லை — நிறுத்த ஒன்றைத் தேர்ந்தெடுக்கவும்.',
+      noneAvailable: 'விலங்குகள் எதுவும் கிடைப்பதில்லை — நிறுத்த ஒன்றைத் தேர்ந்தெடுக்கவும்.'
     },
     generatePet: {
       title: 'ஒரு விலங்கை உருவாக்கு',
@@ -1020,12 +1082,13 @@ export const ta = defineLocale({
       remix: 'மீளமை',
       remixConfirmTitle: 'இந்தத் தோற்றத்தை மீளமைக்கவா?',
       hatchRow: (_state, done, total) => `உருக்கம் ${done} / ${total} வரைகிறது…`,
-      remixConfirmBody: 'இதைத் தொடக்கப் புள்ளியாகக் கொண்டு புதிய வரைவுகள் உருவாக்கப்படும். இதற்கு சில நிமிடங்கள் ஆகலாம்.',
+      remixConfirmBody:
+        'இதைத் தொடக்கப் புள்ளியாகக் கொண்டு புதிய வரைவுகள் உருவாக்கப்படும். இதற்கு சில நிமிடங்கள் ஆகலாம்.',
       genericError: 'உருவாக்கம் தோல்வியடைந்தது — மீண்டும் முயலவும் அல்லது பரிந்துரையைத் தேர்ந்தெடுக்கவும்.',
       referenceImageTooLarge: 'குறிப்புப் படம் மிகப் பெரியது. 16 MB-க்குக் குறைவானதைப் பயன்படுத்தவும்.',
       referenceImageInvalid: 'அந்தக் குறிப்புப் படத்தைப் படிக்க முடியவில்லை. PNG, JPG, WebP அல்லது GIF முயலவும்.',
       adopt: 'ஏற்றுக்கொள்',
-      startOver: 'மீண்டும் தொடங்கு',
+      startOver: 'மீண்டும் தொடங்கு'
     },
     close: 'கட்டளை மையத்தை மூடு',
     paletteTitle: 'கட்டளைத் தட்டு',
@@ -1044,7 +1107,7 @@ export const ta = defineLocale({
       install: 'நிறுவு',
       installing: 'நிறுவுகிறது...',
       installed: 'நிறுவப்பட்டது',
-      installs: count => `${count} நிறுவல்கள்`,
+      installs: count => `${count} நிறுவல்கள்`
     },
     settingsFields: 'அமைப்புப் புலங்கள்',
     mcpServers: 'MCP சேவையகங்கள்',
@@ -1053,49 +1116,49 @@ export const ta = defineLocale({
       maintenance: 'பராமரிப்பு',
       sessions: 'அமர்வுகள்',
       system: 'சிஸ்டம்',
-      usage: 'பயன்பாடு',
+      usage: 'பயன்பாடு'
     },
     sectionDescriptions: {
       maintenance: 'கண்டறிதல், காப்புப்பிரதிகள், கியூரேட்டர் மற்றும் நினைவகத் தரவு',
       sessions: 'அமர்வுகளைத் தேடி நிர்வகிக்கவும்',
       system: 'நிலை, பதிவுகள் மற்றும் சிஸ்டம் செயல்கள்',
-      usage: 'டோக்கன், செலவு மற்றும் திறன் செயல்பாடு காலப்போக்கில்',
+      usage: 'டோக்கன், செலவு மற்றும் திறன் செயல்பாடு காலப்போக்கில்'
     },
     nav: {
       newChat: {
         title: 'புதிய அமர்வு',
-        detail: 'புதிய அமர்வைத் தொடங்கு',
+        detail: 'புதிய அமர்வைத் தொடங்கு'
       },
       settings: {
         title: 'அமைப்புகள்',
-        detail: 'OpenAmer டெஸ்க்டாப்பை உள்ளமைக்கவும்',
+        detail: 'OpenAmer டெஸ்க்டாப்பை உள்ளமைக்கவும்'
       },
       skills: {
         title: 'திறன்கள்',
-        detail: 'திறன்கள், கருவிகள் மற்றும் MCP சேவையகங்கள்',
+        detail: 'திறன்கள், கருவிகள் மற்றும் MCP சேவையகங்கள்'
       },
       messaging: {
         title: 'செய்தியிடல்',
-        detail: 'Telegram, Slack, Discord மற்றும் பலவற்றை அமைக்கவும்',
+        detail: 'Telegram, Slack, Discord மற்றும் பலவற்றை அமைக்கவும்'
       },
       artifacts: {
         title: 'ஆர்டிஃபாக்ட்கள்',
-        detail: 'உருவாக்கப்பட்ட வெளியீடுகளை உலாவுக',
-      },
+        detail: 'உருவாக்கப்பட்ட வெளியீடுகளை உலாவுக'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'அமர்வுகள் பலகம்',
-        detail: 'அமர்வுகளைத் தேடி, பின் செய்து நிர்வகிக்கவும்',
+        detail: 'அமர்வுகளைத் தேடி, பின் செய்து நிர்வகிக்கவும்'
       },
       system: {
         title: 'அமைப்பு பலகம்',
-        detail: 'கேட்வே நிலை, பதிவுகள், மறுதொடக்கம்/புதுப்பிப்பு',
+        detail: 'கேட்வே நிலை, பதிவுகள், மறுதொடக்கம்/புதுப்பிப்பு'
       },
       usage: {
         title: 'பயன்பாட்டு பலகம்',
-        detail: 'டோக்கன், செலவு, திறன் செயல்பாடு',
-      },
+        detail: 'டோக்கன், செலவு, திறன் செயல்பாடு'
+      }
     },
     providerNavigate: 'வழிசெலுத்து',
     providerSessions: 'அமர்வுகள்',
@@ -1150,7 +1213,8 @@ export const ta = defineLocale({
       backup: 'காப்புப்பிரதி உருவாக்கு',
       backupDesc: 'கட்டமைப்பு, நினைவுகள், திறன்கள் மற்றும் அமர்வுகளை ஜிப் செய்',
       debugShare: 'பிழைத்திருத்தப் பகிர்வு',
-      debugShareDesc: 'திருத்தப்பட்ட அறிக்கை + பதிவுகளைப் பதிவேற்றி, பகிரக்கூடிய இணைப்புகளைப் பெறு (6 மணி நேரத்தில் தானாக நீக்கப்படும்)',
+      debugShareDesc:
+        'திருத்தப்பட்ட அறிக்கை + பதிவுகளைப் பதிவேற்றி, பகிரக்கூடிய இணைப்புகளைப் பெறு (6 மணி நேரத்தில் தானாக நீக்கப்படும்)',
       debugShareRunning: 'பிழைத்திருத்த அறிக்கை பதிவேற்றப்படுகிறது...',
       debugShareLinks: 'பகிர்வு இணைப்புகள்',
       debugShareFailed: 'பிழைத்திருத்தப் பகிர்வு தோல்வியடைந்தது',
@@ -1183,8 +1247,8 @@ export const ta = defineLocale({
       actionStarted: name => `${name} தொடங்கியது — பதிவின் புதிய வரிகளைக் கண்காணிக்கிறது...`,
       actionFailed: name => `${name} தொடங்கவில்லை`,
       running: 'இயங்குகிறது...',
-      viewLog: 'செயல் பதிவு',
-    },
+      viewLog: 'செயல் பதிவு'
+    }
   },
   profiles: {
     soulSaved: 'SOUL.md சேமிக்கப்பட்டது',
@@ -1196,7 +1260,8 @@ export const ta = defineLocale({
     failedCreate: 'சுயவிவரத்தை உருவாக்க முடியவில்லை',
     failedRename: 'சுயவிவரத்தின் பெயரை மாற்ற முடியவில்லை',
     close: 'சுயவிவரங்களை மூடு',
-    nameHint: 'சிறிய எழுத்துகள், இலக்கங்கள், இணைப்புக்கோடுகள் மற்றும் அடிக்கோடுகள். எழுத்து அல்லது இலக்கத்தில் தொடங்க வேண்டும்.',
+    nameHint:
+      'சிறிய எழுத்துகள், இலக்கங்கள், இணைப்புக்கோடுகள் மற்றும் அடிக்கோடுகள். எழுத்து அல்லது இலக்கத்தில் தொடங்க வேண்டும்.',
     title: 'சுயவிவரங்கள்',
     count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
     search: 'சுயவிவரங்களைத் தேடு...',
@@ -1249,7 +1314,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     cloneFromNone: 'எதுவுமில்லை (காலி)',
     cloneFromDesc: 'தேர்ந்தெடுத்த மூல சுயவிவரத்திலிருந்து config, skills மற்றும் SOUL.md ஆகியவற்றை நகலெடுக்கிறது.',
     cloneFromDefault: 'இயல்புநிலையிலிருந்து நகலெடு',
-    cloneFromDefaultDesc: 'உங்கள் இயல்புநிலை சுயவிவரத்திலிருந்து config, skills மற்றும் SOUL.md ஆகியவற்றை நகலெடுக்கவும்.',
+    cloneFromDefaultDesc:
+      'உங்கள் இயல்புநிலை சுயவிவரத்திலிருந்து config, skills மற்றும் SOUL.md ஆகியவற்றை நகலெடுக்கவும்.',
     invalidName: hint => `தவறான பெயர். ${hint}`,
     nameRequired: 'பெயர் தேவை.',
     creating: 'உருவாக்குகிறது...',
@@ -1262,7 +1328,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     created: 'சுயவிவரம் உருவாக்கப்பட்டது',
     renamed: 'சுயவிவரம் மறுபெயரிடப்பட்டது',
     deleted: 'சுயவிவரம் நீக்கப்பட்டது',
-    setupCopied: 'அமைப்பு கட்டளை நகலெடுக்கப்பட்டது',
+    setupCopied: 'அமைப்பு கட்டளை நகலெடுக்கப்பட்டது'
   },
   cron: {
     close: 'Cron ஐ நிறுத்து',
@@ -1276,14 +1342,14 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       paused: 'இடைநிறுத்தப்பட்டது',
       disabled: 'முடக்கப்பட்டது',
       error: 'பிழை',
-      completed: 'முடிந்தது',
+      completed: 'முடிந்தது'
     },
     deliveryLabels: {
       local: 'இந்த டெஸ்க்டாப்',
       email: 'மின்னஞ்சல்',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'தினமும்',
@@ -1292,7 +1358,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       monthly: 'மாதாந்திரம்',
       hourly: 'மணிநேரம்',
       'every-15-minutes': 'ஒவ்வொரு 15 நிமிடங்களுக்கும்',
-      custom: 'தனிப்பயன்',
+      custom: 'தனிப்பயன்'
     },
     scheduleHints: {
       daily: 'தினமும் மாலை 9:00 மணிக்கு',
@@ -1301,7 +1367,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       monthly: 'ஒவ்வொரு மாதத்தின் முதல் நாளில் மாலை 9:00 மணிக்கு',
       hourly: 'ஒவ்வொரு மணி நேரத்தின் தொடக்கத்தில்',
       'every-15-minutes': 'ஒவ்வொரு 15 நிமிடங்களுக்கும்',
-      custom: 'Cron தொடரியல் அல்லது இயற்கை மொழி',
+      custom: 'Cron தொடரியல் அல்லது இயற்கை மொழி'
     },
     days: {
       '0': 'ஞாயிறு',
@@ -1311,7 +1377,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       '4': 'வியாழன்',
       '5': 'வெள்ளிக்கிழமை',
       '6': 'சனிக்கிழமை',
-      '7': 'ஞாயிற்றுக்கிழமை',
+      '7': 'ஞாயிற்றுக்கிழமை'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `நாள் ${value}`,
@@ -1322,7 +1388,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     topOfHour: 'ஒவ்வொரு மணி நேரத்தின் தொடக்கத்திலும்',
     everyHourAt: minute => `ஒவ்வொரு மணிநேரமும் :${minute} மணிக்கு`,
     newCron: 'புதிய க்ரோன்',
-    emptyDescNew: 'க்ரோன் வெளிப்பாட்டில் இயங்க ஒரு கேள்வியைத் திட்டமிடுங்கள். OpenAmer அதை இயக்கி, நீங்கள் தேர்ந்தெடுக்கும் இலக்குக்கு முடிவுகளை வழங்கும்.',
+    emptyDescNew:
+      'க்ரோன் வெளிப்பாட்டில் இயங்க ஒரு கேள்வியைத் திட்டமிடுங்கள். OpenAmer அதை இயக்கி, நீங்கள் தேர்ந்தெடுக்கும் இலக்குக்கு முடிவுகளை வழங்கும்.',
     emptyDescSearch: 'பரந்த தேடல் வினவலை முயற்சிக்கவும்.',
     emptyTitleNew: 'இன்னும் திட்டமிடப்பட்ட பணிகள் இல்லை',
     emptyTitleSearch: 'பொருத்தங்கள் இல்லை',
@@ -1359,7 +1426,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     editTitle: 'cron பணியைத் திருத்து',
     createTitle: 'புதிய cron பணி',
     editDesc: 'அட்டவணை, ப்ராம்ப்ட் அல்லது டெலிவரி இலக்கைப் புதுப்பிக்கவும். மாற்றங்கள் அடுத்த இயக்கத்தில் பொருந்தும்.',
-    createDesc: 'ஒரு ப்ராம்ப்டை தானாக இயக்க அட்டவணைப்படுத்தவும். cron தொடரியல் அல்லது "ஒவ்வொரு 15 நிமிடங்களுக்கும்" போன்ற இயல்பான சொற்றொடரைப் பயன்படுத்தவும்.',
+    createDesc:
+      'ஒரு ப்ராம்ப்டை தானாக இயக்க அட்டவணைப்படுத்தவும். cron தொடரியல் அல்லது "ஒவ்வொரு 15 நிமிடங்களுக்கும்" போன்ற இயல்பான சொற்றொடரைப் பயன்படுத்தவும்.',
     nameLabel: 'பெயர்',
     namePlaceholder: 'காலை அறிக்கை',
     promptLabel: 'ப்ராம்ப்ட்',
@@ -1371,7 +1439,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     modelDefault: 'இயல்புநிலை (உலகளாவிய மாடல்)',
     customScheduleLabel: 'தனிப்பயன் அட்டவணை',
     customPlaceholder: '0 9 * * * அல்லது வாரநாட்களில் காலை 9 மணிக்கு',
-    customHint: 'Cron வெளிப்பாடு, அல்லது "ஒவ்வொரு மணி நேரமும்" அல்லது "வாரநாட்களில் காலை 9 மணிக்கு" போன்ற சொற்றொடர்கள்.',
+    customHint:
+      'Cron வெளிப்பாடு, அல்லது "ஒவ்வொரு மணி நேரமும்" அல்லது "வாரநாட்களில் காலை 9 மணிக்கு" போன்ற சொற்றொடர்கள்.',
     optional: 'விருப்பத்தேர்வு',
     promptRequired: 'ப்ராம்ப்ட் தேவை.',
     promptScheduleRequired: 'ப்ராம்ப்ட் மற்றும் அட்டவணை தேவை.',
@@ -1381,7 +1450,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     createAction: 'cron உருவாக்கு',
     tabs: {
       jobs: 'பணிகள்',
-      blueprints: 'புளூபிரிண்ட்கள்',
+      blueprints: 'புளூபிரிண்ட்கள்'
     },
     blueprints: {
       tab: 'புளூபிரிண்ட்கள்',
@@ -1395,12 +1464,13 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       loading: 'புளூபிரிண்ட்கள் ஏற்றப்படுகின்றன...',
       failedLoad: 'புளூபிரிண்ட்களை ஏற்ற முடியவில்லை',
       emptyTitle: 'புளூபிரிண்ட்கள் எதுவும் இல்லை',
-      emptyDesc: 'இந்த பின்தளத்தில் தானியங்கி புளூபிரிண்ட்கள் எதுவும் இல்லை.',
-    },
+      emptyDesc: 'இந்த பின்தளத்தில் தானியங்கி புளூபிரிண்ட்கள் எதுவும் இல்லை.'
+    }
   },
   composer: {
     queueStuckTitle: 'வரிசையில் இருந்த செய்தி அனுப்பப்படவில்லை',
-    queueStuckBody: 'வரிசையில் இருந்த ஒரு சுற்று தொடர்ந்து அனுப்ப முடியவில்லை. அது இன்னும் வரிசையில் உள்ளது — மீண்டும் அனுப்ப முயற்சிக்கவும்.',
+    queueStuckBody:
+      'வரிசையில் இருந்த ஒரு சுற்று தொடர்ந்து அனுப்ப முடியவில்லை. அது இன்னும் வரிசையில் உள்ளது — மீண்டும் அனுப்ப முயற்சிக்கவும்.',
     previewUnavailable: 'முன்னோட்டம் கிடைக்கவில்லை',
     dictating: 'பதிவு செய்கிறது',
     preparingAudio: 'ஒலியைத் தயாரிக்கிறது',
@@ -1425,19 +1495,21 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     snippets: {
       codeReview: {
         label: 'குறியீட்டு மதிப்பாய்வு',
-        description: 'மீளச்சிகள், மறக்கப்பட்ட விதிமுறை நிலைகள் மற்றும் குறைந்த சோதனைகளைக் கண்டறிய மூல மாற்றத்தை மதிப்பாய்வு செய்யவும்.',
-        text: 'பிழைகள், மீளச்சிகள் மற்றும் குறைந்த சோதனைகள் இருக்கின்றனவா என்பதை மதிப்பாய்வு செய்யவும்.',
+        description:
+          'மீளச்சிகள், மறக்கப்பட்ட விதிமுறை நிலைகள் மற்றும் குறைந்த சோதனைகளைக் கண்டறிய மூல மாற்றத்தை மதிப்பாய்வு செய்யவும்.',
+        text: 'பிழைகள், மீளச்சிகள் மற்றும் குறைந்த சோதனைகள் இருக்கின்றனவா என்பதை மதிப்பாய்வு செய்யவும்.'
       },
       implementationPlan: {
         label: 'செயல்பாட்டுத் திட்டம்',
         description: 'குறியீட்டைத் தொடுவதற்கு முன் ஒரு அணுகலை வரைபடமாகக் காட்டுங்கள்.',
-        text: 'குறியீட்டை மாற்றுவதற்கு முன் சுருக்கமான செயல்பாட்டுத் திட்டத்தை வழங்கவும்.',
+        text: 'குறியீட்டை மாற்றுவதற்கு முன் சுருக்கமான செயல்பாட்டுத் திட்டத்தை வழங்கவும்.'
       },
       explainThis: {
         label: 'விளக்குக',
-        description: 'தேர்ந்தெடுக்கப்பட்ட குறியீட்டு எப்படி செயல்படுகிறது என்பதை விளக்கி முக்கிய கோப்புகளுடன் இணைக்கவும்.',
-        text: 'இது எப்படி செயல்படுகிறது என்பதை விளக்கி முக்கிய கோப்புகளைச் சுட்டிக்காட்டவும்.',
-      },
+        description:
+          'தேர்ந்தெடுக்கப்பட்ட குறியீட்டு எப்படி செயல்படுகிறது என்பதை விளக்கி முக்கிய கோப்புகளுடன் இணைக்கவும்.',
+        text: 'இது எப்படி செயல்படுகிறது என்பதை விளக்கி முக்கிய கோப்புகளைச் சுட்டிக்காட்டவும்.'
+      }
     },
     message: 'செய்தி',
     wakingProfile: profile => `${profile}-ஐ எழுப்புகிறது…`,
@@ -1447,20 +1519,20 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     newSessionPlaceholders: [
       'நாம் எதை உருவாக்குகிறோம்?',
       'OpenAmer-க்கு ஒரு பணியைக் கொடுங்கள்',
-      "உங்கள் மனதில் என்ன உள்ளது?",
+      'உங்கள் மனதில் என்ன உள்ளது?',
       'உங்களுக்கு என்ன தேவை என்பதை விவரிக்கவும்',
       'நாம் எதைக் கையாள வேண்டும்?',
       'எது வேண்டுமானாலும் கேளுங்கள்',
-      'ஒரு இலக்குடன் தொடங்குங்கள்',
+      'ஒரு இலக்குடன் தொடங்குங்கள்'
     ],
     followUpPlaceholders: [
       'தொடர் கேள்வியைச் சமர்ப்பிக்கவும்',
       'கூடுதல் சூழலைச் சேர்க்கவும்',
       'கோரிக்கையை மேம்படுத்தவும்',
-      "அடுத்து என்ன?",
+      'அடுத்து என்ன?',
       'தொடர்ந்து செல்லுங்கள்',
       'இன்னும் முன்னேற்றுங்கள்',
-      'சரிசெய்யவும் அல்லது தொடரவும்',
+      'சரிசெய்யவும் அல்லது தொடரவும்'
     ],
     startVoice: 'குரல் உரையாடலைத் தொடங்கு',
     queueMessage: 'செய்தியை வரிசைப்படுத்து',
@@ -1496,7 +1568,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       '/resume': 'முந்தைய அமர்வைத் தொடர்',
       '/details': 'பதிவு விவர அளவைக் கட்டுப்படுத்து',
       '/copy': 'தேர்வை அல்லது கடைசி உதவியாளர் செய்தியை நகலெடு',
-      '/quit': 'openamer இலிருந்து வெளியேறு',
+      '/quit': 'openamer இலிருந்து வெளியேறு'
     },
     hotkeyDescs: {
       'composer.mention': 'கோப்புகள், கோப்புறைகள், urls, git ஆகியவற்றைக் குறிப்பிடு',
@@ -1506,7 +1578,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       'composer.sendQueued': 'அடுத்த வரிசைத் திருப்பத்தை அனுப்பு',
       'keybinds.openPanel': 'அனைத்து விசைப்பலகை குறுக்குவழிகள்',
       'composer.cancel': 'பாப்ஓவரை மூடு · ஓட்டத்தை ரத்துசெய்',
-      'composer.history': 'பாப்ஓவர் / வரலாற்றைச் சுழற்று',
+      'composer.history': 'பாப்ஓவர் / வரலாற்றைச் சுழற்று'
     },
     attachUrlTitle: 'ஒரு URL இணைக்கவும்',
     attachUrlDesc: 'OpenAmer பக்கத்தைப் பெற்று இந்தச் சுற்றுக்கான சூழலாகச் சேர்க்கும்.',
@@ -1529,7 +1601,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     previewLabel: label => `${label} முன்னோட்டம்`,
     couldNotPreview: label => `${label}-ஐ முன்னோட்டமாகக் காட்ட முடியவில்லை`,
     removeAttachment: label => `${label}-ஐ நீக்கு`,
-    url: 'இணைய முகவரி…',
+    url: 'இணைய முகவரி…'
   },
   statusStack: {
     agents: 'முகவர்கள்',
@@ -1555,8 +1627,10 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       viewAsList: 'பட்டியலாகக் காண்க',
       revert: 'மீளமை',
       revertAll: 'அனைத்தையும் மீளமை',
-      revertConfirm: 'இந்தக் கோப்பின் மாற்றங்களை நிராகரித்து, கமிட் செய்யப்பட்ட நிலைக்கு மீட்டமைக்கவா? இதைச் செயல்தவிர்க்க முடியாது.',
-      revertAllConfirm: 'அனைத்து மாற்றங்களையும் நிராகரித்து, கோப்புகளை கமிட் செய்யப்பட்ட நிலைக்கு மீட்டமைக்கவா? இதைச் செயல்தவிர்க்க முடியாது.',
+      revertConfirm:
+        'இந்தக் கோப்பின் மாற்றங்களை நிராகரித்து, கமிட் செய்யப்பட்ட நிலைக்கு மீட்டமைக்கவா? இதைச் செயல்தவிர்க்க முடியாது.',
+      revertAllConfirm:
+        'அனைத்து மாற்றங்களையும் நிராகரித்து, கோப்புகளை கமிட் செய்யப்பட்ட நிலைக்கு மீட்டமைக்கவா? இதைச் செயல்தவிர்க்க முடியாது.',
       staged: 'ஸ்டேஜ் செய்யப்பட்டது',
       noChanges: 'மாற்றங்கள் இல்லை',
       notRepo: 'இது git களஞ்சியம் அல்ல',
@@ -1573,17 +1647,18 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       openPr: 'PR திற',
       ghMissing: 'PRகளைத் திறக்க GitHub CLI (gh) ஐ நிறுவி உள்நுழைக',
       agentShip: 'PR திறக்க OpenAmer-ஐக் கேள்',
-      agentShipPrompt: 'தற்போதைய மாற்றங்களை மதிப்பாய்வு செய்து, தெளிவான conventional-commit செய்தியுடன் commit செய்து, branch-ஐ push செய்து, pull request திற',
+      agentShipPrompt:
+        'தற்போதைய மாற்றங்களை மதிப்பாய்வு செய்து, தெளிவான conventional-commit செய்தியுடன் commit செய்து, branch-ஐ push செய்து, pull request திற',
       newBranch: 'புதிய branch',
       branchOffFrom: base => `${base}-லிருந்து புதிய கிளை`,
       switchTo: branch => `${branch}-க்கு மாறவும்`,
       switchFailed: branch => `${branch}-க்கு மாற முடியவில்லை`,
-      worktrees: 'Worktreeகள்',
+      worktrees: 'Worktreeகள்'
     },
     background: count => `${count} பின்னணி`,
     subagents: count => `${count} துணை முகவர்${count === 1 ? '' : 's'}`,
     todos: (done, total) => `பணிகள் ${done}/${total}`,
-    exit: code => `வெளியேறு ${code}`,
+    exit: code => `வெளியேறு ${code}`
   },
   updates: {
     applyStatus: {
@@ -1592,11 +1667,13 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       pulling: 'பின்தளம் புதுப்பிக்கப்படுகிறது…',
       restarting: 'புதுப்பிப்பை ஏற்ற பின்தளம் மறுதொடங்குகிறது…',
       notAvailable: 'இந்த பின்தளத்திற்கு புதுப்பிப்பு கிடைக்கவில்லை.',
-      failed: 'பின்தளப் புதுப்பிப்பு தோல்வியடைந்தது.',
+      failed: 'பின்தளப் புதுப்பிப்பு தோல்வியடைந்தது.'
     },
     appErrors: {
-      updateLocked: 'புதுப்பிப்பு நிறுத்தப்பட்டது: இந்த நிறுவனத்தை வைத்திருக்கும் மற்றொரு OpenAmer சாளி அல்லது openamer இயக்கும் முனைப்பாடி உள்ளது. அதை மூடி மீண்டும் முயற்சிக்கவும்.',
-      updateFailed: 'புதுப்பிப்பு முடியவில்லை. கவலி வேண்டாம் — எதுவும் இழக்கப்படவில்லை. இப்போது மீண்டும் முயற்சிக்கலாம்.',
+      updateLocked:
+        'புதுப்பிப்பு நிறுத்தப்பட்டது: இந்த நிறுவனத்தை வைத்திருக்கும் மற்றொரு OpenAmer சாளி அல்லது openamer இயக்கும் முனைப்பாடி உள்ளது. அதை மூடி மீண்டும் முயற்சிக்கவும்.',
+      updateFailed:
+        'புதுப்பிப்பு முடியவில்லை. கவலி வேண்டாம் — எதுவும் இழக்கப்படவில்லை. இப்போது மீண்டும் முயற்சிக்கலாம்.'
     },
     stages: {
       idle: 'தயாராகிறது…',
@@ -1610,7 +1687,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       done: 'புதுப்பிப்பு முடிந்தது',
       manual: 'உங்கள் முனையத்திலிருந்து புதுப்பிக்கவும்',
       guiSkew: 'டெஸ்க்டாப் செயலியைப் புதுப்பிக்கவும்',
-      error: 'புதுப்பிப்பு இடைநிறுத்தப்பட்டது',
+      error: 'புதுப்பிப்பு இடைநிறுத்தப்பட்டது'
     },
     checking: 'புதுப்பிப்புகளைத் தேடுகிறது…',
     checkFailedTitle: 'புதுப்பிப்புகளைச் சரிபார்க்க முடியவில்லை',
@@ -1625,24 +1702,29 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     availableBody: 'OpenAmer-இன் புதிய பதிப்பு நிறுவத் தயாராக உள்ளது.',
     availableTitleBackend: 'பின்தளப் புதுப்பிப்பு கிடைக்கிறது',
     availableBodyBackend: 'இணைக்கப்பட்ட OpenAmer பின்தளத்தின் புதிய பதிப்பு நிறுவத் தயாராக உள்ளது.',
-    availableBodyNoChangelog: 'புதிய பதிப்பு தயாராக உள்ளது. இந்த நிறுவல் வகைக்கு வெளியீட்டுக் குறிப்புகள் கிடைக்கவில்லை.',
+    availableBodyNoChangelog:
+      'புதிய பதிப்பு தயாராக உள்ளது. இந்த நிறுவல் வகைக்கு வெளியீட்டுக் குறிப்புகள் கிடைக்கவில்லை.',
     updateNow: 'இப்போது புதுப்பிக்கவும்',
     maybeLater: 'பிறகு பார்க்கலாம்',
     moreChanges: count => `+ ${count} கூடுதல் மாற்றம்${count === 1 ? '' : 's'} சேர்க்கப்பட்டது.`,
     manualTitle: 'உங்கள் முனையத்திலிருந்து புதுப்பிக்கவும்',
-    manualBody: 'OpenAmer-ஐ கட்டளை வரியிலிருந்து நிறுவியுள்ளீர்கள், எனவே புதுப்பிப்புகளும் அங்கே இயங்கும். இதை உங்கள் முனையத்தில் ஒட்டவும்:',
+    manualBody:
+      'OpenAmer-ஐ கட்டளை வரியிலிருந்து நிறுவியுள்ளீர்கள், எனவே புதுப்பிப்புகளும் அங்கே இயங்கும். இதை உங்கள் முனையத்தில் ஒட்டவும்:',
     manualPickedUp: 'அடுத்த முறை OpenAmer-ஐத் தொடங்கும்போது புதிய பதிப்பை எடுத்துக்கொள்ளும்.',
     guiSkewTitle: 'டெஸ்க்டாப் பயன்பாட்டைப் புதுப்பிக்கவும்',
-    guiSkewBody: 'பின்தளம் புதுப்பிக்கப்பட்டது, ஆனால் இந்த டெஸ்க்டாப் பயன்பாட்டுத் தொகுப்பு மாறவில்லை. பொருந்துவதற்கு OpenAmer டெஸ்க்டாப் பயன்பாட்டை (உங்கள் AppImage / .deb / .rpm) புதுப்பிக்கவும் அல்லது மீண்டும் நிறுவவும்.',
+    guiSkewBody:
+      'பின்தளம் புதுப்பிக்கப்பட்டது, ஆனால் இந்த டெஸ்க்டாப் பயன்பாட்டுத் தொகுப்பு மாறவில்லை. பொருந்துவதற்கு OpenAmer டெஸ்க்டாப் பயன்பாட்டை (உங்கள் AppImage / .deb / .rpm) புதுப்பிக்கவும் அல்லது மீண்டும் நிறுவவும்.',
     copy: 'நகலெடு',
     copied: 'நகலெடுக்கப்பட்டது',
     done: 'முடிந்தது',
-    applyingBody: 'OpenAmer புதுப்பிப்பான் அதன் சொந்த சாளரத்தில் பொறுப்பேற்று, முடிந்ததும் OpenAmer-ஐ தானாகவே மீண்டும் திறக்கும். புதுப்பிப்பு நடைபெறும் போது OpenAmer-ஐ நீங்களே மீண்டும் திறக்க வேண்டாம்.',
-    applyingBodyBackend: 'தொலை பின்தளம் புதுப்பிப்பைப் பயன்படுத்துகிறது, பின்னர் மறுதொடக்கம் செய்யும். அது திரும்பியதும் OpenAmer தானாகவே மீண்டும் இணைக்கும்.',
+    applyingBody:
+      'OpenAmer புதுப்பிப்பான் அதன் சொந்த சாளரத்தில் பொறுப்பேற்று, முடிந்ததும் OpenAmer-ஐ தானாகவே மீண்டும் திறக்கும். புதுப்பிப்பு நடைபெறும் போது OpenAmer-ஐ நீங்களே மீண்டும் திறக்க வேண்டாம்.',
+    applyingBodyBackend:
+      'தொலை பின்தளம் புதுப்பிப்பைப் பயன்படுத்துகிறது, பின்னர் மறுதொடக்கம் செய்யும். அது திரும்பியதும் OpenAmer தானாகவே மீண்டும் இணைக்கும்.',
     applyingClose: 'புதுப்பிப்பு இயங்கும் போது இந்த சாளரம் மூடப்படும், பின்னர் OpenAmer தானாகவே மீண்டும் திறக்கும்.',
     errorTitle: 'புதுப்பிப்பு முடியவில்லை',
     errorBody: 'கவலை வேண்டாம் — எதுவும் இழக்கப்படவில்லை. இப்போது மீண்டும் முயற்சிக்கலாம்.',
-    notNow: 'இப்போது வேண்டாம்',
+    notNow: 'இப்போது வேண்டாம்'
   },
   install: {
     stageStates: {
@@ -1650,7 +1732,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       running: 'நிறுவுகிறது',
       succeeded: 'முடிந்தது',
       skipped: 'தவிர்க்கப்பட்டது',
-      failed: 'தோல்வி',
+      failed: 'தோல்வி'
     },
     oneTimeTitle: 'OpenAmer-க்கு ஒர�ுறை நிறுவனம் தேவை',
     installCommand: 'நிறுவனக் கட்டளை',
@@ -1659,15 +1741,19 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     installTo: 'நிறுவனம் செய்ய இடம்',
     retryAfterRun: 'இயக்கிவிட்டேன் -- மீண்டும் முயற்சிக்கவும்',
     setupChoiceTitle: 'OpenAmer Desktop-ஐ அமைக்கவும்',
-    setupChoiceDesc: 'இந்தச் செயலியை நீங்கள் ஏற்கனவே இயக்கும் OpenAmer gateway-உடன் இணைக்கவும் அல்லது இந்தக் கணினியில் OpenAmer-ஐ நிறுவனம் செய்யவும்.',
+    setupChoiceDesc:
+      'இந்தச் செயலியை நீங்கள் ஏற்கனவே இயக்கும் OpenAmer gateway-உடன் இணைக்கவும் அல்லது இந்தக் கணினியில் OpenAmer-ஐ நிறுவனம் செய்யவும்.',
     connectExistingTitle: 'ஏற்கனவே உள்ள OpenAmer-உடன் இணைக்கவும்',
     connectExistingShort: 'ஏற்கனவே உள்ளதுடன் இணைக்கவும்',
-    connectExistingDesc: 'remote backend-ஐ session token அல்லது browser sign-in மூலம் பயன்படுத்தவும். Local நிறுவனம் தொடங்கப்படாது.',
+    connectExistingDesc:
+      'remote backend-ஐ session token அல்லது browser sign-in மூலம் பயன்படுத்தவும். Local நிறுவனம் தொடங்கப்படாது.',
     installLocalTitle: 'OpenAmer-ஐ இல்லாமல் நிறுவனம் செய்யவும்',
-    installLocalDesc: 'OpenAmer-ஐப் பதிவிற்கிவங்கவும், அதன் Python சூழலை உருவாக்கவும், backend-ஐ இந்தக் கணினியில் இயக்கவும்.',
+    installLocalDesc:
+      'OpenAmer-ஐப் பதிவிற்கிவங்கவும், அதன் Python சூழலை உருவாக்கவும், backend-ஐ இந்தக் கணினியில் இயக்கவும்.',
     localStartUnavailable: 'Local நிறுவனத்தைத் தொடங்க முடியவில்லை. OpenAmer Desktop-ஐ மீண்டும் தொடங்கி முயற்சிக்கவும்.',
     remoteSetupTitle: 'ஏற்கனவே உள்ள OpenAmer-உடன் இணைக்கவும்',
-    remoteSetupDesc: 'உங்கள் gateway URL-ஐ உள்ளிடவும். OpenAmer Desktop அதற்கு token தேவையா அல்லது browser sign-in தேவையா என்பதைக் கண்டறியும்.',
+    remoteSetupDesc:
+      'உங்கள் gateway URL-ஐ உள்ளிடவும். OpenAmer Desktop அதற்கு token தேவையா அல்லது browser sign-in தேவையா என்பதைக் கண்டறியும்.',
     remoteUrlDesc: 'remote பயன்படுத்தும்போது https:// உள்ளிட்ட OpenAmer gateway-இன் base URL-ஐ பயன்படுத்தவும்.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Gateway authentication கண்டறியப்படுகிறது...',
@@ -1680,7 +1766,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     tokenDesc: 'Remote gateway .env கோப்பிலிருந்து session token-ஐ நகலெடுத்து ஒட்டவும்.',
     pasteSessionToken: 'Session token-ஐ ஒட்டவும்',
     incompleteSignInTest: 'இந்த OAuth gateway-ஐச் சோதிக்க முன் sign in செய்யவும்.',
-    unsupportedDesc: platform => `தானியங்கி முதல்முறை நிறுவல் ${platform}-இல் இன்னும் கிடைக்கவில்லை. டெர்மினலைத் திறந்து கீழே உள்ள கட்டளையை இயக்கவும், பின்னர் இந்த செயலியை மீண்டும் தொடங்கவும். அடுத்தடுத்த தொடக்கங்களில் இந்த படி தவிர்க்கப்படும்.`,
+    unsupportedDesc: platform =>
+      `தானியங்கி முதல்முறை நிறுவல் ${platform}-இல் இன்னும் கிடைக்கவில்லை. டெர்மினலைத் திறந்து கீழே உள்ள கட்டளையை இயக்கவும், பின்னர் இந்த செயலியை மீண்டும் தொடங்கவும். அடுத்தடுத்த தொடக்கங்களில் இந்த படி தவிர்க்கப்படும்.`,
     remoteUrlTitle: 'நுழைவாயில் URL',
     authTitle: 'அங்கீகாரம்',
     authNeedsOauth: provider => `இந்த நுழைவாயிலைச் சோதிக்கும் முன் ${provider} மூலம் உள்நுழையவும்.`,
@@ -1695,8 +1782,10 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     failedTitle: 'நிறுவல் தோல்வியடைந்தது',
     settingUpTitle: 'OpenAmer Agent அமைக்கப்படுகிறது',
     finishingTitle: 'இறுதி செய்யப்படுகிறது',
-    failedDesc: 'நிறுவல் படிகளில் ஒன்று தோல்வியடைந்தது. Windows இல், மற்றொரு OpenAmer CLI அல்லது டெஸ்க்டாப் இன்ஸ்டன்ஸ் இயங்கினால் இது நிகழலாம். இயங்கும் OpenAmer இன்ஸ்டன்ஸ்களை நிறுத்தி மீண்டும் முயலவும். முழு டிரான்ஸ்கிரிப்டுக்கு கீழே உள்ள விவரங்கள் அல்லது டெஸ்க்டாப் பதிவைப் பார்க்கவும்.',
-    activeDesc: 'இது ஒரு முறை மட்டும் செய்யப்படும் அமைப்பு. OpenAmer நிறுவி சார்புகளைப் பதிவிறக்கி உங்கள் கணினியை அமைக்கிறது. அடுத்த தொடக்கங்களில் இந்தப் படி தவிர்க்கப்படும்.',
+    failedDesc:
+      'நிறுவல் படிகளில் ஒன்று தோல்வியடைந்தது. Windows இல், மற்றொரு OpenAmer CLI அல்லது டெஸ்க்டாப் இன்ஸ்டன்ஸ் இயங்கினால் இது நிகழலாம். இயங்கும் OpenAmer இன்ஸ்டன்ஸ்களை நிறுத்தி மீண்டும் முயலவும். முழு டிரான்ஸ்கிரிப்டுக்கு கீழே உள்ள விவரங்கள் அல்லது டெஸ்க்டாப் பதிவைப் பார்க்கவும்.',
+    activeDesc:
+      'இது ஒரு முறை மட்டும் செய்யப்படும் அமைப்பு. OpenAmer நிறுவி சார்புகளைப் பதிவிறக்கி உங்கள் கணினியை அமைக்கிறது. அடுத்த தொடக்கங்களில் இந்தப் படி தவிர்க்கப்படும்.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- இப்போது: ${stage}`,
     fetchingManifest: 'நிறுவி மேனிஃபெஸ்ட் பெறப்படுகிறது...',
@@ -1710,12 +1799,13 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     transcriptSaved: 'முழு டிரான்ஸ்கிரிப்ட் சேமிக்கப்பட்டது:',
     copiedOutput: 'நகலெடுக்கப்பட்டது!',
     copyOutput: 'வெளியீட்டை நகலெடு',
-    reloadRetry: 'மீள்ஏற்றி மீண்டும் முயலவும்',
+    reloadRetry: 'மீள்ஏற்றி மீண்டும் முயலவும்'
   },
   assistant: {
     clarify: {
       lateAnswerTip: 'இந்தப் பதிலைத் தொடர்ச்சி செய்தியாக வரைவழையுங்கள்',
-      lateAnswerHint: 'இந்தக் கோரிக்கை ஏற்கனவே காத்திருக்கவில்லை. தொடர்ச்சி செய்தியாக வரைவழைய ஒரு விருப்பத்தைத் தேர்ந்தெடுங்கள்.',
+      lateAnswerHint:
+        'இந்தக் கோரிக்கை ஏற்கனவே காத்திருக்கவில்லை. தொடர்ச்சி செய்தியாக வரைவழைய ஒரு விருப்பத்தைத் தேர்ந்தெடுங்கள்.',
       notReady: 'விளக்கம் கோரிக்கை இன்னும் தயார் இல்லை',
       gatewayDisconnected: 'OpenAmer கேட்வே இணைக்கப்படவில்லை',
       sendFailed: 'விளக்க பதில் அனுப்ப முடியவில்லை',
@@ -1725,7 +1815,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       skip: 'தவிர்க்கவும்',
       skipped: 'தவிர்க்கப்பட்டது',
       continueLabel: 'தொடரவும்',
-      lateAnswer: (question, choice) => `"${question}" குறித்து — என் பதில்: ${choice}`,
+      lateAnswer: (question, choice) => `"${question}" குறித்து — என் பதில்: ${choice}`
     },
     tool: {
       code: 'குறியீடு',
@@ -1759,123 +1849,123 @@ ${mode} இயல்பாக இருக்க காலியாக விட
         ran: 'இயக்கப்பட்டது',
         running: 'இயங்குகிறது',
         ranCode: 'குறியீடு இயக்கப்பட்டது',
-        runningCode: 'ஸ்கிரிப்ட் செய்கிறது',
+        runningCode: 'ஸ்கிரிப்ட் செய்கிறது'
       },
       prefixes: {
         browser: 'உலாவி',
-        web: 'இணையம்',
+        web: 'இணையம்'
       },
       titles: {
         browser_click: {
           done: 'பக்கக் கூறு கிளிக் செய்யப்பட்டது',
           pending: 'பக்கக் கூறை கிளிக் செய்கிறது',
-          pendingAction: 'கிளிக் செய்கிறது',
+          pendingAction: 'கிளிக் செய்கிறது'
         },
         browser_fill: {
           done: 'படிவப் புலம் நிரப்பப்பட்டது',
           pending: 'படிவப் புலத்தை நிரப்புகிறது',
-          pendingAction: 'நிரப்புகிறது',
+          pendingAction: 'நிரப்புகிறது'
         },
         browser_navigate: {
           done: 'பக்கம் திறந்தது',
           pending: 'பக்கம் திறக்கிறது',
-          pendingAction: 'திறக்கிறது',
+          pendingAction: 'திறக்கிறது'
         },
         browser_snapshot: {
           done: 'பக்க ச்னாப்ஷாட் பிடித்தது',
           pending: 'பக்க ச்னாப்ஷாட் பிடிக்கிறது',
-          pendingAction: 'பிடிக்கிறது',
+          pendingAction: 'பிடிக்கிறது'
         },
         browser_take_screenshot: {
           done: 'ஸ்க்ரீன்ஷாட் பிடித்தது',
           pending: 'ஸ்க்ரீன்ஷாட் பிடிக்கிறது',
-          pendingAction: 'பிடிக்கிறது',
+          pendingAction: 'பிடிக்கிறது'
         },
         browser_type: {
           done: 'பக்கத்தில் தட்டச்சு செய்யப்பட்டது',
           pending: 'பக்கத்தில் தட்டச்சு செய்கிறது',
-          pendingAction: 'தட்டச்சு செய்கிறது',
+          pendingAction: 'தட்டச்சு செய்கிறது'
         },
         clarify: {
           done: 'கேள்வி கேட்டது',
           pending: 'கேள்வி கேட்கிறது',
-          pendingAction: 'கேட்கிறது',
+          pendingAction: 'கேட்கிறது'
         },
         cronjob: {
           done: 'கிரோன் வேலை',
           pending: 'கிரோன் வேலை திட்டமிடுகிறது',
-          pendingAction: 'திட்டமிடுகிறது',
+          pendingAction: 'திட்டமிடுகிறது'
         },
         edit_file: {
           done: 'கோப்பு திருத்தப்பட்டது',
           pending: 'கோப்பு திருத்துகிறது',
-          pendingAction: 'திருத்துகிறது',
+          pendingAction: 'திருத்துகிறது'
         },
         execute_code: {
           done: 'கோடு இயக்கப்பட்டது',
           pending: 'ஸ்கிரிப்டிங்',
-          pendingAction: 'ஸ்கிரிப்டிங்',
+          pendingAction: 'ஸ்கிரிப்டிங்'
         },
         image_generate: {
           done: 'உருவாக்கப்பட்ட படம்',
           pending: 'படம் உருவாக்குகிறது',
-          pendingAction: 'உருவாக்குகிறது',
+          pendingAction: 'உருவாக்குகிறது'
         },
         list_files: {
           done: 'பட்டியலிடப்பட்ட கோப்புகள்',
           pending: 'கோப்புகள் பட்டியலிடுகிறது',
-          pendingAction: 'பட்டியலிடுகிறது',
+          pendingAction: 'பட்டியலிடுகிறது'
         },
         patch: {
           done: 'பேட்ச் செய்யப்பட்ட கோப்பு',
           pending: 'கோப்பு பேட்ச் செய்கிறது',
-          pendingAction: 'பேட்ச் செய்கிறது',
+          pendingAction: 'பேட்ச் செய்கிறது'
         },
         read_file: {
           done: 'கோப்பை படிக்கவும்',
           pending: 'கோப்பு படிக்கிறது',
-          pendingAction: 'படிக்கிறது',
+          pendingAction: 'படிக்கிறது'
         },
         search_files: {
           done: 'தேடப்பட்ட கோப்புகள்',
           pending: 'கோப்புகள் தேடுகிறது',
-          pendingAction: 'தேடுகிறது',
+          pendingAction: 'தேடுகிறது'
         },
         session_search_recall: {
           done: 'தேடப்பட்ட அமர்வு வரலாறு',
           pending: 'அமர்வு வரலாறு தேடுகிறது',
-          pendingAction: 'தேடுகிறது',
+          pendingAction: 'தேடுகிறது'
         },
         terminal: {
           done: 'கட்டளை இயக்கப்பட்டது',
           pending: 'கட்டளை இயக்குகிறது',
-          pendingAction: 'இயக்குகிறது',
+          pendingAction: 'இயக்குகிறது'
         },
         todo: {
           done: 'புதுப்பிக்கப்பட்ட டூடூக்கள்',
           pending: 'டூடூக்கள் புதுப்பிக்கிறது',
-          pendingAction: 'புதுப்பிக்கிறது',
+          pendingAction: 'புதுப்பிக்கிறது'
         },
         vision_analyze: {
           done: 'பகுப்பாய்வு செய்யப்பட்ட படம்',
           pending: 'படம் பகுப்பாய்வு செய்கிறது',
-          pendingAction: 'பகுப்பாய்வு செய்கிறது',
+          pendingAction: 'பகுப்பாய்வு செய்கிறது'
         },
         web_extract: {
           done: 'வலைப்பக்கத்தை படிக்கவும்',
           pending: 'வலைப்பக்கம் படிக்கிறது',
-          pendingAction: 'படிக்கிறது',
+          pendingAction: 'படிக்கிறது'
         },
         web_search: {
           done: 'தேடப்பட்ட வலை',
           pending: 'வலை தேடுகிறது',
-          pendingAction: 'தேடுகிறது',
+          pendingAction: 'தேடுகிறது'
         },
         write_file: {
           done: 'திருத்தப்பட்ட கோப்பு',
           pending: 'கோப்பு திருத்துகிறது',
-          pendingAction: 'திருத்துகிறது',
-        },
+          pendingAction: 'திருத்துகிறது'
+        }
       },
       recoveredMany: count => `${count} படிகள் தோல்வியடைந்த பிறகு மீட்கப்பட்டது`,
       failedMany: count => `${count} படிகள் தோல்வியடைந்தன`,
@@ -1885,8 +1975,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `${prefix.toLowerCase()} ${action.toLowerCase()} இயங்குகிறது`,
-        runningTool: action => `${action.toLowerCase()} இயங்குகிறது`,
-      },
+        runningTool: action => `${action.toLowerCase()} இயங்குகிறது`
+      }
     },
     approval: {
       moreOptions: 'மேலும் அனுமதிகள்',
@@ -1900,7 +1990,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       sendFailed: 'அனுமதி பதில் அனுப்ப முடியவில்லை',
       run: 'இயக்கு',
       command: 'கமாண்ட்',
-      alwaysDescription: pattern => `இது “${pattern}” வடிவத்தை உங்கள் நிரந்தர அனுமதிப் பட்டியலில் (~/.openamer/config.yaml) சேர்க்கும். இதுபோன்ற கட்டளைகளுக்கு OpenAmer மீண்டும் கேட்காது — இந்த அமர்விலும் இனிவரும் அமர்வுகளிலும்.`,
+      alwaysDescription: pattern =>
+        `இது “${pattern}” வடிவத்தை உங்கள் நிரந்தர அனுமதிப் பட்டியலில் (~/.openamer/config.yaml) சேர்க்கும். இதுபோன்ற கட்டளைகளுக்கு OpenAmer மீண்டும் கேட்காது — இந்த அமர்விலும் இனிவரும் அமர்வுகளிலும்.`
     },
     thread: {
       loadingSession: 'செஷன் ஏற்றுகிறது',
@@ -1924,7 +2015,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       restoreCheckpoint: 'செக்க்பாயின்ட் மீட்டமைக்கவும்',
       restoreFromHere: 'செக்க்பாயின்ட் மீட்டமைக்கவும் — இந்த தூண்டுதலிலிருந்து மீண்டும் இயக்கவும்',
       restoreTitle: 'இந்த செக்க்பாயின்ட்டிற்கு மீட்டமைக்கவும்?',
-      restoreBody: 'இந்த தூண்டுதலுக்கு பின் அனைத்தும் உரையாடலிலிருந்து நீக்கப்படுகிறது, மற்றும் தூண்டுதல் இங்கிருந்து மீண்டும் இயங்குகிறது.',
+      restoreBody:
+        'இந்த தூண்டுதலுக்கு பின் அனைத்தும் உரையாடலிலிருந்து நீக்கப்படுகிறது, மற்றும் தூண்டுதல் இங்கிருந்து மீண்டும் இயங்குகிறது.',
       restoreConfirm: 'மீட்டமைக்கவும் & மீண்டும் இயக்கவும்',
       restoreNext: 'அடுத்த செக்க்பாயின்ட் மீட்டமைக்கவும்',
       goForward: 'முன்னேறவும்',
@@ -1935,8 +2027,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `இன்று, ${time}`,
-      yesterday: time => `நேற்று, ${time}`,
-    },
+      yesterday: time => `நேற்று, ${time}`
+    }
   },
   preview: {
     linkHint: '⌘/Ctrl-கிளிக் முன்னோட்டம் பேனிற்காக',
@@ -1954,7 +2046,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     editing: 'தொகுக்கிறது',
     unsavedChanges: 'சேமிக்காத மாற்றங்கள்',
     diskChangedTitle: 'கோப்பு திஸ்கில் மாற்றப்பட்டது',
-    diskChangedBody: 'நீங்கள் திறந்த பிறகு இந்த கோப்பு மாற்றப்பட்டது. உங்கள் பதிப்புடன் மேல் எழுதுவது நல்லதா, அல்லது உங்கள் தொகுப்புகளை விட்டு மறுபடியும் ஏற்றுவது நல்லதா?',
+    diskChangedBody:
+      'நீங்கள் திறந்த பிறகு இந்த கோப்பு மாற்றப்பட்டது. உங்கள் பதிப்புடன் மேல் எழுதுவது நல்லதா, அல்லது உங்கள் தொகுப்புகளை விட்டு மறுபடியும் ஏற்றுவது நல்லதா?',
     overwrite: 'மேல் எழுது',
     discardReload: 'விட்டு மறுபடியே ஏற்று',
     console: {
@@ -1975,7 +2068,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       sentTitle: 'அரட்டைக்கு அனுப்பப்பட்டது',
       messages: count => `${count} கன்சோல் செய்திகள்`,
       selected: count => `${count} தேர்ந்தெடுக்கப்பட்டது`,
-      sentMessage: count => `${count} பதிவு உருப்படி${count === 1 ? 'y' : 'ies'} எழுதும் பகுதியில் சேர்க்கப்பட்டது`,
+      sentMessage: count => `${count} பதிவு உருப்படி${count === 1 ? 'y' : 'ies'} எழுதும் பகுதியில் சேர்க்கப்பட்டது`
     },
     web: {
       appFailedToBoot: 'முன்னோட்டம் பயன்பாடு துவக்கவில்லை',
@@ -1996,20 +2089,23 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       reloadingNow: 'இப்போது முன்னோட்டத்தை மறுதோற்றுகிறது.',
       restartFailedTitle: 'முன்னோட்டம் மறுதொடக்கம் தோல்வியடைந்தது',
       restartFailedMessage: 'OpenAmer சேவரை மறுதொடங்க முடியவில்லை.',
-      stillWorking: 'OpenAmer இன்னும் வேலை செய்கிறது, ஆனால் மறுதொடக்க முடிவு இன்னும் வரவில்லை. சேவர் கட்டளை முன்னிலையில் இயங்கிக் கொண்டிருக்கலாம்.',
+      stillWorking:
+        'OpenAmer இன்னும் வேலை செய்கிறது, ஆனால் மறுதொடக்க முடிவு இன்னும் வரவில்லை. சேவர் கட்டளை முன்னிலையில் இயங்கிக் கொண்டிருக்கலாம்.',
       workspaceReloading: 'பணி இடம் மாறியது, முன்னோட்டத்தை மறுதோற்றுகிறது',
-      moduleMimeDescription: 'தொகுதிக் குறுநிரல்கள் தவறான MIME வகையில் வழங்கப்படுகின்றன. வழக்கமாக, திட்டத்தின் உருவாக்கச் சேவையகத்திற்குப் பதிலாக நிலையான கோப்புச் சேவையகம் ஒரு வைட்/ரியாக்ட் செயலியை வழங்குவதை இது குறிக்கிறது.',
+      moduleMimeDescription:
+        'தொகுதிக் குறுநிரல்கள் தவறான MIME வகையில் வழங்கப்படுகின்றன. வழக்கமாக, திட்டத்தின் உருவாக்கச் சேவையகத்திற்குப் பதிலாக நிலையான கோப்புச் சேவையகம் ஒரு வைட்/ரியாக்ட் செயலியை வழங்குவதை இது குறிக்கிறது.',
       unreachableDescription: 'முன்னோட்டம் பக்கம் அணுக முடியவில்லை.',
       fallbackTitle: 'முன்னோட்டம்',
       lookingRestart: taskId => `OpenAmer மீண்டும் தொடங்க ஒரு முன்னோட்ட சேவையகத்தைத் தேடுகிறது (${taskId})`,
       startRestartFailed: message => `சேவையக மறுதொடக்கத்தைத் தொடங்க முடியவில்லை: ${message}`,
-      finishedRestarting: message => `முன்னோட்டச் சேவையகத்தை OpenAmer மறுதொடக்கம் செய்துவிட்டது${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `முன்னோட்டச் சேவையகத்தை OpenAmer மறுதொடக்கம் செய்துவிட்டது${message ? `: ${message}` : ''}`,
       failedRestarting: message => `சேவையக மறுதொடக்கம் தோல்வியடைந்தது: ${message}`,
       fileChanged: url => `கோப்பு மாறியுள்ளது, முன்னோட்டம் மீண்டும் ஏற்றப்படுகிறது: ${url}`,
       filesChanged: (count, url) => `${count} கோப்பு மாற்றங்கள், முன்னோட்டம் மீண்டும் ஏற்றப்படுகிறது: ${url}`,
       watchFailed: message => `முன்னோட்டக் கோப்பைக் கண்காணிக்க முடியவில்லை: ${message}`,
       loadFailedConsole: (code, message) => `ஏற்ற முடியவில்லை${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `${url} திற`,
+      openTarget: url => `${url} திற`
     },
     tab: 'முன்னோட்டம்',
     closeOthers: 'மற்றவற்றை மூடு',
@@ -2026,7 +2122,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     binaryBody: label => `${label}-ஐ முன்னோட்டமாகக் காணும்போது படிக்க முடியாத உரைகள் தோன்றலாம்.`,
     largeBody: (label, size) => `${label} அளவு ${size}. OpenAmer முதல் 512 கிலோபைட்டுகளை மட்டுமே காட்டும்.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} என்பதை இன்னும் சூழலாக இணைக்கலாம்.`,
-    saveFailed: message => `சேமிக்க முடியவில்லை: ${message}`,
+    saveFailed: message => `சேமிக்க முடியவில்லை: ${message}`
   },
   shell: {
     statusbar: {
@@ -2056,13 +2152,13 @@ ${mode} இயல்பாக இருக்க காலியாக விட
           subagent_definitions: 'உப-ஏஜன்ட் வரையறைகள்',
           system_prompt: 'தொகுப்பு வினவல்',
           tool_definitions: 'கருவி வரையறைகள்',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'இன்னும் சந்தர்ப்ப தரவு இல்லை',
         loading: 'பிரிவை ஏற்றுகிறது…',
         title: 'சந்தர்ப்ப பயன்பாடு',
         percentFull: percent => `${percent}% நிரம்பியுள்ளது`,
-        tokenSummary: (used, max) => `${used} / ${max} டோக்கன்கள்`,
+        tokenSummary: (used, max) => `${used} / ${max} டோக்கன்கள்`
       },
       openContextUsage: 'சந்தர்ப்ப பயன்பாடு பிரிவைத் திற',
       session: 'சேஷன்',
@@ -2090,7 +2186,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       connectionSsh: host => `SSH: ${host}`,
       connectionRemote: host => `தூரம்: ${host}`,
       connectionCloud: host => `மேகம்: ${host}`,
-      connectionCloudTooltip: host => `${host}-இல் OpenAmer Cloud-உடன் இணைக்கப்பட்டுள்ளது · நிர்வகிக்க கிளிக் செய்யவும்`,
+      connectionCloudTooltip: host =>
+        `${host}-இல் OpenAmer Cloud-உடன் இணைக்கப்பட்டுள்ளது · நிர்வகிக்க கிளிக் செய்யவும்`,
       connectionSshTooltip: host => `SSH மூலம் ${host}-உடன் இணைக்கப்பட்டுள்ளது · நிர்வகிக்க கிளிக் செய்யவும்`,
       connectionRemoteTooltip: host => `ரிமோட் பேக்எண்ட் ${host}-உடன் இணைக்கப்பட்டுள்ளது · நிர்வகிக்க கிளிக் செய்யவும்`,
       backendLabel: version => `பின்தளப் பதிப்பு ${version}`,
@@ -2099,10 +2196,12 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       subagents: count => `${count} துணை முகவர்${count === 1 ? '' : 's'}`,
       failed: count => `${count} தோல்வியடைந்தது`,
       running: count => `${count} இயங்குகிறது`,
-      yoloOn: 'YOLO இயக்கத்தில் — ஆபத்தான கட்டளைகளை தானாக அனுமதிக்கிறது. அணைக்க கிளிக் செய்யவும். Shift+click அதை உலகளவில் மாற்றியமைக்கும்.',
-      yoloOff: 'YOLO அணைக்கப்பட்டுள்ளது — ஆபத்தான கட்டளைகளை தானாக அனுமதிக்க கிளிக் செய்யவும். Shift+click அதை உலகளவில் மாற்றியமைக்கும்.',
+      yoloOn:
+        'YOLO இயக்கத்தில் — ஆபத்தான கட்டளைகளை தானாக அனுமதிக்கிறது. அணைக்க கிளிக் செய்யவும். Shift+click அதை உலகளவில் மாற்றியமைக்கும்.',
+      yoloOff:
+        'YOLO அணைக்கப்பட்டுள்ளது — ஆபத்தான கட்டளைகளை தானாக அனுமதிக்க கிளிக் செய்யவும். Shift+click அதை உலகளவில் மாற்றியமைக்கும்.',
       modelTitle: (provider, model) => `மாதிரி · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     modelOptions: {
       effort: 'முயற்சி',
@@ -2118,7 +2217,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       noOptions: 'இந்த மாடலுக்கு விருப்பங்கள் இல்லை',
       options: 'விருப்பங்கள்',
       thinking: 'சிந்தனை',
-      fast: 'விரைவு',
+      fast: 'விரைவு'
     },
     gatewayMenu: {
       gateway: 'நுழைவாயில்',
@@ -2133,7 +2232,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       recentActivity: 'சமீபத்திய செயல்பாடு',
       viewAllLogs: 'அனைத்துப் பதிவுகளையும் காட்டு →',
       messagingPlatforms: 'செய்தி அனுப்பும் தளங்கள்',
-      connection: label => `இணைப்பு: ${label}`,
+      connection: label => `இணைப்பு: ${label}`
     },
     approvalMode: {
       title: 'ஒப்புதல் முறை',
@@ -2143,7 +2242,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       smartDescription: 'செயல்களைத் தானியாக மதிப்பிட்டு தேவைப்படும்போது கேளுங்கள்',
       off: 'இயக்கப்படாதது',
       offDescription: 'ஒப்புதல் வினாக்களின்றி இயக்கு',
-      ariaLabel: mode => `அங்கீகார முறை: ${mode}`,
+      ariaLabel: mode => `அங்கீகார முறை: ${mode}`
     },
     windowControls: 'சாளரக் கட்டுப்பாடுகள்',
     paneControls: 'பலகக் கட்டுப்பாடுகள்',
@@ -2153,8 +2252,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       noModels: 'மாடல்கள் எதுவும் கிடைக்கவில்லை',
       editModels: 'மாடல்களைத் திருத்து…',
       refreshModels: 'மாடல்களைப் புதுப்பி',
-      fast: 'விரைவு',
-    },
+      fast: 'விரைவு'
+    }
   },
   rightSidebar: {
     aria: 'வலது பக்க பட்டி',
@@ -2190,7 +2289,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     addToChat: 'அரட்டையில் சேர்க்க',
     folderTip: cwd => `${cwd} — கோப்புறையை மாற்றச் சொடுக்கவும்`,
     couldNotPreview: path => `${path}-ஐ முன்னோட்டமாகக் காட்ட முடியவில்லை`,
-    unreadableBody: error => `இந்தக் கோப்புறையை (${error}) படிக்க முடியவில்லை.`,
+    unreadableBody: error => `இந்தக் கோப்புறையை (${error}) படிக்க முடியவில்லை.`
   },
   onboarding: {
     lookingUpProviders: 'சேவையகங்களைக் கண்டுபிடிக்கிறது...',
@@ -2206,28 +2305,29 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     apiKeyOptions: {
       fireworks: {
         short: 'நேரடி மாதிரி API',
-        description: 'Fireworks AI வழங்கும் மாதிரிகளுக்கு நேரடி அணுகல்.',
+        description: 'Fireworks AI வழங்கும் மாதிரிகளுக்கு நேரடி அணுகல்.'
       },
       openrouter: {
         short: 'ஒரு விசை, பல மாதிரிகள்',
-        description: 'ஒரு விசையின் பின்னால் நூறுகணக்கான மாதிரிகளை வழங்குகிறது. புதிய நிறுவல்களுக்கு நல்ல முன்னிருப்பு.',
+        description: 'ஒரு விசையின் பின்னால் நூறுகணக்கான மாதிரிகளை வழங்குகிறது. புதிய நிறுவல்களுக்கு நல்ல முன்னிருப்பு.'
       },
       openai: {
         short: 'GPT-வகை மாதிரிகள்',
-        description: 'OpenAI மாதிரிகளுக்கு நேரடி அணுகல்.',
+        description: 'OpenAI மாதிரிகளுக்கு நேரடி அணுகல்.'
       },
       gemini: {
         short: 'Gemini மாதிரிகள்',
-        description: 'Google Gemini மாதிரிகளுக்கு நேரடி அணுகல்.',
+        description: 'Google Gemini மாதிரிகளுக்கு நேரடி அணுகல்.'
       },
       xai: {
         short: 'Grok மாதிரிகள்',
-        description: 'xAI Grok மாதிரிகளுக்கு நேரடி அணுகல்.',
+        description: 'xAI Grok மாதிரிகளுக்கு நேரடி அணுகல்.'
       },
       local: {
         short: 'தனியே இயக்கப்படும்',
-        description: 'OpenAmer ஐ ஒரு உள்ளூர் அல்லது தனியே இயக்கப்படும் OpenAI-உதவியுள்ள முடிப்புக்குச் (vLLM, llama.cpp, Ollama, முதலியன) நோக்கி அமைக்கவும்.',
-      },
+        description:
+          'OpenAmer ஐ ஒரு உள்ளூர் அல்லது தனியே இயக்கப்படும் OpenAI-உதவியுள்ள முடிப்புக்குச் (vLLM, llama.cpp, Ollama, முதலியன) நோக்கி அமைக்கவும்.'
+      }
     },
     backToSignIn: 'உள்நுழைய திரும்பவும்',
     getKey: 'ஒரு விசையைப் பெறுங்கள்',
@@ -2240,7 +2340,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     flowSubtitles: {
       pkce: 'உங்கள் உலாவியைத் திறந்து உள்நுழையவும், பின்னர் இங்கே தொடரவும்',
       device_code: 'உங்கள் உலாவியில் ஒரு சரிபார்ப்பு பக்கத்தைத் திறக்கிறது — OpenAmer தானாக இணைகிறது',
-      external: 'உங்கள் டெர்மினலில் ஒருமுறை உள்நுழையவும், பின்னர் உரையாடலுக்கு திரும்பவும்',
+      external: 'உங்கள் டெர்மினலில் ஒருமுறை உள்நுழையவும், பின்னர் உரையாடலுக்கு திரும்பவும்'
     },
     signInFailed: 'உள்நுழைவு தோல்வி. மீண்டும் முயற்சிக்கவும்.',
     pickDifferentProvider: 'வேறு ஒரு சேவையகத்தைத் தேர்வு செய்யவும்',
@@ -2249,7 +2349,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     pasteAuthCode: 'அனுமதிக் குறியீட்டைப் பேஸ்ட் செய்யவும்',
     reopenAuthPage: 'அனுமதி பக்கத்தைத் திரும்பத் திறக்கவும்',
     reopenSignInPage: 'உள்நுழைவு பக்கத்தைத் திரும்பத் திறக்கவும்',
-    headerTitle: "OpenAmer Agent உடன் உங்களை அமைக்கலாம்",
+    headerTitle: 'OpenAmer Agent உடன் உங்களை அமைக்கலாம்',
     headerDesc: 'அரட்டையைத் தொடங்க மாடல் வழங்குநரை இணைக்கவும். பெரும்பாலான விருப்பங்கள் ஒரு கிளிக்கில் முடியும்.',
     preparingInstall: 'OpenAmer நிறுவலை முடிக்கிறது. முதல் முறை இயக்கும்போது இது பொதுவாக ஒரு நிமிடத்திற்குள் முடியும்.',
     starting: 'OpenAmer தொடங்குகிறது…',
@@ -2259,10 +2359,12 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     connectedPicking: provider => `${provider} இணைக்கப்பட்டது. இயல்புநிலை மாதிரி தேர்ந்தெடுக்கப்படுகிறது...`,
     signInWith: provider => `${provider} மூலம் உள்நுழையவும்`,
     openedBrowser: provider => `உங்கள் உலாவியில் ${provider}-ஐத் திறந்தோம்.`,
-    autoBrowser: provider => `உங்கள் உலாவியில் ${provider}-ஐத் திறந்தோம். அங்கு OpenAmer-க்கு அங்கீகாரம் அளிக்கவும், நீங்கள் தானாகவே இணைக்கப்படுவீர்கள் — எதையும் நகலெடுக்கவோ ஒட்டவோ தேவையில்லை.`,
+    autoBrowser: provider =>
+      `உங்கள் உலாவியில் ${provider}-ஐத் திறந்தோம். அங்கு OpenAmer-க்கு அங்கீகாரம் அளிக்கவும், நீங்கள் தானாகவே இணைக்கப்படுவீர்கள் — எதையும் நகலெடுக்கவோ ஒட்டவோ தேவையில்லை.`,
     waitingAuthorize: 'நீங்கள் அனுமதிப்பதற்காக காத்திருக்கிறது...',
-    externalPending: provider => `${provider} அதன் சொந்த CLI மூலம் உள்நுழைகிறது. முனையத்தில் இந்தக் கட்டளையை இயக்கிய பின், இங்கு வந்து "உள்நுழைந்துவிட்டேன்" என்பதைத் தேர்ந்தெடுக்கவும்:`,
-    signedIn: "நான் உள்நுழைந்துவிட்டேன்",
+    externalPending: provider =>
+      `${provider} அதன் சொந்த CLI மூலம் உள்நுழைகிறது. முனையத்தில் இந்தக் கட்டளையை இயக்கிய பின், இங்கு வந்து "உள்நுழைந்துவிட்டேன்" என்பதைத் தேர்ந்தெடுக்கவும்:`,
+    signedIn: 'நான் உள்நுழைந்துவிட்டேன்',
     deviceCodeOpened: provider => `உங்கள் உலாவியில் ${provider}-ஐத் திறந்தோம். அங்கு இந்தக் குறியீட்டை உள்ளிடவும்:`,
     reopenVerification: 'சரிபார்ப்புப் பக்கத்தை மீண்டும் திற',
     copy: 'நகலெடு',
@@ -2273,7 +2375,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     price: (input, output) => `பத்து இலட்சம் டோக்கன்களுக்கு உள்ளீடு ${input} / வெளியீடு ${output}`,
     change: 'மாற்று',
     startChatting: 'தொடங்கு',
-    docs: provider => `${provider} ஆவணங்கள்`,
+    docs: provider => `${provider} ஆவணங்கள்`
   },
   zones: {
     zoneEditorTitle: 'சோன் தொகுப்பி',
@@ -2284,13 +2386,15 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     templateGrid: 'கிரிட்',
     templatePriority: 'முன்னுரிமை',
     saveApply: 'சேமி & பயன்படுத்து',
-    notExpressible: 'இந்த அமைப்பு ஒன்றுக்கொன்று இணைக்கிறது (பின்வீல்) — இன்னும் நெஸ்ட்டட் பிளக்கலாக வெளிப்படுத்த முடியாது',
+    notExpressible:
+      'இந்த அமைப்பு ஒன்றுக்கொன்று இணைக்கிறது (பின்வீல்) — இன்னும் நெஸ்ட்டட் பிளக்கலாக வெளிப்படுத்த முடியாது',
     showHeader: 'தலைப்பை காட்டவும்',
     hideHeader: 'தலைப்பை மறைக்கவும்',
     minimize: 'சிறிதாக்கு',
     restore: 'மீட்டமைக்கு',
     closeRunningTitle: 'இயங்கும் டாப் மூடுவது?',
-    closeRunningBody: 'இந்த உரையாடல் இன்னும் வேலை செய்கிறது (அல்லது உங்கள் உள்ளீட்டுக்காக காத்திருக்கிறது). டாப் மூடுவதால் அது மறைகிறது — அமர்வு அதன் முன்னேற்றத்தை வைத்திருக்கிறது மற்றும் பக்க பட்டியலில் இருந்து மீண்டும் திறக்கலாம்.',
+    closeRunningBody:
+      'இந்த உரையாடல் இன்னும் வேலை செய்கிறது (அல்லது உங்கள் உள்ளீட்டுக்காக காத்திருக்கிறது). டாப் மூடுவதால் அது மறைகிறது — அமர்வு அதன் முன்னேற்றத்தை வைத்திருக்கிறது மற்றும் பக்க பட்டியலில் இருந்து மீண்டும் திறக்கலாம்.',
     closeRunningConfirm: 'டாப் மூடு',
     closeOthers: 'மற்றவற்றை மூடு',
     closeToRight: 'வலப்பக்கத்திற்கு மூடு',
@@ -2302,7 +2406,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     dirRight: 'வலது',
     pluginDisabledBody: 'அமைப்புகள் → செருகு நிரல்கள் இல் மீண்டும் இயக்கி பலகையை திரும்பப் பெறுங்கள்.',
     editTitle: 'அமைப்புகள்',
-    editHint: 'ஒரு அமைப்பைத் தேர்ந்தெடுக்கவும், அல்லது பகுதிகள் இடையே பலகைகளை இழுத்து விடவும். ஒரு பகுதியை வலது கிளிக் செய்து பிரிக்கவும்.',
+    editHint:
+      'ஒரு அமைப்பைத் தேர்ந்தெடுக்கவும், அல்லது பகுதிகள் இடையே பலகைகளை இழுத்து விடவும். ஒரு பகுதியை வலது கிளிக் செய்து பிரிக்கவும்.',
     reset: 'மீட்டமைக்கு',
     templates: 'மாதிரிகள்',
     custom: 'தனிப்பயன்',
@@ -2318,18 +2423,19 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     mergeZones: count => `${count} மண்டலங்களை ஒன்றிணை`,
     customZoneName: count => `தனிப்பயன் ${count}-மண்டலம்`,
     layoutNamePlaceholder: fallback => `தளவமைப்புப் பெயர் (${fallback})`,
-    zoneCount: count => `${count} மண்டலங்கள்`,
+    zoneCount: count => `${count} மண்டலங்கள்`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer கேட்வே இணைக்கப்படவில்லை',
     sudoSendFailed: 'sudo கடவுச்சொல் அனுப்ப முடியவில்லை',
     secretSendFailed: 'இரகசியம் அனுப்ப முடியவில்லை',
     sudoTitle: 'நிர்வாகி கடவுச்சொல்',
-    sudoDesc: 'OpenAmer உங்கள் sudo கடவுச்சொல்லை ஒரு உரிமை கட்டளையை இயக்க தேவைப்படுகிறது. அது உங்கள் உள்ளூர் ஏஜண்டுக்கு மட்டுமே அனுப்பப்படுகிறது.',
+    sudoDesc:
+      'OpenAmer உங்கள் sudo கடவுச்சொல்லை ஒரு உரிமை கட்டளையை இயக்க தேவைப்படுகிறது. அது உங்கள் உள்ளூர் ஏஜண்டுக்கு மட்டுமே அனுப்பப்படுகிறது.',
     sudoPlaceholder: 'sudo கடவுச்சொல்',
     secretTitle: 'ரகசியம் தேவை',
     secretDesc: 'OpenAmer தொடர ஒரு சான்று தேவைப்படுகிறது.',
-    secretPlaceholder: 'ரகசிய மதிப்பு',
+    secretPlaceholder: 'ரகசிய மதிப்பு'
   },
   desktop: {
     sessionExported: 'செஷன் ஏற்றுமதி செய்யப்பட்டது',
@@ -2356,7 +2462,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       timedOut: 'கேட்வே காத்திருக்கும் போது நேரம் முடிந்தது. `openamer gateway` இயங்குகிறதா?',
       success: platform => `${platform} வசம் ஒப்படைக்கப்பட்டது. எப்போது வேண்டுமானாலும் இங்கே தொடரலாம்.`,
       systemNote: platform => `↻ ${platform} வசம் ஒப்படைக்கப்பட்டது — எப்போது வேண்டுமானாலும் இங்கே தொடரலாம்.`,
-      failed: error => `ஒப்படைப்பு தோல்வியடைந்தது: ${error}`,
+      failed: error => `ஒப்படைப்பு தோல்வியடைந்தது: ${error}`
     },
     audioReadFailed: 'பதிவு செய்யப்பட்ட ஒலியை படிக்க முடியவில்லை',
     sessionUnavailable: 'செஷன் கிடைக்கவில்லை',
@@ -2376,7 +2482,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     editFailed: 'தொகுப்பு தோல்வி',
     resumeFailed: 'மறுபடியும் தொடங்குதல் தோல்வி',
     resumeStrandedTitle: 'இந்த செஷனை ஏற்ற முடியவில்லை',
-    resumeStrandedBody: 'இந்த செஷனுக்கு இணைப்பு தோல்வியடைந்தது மற்றும் தானியங்கி முயற்சிகள் ഉപேகிக்கப்பட்டன. கேட்வே இயங்குகிறதா என்பதைச் சரிபார்க்கவும், பின்னர் மீண்டும் முயற்சிக்கவும்.',
+    resumeStrandedBody:
+      'இந்த செஷனுக்கு இணைப்பு தோல்வியடைந்தது மற்றும் தானியங்கி முயற்சிகள் ഉപேகிக்கப்பட்டன. கேட்வே இயங்குகிறதா என்பதைச் சரிபார்க்கவும், பின்னர் மீண்டும் முயற்சிக்கவும்.',
     resumeRetry: 'மீண்டும் முயற்சி',
     nothingToBranch: 'கிளைக்க எதுவும் இல்லை',
     branchNeedsChat: 'இந்த அரட்டையை கிளைக்க முன் ஒரு அரட்டையைத் தொடங்கவும் அல்லது மறுபடியும் தொடங்கவும்.',
@@ -2389,164 +2496,166 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     archiveFailed: 'ஆவணப்படுத்துதல் தோல்வி',
     cwdChangeFailed: 'வேலை அடைவு மாற்றம் தோல்வி',
     cwdStagedTitle: 'வேலை அடைவு மஞ்சமைக்கப்பட்டது',
-    cwdStagedMessage: 'டெஸ்க்டாப் பேக்கெண்டை மறுபடியும் தொடங்கவும் cwd மாற்றங்களை இந்த செயலில் உள்ள செஷனுக்கு பயன்படுத்த.',
+    cwdStagedMessage:
+      'டெஸ்க்டாப் பேக்கெண்டை மறுபடியும் தொடங்கவும் cwd மாற்றங்களை இந்த செயலில் உள்ள செஷனுக்கு பயன்படுத்த.',
     modelSwitchFailed: 'மாதிரி மாற்றம் தோல்வி',
     skillCommandsAvailable: count => `${count} திறன் கட்டளைகள் உள்ளன.`,
     warningLine: message => `எச்சரிக்கை: ${message}`,
     yoloSystem: active => `இந்த அமர்வுக்கு YOLO ${active ? 'on' : 'off'}`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `சுயவிவரம்: ${current}. வேறொரு சுயவிவரத்தில் அரட்டையைத் தொடங்க /சுயவிவரம் <பெயர்> அல்லது "புதிய அமர்வு" தேர்வியைப் பயன்படுத்தவும்.`,
+    profileStatus: current =>
+      `சுயவிவரம்: ${current}. வேறொரு சுயவிவரத்தில் அரட்டையைத் தொடங்க /சுயவிவரம் <பெயர்> அல்லது "புதிய அமர்வு" தேர்வியைப் பயன்படுத்தவும்.`,
     noProfileNamed: (target, available) => `"${target}" என்ற சுயவிவரம் இல்லை. உள்ளவை: ${available}`,
     newChatsProfile: name => `புதிய அரட்டைகள் ${name} சுயவிவரத்தைப் பயன்படுத்தும்.`,
-    branchTitle: n => `வரைவு: கிளை #${n}`,
+    branchTitle: n => `வரைவு: கிளை #${n}`
   },
   errors: {
     genericFailure: 'ஏதோ தவறு ஏற்பட்டது',
     boundaryTitle: 'இணைமுகத்தில் ஏதோ உடைந்தது',
     boundaryDesc: 'நோக்கம் எதிர்பாராத பிழையை எதிர்கொண்டது. உங்கள் அரட்டைகள் மற்றும் அமைப்புகள் பாதுகாப்பாக உள்ளன.',
     reloadWindow: 'ஜன்னலை மறுதொடக்கம் செய்யவும்',
-    openLogs: 'லாக்களை திறக்கவும்',
+    openLogs: 'லாக்களை திறக்கவும்'
   },
   ui: {
     search: {
-      clear: 'தேடலை தீர்க்கவும்',
+      clear: 'தேடலை தீர்க்கவும்'
     },
     pagination: {
       label: 'பக்கமைப்பு',
       previous: 'முன்',
       previousAria: 'முந்தைய பக்கத்திற்கு செல்லவும்',
       next: 'அடுத்தது',
-      nextAria: 'அடுத்த பக்கத்திற்கு செல்லவும்',
+      nextAria: 'அடுத்த பக்கத்திற்கு செல்லவும்'
     },
     sidebar: {
       title: 'பக்கப்புறம்',
       description: 'மொபைல் பக்கப்புறத்தை காட்டுகிறது.',
-      toggle: 'பக்கப்புறத்தை மாற்றவும்',
-    },
+      toggle: 'பக்கப்புறத்தை மாற்றவும்'
+    }
   },
   messaging: {
     fieldCopy: {
       MATRIX_USER_ID: {
         label: 'பாட் பயனர் ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட Matrix பயனர் ID-கள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. @user:server வடிவில் இடைக்கட்டியுடன் பயனர் ID-கள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. @user:server வடிவில் இடைக்கட்டியுடன் பயனர் ID-கள்.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal பாலம் URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'செயல்படும் signal-cli REST பாலத்தின் URL.',
+        help: 'செயல்படும் signal-cli REST பாலத்தின் URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'தொலைபேசி எண்',
-        help: 'உங்கள் signal-cli பாலத்தில் பதிவு செய்யப்பட்ட எண்.',
+        help: 'உங்கள் signal-cli பாலத்தில் பதிவு செய்யப்பட்ட எண்.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட Signal பயனர்கள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. இடைக்கட்டியுடன் Signal அடையாளங்கள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. இடைக்கட்டியுடன் Signal அடையாளங்கள்.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp பாலத்தை இயக்கு',
-        help: 'கீழுள்ள நிலைமாற்றத்தால் தானியாக அமைக்கப்படும். தேவைப்படுகிறது என்பதை அறியும் வரை மாற்றாமல் விடவும்.',
+        help: 'கீழுள்ள நிலைமாற்றத்தால் தானியாக அமைக்கப்படும். தேவைப்படுகிறது என்பதை அறியும் வரை மாற்றாமல் விடவும்.'
       },
       WHATSAPP_MODE: {
-        label: 'பாலம் முறை',
+        label: 'பாலம் முறை'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட WhatsApp பயனர்கள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. இடைக்கட்டியுடன் தொலைபேசி எண்கள் அல்லது WhatsApp ID-கள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. இடைக்கட்டியுடன் தொலைபேசி எண்கள் அல்லது WhatsApp ID-கள்.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'போட் டோக்கன்',
         help: '@BotFather மூலம் போட்டை உருவாக்கி, அது தரும் டோக்கனை ஒட்டவும்.',
-        placeholder: 'Telegram போட் டோக்கனை ஒட்டவும்',
+        placeholder: 'Telegram போட் டோக்கனை ஒட்டவும்'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட Telegram பயனர் IDகள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. @userinfobot இலிருந்து கமாவால் பிரிக்கப்பட்ட எண் IDகள். இது இல்லாமல், யாரும் உங்கள் போட்டிற்கு DM அனுப்பலாம்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. @userinfobot இலிருந்து கமாவால் பிரிக்கப்பட்ட எண் IDகள். இது இல்லாமல், யாரும் உங்கள் போட்டிற்கு DM அனுப்பலாம்.'
       },
       TELEGRAM_PROXY: {
         label: 'ப்ராக்ஸி URL',
-        help: 'Telegram தடுக்கப்பட்ட நெட்வொர்க்குகளில் மட்டுமே தேவை.',
+        help: 'Telegram தடுக்கப்பட்ட நெட்வொர்க்குகளில் மட்டுமே தேவை.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'பாட் டோக்கன்',
-        help: 'Discord Developer Portal-ல் ஒரு பயன்பாட்டை உருவாக்கி, ஒரு பாட்டைச் சேர்த்து, அதன் டோக்கனை ஒட்டவும்.',
+        help: 'Discord Developer Portal-ல் ஒரு பயன்பாட்டை உருவாக்கி, ஒரு பாட்டைச் சேர்த்து, அதன் டோக்கனை ஒட்டவும்.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட Discord பயனர் ID-கள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Discord பயனர் ID-கள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Discord பயனர் ID-கள்.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'பதில் பாணி',
-        help: 'first, all, அல்லது off.',
+        help: 'first, all, அல்லது off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'அனைத்து Discord பயனர்களையும் அனுமதி',
-        help: 'உருவாக்கத்திற்கு மட்டும். true எனில், அனுமதிப்பட்டியல் இல்லாமல் யாரும் பாட்டுக்கு DM செய்யலாம்.',
+        help: 'உருவாக்கத்திற்கு மட்டும். true எனில், அனுமதிப்பட்டியல் இல்லாமல் யாரும் பாட்டுக்கு DM செய்யலாம்.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'முகப்பு சேனல் ID',
-        help: 'பாட் முன்முயற்சி செய்திகளை (cron வெளியீடு, நினைவூட்டல்கள்) அனுப்பும் சேனல்.',
+        help: 'பாட் முன்முயற்சி செய்திகளை (cron வெளியீடு, நினைவூட்டல்கள்) அனுப்பும் சேனல்.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'முகப்பு சேனல் பெயர்',
-        help: 'பதிவுகள் மற்றும் நிலை வெளியீட்டில் முகப்பு சேனலுக்கான காட்சிப் பெயர்.',
+        help: 'பதிவுகள் மற்றும் நிலை வெளியீட்டில் முகப்பு சேனலுக்கான காட்சிப் பெயர்.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'அனைத்து iMessage பயனர்களையும் அனுமதி',
-        help: 'true எனில், BlueBubbles அனுமதிப்பட்டியலைத் தவிர்.',
+        help: 'true எனில், BlueBubbles அனுமதிப்பட்டியலைத் தவிர்.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'அனைத்து Mattermost பயனர்களையும் அனுமதி',
+        label: 'அனைத்து Mattermost பயனர்களையும் அனுமதி'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'முகப்பு சேனல்',
+        label: 'முகப்பு சேனல்'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'அனைத்து QQ பயனர்களையும் அனுமதி',
+        label: 'அனைத்து QQ பயனர்களையும் அனுமதி'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ முகப்பு சேனல்',
-        help: 'cron விநியோகத்திற்கான இயல்புநிலை சேனல் அல்லது குழு.',
+        help: 'cron விநியோகத்திற்கான இயல்புநிலை சேனல் அல்லது குழு.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ முகப்பு சேனல் பெயர்',
+        label: 'QQ முகப்பு சேனல் பெயர்'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack பாட் டோக்கன்',
         help: 'உங்கள் Slack செயலியை நிறுவிய பிறகு OAuth & Permissions இல் உள்ள பாட் டோக்கனைப் பயன்படுத்தவும்.',
-        placeholder: 'Slack பாட் டோக்கனை ஒட்டவும்',
+        placeholder: 'Slack பாட் டோக்கனை ஒட்டவும்'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack செயலி டோக்கன்',
         help: 'Socket Mode-க்குத் தேவையான செயலி-நிலை டோக்கனைப் பயன்படுத்தவும்.',
-        placeholder: 'Slack செயலி டோக்கனை ஒட்டவும்',
+        placeholder: 'Slack செயலி டோக்கனை ஒட்டவும்'
       },
       SLACK_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட Slack பயனர் IDகள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Slack பயனர் IDகள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Slack பயனர் IDகள்.'
       },
       MATTERMOST_URL: {
         label: 'சேவையக URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'பாட் டோக்கன்',
+        label: 'பாட் டோக்கன்'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'அனுமதிக்கப்பட்ட பயனர் IDகள்',
-        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Mattermost பயனர் IDகள்.',
+        help: 'பரிந்துரைக்கப்படுகிறது. கமாவால் பிரிக்கப்பட்ட Mattermost பயனர் IDகள்.'
       },
       MATRIX_HOMESERVER: {
         label: 'முகப்பு சேவையக URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'அணுகல் டோக்கன்',
-      },
+        label: 'அணுகல் டோக்கன்'
+      }
     },
     search: 'செய்தியிடலைத் தேடு...',
     loading: 'செய்தியிடல் தளங்கள் ஏற்றப்படுகின்றன...',
@@ -2560,7 +2669,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       not_configured: 'அமைப்பு தேவை',
       pending_restart: 'மறுதொடக்கம் தேவை',
       retrying: 'மீண்டும் முயற்சிக்கிறது',
-      startup_failed: 'தொடக்கம் தோல்வியடைந்தது',
+      startup_failed: 'தொடக்கம் தோல்வியடைந்தது'
     },
     unknown: 'தெரியாதது',
     hintPendingRestart: 'இந்த மாற்றத்தைப் பயன்படுத்த, நிலைப் பட்டியிலிருந்து கேட்வேயை மறுதொடக்கம் செய்யவும்.',
@@ -2573,7 +2682,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     required: 'தேவை',
     recommended: 'பரிந்துரைக்கப்படுகிறது',
     advanced: count => `மேம்பட்ட (${count})`,
-    noTokenNeeded: 'இந்தத் தளத்திற்கு இங்கே டோக்கன் தேவையில்லை. மேலே உள்ள அமைப்பு வழிகாட்டியைப் பயன்படுத்தி, கீழே இயக்கவும்.',
+    noTokenNeeded:
+      'இந்தத் தளத்திற்கு இங்கே டோக்கன் தேவையில்லை. மேலே உள்ள அமைப்பு வழிகாட்டியைப் பயன்படுத்தி, கீழே இயக்கவும்.',
     enabled: 'இயக்கப்பட்டது',
     disabled: 'முடக்கப்பட்டது',
     unsavedChanges: 'சேமிக்கப்படாத மாற்றங்கள்',
@@ -2595,8 +2705,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     failedUpdate: name => `${name} ஐப் புதுப்பிப்பதில் தோல்வி`,
     failedSave: name => `${name} ஐச் சேமிப்பதில் தோல்வி`,
     failedClear: key => `${key} ஐ அழிப்பதில் தோல்வி`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'வெப்ஹூக்களைத் தேடு...',
@@ -2605,7 +2714,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     hint: 'ரிசீவர் இயங்கிய பிறகு சந்தா மாற்றங்கள் வெப்பமாக மீண்டும் ஏற்றப்படும். ம-disabled சந்தாக்கள் வரும் நிகழ்வுகளை நிராகரிக்கும்.',
     empty: 'இன்னும் வெப்ஹூக் சந்தாக்கள் இல்லை.',
     disabledTitle: 'வெப்ஹூக் ரிசீவர் முடக்கப்பட்டுள்ளது',
-    disabledBody: 'வெப்ஹூக்கள் தனக்கான கேட்வே பிளாட்ஃபார்ம். வரும் HTTP நிகழ்வுகளை ஏற்க இங்கே இயக்கவும்; சந்தா, Discord, Slack அல்லது மற்றொரு சேனலுக்கு சந்தா வழங்கும்போது மட்டும் தேவை.',
+    disabledBody:
+      'வெப்ஹூக்கள் தனக்கான கேட்வே பிளாட்ஃபார்ம். வரும் HTTP நிகழ்வுகளை ஏற்க இங்கே இயக்கவும்; சந்தா, Discord, Slack அல்லது மற்றொரு சேனலுக்கு சந்தா வழங்கும்போது மட்டும் தேவை.',
     enable: 'வெப்ஹூக்களை இயக்கு',
     enabling: 'இயக்கப்படுகிறது...',
     enableRow: 'இயக்கு',
@@ -2659,8 +2769,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       discord: 'Discord',
       slack: 'Slack',
       email: 'மின்னஞ்சல்',
-      github_comment: 'GitHub கருத்து',
-    },
+      github_comment: 'GitHub கருத்து'
+    }
   },
   common: {
     apply: 'பயன்படுத்து',
@@ -2701,10 +2811,11 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     update: 'புதுப்பி',
     tryHint: term => `“${term}” என்பதை முயற்சிக்கவும்`,
     on: 'இயக்கு',
-    off: 'அணை',
+    off: 'அணை'
   },
   remoteDisplayBanner: {
-    message: reason => `மென்பொருள் ரெண்டரிங் செயல்பாட்டில் உள்ளது — ரிமோட் டிஸ்ப்ளே கண்டறியப்பட்டது (${reason}). திரை மின்னுவதைத் தடுக்க GPU முடுக்கம் முடக்கப்பட்டுள்ளது.`,
+    message: reason =>
+      `மென்பொருள் ரெண்டரிங் செயல்பாட்டில் உள்ளது — ரிமோட் டிஸ்ப்ளே கண்டறியப்பட்டது (${reason}). திரை மின்னுவதைத் தடுக்க GPU முடுக்கம் முடக்கப்பட்டுள்ளது.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer கிரெடிட்கள் தீர்ந்துவிட்டன',
@@ -2712,7 +2823,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     fallbackMessage: 'உங்கள் கணக்கில் கிரெடிட்கள் தீர்ந்துவிட்டன. தொடர கிரெடிட்களைச் சேர்க்கவும்.',
     openBilling: 'பில்லிங்கைத் திற',
     addCredits: 'கிரெடிட்களைச் சேர்',
-    dismiss: 'மூடு',
+    dismiss: 'மூடு'
   },
   titlebar: {
     hideSidebar: 'பக்கப்பட்டியை மறை',
@@ -2729,7 +2840,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     openStarmap: 'நினைவக வரைபடத்தைத் திற',
     openKeybinds: 'விசைப்பலகைக் குறுக்குவழிகள்',
     layoutEditor: 'தளவமைப்பு திருத்தி',
-    layoutEditorTitle: 'தளவமைப்பு திருத்தி — ⌘-click தளவமைப்பை மீட்டமைக்கும்',
+    layoutEditorTitle: 'தளவமைப்பு திருத்தி — ⌘-click தளவமைப்பை மீட்டமைக்கும்'
   },
   starmap: {
     title: 'நினைவக வரைபடம்',
@@ -2746,7 +2857,8 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     emptyTitle: 'இன்னும் எதுவும் கற்றுக்கொள்ளப்படவில்லை',
     emptyDesc: 'OpenAmer உங்கள் வேலைக்கான திறன்களையும் நினைவுகளையும் உருவாக்கும்போது, அவை இங்கே தோன்றும்.',
     share: 'வரைபடத்தைப் பகிர்',
-    shareHint: 'இந்த வரைபடத்தைப் பகிர குறியீட்டை நகலெடுக்கவும் அல்லது ஏற்ற ஒன்றை ஒட்டவும். இது அமைப்பை மட்டுமே உள்ளடக்கும், உங்கள் நினைவகம் அல்லது திறன் உரையை அல்ல.',
+    shareHint:
+      'இந்த வரைபடத்தைப் பகிர குறியீட்டை நகலெடுக்கவும் அல்லது ஏற்ற ஒன்றை ஒட்டவும். இது அமைப்பை மட்டுமே உள்ளடக்கும், உங்கள் நினைவகம் அல்லது திறன் உரையை அல்ல.',
     shareTitle: 'வரைபடத்தை இறக்குமதி / ஏற்றுமதி செய்',
     sharePlaceholder: 'வரைபடக் குறியீட்டை ஒட்டு…',
     copy: 'வரைபடக் குறியீட்டை நகலெடு',
@@ -2756,7 +2868,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     importEmpty: 'ஏற்ற வரைபடக் குறியீட்டை ஒட்டவும்.',
     importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} கொண்ட வரைபடம் ஏற்றப்பட்டது.`,
     importedBadge: 'இறக்குமதி செய்யப்பட்ட வரைபடம்',
-    resetToMine: 'எனது வரைபடத்திற்குத் திரும்பு',
+    resetToMine: 'எனது வரைபடத்திற்குத் திரும்பு'
   },
   agents: {
     close: 'முகவர்களை மூடு',
@@ -2786,7 +2898,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     ageDays: days => `${days} நாட்களுக்கு முன்`,
     durationSeconds: seconds => `${seconds} வி`,
     durationMinutes: (minutes, seconds) => `${minutes} நி ${seconds} வி`,
-    tokens: value => `${value} டோக்கன்கள்`,
+    tokens: value => `${value} டோக்கன்கள்`
   },
   artifacts: {
     search: 'ஆர்டிஃபாக்ட்களைத் தேடு...',
@@ -2820,14 +2932,14 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     kindLink: 'இணைப்பு',
     chat: 'அரட்டை',
     copyUrl: 'URL நகலெடு',
-    copyPath: 'பாதையை நகலெடு',
+    copyPath: 'பாதையை நகலெடு'
   },
   sidebar: {
     nav: {
       'new-session': 'புதிய அமர்வு',
       skills: 'திறன்கள்',
       messaging: 'செய்தியிடல்',
-      artifacts: 'ஆக்கங்கள்',
+      artifacts: 'ஆக்கங்கள்'
     },
     searchAria: 'அமர்வுகளைத் தேடு',
     searchPlaceholder: 'அமர்வுகளைத் தேடு…',
@@ -2859,7 +2971,7 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       namePlaceholder: 'எ.கா. Skunkworks',
       foldersLabel: 'கோப்புறைகள்',
       ideaLabel: 'யோசனை',
-      ideaPlaceholder: "இந்தத் திட்டம் எதைப் பற்றியது? (IDEA.md-இல் சேமிக்கப்படும்)",
+      ideaPlaceholder: 'இந்தத் திட்டம் எதைப் பற்றியது? (IDEA.md-இல் சேமிக்கப்படும்)',
       ideaGenerate: 'யோசனையை உருவாக்கு',
       ideaGenerating: 'உருவாக்குகிறது…',
       ideaShuffle: 'வார்ப்புருக்களைக் கலக்கவும்',
@@ -2879,8 +2991,10 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       copyPath: 'பாதையை நகலெடு',
       removeFromSidebar: 'பக்கப்பட்டியில் மறை',
       createFailed: 'திட்டத்தை உருவாக்க முடியவில்லை',
-      staleBackend: 'திட்டங்களை உருவாக்க OpenAmer பின்தளத்தைப் புதுப்பிக்கவும் — உங்கள் பின்தளம் இந்த டெஸ்க்டாப் பயன்பாட்டை விடப் பழையது (அமைப்புகள் → புதுப்பிப்புகள் → பின்தளம்).',
-      deleteConfirm: 'இது சேமிக்கப்பட்ட திட்டத்தை OpenAmer இலிருந்து நீக்கும். கோப்புகள், git களஞ்சியங்கள், வேலைமரங்கள் தொடப்படாமல் இருக்கும்.',
+      staleBackend:
+        'திட்டங்களை உருவாக்க OpenAmer பின்தளத்தைப் புதுப்பிக்கவும் — உங்கள் பின்தளம் இந்த டெஸ்க்டாப் பயன்பாட்டை விடப் பழையது (அமைப்புகள் → புதுப்பிப்புகள் → பின்தளம்).',
+      deleteConfirm:
+        'இது சேமிக்கப்பட்ட திட்டத்தை OpenAmer இலிருந்து நீக்கும். கோப்புகள், git களஞ்சியங்கள், வேலைமரங்கள் தொடப்படாமல் இருக்கும்.',
       startWork: 'புதிய வேலைமரம்',
       newWorktreeTitle: 'புதிய வேலைமரம்',
       newWorktreeDesc: 'இந்த வேலைமரத்திற்கான கிளையைப் பெயரிடவும்.',
@@ -2901,13 +3015,15 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       noBranches: 'கிளைகள் எதுவும் கிடைக்கவில்லை',
       removeWorktree: 'worktree-ஐ அகற்று',
       removeWorktreeFailed: 'worktree-ஐ அகற்ற முடியவில்லை (கமிட் செய்யாத மாற்றங்கள்?)',
-      removeWorktreeConfirm: 'git-இலிருந்து அதை அகற்று (worktree கோப்பகத்தை நீக்கும்; கிளை இருக்கும்), அல்லது பக்கப்பட்டியிலிருந்து lane-ஐ மறைத்து worktree-ஐ வட்டில் வைத்திரு.',
-      removeWorktreeDirty: 'இந்த worktree-இல் கமிட் செய்யாத மாற்றங்கள் உள்ளன. கட்டாயமாக அகற்று (அந்த மாற்றங்களை நீக்கும்), அல்லது lane-ஐ மறைத்து வட்டில் வைத்திரு.',
+      removeWorktreeConfirm:
+        'git-இலிருந்து அதை அகற்று (worktree கோப்பகத்தை நீக்கும்; கிளை இருக்கும்), அல்லது பக்கப்பட்டியிலிருந்து lane-ஐ மறைத்து worktree-ஐ வட்டில் வைத்திரு.',
+      removeWorktreeDirty:
+        'இந்த worktree-இல் கமிட் செய்யாத மாற்றங்கள் உள்ளன. கட்டாயமாக அகற்று (அந்த மாற்றங்களை நீக்கும்), அல்லது lane-ஐ மறைத்து வட்டில் வைத்திரு.',
       forceRemove: 'கட்டாயமாக அகற்று',
       enter: label => `${label} ஐத் திறக்கவும்`,
       reorder: label => `${label} ஐ வரிசைப்படுத்தவும்`,
       toggle: label => `${label} அமர்வுகளை மாற்றவும்`,
-      back: 'அனைத்து திட்டங்கள்',
+      back: 'அனைத்து திட்டங்கள்'
     },
     newSessionIn: label => `${label} இல் புதிய அமர்வு`,
     showMoreIn: (count, label) => `மேலும் ${count} ${label} இல் காட்டு`,
@@ -2945,15 +3061,15 @@ ${mode} இயல்பாக இருக்க காலியாக விட
       ageNow: 'இப்போது',
       ageDay: 'நா',
       ageHour: 'மணி',
-      ageMin: 'நிமி',
+      ageMin: 'நிமி'
     },
     dateDivider: {
       today: 'இன்று முன்னர்',
       yesterday: 'நேற்று',
       thisWeek: 'இந்த வாரம் முன்னர்',
       lastWeek: 'கடந்த வாரம்',
-      thisMonth: 'இந்த மாதம் முன்னர்',
-    },
+      thisMonth: 'இந்த மாதம் முன்னர்'
+    }
   },
   modelPicker: {
     title: 'மாதிரியை மாற்று',
@@ -2969,12 +3085,12 @@ ${mode} இயல்பாக இருக்க காலியாக விட
     free: 'இலவசம்',
     freeTier: 'இலவச நிலை',
     priceTitle: 'ஒரு மில்லியன் டோக்கன்களுக்கு உள்ளீடு / வெளியீட்டு விலை',
-    wasPrice: 'இருந்தது',
+    wasPrice: 'இருந்தது'
   },
   modelVisibility: {
     title: 'மாடல்கள்',
     search: 'மாடல்களைத் தேடு',
     noAuthenticatedProviders: 'அங்கீகரிக்கப்பட்ட வழங்குநர்கள் இல்லை.',
-    addProvider: 'வழங்குநரைச் சேர்…',
-  },
+    addProvider: 'வழங்குநரைச் சேர்…'
+  }
 })

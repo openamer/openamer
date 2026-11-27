@@ -45,7 +45,7 @@ export const gv = defineLocale({
     update: 'Aa-chur',
     on: 'Er',
     off: 'Ass',
-    tryHint: term => `Try “${term}”`,
+    tryHint: term => `Try “${term}”`
   },
   fileMenu: {
     revealFinder: 'Taishbyney ayns Finder',
@@ -58,9 +58,9 @@ export const gv = defineLocale({
     delete: 'Scrios',
     renameTitle: 'Ath-ainmigh',
     renameLabel: 'Ainm nua',
-    deleteBody: 'Moovey dhonn y Trash — asnagh lhiat l\'eie ayn laaht.',
+    deleteBody: "Moovey dhonn y Trash — asnagh lhiat l'eie ayn laaht.",
     pathCopied: 'Cosh coppied',
-    deleteTitle: name => `Delete ${name}?`,
+    deleteTitle: name => `Delete ${name}?`
   },
   keybinds: {
     actions: {
@@ -100,12 +100,12 @@ export const gv = defineLocale({
       'composer.send': 'Cur çhaghteraght',
       'composer.newline': 'Cur stiagh linney noa',
       'composer.steer': 'Stiurey y turn roie',
-      'composer.queue': 'Cur çhaghteraght \'sy queue',
-      'composer.sendQueued': 'Cur y turn nah \'sy queue',
+      'composer.queue': "Cur çhaghteraght 'sy queue",
+      'composer.sendQueued': "Cur y turn nah 'sy queue",
       'composer.mention': 'Cur my ner coadanyn, fillaghyn, URLs',
       'composer.slash': 'Palette oardagh slash',
       'view.toggleReview': 'Llanu syl lee y prieun reviadh',
-      'view.showFiles': 'Sho\'n y brosnaidh fhearneamh',
+      'view.showFiles': "Sho'n y brosnaidh fhearneamh",
       'composer.history': 'Cykl popovr / istor',
       'composer.cancel': 'Cloi popovr · cenn run',
       'session.newWindow': 'nye bailt',
@@ -140,7 +140,7 @@ export const gv = defineLocale({
       'nav.agents': 'Fosgail gnìomhaire',
       'session.new': 'Làthair ùr',
       'session.newTab': 'Tabh làthair ùr',
-      'composer.help': 'Cabhrach luath',
+      'composer.help': 'Cabhrach luath'
     },
     title: 'Keyboard shortcuts.',
     rebind: 'Rebind.',
@@ -154,10 +154,10 @@ export const gv = defineLocale({
       profiles: 'Pàrlamaidí',
       session: 'Làthair',
       navigation: 'Stiúradh',
-      view: 'Fóillse',
+      view: 'Fóillse'
     },
     subtitle: open => `Click a shortcut to rebind it · ${open} reopens this panel.`,
-    conflictWith: label => `Also bound to “${label}”`,
+    conflictWith: label => `Also bound to “${label}”`
   },
   settings: {
     mcp: {
@@ -200,7 +200,7 @@ export const gv = defineLocale({
       loading: 'Laaey MCP servers...',
       failedLoad: 'Chapló config MCP a laaey',
       nameRequiredTitle: 'Foil ainm',
-      nameRequiredMessage: 'Give config key da\'n MCP server so.',
+      nameRequiredMessage: "Give config key da'n MCP server so.",
       objectRequired: 'Foil config y server a ve object JSON',
       invalidJson: 'JSON MCP difoil',
       saveFailed: 'Chapló an shohay',
@@ -220,14 +220,15 @@ export const gv = defineLocale({
       catalogInstallStarted: name => `Installing ${name}... applies to new sessions when done.`,
       catalogInstallFailed: name => `Failed to install ${name}`,
       catalogEnvPrompt: name => `Ta feme ec ${name} er fys enney`,
-      capabilitySummary: (tools, prompts, resources) => `Ta ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} er`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `Ta ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} er`,
       authenticatedMessage: (server, count) => `${server}: ${count} greieyn`,
       enableTool: tool => `បើក ${tool}`,
-      disableTool: tool => `បិទ ${tool}`,
+      disableTool: tool => `បិទ ${tool}`
     },
     model: {
       loading: 'Lughtey cummey model...',
-      appliesDesc: 'Ta bentyn rish seshoonyn noa. Jean ymmyd jeh\'n teiyder model \'sy chummeyder dy hyndaa yn chat bio.',
+      appliesDesc: "Ta bentyn rish seshoonyn noa. Jean ymmyd jeh'n teiyder model 'sy chummeyder dy hyndaa yn chat bio.",
       provider: 'Furnishagh',
       defaultsLabel: 'Reite',
       reasoningOff: 'Mute',
@@ -244,89 +245,92 @@ export const gv = defineLocale({
       providerDefault: '(roghit ec y phourveeyder)',
       fallbackAdd: 'Add fallback',
       fallbackEmpty: 'No fallback models — the default model is used unless it fails.',
-      notInCatalog: "cha nel eh ayns rolley sampleyryn y phourveeyder shoh — foddee gerrymyn ymmyd y yannoo jeh sampleyr sauçhey.",
+      notInCatalog:
+        'cha nel eh ayns rolley sampleyryn y phourveeyder shoh — foddee gerrymyn ymmyd y yannoo jeh sampleyr sauçhey.',
       tasks: {
         vision: {
           label: 'Shilley',
-          hint: 'Scrutaght jallooyn',
+          hint: 'Scrutaght jallooyn'
         },
         web_extract: {
           label: 'Goaill magh ass y eddyr-voggyl',
-          hint: 'Giarey skeeal jeh\'n duillag',
+          hint: "Giarey skeeal jeh'n duillag"
         },
         compression: {
           label: 'Çhionnaghey',
-          hint: 'Çhionnaghey co-heks',
+          hint: 'Çhionnaghey co-heks'
         },
         skills_hub: {
           label: 'Laare sleightyn',
-          hint: 'Shirrey sleightyn',
+          hint: 'Shirrey sleightyn'
         },
         approval: {
           label: 'Coardail',
-          hint: 'Coardail hene-obbragh creeney',
+          hint: 'Coardail hene-obbragh creeney'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Stiurey greieyn MCP',
+          hint: 'Stiurey greieyn MCP'
         },
         title_generation: {
           label: 'Gientyn ard-enmyn',
-          hint: 'Enmyn sheshonyn',
+          hint: 'Enmyn sheshonyn'
         },
         curator: {
           label: 'Coadeyder',
-          hint: 'Scrutaght ymmyd schleioilys',
-        },
-      },
+          hint: 'Scrutaght ymmyd schleioilys'
+        }
+      }
     },
     plugins: {
       empty: 'Nagh plugins yn-drooghey gys yn-droogheyd yet.',
       kinds: {
         disk: 'yn disk',
         bundled: 'Buniedh',
-        runtime: 'Runna',
+        runtime: 'Runna'
       },
       enable: 'Fheer',
       disable: 'Fahra',
       failed: 'Faibh',
       title: 'Plaquey burev',
-      blurb: 'Eisiadtoy UI a choh as y clap — co-bundled gith y build, ny brooit as e foll y duilley plaquey-burev (aghtoo ny dui a scroueh OpenAmer). Cur aaig an plaquey as y laak eh troosh, as mair eh ye twoaiey.',
+      blurb:
+        'Eisiadtoy UI a choh as y clap — co-bundled gith y build, ny brooit as e foll y duilley plaquey-burev (aghtoo ny dui a scroueh OpenAmer). Cur aaig an plaquey as y laak eh troosh, as mair eh ye twoaiey.',
       openFolder: 'Plaquey bane',
       rescan: 'Scan a-rith',
       reveal: 'Taisceann am broinnel f files',
-      count: n => `${n} er ny choyrt stiagh`,
+      count: n => `${n} er ny choyrt stiagh`
     },
     notifications: {
-      intro: 'Notifications yn-drooghey gys yn-drooghey, gys yn-app toasts. Gys yn-drooghey gys yn-drooghey gys yn-drooghey gys yn-drooghey.',
+      intro:
+        'Notifications yn-drooghey gys yn-drooghey, gys yn-app toasts. Gys yn-drooghey gys yn-drooghey gys yn-drooghey gys yn-drooghey.',
       enableAll: 'Gorymmee notifications',
       enableAllDesc: 'Switch mireel. Gorymmee yeh taillit to turn off all notifications.',
       focusedHint: 'Alerts completion only fire while OpenAmer is in background.',
       kinds: {
         approval: {
           description: 'Command a wansaid dy gorymmee yeh taillit yeh taillit.',
-          label: 'Dyachannee',
+          label: 'Dyachannee'
         },
         input: {
           description: 'OpenAmer a wansaid yeh question yeh password yeh secret.',
-          label: 'Inpt neee',
+          label: 'Inpt neee'
         },
         turnDone: {
           description: 'Turn a finnyshtey gys OpenAmer gys yn-drooghey.',
-          label: 'Responee',
+          label: 'Responee'
         },
         turnError: {
           description: 'Turn a endyd gys yn-erro.',
-          label: 'Fheer faibh',
+          label: 'Fheer faibh'
         },
         backgroundDone: {
           label: 'Task background a finnyshtey.',
-          description: 'Command terminal a finnyshtey.',
+          description: 'Command terminal a finnyshtey.'
         },
         credits: {
           description: 'Access credit a pausyt yeh reestyt.',
-          label: 'Taaremyg creditee',
-        },
+          label: 'Taaremyg creditee'
+        }
       },
       testTitle: 'OpenAmer',
       testBody: 'Notifications a wansaid.',
@@ -336,31 +340,33 @@ export const gv = defineLocale({
       title: 'Haints',
       test: 'Send test haints',
       completionSoundTitle: 'Compleiton sound',
-      completionSoundPreview: 'Preewee',
+      completionSoundPreview: 'Preewee'
     },
     appearance: {
       pet: {
         renameTitle: 'Ath-ainn y peet',
-        renamePlaceholder: 'Taa\' dt\'ait y peet',
+        renamePlaceholder: "Taa' dt'ait y peet",
         renameSave: 'Coinnigh',
-        noneAvailable: 'Cha\'n eil peet ar bith da gheur hynaa a nis.',
-        turnOnFailed: 'Ny\'ur hynaa an peet.',
-        turnOffFailed: 'Ny\'ur shoh an peet.',
+        noneAvailable: "Cha'n eil peet ar bith da gheur hynaa a nis.",
+        turnOnFailed: "Ny'ur hynaa an peet.",
+        turnOffFailed: "Ny'ur shoh an peet.",
         title: 'Peet',
-        intro: 'Adopt mascot beo o petdex a flloasayr er app agus freaghaigh ayns shenaghyn OpenAmer — tro mar yn coinnit, goll buaick, as goll smoo.',
-        restartHint: 'Teemmey daa picinne esh — goll an app roaish daa goll roie. Serreh as ath-ussaich OpenAmer, thoisea as a rogh.',
+        intro:
+          'Adopt mascot beo o petdex a flloasayr er app agus freaghaigh ayns shenaghyn OpenAmer — tro mar yn coinnit, goll buaick, as goll smoo.',
+        restartHint:
+          'Teemmey daa picinne esh — goll an app roaish daa goll roie. Serreh as ath-ussaich OpenAmer, thoisea as a rogh.',
         off: 'Muir',
         scaleTitle: 'Meeign',
         scaleDesc: 'Cuir meegin ar an mascot floaigh. Ta shen apllyet dy chooille erya laa.',
         roamTitle: 'Rois',
         roamDesc: 'Lagh leat an peet roam ayns an uisyn yn aon-heet yn idle.',
         chooseTitle: 'Piorraich peet',
-        chooseDesc: 'Ta picking un staoilal eh (mar yth needed) as b\'aa active.',
+        chooseDesc: "Ta picking un staoilal eh (mar yth needed) as b'aa active.",
         searchPlaceholder: 'Rioradh peet…',
         unreachable: 'Cha vaigh etal ra petdex gallery. Chek traa as kys connetion as ath-ussaich an leayl.',
         installedTag: 'staoilailt',
         generatedTag: 'Generraad',
-        deleteBody: 'Ta shen scuuir an peet go buaiconach — cha b\'ur poss\' a staoilal eh ry-ghiat.',
+        deleteBody: "Ta shen scuuir an peet go buaiconach — cha b'ur poss' a staoilal eh ry-ghiat.",
         deleteConfirm: 'Scuuir',
         on: 'បើក',
         noMatch: query => `No pets match "${query}".`,
@@ -374,7 +380,7 @@ export const gv = defineLocale({
         adoptFailed: slug => `Could not adopt ${slug}`,
         uninstallFailed: slug => `Could not uninstall ${slug}`,
         renameFailed: slug => `Could not rename ${slug}`,
-        exportFailed: slug => `Could not export ${slug}`,
+        exportFailed: slug => `Could not export ${slug}`
       },
       embedsOff: 'Muir',
       productDesc: 'Activity of yn frearr-dha eynid tools le summariid go giorra.',
@@ -382,13 +388,15 @@ export const gv = defineLocale({
       technicalDesc: 'Includee argamain raw tools agus fre results, choonque as fionn-ditial.',
       themeDesc: 'Palettes desktop dy feadh a h-ainne. Gheibh an modh selection a chur orra.',
       installTitle: 'Staoilart o VS Code',
-      installDesc: 'Cuir id extension Marketplace (e.g. dracula-theme.theme-dracula) dy hinnlaahtow a h-Theme yn palettes desktop.',
+      installDesc:
+        'Cuir id extension Marketplace (e.g. dracula-theme.theme-dracula) dy hinnlaahtow a h-Theme yn palettes desktop.',
       installButton: 'Staoil',
       installing: 'Goll staoilayl…',
-      installError: 'Cha b\'ur poss\' staoilal an Theme shen.',
+      installError: "Cha b'ur poss' staoilal an Theme shen.",
       importedBadge: 'Throinnt',
       title: 'Cumraa',
-      intro: 'Shoh shohlys toshty dy ha kenn dy burev. Ta modhe ny brooideaght; ta teem ny brooideaght ny flaaish as stiyl y chat.',
+      intro:
+        'Shoh shohlys toshty dy ha kenn dy burev. Ta modhe ny brooideaght; ta teem ny brooideaght ny flaaish as stiyl y chat.',
       colorMode: 'Modhe ellyn',
       colorModeDesc: 'Pikk modhe socrait ny cur OpenAmer goll y reilt.',
       toolViewTitle: 'Toshyad gair dyuwal',
@@ -399,34 +407,37 @@ export const gv = defineLocale({
       backdropTitle: 'Cimme y chat',
       backdropDesc: 'Imma statuy vann ee er coire y ghoraid.',
       embedsTitle: 'Embeds co-thamm',
-      embedsDesc: 'Ta ro-shearnyn riecht as y laak ee laaich ny trird (YouTube, X, …). Ta Cree show placetoil as y leih ee goll; ta Goll dy laak automatick; ta Off gheymh ny linkyn shoh.',
+      embedsDesc:
+        'Ta ro-shearnyn riecht as y laak ee laaich ny trird (YouTube, X, …). Ta Cree show placetoil as y leih ee goll; ta Goll dy laak automatick; ta Off gheymh ny linkyn shoh.',
       embedsAsk: 'Cree',
       embedsAlways: 'Goll dy',
-      uiScaleDesc: (percent: number) => `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Scales text and controls across the whole app. Cmd/Ctrl with +, - and 0 also works. Current: ${percent}%.`,
       embedsReset: (count: number) => `Aahoiaghey ${count} lowit ${count === 1 ? 'service' : 'services'}`,
       product: 'Product',
       themeTitle: 'Cummey',
       themeProfileNote: profile => `Saved for the ${profile} profile — each profile keeps its own theme.`,
       installPlaceholder: 'soilshaghder.sheeyney',
       installed: name => `Installed “${name}”.`,
-      removeTheme: 'លុប theme',
+      removeTheme: 'លុប theme'
     },
     about: {
-      versionUnavailable: 'Cha\'n eil broocht a ghabhail',
+      versionUnavailable: "Cha'n eil broocht a ghabhail",
       updates: 'Laasyntiochtai',
       checkNow: 'Grah a nis',
       checking: 'Grah…',
-      seeWhatsNew: 'Feall ny\'n daa nuair',
+      seeWhatsNew: "Feall ny'n daa nuair",
       updateNow: 'Laasyn a nis',
       releaseNotes: 'Nótainey laasynt',
       onLatest: 'Ta mee er broocht laaist.',
       installing: 'Ta laasynt ellin stiurat.',
-      cantUpdate: 'Cha\'n goll y broocht shen laasynt eh fein magh trooid y phogram.',
-      cantReach: 'Ny\'ur reacht y shirvagh laasynt.',
+      cantUpdate: "Cha'n goll y broocht shen laasynt eh fein magh trooid y phogram.",
+      cantReach: "Ny'ur reacht y shirvagh laasynt.",
       tapCheck: 'Tap "Grah a nis" as shooalagh laasyntai.',
       justNowSuffix: '· juolly er',
       automaticUpdates: 'B-updaates automatic',
-      automaticUpdatesDesc: 'Chekkie OpenAmer b-updaates automatic ayns an ardlagh as ta goll leat dy chooille ueshteyl va h-uloom.',
+      automaticUpdatesDesc:
+        'Chekkie OpenAmer b-updaates automatic ayns an ardlagh as ta goll leat dy chooille ueshteyl va h-uloom.',
       never: 'neen',
       justNow: 'Nishtoonleyr',
       heading: 'OpenAmer Boayrd Obbree',
@@ -436,20 +447,20 @@ export const gv = defineLocale({
       branchCommit: (branch, commit) => `Banglane ${branch} · Cur-stiagh ${commit}`,
       minAgo: count => `${count} minnid er dy henney`,
       hoursAgo: count => `${count} oor er dy henney`,
-      daysAgo: count => `${count} laa er dy henney`,
+      daysAgo: count => `${count} laa er dy henney`
     },
     gateway: {
       probing: 'Girreym faa y giat dy deirbhe…',
-      probeError: 'Ny\'all dyrreack y shreach y giat. Checker y URL — ta reir y doo y gollinn dy chur ayn tra eh ayms',
+      probeError: "Ny'all dyrreack y shreach y giat. Checker y URL — ta reir y doo y gollinn dy chur ayn tra eh ayms",
       signedIn: 'Tar ayn',
       signIn: 'Tar ayn',
       signOut: 'Tar aimm',
       authTitle: 'Dearbhadh',
-      authSignedInPassword: 'Ta username as password ayn y giat. T\'ow tar ayn; ta roiesh y sessioon aautomatic da.',
-      authSignedInOauth: 'Ta OAuth ayn y giat. T\'ow tar ayn; ta roiesh y sessioon aautomatic da.',
+      authSignedInPassword: "Ta username as password ayn y giat. T'ow tar ayn; ta roiesh y sessioon aautomatic da.",
+      authSignedInOauth: "Ta OAuth ayn y giat. T'ow tar ayn; ta roiesh y sessioon aautomatic da.",
       authNeedsPassword: 'Ta username as password ayn y giat. Tar ayn dy cheiltig y desktop app shoh.',
       tokenTitle: 'Token y sessioon',
-      tokenDesc: 'Token y sessioon ayn y yncap er REST as WebSocket. Fag b\'ool dy gollinn y token y vaasailt.',
+      tokenDesc: "Token y sessioon ayn y yncap er REST as WebSocket. Fag b'ool dy gollinn y token y vaasailt.",
       savedToken: 'Vaasailt',
       pasteSessionToken: 'Câl token y sessioon',
       testRemote: 'Gouree y giat voo',
@@ -466,7 +477,8 @@ export const gv = defineLocale({
       enterUrlFirst: 'Cur URL yn-ellan ro ayn.',
       restartingTitle: 'At-taa dy restartal y cheangal yn porth.',
       savedTitle: 'Savvay setthings y porth.',
-      restartingMessage: 'Ta OpenAmer Desktop dy ath-cheangal dy rechreidynn ny setthings savvay — feishteyn yn foskit.',
+      restartingMessage:
+        'Ta OpenAmer Desktop dy ath-cheangal dy rechreidynn ny setthings savvay — feishteyn yn foskit.',
       savedMessage: 'Savvay son y lhiair roa restartal.',
       reachableTitle: 'Yn rydo port yn-ellan.',
       signedOutTitle: 'Cur ayn rio.',
@@ -478,8 +490,10 @@ export const gv = defineLocale({
       applyFailed: 'Coudl na chur setthings y porth.',
       saveFailed: 'Coudl na chur setthings y porth.',
       sshTitle: 'Ceangal tro SSH.',
-      sshDesc: 'Ta OpenAmer cur ayn er y host yn-ellan tro SSH as troimped gys y claar er — nagh dagh ree kee dy goll er aght orth. Gort roieynt SSH stiúidht-rey da goll ro y host.',
-      sshTrustHint: 'Tha an ceann-ankey aois a th’èid a thaisginn dhreest is ceangailte; athruithe déanann iad teardhichte.',
+      sshDesc:
+        'Ta OpenAmer cur ayn er y host yn-ellan tro SSH as troimped gys y claar er — nagh dagh ree kee dy goll er aght orth. Gort roieynt SSH stiúidht-rey da goll ro y host.',
+      sshTrustHint:
+        'Tha an ceann-ankey aois a th’èid a thaisginn dhreest is ceangailte; athruithe déanann iad teardhichte.',
       sshHostTitle: 'Aois',
       sshHostDesc: 'user@host, no alias aois as ~/.ssh/config.',
       sshHostPick: 'Tagh aois…',
@@ -510,7 +524,7 @@ export const gv = defineLocale({
       cloudSignIn: 'Log a-sti da OpenAmer Nia',
       cloudSignedIn: 'Logged a-sti da OpenAmer Nia',
       cloudNeedsSignIn: 'Log a-sti da OpenAmer Nia to gura aynt agentau as yn account dy row.',
-      cloudSignedInDesc: 'Ta shiu logged a-sti. Tagh agent er dy loss; ta y session c\'u hene-amarragh.',
+      cloudSignedInDesc: "Ta shiu logged a-sti. Tagh agent er dy loss; ta y session c'u hene-amarragh.",
       cloudAgentsTitle: 'Dy chairp agentau',
       cloudOrgPickerTitle: 'Ta choi buirb',
       cloudOrgSelect: 'Tagh',
@@ -519,13 +533,13 @@ export const gv = defineLocale({
       cloudNoAgents: {
         before: 'Cha va agentau g found ayn y account shoh. Crut un nead ayn y',
         linkText: 'portal OpenAmer',
-        after: ', as thaa nuere-hlaa.',
+        after: ', as thaa nuere-hlaa.'
       },
       cloudRefresh: 'Nuere-hlaa',
       cloudConnect: 'Ceangal',
       cloudConnecting: 'Laa da cheangal…',
-      cloudDiscoverFailed: 'Cha n\'eir linn loads agentau OpenAmer Nia',
-      cloudConnectFailed: 'Cha n\'eir linn cheangal ris y gagent shen',
+      cloudDiscoverFailed: "Cha n'eir linn loads agentau OpenAmer Nia",
+      cloudConnectFailed: "Cha n'eir linn cheangal ris y gagent shen",
       cloudSignInFailed: 'Flys ny log-ayst OpenAmer Nia',
       cloudSignedOutTitle: 'Logged a-magh OpenAmer Nia',
       cloudSignedOutMessage: 'Glenn y session OpenAmer Nia.',
@@ -533,29 +547,36 @@ export const gv = defineLocale({
       remoteUrlTitle: 'URL remote',
       remoteUrlDesc: 'URL bun backend y dashboard remote. Ta roinnean paith supported, shample /openamer.',
       sshIncompleteHost: 'Cuir host SSH a-stoov dy gheangal.',
-      sshErrUnreachable: 'Cha n\'eir linn teeshtal y host shen thre SSH. Check y host, y port as yn network.',
-      sshErrAuth: 'Flys authentication SSH. L d\' key ayn y ssh-agent (ssh-add) ny set IdentityFile ayn ~/.ssh/config — ta OpenAmer a\' riy SSH yn non-interactively.',
-      sshErrHostKey: 'TA HOST KEY CHANGED er d\'y cheangal keiy. Dy ver shoh y va goll expected, as benn ssh-keygen -R <host> as cheangal arís.',
-      sshErrNotInstalled: 'Cha n\'eil OpenAmer stoo ayn y host remote. Install ee shen (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ny set path OpenAmer.',
-      sshErrPlatform: 'Platform remote nach dt suppportaad. Ta moode SSH OpenAmer Desktop a\' goll Linux, macOS as Windows hosts remote.',
+      sshErrUnreachable: "Cha n'eir linn teeshtal y host shen thre SSH. Check y host, y port as yn network.",
+      sshErrAuth:
+        "Flys authentication SSH. L d' key ayn y ssh-agent (ssh-add) ny set IdentityFile ayn ~/.ssh/config — ta OpenAmer a' riy SSH yn non-interactively.",
+      sshErrHostKey:
+        "TA HOST KEY CHANGED er d'y cheangal keiy. Dy ver shoh y va goll expected, as benn ssh-keygen -R <host> as cheangal arís.",
+      sshErrNotInstalled:
+        "Cha n'eil OpenAmer stoo ayn y host remote. Install ee shen (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ny set path OpenAmer.",
+      sshErrPlatform:
+        "Platform remote nach dt suppportaad. Ta moode SSH OpenAmer Desktop a' goll Linux, macOS as Windows hosts remote.",
       sshErrTimeout: 'SSH connection timed out. The host may be unreachable or asleep.',
       loading: 'Laaey gysadwy y bressage...',
       unavailableTitle: 'Gysadwy y bressage nyr vodd goll',
       unavailableDesc: 'Nyr dhisku y bridge IPC gysadwy y bressage.',
       title: 'Kyslyn y bressage',
       envOverride: 'Override yn env',
-      intro: 'Ta OpenAmer Desktop toisg a bressage lecal yn-lane as troosht. Bryn bressage shohay dy goll da e reyn OpenAmer backend ta co-loo ar beayn oor ey kyslyn troim keap dy gholl. Choig profail dy-ral dy goll da e host shohay yn-lane.',
+      intro:
+        'Ta OpenAmer Desktop toisg a bressage lecal yn-lane as troosht. Bryn bressage shohay dy goll da e reyn OpenAmer backend ta co-loo ar beayn oor ey kyslyn troim keap dy gholl. Choig profail dy-ral dy goll da e host shohay yn-lane.',
       appliesTo: 'Ta my',
       allProfiles: 'Ta goll profaile',
       defaultConnection: 'Kyslyn rooshtin da goll profail ta beggan oi ny caa lei a override yn-lane.',
       envOverrideTitle: 'Environment variables ta reyn y session yn desktop.',
-      envOverrideDesc: 'D\'unset OPENAMER_DESKTOP_REMOTE_URL hag OPENAMER_DESKTOP_REMOTE_TOKEN dy goll ny gysadwy shohayley.',
+      envOverrideDesc:
+        "D'unset OPENAMER_DESKTOP_REMOTE_URL hag OPENAMER_DESKTOP_REMOTE_TOKEN dy goll ny gysadwy shohayley.",
       modeTitle: 'Mode kyslyn',
       localTitle: 'Bressage lecal',
       localDesc: 'Toisg OpenAmer backend preivate er localhost. Ta eh y rooshtin as y traa as oo internet.',
       sshErrUpdateRequired: 'Refresh OpenAmer er y host y remote aigheans connigh le Desktop SSH.',
       sshErrUnknown: 'Chapló an cheangal SSH.',
-      profileConnection: profile => `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
+      profileConnection: profile =>
+        `Connection used only when “${profile}” is the active profile. Choose Use default gateway to remove its override.`,
       cloudOrgRole: role => `Role: ${role}`,
       cloudConnectedTitle: 'Connected',
       cloudConnectedPill: 'Connected',
@@ -565,7 +586,7 @@ export const gv = defineLocale({
       authNeedsOauth: provider => `This gateway uses OAuth. Sign in with ${provider} to authorize this desktop app.`,
       existingToken: value => `Existing token ${value}`,
       connectedTo: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`,
+      sshReachable: (host, platform) => `Reachable: ${host} (${platform}) — OpenAmer found`
     },
     closeSettings: 'Cloi settings',
     exportConfig: 'Ekrpt config',
@@ -589,7 +610,7 @@ export const gv = defineLocale({
       keysSettings: 'Socraí',
       archivedChats: 'Chatalaí cartail',
       about: 'Ann',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     sections: {
       appearance: 'Appearansh',
@@ -599,7 +620,7 @@ export const gv = defineLocale({
       model: 'Modjel',
       chat: 'Cles',
       voice: 'Gorryn',
-      advanced: 'Ard roaghtyn',
+      advanced: 'Ard roaghtyn'
     },
     config: {
       none: 'Faa',
@@ -615,7 +636,7 @@ export const gv = defineLocale({
       imported: 'Importait ny gconfiguration',
       invalidJson: 'JSON gconfiguration dooilt',
       keepAwakeTitle: 'Coir ny computer aay',
-      keepAwakeDesc: 'Stop y beayn dy chaghell, dy vod oa troy mie dy goll magh yn oie. Ta the scREEN daal ayd dimmagh.',
+      keepAwakeDesc: 'Stop y beayn dy chaghell, dy vod oa troy mie dy goll magh yn oie. Ta the scREEN daal ayd dimmagh.'
     },
     searchPlaceholder: {
       about: 'Mullagh OpenAmer Desktop',
@@ -623,21 +644,21 @@ export const gv = defineLocale({
       gateway: 'Ceangal geamata...',
       keys: 'Shay neey API keeagh...',
       mcp: 'Shay neey MCP shirvagh...',
-      sessions: 'Shay neey shessions tasht...',
+      sessions: 'Shay neey shessions tasht...'
     },
     modeOptions: {
       light: {
         label: 'Iu',
-        description: 'Surtoid iu y vun as y burev',
+        description: 'Surtoid iu y vun as y burev'
       },
       dark: {
         label: 'Doo',
-        description: 'Taob-y-obair gleay',
+        description: 'Taob-y-obair gleay'
       },
       system: {
         label: 'Reilt',
-        description: 'Foll cumraa an OS',
-      },
+        description: 'Foll cumraa an OS'
+      }
     },
     credentials: {
       pasteKey: 'Cues le y lóid',
@@ -647,7 +668,7 @@ export const gv = defineLocale({
       remove: 'Remoove',
       getKey: 'Faa lóid',
       saving: 'Laaey',
-      pasteLabelKey: label => `Paste key ${label}`,
+      pasteLabelKey: label => `Paste key ${label}`
     },
     envActions: {
       credentialActions: 'Feanmy credaidal',
@@ -658,12 +679,12 @@ export const gv = defineLocale({
       replace: 'Cur ionaid',
       set: 'Sois',
       clear: 'Glair',
-      actionsFor: label => `Actions for ${label}`,
+      actionsFor: label => `Actions for ${label}`
     },
     keys: {
       loading: 'Laaey API keys aguscredentials...',
       failedLoad: 'Chapló na h- API keys a laaey',
-      empty: 'Nee aon rud configuret ech yn category so yett.',
+      empty: 'Nee aon rud configuret ech yn category so yett.'
     },
     toolsets: {
       webUseForExtract: 'Us eder Tar-shooysh',
@@ -678,23 +699,24 @@ export const gv = defineLocale({
       terminalBackend: {
         sectionTitle: 'Backend reeveshooyn',
         loading: 'Goirreinn backends reeveshooyn…',
-        failedLoad: 'Cha b\'urru able laa y backends terminaal',
+        failedLoad: "Cha b'urru able laa y backends terminaal",
         ready: 'Freidir',
         needsSetup: 'Feum taslait',
         unavailable: 'Cha duit ast',
         inUse: 'Yn ushtal',
         selectedTitle: 'Roghadh backend',
         needsSetupHint: 'Goll y backend so a-nis — c commands cryllyd breid y taslait y ve slane.',
-        selectedMessage: backend => `Ta annaghyn y terminaal roie nish trooid ${backend}. Ta shoh bentyn rish sheshoonyn noa.`,
-        failedSelect: backend => `Cha dod eh ${backend} y reih`,
+        selectedMessage: backend =>
+          `Ta annaghyn y terminaal roie nish trooid ${backend}. Ta shoh bentyn rish sheshoonyn noa.`,
+        failedSelect: backend => `Cha dod eh ${backend} y reih`
       },
       loadingConfig: 'Ag tasliey yn chonfiguraishoon',
-      savedTitle: 'Chair s\'oilhey credaansil glannt',
+      savedTitle: "Chair s'oilhey credaansil glannt",
       removedTitle: 'Vaas credaansil goll',
       set: 'Cur',
       notSet: 'Chumh as cur',
       selectedTitle: 'Choura solleir',
-      failedLoad: 'Naa\'r v\'ee ayd tasliey chonfiguraishoon y tool',
+      failedLoad: "Naa'r v'ee ayd tasliey chonfiguraishoon y tool",
       noProviderOptions: 'Naa ta provider options aig y toolset so — soiche eh, agh feagh eh goll rish y setup ayd.',
       noProviders: 'Naa ta providers aylt a gheilt dy goll son y toolset so fea ny hass.',
       ready: 'Ull',
@@ -725,8 +747,10 @@ export const gv = defineLocale({
       removeConfirm: key => `Scughey ${key} veih .env?`,
       selectedMessage: provider => `Ta ${provider} gobbyragh nish.`,
       failedSelect: provider => `Cha dod ${provider} ve er ny reih`,
-      openamerAuthNeededMessage: provider => `Ta ${provider} sauailt, agh cha bee eh gobbyragh derrey log oo stiagh ayns Purtal OpenAmer.`,
-      postSetupHint: step => `Ta feme ec y hirveish chooyl shoh er cur er bun un cheayrt (${step}). T'ee roie er y cho-earrooder shoh — foddee eh goaill kuse dy vinnidyn.`,
+      openamerAuthNeededMessage: provider =>
+        `Ta ${provider} sauailt, agh cha bee eh gobbyragh derrey log oo stiagh ayns Purtal OpenAmer.`,
+      postSetupHint: step =>
+        `Ta feme ec y hirveish chooyl shoh er cur er bun un cheayrt (${step}). T'ee roie er y cho-earrooder shoh — foddee eh goaill kuse dy vinnidyn.`,
       postSetupCompleteMessage: step => `Ta ${step} currit er bun.`,
       postSetupErrorMessage: step => `Scrutee recortys ${step}.`,
       postSetupFailed: step => `Cha dod cur er bun ${step} ve er ny roie`,
@@ -736,23 +760,25 @@ export const gv = defineLocale({
       failedSelectCapability: provider => `Cha dod ${provider} ve er ny hoiaghey`,
       modelCount: count => `${count} sampleyr${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `Ta ${model} bentyn rish sheshoonyn noa.`,
-      failedSelectModel: model => `Cha dod eh ${model} y reih`,
+      failedSelectModel: model => `Cha dod eh ${model} y reih`
     },
     sessions: {
-      defaultDirDesc: 'Ta feishtyn ënoie a goll toil she dy chooyagh balley duit. Fàg e baloush dy chleahye yn faldyr traie.',
+      defaultDirDesc:
+        'Ta feishtyn ënoie a goll toil she dy chooyagh balley duit. Fàg e baloush dy chleahye yn faldyr traie.',
       defaultDirUpdated: 'Chair e rea d y chreoyg y projecl — pMHz feisht ûn (Ctrl/⌘+N) dy haaish eh.',
       change: 'Marr',
       choose: 'Peech',
       clear: 'Glack',
       notSet: 'Chumh as cur',
-      failedLoad: 'Naa\'r v\'ee ayd tasliey feishtyn a chroo agh',
-      unarchiveFailed: 'Naa\'r v\'ee ayd golladh a skaailean',
-      deleteFailed: 'Naa\'r v\'ee ayd scriosadh',
-      updateDirFailed: 'Naa\'r v\'ee ayd athchrey yn faldyr default',
-      clearDirFailed: 'Naa\'r v\'ee ayd glack yn faldyr default',
+      failedLoad: "Naa'r v'ee ayd tasliey feishtyn a chroo agh",
+      unarchiveFailed: "Naa'r v'ee ayd golladh a skaailean",
+      deleteFailed: "Naa'r v'ee ayd scriosadh",
+      updateDirFailed: "Naa'r v'ee ayd athchrey yn faldyr default",
+      clearDirFailed: "Naa'r v'ee ayd glack yn faldyr default",
       loading: 'Laadey sheshonyn tashtit…',
       archivedTitle: 'Sheshonyn tashtit',
-      archivedIntro: 'Ta coloayrtyssyn tashtit follit veih\'n varr çheu, agh t\'ad freayll ooilley nyn çhaghteraghtyn. Crig lesh Ctrl/⌘ er coloayrtys ayns y varr çheu dy hashtal eh.',
+      archivedIntro:
+        "Ta coloayrtyssyn tashtit follit veih'n varr çheu, agh t'ad freayll ooilley nyn çhaghteraghtyn. Crig lesh Ctrl/⌘ er coloayrtys ayns y varr çheu dy hashtal eh.",
       emptyArchivedTitle: 'Cha nel veg tashtit',
       emptyArchivedDesc: 'Tasht coloayrtys dy ollaghey eh ayns shoh.',
       unarchive: 'Cur ass y tasht-lann',
@@ -760,30 +786,33 @@ export const gv = defineLocale({
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       restored: 'Aastit',
       deleteConfirm: title => `Scryss "${title}" son dy bragh? Cha nod shoh ve neuyant.`,
-      autoArchiveTitle: 'Cur shenn choloayrtyssyn \'sy tasht-lann dy hautomagh',
-      autoArchiveDesc: "Cur coloayrtyssyn nagh vel oo er n'ymmydey rish tammylt 'sy tasht-lann dy hautomagh. Cha bee coloayrtyssyn fastit er nyn gur 'sy tasht-lann rieau, as cha bee red erbee er ny scryssey — cha bee coloayrtyssyn tashtit agh er nyn scughey gys shoh.",
-      autoArchiveDaysLabel: 'Cur \'sy tasht-lann lurg',
+      autoArchiveTitle: "Cur shenn choloayrtyssyn 'sy tasht-lann dy hautomagh",
+      autoArchiveDesc:
+        "Cur coloayrtyssyn nagh vel oo er n'ymmydey rish tammylt 'sy tasht-lann dy hautomagh. Cha bee coloayrtyssyn fastit er nyn gur 'sy tasht-lann rieau, as cha bee red erbee er ny scryssey — cha bee coloayrtyssyn tashtit agh er nyn scughey gys shoh.",
+      autoArchiveDaysLabel: "Cur 'sy tasht-lann lurg",
       autoArchiveDaysUnit: 'laa gyn ymmyd',
       autoArchiveFailed: 'Cha dod shin yn tasht-lann hene-obbragh y yannoo noa',
       defaultDirTitle: 'Boayl roiehoilshit y shalee',
-      defaultsTo: label => `Ta ${label} roiehoilshit.`,
+      defaultsTo: label => `Ta ${label} roiehoilshit.`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     providers: {
       connectAccount: 'Kiangle coontys',
       haveApiKey: 'Vel ogher API ayd ayns ynnyd shen?',
-      intro: 'Log stiagh lesh fo-screeu — cha nel ogher API ry chopaigeaghey. Ta OpenAmer cur yn loggal stiagh er bun \'sy jeeagheyder er dty hon, ayns shoh \'sy chlaare.',
+      intro:
+        "Log stiagh lesh fo-screeu — cha nel ogher API ry chopaigeaghey. Ta OpenAmer cur yn loggal stiagh er bun 'sy jeeagheyder er dty hon, ayns shoh 'sy chlaare.",
       connected: 'Kianglt',
       collapse: 'Fill stiagh',
       connectAnother: 'Kiangle solleyder elley',
       otherProviders: 'Solleyderyn elley',
       disconnect: 'Jee-chiangle',
-      disconnectInTerminal: 'Jee-chiangle (t\'eh cur yn sarey scryssey er bun \'sy chione-staishoon)',
+      disconnectInTerminal: "Jee-chiangle (t'eh cur yn sarey scryssey er bun 'sy chione-staishoon)",
       removeConfirm: provider => `Scugh ${provider}?`,
       removeExternalGeneric: provider => `Ta ${provider} fo stiurey e CLI hene — scugh eh ayns shen.`,
       removeKeyManaged: provider => `Ta ${provider} soit seose lesh ogher API. Scugh eh veih Ogheryn API.`,
-      removeTerminalConfirm: (provider, command) => `Jee-cheangyl ${provider}? Nee shoh roie "${command}" 'sy chione-stashoon dy ghlenney yn fys feanishaghey.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Jee-cheangyl ${provider}? Nee shoh roie "${command}" 'sy chione-stashoon dy ghlenney yn fys feanishaghey.`,
       removeTerminalRunning: provider => `Roie jee-cheangley ${provider} 'sy chione-stashoon…`,
       removedTitle: 'Coontys scughit',
       removedMessage: provider => `Va ${provider} scughit.`,
@@ -793,10 +822,11 @@ export const gv = defineLocale({
       noKeysMatch: 'Cha nel kiaraillee erbee coardail rish dty hirrey.',
       localEndpoint: {
         title: 'Poynt jerree ynnydagh / personagh',
-        description: 'Kiart OpenAmer gys poynt jerree erbee ta co-chordail rish OpenAI (Zyphra, vLLM, llama.cpp, Ollama, as elley).',
+        description:
+          'Kiart OpenAmer gys poynt jerree erbee ta co-chordail rish OpenAI (Zyphra, vLLM, llama.cpp, Ollama, as elley).'
       },
-      loading: 'Laadey shirveishee...',
-    },
+      loading: 'Laadey shirveishee...'
+    }
   },
   messaging: {
     states: {
@@ -808,11 +838,11 @@ export const gv = defineLocale({
       pending_restart: 'Feme er aahoshiaghey',
       retrying: 'Aaproval',
       startup_failed: 'Toshiaghey er ny failleil',
-      connected: 'Ceangailte',
+      connected: 'Ceangailte'
     },
     unknown: 'Gyn fys',
-    hintPendingRestart: 'Aahoshiaghee yn giat veih\'n varrey stayd dy chur y caghlaa shoh ny hrooid.',
-    hintGatewayStopped: 'Toshiaghee yn giat veih\'n varrey stayd dy kiangley.',
+    hintPendingRestart: "Aahoshiaghee yn giat veih'n varrey stayd dy chur y caghlaa shoh ny hrooid.",
+    hintGatewayStopped: "Toshiaghee yn giat veih'n varrey stayd dy kiangley.",
     credentialsSet: 'Credentyn soit',
     needsSetup: 'Feme er soiaghey',
     gatewayStopped: 'Giat çhaghteraght stoppit',
@@ -820,7 +850,8 @@ export const gv = defineLocale({
     openSetupGuide: 'Fosly yn cooney soiaghey',
     required: 'Feme',
     recommended: 'Molrit',
-    noTokenNeeded: 'Cha nel feme er token ayns shoh er yn ardan shoh. Jead y cooney soiaghey heose, eisht cur er eh heese.',
+    noTokenNeeded:
+      'Cha nel feme er token ayns shoh er yn ardan shoh. Jead y cooney soiaghey heose, eisht cur er eh heese.',
     enabled: 'Currit er',
     disabled: 'Currit ass',
     unsavedChanges: 'Caghlaaghyn gyn sauail',
@@ -834,125 +865,125 @@ export const gv = defineLocale({
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Croo bot lesh @BotFather, eisht cur stiagh y token t\'eh cur dhyt.',
-        placeholder: 'Cur stiagh token bot Telegram',
+        help: "Croo bot lesh @BotFather, eisht cur stiagh y token t'eh cur dhyt.",
+        placeholder: 'Cur stiagh token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDs ymmydeyryn Telegram lhiggit',
-        help: 'Molrit. IDs earroogh scarrit le comma veih @userinfobot. Gyn shoh, foddee peiagh erbee DM y chur gys dty bot.',
+        help: 'Molrit. IDs earroogh scarrit le comma veih @userinfobot. Gyn shoh, foddee peiagh erbee DM y chur gys dty bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Feme er ynrican er moggyllyn raad ta Telegram blockit.',
+        help: 'Feme er ynrican er moggyllyn raad ta Telegram blockit.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Croo app ayns Discord Developer Portal, cur bot stiagh, eisht cur stiagh e token.',
+        help: 'Croo app ayns Discord Developer Portal, cur bot stiagh, eisht cur stiagh e token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDs ymmydeyryn Discord lhiggit',
-        help: 'Molrit. IDs ymmydeyryn Discord scarrit le comma.',
+        help: 'Molrit. IDs ymmydeyryn Discord scarrit le comma.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Ainm channel thighge QQ',
+        label: 'Ainm channel thighge QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
-        help: 'Us token bot bho OAuth & Permissions a\' tar éad a\' chur a\' chleie Slack a stigh.',
-        placeholder: 'Cuir token bot Slack a stigh',
+        help: "Us token bot bho OAuth & Permissions a' tar éad a' chur a' chleie Slack a stigh.",
+        placeholder: 'Cuir token bot Slack a stigh'
       },
       SLACK_APP_TOKEN: {
         label: 'Token app Slack',
         help: 'Us token leibhiel app a tha ri dhatanh airson Socket Mode.',
-        placeholder: 'Cuir token app Slack a stigh',
+        placeholder: 'Cuir token app Slack a stigh'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDanna user Slack ceadaichte',
-        help: 'Moladh. IDanna user Slack coma-cheangailte.',
+        help: 'Moladh. IDanna user Slack coma-cheangailte.'
       },
       MATTERMOST_URL: {
         label: 'URL freastair',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDanna user ceadaichte',
-        help: 'Moladh. IDanna user Mattermost coma-cheangailte.',
+        help: 'Moladh. IDanna user Mattermost coma-cheangailte.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL freastair thighe',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token rochtain',
+        label: 'Token rochtain'
       },
       MATRIX_USER_ID: {
         label: 'ID user bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDanna user Matrix ceadaichte',
-        help: 'Mollyt. IDy users ann an crócht @user:server, coma-soare.',
+        help: 'Mollyt. IDy users ann an crócht @user:server, coma-soare.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL droi-gheotal Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL dh\'a bridge REST signal-cli a\'r ruith.',
+        help: "URL dh'a bridge REST signal-cli a'r ruith."
       },
       SIGNAL_ACCOUNT: {
         label: 'Àireamh fône',
-        help: 'An àireamh a registredh le do bridge signal-cli.',
+        help: 'An àireamh a registredh le do bridge signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Users Signal a vees cead厚',
-        help: 'Mollyt. Comhnhairí Signal, coma-soare.',
+        help: 'Mollyt. Comhnhairí Signal, coma-soare.'
       },
       WHATSAPP_ENABLED: {
         label: 'Cuir an droichead WhatsApp ar siyal',
-        help: 'Settet gibbit aonche leis an cuibhliú below. Ny\'g gra le man ta ool agat gur gá dh\'it.',
+        help: "Settet gibbit aonche leis an cuibhliú below. Ny'g gra le man ta ool agat gur gá dh'it."
       },
       WHATSAPP_MODE: {
-        label: 'Modh droichead',
+        label: 'Modh droichead'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Users WhatsApp a vees cead厚',
-        help: 'Mollyt. Àireamhan fône no IDy WhatsApp, coma-soare.',
+        help: 'Mollyt. Àireamhan fône no IDy WhatsApp, coma-soare.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Stíl freagairt',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
-      },
+        help: 'Default channel or group for cron delivery.'
+      }
     },
     search: 'Cuardaigh teachtaireacht...',
     loading: 'Teachtaireacht platforms a luchtú...',
@@ -969,14 +1000,13 @@ export const gv = defineLocale({
     failedUpdate: name => `Failed to update ${name}`,
     failedSave: name => `Failed to save ${name}`,
     failedClear: key => `Failed to clear ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   notifications: {
     voice: {
-      transcriptionUnavailable: 'Fowkys tarscription n\'oasley.',
+      transcriptionUnavailable: "Fowkys tarscription n'oasley.",
       tryRecordingAgain: 'Cooar y fowkys aillagain.',
-      unavailable: 'Fowkys n\'oasley.',
+      unavailable: "Fowkys n'oasley.",
       configureSpeechToText: 'Configure y speech-to-text dy usey mode as fyysk.',
       couldNotStartSession: 'Nair bon vod toosoy y chees as fyysk',
       microphoneAccessDenied: 'Chay vodagh goll dy mic.',
@@ -990,36 +1020,38 @@ export const gv = defineLocale({
       noSpeechDetected: 'Cha aithniodh labhar sam bith.',
       playbackFailed: 'Theip athchluich guth.',
       recordingFailed: 'Theip clàradh guth.',
-      transcriptionFailed: 'Theip trascraíonnú guth.',
+      transcriptionFailed: 'Theip trascraíonnú guth.'
     },
     native: {
-      approvalTitle: 'Reevaluption n\'oasley.',
+      approvalTitle: "Reevaluption n'oasley.",
       approveAction: 'Reevaluption.',
       rejectAction: 'Rejeck.',
-      inputTitle: 'Tiehyr n\'oasley.',
-      inputBody: 'OpenAmer n\'oasley dy gorym dy roish.',
+      inputTitle: "Tiehyr n'oasley.",
+      inputBody: "OpenAmer n'oasley dy gorym dy roish.",
       turnDoneTitle: 'OpenAmer tarscription.',
       turnDoneBody: 'Y roish aillagain.',
-      turnErrorTitle: 'Turn n\'oasley.',
+      turnErrorTitle: "Turn n'oasley.",
       backgroundDoneTitle: 'Task aillagain.',
-      backgroundFailedTitle: 'Task n\'oasley.',
-      creditsTitle: 'Credits.',
+      backgroundFailedTitle: "Task n'oasley.",
+      creditsTitle: 'Credits.'
     },
     region: 'Notifis',
     dismiss: 'Dismiss notifis',
-    copyDetailFailed: 'Cao\'n\'t copie notifis detail',
-    backendOutOfDateMessage: 'Thu `OpenAmer` back-end is oonfear than thi desktop build annd may not wok correctly. Updye t\'align thi.',
+    copyDetailFailed: "Cao'n't copie notifis detail",
+    backendOutOfDateMessage:
+      "Thu `OpenAmer` back-end is oonfear than thi desktop build annd may not wok correctly. Updye t'align thi.",
     updateOpenAmer: 'Updye `OpenAmer`',
     updateReadyTitle: 'Updye ready',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT needs `ELEVENLABS_API_KEY`.',
       elevenLabsRejectedKey: 'Chay vodagh ElevenLabs y API key (401).',
       gatewayAuthFailed: 'Fail authentication y geata — check API_SERVER_KEY.',
-      methodNotAllowed: 'Chay vodagh y backend desktop y cheest (405 Method Nee Allowed). Feuch dy restart OpenAmer Desktop.',
+      methodNotAllowed:
+        'Chay vodagh y backend desktop y cheest (405 Method Nee Allowed). Feuch dy restart OpenAmer Desktop.',
       microphonePermission: 'Chay vodagh permission y mic.',
       openaiRejectedApiKey: 'Chay vodagh OpenAI y API key.',
       openaiTtsNeedsKey: 'Ta OpenAI TTS eedyn VOICE_TOOLS_OPENAI_KEY na OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rejected the API key (${status} invalid_api_key).`
     },
     hide: 'Folaigh',
     show: 'Taispeáin',
@@ -1030,15 +1062,15 @@ export const gv = defineLocale({
     installMethodUnsupportedTitle: 'Nee dy porthoy y method install',
     seeWhatsNew: 'Fec cret nua',
     more: count => `${count} smoo ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} caghlaa noa${count === 1 ? '' : 's'} ry-gheddyn.`,
+    updateReadyMessage: count => `${count} caghlaa noa${count === 1 ? '' : 's'} ry-gheddyn.`
   },
   billingBlock: {
     titleOpenamer: 'Out of OpenAmer credits.',
-    fallbackMessage: 'Ey taigin n\'oasley. Add credits to kerryt.',
+    fallbackMessage: "Ey taigin n'oasley. Add credits to kerryt.",
     openBilling: 'Ouver biling.',
     addCredits: 'Add credits.',
     dismiss: 'Dismiss.',
-    titleProvider: provider => `អស់ credit — ${provider}`,
+    titleProvider: provider => `អស់ credit — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Hide sidebar.',
@@ -1055,12 +1087,13 @@ export const gv = defineLocale({
     openStarmap: 'Open memory graph.',
     openKeybinds: 'Keyboard shortcuts.',
     layoutEditor: 'Layout editor.',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout.',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout.'
   },
   skills: {
     configured: 'Cumraithe',
     needsKeys: 'Reiddhey clouey',
-    visionModelHint: 'Úsáideann Amharc do cheann cumraí co-phobuil — roghnaítear an modell is linn a bheith leoill ansin, ní in-aghaidh gach soláthraí anseo.',
+    visionModelHint:
+      'Úsáideann Amharc do cheann cumraí co-phobuil — roghnaítear an modell is linn a bheith leoill ansin, ní in-aghaidh gach soláthraí anseo.',
     visionModelLink: 'Roghnaigh modell amharc i Stiúidhtí → Modelli',
     skillsLoadFailed: 'Chuill luchtaithe na gscileanna',
     toolsetsRefreshFailed: 'Chuill athnuadh na gclue-toshtanna',
@@ -1068,8 +1101,8 @@ export const gv = defineLocale({
     skillDisabled: 'Cumtha ar leis an scile',
     toolsetEnabled: 'Cumtha an clue-tosht',
     toolsetDisabled: 'Cumtha ar leis an clue-tosht',
-    sortMostUsed: 'A\' mhéid a úsáidtear',
-    sortMostUsedDesc: '↓ A\' mhéid a úsáidtear',
+    sortMostUsed: "A' mhéid a úsáidtear",
+    sortMostUsedDesc: "↓ A' mhéid a úsáidtear",
     sortLeastUsedAsc: '↑ An líosta a úsáidtear',
     enableAll: 'Cum ooille',
     disableAll: 'Cum ar gach ceann',
@@ -1078,7 +1111,7 @@ export const gv = defineLocale({
     provenance: {
       agent: 'Laard',
       bundled: 'Toghtree yobmys',
-      hub: 'Ynnyd meanagh',
+      hub: 'Ynnyd meanagh'
     },
     tabSkills: 'Skillaid',
     tabToolsets: 'Goulooyn',
@@ -1099,7 +1132,7 @@ export const gv = defineLocale({
     edit: 'Deitir',
     archive: 'Cartlann',
     skillArchivedTitle: 'Chartlann y skill',
-    skillArchivedMessage: 'Ta broi\'t ayd dy goll re openamer curator restore.',
+    skillArchivedMessage: "Ta broi't ayd dy goll re openamer curator restore.",
     hub: {
       searchPlaceholder: 'Shirrey shobhan y skeeill',
       search: 'Shirrey',
@@ -1124,14 +1157,14 @@ export const gv = defineLocale({
       trust: {
         builtin: 'Taobh stogh',
         trusted: 'Trebby',
-        community: 'Kee-allym',
+        community: 'Kee-allym'
       },
       verdictSafe: 'Slaane',
       verdictCaution: 'Feallys',
       verdictDangerous: 'Daalagh',
-      policyAllow: 'L\'ei stowley',
+      policyAllow: "L'ei stowley",
       policyAsk: 'Coim ve stowley',
-      policyBlock: 'L\'ei stowley ta goll dy volley',
+      policyBlock: "L'ei stowley ta goll dy volley",
       noFindings: 'Chenee shkeaynt laa as seeraa.',
       updateStarted: 'Ag haalc skeeillyn stowlet...',
       actionFailed: 'Goll dy gollan skeeill',
@@ -1145,7 +1178,7 @@ export const gv = defineLocale({
       scan: 'Ronsaghey',
       findings: count => `${count} feddyn${count === 1 ? '' : 's'}`,
       installStarted: name => `Cur ${name} er bun...`,
-      uninstallStarted: name => `Goaill ${name} ersooyl...`,
+      uninstallStarted: name => `Goaill ${name} ersooyl...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} possanyn greienyn er ny chur er`,
@@ -1158,44 +1191,44 @@ export const gv = defineLocale({
     usageCount: count => `ymmydit ${count}×`,
     emptyNoneFound: noun => `Cha row ${noun} er ny gheddyn`,
     emptyNothingMatches: query => `Cha nel red erbee co-chosoylagh rish “${query}”.`,
-    emptyNoneAvailable: noun => `Cha nel ${noun} ry-gheddyn foast.`,
+    emptyNoneAvailable: noun => `Cha nel ${noun} ry-gheddyn foast.`
   },
   commandCenter: {
     nav: {
       artifacts: {
         detail: 'Broud olltogen a chruthte',
-        title: 'Toraidhean',
+        title: 'Toraidhean'
       },
       newChat: {
         title: 'Seession new',
-        detail: 'Toisich seession ghlan',
+        detail: 'Toisich seession ghlan'
       },
       settings: {
         title: 'Socaright',
-        detail: 'Socraigh desktop OpenAmer',
+        detail: 'Socraigh desktop OpenAmer'
       },
       skills: {
         title: 'Galloochyn',
-        detail: 'Sgil, togair, as freavserver MCP',
+        detail: 'Sgil, togair, as freavserver MCP'
       },
       messaging: {
         title: 'Teavmsgyn',
-        detail: 'Cur Telegram, Slack, Discord, as arragh',
-      },
+        detail: 'Cur Telegram, Slack, Discord, as arragh'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pane sessiynyn',
-        detail: 'Search, pyn as rummagh sessiynyn',
+        detail: 'Search, pyn as rummagh sessiynyn'
       },
       system: {
         title: 'Pane yn coe',
-        detail: 'Stair, loga as ath-roie/soorad y gheata',
+        detail: 'Stair, loga as ath-roie/soorad y gheata'
       },
       usage: {
         title: 'Pane defraid',
-        detail: 'Activity tokenyn, costyn as scoylt',
-      },
+        detail: 'Activity tokenyn, costyn as scoylt'
+      }
     },
     providerNavigate: 'Navigaad',
     providerSessions: 'Sessiynyn',
@@ -1212,14 +1245,14 @@ export const gv = defineLocale({
     restartGateway: 'Ath-roie y gheata',
     generatePet: {
       staleBackend: 'Renew `OpenAmer` to generate maghrey.',
-      backgroundHint: 'Ta\' dty close sti — fiosSquared leat `OpenAmer` a cheannfaidh e ayd mar vee done.',
-      slowProviderHint: 'Ta\' goll dy gollaghey myr-choille',
+      backgroundHint: "Ta' dty close sti — fiosSquared leat `OpenAmer` a cheannfaidh e ayd mar vee done.",
+      slowProviderHint: "Ta' goll dy gollaghey myr-choille",
       remix: 'Ath-shamhlaey',
       remixConfirmTitle: 'Ath-shamhlaey an dealbhan shoh?',
-      remixConfirmBody: 'Cruthaidh seo fraoich ùr oo shoh mar bhonn-toshey. Ta\' goll dy gollaghey myr-choille.',
+      remixConfirmBody: "Cruthaidh seo fraoich ùr oo shoh mar bhonn-toshey. Ta' goll dy gollaghey myr-choille.",
       genericError: 'Cloishtrey an chruthaithey — feor ayd no ort choyrty ayn.',
-      referenceImageTooLarge: 'Ta\' the dealbhan tairshey roo mooide. Usee un fheah faa 16 MB.',
-      referenceImageInvalid: 'N\'ur v\'ee linn an dealbhan tairshey sin. Feor cleeve un PNG, JPG, WebP, no GIF.',
+      referenceImageTooLarge: "Ta' the dealbhan tairshey roo mooide. Usee un fheah faa 16 MB.",
+      referenceImageInvalid: "N'ur v'ee linn an dealbhan tairshey sin. Feor cleeve un PNG, JPG, WebP, no GIF.",
       adopt: 'Cur leih',
       startOver: 'Toos shoh',
       title: 'Cruthtaraigh muc',
@@ -1237,19 +1270,19 @@ export const gv = defineLocale({
       hatchComposing: 'Ag cóiriú…',
       hatchSaving: 'Beidhann sé faoi ghar…',
       namePlaceholder: 'Ainmigh do mhuc',
-      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`,
+      hatchRow: (_state, done, total) => `Sketching frame ${done} of ${total}…`
     },
     installTheme: {
       title: 'Stuir an thaym…',
       pageTitle: 'Stuir an thaym',
       placeholder: 'Shirrh a Marketplace VS Code...',
       loading: 'O shirr a Marketplace...',
-      error: 'N\'ur v\'ee reach a Marketplace.',
+      error: "N'ur v'ee reach a Marketplace.",
       empty: 'Chan crev thaym sam bie.',
       install: 'Stuir',
       installing: 'O stuir...',
       installed: 'Haik stiuret',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     commands: 'Gooilcyn',
     commandCenter: 'Ionad Reith',
@@ -1270,7 +1303,7 @@ export const gv = defineLocale({
       generatedTag: 'Cruthaithe',
       adoptFailed: 'Níorbh fhéidir an muc sin a ghlacadh.',
       toggleFailed: 'Níorbh fhéidir an muc a cheoladh.',
-      noneAvailable: 'Níl muccan ar fáil — roghnaigh ceann thíos chun é a shuiteáil.',
+      noneAvailable: 'Níl muccan ar fáil — roghnaigh ceann thíos chun é a shuiteáil.'
     },
     settingsFields: 'Réimimí na socruithe',
     mcpServers: 'Freastalaí MCP',
@@ -1279,13 +1312,13 @@ export const gv = defineLocale({
       maintenance: 'Cothabháil',
       sessions: 'Seisiúin',
       system: 'Córas',
-      usage: 'Clee\'htyn',
+      usage: "Clee'htyn"
     },
     sectionDescriptions: {
       maintenance: 'Co-vaylys, scorries, reichees, as data cuimhne',
       sessions: 'Soir as rummage seessions',
       system: 'Staate, logfilean, as gloony system',
-      usage: 'Activity token, cost, as sgil am bennyn-yn',
+      usage: 'Activity token, cost, as sgil am bennyn-yn'
     },
     gatewayRestartFailed: 'Restart dy goll as coshon.',
     updateOpenAmer: 'Haane OpenAmer',
@@ -1295,21 +1328,21 @@ export const gv = defineLocale({
     actionStartedWaiting: 'Gloon tooshaa, ag caghatan staate...',
     loadingStatus: 'Staate ag load...',
     recentLogs: 'Logfilean yn daa',
-    noLogs: 'Cha\'n eil logfilean loded dy etsoh.',
+    noLogs: "Cha'n eil logfilean loded dy etsoh.",
     statSessions: 'Seessions',
     statApiCalls: 'Calls API',
     statTokens: 'Tokens inn/magh',
     statCost: 'Cost estymet',
-    loadingUsage: 'Clee\'htyn ag load...',
+    loadingUsage: "Clee'htyn ag load...",
     retry: 'Geesagh',
     dailyTokens: 'Tokens gundaily',
     input: 'Ionadh',
     output: 'Outh',
-    noDailyActivity: 'Cha\'n eil activity gundaily.',
+    noDailyActivity: "Cha'n eil activity gundaily.",
     topModels: 'Models as see yn top',
-    noModelUsage: 'Cha\'n eil models ynclee\'ht dy etsoh.',
+    noModelUsage: "Cha'n eil models ynclee'ht dy etsoh.",
     topSkills: 'Sgil as see yn top',
-    noSkillActivity: 'Cha\'n eil activity sgil dy etsoh.',
+    noSkillActivity: "Cha'n eil activity sgil dy etsoh.",
     logFile: 'File log',
     logLevel: 'Mean',
     logSearchPlaceholder: 'Scag lines log...',
@@ -1322,7 +1355,8 @@ export const gv = defineLocale({
       backup: 'Cruthaich leth-obair',
       backupDesc: 'Compress an réite, na cuimhnean, na sgilean agus na seisiùnan',
       debugShare: 'Co-roinn dearbadh',
-      debugShareDesc: 'Uaslugaich tuairisec iomairte + loga, gach ceanglan ri cho-roinn (sguabfar iad aonur go feadh 6h)',
+      debugShareDesc:
+        'Uaslugaich tuairisec iomairte + loga, gach ceanglan ri cho-roinn (sguabfar iad aonur go feadh 6h)',
       debugShareRunning: 'Tha tuairisec dearbadh a uaslugaadh...',
       debugShareLinks: 'Ceanglan co-roinnidh',
       debugShareFailed: 'Theip co-roinn dearbadh',
@@ -1355,7 +1389,7 @@ export const gv = defineLocale({
       resetConfirm: target => `Delete ${target}? This cannot be undone.`,
       resetDone: files => `Deleted ${files}.`,
       actionStarted: name => `${name} started — tailing log...`,
-      actionFailed: name => `${name} failed to start`,
+      actionFailed: name => `${name} failed to start`
     },
     close: 'Dooin yn ynnyd sarey',
     paletteTitle: 'Paileid sarey',
@@ -1369,23 +1403,24 @@ export const gv = defineLocale({
     days: count => `${count}d`,
     actualCost: cost => `actual ${cost}`,
     noUsage: period => `No usage in the last ${period} days.`,
-    actions: count => `${count} actions`,
+    actions: count => `${count} actions`
   },
   webhooks: {
     search: 'Rann webhooks...',
     loading: 'Ag lòadáil webhooks...',
     loadFailed: 'Cailleen na webhooks a lòadáil',
-    hint: 'Ath-luoadtar athruithe subscriptions a luaithe as a receiver a\'r ruith. Ta subscriptions dheescrithe a rejear teampoull a\'g teigh.',
-    empty: 'Ná t\'á subscriptions webhook fyet.',
+    hint: "Ath-luoadtar athruithe subscriptions a luaithe as a receiver a'r ruith. Ta subscriptions dheescrithe a rejear teampoull a'g teigh.",
+    empty: "Ná t'á subscriptions webhook fyet.",
     disabledTitle: 'Ta receiver webhook dheescrithe',
-    disabledBody: 'Is e webhooks un lóight drúcht a ríre. Cuir iad enni ar siyal a ghooid a ghlackadh teampoull HTTP a\'g teigh; cha gá channels chat ach nuair ta subscription a\'g chuir chun Telegram, Discord, Slack no channel ele.',
+    disabledBody:
+      "Is e webhooks un lóight drúcht a ríre. Cuir iad enni ar siyal a ghooid a ghlackadh teampoull HTTP a'g teigh; cha gá channels chat ach nuair ta subscription a'g chuir chun Telegram, Discord, Slack no channel ele.",
     deliverOptions: {
       log: 'Coil',
       email: 'Post',
       github_comment: 'Comment GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Subscriptions (${count})`,
     enable: 'Enable webhooks',
@@ -1433,7 +1468,7 @@ export const gv = defineLocale({
     creating: 'Creating...',
     created: 'Created',
     createFailed: (detail: string) => `Failed to create: ${detail}`,
-    copy: 'Copy',
+    copy: 'Copy'
   },
   profiles: {
     close: 'Duny profaail',
@@ -1447,7 +1482,7 @@ export const gv = defineLocale({
     manageProfiles: 'Stiureht profaail…',
     color: 'Dath…',
     autoColor: 'Automaitik',
-    noProfiles: 'Cha n\'ell profaail dy etsoh.',
+    noProfiles: "Cha n'ell profaail dy etsoh.",
     selectPrompt: 'Taish profaal dy gwesk y dsheanamans.',
     refresh: 'Ùraich profaail',
     count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
@@ -1511,7 +1546,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   cron: {
     manage: 'Reir',
@@ -1527,7 +1562,7 @@ Leave blank to keep the ${mode} default.`,
     edit: 'Jey cron',
     deleteTitle: 'Cailleey cron job?',
     deleteDescPrefix: 'Nee ey dy gheurry mie dy daal',
-    deleteDescSuffix: 'dy bishon. Nee eh stop dy losht l\'att.',
+    deleteDescSuffix: "dy bishon. Nee eh stop dy losht l'att.",
     deleting: 'Dy chailleey...',
     resumed: 'Cron pearsigh',
     paused: 'Cron pausing',
@@ -1546,7 +1581,7 @@ Leave blank to keep the ${mode} default.`,
       scheduleIt: 'Schedule it',
       scheduling: 'Scheduling...',
       scheduled: 'Blueprint scheduled',
-      loading: 'Loading blueprints...',
+      loading: 'Loading blueprints...'
     },
     close: 'Close cron',
     title: 'Scheduled jobs',
@@ -1560,14 +1595,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -1576,7 +1611,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -1585,7 +1620,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -1595,7 +1630,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -1605,7 +1640,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1644,8 +1680,8 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
-    },
+      blueprints: 'Blueprints'
+    }
   },
   artifacts: {
     search: 'Raam airdí...',
@@ -1679,14 +1715,14 @@ Leave blank to keep the ${mode} default.`,
     copyUrl: 'Coppy URL',
     copyPath: 'Coppy cos',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Seisiun noa',
       skills: 'Comhreith',
       messaging: 'Teavah',
-      artifacts: 'Tavell',
+      artifacts: 'Tavell'
     },
     searchAria: 'Rann seisiyn',
     searchPlaceholder: 'Rann seisiyn…',
@@ -1696,7 +1732,7 @@ Leave blank to keep the ${mode} default.`,
       thisWeek: 'Er-chooille as ayn saaweek',
       lastWeek: 'Laaweek goll dy',
       thisMonth: 'Er-chooille as ayn moo',
-      today: 'Earlier today',
+      today: 'Earlier today'
     },
     noMatch: query => `No sessions match “${query}”.`,
     results: 'Results',
@@ -1745,7 +1781,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -1767,13 +1804,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -1811,8 +1850,8 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
-    },
+      ageMin: 'm'
+    }
   },
   composer: {
     message: 'Goll',
@@ -1837,7 +1876,7 @@ Leave blank to keep the ${mode} default.`,
     queueResume: 'Poursaigh',
     queueResumeTip: 'Paued le Stop — poursaigh cur na lairyn aaragh',
     queueStuckTitle: 'Teist aaragh nár chreagh',
-    queueStuckBody: 'Do b\'ole lair aaragh dy goll dy chreagh. Taa eh ginn aaragh fo gual — feall a chreagh ry-Rees.',
+    queueStuckBody: "Do b'ole lair aaragh dy goll dy chreagh. Taa eh ginn aaragh fo gual — feall a chreagh ry-Rees.",
     previewUnavailable: 'Réamhexhey ná urragh',
     dictating: 'Ag clymre',
     preparingAudio: 'Ag ullamh clooie',
@@ -1862,18 +1901,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Scrutiny code',
         description: 'Scrutiny y laat reyth son rey goll dy haaich, gollreyn ed ny tesscuryn.',
-        text: 'Freich scrutiny shen son buggan, ardhynney, ny tesscuryn.',
+        text: 'Freich scrutiny shen son buggan, ardhynney, ny tesscuryn.'
       },
       implementationPlan: {
         label: 'Plan implementshon',
         description: 'Freigh aas kyndaan dy goll code as y diff goll dy gree.',
-        text: 'Freich plan implementshon goll reyth er dy goll code.',
+        text: 'Freich plan implementshon goll reyth er dy goll code.'
       },
       explainThis: {
         label: 'Feur shen',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Freich feur koudrey ny shoh bee \'s war les files y ard-ooill.',
-      },
+        text: "Freich feur koudrey ny shoh bee 's war les files y ard-ooill."
+      }
     },
     wakingProfile: profile => `Waking up ${profile}…`,
     newSessionPlaceholders: [
@@ -1883,7 +1922,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1892,7 +1931,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     stopListening: 'Stop listening and send',
     stopShort: 'Stop',
@@ -1916,7 +1955,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -1926,7 +1965,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -1945,7 +1984,7 @@ Leave blank to keep the ${mode} default.`,
     couldNotPreview: label => `Could not preview ${label}`,
     removeAttachment: label => `Remove ${label}`,
     url: 'URL…',
-    tipPost: ' to reference files inline.',
+    tipPost: ' to reference files inline.'
   },
   statusStack: {
     dismiss: 'Dìor',
@@ -1965,8 +2004,10 @@ Leave blank to keep the ${mode} default.`,
       viewAsList: 'Fis mar liosta',
       revert: 'Cuir ar ais',
       revertAll: 'Cuir gach rud ar ais',
-      revertConfirm: 'Til cuil cho atharrachaidhean an fhaidil seo agus athair e go stàit an tairis? Ní féidir seo a chur ar ais.',
-      revertAllConfirm: 'Til cuil cho gach atharrachadh agus athair na faidmean go stàit an tairis? Ní féidir seo a chur ar ais.',
+      revertConfirm:
+        'Til cuil cho atharrachaidhean an fhaidil seo agus athair e go stàit an tairis? Ní féidir seo a chur ar ais.',
+      revertAllConfirm:
+        'Til cuil cho gach atharrachadh agus athair na faidmean go stàit an tairis? Ní féidir seo a chur ar ais.',
       staged: 'Pàrtait',
       noChanges: 'Cha athruithe',
       notRepo: 'Cha shoorree a stôr git',
@@ -1981,7 +2022,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Foslow PR',
       ghMissing: 'Stallaugh an GitHub CLI (gh) agus claugh a-stigh dy foslow PRs',
       agentShip: 'Cuire roimpe OpenAmer dy foslow PR',
-      agentShipPrompt: 'Scruthaigh na hathruithe reo, commit iad le message conventional-commit soilleir, push an brann, agus foslow pull request.',
+      agentShipPrompt:
+        'Scruthaigh na hathruithe reo, commit iad le message conventional-commit soilleir, push an brann, agus foslow pull request.',
       newBranch: 'Brann noa',
       worktrees: 'Sgillean obair',
       changed: count => `${count} changed`,
@@ -1991,7 +2033,7 @@ Leave blank to keep the ${mode} default.`,
       commitPlaceholder: 'Message (⌘↵ to commit)',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'AgENTS',
     running: 'Goll',
@@ -1999,7 +2041,7 @@ Leave blank to keep the ${mode} default.`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
     stop: 'Stop',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -2014,7 +2056,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Ta cheartyn chruthyn',
       manual: 'Cheart bho do termainal',
       guiSkew: 'Cheart y chliar deiseal',
-      error: 'Ta cheart pauvaid',
+      error: 'Ta cheart pauvaid'
     },
     checking: 'Shohaghagh son cheart…',
     checkFailedTitle: 'Ny’ur ad y kree dy cheard',
@@ -2036,12 +2078,15 @@ Leave blank to keep the ${mode} default.`,
     manualBody: 'Chlooii OpenAmer oo line commant, mar y goll dy chloi eisht da-gniyagh yn doo. C-paich eh:',
     manualPickedUp: 'Ta OpenAmer dy gickcym y version ëaghtyr ayn tro le timeshan dy hauysht eh.',
     guiSkewTitle: 'Cloi yn feishem desktop',
-    guiSkewBody: 'Ta an backend ëaghtyr, b’ cha raibh y package feishem desktop cangiyn. Cloi ny reinstall y feishem desktop OpenAmer (AppImage / .deb / .rpm) dy goll dit.',
+    guiSkewBody:
+      'Ta an backend ëaghtyr, b’ cha raibh y package feishem desktop cangiyn. Cloi ny reinstall y feishem desktop OpenAmer (AppImage / .deb / .rpm) dy goll dit.',
     copy: 'Coppy',
     copied: 'Coppyeit',
     done: 'Tra mar ve',
-    applyingBody: 'Ta cloiyer OpenAmer ayn goll dy gree dysh ayn f窗口 t\'ar sonn, as tra mar ve, dy hauysht OpenAmer ayn reesht. Ná hauysht OpenAmer dysh yn tro y being cloiit.',
-    applyingBodyBackend: 'Ta an backend remote dy chur an ëaghtyr eisht dy siorradh. Ta OpenAmer dy reconnect ayn gyereagh tra ve, as ve ayn reesht.',
+    applyingBody:
+      "Ta cloiyer OpenAmer ayn goll dy gree dysh ayn f窗口 t'ar sonn, as tra mar ve, dy hauysht OpenAmer ayn reesht. Ná hauysht OpenAmer dysh yn tro y being cloiit.",
+    applyingBodyBackend:
+      'Ta an backend remote dy chur an ëaghtyr eisht dy siorradh. Ta OpenAmer dy reconnect ayn gyereagh tra ve, as ve ayn reesht.',
     applyingClose: 'Ta y fwindow seo dy dúnadh fad le reih y chloi, as tra ve, dy hauysht OpenAmer ayn reesht.',
     errorTitle: 'Cha chloaig an ëaghtyr',
     errorBody: 'Ná hob — cha raibh aon rud caillt. Fargeil dy chloi ayn annois.',
@@ -2052,13 +2097,15 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'An fho-ghloie a-at-restartaidh dy charga yn ùphradh…',
       notAvailable: 'Chut sta co a ùphradh ann airson an fho-ghloie seo.',
       failed: 'Chaplotaig an ùphradh air an fho-ghloie.',
-      noReturn: 'Chood e ar-lin an fho-ghloie. B\'fhéidir nár chríochnaig an ùphradh — check out host an fho-ghloie.',
+      noReturn: "Chood e ar-lin an fho-ghloie. B'fhéidir nár chríochnaig an ùphradh — check out host an fho-ghloie."
     },
     appErrors: {
-      updateLocked: 'Cuireadh an ùphradh stad: tha uinneag eile OpenAmer no terminal a\' ruadh `openamer` a\' coinniú an stáit seo foshlidh. Dún e agus ath-choill.',
-      updateFailed: 'Chríochnaig an ùphradh. Chan eil reddyn a chaille — cha\'n rinneadh aon rud a chailleadh. Féidir leat ath-choill a ghrinn.',
+      updateLocked:
+        "Cuireadh an ùphradh stad: tha uinneag eile OpenAmer no terminal a' ruadh `openamer` a' coinniú an stáit seo foshlidh. Dún e agus ath-choill.",
+      updateFailed:
+        "Chríochnaig an ùphradh. Chan eil reddyn a chaille — cha'n rinneadh aon rud a chailleadh. Féidir leat ath-choill a ghrinn."
     },
-    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
+    moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`
   },
   install: {
     stageStates: {
@@ -2066,7 +2113,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Ag stáidú',
       succeeded: 'Maine',
       skipped: 'Skoite',
-      failed: 'Chaplotaig',
+      failed: 'Chaplotaig'
     },
     oneTimeTitle: 'Ta OpenAmer eeding stáid aon-uair',
     installCommand: 'Lòir stáidú',
@@ -2087,8 +2134,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Theip ar an tsuiteáil',
     settingUpTitle: 'Ag réidhúrt Agent OpenAmer',
     finishingTitle: 'Ag críochnú',
-    failedDesc: 'Theip ar chéad cheist de na céimeanna suiteála. Ar Windows, féadfar é seo tarlaí má tá clár eile de OpenAmer CLI nó de OpenAmer deisce ann. Stop aon chlár OpenAmer atá ar siúl, agus bain triail eile as. Seiceáil na sonraí thíos nó an logáil deisce chun an tránscriotu iomlán a fheiceáil.',
-    activeDesc: 'Is socraí aon-uair a seo. Tá an suiteálaí OpenAmer ag íslíadh spleis agus ag cumhrú do rinn. Tógfaí na tosuithe eile an chéad bhealach seo.',
+    failedDesc:
+      'Theip ar chéad cheist de na céimeanna suiteála. Ar Windows, féadfar é seo tarlaí má tá clár eile de OpenAmer CLI nó de OpenAmer deisce ann. Stop aon chlár OpenAmer atá ar siúl, agus bain triail eile as. Seiceáil na sonraí thíos nó an logáil deisce chun an tránscriotu iomlán a fheiceáil.',
+    activeDesc:
+      'Is socraí aon-uair a seo. Tá an suiteálaí OpenAmer ag íslíadh spleis agus ag cumhrú do rinn. Tógfaí na tosuithe eile an chéad bhealach seo.',
     fetchingManifest: 'An manaisist suiteálaí á fháil...',
     error: 'Earráid',
     hideOutput: 'Folaigh toradh an suiteálaí',
@@ -2100,8 +2149,10 @@ Leave blank to keep the ${mode} default.`,
     copiedOutput: 'Chóipeáladh!',
     copyOutput: 'Chóipeáil an t-asl',
     reloadRetry: 'Athnuigh agus bain triail eile as',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2109,7 +2160,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2126,7 +2178,7 @@ Leave blank to keep the ${mode} default.`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Cuirfidh muid OpenAmer Agent leat',
@@ -2146,36 +2198,37 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API díreach samhail',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     flowSubtitles: {
-      device_code: 'Fosghlennit leaynt rechtey ayd ayn y bràughsell — ta `OpenAmer` ga conn-ry tro\'ot.',
+      device_code: "Fosghlennit leaynt rechtey ayd ayn y bràughsell — ta `OpenAmer` ga conn-ry tro'ot.",
       external: 'Conn-ry queeag ayn y terminaal ayd, thair ort lesh gys y chat.',
-      pkce: 'Opens your browser to sign in, then continues here',
+      pkce: 'Opens your browser to sign in, then continues here'
     },
     signInFailed: 'Conn-ry nîsh. Geab ol rees.',
-    pickDifferentProvider: 'Toghee sharr\'ver dys shen.',
+    pickDifferentProvider: "Toghee sharr'ver dys shen.",
     authorizeThere: 'Cairdey `OpenAmer` undshoo.',
     copyAuthCode: 'Copyair an chód cairdey as stobbart eh dooish.',
     pasteAuthCode: 'Stobbart an chód cairdey.',
@@ -2205,11 +2258,13 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   modelPicker: {
     title: 'Mallic modell.',
@@ -2225,18 +2280,18 @@ Leave blank to keep the ${mode} default.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   shell: {
     modelMenu: {
       search: 'Cuairt modelloon',
-      noModels: 'Cha\' bhaaist modell',
+      noModels: "Cha' bhaaist modell",
       editModels: 'Cura modelloon…',
       refreshModels: 'Ùrlaadh modelloon',
-      fast: 'Gerry',
+      fast: 'Gerry'
     },
     modelOptions: {
-      noOptions: 'Cha\' n\'ain roghyn ayn son y modell seo',
+      noOptions: "Cha' n'ain roghyn ayn son y modell seo",
       options: 'Roghyn',
       thinking: 'Brech',
       fast: 'Gerry',
@@ -2248,23 +2303,23 @@ Leave blank to keep the ${mode} default.`,
       xhigh: 'Ró-àrd',
       max: 'As leigh',
       ultra: 'Ró-ard',
-      updateFailed: 'Cuireen roghyn an modell b\'fhail',
-      fastFailed: 'Cuireen mode gerry b\'fhail',
+      updateFailed: "Cuireen roghyn an modell b'fhail",
+      fastFailed: "Cuireen mode gerry b'fhail"
     },
     gatewayMenu: {
       gateway: 'Geata-gar',
       connected: 'Connet',
       connecting: 'Connetagh',
       offline: 'Disconncet',
-      inferenceReady: 'Reddy dh\'inferrance',
-      inferenceNotReady: 'Naa reddy dh\'inferrance',
+      inferenceReady: "Reddy dh'inferrance",
+      inferenceNotReady: "Naa reddy dh'inferrance",
       checkingInference: 'Checkagh an inferrance',
       disconnected: 'Disconncet',
       openSystem: 'Panel yn tsystem yn opyn',
       recentActivity: 'Fean obair',
       viewAllLogs: 'Vaarn dy chooilley logg →',
       messagingPlatforms: 'Plathformyn messaidj',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Modha aApprovall',
@@ -2274,7 +2329,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Meas beannooey automaticagh as gou paart oo goll',
       offDescription: 'Ruith gun promptyn aApprovall',
       ariaLabel: mode => `Approval mode: ${mode}`,
-      off: 'Off',
+      off: 'Off'
     },
     statusbar: {
       unknown: 'Àraid',
@@ -2294,13 +2349,13 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Tassayn fo-ailiant',
           system_prompt: 'Prompt system',
           tool_definitions: 'Tassayn inne',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Fo deilbhín choimpiuill',
         loading: 'Ag luchdaithe briseadh…',
         title: 'Usaaidh choimpiuill',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Op briseadh usaaidh choimpiuill',
       session: 'Seisiún',
@@ -2349,11 +2404,11 @@ Leave blank to keep the ${mode} default.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Window controls',
     paneControls: 'Pane controls',
-    appControls: 'App controls',
+    appControls: 'App controls'
   },
   language: {
     label: 'Lingua',
@@ -2362,19 +2417,19 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'Lingua updat fawch',
     switchTo: 'Swithe y lingua',
     searchPlaceholder: 'Search y lingua…',
-    noResults: 'Neel lingua',
+    noResults: 'Neel lingua'
   },
   boot: {
     failure: {
       signInIncompleteTitle: 'Sinn-in nean',
       signInIncompleteMessage: 'Lennin window ghae fhoibh authenctik sdeir thannit.',
       signInFailed: 'Sinn-in failt',
-      signInToRemoteGateway: 'Sinn-in t\'ur gwaiper remote',
+      signInToRemoteGateway: "Sinn-in t'ur gwaiper remote",
       identityProvider: 'Thu identity provider',
       title: 'Feach hiennann `OpenAmer`.',
-      description: 'Gooidt bheinn nenn. Ynnydh na linn rehabailt syllyn. Nen hainn d\'ochdyn yesh.',
+      description: "Gooidt bheinn nenn. Ynnydh na linn rehabailt syllyn. Nen hainn d'ochdyn yesh.",
       remoteTitle: 'Remote guanayn sinny maht.',
-      remoteDescription: 'Neo guanayn syllyn fhuairt. Sinne ag sin annann. Nen hainn d\'ochdyn yesh.',
+      remoteDescription: "Neo guanayn syllyn fhuairt. Sinne ag sin annann. Nen hainn d'ochdyn yesh.",
       retry: 'Rethrin.',
       repairInstall: 'Repair instalyn.',
       useLocalGateway: 'Uas le guanayn local.',
@@ -2388,8 +2443,9 @@ Leave blank to keep the ${mode} default.`,
       showRecentLogs: 'Shown recent logyne.',
       signedInTitle: 'Sinne.',
       signedInMessage: 'Reconnectin guanayn remote…',
-      remoteSignInHint: signInLabel => `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
-      signInWithProvider: provider => `Sign in with ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Signs out of the saved remote browser session, then opens ${signInLabel}. Use local gateway to switch to the bundled backend instead.`,
+      signInWithProvider: provider => `Sign in with ${provider}`
     },
     errors: {
       gatewayConnectionLost: 'Soysh tinnet cunnut gooidt guanayn.',
@@ -2398,7 +2454,7 @@ Leave blank to keep the ${mode} default.`,
       backgroundExited: 'Exit proces OpenAmer.',
       backgroundExitedDuringStartup: 'Exit proces OpenAmer aig toosoy.',
       backendStopped: 'Stopeay y backend',
-      desktopBootFailed: 'Nair bot y desktop',
+      desktopBootFailed: 'Nair bot y desktop'
     },
     ready: 'Ta OpenAmer Desktop reay',
     steps: {
@@ -2406,9 +2462,9 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'Ag load shettings OpenAmer',
       loadingSessions: 'Ag load shessions y luaigh',
       startingDesktopConnection: 'Ag toosoy cheangal',
-      startingOpenAmerDesktop: 'Ag toosoy OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ag toosoy OpenAmer Desktop…'
     },
-    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`,
+    desktopBootFailedWithMessage: message => `Desktop boot failed: ${message}`
   },
   starmap: {
     title: 'Graaf yn ymmyrie',
@@ -2423,9 +2479,10 @@ Leave blank to keep the ${mode} default.`,
     loadFailed: 'Cha dod shin graaf ny cooinaghtyn y laadey',
     loading: 'Laadey…',
     emptyTitle: 'Cha nel red erbee ynsit foast',
-    emptyDesc: 'Choud\'s ta OpenAmer troggal schleïyn as cooinaghtyn son dty obbyr, t\'ad ry-akin ayns shoh.',
+    emptyDesc: "Choud's ta OpenAmer troggal schleïyn as cooinaghtyn son dty obbyr, t'ad ry-akin ayns shoh.",
     share: 'Rheynn yn caslys',
-    shareHint: 'Jean coip jeh\'n choad dy rheynn y caslys shoh, ny collane coad dy laadey caslys. Cha nel eh goaill stiagh agh y co-chummey, cha nel dty chooinaghtyn ny teks dty schlei.',
+    shareHint:
+      "Jean coip jeh'n choad dy rheynn y caslys shoh, ny collane coad dy laadey caslys. Cha nel eh goaill stiagh agh y co-chummey, cha nel dty chooinaghtyn ny teks dty schlei.",
     shareTitle: 'Cur stiagh / cur magh caslys',
     sharePlaceholder: 'Collane coad caslys…',
     copy: 'Jean coip jeh coad y chaslys',
@@ -2435,7 +2492,7 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Collane coad caslys dy laadey eh.',
     importSuccess: nodes => `Caslys laadit lesh ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'caslys currit stiagh',
-    resetToMine: 'Erash gys my chaslys',
+    resetToMine: 'Erash gys my chaslys'
   },
   rightSidebar: {
     remotePickerSelect: 'Torrold yn folt',
@@ -2443,10 +2500,10 @@ Leave blank to keep the ${mode} default.`,
     refreshTree: 'Adlaas yn chraobh',
     collapseAll: 'Cudd roo dy foltoid',
     previewUnavailable: 'Náidir ar gyhaav',
-    noProjectTitle: 'Ch\'en projecl',
+    noProjectTitle: "Ch'en projecl",
     noProjectBody: 'Yssell projecl son browse ny fayl dy ghooill agus coimadh ny ke变更.',
-    noProjectOpen: 'Ch\'en projecl yssell',
-    noDiffs: 'Ch\'en diffiau',
+    noProjectOpen: "Ch'en projecl yssell",
+    noDiffs: "Ch'en diffiau",
     unreadableTitle: 'Cha-ur a lees',
     emptyTitle: 'Folly',
     emptyBody: 'Folly yn folt as y.',
@@ -2471,7 +2528,7 @@ Leave blank to keep the ${mode} default.`,
     remotePickerDescription: 'Browse folders on the connected backend.',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Náidir',
@@ -2505,7 +2562,8 @@ Leave blank to keep the ${mode} default.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -2526,7 +2584,7 @@ Leave blank to keep the ${mode} default.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -2551,17 +2609,19 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   assistant: {
     approval: {
@@ -2576,7 +2636,8 @@ Leave blank to keep the ${mode} default.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Naa-ry sys yn iarragh dy beannoo ad',
@@ -2590,7 +2651,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Ar gyha',
       lateAnswerTip: 'Scríb yn iarragh shoh mar ghreishtKee',
       lateAnswerHint: 'Naa-ry caghyr an comhairle shoh. Trog y shoice to scríb eh mar ghreishtKee.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Côd',
@@ -2624,13 +2685,13 @@ Leave blank to keep the ${mode} default.`,
         ran: 'Rinn',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2638,120 +2699,120 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
+        runningTool: action => `Running ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         browser_navigate: {
           done: 'Opened page',
           pending: 'Opening page',
-          pendingAction: 'Opening',
+          pendingAction: 'Opening'
         },
         browser_snapshot: {
           done: 'Captured page snapshot',
           pending: 'Capturing page snapshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_take_screenshot: {
           done: 'Captured screenshot',
           pending: 'Capturing screenshot',
-          pendingAction: 'Capturing',
+          pendingAction: 'Capturing'
         },
         browser_type: {
           done: 'Typed on page',
           pending: 'Typing on page',
-          pendingAction: 'Typing',
+          pendingAction: 'Typing'
         },
         clarify: {
           done: 'Asked a question',
           pending: 'Asking a question',
-          pendingAction: 'Asking',
+          pendingAction: 'Asking'
         },
         cronjob: {
           done: 'Cron job',
           pending: 'Scheduling cron job',
-          pendingAction: 'Scheduling',
+          pendingAction: 'Scheduling'
         },
         edit_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
+          pendingAction: 'Editing'
         },
         execute_code: {
           done: 'Ran code',
           pending: 'Scripting',
-          pendingAction: 'Scripting',
+          pendingAction: 'Scripting'
         },
         image_generate: {
           done: 'Generated image',
           pending: 'Generating image',
-          pendingAction: 'Generating',
+          pendingAction: 'Generating'
         },
         list_files: {
           done: 'Listed files',
           pending: 'Listing files',
-          pendingAction: 'Listing',
+          pendingAction: 'Listing'
         },
         patch: {
           done: 'Patched file',
           pending: 'Patching file',
-          pendingAction: 'Patching',
+          pendingAction: 'Patching'
         },
         read_file: {
           done: 'Read file',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
-      },
+          pendingAction: 'Editing'
+        }
+      }
     },
     thread: {
       loadingSession: 'Loading session',
@@ -2781,23 +2842,25 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
-    },
+      attachingFile: 'Attaching…'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`,
+    message: reason =>
+      `Software rendering active — remote display detected (${reason}). GPU acceleration is disabled to prevent flickering.`
   },
   agents: {
     close: 'Dooin ny hobbreeyn',
     title: 'Billey croo',
-    subtitle: 'Obbraghey bio ny fo-obbreeyn son y tour t\'ayn.',
+    subtitle: "Obbraghey bio ny fo-obbreeyn son y tour t'ayn.",
     emptyTitle: 'Cha nel fo-obbreeyn bio ayn',
-    emptyDesc: 'Tra ta tour cur obbyr da obbreeyn elley, t\'ad strooanaghey nyn vishaghey ayns shoh.',
+    emptyDesc: "Tra ta tour cur obbyr da obbreeyn elley, t'ad strooanaghey nyn vishaghey ayns shoh.",
     running: 'Roie',
     failed: 'Er vrishey',
     done: 'Jeant',
@@ -2820,13 +2883,13 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days} laa er dy henney`,
     durationSeconds: seconds => `${seconds} eiliad`,
     durationMinutes: (minutes, seconds) => `${minutes} minnid ${seconds} eiliad`,
-    tokens: value => `${value} cowrey`,
+    tokens: value => `${value} cowrey`
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   zones: {
     showHeader: 'Show header',
@@ -2834,7 +2897,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2871,7 +2935,7 @@ Leave blank to keep the ${mode} default.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2882,7 +2946,7 @@ Leave blank to keep the ${mode} default.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2899,7 +2963,8 @@ Leave blank to keep the ${mode} default.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2910,7 +2975,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2950,31 +3016,31 @@ Leave blank to keep the ${mode} default.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

@@ -45,11 +45,11 @@ export const tt = defineLocale({
     update: 'Яңарту',
     on: 'Эшләкле',
     off: 'Сүнөк',
-    tryHint: term => `„${term}” ни сөйләшегез`,
+    tryHint: term => `„${term}” ни сөйләшегез`
   },
   fileMenu: {
-    revealFinder: 'Finder\'дә күрсәтү',
-    revealExplorer: 'File Explorer\'дә күрсәтү',
+    revealFinder: "Finder'дә күрсәтү",
+    revealExplorer: "File Explorer'дә күрсәтү",
     revealFileManager: 'Үз эчендәге папканы ачу',
     revealInSidebar: 'Файл тәрәсендә күрсәтү',
     copyPath: 'Юлны күчәрү',
@@ -60,7 +60,7 @@ export const tt = defineLocale({
     renameLabel: 'Яңа исем',
     deleteBody: 'Ул күк сәндиккә ташырылачак — аны шунда киреп калтарырга була.',
     pathCopied: 'Юл күчәрелде',
-    deleteTitle: name => `${name} ни өчирәсе?`,
+    deleteTitle: name => `${name} ни өчирәсе?`
   },
   boot: {
     ready: 'OpenAmer Desktop әзер',
@@ -69,7 +69,7 @@ export const tt = defineLocale({
       loadingSettings: 'OpenAmer көйләмәләре йөкләнә',
       loadingSessions: 'Күпәрлек сеанслар йөкләнә',
       startingDesktopConnection: 'Desktop тоташуны башлау',
-      startingOpenAmerDesktop: 'OpenAmer Desktop башлау…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop башлау…'
     },
     errors: {
       backgroundExited: 'OpenAmer фоны процессы тәкшерелде.',
@@ -78,13 +78,15 @@ export const tt = defineLocale({
       desktopBootFailed: 'Desktop-ны эшләп чыгыны мөмкин булмады',
       gatewayConnectionLost: 'Шлюзга бәйләшү өзләнде',
       gatewaySignInRequired: 'Шлюзга керү талап ителә',
-      ipcBridgeUnavailable: 'Десктоп IPC күпере табылмады.',
+      ipcBridgeUnavailable: 'Десктоп IPC күпере табылмады.'
     },
     failure: {
       title: 'OpenAmer-ны эшләп күрә алмады',
-      description: 'Фон шлюзы эшләп күрмәде. Түбәндәге чараларның берәсен тыла. Мондагыларның берсе дә чатларыгызны яки көйләкләүләрегезне юк итмәй.',
+      description:
+        'Фон шлюзы эшләп күрмәде. Түбәндәге чараларның берәсен тыла. Мондагыларның берсе дә чатларыгызны яки көйләкләүләрегезне юк итмәй.',
       remoteTitle: 'Ер чыгыгы шлюзга керү талап ителә',
-      remoteDescription: 'Ер чыгыгы шлюз сеансыңың вакыты чыкты. Кайта керү өчен тагын керегез. Мондагыларның берсе дә чатларыгызны яки көйләкләүләрегезне юк итмәй.',
+      remoteDescription:
+        'Ер чыгыгы шлюз сеансыңың вакыты чыкты. Кайта керү өчен тагын керегез. Мондагыларның берсе дә чатларыгызны яки көйләкләүләрегезне юк итмәй.',
       retry: 'Кабат тыла',
       repairInstall: 'Урнаштыруны төзәү',
       useLocalGateway: 'Җирле шлюзны кулланырга',
@@ -103,10 +105,11 @@ export const tt = defineLocale({
       signInFailed: 'Керү хәлдә күнде',
       signInToRemoteGateway: 'Ер чыдагы кашкашка керегез',
       identityProvider: 'сезнең идентификация провайдереңыз',
-      remoteSignInHint: signInLabel => `Сақланган узак браузер сессияседан чыга, соң ${signInLabel} ни ача. Якиндә шлюз белән берләштерілгән бэкендка өчәш.`,
-      signInWithProvider: provider => `${provider} белән кирегез`,
+      remoteSignInHint: signInLabel =>
+        `Сақланган узак браузер сессияседан чыга, соң ${signInLabel} ни ача. Якиндә шлюз белән берләштерілгән бэкендка өчәш.`,
+      signInWithProvider: provider => `${provider} белән кирегез`
     },
-    desktopBootFailedWithMessage: message => `Стол үтәүәсе башкача: ${message}`,
+    desktopBootFailedWithMessage: message => `Стол үтәүәсе башкача: ${message}`
   },
   notifications: {
     region: 'Белдерүләр',
@@ -118,7 +121,8 @@ export const tt = defineLocale({
     copyDetail: 'Үзенчәлекне күчәрмәк',
     copyDetailFailed: 'Белдерү үзенчәлеген күчәрмәк мөмкин булмады',
     backendOutOfDateTitle: 'Арткы сервер искә түшкән',
-    backendOutOfDateMessage: 'Сезнең OpenAmer арткы сервере ның бу версиясе дискантык версиядән йөшкәр һәм дөрес ишләмәсләр. Яңартуны үткәреп, аларны туры килергән иткәгез.',
+    backendOutOfDateMessage:
+      'Сезнең OpenAmer арткы сервере ның бу версиясе дискантык версиядән йөшкәр һәм дөрес ишләмәсләр. Яңартуны үткәреп, аларны туры килергән иткәгез.',
     installMethodUnsupportedTitle: 'Танылмаган урнаштыру ыкмасы',
     updateOpenAmer: 'OpenAmer-ны яңарту',
     updateReadyTitle: 'Яңарту әзер',
@@ -127,11 +131,12 @@ export const tt = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT өчен ELEVENLABS_API_KEY кирәк.',
       elevenLabsRejectedKey: 'ElevenLabs API ачкысын кабул итмәде (401).',
       gatewayAuthFailed: 'Шлюзны аутентификациясы уңышсыз булды — API_SERVER_KEY-ны тикшерегез.',
-      methodNotAllowed: 'Десктоп серверы шул запросны кабул итмәде (405 Method Not Allowed). OpenAmer Desktop-ны кабат татарга а тырып карагыз.',
+      methodNotAllowed:
+        'Десктоп серверы шул запросны кабул итмәде (405 Method Not Allowed). OpenAmer Desktop-ны кабат татарга а тырып карагыз.',
       microphonePermission: 'Микрофон өчен рөхсәт бирелмәде.',
       openaiRejectedApiKey: 'OpenAI API ачкысын кабул итмәде.',
       openaiTtsNeedsKey: 'OpenAI TTS өчен VOICE_TOOLS_OPENAI_KEY яки OPENAI_API_KEY кирәк.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI API кілтене рәд итте (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI API кілтене рәд итте (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Тавыш режимын кулланыр өчен сөйләмне текшереүне конфигурацияләгез.',
@@ -150,7 +155,7 @@ export const tt = defineLocale({
       transcriptionFailed: 'Тавышны текшерү уңышсыз булды',
       transcriptionUnavailable: 'Тавыш язылуы әле табылмаган.',
       tryRecordingAgain: 'Тагын таҗып кара.',
-      unavailable: 'Тавыш уңшыз',
+      unavailable: 'Тавыш уңшыз'
     },
     native: {
       approvalTitle: 'Төбәнлек кирәк',
@@ -163,10 +168,10 @@ export const tt = defineLocale({
       turnErrorTitle: 'Оратыш уңшыз',
       backgroundDoneTitle: 'Фон эше тәмәмләде',
       backgroundFailedTitle: 'Фон эше уңшыз',
-      creditsTitle: 'Кредитлар',
+      creditsTitle: 'Кредитлар'
     },
     more: count => `${count} ярама ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} яңа үзгәртү ${count === 1 ? '' : 's'} бар.`,
+    updateReadyMessage: count => `${count} яңа үзгәртү ${count === 1 ? '' : 's'} бар.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредитлары беттә',
@@ -174,7 +179,7 @@ export const tt = defineLocale({
     openBilling: 'Түләмә ачу',
     addCredits: 'Кредит өстәү',
     dismiss: 'Ябык',
-    titleProvider: provider => `Кредитлар тутылды — ${provider}`,
+    titleProvider: provider => `Кредитлар тутылды — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Як панельнә яшыру',
@@ -191,7 +196,7 @@ export const tt = defineLocale({
     openStarmap: 'Хәтер графын ачу',
     openKeybinds: 'Клавиатура түгеләре',
     layoutEditor: 'Урнашма редакторы',
-    layoutEditorTitle: 'Көләш редакторы â€” âŒ˜-click көләшны танып килгән хәленә кайтара',
+    layoutEditorTitle: 'Көләш редакторы â€” âŒ˜-click көләшны танып килгән хәленә кайтара'
   },
   keybinds: {
     title: 'Клавиатура түгеләре',
@@ -206,7 +211,7 @@ export const tt = defineLocale({
       profiles: 'Профильләр',
       session: 'Сессия',
       navigation: 'Навигация',
-      view: 'Күрү',
+      view: 'Күрү'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатура кыскартмаларын ачу',
@@ -285,10 +290,10 @@ export const tt = defineLocale({
       'composer.slash': 'Слеш командалар панелы',
       'composer.help': 'Тиз ярлык',
       'composer.history': 'Поповер / тарихны алмаштыру',
-      'composer.cancel': 'Поповерны ябу · ишне туктату',
+      'composer.cancel': 'Поповерны ябу · ишне туктату'
     },
     subtitle: open => `Кыскармача басып, кайта белеш · ${open} бу панелне кайта ача.`,
-    conflictWith: label => `„${label}”гә берләштерелгән`,
+    conflictWith: label => `„${label}”гә берләштерелгән`
   },
   language: {
     label: 'Тәл',
@@ -297,7 +302,7 @@ export const tt = defineLocale({
     saveError: 'Тәлне яңарту уңшыз булды',
     switchTo: 'Тәлне күчү',
     searchPlaceholder: 'Тәлләрне эзләү…',
-    noResults: 'Тәлләр табылмады',
+    noResults: 'Тәлләр табылмады'
   },
   settings: {
     closeSettings: 'Көйләүләрне ябу',
@@ -322,65 +327,68 @@ export const tt = defineLocale({
       billing: 'Түләү',
       notifications: 'Хәбәрләр',
       plugins: 'Плагиннар',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Әле тасма плагиннары урынга кушылмаган.',
       kinds: {
         bundled: 'кушылган',
         disk: 'дискта',
-        runtime: 'эшләш вакыты',
+        runtime: 'эшләш вакыты'
       },
       title: 'Компьютер плагиннары',
-      blurb: 'Бу кушылмага йөкләнгән UI өзгәрмәләре — сборка белән килә яки `desktop-plugins` папкасына таштала (OpenAmer язылган плагиннар да җителә). Сүндирү плагинны дәү күчтә өч тәшкәрә һәм яңа тавыш күрүләшләрендә дә саклана.',
+      blurb:
+        'Бу кушылмага йөкләнгән UI өзгәрмәләре — сборка белән килә яки `desktop-plugins` папкасына таштала (OpenAmer язылган плагиннар да җителә). Сүндирү плагинны дәү күчтә өч тәшкәрә һәм яңа тавыш күрүләшләрендә дә саклана.',
       openFolder: 'Плагиннар папкасын ачу',
       rescan: 'Җанә тарту',
       reveal: 'Файл менеджерында күрсәтү',
       enable: 'Өчү',
       disable: 'Сүндирү',
       failed: 'Уңныксыз',
-      count: n => `${n} урнаштырылды`,
+      count: n => `${n} урнаштырылды`
     },
     notifications: {
       title: 'Белгүләр',
-      intro: 'Тасманың үзенчә белгүләре, программа эчендәге күрсәтмәләрдән аерым. Алар җирлеккә хаб — һәр компьютер үзененң хәбәрләүләре бар.',
+      intro:
+        'Тасманың үзенчә белгүләре, программа эчендәге күрсәтмәләрдән аерым. Алар җирлеккә хаб — һәр компьютер үзененң хәбәрләүләре бар.',
       enableAll: 'Белгүләрне эшләү',
       enableAllDesc: 'Главный ягыгы. Аны сүндырсаң, астындагы бөтә белгүләр дә очыла.',
       focusedHint: 'Гамәрләү белгүләре OpenAmer артта булганда гына күрсәтелә.',
       kinds: {
         approval: {
           label: 'Раслык кирәк',
-          description: 'Бер команда раслыгыңны яки чишәрүеңне көтә.',
+          description: 'Бер команда раслыгыңны яки чишәрүеңне көтә.'
         },
         input: {
           label: 'Кереш кирәк',
-          description: 'OpenAmer сораг үткәрде яки пароль, яки серкәт кирәк.',
+          description: 'OpenAmer сораг үткәрде яки пароль, яки серкәт кирәк.'
         },
         turnDone: {
           label: 'Җавап тая',
-          description: 'OpenAmer артта булганда бер очмә тамамланды.',
+          description: 'OpenAmer артта булганда бер очмә тамамланды.'
         },
         turnError: {
           label: 'Очмә уңшыз чикты',
-          description: 'Очмә хәто белән тәмәмланды.',
+          description: 'Очмә хәто белән тәмәмланды.'
         },
         backgroundDone: {
           label: 'Арттагы тапшырма тамамланды',
-          description: 'Арткы терминал командасы тәмәмланды.',
+          description: 'Арткы терминал командасы тәмәмланды.'
         },
         credits: {
           label: 'Кредит белгүләре',
-          description: 'Кредиткә үрүнд токтатылган яки тергәтелгән.',
-        },
+          description: 'Кредиткә үрүнд токтатылган яки тергәтелгән.'
+        }
       },
       test: 'Тест хәбәрләү',
       testTitle: 'OpenAmer',
       testBody: 'Хәбәрләүләр эшләп тора.',
-      testSent: 'Тест җибәрелде. Әгәр нәрсе күрүнмәсә, ОС хәбәрләү рөхсәтләрен һәм Focus/Do Not Disturb режимын тикшерегез.',
+      testSent:
+        'Тест җибәрелде. Әгәр нәрсе күрүнмәсә, ОС хәбәрләү рөхсәтләрен һәм Focus/Do Not Disturb режимын тикшерегез.',
       testUnsupported: 'Бу система тәүбел хәбәрләүләрне дә ярымай.',
       completionSoundTitle: 'Тамамлану тавышы',
       completionSoundDesc: 'Агентның бәрлеш кешене тамамланганда уйнатыла. Көй сайлап, аларны монда алдын күрегез.',
-      completionSoundPreview: 'Алдын күрү',
+      completionSoundPreview: 'Алдын күрү'
     },
     sections: {
       model: 'Модель',
@@ -390,7 +398,7 @@ export const tt = defineLocale({
       safety: 'Хәвфезлык',
       memory: 'Хәтер һәм контекст',
       voice: 'Тавыс',
-      advanced: 'Өзгәрәкчә',
+      advanced: 'Өзгәрәкчә'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop турында',
@@ -398,25 +406,26 @@ export const tt = defineLocale({
       gateway: 'Gateway бәйләнеше...',
       keys: 'API түлпарларын эзләү...',
       mcp: 'MCP серверларын эзләү...',
-      sessions: 'Архивлаштырылган сеансларны эзләү...',
+      sessions: 'Архивлаштырылган сеансларны эзләү...'
     },
     modeOptions: {
       light: {
         label: 'Ярык',
-        description: 'Ярык рабочий стол өстендә өрнәгән тачны',
+        description: 'Ярык рабочий стол өстендә өрнәгән тачны'
       },
       dark: {
         label: 'Караңгы',
-        description: 'Күз тартмаган эш урыны',
+        description: 'Күз тартмаган эш урыны'
       },
       system: {
         label: 'Система',
-        description: 'Система көрүнүшен күләш',
-      },
+        description: 'Система көрүнүшен күләш'
+      }
     },
     appearance: {
       title: 'Көрүнеш',
-      intro: 'Булар күндәлек интерфейсның гына көрүнүш параметрлары. Режим яктынлыкны; тема акцент төс тәрәбен һәм сөйләшү өстендәге стильне билгәнә.',
+      intro:
+        'Булар күндәлек интерфейсның гына көрүнүш параметрлары. Режим яктынлыкны; тема акцент төс тәрәбен һәм сөйләшү өстендәге стильне билгәнә.',
       colorMode: 'Төс режимы',
       colorModeDesc: 'Определен режимны сайла һәм OpenAmer система көйләвен күләш.',
       toolViewTitle: 'Корал чакырышын күрсәтү',
@@ -427,8 +436,10 @@ export const tt = defineLocale({
       backdropTitle: 'Сөйләшү фоны',
       backdropDesc: 'Сөйләшү артындагы балкак һәйкал рәсеме.',
       pet: {
-        intro: 'Җигерәкләнгән petdex таймагыны кабул итегез — ул OpenAmer өстәндә калкып тора һәм аның эшләгәндә реакция күрсәтә.',
-        restartHint: 'Хайуаннарга тиз гәр яңарыру кирәк — эшләп торган кушымта бу мөмкинлек өстәлмәгәчән эчендә башланган. OpenAmer-ны ябыгыз һәм яңадан ачыгыз, аннан соң бу биккә кайтыгыз.',
+        intro:
+          'Җигерәкләнгән petdex таймагыны кабул итегез — ул OpenAmer өстәндә калкып тора һәм аның эшләгәндә реакция күрсәтә.',
+        restartHint:
+          'Хайуаннарга тиз гәр яңарыру кирәк — эшләп торган кушымта бу мөмкинлек өстәлмәгәчән эчендә башланган. OpenAmer-ны ябыгыз һәм яңадан ачыгыз, аннан соң бу биккә кайтыгыз.',
         on: 'Күп',
         off: 'Өчү',
         scaleTitle: 'Үләм',
@@ -461,10 +472,11 @@ export const tt = defineLocale({
         adoptFailed: slug => `${slug} ни кабул итә алмадык`,
         uninstallFailed: slug => `${slug} ни калдыра алмадык`,
         renameFailed: slug => `${slug} ни яңа исемләй алмадык`,
-        exportFailed: slug => `${slug} ни экспорт итә алмадык`,
+        exportFailed: slug => `${slug} ни экспорт итә алмадык`
       },
       embedsTitle: 'Эчке кертелүләр',
-      embedsDesc: 'Бай экалаштырулар өч ягындагы сайтлардан (YouTube, X, â€¦) йөкләнә. «Сора» һәркайсысына рөхсәт биргәнчегә кадый урын түләкес күрсәтә; «Үргәнчә» аларны автоматик йөкләй; «Түгел» гади сылтамаларны саклай.',
+      embedsDesc:
+        'Бай экалаштырулар өч ягындагы сайтлардан (YouTube, X, â€¦) йөкләнә. «Сора» һәркайсысына рөхсәт биргәнчегә кадый урын түләкес күрсәтә; «Үргәнчә» аларны автоматик йөкләй; «Түгел» гади сылтамаларны саклай.',
       embedsAsk: 'Сора',
       embedsAlways: 'Үргәнчә',
       embedsOff: 'Түгел',
@@ -475,17 +487,19 @@ export const tt = defineLocale({
       themeTitle: 'Тема',
       themeDesc: 'Только үстәл палитралары. Сайланган режим өстендә куелады.',
       installTitle: 'VS Codeтан урнаштыру',
-      installDesc: 'Marketplace кеңектәү идентификаторын (мәсәлән, dracula-theme.theme-dracula) кертеп, аның төс темасын үстәл палитрасына әйләндерүгә.',
+      installDesc:
+        'Marketplace кеңектәү идентификаторын (мәсәлән, dracula-theme.theme-dracula) кертеп, аның төс темасын үстәл палитрасына әйләндерүгә.',
       installButton: 'Урнаштыру',
       installing: 'Урнаштырылаâ€¦',
       installError: 'Тән теманы урнаштыру мөмкин булмады.',
       removeTheme: 'Теманы алып ташту',
       importedBadge: 'Импортланган',
       installPlaceholder: 'баспашы.қеңейту',
-      uiScaleDesc: (percent: number) => `Бүтә апликацияда текст һәм баскычлар масштабы. Cmd/Ctrl +, - һәм 0 да ишләй. Хазер: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Бүтә апликацияда текст һәм баскычлар масштабы. Cmd/Ctrl +, - һәм 0 да ишләй. Хазер: ${percent}%.`,
       embedsReset: (count: number) => `${count} ни кайтару рөхсәт ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `${profile} профил өчен сакланды — һәр профил өз темасын саклай.`,
-      installed: name => `„${name}” урнаштырылды.`,
+      installed: name => `„${name}” урнаштырылды.`
     },
     about: {
       heading: 'OpenAmer түзәнчесе',
@@ -503,7 +517,8 @@ export const tt = defineLocale({
       tapCheck: 'Яңартуларны табып үтү өчен «Хәзер тикшерү» төймәсенә басың.',
       justNowSuffix: '· хәзер',
       automaticUpdates: 'Автоматик яңартулар',
-      automaticUpdatesDesc: 'OpenAmer арт фонында яңартуларны автоматик тикшерә һәм алар әзер булганда сезгә хәбәр бирә.',
+      automaticUpdatesDesc:
+        'OpenAmer арт фонында яңартуларны автоматик тикшерә һәм алар әзер булганда сезгә хәбәр бирә.',
       never: 'һәрвакыт',
       justNow: 'хәзер',
       version: value => `Версия ${value}`,
@@ -512,7 +527,7 @@ export const tt = defineLocale({
       branchCommit: (branch, commit) => `Булак ${branch} · Коммит ${commit}`,
       minAgo: count => `${count} мин берен`,
       hoursAgo: count => `${count} сагать берен`,
-      daysAgo: count => `${count} көн берен`,
+      daysAgo: count => `${count} көн берен`
     },
     config: {
       none: 'Юк',
@@ -528,7 +543,8 @@ export const tt = defineLocale({
       imported: 'Конфигурация импортланды',
       invalidJson: 'Конфигурация JSON-ы ярамсыз',
       keepAwakeTitle: 'Компьютерны уйланын өстендә тотып тор',
-      keepAwakeDesc: 'Озын яки төн буйлап эшләүләр дәвам итсен өчен бу компьютерны уйланын туктатмагыз. Экран тагын өчүртелә ала.',
+      keepAwakeDesc:
+        'Озын яки төн буйлап эшләүләр дәвам итсен өчен бу компьютерны уйланын туктатмагыз. Экран тагын өчүртелә ала.'
     },
     credentials: {
       pasteKey: 'Ачкычны куегыз',
@@ -538,7 +554,7 @@ export const tt = defineLocale({
       remove: 'Бәргә',
       getKey: 'Ачкыч алыгыз',
       saving: 'Саклана',
-      pasteLabelKey: label => `${label} кілтене ясап юлла`,
+      pasteLabelKey: label => `${label} кілтене ясап юлла`
     },
     envActions: {
       credentialActions: 'Таныллык операцияләре',
@@ -549,7 +565,7 @@ export const tt = defineLocale({
       replace: 'Алмаштыр',
       set: 'Билгән',
       clear: 'Чистар',
-      actionsFor: label => `${label} өчен әйләнмәләр`,
+      actionsFor: label => `${label} өчен әйләнмәләр`
     },
     gateway: {
       loading: 'Шлюз көйләүләре йөкләнә...',
@@ -557,16 +573,18 @@ export const tt = defineLocale({
       unavailableDesc: 'Desktop IPC көүреше шлюз көйләүләрен ачмайды.',
       title: 'Шлюз тоташы',
       envOverride: 'env көйләмәсен үстенә итеп кую',
-      intro: 'OpenAmer Desktop үзенең җерлек шлюзын башкара. Бу куелкыны башка машинада яки ышәнгәр ишәнчил ролендә эшләп торган OpenAmer backend-не идарә итәргән күрсәк, алыс шлюз кулланыгыз. Аңа аерым алыс хост бирү өчен астагы профильне сайлагыз.',
+      intro:
+        'OpenAmer Desktop үзенең җерлек шлюзын башкара. Бу куелкыны башка машинада яки ышәнгәр ишәнчил ролендә эшләп торган OpenAmer backend-не идарә итәргән күрсәк, алыс шлюз кулланыгыз. Аңа аерым алыс хост бирү өчен астагы профильне сайлагыз.',
       appliesTo: 'Үзгә кәрә',
       allProfiles: 'Барлык профильләр',
       defaultConnection: 'Үз өстенә көйләмәсе булмаган һәр профиль өчен төплек тоташ.',
       envOverrideTitle: 'Эколә күрәнәлешәре булган desktop сеансын идарә итә.',
-      envOverrideDesc: 'Астагы сакланган көйләүне кулланыр өчен OPENAMER_DESKTOP_REMOTE_URL һәм OPENAMER_DESKTOP_REMOTE_TOKEN уншылмаган итеп калдырыгыз.',
+      envOverrideDesc:
+        'Астагы сакланган көйләүне кулланыр өчен OPENAMER_DESKTOP_REMOTE_URL һәм OPENAMER_DESKTOP_REMOTE_TOKEN уншылмаган итеп калдырыгыз.',
       cloudNoAgents: {
         before: 'Бу аккаунтта агент табылмады. Оны OpenAmer порталында ясаңыз',
         linkText: 'OpenAmer порталы',
-        after: ', аннан соң яңартыңыз.',
+        after: ', аннан соң яңартыңыз.'
       },
       cloudRefresh: 'Яңартыу',
       cloudConnect: 'Тоташтыру',
@@ -591,7 +609,8 @@ export const tt = defineLocale({
       authSignedInOauth: 'Бу шлюз OAuth-ны куллана. Сез кергәнсез; сеанс автоматик яңарыла.',
       authNeedsPassword: 'Бу шлюз кул исемне һәм парольне куллана. Бу десктоп кундыргына рөхсәт алу өчен керегез.',
       tokenTitle: 'Сеанс токены',
-      tokenDesc: 'REST һәм WebSocket-ка кисеү өчен кулланылган идарә панелі сеанс токены. Сақланган токенни саклау өчен буш калдырыгыз.',
+      tokenDesc:
+        'REST һәм WebSocket-ка кисеү өчен кулланылган идарә панелі сеанс токены. Сақланган токенни саклау өчен буш калдырыгыз.',
       savedToken: 'сакланган',
       pasteSessionToken: 'Сеанс токенын урынга кую',
       testRemote: 'Чалыны сынау',
@@ -620,8 +639,10 @@ export const tt = defineLocale({
       applyFailed: 'Шлюз көйләүләрен кулланырга мөккин булмады',
       saveFailed: 'Шлюз көйләүләрен сакларга мөккин булмады',
       sshTitle: 'SSH аша тоташ',
-      sshDesc: 'OpenAmer SSH аша ерт хостта эшләй һәм бу тәкшәмәгә туннель итеп килешә — бер нәрсә дә эшләтергә яки үз-һеңне ачырга кирәк. Хостка ачкыч нигезендәге SSH керү мөккин булуы талап.',
-      sshTrustHint: 'Беренче та күрсәтелгән хост ачкычы ышанычлы дип беркелеүләнә; соңгы үзгәрүләр хәлфызлык белән тәмәмлана.',
+      sshDesc:
+        'OpenAmer SSH аша ерт хостта эшләй һәм бу тәкшәмәгә туннель итеп килешә — бер нәрсә дә эшләтергә яки үз-һеңне ачырга кирәк. Хостка ачкыч нигезендәге SSH керү мөккин булуы талап.',
+      sshTrustHint:
+        'Беренче та күрсәтелгән хост ачкычы ышанычлы дип беркелеүләнә; соңгы үзгәрүләр хәлфызлык белән тәмәмлана.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, яки ~/.ssh/config-тагы Host төрәк исеме.',
       sshHostPick: 'Хостны сайлагыз…',
@@ -643,10 +664,14 @@ export const tt = defineLocale({
       sshButtonsHint: 'Саклау келешә ачылыш тарихына куештырылачак. Тоташу хәзер көн яңадан тоташачак.',
       sshIncompleteHost: 'Тоташыр алдында SSH хост күрсәтегез.',
       sshErrUnreachable: 'SSH аша шул хостка тоташа алмадык. Хост, порт һәм түләвыгызны тикшерегез.',
-      sshErrAuth: 'SSH танылмау уңашмады. Ачкычыгызны `ssh-agent` өчене адып куегыз (`ssh-add`) яки `~/.ssh/config` файлында IdentityFile билгезләгез — OpenAmer `ssh` командасын интерактив режимдасыз эшләтә.',
-      sshErrHostKey: 'Хост ачкычы соңгы тоташуыгыздан соң үзгәргән. Бу көткән үзгәреш икән, тикшергәндә соң `ssh-keygen -R <host>` командасын җәмәреп, яңадан тоташыгыз.',
-      sshErrNotInstalled: 'OpenAmer чыгыр хостта урынгасыз. Анда урнатыгыз (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) яки OpenAmer юлын күркәт.',
-      sshErrPlatform: 'Дөгөшсен чыгыр платформасы. OpenAmer Desktop SSH режимы Linux, macOS һәм Windows чыгыр хостларын дә ярый.',
+      sshErrAuth:
+        'SSH танылмау уңашмады. Ачкычыгызны `ssh-agent` өчене адып куегыз (`ssh-add`) яки `~/.ssh/config` файлында IdentityFile билгезләгез — OpenAmer `ssh` командасын интерактив режимдасыз эшләтә.',
+      sshErrHostKey:
+        'Хост ачкычы соңгы тоташуыгыздан соң үзгәргән. Бу көткән үзгәреш икән, тикшергәндә соң `ssh-keygen -R <host>` командасын җәмәреп, яңадан тоташыгыз.',
+      sshErrNotInstalled:
+        'OpenAmer чыгыр хостта урынгасыз. Анда урнатыгыз (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) яки OpenAmer юлын күркәт.',
+      sshErrPlatform:
+        'Дөгөшсен чыгыр платформасы. OpenAmer Desktop SSH режимы Linux, macOS һәм Windows чыгыр хостларын дә ярый.',
       sshErrTimeout: 'SSH бәйләнешүенең вакыты чыкты. Хостның буйынса кириү мөмкин түгел, яки ул йоклап тора.',
       sshErrUpdateRequired: 'Чыгыр хостта OpenAmer-ны яңартыгыз, аннан соң Desktop SSH белән тоташыгыз.',
       sshErrUnknown: 'SSH бәйләнешүе уңышсыз булды.',
@@ -657,9 +682,11 @@ export const tt = defineLocale({
       inheritDesc: 'Бу профильнең үзгәрмәсен алып ташлагыз һәм стандарт бәйләнүне кулланыгыз.',
       remoteTitle: 'Чит шлюз',
       remoteDesc: 'Бу десктоп күшәмчәсен чита OpenAmer серверына бәйләгез.',
-      remoteAuthHint: 'Хострланган шлюзлар OAuth яки кулланучи исем һәм парольне куллана; үзендә хостланган шлюзлар сессия токенын кулланырга мөмкин.',
+      remoteAuthHint:
+        'Хострланган шлюзлар OAuth яки кулланучи исем һәм парольне куллана; үзендә хостланган шлюзлар сессия токенын кулланырга мөмкин.',
       cloudTitle: 'OpenAmer Бүлты',
-      cloudDesc: 'OpenAmer Бүлтына бер тапкыр керәгез һәм аккаунтыгыздагы агентлардан сайлагыз — URL куертырганың кирәк юк.',
+      cloudDesc:
+        'OpenAmer Бүлтына бер тапкыр керәгез һәм аккаунтыгыздагы агентлардан сайлагыз — URL куертырганың кирәк юк.',
       cloudSignInTitle: 'OpenAmer Бүлты',
       cloudSignIn: 'OpenAmer Бүлтына керү',
       cloudSignedIn: 'OpenAmer Бүлтына кергәнсез',
@@ -670,20 +697,22 @@ export const tt = defineLocale({
       cloudOrgSelect: 'Сайлау',
       cloudOrgChange: 'Оешурынны үзгәртү',
       cloudLoadingAgents: 'Агентларыңыз йөкләнә…',
-      profileConnection: profile => `Уланыш «${profile}» фаол профиль булганда гына ишләтеле. «Төп шлюзны колдану»ны сайлап, аның иваз итүсе буйручылығын юккаре.`,
+      profileConnection: profile =>
+        `Уланыш «${profile}» фаол профиль булганда гына ишләтеле. «Төп шлюзны колдану»ны сайлап, аның иваз итүсе буйручылығын юккаре.`,
       cloudOrgRole: role => `Рөл: ${role}`,
       cloudConnectedTo: name => `${name}гә уланды.`,
       cloudStatusLabel: status => `Хәл: ${status}`,
       signInWith: provider => `${provider} белән керегез`,
-      authNeedsOauth: provider => `Бу шлюз OAuth колданый. Бу стол программасын рөхсәтләндерү өчен ${provider} белән керегез.`,
+      authNeedsOauth: provider =>
+        `Бу шлюз OAuth колданый. Бу стол программасын рөхсәтләндерү өчен ${provider} белән керегез.`,
       existingToken: value => `Мөҗдә токен ${value}`,
       connectedTo: (baseUrl, version) => `${baseUrl}${version ? ` · OpenAmer ${version}` : ''}гә уланды`,
-      sshReachable: (host, platform) => `Ясап була: ${host} (${platform}) — OpenAmer табылды`,
+      sshReachable: (host, platform) => `Ясап була: ${host} (${platform}) — OpenAmer табылды`
     },
     keys: {
       loading: 'API ачкычларын һәм танышу мәгълуматларын йөкләнә...',
       failedLoad: 'API ачкычларын йөкләү уңышсыз булды',
-      empty: 'Бу категориядә әле ничә тәртип белгәнәм.',
+      empty: 'Бу категориядә әле ничә тәртип белгәнәм.'
     },
     mcp: {
       loading: 'MCP серверларын йөкләнә...',
@@ -745,10 +774,11 @@ export const tt = defineLocale({
       catalogInstallStarted: name => `${name} урнаштырыла... якуйланганда яңа сессияларга күчеле.`,
       catalogInstallFailed: name => `${name}ны урнаштыру иясе булмады`,
       catalogEnvPrompt: name => `${name}га кереш маҡсатлы`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ияче`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ияче`,
       authenticatedMessage: (server, count) => `${server}: ${count} алат`,
       enableTool: tool => `${tool}ны ияче`,
-      disableTool: tool => `${tool}ны асырма`,
+      disableTool: tool => `${tool}ны асырма`
     },
     model: {
       loading: 'Модель конфигурациясе йөкләнә...',
@@ -762,7 +792,8 @@ export const tt = defineLocale({
       defaultsFailed: 'Модель үрнәкларын саклау мөмкин булмады',
       auxiliaryTitle: 'Өрдәм модельләре',
       resetAllToMain: 'Үрнәкларның һәммәсен төпкә тарту',
-      auxiliaryDesc: 'Көрәкләү тапшырмалары һәрдай төп модельдә эшләнә. Төп модельгә урын урынында аерым тапшырмага аерым модель билгән очрагында билгән.',
+      auxiliaryDesc:
+        'Көрәкләү тапшырмалары һәрдай төп модельдә эшләнә. Төп модельгә урын урынында аерым тапшырмага аерым модель билгән очрагында билгән.',
       setToMain: 'Төпкә билгән',
       change: 'Үзгәртү',
       autoUseMain: 'автомат · төп модельне кулланыр',
@@ -773,37 +804,37 @@ export const tt = defineLocale({
       tasks: {
         vision: {
           label: 'Күрү',
-          hint: 'Сурәт анализы',
+          hint: 'Сурәт анализы'
         },
         web_extract: {
           label: 'Вебтан мәзүр алу',
-          hint: 'Битне кыскалау',
+          hint: 'Битне кыскалау'
         },
         compression: {
           label: 'Кысу',
-          hint: 'Контекстның кысуы',
+          hint: 'Контекстның кысуы'
         },
         skills_hub: {
           label: 'Күнекмәләр үзәге',
-          hint: 'Күнекмәләр эзләү',
+          hint: 'Күнекмәләр эзләү'
         },
         approval: {
           label: 'Расреш',
-          hint: 'Акыллы автомат расреш',
+          hint: 'Акыллы автомат расреш'
         },
         mcp: {
           hint: 'MCP коралын юллаштыру',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Атама генерациясе',
-          hint: 'Сессия атамалары',
+          hint: 'Сессия атамалары'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Күнекмәләр кулланышын тикшеру',
-        },
-      },
+          hint: 'Күнекмәләр кулланышын тикшеру'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Ә断开 (команданы терминалда эшләтеп, аны арытады)',
@@ -813,7 +844,8 @@ export const tt = defineLocale({
       noKeysMatch: 'Эзешүңәзгә туры килгән провайдерлар юк.',
       localEndpoint: {
         title: 'Җирле / үзгәчә адрес',
-        description: 'OpenAmer-ны OpenAI белән тагылашган һәр төрле адреска күрсәтегез (Zyphra, vLLM, llama.cpp, Ollama һ.б.).',
+        description:
+          'OpenAmer-ны OpenAI белән тагылашган һәр төрле адреска күрсәтегез (Zyphra, vLLM, llama.cpp, Ollama һ.б.).'
       },
       loading: 'Провайдерләр йөкләнә…',
       connectAccount: 'Аккаунтка тоташтыру',
@@ -827,10 +859,11 @@ export const tt = defineLocale({
       removeConfirm: provider => `${provider}ны юккаре?`,
       removeExternalGeneric: provider => `${provider} өз CLI-сы тарафынан башкаруыла — аны монда юккаре.`,
       removeKeyManaged: provider => `${provider} API кілтенең буенча конфигурацияланган. Аны API килтләрдән юккаре.`,
-      removeTerminalConfirm: (provider, command) => `${provider}ны алырга? Бу терминалда "${command}" ишләте, кереш маҡсатлыны тазалау өчен.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider}ны алырга? Бу терминалда "${command}" ишләте, кереш маҡсатлыны тазалау өчен.`,
       removeTerminalRunning: provider => `Терминалда ${provider} алырга ишләте…`,
       removedMessage: provider => `${provider} юккарелде.`,
-      failedRemove: provider => `${provider}ны юккаре ала алмадык`,
+      failedRemove: provider => `${provider}ны юккаре ала алмадык`
     },
     sessions: {
       loading: 'Архивлашган сеанслар йөкләнә…',
@@ -841,12 +874,14 @@ export const tt = defineLocale({
       deletePermanently: 'Тәк кенә ташлау',
       restored: 'Кертелде',
       autoArchiveTitle: 'Искән чатларны автоматик архивлау',
-      autoArchiveDesc: 'Озак урында тоткан чатларны автоматик архивлау. Тагылган чатлар һәрчак архивланмый, һәр нәрсә дә ташланмый — архивланган чатлар кына монда күчә.',
+      autoArchiveDesc:
+        'Озак урында тоткан чатларны автоматик архивлау. Тагылган чатлар һәрчак архивланмый, һәр нәрсә дә ташланмый — архивланган чатлар кына монда күчә.',
       autoArchiveDaysLabel: 'Архивлау',
       autoArchiveDaysUnit: 'өскәннән көн',
       autoArchiveFailed: 'Автоматик архивны яңгартып булмады',
       defaultDirTitle: 'Проектның стандарт папкасы',
-      defaultDirDesc: 'Яңги сеанслар башка папканы сайламаганда ошбу папкада башлана. Көнәрлек папканы кулланыр өчен буш калдырыгыз.',
+      defaultDirDesc:
+        'Яңги сеанслар башка папканы сайламаганда ошбу папкада башлана. Көнәрлек папканы кулланыр өчен буш калдырыгыз.',
       change: 'Үзгәрт',
       choose: 'Сайла',
       clear: 'Чистар',
@@ -856,11 +891,12 @@ export const tt = defineLocale({
       deleteFailed: 'Юк итү уңашмады',
       updateDirFailed: 'Стандарт папканы яңгартып булмады',
       clearDirFailed: 'Стандарт папканы чистарып булмады',
-      archivedIntro: 'Архивланган чатлар бүркимдән яшырылган, ләкин аларның барлык хәбәрләре саклана. Чатны архивлаш өчен бүркимдә Ctrl/âŒ˜-click басыгыз.',
+      archivedIntro:
+        'Архивланган чатлар бүркимдән яшырылган, ләкин аларның барлык хәбәрләре саклана. Чатны архивлаш өчен бүркимдә Ctrl/âŒ˜-click басыгыз.',
       defaultDirUpdated: 'Үрнәк проекты директориясе яңартылды — аның көченә керү өчен яңы чат башлагыз (Ctrl/âŒ˜+N)',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `«${title}»ны даими юккаре итәсе? Бу кайтарылмас.`,
-      defaultsTo: label => `Төпчә ${label}га теләнгән.`,
+      defaultsTo: label => `Төпчә ${label}га теләнгән.`
     },
     toolsets: {
       loadingConfig: 'Конфигурация йөкләнә',
@@ -912,7 +948,7 @@ export const tt = defineLocale({
         selectedTitle: 'Бэкенд сайланды',
         needsSetupHint: 'Бу бэкендне хәзер сайласагыз да, оюштыру тәмәмланганчә командалар эшләмәячәк.',
         selectedMessage: backend => `Терминал буйруклары һазәрле ${backend} аркасында ишләй. Яңа сессияларга тиклем.`,
-        failedSelect: backend => `${backend} саялап булмады`,
+        failedSelect: backend => `${backend} саялап булмады`
       },
       savedMessage: key => `${key} яңартылды.`,
       removedMessage: key => `${key} юккарелде.`,
@@ -923,7 +959,8 @@ export const tt = defineLocale({
       selectedMessage: provider => `${provider} һазәрле актив.`,
       failedSelect: provider => `${provider} саялап булмады`,
       openamerAuthNeededMessage: provider => `${provider} сакланды, ләкин OpenAmer Portalгә кирәсеңезгәчә активланмас.`,
-      postSetupHint: step => `Бу бэкенд бер жөтәлек урнаштыруны талап итә (${step}). Бу машинада ишләй — бернече минут кала ала.`,
+      postSetupHint: step =>
+        `Бу бэкенд бер жөтәлек урнаштыруны талап итә (${step}). Бу машинада ишләй — бернече минут кала ала.`,
       postSetupCompleteMessage: step => `${step} урнаштырылды.`,
       postSetupErrorMessage: step => `${step} логын текшерегез.`,
       postSetupFailed: step => `${step} настройкасын ишләтеп булмады`,
@@ -933,10 +970,10 @@ export const tt = defineLocale({
       failedSelectCapability: provider => `${provider} белдереп булмады`,
       modelCount: count => `${count} модель${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} яңа сессияларга тиклем.`,
-      failedSelectModel: model => `${model} саялап булмады`,
+      failedSelectModel: model => `${model} саялап булмады`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     hub: {
@@ -946,7 +983,7 @@ export const tt = defineLocale({
       trust: {
         builtin: 'Икеле',
         trusted: 'Ишәнгән',
-        community: 'Җәмгыять',
+        community: 'Җәмгыять'
       },
       verdictSafe: 'Хәйбез',
       verdictCaution: 'Абайлау',
@@ -968,7 +1005,8 @@ export const tt = defineLocale({
       connectingHubs: 'Навык хабларына тоташу...',
       connectedHubs: 'Тоташкан хаблар:',
       featured: 'Атаклы навыклар',
-      landingHint: 'Индекста, GitHub да һәм җәмгәүрлек чыганакларында урнаштырыла алуган навыкларны күрү өчен хабны эзләгез.',
+      landingHint:
+        'Индекста, GitHub да һәм җәмгәүрлек чыганакларында урнаштырыла алуган навыкларны күрү өчен хабны эзләгез.',
       noResults: 'Хабта ярашты навыклар табылмады.',
       installed: 'Урнаштырылган',
       install: 'Урнаштыру',
@@ -984,7 +1022,7 @@ export const tt = defineLocale({
       timedOut: sources => `Вакт бүтә: ${sources}`,
       findings: count => `${count} табуда${count === 1 ? '' : 's'}`,
       installStarted: name => `${name} урнаштырыла...`,
-      uninstallStarted: name => `${name} учырыла...`,
+      uninstallStarted: name => `${name} учырыла...`
     },
     skillArchivedTitle: 'Навык архивланды',
     skillArchivedMessage: 'openamer curator restore аша калтарыла ала.',
@@ -1003,7 +1041,7 @@ export const tt = defineLocale({
     provenance: {
       agent: 'Өйрәнгән',
       bundled: 'Бушлеккә кертелгән',
-      hub: 'Үзәк',
+      hub: 'Үзәк'
     },
     changesApplyNewSessions: 'Үзгәрәшләр яңа сеансларга кулланыла.',
     skillUpdated: 'Квалификация яңыртылды',
@@ -1025,7 +1063,8 @@ export const tt = defineLocale({
     noDescription: 'Тасвирлау юк.',
     configured: 'Урнатылган',
     needsKeys: 'Ачкычлар керек',
-    visionModelHint: 'Күрү өчен сезнең өзгәрүшле конфигурациясе кулланыла — рәсемләрне дә белә торган модел шунда сайлана, һәр төрле алыш тарафыннан түгел.',
+    visionModelHint:
+      'Күрү өчен сезнең өзгәрүшле конфигурациясе кулланыла — рәсемләрне дә белә торган модел шунда сайлана, һәр төрле алыш тарафыннан түгел.',
     visionModelLink: 'Настройкалар → Моделләр бүгендә күрү моделен сайлагыз',
     skillsLoadFailed: 'Квалификациялар йөкләнмәде',
     sortAlpha: 'А–Я',
@@ -1039,7 +1078,7 @@ export const tt = defineLocale({
     usageCount: count => `колланган ${count}×`,
     emptyNoneFound: noun => `${noun} табылмады`,
     emptyNothingMatches: query => `“${query}”гә карашмас`,
-    emptyNoneAvailable: noun => `${noun} һазәрче юк.`,
+    emptyNoneAvailable: noun => `${noun} һазәрче юк.`
   },
   starmap: {
     title: 'Хәтер графигы',
@@ -1055,7 +1094,8 @@ export const tt = defineLocale({
     emptyTitle: 'Әлегә әйрәнгән нәрсә юк',
     emptyDesc: 'OpenAmer җиңлешләр һәм хәтерләр төзгәндә, алар монда күренә.',
     share: 'Картаны уртаклашу',
-    shareHint: 'Бу картаны уртаклашу өчен кодны күчәрегез, йәки йөкләү өчен уртаклагыз. Анда картаның төзелеше генә бар, хәтер яки җиңлеш текстлары юк.',
+    shareHint:
+      'Бу картаны уртаклашу өчен кодны күчәрегез, йәки йөкләү өчен уртаклагыз. Анда картаның төзелеше генә бар, хәтер яки җиңлеш текстлары юк.',
     shareTitle: 'Картаны импорт / экспорт',
     sharePlaceholder: 'Карта кодун уртаклагыз…',
     copy: 'Карта кодун күчәрү',
@@ -1066,7 +1106,7 @@ export const tt = defineLocale({
     importedBadge: 'Импортланган күзлек',
     resetToMine: 'Мениң күзлегемә кайту',
     subtitle: (nodes, clusters) => `${nodes} күсешләр ${clusters} категорияларда`,
-    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} белән карта юкланды.`,
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} белән карта юкланды.`
   },
   agents: {
     close: 'Агентларны ябу',
@@ -1096,7 +1136,7 @@ export const tt = defineLocale({
     ageDays: days => `for ${days}d siden`,
     durationSeconds: seconds => `${seconds}с`,
     durationMinutes: (minutes, seconds) => `${minutes}м ${seconds}с`,
-    tokens: value => `${value} ток`,
+    tokens: value => `${value} ток`
   },
   commandCenter: {
     close: 'Команда үзәгәсен ябу',
@@ -1125,7 +1165,7 @@ export const tt = defineLocale({
       generatedTag: 'Ясалды',
       adoptFailed: 'Бу малны ала алмадык.',
       toggleFailed: 'Малның хәлен үзгәрте алмадык.',
-      noneAvailable: 'Маллар юк — ундырыр өчен астыннан берне сайлагыз.',
+      noneAvailable: 'Маллар юк — ундырыр өчен астыннан берне сайлагыз.'
     },
     generatePet: {
       title: 'Хайуан тудыр',
@@ -1154,7 +1194,7 @@ export const tt = defineLocale({
       referenceImageInvalid: 'Бу салыш рәсемне укып булмады. PNG, JPG, WebP яки GIF куегыз.',
       adopt: 'Кабул кылу',
       startOver: 'Баштан ташла',
-      hatchRow: (_state, done, total) => `Фрейм ${done} сызып булды ${total} дан…`,
+      hatchRow: (_state, done, total) => `Фрейм ${done} сызып булды ${total} дан…`
     },
     installTheme: {
       title: 'Теманы урнату…',
@@ -1166,7 +1206,7 @@ export const tt = defineLocale({
       install: 'Урнату',
       installing: 'Урнатыла...',
       installed: 'Урнатылды',
-      installs: count => `${count} installationer`,
+      installs: count => `${count} installationer`
     },
     settingsFields: 'Параметрлар кыркалары',
     mcpServers: 'MCP серверлары',
@@ -1175,49 +1215,49 @@ export const tt = defineLocale({
       maintenance: 'Техник хезмәт',
       sessions: 'Сессияләр',
       system: 'Система',
-      usage: 'Кулданлану',
+      usage: 'Кулданлану'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резерв копиялар, куратор һәм үрнәк мәгълуматлары',
       sessions: 'Сеансларны табык һәм идарә ит',
       system: 'Хәлбәр, журналлар һәм система эшләр',
-      usage: 'Токен, чыгым һәм күнекмә эш Activity вакытлары',
+      usage: 'Токен, чыгым һәм күнекмә эш Activity вакытлары'
     },
     nav: {
       newChat: {
         title: 'Яңы сеанс',
-        detail: 'Яңа сеанс башла',
+        detail: 'Яңа сеанс башла'
       },
       settings: {
         title: 'Көйләүләр',
-        detail: '`OpenAmer`桌面ны конфигурациялә',
+        detail: '`OpenAmer`桌面ны конфигурациялә'
       },
       skills: {
         title: 'Мөмкинлекләр',
-        detail: 'Күнекмәләр, кораллар һәм MCP серверлары',
+        detail: 'Күнекмәләр, кораллар һәм MCP серверлары'
       },
       messaging: {
         title: 'Хәбәрләшү',
-        detail: 'Telegram, Slack, Discord һәм башкаларны урнаты',
+        detail: 'Telegram, Slack, Discord һәм башкаларны урнаты'
       },
       artifacts: {
         title: 'Артефактлар',
-        detail: 'Турылган чыгаруларны кара',
-      },
+        detail: 'Турылган чыгаруларны кара'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Сеанслар панелы',
-        detail: 'Сеансларны табык, берке һәм идарә ит',
+        detail: 'Сеансларны табык, берке һәм идарә ит'
       },
       system: {
         title: 'Система панелы',
-        detail: 'Гейтвей хәлбәре, журналлар, яңарту/җиңәртү',
+        detail: 'Гейтвей хәлбәре, журналлар, яңарту/җиңәртү'
       },
       usage: {
         title: 'Куллануш панели',
-        detail: 'Токен, чыгым һәм квалификация эшчәнлеге',
-      },
+        detail: 'Токен, чыгым һәм квалификация эшчәнлеге'
+      }
     },
     providerNavigate: 'Күчү',
     providerSessions: 'Сессияләр',
@@ -1267,7 +1307,8 @@ export const tt = defineLocale({
       backup: 'Ätiýaçlyk nusga döret',
       backupDesc: 'Konfigurasiýany, ýatgylary, hünärleri we seanslary zipläňdür',
       debugShare: 'Näsazlyk maglumatyny paýlaş',
-      debugShareDesc: 'Redaksiýalanan hasabat we loglary ýükle, paýlaşylýan baglanyşyklar al (6 sagatdan soň awtomatik ýok edilýär)',
+      debugShareDesc:
+        'Redaksiýalanan hasabat we loglary ýükle, paýlaşylýan baglanyşyklar al (6 sagatdan soň awtomatik ýok edilýär)',
       debugShareRunning: 'Näsazlyk hasabady ýüklenýär...',
       debugShareLinks: 'Paýlaşyk baglanyşyklar',
       debugShareFailed: 'Näsazlyk maglumatyny paýlaşmak üstünlikli bolmady',
@@ -1300,14 +1341,14 @@ export const tt = defineLocale({
       resetConfirm: target => `${target} ни өчәрерсеңез? Бул кайтарылмас.`,
       resetDone: files => `${files} өчirildi.`,
       actionStarted: name => `${name} startet — følger log...`,
-      actionFailed: name => `${name} kunne ikke starte`,
+      actionFailed: name => `${name} kunne ikke starte`
     },
     startInBranch: branch => `Яңа сөйләшү ${branch} да`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Фаол сессиялар ${count}`,
     days: count => `${count}к`,
     actualCost: cost => `фактический ${cost}`,
     noUsage: period => `Соңгы ${period} көндә колдану юк.`,
-    actions: count => `${count} handlinger`,
+    actions: count => `${count} handlinger`
   },
   messaging: {
     search: 'Хәбәрләүләр эдләнә...',
@@ -1322,7 +1363,7 @@ export const tt = defineLocale({
       not_configured: 'Gurluş talap edilýär',
       pending_restart: 'Gaýtadan başlatmak zerur',
       retrying: 'Gaýtalanýar',
-      startup_failed: 'Başlatmak başartmady',
+      startup_failed: 'Başlatmak başartmady'
     },
     unknown: 'Näbelli',
     hintPendingRestart: 'Bu üýtgeşikligi goý bermek üçin ş-geýlegi status panelinden gaýtadan başladyň.',
@@ -1349,124 +1390,124 @@ export const tt = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токены',
         help: '@BotFather белән бот тудырыгыз, аннан соң бирелгән токенны куегыз.',
-        placeholder: 'Telegram бот токенын куегыз',
+        placeholder: 'Telegram бот токенын куегыз'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Рөхсәт ителгән Telegram кулланучы ID лары',
-        help: 'Рекомендация. @userinfobotтан алынган саннарга бүлген ID лар. Бугез тешүегез тегез, һәр кешегез ботка шәхси хәбәр йөртә ала ала.',
+        help: 'Рекомендация. @userinfobotтан алынган саннарга бүлген ID лар. Бугез тешүегез тегез, һәр кешегез ботка шәхси хәбәр йөртә ала ала.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Telegram блокланган түлдәрдә гына кирәк.',
+        help: 'Telegram блокланган түлдәрдә гына кирәк.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токены',
-        help: 'Discord Developer Portalда үзгәрмә тудырыгыз, бот өстәгез, аннан соң аның токенын куегыз.',
+        help: 'Discord Developer Portalда үзгәрмә тудырыгыз, бот өстәгез, аннан соң аның токенын куегыз.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Рөхсәт ителгән Discord кулланучы ID лары',
-        help: 'Рекомендация. Диңдәшнәп бүлген Discord кулланучы ID лары.',
+        help: 'Рекомендация. Диңдәшнәп бүлген Discord кулланучы ID лары.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Җавап стиле',
-        help: 'беренче, барлык яки өч.',
+        help: 'беренче, барлык яки өч.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Барлык Discord кулланучыларына рәхсәт',
-        help: 'Только разработка. Эшләнгәндә, рәхсәтләр тізлегенә кирмәгән һәр кеше ботка җибәрләй ала.',
+        help: 'Только разработка. Эшләнгәндә, рәхсәтләр тізлегенә кирмәгән һәр кеше ботка җибәрләй ала.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Баш канал ID',
-        help: 'Бот алдан тапшырылган хәбәрләрне (cron чыгаруы, искәртүләр) жиберә торган канал.',
+        help: 'Бот алдан тапшырылган хәбәрләрне (cron чыгаруы, искәртүләр) жиберә торган канал.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Баш канал исеме',
-        help: 'Баш каналның логларда һәм статус чыгаруында күрсәтеләчән күрү исеме.',
+        help: 'Баш каналның логларда һәм статус чыгаруында күрсәтеләчән күрү исеме.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Барлык iMessage кулланучыларына рәхсәт',
-        help: 'Эшләнгәндә, BlueBubbles рәхсәтләр тізлеген төк ат үткәрә.',
+        help: 'Эшләнгәндә, BlueBubbles рәхсәтләр тізлеген төк ат үткәрә.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Барлык Mattermost кулланучыларына рәхсәт',
+        label: 'Барлык Mattermost кулланучыларына рәхсәт'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Баш канал',
+        label: 'Баш канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Барлык QQ кулланучыларына рәхсәт',
+        label: 'Барлык QQ кулланучыларына рәхсәт'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ баш каналы',
-        help: 'Cron жеткәзү өчен куелган канал яки түркем.',
+        help: 'Cron жеткәзү өчен куелган канал яки түркем.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ баш каналы исеме',
+        label: 'QQ баш каналы исеме'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack бот токены',
         help: 'Slack приложениеңне урнаштырганнан соң OAuth & Permissions бүлегеннән бот токенын алыгъ.',
-        placeholder: 'Slack бот токенын куегыз',
+        placeholder: 'Slack бот токенын куегыз'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack приложение токены',
         help: 'Socket Mode өчен программа токены',
-        placeholder: 'Slack программа токенын кертегез',
+        placeholder: 'Slack программа токенын кертегез'
       },
       SIGNAL_ACCOUNT: {
         help: 'signal-cli күпермәсе белән теркәлгән номер.',
-        label: 'Телефон номеры',
+        label: 'Телефон номеры'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Рөшмәтелгән Signal кунуллары',
-        help: 'Кушәмчала. Аерымлаштырылган Signal идентификаторлары, үрнәк аша.',
+        help: 'Кушәмчала. Аерымлаштырылган Signal идентификаторлары, үрнәк аша.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp күпермәсен активлау',
-        help: 'Түгелдә автоматик рәвеште үзгәрә. Авыгыңны кереш, әгәр аның кирәклеген белмәсәңез.',
+        help: 'Түгелдә автоматик рәвеште үзгәрә. Авыгыңны кереш, әгәр аның кирәклеген белмәсәңез.'
       },
       WHATSAPP_MODE: {
-        label: 'Күпермә режимы',
+        label: 'Күпермә режимы'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Рөшмәтелгән WhatsApp кунуллары',
-        help: 'Кушәмчала. Аерымлаштырылган телефон номерлары яки WhatsApp идентификаторлары.',
+        help: 'Кушәмчала. Аерымлаштырылган телефон номерлары яки WhatsApp идентификаторлары.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Рәшнәтелгән Slack кулланучы ID-ләре',
-        help: 'Күрәнде. Комма белән айырылган Slack кулланучы ID-ләре.',
+        help: 'Күрәнде. Комма белән айырылган Slack кулланучы ID-ләре.'
       },
       MATTERMOST_URL: {
         label: 'Сервер URL-ы',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Бот токены',
+        label: 'Бот токены'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Рәшнәтелгән Mattermost кулланучы ID-ләре',
-        help: 'Күрәнде. Комма белән айырылган Mattermost кулланучы ID-ләре.',
+        help: 'Күрәнде. Комма белән айырылган Mattermost кулланучы ID-ләре.'
       },
       MATRIX_HOMESERVER: {
         label: 'Өй сервер URL-ы',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Керү токены',
+        label: 'Керү токены'
       },
       MATRIX_USER_ID: {
         label: 'Бот кулланучы ID-ы',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Рәшнәтелгән Matrix кулланучы ID-ләре',
-        help: 'Күрәнде. @user:server форматында комма белән айырылган кулланучы ID-ләре.',
+        help: 'Күрәнде. @user:server форматында комма белән айырылган кулланучы ID-ләре.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal күппер URL-ы',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Эшләп торган signal-cli REST күпперенең URL-ы.',
-      },
+        help: 'Эшләп торган signal-cli REST күпперенең URL-ы.'
+      }
     },
     advanced: count => `Күптәр (${count})`,
     clearField: key => `${key} ни тазалау`,
@@ -1480,8 +1521,7 @@ export const tt = defineLocale({
     failedUpdate: name => `${name} ни яңарту иәшәт`,
     failedSave: name => `${name} ни саклау иәшәт`,
     failedClear: key => `${key} ни тазалау иәшәт`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Вебхукларны эзләү...',
@@ -1490,7 +1530,8 @@ export const tt = defineLocale({
     hint: 'Абонентлек үзгәрүләре приёмник эшләгәндә гына яңарытылачак. Өзгәрләнгән абонентлекләр киләр вакыйаларны кабул итмәячәк.',
     empty: 'Вебхук абонентлекләре әле.',
     disabledTitle: 'Вебхук приёмниги өзгәрләнгән',
-    disabledBody: 'Вебхуклар — аларның үзенең күпермә платформасы. Киләр HTTP вакыйаларын кабул итү өчен аларны монда активлагыз; чат каналлары Telegram, Discord, Slack яки башка каналга тапшырганда гына кирәк.',
+    disabledBody:
+      'Вебхуклар — аларның үзенең күпермә платформасы. Киләр HTTP вакыйаларын кабул итү өчен аларны монда активлагыз; чат каналлары Telegram, Discord, Slack яки башка каналга тапшырганда гына кирәк.',
     enable: 'Вебхукларны активлау',
     enabling: 'Активлау...',
     enableRow: 'Активлау',
@@ -1522,7 +1563,7 @@ export const tt = defineLocale({
       email: 'Электрон почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     fieldDescription: 'Таслыма',
     fieldDescriptionPlaceholder: 'Бу вебхук нәрсә эшләве (киятәшле)',
@@ -1545,7 +1586,7 @@ export const tt = defineLocale({
     deleteFailed: (name: string) => `Ошибка удаления "${name}"`,
     toggleFailed: (name: string) => `Ошибка обновления "${name}"`,
     restartFailed: (detail: string) => `Перезапуск шлюза не удался${detail}`,
-    createFailed: (detail: string) => `Ошибка создания: ${detail}`,
+    createFailed: (detail: string) => `Ошибка создания: ${detail}`
   },
   profiles: {
     close: 'Профильләрне ябык',
@@ -1623,7 +1664,7 @@ export const tt = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `Системный промпт / личность для этого профиля.
 Оставьте пустым, чтобы использовать настройки ${mode} по умолчанию.`,
-    invalidName: hint => `Недопустимое имя. ${hint}`,
+    invalidName: hint => `Недопустимое имя. ${hint}`
   },
   cron: {
     close: 'Кронды ябу',
@@ -1637,14 +1678,14 @@ export const tt = defineLocale({
       paused: 'Туктатылган',
       disabled: 'Өчүрләнгән',
       error: 'Хата',
-      completed: 'Тәмәмләнгән',
+      completed: 'Тәмәмләнгән'
     },
     deliveryLabels: {
       local: 'Бу рабочий стол',
       email: 'Электрон почта',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Якшәмбе',
@@ -1654,11 +1695,12 @@ export const tt = defineLocale({
       '4': 'Пәмби',
       '5': 'Алда',
       '6': 'Шәм',
-      '7': 'Якшәм',
+      '7': 'Якшәм'
     },
     topOfHour: 'Һәр сәгать башында',
     newCron: 'Яңы cron',
-    emptyDescNew: 'Cron тәшребе бүенчә эшләчәк җәрләүне планлаштырың. OpenAmer аны җәйгә күрсәтелгән урынга тапшырачак.',
+    emptyDescNew:
+      'Cron тәшребе бүенчә эшләчәк җәрләүне планлаштырың. OpenAmer аны җәйгә күрсәтелгән урынга тапшырачак.',
     emptyDescSearch: 'Күрәзгәрле нәрсә белән эзләүне试.',
     emptyTitleNew: 'Әлегә планлаштырылган мәҗбурләр юк',
     emptyTitleSearch: 'Тапкылар юк',
@@ -1694,7 +1736,8 @@ export const tt = defineLocale({
     editTitle: 'Cron мәҗбурәтен үзгәртү',
     createTitle: 'Яңа cron мәҗбурәте',
     editDesc: 'Сәгаф, сөн сәгафне яки тапшыру максатын яңартыгыз. Үзгәрешләр киләсең табышда куебылачак.',
-    createDesc: 'Сөн сәгафне автоматик тапшыруны үрнәккә куегыз. Cron синтаксисын яки «һәр 15 минут» кебек фразаны куегыз.',
+    createDesc:
+      'Сөн сәгафне автоматик тапшыруны үрнәккә куегыз. Cron синтаксисын яки «һәр 15 минут» кебек фразаны куегыз.',
     nameLabel: 'Исем',
     namePlaceholder: 'Иртән тапшырымы',
     promptLabel: 'Сөн сәгаф',
@@ -1716,7 +1759,7 @@ export const tt = defineLocale({
     createAction: 'cron төз',
     tabs: {
       jobs: 'Тапшырмалар',
-      blueprints: 'Сценарийлар',
+      blueprints: 'Сценарийлар'
     },
     blueprints: {
       tab: 'Сценарийлар',
@@ -1730,7 +1773,7 @@ export const tt = defineLocale({
       loading: 'Сценарийлар йөкләнә...',
       failedLoad: 'Сценарийларны йөкләү уңшыз булды',
       emptyTitle: 'Сценарийлар юк',
-      emptyDesc: 'Бу серверда автоматлаштыру сценарийлары юк.',
+      emptyDesc: 'Бу серверда автоматлаштыру сценарийлары юк.'
     },
     scheduleLabels: {
       daily: 'Көндәлек',
@@ -1739,7 +1782,7 @@ export const tt = defineLocale({
       monthly: 'Айлык',
       hourly: 'Сәгатлык',
       'every-15-minutes': 'Һәр 15 минутта',
-      custom: 'Үзгәчә',
+      custom: 'Үзгәчә'
     },
     scheduleHints: {
       daily: 'Һәр көн 9:00 AM чакта',
@@ -1748,7 +1791,7 @@ export const tt = defineLocale({
       monthly: 'Һәр айның беренче көнөндә 9:00 чакта',
       hourly: 'Һәр сәгатьнең башында',
       'every-15-minutes': 'Һәр 15 минутта',
-      custom: 'Cron синтаксисы яки табигый тел',
+      custom: 'Cron синтаксисы яки табигый тел'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `день ${value}`,
@@ -1757,7 +1800,7 @@ export const tt = defineLocale({
     everyDayOfWeekAt: (day, time) => `Каждый ${day} в ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Ежемесячно ${dayOfMonth} числа в ${time}`,
     everyHourAt: minute => `Каждый час в :${minute}`,
-    actionsFor: title => `Действия для ${title}`,
+    actionsFor: title => `Действия для ${title}`
   },
   artifacts: {
     search: 'Артефактларны табык...',
@@ -1791,14 +1834,14 @@ export const tt = defineLocale({
     copyUrl: 'URL күчермәләү',
     copyPath: 'Юл күчермәләү',
     rangeOf: (start, end, total) => `${start}-${end} из ${total}`,
-    goToPage: (itemLabel, page) => `${itemLabel} бетене ${page} кирү`,
+    goToPage: (itemLabel, page) => `${itemLabel} бетене ${page} кирү`
   },
   sidebar: {
     nav: {
       'new-session': 'Яңа сессия',
       skills: 'Мөмкинлекләр',
       messaging: 'Хәбәрләшү',
-      artifacts: 'Артефактлар',
+      artifacts: 'Артефактлар'
     },
     searchAria: 'Сессияләрне эзләү',
     searchPlaceholder: 'Сессияләрне эзләү…',
@@ -1849,7 +1892,8 @@ export const tt = defineLocale({
       copyPath: 'Юлны копияләү',
       removeFromSidebar: 'Ярын панельдән яшерү',
       createFailed: 'Проект тудырып бумады',
-      staleBackend: 'OpenAmer backend-e täşeñçä döretmek üçin ýeniläň — hüneň backend-i bu desktop programmasyndan köne (Sağlaýlar → Ýenilemeler → Backend).',
+      staleBackend:
+        'OpenAmer backend-e täşeñçä döretmek üçin ýeniläň — hüneň backend-i bu desktop programmasyndan köne (Sağlaýlar → Ýenilemeler → Backend).',
       deleteConfirm: 'Bu OpenAmer-de ýatlanan taslamany aýyrar. Faýllar, git repo-lar we iş agajlary üýtgemdirilmez.',
       startWork: 'Täze iş agajy',
       newWorktreeTitle: 'Täze iş agajy',
@@ -1870,14 +1914,16 @@ export const tt = defineLocale({
       noBranches: 'Şahga tapylmady',
       removeWorktree: 'İş agajyny aýyr',
       removeWorktreeFailed: 'Эш төрене бешәргән мөмкин түгел (үзгәрмәләр сакланмаган?)',
-      removeWorktreeConfirm: 'Аны gitтан алып таш (эш төре каталогы юк ителә; филиал кала), яки ләйны аша бүлештән җишер әмдә эш төрене дискта калдыр.',
-      removeWorktreeDirty: 'Бу эш төрендә сакланмаган үзгәрмәләр бар. Аны көчә белән бешәр (үзгәрмәләр юк ителә), яки ләйны җишер әмдә дискта сакла.',
+      removeWorktreeConfirm:
+        'Аны gitтан алып таш (эш төре каталогы юк ителә; филиал кала), яки ләйны аша бүлештән җишер әмдә эш төрене дискта калдыр.',
+      removeWorktreeDirty:
+        'Бу эш төрендә сакланмаган үзгәрмәләр бар. Аны көчә белән бешәр (үзгәрмәләр юк ителә), яки ләйны җишер әмдә дискта сакла.',
       forceRemove: 'Көчә белән бешәр',
       back: 'Барлык проектлар',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Открыть ${label}`,
       reorder: label => `Изменить порядок ${label}`,
-      toggle: label => `Переключить сессии ${label}`,
+      toggle: label => `Переключить сессии ${label}`
     },
     loading: 'Йөкләнә…',
     loadMore: 'Тагын йөкләү',
@@ -1912,19 +1958,19 @@ export const tt = defineLocale({
       actionsFor: title => `${title} өчен әйләнмәләр`,
       handoffOrigin: platform => `${platform} дан берілгән`,
       ownedByProfile: profile => `Профиль: ${profile}`,
-      untitledChat: id => `Чат ${id}`,
+      untitledChat: id => `Чат ${id}`
     },
     dateDivider: {
       today: 'Бүген иртәгә',
       yesterday: 'Иртәгә',
       thisWeek: 'Осы җилегезнең иртәгәсендә',
       lastWeek: 'Үткән җилегез',
-      thisMonth: 'Осы айның иртәгәсендә',
+      thisMonth: 'Осы айның иртәгәсендә'
     },
     noMatch: query => `Сессии по запросу «${query}» не найдены.`,
     newSessionIn: label => `${label} да яңа сессия`,
     showMoreIn: (count, label) => `Көрсәт ${count} яна ${label} да`,
-    loadCount: step => `${step} яраны юклә`,
+    loadCount: step => `${step} яраны юклә`
   },
   composer: {
     message: 'Хәбәр',
@@ -1965,7 +2011,7 @@ export const tt = defineLocale({
       '/resume': 'Элекке сеансны дәрәҗләү',
       '/details': 'Транскрипциянең тулылыгын идарә итү',
       '/copy': 'Үзбәлешне яки соңгы ассистент хәбәрен күчәрмәк',
-      '/quit': 'OpenAmer-тан чыгу',
+      '/quit': 'OpenAmer-тан чыгу'
     },
     hotkeyDescs: {
       'composer.mention': 'Файллар, папкалар, URL-лар, Git',
@@ -1975,7 +2021,7 @@ export const tt = defineLocale({
       'composer.sendQueued': 'Җибәрү: киләсесе көткән тагынманы',
       'keybinds.openPanel': 'Барлык клавиатура кыска төймәләре',
       'composer.cancel': 'Поповерны ябыр · Җибәрүне туктату',
-      'composer.history': 'Поповер / тарихны алмаштыру',
+      'composer.history': 'Поповер / тарихны алмаштыру'
     },
     attachUrlTitle: 'URL җайлау',
     attachUrlDesc: 'OpenAmer бәләне ачачак һәм аны бу тагынма өчен контекст булак итеп кутачак.',
@@ -2000,21 +2046,22 @@ export const tt = defineLocale({
       codeReview: {
         label: 'Кодны тикшерү',
         description: 'Регрессиялар, чекка очраклар һәм житешмәгән тестләр буенча үзгәрешне тикшерү.',
-        text: 'Зурлыклар, регрессиялар һәм житешмәгән тестләр буенча моны тикшерүгез.',
+        text: 'Зурлыклар, регрессиялар һәм житешмәгән тестләр буенча моны тикшерүгез.'
       },
       implementationPlan: {
         label: 'Үзгәреш планы',
         description: 'Кодны үзгәрткәнче ысуны аныклап бирегез, шундак та фәрк кең генә каласын.',
-        text: 'Кодны үзгәрткәнче кыска үзгәреш планы тәкәл итүгез.',
+        text: 'Кодны үзгәрткәнче кыска үзгәреш планы тәкәл итүгез.'
       },
       explainThis: {
         label: 'Аныклап бирегез',
         description: 'Сайланган кодның ничек эшләгән аңлатыгыз һәм төп файлларга сылтамалар күрсәтегез.',
-        text: 'Моның ничек эшләгән аңлатыгыз һәм төп файлларга күрсәтегез.',
-      },
+        text: 'Моның ничек эшләгән аңлатыгыз һәм төп файлларга күрсәтегез.'
+      }
     },
     queueStuckTitle: 'Көткән хәбәр җиберелмәде',
-    queueStuckBody: 'Көткән әйләнмәне җибәрү дәрҗә уңышсыз калды. Ул җемлек тәрәбендә һәрдая — тагын җибәреп каратыгыз.',
+    queueStuckBody:
+      'Көткән әйләнмәне җибәрү дәрҗә уңышсыз калды. Ул җемлек тәрәбендә һәрдая — тагын җибәреп каратыгыз.',
     previewUnavailable: 'Җиһазны алдан карау мөмкин түгел',
     dictating: 'Диктовка',
     preparingAudio: 'Аудионы әзерләү',
@@ -2037,27 +2084,27 @@ export const tt = defineLocale({
     newSessionPlaceholders: [
       'Без ни ясап булырбыз?',
       'OpenAmerгә тапшырма бер',
-      "Сезнең ойларыңызда ни?",
+      'Сезнең ойларыңызда ни?',
       'Сезгә ни керек аны тусыныртыр',
       'Ни белән башлайык?',
       'Хәр ни рәвеш итәсе',
-      'Максат белән башла',
+      'Максат белән башла'
     ],
     followUpPlaceholders: [
       'Давам итәсе хәбәр юлла',
       'Яраны контекст кош',
       'Тапшырманы яңарту',
-      "Кеше ни?",
+      'Кеше ни?',
       'Давам итәрергә телә',
       'Яраны арттыр',
-      'Өзгәртәсе я давам итәрергә',
+      'Өзгәртәсе я давам итәрергә'
     ],
     queued: count => `${count} Навбатта`,
     queuedPaused: count => `${count} Навбатта — тотырылган`,
     attachments: count => `${count} файлы${count === 1 ? '' : 's'}`,
     previewLabel: label => `${label} алдын ала күрсәтә`,
     couldNotPreview: label => `${label} күрсәтә алмадык`,
-    removeAttachment: label => `${label} ни алырга ташла`,
+    removeAttachment: label => `${label} ни алырга ташла`
   },
   statusStack: {
     coding: {
@@ -2073,8 +2120,10 @@ export const tt = defineLocale({
       viewAsList: 'Сүзәк күренеш',
       revert: 'Кайтарыу',
       revertAll: 'Барлыгын кайтарыу',
-      revertConfirm: 'Бу файлдагы үзгәрүләрне ташлап, аны коммитләнгән хәлбәргә кайтарырга мөмкин. Буны кирек итә алмас.',
-      revertAllConfirm: 'Һәр үзгәрүләрне ташлап, файлларны коммитләнгән хәлбәргә кайтарырга мөмкин. Буны кирек итә алмас.',
+      revertConfirm:
+        'Бу файлдагы үзгәрүләрне ташлап, аны коммитләнгән хәлбәргә кайтарырга мөмкин. Буны кирек итә алмас.',
+      revertAllConfirm:
+        'Һәр үзгәрүләрне ташлап, файлларны коммитләнгән хәлбәргә кайтарырга мөмкин. Буны кирек итә алмас.',
       staged: 'Индексләнгән',
       noChanges: 'Үзгәрүләр юк',
       notRepo: 'Git репозиториясе түгел',
@@ -2093,7 +2142,8 @@ export const tt = defineLocale({
       openPr: 'PR ачу',
       ghMissing: 'GitHub CLI (gh) урнаштыру һәм PR ачу өчен кереш',
       agentShip: 'OpenAmer-га PR ачырга боюр',
-      agentShipPrompt: 'Агымдагы үзгәрмәләрне тикшер, аларны ачык конвенция-комит хәбәре белән комит итеп, тармакны ыңгу һәм pull request ачу.',
+      agentShipPrompt:
+        'Агымдагы үзгәрмәләрне тикшер, аларны ачык конвенция-комит хәбәре белән комит итеп, тармакны ыңгу һәм pull request ачу.',
       newBranch: 'Яңы тармак',
       worktrees: 'Эш төрләре',
       commitPlaceholder: 'Хәбәр (тапшыру өчен âŒ˜â†µ)',
@@ -2102,7 +2152,7 @@ export const tt = defineLocale({
       behind: count => `${count} артта`,
       branchOffFrom: base => `${base} дан яңа буелчак`,
       switchTo: branch => `${branch} га алыш`,
-      switchFailed: branch => `${branch}-га өчәләп булмады`,
+      switchFailed: branch => `${branch}-га өчәләп булмады`
     },
     agents: 'Агентлар',
     running: 'Эшләп тора',
@@ -2111,7 +2161,7 @@ export const tt = defineLocale({
     background: count => `${count} Фон`,
     subagents: count => `${count} Субәгент${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Тапшырмалар ${done}/${total}`,
-    exit: code => `чыгу ${code}`,
+    exit: code => `чыгу ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2176,7 @@ export const tt = defineLocale({
       done: 'Яңарту тәмәмләнде',
       manual: 'Терминалдан яңарту',
       guiSkew: 'Десктоп кулламбасын яңарту',
-      error: 'Яңарту түктелде',
+      error: 'Яңарту түктелде'
     },
     checking: 'Яңартулар эстелә…',
     checkFailedTitle: 'Яңартуларны тикшерү мөмкин булмады',
@@ -2145,15 +2195,19 @@ export const tt = defineLocale({
     updateNow: 'Хәзер яңарту',
     maybeLater: 'Бунынга соң',
     manualTitle: 'Терминалдан яңартыгыз',
-    manualBody: 'OpenAmer-ны команда юлы аркылы урнатыдыгыз, шуңа күрә яңартулар да шунда эшләнә. Аны терминалыгызга кертеп язың:',
+    manualBody:
+      'OpenAmer-ны команда юлы аркылы урнатыдыгыз, шуңа күрә яңартулар да шунда эшләнә. Аны терминалыгызга кертеп язың:',
     manualPickedUp: 'OpenAmer яңа версияне киләсе ачыганда алып итәчәк.',
     guiSkewTitle: 'Дискык кулданманы яңартыгыз',
-    guiSkewBody: 'Сервер өчине яңартылды, әмма бу дискык кулданма пакеты үзгәрмәде. OpenAmer дискык кулданмасын (AppImage / .deb / .rpm) яңартыгыз яки кайта урнатыгыз.',
+    guiSkewBody:
+      'Сервер өчине яңартылды, әмма бу дискык кулданма пакеты үзгәрмәде. OpenAmer дискык кулданмасын (AppImage / .deb / .rpm) яңартыгыз яки кайта урнатыгыз.',
     copy: 'Күчермә',
     copied: 'Көшөрелде',
     done: 'Бүделде',
-    applyingBody: 'Яңартучы үз тәрәзәсендә ишне алып, тәмәмләгәндә OpenAmer-ны автоматик рәвешдә яңадан ача. Яңарту вакытында OpenAmer-ны үзегез ачмагыз.',
-    applyingBodyBackend: 'Ерте сервер өчине яңартуны кулланып, ул кайта эшләйчәк. Ул кайтканда OpenAmer автоматик рәвешдә тоташа.',
+    applyingBody:
+      'Яңартучы үз тәрәзәсендә ишне алып, тәмәмләгәндә OpenAmer-ны автоматик рәвешдә яңадан ача. Яңарту вакытында OpenAmer-ны үзегез ачмагыз.',
+    applyingBodyBackend:
+      'Ерте сервер өчине яңартуны кулланып, ул кайта эшләйчәк. Ул кайтканда OpenAmer автоматик рәвешдә тоташа.',
     applyingClose: 'Бу тәрәзә яңарту барышында ябылачак, андан соң OpenAmer үзе ныңып ачылачак.',
     errorTitle: 'Яңарту тәмәмләнмәде',
     errorBody: 'Ничек түгел — һәр нәрсә калган. Хәзер тагын сынап карагыз.',
@@ -2164,13 +2218,14 @@ export const tt = defineLocale({
       restarting: 'Яңартуны йөкләү өчен сервер өчине кайта эшләнә…',
       notAvailable: 'Бу сервер өчен яңарту мөмкин түгел.',
       failed: 'Сервер өчен яңарту уңышсыз булды.',
-      noReturn: 'Фонд серверы онлайнга кайтармады. Яңартыу тәмәмланмаган булсын мөмкин — сервер хостын тикшерү.',
+      noReturn: 'Фонд серверы онлайнга кайтармады. Яңартыу тәмәмланмаган булсын мөмкин — сервер хостын тикшерү.'
     },
     appErrors: {
-      updateLocked: 'Яңартыу токтатылды: башка OpenAmer тәрәзе яки openamer эшләп торган терминал буш урнынны тота тор. Уны ябыгыз һәм тагына.',
-      updateFailed: 'Яңартыу тәмәмланмады. Бәхетсез — бәр нәрә гәләм булмады. Хәзер тагына аласыз.',
+      updateLocked:
+        'Яңартыу токтатылды: башка OpenAmer тәрәзе яки openamer эшләп торган терминал буш урнынны тота тор. Уны ябыгыз һәм тагына.',
+      updateFailed: 'Яңартыу тәмәмланмады. Бәхетсез — бәр нәрә гәләм булмады. Хәзер тагына аласыз.'
     },
-    moreChanges: count => `+ ${count} яна үзгәртеү${count === 1 ? '' : 's'} күрсәтелгән.`,
+    moreChanges: count => `+ ${count} яна үзгәртеү${count === 1 ? '' : 's'} күрсәтелгән.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2233,7 @@ export const tt = defineLocale({
       running: 'Урнатылә',
       succeeded: 'Тәмәм',
       skipped: 'Үткән',
-      failed: 'Уңшылмады',
+      failed: 'Уңшылмады'
     },
     oneTimeTitle: 'OpenAmer-га бер мәртәлек урнату кирәк',
     installCommand: 'Урнату командасы',
@@ -2187,15 +2242,18 @@ export const tt = defineLocale({
     installTo: 'Урнатылачак урын',
     retryAfterRun: 'Мен аны үрнәдем — тагына',
     setupChoiceTitle: 'OpenAmer Desktop-ны көйләү',
-    setupChoiceDesc: 'Бу кушымманы сез үрнәткән OpenAmer шлюзына тоташтырыгыз яки OpenAmer-ны бу компьютерда җирле урнатыгыз.',
+    setupChoiceDesc:
+      'Бу кушымманы сез үрнәткән OpenAmer шлюзына тоташтырыгыз яки OpenAmer-ны бу компьютерда җирле урнатыгыз.',
     connectExistingTitle: 'Бар булган OpenAmer-га тоташу',
     connectExistingShort: 'Бар булганга тоташу',
-    connectExistingDesc: 'Ертәкәрү фонд серверыны сессия токены яки браузерда керү белән кулланыгыз. Җирле урнату башланмачак.',
+    connectExistingDesc:
+      'Ертәкәрү фонд серверыны сессия токены яки браузерда керү белән кулланыгыз. Җирле урнату башланмачак.',
     installLocalTitle: 'OpenAmer-ны җирле урнату',
     installLocalDesc: 'OpenAmer-ны юккагыз, аның Python курылгысын бул күргәндә яңадан.',
     localStartUnavailable: 'Локаль урнаштыруны башлап булмады. OpenAmer Desktop-ны яңадан куягыз һәм тагын тикшерегез.',
     remoteSetupTitle: 'Иң бар OpenAmer-га тоташ',
-    remoteSetupDesc: 'Шлюз URL-ын кертегез. OpenAmer Desktop аның токенга яки браузерда керүгә мөһтирүү кирәкме-иң ачыклаячак.',
+    remoteSetupDesc:
+      'Шлюз URL-ын кертегез. OpenAmer Desktop аның токенга яки браузерда керүгә мөһтирүү кирәкме-иң ачыклаячак.',
     remoteUrlTitle: 'Шлюз URL-ы',
     remoteUrlDesc: 'OpenAmer шлюзының база URL-ын кулланыгыз, чыгында https:// булса.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2219,8 +2277,10 @@ export const tt = defineLocale({
     failedTitle: 'Урнаштыру үңелмәде',
     settingUpTitle: 'OpenAmer Agent урнаштырыла',
     finishingTitle: 'Йәмәләү',
-    failedDesc: 'Урнаштыруның бер адымы үңелмәде. Windows-та бу башка OpenAmer CLI яки desktop өсәнлеге эшләгәндә килешә. Эшләп тораган OpenAmer өсәнлекләрене туктатыгыз, аннан соң кабат тарытыгыз. Тулы журнал түбәндәгә яки desktop журналында.',
-    activeDesc: 'Бу бермәртәк кешеп. OpenAmer урнаштыручы талапларны йүкләп, жиһезеңе конфигурацияли. Киләчә запускалар бу адымны тәкшермәчә.',
+    failedDesc:
+      'Урнаштыруның бер адымы үңелмәде. Windows-та бу башка OpenAmer CLI яки desktop өсәнлеге эшләгәндә килешә. Эшләп тораган OpenAmer өсәнлекләрене туктатыгыз, аннан соң кабат тарытыгыз. Тулы журнал түбәндәгә яки desktop журналында.',
+    activeDesc:
+      'Бу бермәртәк кешеп. OpenAmer урнаштыручы талапларны йүкләп, жиһезеңе конфигурацияли. Киләчә запускалар бу адымны тәкшермәчә.',
     fetchingManifest: 'Урнаштыручы манифесты алына...',
     error: 'Хата',
     hideOutput: 'Урнаштыручы чыгаруын яшерү',
@@ -2232,13 +2292,14 @@ export const tt = defineLocale({
     copiedOutput: 'Копияләнды!',
     copyOutput: 'Чыгаруны копияләу',
     reloadRetry: 'Яңадан йөкләп, кабат тарыту',
-    unsupportedDesc: platform => `Автоматик илк иске кабул ${platform}-да язмас. Терминалны ачып, төмендеги команданы ишләтегез, соң программаны кайта иске кабул итәгез. Киләсе иске кабуллар бу этапны атлап китәсе.`,
+    unsupportedDesc: platform =>
+      `Автоматик илк иске кабул ${platform}-да язмас. Терминалны ачып, төмендеги команданы ишләтегез, соң программаны кайта иске кабул итәгез. Киләсе иске кабуллар бу этапны атлап китәсе.`,
     authNeedsOauth: provider => `Бу шлюзны тештергә кабат, ${provider} белән кирәгез.`,
     signInWith: provider => `${provider} белән кирәгез`,
     testSucceeded: (baseUrl, version) => `${baseUrl}${version ? ` (${version})` : ''}-га уланды.`,
     progress: (completed, total) => `${completed} / ${total} авырма тамамланды`,
     currentStage: stage => ` -- һазер: ${stage}`,
-    lines: count => `${count} сатр${count === 1 ? '' : 's'}`,
+    lines: count => `${count} сатр${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'OpenAmer Agent белән эшләшкән әйтергән',
@@ -2258,28 +2319,28 @@ export const tt = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'Төрки модель API',
-        description: 'Fireworks AI хостындаган модельләргә турыдан өстөм.',
+        description: 'Fireworks AI хостындаган модельләргә турыдан өстөм.'
       },
       openrouter: {
         short: 'Бер ачкыч, күп модель',
-        description: 'Бер ачкыч артында йөзләгән модельләр. Яңа урнаштырулар өчен яхшы ташлама.',
+        description: 'Бер ачкыч артында йөзләгән модельләр. Яңа урнаштырулар өчен яхшы ташлама.'
       },
       openai: {
         short: 'GPT төрендәге модельләр',
-        description: 'OpenAI модельләргә турыдан өстөм.',
+        description: 'OpenAI модельләргә турыдан өстөм.'
       },
       gemini: {
         short: 'Gemini моделары',
-        description: 'Google Gemini моделарына турыдан киреү.',
+        description: 'Google Gemini моделарына турыдан киреү.'
       },
       xai: {
         short: 'Grok моделары',
-        description: 'xAI Grok моделарына турыдан киреү.',
+        description: 'xAI Grok моделарына турыдан киреү.'
       },
       local: {
         short: 'Үз сервериндә',
-        description: 'OpenAmer локаль яки OpenAI-га ярык андый ноктага (vLLM, llama.cpp, Ollama, һ.б.) юнәлтегез.',
-      },
+        description: 'OpenAmer локаль яки OpenAI-га ярык андый ноктага (vLLM, llama.cpp, Ollama, һ.б.) юнәлтегез.'
+      }
     },
     backToSignIn: 'Керешкә кайту',
     getKey: 'Ключ алу',
@@ -2292,7 +2353,7 @@ export const tt = defineLocale({
     flowSubtitles: {
       pkce: 'Браузерыгызда керүне ача, аннан даһи шунда дәвам итә',
       device_code: 'Браузерыгызда раслау бәгыен ача — OpenAmer автоматик тоташа',
-      external: 'Терминалыгызда бер керем төркиен, аннан чатның кайтыгыз',
+      external: 'Терминалыгызда бер керем төркиен, аннан чатның кайтыгыз'
     },
     signInFailed: 'Кереш уңшыз булды. Тагыр киригез.',
     pickDifferentProvider: 'Икәр провайдер сайлау',
@@ -2317,11 +2378,13 @@ export const tt = defineLocale({
     connectedPicking: provider => `${provider} уланды. Стандарт модель талашлы...`,
     signInWith: provider => `${provider} белән кирәгез`,
     openedBrowser: provider => `Без ${provider}-ны синең браузерыңда ачтык.`,
-    autoBrowser: provider => `Без ${provider}-ны синең браузерыңда ачтык. Анда OpenAmer-ны рөхсәт итәгез, сиз автоматик уланырсыз — көчәреп ясау яки ясап китәргә хәҗәт юк.`,
-    externalPending: provider => `${provider} өз CLI-сы аркылы кирә. Бу команданы терминалда ишләтегез, соң кайтып "Мин кирдем"-ны талап:`,
+    autoBrowser: provider =>
+      `Без ${provider}-ны синең браузерыңда ачтык. Анда OpenAmer-ны рөхсәт итәгез, сиз автоматик уланырсыз — көчәреп ясау яки ясап китәргә хәҗәт юк.`,
+    externalPending: provider =>
+      `${provider} өз CLI-сы аркылы кирә. Бу команданы терминалда ишләтегез, соң кайтып "Мин кирдем"-ны талап:`,
     deviceCodeOpened: provider => `Без ${provider}-ны синең браузерыңда ачтык. Анда бу кодны киритәгез:`,
     price: (input, output) => `${input} кирү / ${output} чыгу Mtok-га`,
-    docs: provider => `${provider} документлар`,
+    docs: provider => `${provider} документлар`
   },
   modelPicker: {
     title: 'Модельне алмаштыру',
@@ -2337,13 +2400,13 @@ export const tt = defineLocale({
     free: 'Үрнәм',
     freeTier: 'Үрнәм дәрәҗәсендә',
     priceTitle: 'Миллион токенга керү / чыгу бәясе',
-    wasPrice: 'булды',
+    wasPrice: 'булды'
   },
   modelVisibility: {
     title: 'Модельләр',
     search: 'Модельләрне эзләү',
     noAuthenticatedProviders: 'Аутентификацияләнгән провайдерләр юк.',
-    addProvider: 'Провайдер өстәү…',
+    addProvider: 'Провайдер өстәү…'
   },
   shell: {
     windowControls: 'Тәрәзә идарә итү',
@@ -2354,7 +2417,7 @@ export const tt = defineLocale({
       noModels: 'Модельләр табылмады',
       editModels: 'Модельләрне редакциялау…',
       refreshModels: 'Модельләрне яңарту',
-      fast: 'Тез',
+      fast: 'Тез'
     },
     modelOptions: {
       noOptions: 'Бу модель өчен вариантлар юк',
@@ -2370,7 +2433,7 @@ export const tt = defineLocale({
       max: 'Максималь',
       ultra: 'Ультра',
       updateFailed: 'Модель вариантын яңарту уңмады',
-      fastFailed: 'Тизим режимын яңарту уңмады',
+      fastFailed: 'Тизим режимын яңарту уңмады'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2385,7 +2448,7 @@ export const tt = defineLocale({
       recentActivity: 'Күрәнгән эшләр',
       viewAllLogs: 'Барлык язуларны карау →',
       messagingPlatforms: 'Хәбәрләшү платформалары',
-      connection: label => `Уланыш: ${label}`,
+      connection: label => `Уланыш: ${label}`
     },
     approvalMode: {
       title: 'Алыйлану режимы',
@@ -2395,7 +2458,7 @@ export const tt = defineLocale({
       smartDescription: 'Гамыйлләрне үзен бәяләп, кирәк булганда сора',
       off: 'Өскәрү',
       offDescription: 'Алыйлану сорауларынсыз эшләү',
-      ariaLabel: mode => `Рөхсәт режимы: ${mode}`,
+      ariaLabel: mode => `Рөхсәт режимы: ${mode}`
     },
     statusbar: {
       unknown: 'Белгән төгел',
@@ -2437,19 +2500,21 @@ export const tt = defineLocale({
           subagent_definitions: 'Агент-өләшмәләр билгеләнмәләре',
           system_prompt: 'Система промты',
           tool_definitions: 'Кораллар билгеләнмәләре',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Контекст мәгълуматлары әле юк',
         loading: 'Бүлешүне йөкләү…',
         title: 'Контекст кулланышы',
         percentFull: percent => `${percent}% Тук`,
-        tokenSummary: (used, max) => `${used} / ${max} Токеннар`,
+        tokenSummary: (used, max) => `${used} / ${max} Токеннар`
       },
       openContextUsage: 'Контекст кулланышы бүлешүсен ачу',
       session: 'Сеанс',
       runtimeSessionElapsed: 'Сеансның эшләнгән вакыты',
-      yoloOn: 'YOLO ишләде — хәвәфле командалар автоматик рәвеште тасдыклана. Өткәрү өчен тәккә басыгыз. Shift+click аны глобаль рәвеште үзгәртә.',
-      yoloOff: 'YOLO өкләнгән — хәвәфле командаларны автоматик рәвеште тасдыклау өчен тәккә басыгыз. Shift+click аны глобаль рәвеште үзгәртә.',
+      yoloOn:
+        'YOLO ишләде — хәвәфле командалар автоматик рәвеште тасдыклана. Өткәрү өчен тәккә басыгыз. Shift+click аны глобаль рәвеште үзгәртә.',
+      yoloOff:
+        'YOLO өкләнгән — хәвәфле командаларны автоматик рәвеште тасдыклау өчен тәккә басыгыз. Shift+click аны глобаль рәвеште үзгәртә.',
       modelNone: 'юк',
       noModel: 'модель юк',
       switchModel: 'Модельне алмаштыру',
@@ -2470,8 +2535,8 @@ export const tt = defineLocale({
       failed: count => `${count} һәтә`,
       running: count => `${count} ишләп тора`,
       modelTitle: (provider, model) => `Модель · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Уң ягындагы боклар',
@@ -2507,7 +2572,7 @@ export const tt = defineLocale({
     addToChat: 'Чатка өткәр',
     folderTip: cwd => `${cwd} — папканы үзгәрүче басыңыз`,
     couldNotPreview: path => `${path} караш булмады`,
-    unreadableBody: error => `Бу папканы укып булмады (${error}).`,
+    unreadableBody: error => `Бу папканы укып булмады (${error}).`
   },
   preview: {
     tab: 'Күзәтү',
@@ -2535,7 +2600,8 @@ export const tt = defineLocale({
     editing: 'Үзгәртү',
     unsavedChanges: 'Сакланмаган үзгәрешләр',
     diskChangedTitle: 'Дискта файл үзгәрде',
-    diskChangedBody: 'Бу файл ачылганнан соң үзгәрде. Аны сезнең варианты белән өршәтәгез, яки үзгәрешләрегезне ташлап, яңадан йөкләгез?',
+    diskChangedBody:
+      'Бу файл ачылганнан соң үзгәрде. Аны сезнең варианты белән өршәтәгез, яки үзгәрешләрегезне ташлап, яңадан йөкләгез?',
     overwrite: 'Үчән',
     discardReload: 'Ташла һәм яңарт',
     console: {
@@ -2556,7 +2622,7 @@ export const tt = defineLocale({
       sentTitle: 'Чатка җибәрелде',
       messages: count => `${count} консоль хабарлары`,
       selected: count => `${count} сайланды`,
-      sentMessage: count => `${count} лог китәсе ${count === 1 ? 'y' : 'ies'} композиторга кошылды`,
+      sentMessage: count => `${count} лог китәсе ${count === 1 ? 'y' : 'ies'} композиторга кошылды`
     },
     web: {
       appFailedToBoot: 'Күрү программасы эшләп башламады',
@@ -2577,27 +2643,30 @@ export const tt = defineLocale({
       reloadingNow: 'Көрүз хәзер яңыдан йөкләнә.',
       restartFailedTitle: 'Көрүзне яңыдан баштармады',
       restartFailedMessage: 'OpenAmer серверны яңыдан баштарга алмады.',
-      stillWorking: 'OpenAmer әле эшләп китә, ләкин яңыдан баштарү нәтиҗәсе әле килмәгән. Сервер командасы алдыда эшләүдә булыш мөмкин.',
+      stillWorking:
+        'OpenAmer әле эшләп китә, ләкин яңыдан баштарү нәтиҗәсе әле килмәгән. Сервер командасы алдыда эшләүдә булыш мөмкин.',
       workspaceReloading: 'Эш пространствосы үзгәрде, көрүз яңыдан йөкләнә',
-      moduleMimeDescription: 'Модуль скриптлары дөрес MIME төре белән тартып бирелә. Бу гадәддә Vite/React кунынның урнына статик файл серверы эшләткән дигән мөмкин.',
+      moduleMimeDescription:
+        'Модуль скриптлары дөрес MIME төре белән тартып бирелә. Бу гадәддә Vite/React кунынның урнына статик файл серверы эшләткән дигән мөмкин.',
       unreachableDescription: 'Көрүз төбенә җитеп алмады.',
       fallbackTitle: 'Көрүз',
       lookingRestart: taskId => `OpenAmer кайта иске түзүче карау сервере изләп тора (${taskId})`,
       startRestartFailed: message => `Серверны кайта иске түзү булмады: ${message}`,
-      finishedRestarting: message => `OpenAmer карау серверын кайта иске түзүгене якулады${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer карау серверын кайта иске түзүгене якулады${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Серверны кайта иске түзү сәтсәз: ${message}`,
       fileChanged: url => `Файл үзгәрде, карау кайта юклап тора: ${url}`,
       filesChanged: (count, url) => `${count} файл үзгәртеүсе, карау кайта юклап тора: ${url}`,
       watchFailed: message => `Карау файлын кӱзәтә алмадык: ${message}`,
       loadFailedConsole: (code, message) => `Юклау сәтсәз${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `${url} ачу`,
+      openTarget: url => `${url} ачу`
     },
     linkHint: 'Күрү панеле өчен âŒ˜/Ctrl-click',
     closeTab: label => `${label} ябыу`,
     binaryBody: label => `${label} карау укыла алмаган текстны күрсәтәсе.`,
     largeBody: (label, size) => `${label} — ${size}. OpenAmer беренче 512 KB-ны гына күрсәтәсе.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} һələ контекст кабында табала.`,
-    saveFailed: message => `Саклап булмады: ${message}`,
+    saveFailed: message => `Саклап булмады: ${message}`
   },
   zones: {
     showHeader: 'Тасманы күрсәтү',
@@ -2605,7 +2674,8 @@ export const tt = defineLocale({
     minimize: 'Минималлаштыру',
     restore: 'Аңгылаштыру',
     closeRunningTitle: 'Эшләп торган табакны ябыкмы?',
-    closeRunningBody: 'Бу чат әле эшләп тора (яки сезнең көрсәткечеңне көтә). Табакны ябу аны яшыра — сессия үзләшән саклап кала һәм ян боктан тагын ачыла ала.',
+    closeRunningBody:
+      'Бу чат әле эшләп тора (яки сезнең көрсәткечеңне көтә). Табакны ябу аны яшыра — сессия үзләшән саклап кала һәм ян боктан тагын ачыла ала.',
     closeRunningConfirm: 'Табакны ябу',
     closeOthers: 'Башкаларын ябу',
     closeToRight: 'Уңда торган табакларны ябу',
@@ -2626,7 +2696,8 @@ export const tt = defineLocale({
     nameLayoutPlaceholder: 'Бу төзелмәгә исем бир…',
     zoneEditorTitle: 'Зона редакторы',
     editorHintPre: 'Бүлекү өчен басып күрсәтү ·',
-    editorHintPost: 'Линияне әйләндерә · зоналарны берләштерү өчен тарта · күләмне үзгәртү өчен уртаклашкан кырларны тарта',
+    editorHintPost:
+      'Линияне әйләндерә · зоналарны берләштерү өчен тарта · күләмне үзгәртү өчен уртаклашкан кырларны тарта',
     templateColumns: 'Баганалар',
     templateRows: 'Юллар',
     templateGrid: 'Ярыш',
@@ -2642,7 +2713,7 @@ export const tt = defineLocale({
     mergeZones: count => `${count} зоналарны бирергә`,
     customZoneName: count => `Мөхтәс ${count}-зона`,
     layoutNamePlaceholder: fallback => `Урнаштыру исеме (${fallback})`,
-    zoneCount: count => `${count} зоналар`,
+    zoneCount: count => `${count} зоналар`
   },
   assistant: {
     thread: {
@@ -2678,7 +2749,7 @@ export const tt = defineLocale({
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Бүген, ${time}`,
-      yesterday: time => `Төннәр, ${time}`,
+      yesterday: time => `Төннәр, ${time}`
     },
     clarify: {
       lateAnswerTip: 'Бу жауапны киләсе имгә яңы өткән',
@@ -2692,7 +2763,7 @@ export const tt = defineLocale({
       skip: 'Оныштыру',
       skipped: 'Оныштырылды',
       continueLabel: 'Дәвам итү',
-      lateAnswer: (question, choice) => `Яв: "${question}" — миннем жавабым: ${choice}`,
+      lateAnswer: (question, choice) => `Яв: "${question}" — миннем жавабым: ${choice}`
     },
     tool: {
       code: 'Код',
@@ -2717,113 +2788,113 @@ export const tt = defineLocale({
         browser_fill: {
           pendingAction: 'Толтыру',
           done: 'Форма кырын тултырды',
-          pending: 'Форма кырын тултыру',
+          pending: 'Форма кырын тултыру'
         },
         browser_navigate: {
           done: 'Ачылган бак',
           pending: 'Бак ачылачак',
-          pendingAction: 'Ачу',
+          pendingAction: 'Ачу'
         },
         browser_snapshot: {
           done: 'Бакның күзәргелеге тартылды',
           pending: 'Бакның күзәргелеге тартылачак',
-          pendingAction: 'Тарту',
+          pendingAction: 'Тарту'
         },
         browser_take_screenshot: {
           done: 'Экран сурәты тартылды',
           pending: 'Экран сурәты тартылачак',
-          pendingAction: 'Тарту',
+          pendingAction: 'Тарту'
         },
         browser_type: {
           done: 'Бакта басылды',
           pending: 'Бакта басу',
-          pendingAction: 'Басу',
+          pendingAction: 'Басу'
         },
         clarify: {
           done: 'Үнсәл соралды',
           pending: 'Үнсәл соралачак',
-          pendingAction: 'Үнсәл сорау',
+          pendingAction: 'Үнсәл сорау'
         },
         cronjob: {
           done: 'Cron тапшырмасы',
           pending: 'Cron тапшырмасын көнбашын күрәтү',
-          pendingAction: 'Көнбашын күрәтү',
+          pendingAction: 'Көнбашын күрәтү'
         },
         edit_file: {
           done: 'Үзгәртелгән файл',
           pending: 'Файлны өзгәртү',
-          pendingAction: 'Өзгәртү',
+          pendingAction: 'Өзгәртү'
         },
         browser_click: {
           done: 'Битәне түкте',
           pending: 'Битәнегә түкү',
-          pendingAction: 'Түкү',
+          pendingAction: 'Түкү'
         },
         execute_code: {
           done: 'Код үрнәде',
           pending: 'Скриптләү',
-          pendingAction: 'Скриптләү',
+          pendingAction: 'Скриптләү'
         },
         image_generate: {
           done: 'Рәсем ясалды',
           pending: 'Рәсем ясау',
-          pendingAction: 'Ясау',
+          pendingAction: 'Ясау'
         },
         list_files: {
           done: 'Файллар күрсәтелде',
           pending: 'Файлларны күрсәтү',
-          pendingAction: 'Күрсәтү',
+          pendingAction: 'Күрсәтү'
         },
         patch: {
           done: 'Файл төзәтелде',
           pending: 'Файлны төзәтү',
-          pendingAction: 'Төзәтү',
+          pendingAction: 'Төзәтү'
         },
         read_file: {
           done: 'Файл укылды',
           pending: 'Файлны укыту',
-          pendingAction: 'Укыту',
+          pendingAction: 'Укыту'
         },
         search_files: {
           done: 'Файллар эшләнде',
           pending: 'Файллар эшләү',
-          pendingAction: 'Эшләү',
+          pendingAction: 'Эшләү'
         },
         session_search_recall: {
           done: 'Сөрү тарихы эшләтелде',
           pending: 'Сөрү тарихы эшләне',
-          pendingAction: 'Эшләне',
+          pendingAction: 'Эшләне'
         },
         terminal: {
           done: 'Команда үрнәде',
           pending: 'Команда эшләне',
-          pendingAction: 'Эшләне',
+          pendingAction: 'Эшләне'
         },
         todo: {
           done: 'Эшләр исемлеге яңартылды',
           pending: 'Эшләр исемлеге яңартыла',
-          pendingAction: 'Яңартыла',
+          pendingAction: 'Яңартыла'
         },
         vision_analyze: {
           done: 'Рәсем талланды',
           pending: 'Рәсем таллана',
-          pendingAction: 'Таллана',
+          pendingAction: 'Таллана'
         },
         web_extract: {
           done: 'Веб-бит укылды',
           pending: 'Веб-бит укыла',
-          pendingAction: 'Укыла',
+          pendingAction: 'Укыла'
         },
         web_search: {
           done: 'Веб эшләтелде',
           pending: 'Веб эшләне',
-          pendingAction: 'Эшләне',
+          pendingAction: 'Эшләне'
         },
         write_file: {
           done: 'Файл тәрәккә иде',
           pending: 'Файл тәрәккә кертелә',
-          pendingAction: 'Редакцияләү',
-        },
+          pendingAction: 'Редакцияләү'
+        }
       },
       statusRecovered: 'Тиктелде',
       statusDone: 'Бүтелде',
@@ -2838,11 +2909,11 @@ export const tt = defineLocale({
         ran: 'Үрнәде',
         running: 'Үрнәнә',
         ranCode: 'Код үрнәде',
-        runningCode: 'Скриптлау',
+        runningCode: 'Скриптлау'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Веб',
+        web: 'Веб'
       },
       recoveredMany: count => `${count} сәтсәз кадамлардан соң тиклалды`,
       failedMany: count => `${count} кадам сәтсәз`,
@@ -2852,8 +2923,8 @@ export const tt = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ишләп тора ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ишләп тора ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Ишләп тора ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюзы тоташылмады',
@@ -2867,8 +2938,9 @@ export const tt = defineLocale({
       reject: 'Баш тарту',
       alwaysTitle: 'Бу командага үзгәрә рәвеш итү?',
       alwaysAllow: 'Үзгәрә рәвеш итү',
-      alwaysDescription: pattern => `Бу “${pattern}” үлгене сизнең даими рөхсәт иткән рөхсәтле командалар рөйхәтегә кошара (~/.openamer/config.yaml). OpenAmer шул ук командалар өчен яна сорамас — бу сессияда яки келектегезенде.`,
-    },
+      alwaysDescription: pattern =>
+        `Бу “${pattern}” үлгене сизнең даими рөхсәт иткән рөхсәтле командалар рөйхәтегә кошара (~/.openamer/config.yaml). OpenAmer шул ук командалар өчен яна сорамас — бу сессияда яки келектегезенде.`
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO режимын үзгәртеп алмады',
@@ -2880,7 +2952,8 @@ export const tt = defineLocale({
     editFailed: 'Мөһәррирләү уңшылмады',
     resumeFailed: 'Дәргә күчәю уңшылмады',
     resumeStrandedTitle: 'Бу сессияне йөкләп ала алмады',
-    resumeStrandedBody: 'Бу сессиягә бәйләнү уңшылмады һәм автоматик кабатлаулар тәкшерен үткәрде. Шлюзның эшләп торуын тикшергән, аннан соң тагын тыланыгыз.',
+    resumeStrandedBody:
+      'Бу сессиягә бәйләнү уңшылмады һәм автоматик кабатлаулар тәкшерен үткәрде. Шлюзның эшләп торуын тикшергән, аннан соң тагын тыланыгыз.',
     resumeRetry: 'Кабатлау',
     nothingToBranch: 'Тармакланырга әлеге юк',
     branchNeedsChat: 'Тармакланырга алда чат башлагыз яки дәргә күчәрегез.',
@@ -2919,7 +2992,7 @@ export const tt = defineLocale({
       timedOut: 'Шлюз көткәндә вакыт үтте. `openamer gateway` эшләмәдиме?',
       success: platform => `${platform}гә берілде. Бер вакытта бу ерга кайтыңыз.`,
       systemNote: platform => `↻ ${platform}гә берілде — бер вакытта бу ерга кайтыңыз.`,
-      failed: error => `Берү сәтелмәде: ${error}`,
+      failed: error => `Берү сәтелмәде: ${error}`
     },
     audioReadFailed: 'Язылган аудионы укып булмады',
     sessionUnavailable: 'Сеанс танык түгел',
@@ -2934,34 +3007,35 @@ export const tt = defineLocale({
     warningLine: message => `эскерту: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} бу сессия өчен`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Профиль: ${current}. /profile <исем> яки «Яңа сессия» таңлаучысын колданып, башка профильда сухбат башлаңыз.`,
+    profileStatus: current =>
+      `Профиль: ${current}. /profile <исем> яки «Яңа сессия» таңлаучысын колданып, башка профильда сухбат башлаңыз.`,
     noProfileNamed: (target, available) => `«${target}» профиле юк. Мөмкин: ${available}`,
     newChatsProfile: name => `Яңа сухбатлар профиль ${name} колланачак.`,
-    branchTitle: n => `Миннет: Буел #${n}`,
+    branchTitle: n => `Миннет: Буел #${n}`
   },
   errors: {
     genericFailure: 'Бер нәрсә дә булды',
     boundaryTitle: 'Интерфейста бер нәрсә дә булды',
     boundaryDesc: 'Күрү таҗын күрмәгән хатын күрешләде. Чатларыгыз һәм көйләмәләрегез иң хәвдә.',
     reloadWindow: 'Тәрәзне яңарту',
-    openLogs: 'Журналларны ачу',
+    openLogs: 'Журналларны ачу'
   },
   ui: {
     search: {
-      clear: 'Эзләүне чистарту',
+      clear: 'Эзләүне чистарту'
     },
     pagination: {
       label: 'Бүлек',
       previous: 'Алда',
       previousAria: 'Алдагы бүлеккә күчү',
       next: 'Киләсе',
-      nextAria: 'Киләсе бүлеккә күчү',
+      nextAria: 'Киләсе бүлеккә күчү'
     },
     sidebar: {
       title: 'Якын кыр',
       description: 'Күчмәл якын кырны күрсәтә.',
-      toggle: 'Якын кырны күрсәтү/яшыру',
-    },
+      toggle: 'Якын кырны күрсәтү/яшыру'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer шлюзы тоташтырылмаган',
@@ -2972,9 +3046,10 @@ export const tt = defineLocale({
     sudoPlaceholder: 'Sudo паролы',
     secretTitle: 'Серкрет керәк',
     secretDesc: 'OpenAmer-ның тагын өткән өчен кешен сертификаты кирәк.',
-    secretPlaceholder: 'Серкрет мәҗбуры',
+    secretPlaceholder: 'Серкрет мәҗбуры'
   },
   remoteDisplayBanner: {
-    message: reason => `Программ рендеринг фаол — узак дисплей аныкланды (${reason}). GPU узактыру тикшерелгән, йөзләшмәсе ясалмаслыгы өчен.`,
-  },
+    message: reason =>
+      `Программ рендеринг фаол — узак дисплей аныкланды (${reason}). GPU узактыру тикшерелгән, йөзләшмәсе ясалмаслыгы өчен.`
+  }
 })

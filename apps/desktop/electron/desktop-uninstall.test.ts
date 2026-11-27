@@ -96,13 +96,18 @@ test('resolveRemovableAppPath returns null for an unrecognized Windows dir', () 
 
 test('resolveRemovableAppPath uses APPIMAGE on Linux when set', () => {
   assert.equal(
-    resolveRemovableAppPath('/tmp/.mount_OpenAmerXXXX/openamer', 'linux', { APPIMAGE: '/home/x/Apps/OpenAmer.AppImage' }),
+    resolveRemovableAppPath('/tmp/.mount_OpenAmerXXXX/openamer', 'linux', {
+      APPIMAGE: '/home/x/Apps/OpenAmer.AppImage'
+    }),
     '/home/x/Apps/OpenAmer.AppImage'
   )
 })
 
 test('resolveRemovableAppPath finds the unpacked dir on Linux', () => {
-  assert.equal(resolveRemovableAppPath('/opt/openamer/linux-unpacked/openamer', 'linux', {}), '/opt/openamer/linux-unpacked')
+  assert.equal(
+    resolveRemovableAppPath('/opt/openamer/linux-unpacked/openamer', 'linux', {}),
+    '/opt/openamer/linux-unpacked'
+  )
   // A system-package install (/usr/bin) → null, left to apt/dnf.
   assert.equal(resolveRemovableAppPath('/usr/bin/openamer', 'linux', {}), null)
 })

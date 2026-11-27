@@ -6,249 +6,250 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Mô hình mặc định",
-    modelContextLength: "Cửa sổ ngữ cảnh",
-    fallbackProviders: "Mô hình dự phòng",
-    toolsets: "Bộ công cụ đã bật",
-    timezone: "Múi giờ",
-    display: {
-      personality: "Tính cách",
-      showReasoning: "Khối suy luận",
+  model: 'Mô hình mặc định',
+  modelContextLength: 'Cửa sổ ngữ cảnh',
+  fallbackProviders: 'Mô hình dự phòng',
+  toolsets: 'Bộ công cụ đã bật',
+  timezone: 'Múi giờ',
+  display: {
+    personality: 'Tính cách',
+    showReasoning: 'Khối suy luận'
+  },
+  desktop: {
+    repoScanEnabled: 'Tự động khám phá kho lưu trữ',
+    repoScanRoots: 'Gốc khám phá kho lưu trữ',
+    repoScanExcludePaths: 'Đường dẫn kho lưu trữ bị loại trừ'
+  },
+  agent: {
+    maxTurns: 'Số bước tối đa của tác nhân',
+    imageInputMode: 'Tệp đính kèm hình ảnh',
+    apiMaxRetries: 'Số lần thử lại API',
+    serviceTier: 'Bậc dịch vụ',
+    toolUseEnforcement: 'Bắt buộc sử dụng công cụ'
+  },
+  terminal: {
+    cwd: 'Thư mục làm việc',
+    backend: 'Nền tảng thực thi',
+    timeout: 'Thời gian chờ lệnh',
+    persistentShell: 'Shell duy trì',
+    envPassthrough: 'Chuyển tiếp môi trường',
+    dockerImage: 'Image Docker',
+    singularityImage: 'Image Singularity',
+    modalImage: 'Image Modal',
+    daytonaImage: 'Image Daytona'
+  },
+  fileReadMaxChars: 'Giới hạn đọc tệp',
+  toolOutput: {
+    maxBytes: 'Giới hạn đầu ra terminal',
+    maxLines: 'Giới hạn trang tệp',
+    maxLineLength: 'Giới hạn độ dài dòng'
+  },
+  codeExecution: {
+    mode: 'Chế độ thực thi mã'
+  },
+  approvals: {
+    mode: 'Chế độ phê duyệt',
+    timeout: 'Thời gian chờ phê duyệt',
+    mcpReloadConfirm: 'Xác nhận tải lại MCP'
+  },
+  commandAllowlist: 'Danh sách cho phép lệnh',
+  security: {
+    redactSecrets: 'Ẩn thông tin bí mật',
+    allowPrivateUrls: 'Cho phép URL riêng tư'
+  },
+  browser: {
+    allowPrivateUrls: 'URL riêng tư của trình duyệt',
+    autoLocalForPrivateUrls: 'Trình duyệt cục bộ cho URL riêng tư'
+  },
+  checkpoints: {
+    enabled: 'Điểm kiểm tra tệp',
+    maxSnapshots: 'Giới hạn điểm kiểm tra'
+  },
+  voice: {
+    recordKey: 'Phím tắt bằng giọng nói',
+    maxRecordingSeconds: 'Thời lượng ghi tối đa',
+    autoTts: 'Đọc to phản hồi'
+  },
+  stt: {
+    enabled: 'Chuyển giọng nói thành văn bản',
+    echoTranscripts: 'Lặp lại bản ghi',
+    provider: 'Nhà cung cấp chuyển giọng nói thành văn bản',
+    local: {
+      model: 'Mô hình chuyển lời nói thành văn bản cục bộ',
+      language: 'Ngôn ngữ chuyển lời nói thành văn bản'
     },
-    desktop: {
-      repoScanEnabled: "Tự động khám phá kho lưu trữ",
-      repoScanRoots: "Gốc khám phá kho lưu trữ",
-      repoScanExcludePaths: "Đường dẫn kho lưu trữ bị loại trừ",
+    openai: {
+      model: 'Mô hình STT OpenAI'
     },
-    agent: {
-      maxTurns: "Số bước tối đa của tác nhân",
-      imageInputMode: "Tệp đính kèm hình ảnh",
-      apiMaxRetries: "Số lần thử lại API",
-      serviceTier: "Bậc dịch vụ",
-      toolUseEnforcement: "Bắt buộc sử dụng công cụ",
+    groq: {
+      model: 'Mô hình STT Groq'
     },
-    terminal: {
-      cwd: "Thư mục làm việc",
-      backend: "Nền tảng thực thi",
-      timeout: "Thời gian chờ lệnh",
-      persistentShell: "Shell duy trì",
-      envPassthrough: "Chuyển tiếp môi trường",
-      dockerImage: "Image Docker",
-      singularityImage: "Image Singularity",
-      modalImage: "Image Modal",
-      daytonaImage: "Image Daytona",
+    mistral: {
+      model: 'Mô hình STT Mistral'
     },
-    fileReadMaxChars: "Giới hạn đọc tệp",
-    toolOutput: {
-      maxBytes: "Giới hạn đầu ra terminal",
-      maxLines: "Giới hạn trang tệp",
-      maxLineLength: "Giới hạn độ dài dòng",
+    elevenlabs: {
+      modelId: 'Mô hình STT ElevenLabs',
+      languageCode: 'Ngôn ngữ ElevenLabs',
+      tagAudioEvents: 'Gắn thẻ sự kiện âm thanh',
+      diarize: 'Phân tách người nói'
+    }
+  },
+  tts: {
+    provider: 'Nhà cung cấp chuyển văn bản thành giọng nói',
+    edge: {
+      voice: 'Giọng Edge'
     },
-    codeExecution: {
-      mode: "Chế độ thực thi mã",
+    openai: {
+      model: 'Mô hình TTS OpenAI',
+      voice: 'Giọng OpenAI'
     },
-    approvals: {
-      mode: "Chế độ phê duyệt",
-      timeout: "Thời gian chờ phê duyệt",
-      mcpReloadConfirm: "Xác nhận tải lại MCP",
+    elevenlabs: {
+      voiceId: 'Giọng ElevenLabs',
+      modelId: 'Mô hình ElevenLabs'
     },
-    commandAllowlist: "Danh sách cho phép lệnh",
-    security: {
-      redactSecrets: "Ẩn thông tin bí mật",
-      allowPrivateUrls: "Cho phép URL riêng tư",
+    xai: {
+      voiceId: 'Giọng xAI (Grok)',
+      language: 'Ngôn ngữ xAI',
+      speed: 'Tốc độ phát xAI',
+      autoSpeechTags: 'Thẻ giọng nói tự động xAI',
+      optimizeStreamingLatency: 'Tối ưu độ trễ phát trực tuyến xAI',
+      sampleRate: 'Tần số lấy mẫu xAI',
+      bitRate: 'Tốc độ bit xAI'
     },
-    browser: {
-      allowPrivateUrls: "URL riêng tư của trình duyệt",
-      autoLocalForPrivateUrls: "Trình duyệt cục bộ cho URL riêng tư",
+    minimax: {
+      model: 'Mô hình TTS MiniMax',
+      voiceId: 'Giọng MiniMax'
     },
-    checkpoints: {
-      enabled: "Điểm kiểm tra tệp",
-      maxSnapshots: "Giới hạn điểm kiểm tra",
+    mistral: {
+      model: 'Mô hình TTS Mistral',
+      voiceId: 'Giọng Mistral'
     },
-    voice: {
-      recordKey: "Phím tắt bằng giọng nói",
-      maxRecordingSeconds: "Thời lượng ghi tối đa",
-      autoTts: "Đọc to phản hồi",
+    gemini: {
+      model: 'Mô hình TTS Gemini',
+      voice: 'Giọng Gemini'
     },
-    stt: {
-      enabled: "Chuyển giọng nói thành văn bản",
-      echoTranscripts: "Lặp lại bản ghi",
-      provider: "Nhà cung cấp chuyển giọng nói thành văn bản",
-      local: {
-        model: "Mô hình chuyển lời nói thành văn bản cục bộ",
-        language: "Ngôn ngữ chuyển lời nói thành văn bản",
-      },
-      openai: {
-        model: "Mô hình STT OpenAI",
-      },
-      groq: {
-        model: "Mô hình STT Groq",
-      },
-      mistral: {
-        model: "Mô hình STT Mistral",
-      },
-      elevenlabs: {
-        modelId: "Mô hình STT ElevenLabs",
-        languageCode: "Ngôn ngữ ElevenLabs",
-        tagAudioEvents: "Gắn thẻ sự kiện âm thanh",
-        diarize: "Phân tách người nói",
-      },
+    neutts: {
+      model: 'Mô hình NeuTTS',
+      device: 'Thiết bị NeuTTS'
     },
-    tts: {
-      provider: "Nhà cung cấp chuyển văn bản thành giọng nói",
-      edge: {
-        voice: "Giọng Edge",
-      },
-      openai: {
-        model: "Mô hình TTS OpenAI",
-        voice: "Giọng OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Giọng ElevenLabs",
-        modelId: "Mô hình ElevenLabs",
-      },
-      xai: {
-        voiceId: "Giọng xAI (Grok)",
-        language: "Ngôn ngữ xAI",
-        speed: "Tốc độ phát xAI",
-        autoSpeechTags: "Thẻ giọng nói tự động xAI",
-        optimizeStreamingLatency: "Tối ưu độ trễ phát trực tuyến xAI",
-        sampleRate: "Tần số lấy mẫu xAI",
-        bitRate: "Tốc độ bit xAI",
-      },
-      minimax: {
-        model: "Mô hình TTS MiniMax",
-        voiceId: "Giọng MiniMax",
-      },
-      mistral: {
-        model: "Mô hình TTS Mistral",
-        voiceId: "Giọng Mistral",
-      },
-      gemini: {
-        model: "Mô hình TTS Gemini",
-        voice: "Giọng Gemini",
-      },
-      neutts: {
-        model: "Mô hình NeuTTS",
-        device: "Thiết bị NeuTTS",
-      },
-      kittentts: {
-        model: "Mô hình KittenTTS",
-        voice: "Giọng KittenTTS",
-      },
-      piper: {
-        voice: "Giọng Piper",
-      },
-      deepinfra: {
-        model: "Mô hình TTS DeepInfra",
-        voice: "Giọng DeepInfra",
-      },
+    kittentts: {
+      model: 'Mô hình KittenTTS',
+      voice: 'Giọng KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Bộ nhớ duy trì",
-      userProfileEnabled: "Hồ sơ người dùng",
-      memoryCharLimit: "Ngân sách bộ nhớ",
-      userCharLimit: "Ngân sách hồ sơ",
-      provider: "Nhà cung cấp bộ nhớ",
+    piper: {
+      voice: 'Giọng Piper'
     },
-    context: {
-      engine: "Động cơ ngữ cảnh",
-    },
-    compression: {
-      enabled: "Tự động nén",
-      threshold: "Ngưỡng nén",
-      targetRatio: "Mục tiêu nén",
-      protectLastN: "Tin nhắn gần đây được bảo vệ",
-    },
-    delegation: {
-      model: "Mô hình tác nhân phụ",
-      provider: "Nhà cung cấp tác nhân phụ",
-      maxIterations: "Giới hạn lượt của tác nhân phụ",
-      maxConcurrentChildren: "Tác nhân phụ song song",
-      childTimeoutSeconds: "Thời gian chờ tác nhân phụ",
-      reasoningEffort: "Mức độ suy luận của tác nhân phụ",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Cập nhật thay đổi cục bộ trong ứng dụng",
-    },
+    deepinfra: {
+      model: 'Mô hình TTS DeepInfra',
+      voice: 'Giọng DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Bộ nhớ duy trì',
+    userProfileEnabled: 'Hồ sơ người dùng',
+    memoryCharLimit: 'Ngân sách bộ nhớ',
+    userCharLimit: 'Ngân sách hồ sơ',
+    provider: 'Nhà cung cấp bộ nhớ'
+  },
+  context: {
+    engine: 'Động cơ ngữ cảnh'
+  },
+  compression: {
+    enabled: 'Tự động nén',
+    threshold: 'Ngưỡng nén',
+    targetRatio: 'Mục tiêu nén',
+    protectLastN: 'Tin nhắn gần đây được bảo vệ'
+  },
+  delegation: {
+    model: 'Mô hình tác nhân phụ',
+    provider: 'Nhà cung cấp tác nhân phụ',
+    maxIterations: 'Giới hạn lượt của tác nhân phụ',
+    maxConcurrentChildren: 'Tác nhân phụ song song',
+    childTimeoutSeconds: 'Thời gian chờ tác nhân phụ',
+    reasoningEffort: 'Mức độ suy luận của tác nhân phụ'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Cập nhật thay đổi cục bộ trong ứng dụng'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Dùng cho chat mới trừ khi bạn chọn mô hình khác trong khung soạn.",
-    modelContextLength: "Đặt 0 để dùng cửa sổ ngữ cảnh mà mô hình đã chọn phát hiện được.",
-    fallbackProviders: "Các mục provider:model dự phòng để thử nếu mô hình mặc định lỗi.",
-    display: {
-      personality: "Kiểu trợ lý mặc định cho phiên mới.",
-      showReasoning: "Hiện các phần suy luận khi backend cung cấp.",
+  model: 'Dùng cho chat mới trừ khi bạn chọn mô hình khác trong khung soạn.',
+  modelContextLength: 'Đặt 0 để dùng cửa sổ ngữ cảnh mà mô hình đã chọn phát hiện được.',
+  fallbackProviders: 'Các mục provider:model dự phòng để thử nếu mô hình mặc định lỗi.',
+  display: {
+    personality: 'Kiểu trợ lý mặc định cho phiên mới.',
+    showReasoning: 'Hiện các phần suy luận khi backend cung cấp.'
+  },
+  desktop: {
+    repoScanEnabled: 'Quét thư mục cục bộ để tìm kho Git hiển thị trong Dự án.',
+    repoScanRoots: 'Các thư mục cần quét. Để trống để quét thư mục chính của bạn.',
+    repoScanExcludePaths: 'Các thư mục và thư mục con cần bỏ qua khi phát hiện kho.'
+  },
+  timezone: 'Dùng khi OpenAmer cần ngữ cảnh thời gian cục bộ. Để trống sẽ dùng múi giờ hệ thống.',
+  agent: {
+    imageInputMode: 'Điều khiển cách tệp đính kèm hình ảnh được gửi tới mô hình.',
+    maxTurns: 'Giới hạn trên số lượt gọi công cụ trước khi OpenAmer dừng lượt chạy.'
+  },
+  terminal: {
+    cwd: 'Thư mục dự án mặc định cho công cụ và dòng lệnh.',
+    persistentShell: 'Giữ trạng thái phiên dòng lệnh giữa các lệnh khi backend hỗ trợ.',
+    envPassthrough: 'Biến môi trường truyền vào quá trình chạy công cụ.',
+    dockerImage: 'Ảnh container dùng khi backend thực thi là Docker.',
+    singularityImage: 'Ảnh dùng khi backend thực thi là Singularity.',
+    modalImage: 'Ảnh dùng khi backend thực thi là Modal.',
+    daytonaImage: 'Ảnh dùng khi backend thực thi là Daytona.'
+  },
+  codeExecution: {
+    mode: 'Mức độ giới hạn thực thi mã theo dự án hiện tại.'
+  },
+  fileReadMaxChars: 'Số ký tự tối đa OpenAmer có thể đọc trong một yêu cầu tệp.',
+  approvals: {
+    mode: 'Cách OpenAmer xử lý các lệnh cần phê duyệt rõ ràng.',
+    timeout: 'Thời gian lời nhắc phê duyệt chờ trước khi hết hạn.'
+  },
+  security: {
+    redactSecrets: 'Ẩn các bí mật phát hiện được khỏi nội dung mô hình có thể thấy khi có thể.'
+  },
+  checkpoints: {
+    enabled: 'Tạo ảnh chụp hoàn tác trước khi sửa tệp.'
+  },
+  memory: {
+    memoryEnabled: 'Lưu ký ức bền vững có thể giúp các phiên sau.',
+    userProfileEnabled: 'Duy trì hồ sơ gọn về tùy chọn người dùng.'
+  },
+  context: {
+    engine: 'Chiến lược quản lý hội thoại dài gần giới hạn ngữ cảnh.'
+  },
+  compression: {
+    enabled: 'Tóm tắt ngữ cảnh cũ khi hội thoại lớn dần.'
+  },
+  voice: {
+    autoTts: 'Tự động đọc to phản hồi của trợ lý.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID giọng xAI (vd: eve) hoặc ID giọng tùy chỉnh.',
+      language: 'Mã ngôn ngữ nói (vd: en, pt-BR) hoặc "auto" để tự phát hiện.',
+      speed: 'Tốc độ phát. 0.7 = chậm hơn, 1.0 = bình thường, 1.5 = nhanh hơn.',
+      autoSpeechTags: 'Cho LLM chèn thẻ âm thanh biểu cảm ([laughing], [sighs]) vào kịch bản trước khi tổng hợp.',
+      optimizeStreamingLatency: 'Đánh đổi độ trễ và chất lượng. 0 = chất lượng tốt nhất, 2 = độ trễ thấp nhất.',
+      sampleRate: 'Tần số lấy mẫu âm thanh tính bằng Hz. Cao hơn = chất lượng tốt hơn, tệp lớn hơn.',
+      bitRate: 'Bitrate MP3 tính bằng bps. Chỉ áp dụng khi codec là mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Quét thư mục cục bộ để tìm kho Git hiển thị trong Dự án.",
-      repoScanRoots: "Các thư mục cần quét. Để trống để quét thư mục chính của bạn.",
-      repoScanExcludePaths: "Các thư mục và thư mục con cần bỏ qua khi phát hiện kho.",
-    },
-    timezone: "Dùng khi OpenAmer cần ngữ cảnh thời gian cục bộ. Để trống sẽ dùng múi giờ hệ thống.",
-    agent: {
-      imageInputMode: "Điều khiển cách tệp đính kèm hình ảnh được gửi tới mô hình.",
-      maxTurns: "Giới hạn trên số lượt gọi công cụ trước khi OpenAmer dừng lượt chạy.",
-    },
-    terminal: {
-      cwd: "Thư mục dự án mặc định cho công cụ và dòng lệnh.",
-      persistentShell: "Giữ trạng thái phiên dòng lệnh giữa các lệnh khi backend hỗ trợ.",
-      envPassthrough: "Biến môi trường truyền vào quá trình chạy công cụ.",
-      dockerImage: "Ảnh container dùng khi backend thực thi là Docker.",
-      singularityImage: "Ảnh dùng khi backend thực thi là Singularity.",
-      modalImage: "Ảnh dùng khi backend thực thi là Modal.",
-      daytonaImage: "Ảnh dùng khi backend thực thi là Daytona.",
-    },
-    codeExecution: {
-      mode: "Mức độ giới hạn thực thi mã theo dự án hiện tại.",
-    },
-    fileReadMaxChars: "Số ký tự tối đa OpenAmer có thể đọc trong một yêu cầu tệp.",
-    approvals: {
-      mode: "Cách OpenAmer xử lý các lệnh cần phê duyệt rõ ràng.",
-      timeout: "Thời gian lời nhắc phê duyệt chờ trước khi hết hạn.",
-    },
-    security: {
-      redactSecrets: "Ẩn các bí mật phát hiện được khỏi nội dung mô hình có thể thấy khi có thể.",
-    },
-    checkpoints: {
-      enabled: "Tạo ảnh chụp hoàn tác trước khi sửa tệp.",
-    },
-    memory: {
-      memoryEnabled: "Lưu ký ức bền vững có thể giúp các phiên sau.",
-      userProfileEnabled: "Duy trì hồ sơ gọn về tùy chọn người dùng.",
-    },
-    context: {
-      engine: "Chiến lược quản lý hội thoại dài gần giới hạn ngữ cảnh.",
-    },
-    compression: {
-      enabled: "Tóm tắt ngữ cảnh cũ khi hội thoại lớn dần.",
-    },
-    voice: {
-      autoTts: "Tự động đọc to phản hồi của trợ lý.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID giọng xAI (vd: eve) hoặc ID giọng tùy chỉnh.",
-        language: "Mã ngôn ngữ nói (vd: en, pt-BR) hoặc \"auto\" để tự phát hiện.",
-        speed: "Tốc độ phát. 0.7 = chậm hơn, 1.0 = bình thường, 1.5 = nhanh hơn.",
-        autoSpeechTags: "Cho LLM chèn thẻ âm thanh biểu cảm ([laughing], [sighs]) vào kịch bản trước khi tổng hợp.",
-        optimizeStreamingLatency: "Đánh đổi độ trễ và chất lượng. 0 = chất lượng tốt nhất, 2 = độ trễ thấp nhất.",
-        sampleRate: "Tần số lấy mẫu âm thanh tính bằng Hz. Cao hơn = chất lượng tốt hơn, tệp lớn hơn.",
-        bitRate: "Bitrate MP3 tính bằng bps. Chỉ áp dụng khi codec là mp3.",
-      },
-      neutts: {
-        device: "Thiết bị suy luận cục bộ cho NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Bật chép lời giọng nói cục bộ hoặc qua nhà cung cấp.",
-      echoTranscripts: "Gửi lại bản chép lời thô 🎙️ của tin nhắn thoại vào cuộc trò chuyện.",
-      elevenlabs: {
-        languageCode: "Mã ngôn ngữ ISO-639-3 tùy chọn. Để trống để ElevenLabs tự phát hiện.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Khi OpenAmer tự cập nhật từ ứng dụng (không nhắc dòng lệnh), giữ các chỉnh sửa mã nguồn cục bộ (stash) hoặc bỏ đi (discard). Cập nhật qua dòng lệnh luôn hỏi.",
-    },
+    neutts: {
+      device: 'Thiết bị suy luận cục bộ cho NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Bật chép lời giọng nói cục bộ hoặc qua nhà cung cấp.',
+    echoTranscripts: 'Gửi lại bản chép lời thô 🎙️ của tin nhắn thoại vào cuộc trò chuyện.',
+    elevenlabs: {
+      languageCode: 'Mã ngôn ngữ ISO-639-3 tùy chọn. Để trống để ElevenLabs tự phát hiện.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Khi OpenAmer tự cập nhật từ ứng dụng (không nhắc dòng lệnh), giữ các chỉnh sửa mã nguồn cục bộ (stash) hoặc bỏ đi (discard). Cập nhật qua dòng lệnh luôn hỏi.'
+  }
 })

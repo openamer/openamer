@@ -10,44 +10,44 @@ export const mg = defineLocale({
     actions: {
       'view.showTerminal': 'Fikaritrerahana ny terminal',
       'view.newTerminal': 'Terminal tany',
-      'view.nextTerminal': 'Terminal amin\'ny lasa',
-      'view.prevTerminal': 'Terminal tamin\'ny tontolo',
+      'view.nextTerminal': "Terminal amin'ny lasa",
+      'view.prevTerminal': "Terminal tamin'ny tontolo",
       'view.closeTerminal': 'Hampiditra ny terminal',
-      'view.terminalSelection': 'Mitovy ny tsinyan\'ny terminal amin\'ny composer',
+      'view.terminalSelection': "Mitovy ny tsinyan'ny terminal amin'ny composer",
       'view.closeTab': 'Hampiditra ny tab',
       'view.reopenTab': 'Ampiasaina ny tab voalohany',
-      'view.flipPanes': 'Hevisera ny tontolo amin\'ny heviny',
+      'view.flipPanes': "Hevisera ny tontolo amin'ny heviny",
       'appearance.toggleMode': 'Fikaritrerahana ny lafiny sy lafiny',
-      'profile.default': 'Mitovy amin\'ny profile voalohany',
-      'profile.switch.1': 'Mitovy amin\'ny profile 1',
-      'profile.switch.2': 'Mitovy amin\'ny profile 2',
-      'profile.switch.3': 'Mitovy amin\'ny profile 3',
-      'profile.switch.4': 'Mitovy amin\'ny profile 4',
-      'profile.switch.5': 'Mitovy amin\'ny profile 5',
-      'profile.switch.6': 'Mitovy amin\'ny profile 6',
-      'profile.switch.7': 'Mitovy amin\'ny profile 7',
-      'profile.switch.8': 'Mitovy amin\'ny profile 8',
-      'profile.switch.9': 'Mitovy amin\'ny profile 9',
-      'profile.switch.10': 'Mitovy amin\'ny profile 10',
-      'profile.switch.11': 'Mitovy amin\'ny profile 11',
-      'profile.switch.12': 'Mitovy amin\'ny profile 12',
-      'profile.switch.13': 'Mitovy amin\'ny profile 13',
-      'profile.switch.14': 'Mitovy amin\'ny profile 14',
-      'profile.switch.15': 'Mitovy amin\'ny profile 15',
-      'profile.switch.16': 'Mitovy amin\'ny profile 16',
-      'profile.switch.17': 'Mitovy amin\'ny profile 17',
-      'profile.switch.18': 'Mitovy amin\'ny profile 18',
-      'profile.next': 'Mitovy amin\'ny profile 19',
-      'profile.prev': 'Profile tamin\'ny lasa',
-      'profile.toggleAll': 'Fikaritrerahana ny sary amin\'ny profiles',
-      'profile.create': 'Harena amin\'ny profile',
+      'profile.default': "Mitovy amin'ny profile voalohany",
+      'profile.switch.1': "Mitovy amin'ny profile 1",
+      'profile.switch.2': "Mitovy amin'ny profile 2",
+      'profile.switch.3': "Mitovy amin'ny profile 3",
+      'profile.switch.4': "Mitovy amin'ny profile 4",
+      'profile.switch.5': "Mitovy amin'ny profile 5",
+      'profile.switch.6': "Mitovy amin'ny profile 6",
+      'profile.switch.7': "Mitovy amin'ny profile 7",
+      'profile.switch.8': "Mitovy amin'ny profile 8",
+      'profile.switch.9': "Mitovy amin'ny profile 9",
+      'profile.switch.10': "Mitovy amin'ny profile 10",
+      'profile.switch.11': "Mitovy amin'ny profile 11",
+      'profile.switch.12': "Mitovy amin'ny profile 12",
+      'profile.switch.13': "Mitovy amin'ny profile 13",
+      'profile.switch.14': "Mitovy amin'ny profile 14",
+      'profile.switch.15': "Mitovy amin'ny profile 15",
+      'profile.switch.16': "Mitovy amin'ny profile 16",
+      'profile.switch.17': "Mitovy amin'ny profile 17",
+      'profile.switch.18': "Mitovy amin'ny profile 18",
+      'profile.next': "Mitovy amin'ny profile 19",
+      'profile.prev': "Profile tamin'ny lasa",
+      'profile.toggleAll': "Fikaritrerahana ny sary amin'ny profiles",
+      'profile.create': "Harena amin'ny profile",
       'composer.send': 'Mitovy ny ohabolana',
       'composer.newline': 'Ampiasaina ny loha fiteny',
-      'composer.steer': 'Mampitombo ny fahatsapana amin\'ny fohy',
-      'composer.queue': 'Tsy fahatsapana amin\'ny fohy',
-      'composer.sendQueued': 'Mitovy ny fohy voalohany amin\'ny tsy fahatsapana',
+      'composer.steer': "Mampitombo ny fahatsapana amin'ny fohy",
+      'composer.queue': "Tsy fahatsapana amin'ny fohy",
+      'composer.sendQueued': "Mitovy ny fohy voalohany amin'ny tsy fahatsapana",
       'composer.mention': 'Mitovy ny rafitra, foldery, sy URL',
-      'composer.slash': 'Palette ohatra amin\'ny ohatra',
+      'composer.slash': "Palette ohatra amin'ny ohatra",
       'session.prev': 'Sesa teo aloha',
       'session.slot.1': 'Mifindra sesa vaovao 1',
       'session.slot.2': 'Mifindra sesa vaovao 2',
@@ -84,7 +84,7 @@ export const mg = defineLocale({
       'session.next': 'Fifindrana manaraka',
       'view.toggleSidebar': 'Toggle sidebar sessions',
       'view.toggleRightSidebar': 'Havaingy ny mpitady rakitra',
-      'view.toggleReview': 'Toggle pane review',
+      'view.toggleReview': 'Toggle pane review'
     },
     title: 'Fohy klavye',
     search: 'Mitafy shortcuts…',
@@ -97,47 +97,52 @@ export const mg = defineLocale({
       profiles: 'Profilo',
       session: 'Fifindrana',
       navigation: 'Fiarahabana',
-      view: 'Fanehoana',
+      view: 'Fanehoana'
     },
     subtitle: open => `Kliky shortcut hamerina azy · ${open} mamaky indray ity panel ity.`,
     rebind: 'Averina',
-    conflictWith: label => `Mifandraika koa amin'ny “${label}”`,
+    conflictWith: label => `Mifandraika koa amin'ny “${label}”`
   },
   boot: {
     errors: {
-      gatewayConnectionLost: 'Very diso amin\'ny gateway',
-      gatewaySignInRequired: 'Mila fidirana amin\'ny gateway',
+      gatewayConnectionLost: "Very diso amin'ny gateway",
+      gatewaySignInRequired: "Mila fidirana amin'ny gateway",
       ipcBridgeUnavailable: 'Tsy azo atao ny Desktop IPC bridge.',
       backgroundExited: 'Niala ny prosesis background OpenAmer.',
-      backgroundExitedDuringStartup: 'Niala ny prosesis background OpenAmer teo amin\'ny fanomboarana.',
+      backgroundExitedDuringStartup: "Niala ny prosesis background OpenAmer teo amin'ny fanomboarana.",
       backendStopped: 'Backend nandritra',
-      desktopBootFailed: 'Nanapaka ny fanomboarana Desktop',
+      desktopBootFailed: 'Nanapaka ny fanomboarana Desktop'
     },
     failure: {
       title: 'Tsy naha-ompty ny OpenAmer',
-      description: 'Tsy nandeha ny gateway ambany. Subay ny dingana fahafahana manaraka. Tsy misy eto izay hamafa ny tenanao na ny fepetra.',
-      remoteTitle: 'Mila fidirana amin\'ny gateway lavitra',
-      remoteDescription: 'Efa tapitra ny session gateway lavitrao. Midirina indray mba hifandraisana. Tsy misy eto izay hamafa ny tenanao na ny fepetra.',
+      description:
+        'Tsy nandeha ny gateway ambany. Subay ny dingana fahafahana manaraka. Tsy misy eto izay hamafa ny tenanao na ny fepetra.',
+      remoteTitle: "Mila fidirana amin'ny gateway lavitra",
+      remoteDescription:
+        'Efa tapitra ny session gateway lavitrao. Midirina indray mba hifandraisana. Tsy misy eto izay hamafa ny tenanao na ny fepetra.',
       retry: 'Subay indray',
       repairInstall: 'Fanamboarana fanatanterahana',
       useLocalGateway: 'Ampiasao ny gateway an-toerana',
       gatewaySettings: 'Fepetra gateway',
       back: 'Miverina',
       openLogs: 'Bukao ny logs',
-      repairHint: 'Ny fanamboarana dia manamarina ny fanatanterahana ary afaka mandraka minitra kely amin\'ny fitaovana vaovao.',
+      repairHint:
+        "Ny fanamboarana dia manamarina ny fanatanterahana ary afaka mandraka minitra kely amin'ny fitaovana vaovao.",
       signOutAndSignIn: 'Mivoaka & Midirana',
-      remoteFailureHint: 'Jereo ny URL gateway sy ny fidirana ao anaty fepetra gateway, na ovena ho amin\'ny gateway an-toerana.',
+      remoteFailureHint:
+        "Jereo ny URL gateway sy ny fidirana ao anaty fepetra gateway, na ovena ho amin'ny gateway an-toerana.",
       hideRecentLogs: 'Fenao ny logs vaovao',
       showRecentLogs: 'Asehoy ny logs vaovao',
       signedInTitle: 'Efa niditra',
-      signedInMessage: 'Mifandraisana indray amin\'ny gateway lavitra…',
+      signedInMessage: "Mifandraisana indray amin'ny gateway lavitra…",
       signInIncompleteTitle: 'Tsy vita ny fidirana',
       signInIncompleteMessage: 'Nifidy ny varavarankely fidirana aloha ny farany ny fanamarina.',
       signInFailed: 'Nanapaka ny fidirana',
-      signInToRemoteGateway: 'Miditra amin\'ny varavaram-be tany ivelany',
+      signInToRemoteGateway: "Miditra amin'ny varavaram-be tany ivelany",
       identityProvider: 'mpanome toerana tenanao',
-      remoteSignInHint: signInLabel => `Mivelatra amin'ny session browser remote voazona, dia mamaky ${signInLabel}. Ampiasao local gateway hifindra amin'ny backend voambolena.`,
-      signInWithProvider: provider => `Miditra amin'ny ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Mivelatra amin'ny session browser remote voazona, dia mamaky ${signInLabel}. Ampiasao local gateway hifindra amin'ny backend voambolena.`,
+      signInWithProvider: provider => `Miditra amin'ny ${provider}`
     },
     ready: 'OpenAmer Desktop dia voarindra',
     desktopBootFailedWithMessage: message => `Nanapaka ny fanomboarana Desktop: ${message}`,
@@ -146,8 +151,8 @@ export const mg = defineLocale({
       loadingSettings: 'Mampiditra parameter OpenAmer',
       loadingSessions: 'Mampiditra session farany',
       startingDesktopConnection: 'Manomboka fifandraisana desktop',
-      startingOpenAmerDesktop: 'Manomboka OpenAmer Desktop…',
-    },
+      startingOpenAmerDesktop: 'Manomboka OpenAmer Desktop…'
+    }
   },
   notifications: {
     region: 'Fampitandremana',
@@ -157,9 +162,10 @@ export const mg = defineLocale({
     dismiss: 'Aoka ny fampitandremana',
     details: 'Antsipiriany',
     copyDetail: 'Kopio antsipiriany',
-    copyDetailFailed: 'Tsy nahazo an\'ny fampitandremana antsipiriany',
+    copyDetailFailed: "Tsy nahazo an'ny fampitandremana antsipiriany",
     backendOutOfDateTitle: 'Backend tsy vaovao',
-    backendOutOfDateMessage: 'Ny OpenAmer backend-nao kely noho ity desktop build ity ka tsy mety hanao tsara. Mamerina mba hifanaraka.',
+    backendOutOfDateMessage:
+      'Ny OpenAmer backend-nao kely noho ity desktop build ity ka tsy mety hanao tsara. Mamerina mba hifanaraka.',
     installMethodUnsupportedTitle: 'Fomba fampidirana tsy suportena',
     updateOpenAmer: 'Mamerina OpenAmer',
     updateReadyTitle: 'Mamerina voatokana',
@@ -168,19 +174,20 @@ export const mg = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT mila ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs tsy nanome toa ny API key (401).',
       gatewayAuthFailed: 'Fampidirana gateway tsy nahomby — jereo ny API_SERVER_KEY.',
-      methodNotAllowed: 'Backend desktop tsy nanome toa ny fanontany (405 Method Not Allowed). Subay manomboka haingana OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend desktop tsy nanome toa ny fanontany (405 Method Not Allowed). Subay manomboka haingana OpenAmer Desktop.',
       microphonePermission: 'Tsy nanome toa ny fampiasana mikrofonona.',
       openaiRejectedApiKey: 'OpenAI tsy nanome toa ny API key.',
       openaiTtsNeedsKey: 'OpenAI TTS mila VOICE_TOOLS_OPENAI_KEY na OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI nanafina ny API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI nanafina ny API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Fikitra teny ho teny hampiasa voice mode.',
       couldNotStartSession: 'Tsy nahomby manomboka voice session',
       microphoneAccessDenied: 'Tsy nanome toa ny fampiasana mikrofonona.',
-      microphoneConstraintsUnsupported: 'Tsy ampy ny mikrofonona amin\'ity fitaovana ity.',
+      microphoneConstraintsUnsupported: "Tsy ampy ny mikrofonona amin'ity fitaovana ity.",
       microphoneFailed: 'Mikrofonona tsy nahomby',
-      microphoneInUse: 'Mikrofonona efa ampiasaina avy amin\'ny app hafa.',
+      microphoneInUse: "Mikrofonona efa ampiasaina avy amin'ny app hafa.",
       microphonePermissionDenied: 'Tsy nanome toa ny fampiasana mikrofonona.',
       microphoneStartFailed: 'Tsy nahomby manomboka fikarakarana mikrofonona.',
       microphoneUnsupported: 'Tsy ampy ity runtime ity ny fikarakarana mikrofonona.',
@@ -189,25 +196,25 @@ export const mg = defineLocale({
       playbackFailed: 'Fampisehoana feo tsy nahomby',
       recordingFailed: 'Fikarakarana feo tsy nahomby',
       transcriptionFailed: 'Fanovana feo ho teny tsy nahomby',
-      transcriptionUnavailable: 'Tsy azo atao ny famantarana feo amin\'izao fotoana izao.',
+      transcriptionUnavailable: "Tsy azo atao ny famantarana feo amin'izao fotoana izao.",
       tryRecordingAgain: 'Mandrosoa indray ny fanoratana.',
-      unavailable: 'Tsy misy feo',
+      unavailable: 'Tsy misy feo'
     },
     native: {
       approvalTitle: 'Mila valiny',
       approveAction: 'Valio',
       rejectAction: 'Havaly',
       inputTitle: 'Mila fanontanian-tànana',
-      inputBody: 'OpenAmer dia mandeha fanontaniana ho an\'ny valiny.',
+      inputBody: "OpenAmer dia mandeha fanontaniana ho an'ny valiny.",
       turnDoneTitle: 'OpenAmer vita',
       turnDoneBody: 'Vita ny valiny.',
       turnErrorTitle: 'Nandositra ny taranaka',
       backgroundDoneTitle: 'Vita ny asa ambany',
       backgroundFailedTitle: 'Nandositra ny asa ambany',
-      creditsTitle: 'Kredity',
+      creditsTitle: 'Kredity'
     },
     more: count => `${count} koa ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `Misy ${count} fanovana vaovao ${count === 1 ? '' : 's'} azo atao.`,
+    updateReadyMessage: count => `Misy ${count} fanovana vaovao ${count === 1 ? '' : 's'} azo atao.`
   },
   billingBlock: {
     titleOpenamer: 'Tsy misy kredity OpenAmer intsony',
@@ -215,15 +222,15 @@ export const mg = defineLocale({
     openBilling: 'Buky fandraisan-vola',
     addCredits: 'Ampio kredity',
     dismiss: 'Aoka',
-    titleProvider: provider => `Vita credits — ${provider}`,
+    titleProvider: provider => `Vita credits — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Fenoy ny tahiry an-kavaly',
     showSidebar: 'Asehoy ny sidebar',
     search: 'Mitafy',
     searchTitle: 'Mitafy sesiona, fitaovana, ary asa',
-    swapSidebarSides: 'Safidio ny tahin\'ny sidebar',
-    swapSidebarSidesTitle: 'Safidio ny tahin\'ny sesiona sy file browser',
+    swapSidebarSides: "Safidio ny tahin'ny sidebar",
+    swapSidebarSidesTitle: "Safidio ny tahin'ny sesiona sy file browser",
     hideRightSidebar: 'Afeno ny sidebar ankavanana',
     showRightSidebar: 'Asehoy ny sidebar ankavanana',
     muteHaptics: 'Mandy haptics',
@@ -232,16 +239,16 @@ export const mg = defineLocale({
     openStarmap: 'Bukà ny grafiky memoire',
     openKeybinds: 'Fohy klavye',
     layoutEditor: 'Mpamaky layout',
-    layoutEditorTitle: 'Mpamaky layout — ⌘-click resets the layout',
+    layoutEditorTitle: 'Mpamaky layout — ⌘-click resets the layout'
   },
   language: {
     label: 'Teny',
-    description: 'Mifidy ny teny ho an\'ny interface desktop.',
+    description: "Mifidy ny teny ho an'ny interface desktop.",
     saving: 'Maka teny…',
     saveError: 'Tsy nahomby ny fanavaozana teny',
     switchTo: 'Mifindra teny',
     searchPlaceholder: 'Mitafy teny…',
-    noResults: 'Tsy misy teny nahita',
+    noResults: 'Tsy misy teny nahita'
   },
   settings: {
     closeSettings: 'Fidiovana parameter',
@@ -266,65 +273,68 @@ export const mg = defineLocale({
       billing: 'Fandraisan-vola',
       notifications: 'Fahalalana',
       mcp: 'MCP',
-      plugins: 'Fanampiny',
+      plugins: 'Fanampiny'
     },
     plugins: {
-      empty: 'Tsy misy plugins desktop voaova eo amina\'izao fotoana izao.',
+      empty: "Tsy misy plugins desktop voaova eo amina'izao fotoana izao.",
       kinds: {
         bundled: 'voasamborina',
-        disk: 'ao amin\'ny diska',
-        runtime: 'fotoana fikirakirana',
+        disk: "ao amin'ny diska",
+        runtime: 'fotoana fikirakirana'
       },
       title: 'Plugins Desktop',
-      blurb: 'Fanampiny UI voarain\'ity applikasity — mifanohitra amin\'ny build, na afaka ho azy amin\'ny foldera desktop-plugins (misy izay OpenAmer manoratry). Ny fanapahana dia manala plugin velively na dia rehefa restart aza.',
+      blurb:
+        "Fanampiny UI voarain'ity applikasity — mifanohitra amin'ny build, na afaka ho azy amin'ny foldera desktop-plugins (misy izay OpenAmer manoratry). Ny fanapahana dia manala plugin velively na dia rehefa restart aza.",
       openFolder: 'Buka folderana plugins',
       rescan: 'Verina indray',
-      reveal: 'Asehoy amin\'ny mpandraharaha rakitra',
+      reveal: "Asehoy amin'ny mpandraharaha rakitra",
       enable: 'Manome hery',
       disable: 'Manala hery',
       failed: 'novadika',
-      count: n => `${n} voaova`,
+      count: n => `${n} voaova`
     },
     notifications: {
       title: 'Fampitandremana',
-      intro: 'Fampitandremana desktop voajanahary, tsy mitovy amin\'ny toasts ao amin\'ny application. Izy ireo dia ao amin\'ny fitaovana — ny fitaovana rehetra dia manana parameter tenany.',
+      intro:
+        "Fampitandremana desktop voajanahary, tsy mitovy amin'ny toasts ao amin'ny application. Izy ireo dia ao amin'ny fitaovana — ny fitaovana rehetra dia manana parameter tenany.",
       enableAll: 'Manohy ny fampitandremana',
       enableAllDesc: 'Switsy lehibe. Fafao izany mba tsy hiseho fampitandremana na inona na inona eo ambany.',
-      focusedHint: 'Ny fampitandremana fanavozana ihany no mitraika raha OpenAmer dia teo amin\'ny background.',
+      focusedHint: "Ny fampitandremana fanavozana ihany no mitraika raha OpenAmer dia teo amin'ny background.",
       kinds: {
         approval: {
           label: 'Mila fanamarinana',
-          description: 'Misy didy mandehana fanamarinana na fandienana anao.',
+          description: 'Misy didy mandehana fanamarinana na fandienana anao.'
         },
         input: {
           label: 'Mila fanomezana',
-          description: 'OpenAmer nianontany na mila tenimiafina na zava-miara-mianatra.',
+          description: 'OpenAmer nianontany na mila tenimiafina na zava-miara-mianatra.'
         },
         turnDone: {
           label: 'Valiny voaova',
-          description: 'Nanavoka isan\'andro raha OpenAmer teo amin\'ny background.',
+          description: "Nanavoka isan'andro raha OpenAmer teo amin'ny background."
         },
         turnError: {
-          label: 'Nadino ny isan\'andro',
-          description: 'Nanavoka ny isan\'andro amin\'ny diso.',
+          label: "Nadino ny isan'andro",
+          description: "Nanavoka ny isan'andro amin'ny diso."
         },
         backgroundDone: {
           label: 'Asa background vita',
-          description: 'Didy terminal background vita.',
+          description: 'Didy terminal background vita.'
         },
         credits: {
           label: 'Fampitandremana kredity',
-          description: 'Fifidiana kredity efa janona na voavery.',
-        },
+          description: 'Fifidiana kredity efa janona na voavery.'
+        }
       },
       test: 'Mampidirina fanazavana fitsapana',
       testTitle: 'OpenAmer',
       testBody: 'Miasa ny fanazavana.',
-      testSent: 'Fitsapana voatanao. Raha tsy misy mipetraka, jerena ny azonao amin\'ny OS fanazavana sy Focus/Do Not Disturb.',
+      testSent:
+        "Fitsapana voatanao. Raha tsy misy mipetraka, jerena ny azonao amin'ny OS fanazavana sy Focus/Do Not Disturb.",
       testUnsupported: 'Tsy mampitaina fanazavana native ity sistem ity.',
       completionSoundTitle: 'Feo fanavotana',
-      completionSoundDesc: 'Mijery rehefa vita ny taran\'ny mpandraharaha. Hitady preset ary jereo eto.',
-      completionSoundPreview: 'Jereo aloha',
+      completionSoundDesc: "Mijery rehefa vita ny taran'ny mpandraharaha. Hitady preset ary jereo eto.",
+      completionSoundPreview: 'Jereo aloha'
     },
     searchPlaceholder: {
       keys: 'Mitafy kilalao API...',
@@ -332,41 +342,42 @@ export const mg = defineLocale({
       sessions: 'Mitafy sesiona voasoratra...',
       about: 'Momba ny OpenAmer Desktop',
       config: 'Mitsidika parameter...',
-      gateway: 'Fifandraisana Gateway...',
+      gateway: 'Fifandraisana Gateway...'
     },
     modeOptions: {
       light: {
         label: 'Mazava',
-        description: 'Tafiditra mazava',
+        description: 'Tafiditra mazava'
       },
       dark: {
         label: 'Mainty',
-        description: 'Toerana asa tsy mangatsiaka',
+        description: 'Toerana asa tsy mangatsiaka'
       },
       system: {
         label: 'Systema',
-        description: 'Mitondra toe-javatra OS',
-      },
+        description: 'Mitondra toe-javatra OS'
+      }
     },
     appearance: {
       title: 'Toe-javatra',
-      intro: 'Ito preference fifandraisana desktop ihany. Mode mitondra mazava; theme mitondra palette accent sy style tafiditra chat.',
+      intro:
+        'Ito preference fifandraisana desktop ihany. Mode mitondra mazava; theme mitondra palette accent sy style tafiditra chat.',
       colorMode: 'Mode Loko',
       colorModeDesc: 'Safidio mode voafetra na aoka OpenAmer mitondra parameter systema anao.',
       toolViewTitle: 'Fampisehoana Antsipiriany Fitaovana',
       toolViewDesc: 'Produity manafy payload fitaovana raw; Technical mampiseho input/output dia.',
       uiScaleTitle: 'Kali UI',
       translucencyTitle: 'Fahazavana Varavarankely',
-      translucencyDesc: 'Jereo desktop anao amin\'ny varavarankely rehetra. macOS sy Windows ihany.',
+      translucencyDesc: "Jereo desktop anao amin'ny varavarankely rehetra. macOS sy Windows ihany.",
       backdropTitle: 'Tafiditra Chat',
       backdropDesc: 'Sary statue maina teo ambany conversation.',
       embedsTitle: 'Embeds Mivoaka',
-      embedsDesc: 'Previews avy amin\'ny toerana telo. Ask: placeholder; Always: auto; Off: links fotsiny.',
+      embedsDesc: "Previews avy amin'ny toerana telo. Ask: placeholder; Always: auto; Off: links fotsiny.",
       embedsAsk: 'Manao',
       embedsAlways: 'Foana',
       embedsOff: 'Midy',
       product: 'Vokatra',
-      productDesc: 'Asa fitaovana mifankatia olona amin\'ny faritra fohy.',
+      productDesc: "Asa fitaovana mifankatia olona amin'ny faritra fohy.",
       technical: 'Teknika',
       technicalDesc: 'Ampio args/valiny fitaovana tsy tratra sy detalina ambany.',
       themeTitle: 'Endrika',
@@ -381,18 +392,20 @@ export const mg = defineLocale({
       importedBadge: 'Nampidirina',
       pet: {
         title: 'Biby fiainana',
-        intro: 'Ampio ny petdex mascot animée izay mandeha ibabony ny applikasa ary manamarina amin\'izay ataon\'ny OpenAmer — mitsidika rehefa tools mitazona, mifaly rehefa nahomby, mangina rehefa diso.',
-        restartHint: 'Pets mila fanombohana haingana — ny applikasa efa nandeha talohan\'ny namoronana ity fonksion ity. Fidia ary mbola buka OpenAmer, dia avy eto indray.',
+        intro:
+          "Ampio ny petdex mascot animée izay mandeha ibabony ny applikasa ary manamarina amin'izay ataon'ny OpenAmer — mitsidika rehefa tools mitazona, mifaly rehefa nahomby, mangina rehefa diso.",
+        restartHint:
+          "Pets mila fanombohana haingana — ny applikasa efa nandeha talohan'ny namoronana ity fonksion ity. Fidia ary mbola buka OpenAmer, dia avy eto indray.",
         on: 'Ena',
         off: 'Fafy',
         scaleTitle: 'Laha',
-        scaleDesc: 'Hamboarina ny laha mascot mandeha. Mety amin\'ny foibeny rehetra.',
+        scaleDesc: "Hamboarina ny laha mascot mandeha. Mety amin'ny foibeny rehetra.",
         roamTitle: 'Mandeha',
-        roamDesc: 'Aoka ny pet mandeha amin\'ny varavarankely ho an\'ny tenany rehefa tsy misy asa.',
+        roamDesc: "Aoka ny pet mandeha amin'ny varavarankely ho an'ny tenany rehefa tsy misy asa.",
         chooseTitle: 'Hitady pet',
         chooseDesc: 'Ny fidirana dia manampy azy (raha ilaina) ary manana azy ho active.',
         searchPlaceholder: 'Mitsidika pets…',
-        unreachable: "Tsy naharitra ny petdex gallery. Jerena ny fifandraisanao ary mbola buka ity pejy ity.",
+        unreachable: 'Tsy naharitra ny petdex gallery. Jerena ny fifandraisanao ary mbola buka ity pejy ity.',
         noMatch: query => `Tsy misy pets mitovy "${query}".`,
         installedTag: 'voaidina',
         generatedTag: 'Voavoka',
@@ -401,98 +414,103 @@ export const mg = defineLocale({
         uninstall: name => `Fafao ${name}`,
         delete: name => `Fafao ${name}`,
         deleteTitle: name => `Fafao ${name}?`,
-        deleteBody: "Ito mandrafao mandrakizay ny kiaka — tsy azo atao indray ny fanamboarana.",
+        deleteBody: 'Ito mandrafao mandrakizay ny kiaka — tsy azo atao indray ny fanamboarana.',
         deleteConfirm: 'Fafao',
         rename: name => `Aloha anaran'ny ${name}`,
-        renameTitle: 'Aloha anaran\'ny kiaka',
-        renamePlaceholder: 'Ampidiro anaran\'ny kiakao',
+        renameTitle: "Aloha anaran'ny kiaka",
+        renamePlaceholder: "Ampidiro anaran'ny kiakao",
         renameSave: 'Tahiry',
         exportPet: name => `Entina ${name}`,
         adoptFailed: slug => `Tsy nisy fahombiazana mampiasa ${slug}`,
         uninstallFailed: slug => `Tsy nisy fahombiazana hamafao ${slug}`,
         renameFailed: slug => `Tsy nisy fahombiazana hanova anaran'ny ${slug}`,
         exportFailed: slug => `Tsy nisy fahombiazana hentina ${slug}`,
-        noneAvailable: 'Tsy misy kiaka azo ampiasaina ho famoronana amin\'izao fotoana izao.',
+        noneAvailable: "Tsy misy kiaka azo ampiasaina ho famoronana amin'izao fotoana izao.",
         turnOnFailed: 'Tsy nisy fahombiazana handray ny kiaka.',
-        turnOffFailed: 'Tsy nisy fahombiazana hanidy ny kiaka.',
+        turnOffFailed: 'Tsy nisy fahombiazana hanidy ny kiaka.'
       },
-      uiScaleDesc: (percent: number) => `Mampitombo teny sy valin-tena amin'ny applikasa rehetra. Cmd/Ctrl miaraka amin'ny +, - sy 0 koa mety. Taloha: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Mampitombo teny sy valin-tena amin'ny applikasa rehetra. Cmd/Ctrl miaraka amin'ny +, - sy 0 koa mety. Taloha: ${percent}%.`,
       embedsReset: (count: number) => `Verina ${count} azonao ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Voky ho an'ny ${profile} profile — tsirairay profile maniry ny endrikany.`,
-      installed: name => `Voaidin'ny “${name}”.`,
+      installed: name => `Voaidin'ny “${name}”.`
     },
     config: {
       none: 'Tsy misy',
       noneParen: '(tsy misy)',
       builtinOnly: 'Voaova fotsiny',
       notSet: 'Tsy voafaritra',
-      commaSeparated: 'valiny voasarana amin\'ny virgule',
+      commaSeparated: "valiny voasarana amin'ny virgule",
       loading: 'Mampiditra fanitsiana OpenAmer...',
       emptyTitle: 'Tsy misy ho itsaritsara',
-      emptyDesc: 'Tsy misy fanitsiana azo ovaina amin\'ity sekoly ity.',
+      emptyDesc: "Tsy misy fanitsiana azo ovaina amin'ity sekoly ity.",
       failedLoad: 'Nanam-bava ny fanitsiana',
       autosaveFailed: 'Nanam-bava ny fanatanterahana automatik',
       imported: 'Fanitsiana voaingitra',
       invalidJson: 'JSON fanitsiana tsy mety',
       keepAwakeTitle: 'Aza mandry ny orinasa',
-      keepAwakeDesc: 'Aza avela mandry lavitra ny orinasa na mandry alina mba hitafy ny asa. Afaka mangina ny sary.',
+      keepAwakeDesc: 'Aza avela mandry lavitra ny orinasa na mandry alina mba hitafy ny asa. Afaka mangina ny sary.'
     },
     credentials: {
       pasteKey: 'Sokafy kilidy',
-      optional: 'Tsy voarain\'ny lalàna',
+      optional: "Tsy voarain'ny lalàna",
       enterValueFirst: 'Ampidiro valiny voalohany.',
       couldNotSave: 'Tsy nahazo ny fanaovana fiarovana.',
       remove: 'Esory',
       getKey: 'Mahazo kilidy',
       pasteLabelKey: label => `Ampidiro ny lakile ${label}`,
-      saving: 'Mitahiry',
+      saving: 'Mitahiry'
     },
     gateway: {
       modeTitle: 'Fomba fifandraisana',
       localTitle: 'Varavarankely any an-tranokala',
-      localDesc: 'Manomboka backend OpenAmer manokana amin\'ny localhost. Io no default ary mety hiasa tsy misy internet.',
+      localDesc:
+        "Manomboka backend OpenAmer manokana amin'ny localhost. Io no default ary mety hiasa tsy misy internet.",
       inheritTitle: 'Mampiasa varavarankely default',
-      inheritDesc: 'Alaivo ny override amin\'ity profil ity ary mampiasa ny fifandraisana default.',
+      inheritDesc: "Alaivo ny override amin'ity profil ity ary mampiasa ny fifandraisana default.",
       remoteTitle: 'Varavarankely lavitra',
-      remoteDesc: 'Fandraisy ity shell desktop ity amin\'ny backend OpenAmer lavitra.',
-      remoteAuthHint: 'Ny varavarankely hosted dia mampiasa OAuth na anarana sy tenimiafina; ireo self-hosted dia afaka mampiasa session token.',
-      cloudDesc: 'Maka antoka indray iray amin\'ny OpenAmer Cloud ary mifidy amin\'ny agents ao amin\'ny compte anao — tsy misy URL ho copier.',
-      cloudSignIn: 'Maka antoka amin\'ny OpenAmer Cloud',
-      cloudSignedIn: 'Efa naka antoka amin\'ny OpenAmer Cloud',
-      cloudNeedsSignIn: 'Maka antoka amin\'ny OpenAmer Cloud hahita ny agents ao amin\'ny compte anao.',
-      cloudSignedInDesc: 'Efa naka antoka ianao. Mifidy agent atsambatra; ny session dia avy hatramin\'ny aoriana.',
+      remoteDesc: "Fandraisy ity shell desktop ity amin'ny backend OpenAmer lavitra.",
+      remoteAuthHint:
+        'Ny varavarankely hosted dia mampiasa OAuth na anarana sy tenimiafina; ireo self-hosted dia afaka mampiasa session token.',
+      cloudDesc:
+        "Maka antoka indray iray amin'ny OpenAmer Cloud ary mifidy amin'ny agents ao amin'ny compte anao — tsy misy URL ho copier.",
+      cloudSignIn: "Maka antoka amin'ny OpenAmer Cloud",
+      cloudSignedIn: "Efa naka antoka amin'ny OpenAmer Cloud",
+      cloudNeedsSignIn: "Maka antoka amin'ny OpenAmer Cloud hahita ny agents ao amin'ny compte anao.",
+      cloudSignedInDesc: "Efa naka antoka ianao. Mifidy agent atsambatra; ny session dia avy hatramin'ny aoriana.",
       cloudAgentsTitle: 'Ny agents anao',
       cloudOrgPickerTitle: 'Mifidy organisation',
       cloudOrgSelect: 'Mifidy',
       cloudOrgChange: 'Ova organisation',
       cloudLoadingAgents: 'Mampiditra ny agents anao…',
       cloudNoAgents: {
-        before: 'Tsy misy mpandraharaha voavela amin\'ity kaonty ity. Mamorona amin\'ny',
+        before: "Tsy misy mpandraharaha voavela amin'ity kaonty ity. Mamorona amin'ny",
         after: ', dia avao indray.',
-        linkText: 'Portal OpenAmer',
+        linkText: 'Portal OpenAmer'
       },
       cloudRefresh: 'Avao indray',
       cloudConnect: 'Mifandraisana',
       cloudConnecting: 'Mifandraisana…',
       cloudDiscoverFailed: 'Tsy nahazo ny mpandraharaha OpenAmer Cloud anao',
-      cloudConnectFailed: 'Tsy nahafandraisana amin\'ity mpandraharaha ity',
-      cloudSignInFailed: 'Nanapaka ny fidirana amin\'ny OpenAmer Cloud',
-      cloudSignedOutTitle: 'Niala amin\'ny OpenAmer Cloud',
-      cloudSignedOutMessage: 'Novokin\'ny sesiona OpenAmer Cloud.',
+      cloudConnectFailed: "Tsy nahafandraisana amin'ity mpandraharaha ity",
+      cloudSignInFailed: "Nanapaka ny fidirana amin'ny OpenAmer Cloud",
+      cloudSignedOutTitle: "Niala amin'ny OpenAmer Cloud",
+      cloudSignedOutMessage: "Novokin'ny sesiona OpenAmer Cloud.",
       cloudConnectedTitle: 'Nifandraisana',
       cloudConnectedPill: 'Nifandraisana',
       cloudAgentProvisioning: 'Famoronana…',
       remoteUrlTitle: 'URL lavitra',
-      remoteUrlDesc: 'URL fototra ho an\'ny backend dashboard lavitra. Metraka ny prefix lalana, ohatra /openamer.',
-      probing: 'Miverina ny fomba fifidianana an\'ity varavarankely ity…',
-      probeError: 'Tsy nahatratra ity varavarankely ity akory. Jerena ny URL — ny fomba fifidianana dia ho hitany rehefa manamarina.',
+      remoteUrlDesc: "URL fototra ho an'ny backend dashboard lavitra. Metraka ny prefix lalana, ohatra /openamer.",
+      probing: "Miverina ny fomba fifidianana an'ity varavarankely ity…",
+      probeError:
+        'Tsy nahatratra ity varavarankely ity akory. Jerena ny URL — ny fomba fifidianana dia ho hitany rehefa manamarina.',
       signedIn: 'Niditra',
       signIn: 'Miditra',
       enterUrlFirst: 'Andramo URL lavitra voalohany.',
       restartingTitle: 'Mamerina fifandraisana gateway',
       savedTitle: 'Voaazona ny fitsetrerana gateway',
-      restartingMessage: 'Hifandraisana indray amin\'ny fitsetrerana voaazona ny OpenAmer Desktop — misokatra ny shell.',
-      savedMessage: 'Voaazona ho an\'ny fanombohana manaraka.',
+      restartingMessage: "Hifandraisana indray amin'ny fitsetrerana voaazona ny OpenAmer Desktop — misokatra ny shell.",
+      savedMessage: "Voaazona ho an'ny fanombohana manaraka.",
       reachableTitle: 'Azona atrehina ny gateway lavitra',
       signedOutTitle: 'Nisy fanavozana',
       signedOutMessage: 'Novokinina ny session gateway lavitra.',
@@ -500,34 +518,39 @@ export const mg = defineLocale({
       signInFailed: 'Naninona ny fidirana',
       signOutFailed: 'Naninona ny fanavozana',
       testFailed: 'Naninona ny fanadihadiana gateway lavitra',
-      applyFailed: 'Tsy nisy fahombiazana amin\'ny fametrahana fitsetrerana gateway',
-      saveFailed: 'Tsy nisy fahombiazana amin\'ny fanaovana fitsetrerana gateway',
-      sshTitle: 'Mifandraisana amin\'ny SSH',
-      sshDesc: 'Voalohany ny OpenAmer amin\'ny lavitra amin\'ny SSH ary tondroina amin\'ity app ity — tsy misy ho an\'ny fanombohana na famelahan\'ny tenanao. Mila fahazoana SSH key-based mety amin\'ny host.',
+      applyFailed: "Tsy nisy fahombiazana amin'ny fametrahana fitsetrerana gateway",
+      saveFailed: "Tsy nisy fahombiazana amin'ny fanaovana fitsetrerana gateway",
+      sshTitle: "Mifandraisana amin'ny SSH",
+      sshDesc:
+        "Voalohany ny OpenAmer amin'ny lavitra amin'ny SSH ary tondroina amin'ity app ity — tsy misy ho an'ny fanombohana na famelahan'ny tenanao. Mila fahazoana SSH key-based mety amin'ny host.",
       sshTrustHint: 'Ny host key voalohany napetraka dia mety ary voatokana; ny fanovana ho avy dia tsy mety.',
-      sshHostDesc: 'user@host, na alias Host avy amin\'ny ~/.ssh/config.',
+      sshHostDesc: "user@host, na alias Host avy amin'ny ~/.ssh/config.",
       sshHostPick: 'Saro host…',
       signOut: 'Mivoaka',
       authTitle: 'Fampitandremana',
-      authSignedInPassword: 'Ity varavaram-bidinana ity dia mampiasa anaran\'ankizy sy teny mihitsy. Efa nisy anao; ny sesy dia avy manova azy.',
+      authSignedInPassword:
+        "Ity varavaram-bidinana ity dia mampiasa anaran'ankizy sy teny mihitsy. Efa nisy anao; ny sesy dia avy manova azy.",
       authSignedInOauth: 'Ity varavaram-bidinana ity dia mampiasa OAuth. Efa nisy anao; ny sesy dia avy manova azy.',
-      authNeedsPassword: 'Ity varavaram-bidinana ity dia mampiasa anaran\'ankizy sy teny mihitsy. Miditra hampanekena ity applikasy desktop ity.',
-      tokenTitle: 'Token\'ny sesy',
-      tokenDesc: 'Token\'ny sesy dashboard hampiasaina amin\'ny fidiovana REST sy WebSocket. Aza soraty raha te-hitana ny token voarainina.',
+      authNeedsPassword:
+        "Ity varavaram-bidinana ity dia mampiasa anaran'ankizy sy teny mihitsy. Miditra hampanekena ity applikasy desktop ity.",
+      tokenTitle: "Token'ny sesy",
+      tokenDesc:
+        "Token'ny sesy dashboard hampiasaina amin'ny fidiovana REST sy WebSocket. Aza soraty raha te-hitana ny token voarainina.",
       savedToken: 'voarainina',
-      pasteSessionToken: 'Sokafy token\'ny sesy',
+      pasteSessionToken: "Sokafy token'ny sesy",
       testRemote: 'Fanorobe farany',
-      saveForRestart: 'Tefa ho an\'ny fanomboarana manaraka',
+      saveForRestart: "Tefa ho an'ny fanomboarana manaraka",
       saveAndReconnect: 'Tefa ary midina indray',
       diagnostics: 'Fanadihadiana',
-      diagnosticsDesc: 'Hambara desktop.log amin\'ny mpandrindra rakitra — mahasoa raha tsy mahomby ny varavaram-bidinana.',
+      diagnosticsDesc:
+        "Hambara desktop.log amin'ny mpandrindra rakitra — mahasoa raha tsy mahomby ny varavaram-bidinana.",
       openLogs: 'Bukana ny logs',
       incompleteTitle: 'Varavaram-bidinana farany tsy vita',
-      incompleteSignIn: 'Ampidiro URL farany ary miditra aloha ny handroso any amin\'ny farany.',
-      incompleteToken: 'Ampidiro URL farany ary token\'ny sesy aloha ny handroso any amin\'ny farany.',
+      incompleteSignIn: "Ampidiro URL farany ary miditra aloha ny handroso any amin'ny farany.",
+      incompleteToken: "Ampidiro URL farany ary token'ny sesy aloha ny handroso any amin'ny farany.",
       incompleteSignInTest: 'Ampidiro URL farany ary miditra aloha ny fanorobe.',
-      incompleteTokenTest: 'Ampidiro URL farany ary token\'ny sesy aloha ny fanorobe.',
-      sshHostPickDesc: 'Ala-host avy amin\'ny ~/.ssh/config, na Custom hampiditra.',
+      incompleteTokenTest: "Ampidiro URL farany ary token'ny sesy aloha ny fanorobe.",
+      sshHostPickDesc: "Ala-host avy amin'ny ~/.ssh/config, na Custom hampiditra.",
       sshHostCustom: 'Custom (ampiditra manualy)…',
       sshUserTitle: 'Mpiasa',
       sshUserDesc: 'Tsy misy = ~/.ssh/config na mpiasa ankehitriny.',
@@ -536,45 +559,54 @@ export const mg = defineLocale({
       sshKeyTitle: 'Rakitra fanamarinana',
       sshKeyDesc: 'Lalana kilidy manokana. Tsy misy = ssh-agent na ~/.ssh/config.',
       sshOpenAmerPathTitle: 'Lalana OpenAmer (tsy ilaina)',
-      sshOpenAmerPathDesc: 'Lalana complete ho an\'ny binary openamer ivelany. Tsy misy = auto-detect.',
+      sshOpenAmerPathDesc: "Lalana complete ho an'ny binary openamer ivelany. Tsy misy = auto-detect.",
       sshTestConnection: 'Fanorabe SSH',
       sshConnect: 'Mifandray',
-      sshButtonsHint: 'Ny fanatanjahantena dia mety ho azy amin\'ny fanomboarana manaraka. Mifandray indray amin\'ny ankehitriny.',
+      sshButtonsHint:
+        "Ny fanatanjahantena dia mety ho azy amin'ny fanomboarana manaraka. Mifandray indray amin'ny ankehitriny.",
       sshIncompleteHost: 'Ampidiro host SSH aloha bago mifandray.',
-      sshErrUnreachable: 'Tsy naharitra tamin\'ity host ity amin\'ny SSH. Jerena ny host, port, sy network ianao.',
-      sshErrAuth: 'Nanapaka ny fanamarinana SSH. Ampidiro ny kilidy ao amin\'ny ssh-agent (ssh-add) na atao IdentityFile ao amin\'ny ~/.ssh/config — OpenAmer mitovy ssh non-interactively.',
-      sshErrHostKey: 'Ny kilidy host efa NANOVA tamin\'ny farany nifandray ianao. Verifia fa izany no hita, ary ataovy `ssh-keygen -R <host>` ary mifandray indray.',
-      sshErrNotInstalled: 'OpenAmer tsy voarakitra amin\'ny remote host. Arakitra azy eto (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) na atao ny lalana OpenAmer.',
-      sshErrPlatform: 'Platforme remote tsy suportena. Ny SSH mode OpenAmer Desktop dia manampy ny remote hosts Linux, macOS, sy Windows.',
+      sshErrUnreachable: "Tsy naharitra tamin'ity host ity amin'ny SSH. Jerena ny host, port, sy network ianao.",
+      sshErrAuth:
+        "Nanapaka ny fanamarinana SSH. Ampidiro ny kilidy ao amin'ny ssh-agent (ssh-add) na atao IdentityFile ao amin'ny ~/.ssh/config — OpenAmer mitovy ssh non-interactively.",
+      sshErrHostKey:
+        "Ny kilidy host efa NANOVA tamin'ny farany nifandray ianao. Verifia fa izany no hita, ary ataovy `ssh-keygen -R <host>` ary mifandray indray.",
+      sshErrNotInstalled:
+        "OpenAmer tsy voarakitra amin'ny remote host. Arakitra azy eto (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) na atao ny lalana OpenAmer.",
+      sshErrPlatform:
+        'Platforme remote tsy suportena. Ny SSH mode OpenAmer Desktop dia manampy ny remote hosts Linux, macOS, sy Windows.',
       sshErrTimeout: 'Nahita timeout ny fifandraisana SSH. Azo atao tsy afaka miditra ny host na matorina.',
-      sshErrUpdateRequired: 'Mamerina OpenAmer amin\'ny remote host aloha saky hifandraisana amin\'ny Desktop SSH.',
+      sshErrUpdateRequired: "Mamerina OpenAmer amin'ny remote host aloha saky hifandraisana amin'ny Desktop SSH.",
       sshErrUnknown: 'Nanapaka ny fifandraisana SSH.',
       loading: 'Mampiditra ny firafitry ny gateway...',
       unavailableTitle: 'Tsy hita ny firafitry ny gateway',
-      unavailableDesc: 'Ny tetezana IPC an\'ny desktop dia tsy mampiseho ny firafitry ny gateway.',
+      unavailableDesc: "Ny tetezana IPC an'ny desktop dia tsy mampiseho ny firafitry ny gateway.",
       title: 'Fifandraisana Gateway',
       envOverride: 'fanovana env',
-      intro: 'Ny OpenAmer Desktop dia manomboka ny gateway lokaliny manokana amin\'ny ankapobeny. Mampiasà gateway lavitra rehefa tianao hifehy backend OpenAmer efa mandeha amin\'ny milina hafa na ao ambadiky ny proxy itokisana ity app ity. Mifidiana profile eto ambany mba hanomezana azy host lavitra manokana.',
-      appliesTo: 'Mampihatra amin\'ny',
+      intro:
+        "Ny OpenAmer Desktop dia manomboka ny gateway lokaliny manokana amin'ny ankapobeny. Mampiasà gateway lavitra rehefa tianao hifehy backend OpenAmer efa mandeha amin'ny milina hafa na ao ambadiky ny proxy itokisana ity app ity. Mifidiana profile eto ambany mba hanomezana azy host lavitra manokana.",
+      appliesTo: "Mampihatra amin'ny",
       allProfiles: 'Profile rehetra',
-      defaultConnection: 'Fifandraisana default ho an\'ny profile rehetra izay tsy manana fanovana manokana.',
-      profileConnection: profile => `Fifandraisana ampiasaina ihany rehefa ny “${profile}” no profile mavitrika. Fidio ny 'Mampiasa gateway default' mba hanesorana ny fanovany.`,
-      envOverrideTitle: 'Ny variable an\'ny tontolo (environment variables) no mifehy ity session desktop ity.',
-      envOverrideDesc: 'Esory ny OPENAMER_DESKTOP_REMOTE_URL sy ny OPENAMER_DESKTOP_REMOTE_TOKEN mba hampiasana ny firafitra voatahiry eto ambany.',
+      defaultConnection: "Fifandraisana default ho an'ny profile rehetra izay tsy manana fanovana manokana.",
+      profileConnection: profile =>
+        `Fifandraisana ampiasaina ihany rehefa ny “${profile}” no profile mavitrika. Fidio ny 'Mampiasa gateway default' mba hanesorana ny fanovany.`,
+      envOverrideTitle: "Ny variable an'ny tontolo (environment variables) no mifehy ity session desktop ity.",
+      envOverrideDesc:
+        'Esory ny OPENAMER_DESKTOP_REMOTE_URL sy ny OPENAMER_DESKTOP_REMOTE_TOKEN mba hampiasana ny firafitra voatahiry eto ambany.',
       cloudTitle: 'OpenAmer an-drahona',
       cloudSignInTitle: 'OpenAmer an-drahona',
       cloudOrgRole: role => `Andraikitra: ${role}`,
       cloudConnectedTo: name => `Mifandray amin'ny ${name}.`,
       cloudStatusLabel: status => `Sata: ${status}`,
       signInWith: provider => `Midira amin'ny alalan'ny ${provider}`,
-      authNeedsOauth: provider => `Ity gateway ity dia mampiasa OAuth. Midira amin'ny alalan'ny ${provider} mba hanomezan-dalana ity app desktop ity.`,
+      authNeedsOauth: provider =>
+        `Ity gateway ity dia mampiasa OAuth. Midira amin'ny alalan'ny ${provider} mba hanomezan-dalana ity app desktop ity.`,
       existingToken: value => `Token efa misy ${value}`,
       connectedTo: (baseUrl, version) => `Mifandray amin'ny ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Mpampiantrano',
       sshHostPickTitle: 'Mpampiantrano',
       sshPortTitle: 'Seranana',
       sshOpenAmerPathPlaceholder: 'famantarana ho azy',
-      sshReachable: (host, platform) => `Azo idirana: ${host} (${platform}) — hita ny OpenAmer`,
+      sshReachable: (host, platform) => `Azo idirana: ${host} (${platform}) — hita ny OpenAmer`
     },
     mcp: {
       reloadFailed: 'MCP tsy nahomby miverina',
@@ -599,7 +631,7 @@ export const mg = defineLocale({
       loading: 'Mampiditra MCP servers...',
       failedLoad: 'Tsy nahazo ny MCP config',
       nameRequiredTitle: 'Anarana mila',
-      nameRequiredMessage: 'Omeo config key amin\'ity MCP server ity.',
+      nameRequiredMessage: "Omeo config key amin'ity MCP server ity.",
       objectRequired: 'Ilaina hoe JSON object ny server config',
       invalidJson: 'MCP JSON tsy mety',
       saveFailed: 'Nanapaka ny fanatanjana',
@@ -607,7 +639,7 @@ export const mg = defineLocale({
       gatewayUnavailableTitle: 'Gateway tsy azo atao',
       gatewayUnavailableMessage: 'Mifandraisana indray ny gateway aloha saky handraisana indray ny MCP.',
       reloadedTitle: 'MCP tools voaraisina indray',
-      reloadedMessage: 'Ny tool schemas vaovao dia ampiasaina amin\'ny turns vaovao.',
+      reloadedMessage: "Ny tool schemas vaovao dia ampiasaina amin'ny turns vaovao.",
       catalogEmpty: 'Tsy misy rakitra kataloga.',
       catalogInstalled: 'Voatahiry',
       catalogEnabled: 'Voafetra',
@@ -636,19 +668,20 @@ export const mg = defineLocale({
       catalogInstallStarted: name => `Mametraka ${name}... mihatra amin'ny session vaovao rehefa vita.`,
       catalogInstallFailed: name => `Tsy nahomby ny fametrahana ny ${name}`,
       catalogEnvPrompt: name => `Mila angona fanamarinana ny ${name}`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} navitrika`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} navitrika`,
       authenticatedMessage: (server, count) => `${server}: fitaovana ${count}`,
       enableTool: tool => `Ampidiro ny ${tool}`,
-      disableTool: tool => `Atsaharo ny ${tool}`,
+      disableTool: tool => `Atsaharo ny ${tool}`
     },
     keys: {
       loading: 'Mampiditra API keys sy credentials...',
       failedLoad: 'Tsy nahazo ny API keys',
-      empty: 'Tsy misy voarakitra amin\'ity kategori ity hatramin\'izao.',
+      empty: "Tsy misy voarakitra amin'ity kategori ity hatramin'izao."
     },
     model: {
       loading: 'Mampiditra fanitsiana model...',
-      appliesDesc: 'Ampiasaina session vaovao. Ampiasa model picker ho an\'ny chat activa.',
+      appliesDesc: "Ampiasaina session vaovao. Ampiasa model picker ho an'ny chat activa.",
       provider: 'Mpanome',
       applying: 'Mampiasa...',
       defaultsLabel: 'Fotsiny',
@@ -657,113 +690,119 @@ export const mg = defineLocale({
       defaultsFailed: 'Tsy nahazo ny fotsiny model',
       auxiliaryTitle: 'Model manampy',
       resetAllToMain: 'Verina ny rehetra ho main',
-      auxiliaryDesc: 'Ny asa manampy mitombina amin\'ny model main. Ampidiro model manokana hampanaovana.',
-      setToMain: 'Atoho amin\'ny main',
+      auxiliaryDesc: "Ny asa manampy mitombina amin'ny model main. Ampidiro model manokana hampanaovana.",
+      setToMain: "Atoho amin'ny main",
       change: 'Ova',
       autoUseMain: 'auto · mampiasa model main',
       providerDefault: '(fotsiny mpamolavola)',
       fallbackAdd: 'Ampidiro fallback',
       fallbackEmpty: 'Tsy misy model fallback — model fotsiny no ampiasaina raha tsy misy fahadisoana.',
-      notInCatalog: 'tsy ao amin\'ny lisitry model mpamolavola — mety hiditra amin\'ny backup.',
+      notInCatalog: "tsy ao amin'ny lisitry model mpamolavola — mety hiditra amin'ny backup.",
       tasks: {
         vision: {
           hint: 'Fanadihadiana sary',
-          label: 'Fahitana',
+          label: 'Fahitana'
         },
         web_extract: {
           label: 'Famakiana Web',
-          hint: 'Fanofanana pejy',
+          hint: 'Fanofanana pejy'
         },
         compression: {
           label: 'Fifidianana',
-          hint: 'Fifidianana kontekisity',
+          hint: 'Fifidianana kontekisity'
         },
         skills_hub: {
-          label: 'Fivondronan\'ny haikanto',
-          hint: 'Fikarohana haikanto',
+          label: "Fivondronan'ny haikanto",
+          hint: 'Fikarohana haikanto'
         },
         approval: {
           label: 'Fanamarinana',
-          hint: 'Fanamarinana automatiky mahery',
+          hint: 'Fanamarinana automatiky mahery'
         },
         mcp: {
           hint: 'Fandevenana fitaovana MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Fanamboarana lohateny',
-          hint: 'Lohatenin\'ny sesy',
+          hint: "Lohatenin'ny sesy"
         },
         curator: {
           label: 'Mpandraharaha',
-          hint: 'Fanehoana fampiasana haikanto',
-        },
+          hint: 'Fanehoana fampiasana haikanto'
+        }
       },
-      model: 'Modely',
+      model: 'Modely'
     },
     providers: {
       connectAccount: 'Manambatra kaonty',
-      haveApiKey: 'Manana API key va amin\'ny fomba fahafahana?',
-      intro: 'Miditra amin\'ny abonman — tsy misy API key hokopiena. OpenAmer manohy ny fidirana amin\'ny browser ho anao, eto ihany amin\'ny application.',
+      haveApiKey: "Manana API key va amin'ny fomba fahafahana?",
+      intro:
+        "Miditra amin'ny abonman — tsy misy API key hokopiena. OpenAmer manohy ny fidirana amin'ny browser ho anao, eto ihany amin'ny application.",
       connected: 'Namana',
       collapse: 'Fohy',
       connectAnother: 'Manambatra mpamolavola hafa',
       otherProviders: 'Mpamolavola hafa',
       disconnect: 'Manohy ny fifandraisana',
-      disconnectInTerminal: 'Misaraka (mitatraka ny didy fanafa-tsoratra amin\'ny terminal)',
+      disconnectInTerminal: "Misaraka (mitatraka ny didy fanafa-tsoratra amin'ny terminal)",
       removedTitle: 'Kaonty voafaritra',
       noProviderKeys: 'Tsy misy kilalao API mpamorsona.',
       searchKeys: 'Mitafy mpamorsona…',
-      noKeysMatch: 'Tsy misy mpamorsona mitovy amin\'ny fitaovanao.',
+      noKeysMatch: "Tsy misy mpamorsona mitovy amin'ny fitaovanao.",
       localEndpoint: {
         title: 'End-point an-toerana / manokana',
-        description: 'Atrika OpenAmer amin\'ny end-point na inona na inona mitovy amin\'ny OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na hafa).',
+        description:
+          "Atrika OpenAmer amin'ny end-point na inona na inona mitovy amin'ny OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na hafa)."
       },
       loading: 'Mampiditra mpamorsona...',
       removeConfirm: provider => `Hesorina ny ${provider}?`,
       removeExternalGeneric: provider => `Ny CLI-ny manokana no mitantana an'i ${provider} — esory ao izany.`,
       removeKeyManaged: provider => `Voarindra amin'ny lakile API i ${provider}. Esory ao amin'ny Lakile API izany.`,
-      removeTerminalConfirm: (provider, command) => `Hatapahina ny ${provider}? Izany dia mampandeha ny "${command}" ao amin'ny terminal mba hamafana ny fampidirana.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Hatapahina ny ${provider}? Izany dia mampandeha ny "${command}" ao amin'ny terminal mba hamafana ny fampidirana.`,
       removeTerminalRunning: provider => `Mampandeha ny fanapahana ${provider} ao amin'ny terminal…`,
       removedMessage: provider => `Nesorina ny ${provider}.`,
-      failedRemove: provider => `Tsy afaka nanala ny ${provider}`,
+      failedRemove: provider => `Tsy afaka nanala ny ${provider}`
     },
     sessions: {
       autoArchiveFailed: 'Tsy nahomby ny fanitsiana auto-archive',
-      defaultDirTitle: 'Rakiby tokony ho voalohany ho an\'ny projet',
-      defaultDirDesc: 'Ny session vaovao dia manomboka eto raha tsy mifidy hafa. Aoka ho tsy voasetrik\'iray mba hampiasa ny home.',
+      defaultDirTitle: "Rakiby tokony ho voalohany ho an'ny projet",
+      defaultDirDesc:
+        "Ny session vaovao dia manomboka eto raha tsy mifidy hafa. Aoka ho tsy voasetrik'iray mba hampiasa ny home.",
       defaultDirUpdated: 'Voafaritra ny rakiby voalohany — manomboka chat vaovao (Ctrl/⌘+N) mba hametraka azy',
       change: 'Ova',
       choose: 'Fidy',
       clear: 'Fafao',
-      notSet: 'Tsy voasetrik\'iray',
+      notSet: "Tsy voasetrik'iray",
       failedLoad: 'Tsy nahomby ny fidirana session voatahiry',
       unarchiveFailed: 'Nanapaka ny fanavozana archive',
       deleteFailed: 'Nanapaka ny fanafoana',
       updateDirFailed: 'Tsy nahomby ny fanitsiana rakiby voalohany',
-      clearDirFailed: 'Tsy nahomby ny fanafahan\'ny rakiby voalohany',
+      clearDirFailed: "Tsy nahomby ny fanafahan'ny rakiby voalohany",
       loading: 'Mampiditra sesiona voasoratra…',
       archivedTitle: 'Sesiona voasoratra',
-      archivedIntro: 'Ny resaka voasoratra dia afenina avy amin\'ny sidebar fa mitandrina ny hafatra rehetra. Ctrl/⌘-click ny resaka amin\'ny sidebar hampiasoratra azy.',
+      archivedIntro:
+        "Ny resaka voasoratra dia afenina avy amin'ny sidebar fa mitandrina ny hafatra rehetra. Ctrl/⌘-click ny resaka amin'ny sidebar hampiasoratra azy.",
       emptyArchivedTitle: 'Tsy misy voasoratra',
       emptyArchivedDesc: 'Soraty resaka hitafina eto.',
       unarchive: 'Alafy ny fisoratana',
       deletePermanently: 'Fafao mandrakizay',
       restored: 'Voavery',
-      autoArchiveTitle: 'Soraty automatikin\'ny resaka lany',
-      autoArchiveDesc: 'Soraty automatikin\'ny resaka tsy nanao an-tsoratra ela. Ny resaka nampidinina dia tsy maintsy hisoratra, ary tsy misy voafafa — ny resaka voasoratra no mandeha eto ihany.',
+      autoArchiveTitle: "Soraty automatikin'ny resaka lany",
+      autoArchiveDesc:
+        "Soraty automatikin'ny resaka tsy nanao an-tsoratra ela. Ny resaka nampidinina dia tsy maintsy hisoratra, ary tsy misy voafafa — ny resaka voasoratra no mandeha eto ihany.",
       autoArchiveDaysLabel: 'Soraty aoriana',
       autoArchiveDaysUnit: 'andro tsy niasa',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Hofafana tanteraka ny "${title}"? Tsy azo averina izany.`,
-      defaultsTo: label => `Default amin'ny ${label}.`,
+      defaultsTo: label => `Default amin'ny ${label}.`
     },
     toolsets: {
       loadingConfig: 'Mampiditra configuration',
       savedTitle: 'Voky tafiditra',
       removedTitle: 'Voky voaforoina',
       set: 'Setrika',
-      notSet: 'Tsy voasetrik\'iray',
+      notSet: "Tsy voasetrik'iray",
       selectedTitle: 'Mpanaovana voafidy',
       failedLoad: 'Tsy nahomby ny fidirana configuration tool',
       webCapabilityUnset: 'tsy voasetrika',
@@ -771,7 +810,7 @@ export const mg = defineLocale({
       webUseForExtract: 'Famakafaka',
       webUsedForSearch: 'Backend fikarohana',
       webUsedForExtract: 'Backend famakafaka',
-      loadingModels: 'Mampiditra katalogin\'ny model...',
+      loadingModels: "Mampiditra katalogin'ny model...",
       modelInUse: 'Ampiasaina',
       modelDefault: 'taloha',
       modelInactiveHint: 'Saroio backend aloha hova modeliny.',
@@ -786,20 +825,22 @@ export const mg = defineLocale({
         inUse: 'Ampiasaina',
         selectedTitle: 'Backend voasoratra',
         needsSetupHint: 'Afaka misaraka backend io — tsy ho vita baiko mandraka vita fametrahana.',
-        selectedMessage: backend => `Alefa amin'ny alalan'ny ${backend} izao ny baikon'ny terminaly. Mihatra amin'ny fotoam-piasana vaovao.`,
-        failedSelect: backend => `Tsy voafantina ny ${backend}`,
+        selectedMessage: backend =>
+          `Alefa amin'ny alalan'ny ${backend} izao ny baikon'ny terminaly. Mihatra amin'ny fotoam-piasana vaovao.`,
+        failedSelect: backend => `Tsy voafantina ny ${backend}`
       },
-      noProviderOptions: 'Ity fitaovana ity tsy misy opsion mpamorsona — ahafahany manohy amin\'ny fomba fijery ankehitriny.',
-      noProviders: 'Tsy misy mpamorsona azo atao ho an\'ity fitaovana ity amin\'izao fotoana izao.',
+      noProviderOptions:
+        "Ity fitaovana ity tsy misy opsion mpamorsona — ahafahany manohy amin'ny fomba fijery ankehitriny.",
+      noProviders: "Tsy misy mpamorsona azo atao ho an'ity fitaovana ity amin'izao fotoana izao.",
       ready: 'Mety',
       needsSignIn: 'Mila hiditra',
       needsSetup: 'Mila fametrahana',
-      openamerIncluded: 'Ampiditra amin\'ny fanekena OpenAmer — hiditra amin\'ny Portal OpenAmer hampisehoana.',
-      openamerAuthNeededTitle: 'Hiditra amin\'ny Portal OpenAmer',
+      openamerIncluded: "Ampiditra amin'ny fanekena OpenAmer — hiditra amin'ny Portal OpenAmer hampisehoana.",
+      openamerAuthNeededTitle: "Hiditra amin'ny Portal OpenAmer",
       openamerAuthSignIn: 'Hiditra',
       openamerAuthDoneTitle: 'Portal OpenAmer efa namana',
       openamerAuthDoneMessage: 'Ny backend fanekenao efa actif.',
-      openamerAuthFailed: 'Tsy vita ny fidirana amin\'ny Portal OpenAmer',
+      openamerAuthFailed: "Tsy vita ny fidirana amin'ny Portal OpenAmer",
       noApiKeyRequired: 'Tsy mila API key.',
       postSetupInstalledHint: 'Efa voarainy. Avereno ny fametrahana raha misy sira.',
       postSetupRun: 'Atao ny fametrahana',
@@ -808,7 +849,7 @@ export const mg = defineLocale({
       postSetupRunning: 'Mamerina…',
       postSetupStarting: 'Manomboka…',
       postSetupCompleteTitle: 'Fametrahana vita',
-      postSetupErrorTitle: 'Fametrahana vita tamin\'ny diso',
+      postSetupErrorTitle: "Fametrahana vita tamin'ny diso",
       savedMessage: key => `Nohavaozina ny ${key}.`,
       removedMessage: key => `Nesorina ny ${key}.`,
       failedSave: key => `Tsy nahomby ny fitahirizana ny ${key}`,
@@ -817,19 +858,22 @@ export const mg = defineLocale({
       removeConfirm: key => `Hesorina ny ${key} ao amin'ny .env?`,
       selectedMessage: provider => `Mavitrika izao ny ${provider}.`,
       failedSelect: provider => `Tsy nahomby ny fisafidianana ny ${provider}`,
-      openamerAuthNeededMessage: provider => `Voatahiry ny ${provider} fa tsy hiasa raha tsy miditra ao amin'ny vavahadin'ny OpenAmer ianao.`,
-      postSetupHint: step => `Ity backend ity dia mila fametrahana indray mandeha (${step}). Mandeha amin'ity milina ity — mety haharitra minitra vitsivitsy.`,
+      openamerAuthNeededMessage: provider =>
+        `Voatahiry ny ${provider} fa tsy hiasa raha tsy miditra ao amin'ny vavahadin'ny OpenAmer ianao.`,
+      postSetupHint: step =>
+        `Ity backend ity dia mila fametrahana indray mandeha (${step}). Mandeha amin'ity milina ity — mety haharitra minitra vitsivitsy.`,
       postSetupCompleteMessage: step => `Voapetraka ny ${step}.`,
       postSetupErrorMessage: step => `Zahao ny log-n'ny ${step}.`,
       postSetupFailed: step => `Tsy nahomby ny fametrahana ny ${step}`,
       webSearchActive: backend => `Karohy: ${backend}`,
       webExtractActive: backend => `Havoaka: ${backend}`,
-      webCapabilitySelectedMessage: (provider, capability) => `Ny ${provider} izao no mitantana ny ${capability} amin'ny tranonkala.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `Ny ${provider} izao no mitantana ny ${capability} amin'ny tranonkala.`,
       failedSelectCapability: provider => `Tsy voapetraka ny ${provider}`,
       modelSectionTitle: 'Maodely',
       modelCount: count => `Maodely ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `Mihatra amin'ny fotoam-piasana vaovao ny ${model}.`,
-      failedSelectModel: model => `Tsy voafantina ny ${model}`,
+      failedSelectModel: model => `Tsy voafantina ny ${model}`
     },
     sections: {
       model: 'Endrika',
@@ -839,60 +883,62 @@ export const mg = defineLocale({
       safety: 'Fitsinjarana',
       memory: 'Sarotra & Konteksty',
       voice: 'Feo',
-      advanced: 'Mahery',
+      advanced: 'Mahery'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     about: {
-      heading: 'OpenAmer ho an\'ny solosaina',
+      heading: "OpenAmer ho an'ny solosaina",
       version: value => `Voaova ${value}`,
       versionUnavailable: 'Voaova tsy azo atao',
       updates: 'Voaova',
-      checkNow: 'Jereo amin\'izao',
+      checkNow: "Jereo amin'izao",
       checking: 'Mijery…',
-      seeWhatsNew: "Jereo izay vaovao",
-      updateNow: 'Voaova amin\'izao',
+      seeWhatsNew: 'Jereo izay vaovao',
+      updateNow: "Voaova amin'izao",
       releaseNotes: 'Soratra momba ny voaova',
-      onLatest: "Misy ny voaova farany ianao.",
+      onLatest: 'Misy ny voaova farany ianao.',
       installing: 'Misy voaova efa voarengoa.',
       cantUpdate: "Tsy afaka manova teny azy iainana ity toerana fampidirana ity avy amin'ny afovoany ny applikasy.",
-      cantReach: "Tsy naharitra ny servera voaova.",
+      cantReach: 'Tsy naharitra ny servera voaova.',
       tapCheck: 'Kliky "Jereo amin\'izao" hita ny voaova.',
-      updateReady: count => `Misy voaova vaovao efa voarengoa (misy ${count} fanovana${count === 1 ? '' : 's'} ao anatiny).`,
+      updateReady: count =>
+        `Misy voaova vaovao efa voarengoa (misy ${count} fanovana${count === 1 ? '' : 's'} ao anatiny).`,
       lastChecked: age => `Farany nijery ${age}`,
       justNowSuffix: ' · aza antoka',
       automaticUpdates: 'Voaova automatik',
-      automaticUpdatesDesc: 'OpenAmer mijery voaova automatik amin\'ny afovoany ary mampahafantatra anao raha efa voarengoa.',
+      automaticUpdatesDesc:
+        "OpenAmer mijery voaova automatik amin'ny afovoany ary mampahafantatra anao raha efa voarengoa.",
       branchCommit: (branch, commit) => `Sampana ${branch} · Fanekena ${commit}`,
       never: 'tsy ho ela',
       justNow: 'aza antoka',
       minAgo: count => `${count} minitra lasa`,
       hoursAgo: count => `${count} ora lasa`,
-      daysAgo: count => `${count} andro lasa`,
+      daysAgo: count => `${count} andro lasa`
     },
     envActions: {
       actionsFor: label => `Hetsika ho an'ny ${label}`,
       credentialActions: 'Hetsika momba ny fampidirana',
-      manageInKeys: 'Tantano ao amin\'ny API Keys',
+      manageInKeys: "Tantano ao amin'ny API Keys",
       docs: 'Dokimantasy',
       hideValue: 'Afenoy ny sanda',
       revealValue: 'Asehoy ny sanda',
       replace: 'Soloy',
       set: 'Apetraho',
-      clear: 'Fafao',
-    },
+      clear: 'Fafao'
+    }
   },
   commandCenter: {
     maintenance: {
       runOps: 'Diagnostika',
       doctor: 'Alefaso ny dokotera',
-      doctorDesc: 'Jereo ny fahasalaman\'ny fametrahana, fanamboarana, ary mpamatsy',
+      doctorDesc: "Jereo ny fahasalaman'ny fametrahana, fanamboarana, ary mpamatsy",
       securityAudit: 'Famakafakana fiarovana',
-      securityAuditDesc: 'Sokafy fanamboarana sy fahaiza-manao amin\'ny toe-javatra mety loza',
+      securityAuditDesc: "Sokafy fanamboarana sy fahaiza-manao amin'ny toe-javatra mety loza",
       backup: 'Mamorona backup',
       backupDesc: 'Zippina fanamboarana, fahatsiarovana, fahaiza-manao, ary fivoriana',
-      debugShare: 'Zarao amin\'ny debug',
-      debugShareDesc: 'Alefaso tatitra voafafa + rakitra, azonao rohy azo zaraina (hanesy ho azy amin\'ny 6h)',
+      debugShare: "Zarao amin'ny debug",
+      debugShareDesc: "Alefaso tatitra voafafa + rakitra, azonao rohy azo zaraina (hanesy ho azy amin'ny 6h)",
       debugShareRunning: 'Mampakatra tatitra debug...',
       debugShareLinks: 'Zarao rohy',
       debugShareFailed: 'Fandefasana debug tsy nahomby',
@@ -908,14 +954,14 @@ export const mg = defineLocale({
       resume: 'Avereno',
       runNow: 'Alefaso izao',
       memoryData: 'Data fahatsiarovana',
-      memoryDataDesc: 'Rakitra fahatsiarovana anatiny nampidirina amin\'ny fivoriana rehetra',
-      builtinMemory: 'Anatin\'ny rafitra',
+      memoryDataDesc: "Rakitra fahatsiarovana anatiny nampidirina amin'ny fivoriana rehetra",
+      builtinMemory: "Anatin'ny rafitra",
       memoryFile: 'Fahatsiarovana agent (MEMORY.md)',
       userFile: 'Profiara mpampiasa (USER.md)',
       empty: 'tsy misy',
-      resetMemory: 'Avereno amin\'ny voalohany ny fahatsiarovana',
-      resetUser: 'Avereno amin\'ny voalohany ny profil',
-      resetAll: 'Avereno amin\'ny voalohany roa',
+      resetMemory: "Avereno amin'ny voalohany ny fahatsiarovana",
+      resetUser: "Avereno amin'ny voalohany ny profil",
+      resetAll: "Avereno amin'ny voalohany roa",
       resetFailed: 'Fanaovana reset fahatsiarovana tsy nahomby',
       running: 'Mandeha...',
       viewLog: 'Log fandidiana',
@@ -925,21 +971,21 @@ export const mg = defineLocale({
       resetConfirm: target => `Hamafa ${target}? Tsy azo averina izany.`,
       resetDone: files => `Voafafa ${files}.`,
       actionStarted: name => `Nanomboka ny ${name} — manaraka ny diarin'asa...`,
-      actionFailed: name => `Tsy afaka nanomboka ny ${name}`,
+      actionFailed: name => `Tsy afaka nanomboka ny ${name}`
     },
     sectionEntries: {
       usage: {
         detail: 'Token, vidiny ary hetsiky ny fahaizana',
-        title: 'Panel-n\'ny fampiasana',
+        title: "Panel-n'ny fampiasana"
       },
       sessions: {
-        title: 'Panel-n\'ny session',
-        detail: 'Hikaroka, hanamafy, ary hitantana session',
+        title: "Panel-n'ny session",
+        detail: 'Hikaroka, hanamafy, ary hitantana session'
       },
       system: {
-        title: 'Panel-n\'ny system',
-        detail: 'Satan\'ny gateway, logs, restart/update',
-      },
+        title: "Panel-n'ny system",
+        detail: "Satan'ny gateway, logs, restart/update"
+      }
     },
     providerNavigate: 'Fitetezana',
     providerSessions: 'Sesiona',
@@ -951,8 +997,8 @@ export const mg = defineLocale({
     exportSession: 'Aondrana ny sesiona',
     deleteSession: 'Fafao ny sesiona',
     noSessions: 'Tsy mbola misy sesiona.',
-    gatewayRunning: 'Mandeha ny vavahadin\'ny hafatra',
-    gatewayStopped: 'Mijanona ny vavahadin\'ny hafatra',
+    gatewayRunning: "Mandeha ny vavahadin'ny hafatra",
+    gatewayStopped: "Mijanona ny vavahadin'ny hafatra",
     restartGateway: 'Avereno ny vavahady',
     gatewayRestartFailed: 'Tsy nahomby ny famerenana ny vavahady.',
     updateOpenAmer: 'Havaozina OpenAmer',
@@ -969,10 +1015,10 @@ export const mg = defineLocale({
     statCost: 'Vidiny tombanana',
     loadingUsage: 'Maka ny fanjifana...',
     retry: 'Andramo indray',
-    dailyTokens: 'Token isan\'andro',
+    dailyTokens: "Token isan'andro",
     input: 'miditra',
     output: 'mivoaka',
-    noDailyActivity: 'Tsy misy hetsika isan\'andro.',
+    noDailyActivity: "Tsy misy hetsika isan'andro.",
     topModels: 'Modely ambony',
     noModelUsage: 'Tsy mbola misy fampiasana modely.',
     topSkills: 'Fahaizana ambony',
@@ -980,16 +1026,16 @@ export const mg = defineLocale({
     logFile: 'Rakitra log',
     logLevel: 'Ambaratonga',
     logSearchPlaceholder: 'Sivano ny andalana log...',
-    close: 'Akatona ny foiben\'ny baiko',
+    close: "Akatona ny foiben'ny baiko",
     paletteTitle: 'Lisitra baiko',
     back: 'Miverina',
     searchPlaceholder: 'Mitadiava fotoam-piasana, fijery ary hetsika',
     goTo: 'Mandehana any',
-    goToSession: 'Mandehana amin\'ny fotoam-piasana',
+    goToSession: "Mandehana amin'ny fotoam-piasana",
     branches: 'Sampana',
     commands: 'Baiko',
     startInBranch: branch => `Resaka vaovao ao amin'ny ${branch}`,
-    commandCenter: 'Foiben\'ny baiko',
+    commandCenter: "Foiben'ny baiko",
     appearance: 'Endrika',
     settings: 'Fikirana',
     changeTheme: 'Hanova lohahevitra',
@@ -998,8 +1044,9 @@ export const mg = defineLocale({
       title: 'Biby fiompy',
       placeholder: 'Hikaroka biby fiompy…',
       loading: 'Mampiditra ny galeria petdex…',
-      error: 'Tsy afaka mifandray amin\'ny galeria petdex.',
-      staleBackend: 'Avereno alefa ny OpenAmer hampiasa biby fiompy — tranainy loatra ny rafitra fototra ka tsy mahazaka io fiasa io.',
+      error: "Tsy afaka mifandray amin'ny galeria petdex.",
+      staleBackend:
+        'Avereno alefa ny OpenAmer hampiasa biby fiompy — tranainy loatra ny rafitra fototra ka tsy mahazaka io fiasa io.',
       empty: 'Tsy misy biby fiompy mifanaraka.',
       turnOff: 'Hamono',
       turnOn: 'Hamelona',
@@ -1007,7 +1054,7 @@ export const mg = defineLocale({
       generatedTag: 'Voaforona',
       adoptFailed: 'Tsy afaka nandray io biby fiompy io.',
       toggleFailed: 'Tsy afaka nanova ny fampandehanana ilay biby fiompy.',
-      noneAvailable: 'Tsy misy biby fiompy — mifidiana iray etsy ambany hapetraka.',
+      noneAvailable: 'Tsy misy biby fiompy — mifidiana iray etsy ambany hapetraka.'
     },
     generatePet: {
       title: 'Mamorona biby fiompy',
@@ -1031,67 +1078,68 @@ export const mg = defineLocale({
       slowProviderHint: 'Mety haharitra minitra maromaro izany',
       remix: 'Afangaro indray',
       remixConfirmTitle: 'Afangaro indray ity endrika ity?',
-      remixConfirmBody: 'Mamorona andiana volavola vaovao miainga amin’ity iray ity izany. Mety haharitra minitra maromaro.',
+      remixConfirmBody:
+        'Mamorona andiana volavola vaovao miainga amin’ity iray ity izany. Mety haharitra minitra maromaro.',
       genericError: 'Tsy nahomby ny famoronana — andramo indray na mifidiana soso-kevitra.',
       referenceImageTooLarge: 'Lehibe loatra ny sary iaingana. Mampiasà sary latsaky ny 16 MB.',
       referenceImageInvalid: 'Tsy voavaky ilay sary iaingana. Andramo ny PNG, JPG, WebP, na GIF.',
       adopt: 'Ampiasao',
-      startOver: 'Atombohy indray',
+      startOver: 'Atombohy indray'
     },
     installTheme: {
       title: 'Hametraka lohahevitra…',
       pageTitle: 'Hametraka lohahevitra',
       placeholder: 'Hikaroka ao amin’ny tsenan’ny VS Code...',
       loading: 'Mikaroka ao amin’ny tsena...',
-      error: 'Tsy afaka nifandray tamin\'ny tsenan\'ny fanampiny.',
+      error: "Tsy afaka nifandray tamin'ny tsenan'ny fanampiny.",
       empty: 'Tsy misy lohahevitra mifanaraka.',
       install: 'Hametraka',
       installing: 'Mametraka...',
       installed: 'Voapetraka',
-      installs: count => `Fametrahana ${count}`,
+      installs: count => `Fametrahana ${count}`
     },
-    settingsFields: 'Sahan\'ny fikirana',
+    settingsFields: "Sahan'ny fikirana",
     mcpServers: 'Mpizara MCP',
     archivedChats: 'Resaka voatahiry',
     sections: {
       maintenance: 'Fikojakojana',
       sessions: 'Fotoam-piasana',
       system: 'Rafitra',
-      usage: 'Fampiasana',
+      usage: 'Fampiasana'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, backup, curator, ary angon-drakitra fitadidiana',
       sessions: 'Hikaroka sy hitantana session',
       system: 'Sata, logs, ary hetsika system',
-      usage: 'Token, sarany, ary hetsiky ny skill mandritra ny fotoana',
+      usage: 'Token, sarany, ary hetsiky ny skill mandritra ny fotoana'
     },
     nav: {
       newChat: {
         title: 'Session vaovao',
-        detail: 'Hanomboka session vaovao',
+        detail: 'Hanomboka session vaovao'
       },
       settings: {
         title: 'Fikirakirana',
-        detail: 'Hampifanaraka ny OpenAmer desktop',
+        detail: 'Hampifanaraka ny OpenAmer desktop'
       },
       skills: {
         title: 'Fahaiza-manao',
-        detail: 'Skills, fitaovana, ary server MCP',
+        detail: 'Skills, fitaovana, ary server MCP'
       },
       messaging: {
         title: 'Hafatra',
-        detail: 'Hampiditra an\'i Telegram, Slack, Discord, sy ny sisa',
+        detail: "Hampiditra an'i Telegram, Slack, Discord, sy ny sisa"
       },
       artifacts: {
         title: 'Vokatra',
-        detail: 'Hijery ny vokatra nateraka',
-      },
+        detail: 'Hijery ny vokatra nateraka'
+      }
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Session mavitrika ${count}`,
     days: count => `${count} andro`,
     actualCost: cost => `tena ${cost}`,
     noUsage: period => `Tsy nisy fampiasana tao anatin'ny ${period} andro farany.`,
-    actions: count => `Hetsika ${count}`,
+    actions: count => `Hetsika ${count}`
   },
   messaging: {
     search: 'Mitady hafatra...',
@@ -1106,11 +1154,11 @@ export const mg = defineLocale({
       not_configured: 'Mila fanandrafetana',
       pending_restart: 'Mila famerenana indray',
       retrying: 'Manandrana indray',
-      startup_failed: 'Tsy nahomby ny fanombohana',
+      startup_failed: 'Tsy nahomby ny fanombohana'
     },
     unknown: 'Tsy fantatra',
-    hintPendingRestart: 'Avereno indray ny vavahady ao amin\'ny bara-pisehoana mba hampiharina ity fanovana ity.',
-    hintGatewayStopped: 'Alefa ny vavahady avy amin\'ny bara-pisehoana mba hifandraisana.',
+    hintPendingRestart: "Avereno indray ny vavahady ao amin'ny bara-pisehoana mba hampiharina ity fanovana ity.",
+    hintGatewayStopped: "Alefa ny vavahady avy amin'ny bara-pisehoana mba hifandraisana.",
     credentialsSet: 'Napetraka ny porofo fidirana',
     needsSetup: 'Mila fanandrafetana',
     gatewayStopped: 'Nijanona ny vavahady fandefasana hafatra',
@@ -1118,7 +1166,8 @@ export const mg = defineLocale({
     openSetupGuide: 'Sokafy ny torolalana fanandrafetana',
     required: 'Takiana',
     recommended: 'Tolo-kevitra',
-    noTokenNeeded: 'Tsy mila token ity sehatra ity eto. Ampiasao ny torolalana fanandrafetana etsy ambony, dia alefa etsy ambany.',
+    noTokenNeeded:
+      'Tsy mila token ity sehatra ity eto. Ampiasao ny torolalana fanandrafetana etsy ambony, dia alefa etsy ambany.',
     enabled: 'Velona',
     disabled: 'Tsy velona',
     unsavedChanges: 'Fiovana tsy voatahiry',
@@ -1127,130 +1176,130 @@ export const mg = defineLocale({
     saved: 'Voatahiry',
     replaceValue: 'Soloy ny sanda ankehitriny',
     openDocs: 'Sokafy ny antontan-taratasy',
-    restartToApply: 'Hiasa ity fanovana ity aorian\'ny famerenana indray ny vavahady.',
-    restartToReconnect: 'Hiasa ny porofo fidirana vaovao aorian\'ny famerenana indray ny vavahady.',
+    restartToApply: "Hiasa ity fanovana ity aorian'ny famerenana indray ny vavahady.",
+    restartToReconnect: "Hiasa ny porofo fidirana vaovao aorian'ny famerenana indray ny vavahady.",
     fieldCopy: {
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Mamorona bot amin\'ny @BotFather, dia apetaho ny token omeny anao.',
-        placeholder: 'Apetaho ny token bot Telegram',
+        help: "Mamorona bot amin'ny @BotFather, dia apetaho ny token omeny anao.",
+        placeholder: 'Apetaho ny token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID mpampiasa Telegram avela',
-        help: 'Tolo-kevitra. ID isa sarahan\'ny faingo avy amin\'ny @userinfobot. Raha tsy misy ity, na iza na iza dia afaka mandefa hafatra mivantana amin\'ny bot-nao.',
+        help: "Tolo-kevitra. ID isa sarahan'ny faingo avy amin'ny @userinfobot. Raha tsy misy ity, na iza na iza dia afaka mandefa hafatra mivantana amin'ny bot-nao."
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Ilaina ihany amin\'ny tambajotra izay voasakana ny Telegram.',
+        help: "Ilaina ihany amin'ny tambajotra izay voasakana ny Telegram."
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Mamorona fampiharana ao amin\'ny Discord Developer Portal, ampio bot, dia apetaho ny token-ny.',
+        help: "Mamorona fampiharana ao amin'ny Discord Developer Portal, ampio bot, dia apetaho ny token-ny."
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID mpampiasa Discord avela',
-        help: 'Tolo-kevitra. ID mpampiasa Discord sarahan\'ny faingo.',
+        help: "Tolo-kevitra. ID mpampiasa Discord sarahan'ny faingo."
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Fomba famaliana',
-        help: 'voalohany, rehetra, na off.',
+        help: 'voalohany, rehetra, na off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Hamelana ny mpampiasa Discord rehetra',
-        help: 'Ho an\'ny fampandrosoana ihany. Raha true, na iza na iza dia afaka mandefa DM amin\'ny bot nefa tsy mila allowlist.',
+        help: "Ho an'ny fampandrosoana ihany. Raha true, na iza na iza dia afaka mandefa DM amin'ny bot nefa tsy mila allowlist."
       },
       DISCORD_HOME_CHANNEL: {
-        label: 'ID-n\'ny channel home',
-        help: 'Channel handefasan\'ny bot hafatra mialoha (cron output, fampahatsiahivana).',
+        label: "ID-n'ny channel home",
+        help: "Channel handefasan'ny bot hafatra mialoha (cron output, fampahatsiahivana)."
       },
       DISCORD_HOME_CHANNEL_NAME: {
-        label: 'Anaran\'ny channel home',
-        help: 'Anarana hita ao amin\'ny logs sy ny sata ho an\'ny channel home.',
+        label: "Anaran'ny channel home",
+        help: "Anarana hita ao amin'ny logs sy ny sata ho an'ny channel home."
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Hamelana ny mpampiasa iMessage rehetra',
-        help: 'Raha true, dinganina ny allowlist an\'ny BlueBubbles.',
+        help: "Raha true, dinganina ny allowlist an'ny BlueBubbles."
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Hamelana ny mpampiasa Mattermost rehetra',
+        label: 'Hamelana ny mpampiasa Mattermost rehetra'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Channel home',
+        label: 'Channel home'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Hamelana ny mpampiasa QQ rehetra',
+        label: 'Hamelana ny mpampiasa QQ rehetra'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Channel home QQ',
-        help: 'Channel na vondrona default ho an\'ny fandefasana cron.',
+        help: "Channel na vondrona default ho an'ny fandefasana cron."
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Anaran\'ny channel home QQ',
+        label: "Anaran'ny channel home QQ"
       },
       SLACK_BOT_TOKEN: {
-        label: 'Token-n\'ny bot Slack',
-        help: 'Ampiasao ny token-n\'ny bot avy amin\'ny OAuth & Permissions aorian\'ny fametrahana ny app Slack-nao.',
-        placeholder: 'Ampidiro ny token-n\'ny bot Slack',
+        label: "Token-n'ny bot Slack",
+        help: "Ampiasao ny token-n'ny bot avy amin'ny OAuth & Permissions aorian'ny fametrahana ny app Slack-nao.",
+        placeholder: "Ampidiro ny token-n'ny bot Slack"
       },
       SLACK_APP_TOKEN: {
-        label: 'Token-n\'ny app Slack',
-        help: 'Ampiasao ny token-n\'ny app ilaina ho an\'ny Socket Mode.',
-        placeholder: 'Ampidiro ny token-n\'ny app Slack',
+        label: "Token-n'ny app Slack",
+        help: "Ampiasao ny token-n'ny app ilaina ho an'ny Socket Mode.",
+        placeholder: "Ampidiro ny token-n'ny app Slack"
       },
       SLACK_ALLOWED_USERS: {
-        label: 'ID-n\'ny mpampiasa Slack nahazo alalana',
-        help: 'Soso-kevitra. ID-n\'ny mpampiasa Slack sarahina amin\'ny faingo.',
+        label: "ID-n'ny mpampiasa Slack nahazo alalana",
+        help: "Soso-kevitra. ID-n'ny mpampiasa Slack sarahina amin'ny faingo."
       },
       MATTERMOST_URL: {
-        label: 'URL-n\'ny server',
-        placeholder: 'https://mattermost.example.com',
+        label: "URL-n'ny server",
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token-n\'ny bot',
+        label: "Token-n'ny bot"
       },
       MATTERMOST_ALLOWED_USERS: {
-        label: 'ID-n\'ny mpampiasa nahazo alalana',
-        help: 'Soso-kevitra. ID-n\'ny mpampiasa Mattermost sarahina amin\'ny faingo.',
+        label: "ID-n'ny mpampiasa nahazo alalana",
+        help: "Soso-kevitra. ID-n'ny mpampiasa Mattermost sarahina amin'ny faingo."
       },
       MATRIX_HOMESERVER: {
-        label: 'URL-n\'ny lohamilina fototra',
-        placeholder: 'https://matrix.org',
+        label: "URL-n'ny lohamilina fototra",
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Mari-pamantarana fidirana',
+        label: 'Mari-pamantarana fidirana'
       },
       MATRIX_USER_ID: {
-        label: 'ID-n\'ny mpampiasa rôbô',
-        placeholder: '@openamer:example.org',
+        label: "ID-n'ny mpampiasa rôbô",
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
-        label: 'ID-n\'ny mpampiasa Matrix ekena',
-        help: 'Soso-kevitra. ID-n\'ny mpampiasa sarahina faingo, amin\'ny endrika @user:server.',
+        label: "ID-n'ny mpampiasa Matrix ekena",
+        help: "Soso-kevitra. ID-n'ny mpampiasa sarahina faingo, amin'ny endrika @user:server."
       },
       SIGNAL_HTTP_URL: {
-        label: 'URL-n\'ny tetezana Signal',
+        label: "URL-n'ny tetezana Signal",
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL-n\'ny tetezana REST signal-cli mandeha.',
+        help: "URL-n'ny tetezana REST signal-cli mandeha."
       },
       SIGNAL_ACCOUNT: {
         label: 'Laharan-telefaonina',
-        help: 'Ny laharana voasoratra amin\'ny tetezana signal-cli-nao.',
+        help: "Ny laharana voasoratra amin'ny tetezana signal-cli-nao."
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Mpampiasa Signal avela',
-        help: 'Soso-kevitra. Famantarana Signal sarahina faingo.',
+        help: 'Soso-kevitra. Famantarana Signal sarahina faingo.'
       },
       WHATSAPP_ENABLED: {
         label: 'Alefaso ny tetezana WhatsApp',
-        help: 'Voafaritry ny bokotra etsy ambany ho azy. Aza ovaina raha tsy azonao antoka fa ilainao izany.',
+        help: 'Voafaritry ny bokotra etsy ambany ho azy. Aza ovaina raha tsy azonao antoka fa ilainao izany.'
       },
       WHATSAPP_MODE: {
-        label: 'Fomba fiasan\'ny tetezana',
+        label: "Fomba fiasan'ny tetezana"
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Mpampiasa WhatsApp avela',
-        help: 'Soso-kevitra. Nomeraon-telefaonina na ID WhatsApp sarahina faingo.',
-      },
+        help: 'Soso-kevitra. Nomeraon-telefaonina na ID WhatsApp sarahina faingo.'
+      }
     },
     advanced: count => `Mandroso (${count})`,
     clearField: key => `Hamafa ${key}`,
@@ -1264,8 +1313,7 @@ export const mg = defineLocale({
     failedUpdate: name => `Tsy nahomby ny fanavaozana ${name}`,
     failedSave: name => `Tsy nahomby ny fitehirizana ${name}`,
     failedClear: key => `Tsy nahomby ny famafana ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   assistant: {
     tool: {
@@ -1273,113 +1321,113 @@ export const mg = defineLocale({
         browser_navigate: {
           done: 'Pejy nohavaozina',
           pending: 'Manokatra pejy',
-          pendingAction: 'Manokatra',
+          pendingAction: 'Manokatra'
         },
         browser_snapshot: {
           done: 'Sary voarakitra',
           pending: 'Manangona sary pejy',
-          pendingAction: 'Manangona',
+          pendingAction: 'Manangona'
         },
         browser_take_screenshot: {
           done: 'Sary voarakitra',
           pending: 'Manangona sary',
-          pendingAction: 'Manangona',
+          pendingAction: 'Manangona'
         },
         browser_type: {
-          done: 'Noratra tamin\'ny pejy',
-          pending: 'Manao soratra amin\'ny pejy',
-          pendingAction: 'Manao soratra',
+          done: "Noratra tamin'ny pejy",
+          pending: "Manao soratra amin'ny pejy",
+          pendingAction: 'Manao soratra'
         },
         clarify: {
           done: 'Nanao fanontaniana',
           pending: 'Manao fanontaniana',
-          pendingAction: 'Manao fanontaniana',
+          pendingAction: 'Manao fanontaniana'
         },
         cronjob: {
           done: 'Job Cron',
           pending: 'Mamorona job Cron',
-          pendingAction: 'Mamorona',
+          pendingAction: 'Mamorona'
         },
         edit_file: {
           done: 'Rakitra nohitsidika',
           pending: 'Manitsy rakitra',
-          pendingAction: 'Manitsy',
+          pendingAction: 'Manitsy'
         },
         execute_code: {
           done: 'Natanteraka kaody',
           pending: 'Manoratra script',
-          pendingAction: 'Manoratra script',
+          pendingAction: 'Manoratra script'
         },
         image_generate: {
           done: 'Sary voatokana',
           pending: 'Manamboatra sary',
-          pendingAction: 'Manamboatra',
+          pendingAction: 'Manamboatra'
         },
         list_files: {
           done: 'Rakitra voatanisa',
           pending: 'Manatanisa rakitra',
-          pendingAction: 'Manatanisa',
+          pendingAction: 'Manatanisa'
         },
         patch: {
           done: 'Rakitra voahitsy',
           pending: 'Manitsy rakitra',
-          pendingAction: 'Manitsy',
+          pendingAction: 'Manitsy'
         },
         read_file: {
           done: 'Mamaky rakitra',
           pending: 'Mamaky rakitra',
-          pendingAction: 'Mamaky',
+          pendingAction: 'Mamaky'
         },
         search_files: {
           done: 'Rakitra voadihadiana',
           pending: 'Manadihady rakitra',
-          pendingAction: 'Manadihady',
+          pendingAction: 'Manadihady'
         },
         session_search_recall: {
           done: 'Tantara session voadihadiana',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         browser_click: {
           done: 'Clicked page element',
           pending: 'Clicking page element',
-          pendingAction: 'Clicking',
+          pendingAction: 'Clicking'
         },
         browser_fill: {
           done: 'Filled form field',
           pending: 'Filling form field',
-          pendingAction: 'Filling',
+          pendingAction: 'Filling'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -1414,11 +1462,11 @@ export const mg = defineLocale({
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1426,8 +1474,8 @@ export const mg = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Mampiditra fivoriana',
@@ -1437,7 +1485,7 @@ export const mg = defineLocale({
       copy: 'Adikao',
       refresh: 'Havaozina',
       moreActions: 'Asa hafa',
-      branchNewChat: 'Sampana amin\'ny resaka vaovao',
+      branchNewChat: "Sampana amin'ny resaka vaovao",
       resumeWhenBackgroundDone: count =>
         count === 1
           ? 'Will resume when the background task finishes'
@@ -1457,12 +1505,13 @@ export const mg = defineLocale({
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -1475,8 +1524,9 @@ export const mg = defineLocale({
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -1490,8 +1540,8 @@ export const mg = defineLocale({
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   skills: {
     tabToolsets: 'Fitaovana',
@@ -1509,8 +1559,9 @@ export const mg = defineLocale({
     noDescription: 'Tsy misy fanazavana.',
     configured: 'Efa voarindra',
     needsKeys: 'Mila fanalahidy',
-    visionModelHint: 'Ny fahitana dia mampiasa ny fandrindrana modely fanampiny — ny modely mahay sary no safidina ao, fa tsy isaky ny mpanome eto.',
-    visionModelLink: 'Safidio ny modely fahitana ao amin\'ny Fandrindrana → Modely',
+    visionModelHint:
+      'Ny fahitana dia mampiasa ny fandrindrana modely fanampiny — ny modely mahay sary no safidina ao, fa tsy isaky ny mpanome eto.',
+    visionModelLink: "Safidio ny modely fahitana ao amin'ny Fandrindrana → Modely",
     skillsLoadFailed: 'Tsy nahavita nampiditra ny fahaizana',
     toolsetsRefreshFailed: 'Tsy nahavita nanavao ny andian-fitaovana',
     skillEnabled: 'Fahaizana voavelona',
@@ -1527,23 +1578,24 @@ export const mg = defineLocale({
     provenance: {
       agent: 'Nianatra',
       bundled: 'Tafiditra',
-      hub: 'Foibe',
+      hub: 'Foibe'
     },
-    changesApplyNewSessions: 'Ny fanovana dia mihatra amin\'ny fivoriana vaovao.',
+    changesApplyNewSessions: "Ny fanovana dia mihatra amin'ny fivoriana vaovao.",
     skillUpdated: 'Fahaizana nohavaozina',
     edit: 'Hanova',
     archive: 'Arsiva',
     skillArchivedTitle: 'Fahaizana voaarsiva',
-    skillArchivedMessage: 'Azo averina amin\'ny openamer curator restore.',
+    skillArchivedMessage: "Azo averina amin'ny openamer curator restore.",
     hub: {
       searchPlaceholder: 'Karohy ny hub fahaizana',
       search: 'Karohy',
       searching: 'Mikaroka...',
-      connectingHubs: 'Mampifandray amin\'ny hub fahaizana...',
+      connectingHubs: "Mampifandray amin'ny hub fahaizana...",
       connectedHubs: 'Hub mifandray:',
       featured: 'Fahaizana voafantina',
-      landingHint: 'Karohy ny hub hivezivezy fahaizana azo apetraka avy amin\'ny lisitra ofisialy, GitHub, ary loharano avy amin\'ny fiaraha-monina.',
-      noResults: 'Tsy misy fahaizana mifanaraka hita ao amin\'ny hub.',
+      landingHint:
+        "Karohy ny hub hivezivezy fahaizana azo apetraka avy amin'ny lisitra ofisialy, GitHub, ary loharano avy amin'ny fiaraha-monina.",
+      noResults: "Tsy misy fahaizana mifanaraka hita ao amin'ny hub.",
       installed: 'Efa napetraka',
       install: 'Apetraho',
       installing: 'Mametraka...',
@@ -1560,27 +1612,27 @@ export const mg = defineLocale({
       trust: {
         builtin: 'tranainy',
         trusted: 'azo itokisana',
-        community: 'fiaraha-monina',
+        community: 'fiaraha-monina'
       },
       verdictSafe: 'Azo antoka',
       verdictCaution: 'Mitandrema',
       verdictDangerous: 'Mampidi-doza',
       policyAllow: 'Azo apetraka',
-      policyAsk: 'Diniho alohan\'ny ampetraha',
+      policyAsk: "Diniho alohan'ny ampetraha",
       policyBlock: 'Voasakana ny fametrahana noho ny politika',
       noFindings: 'Tsy misy olana ara-piarovana hita.',
       updateStarted: 'Manavao ny fahaizana efa napetraka...',
       actionFailed: 'Tsy nahomby ny hetsika fahaizana',
-      actionLog: 'Tantaran\'ny hetsika',
+      actionLog: "Tantaran'ny hetsika",
       loadFailed: 'Tsy afaka nampiditra ny hub fahaizana',
       previewFailed: 'Tsy nahomby ny topi-maso fahaizana',
       scanFailed: 'Tsy nahomby ny fanadinana fiarovana',
-      searchFailed: 'Tsy nahomby ny fikarohana ao amin\'ny hub',
+      searchFailed: "Tsy nahomby ny fikarohana ao amin'ny hub",
       resultCount: (count, ms) => `Valiny ${count}${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tapitra ny fotoana: ${sources}`,
       findings: count => `Zavatra hita ${count}${count === 1 ? '' : 's'}`,
       installStarted: name => `Mametraka ${name}...`,
-      uninstallStarted: name => `Manala ${name}...`,
+      uninstallStarted: name => `Manala ${name}...`
     },
     tabSkills: 'Fahaiza-manao',
     tabMcp: 'MCP',
@@ -1594,51 +1646,54 @@ export const mg = defineLocale({
     usageCount: count => `nampiasaina ${count}×`,
     emptyNoneFound: noun => `Tsy nahitana ${noun}`,
     emptyNothingMatches: query => `Tsy misy mifanaraka amin'ny “${query}”.`,
-    emptyNoneAvailable: noun => `Tsy mbola misy ${noun}.`,
+    emptyNoneAvailable: noun => `Tsy mbola misy ${noun}.`
   },
   starmap: {
     title: 'Sary fitadidiana',
     subtitle: (nodes, clusters) => `Fahaiza-manao ${nodes} ao amin'ny sokajy ${clusters}`,
-    close: 'Akatona ny kisarin\'ny fitadidiana',
+    close: "Akatona ny kisarin'ny fitadidiana",
     refresh: 'Havaozy',
     memory: 'Fitadidiana',
     filterAll: 'Rehetra',
     filterUsed: 'Nampiasaina',
     filterLearned: 'Nianarana',
     viewGraph: 'Kisary',
-    loadFailed: 'Tsy afaka nampiditra ny kisarin\'ny fitadidiana',
+    loadFailed: "Tsy afaka nampiditra ny kisarin'ny fitadidiana",
     loading: 'Mampiditra…',
     emptyTitle: 'Tsy mbola nisy nianarana',
-    emptyDesc: 'Rehefa mamorona fahaiza-manao sy fitadidiana ho an\'ny asanao ny OpenAmer, dia miseho eto izy ireo.',
+    emptyDesc: "Rehefa mamorona fahaiza-manao sy fitadidiana ho an'ny asanao ny OpenAmer, dia miseho eto izy ireo.",
     share: 'Zarao ny sarintany',
-    shareHint: 'Adikao ny kaody hizarana ity sarintany ity, na apetaho ny kaody iray hampidirana azy. Ny firafitra ihany no ao anatiny, fa tsy ny lahatsoratry ny fitadidianao na ny fahaiza-manaonao.',
+    shareHint:
+      'Adikao ny kaody hizarana ity sarintany ity, na apetaho ny kaody iray hampidirana azy. Ny firafitra ihany no ao anatiny, fa tsy ny lahatsoratry ny fitadidianao na ny fahaiza-manaonao.',
     shareTitle: 'Manafatra / manondrana sarintany',
-    sharePlaceholder: 'Apetaho ny kaodin\'ny sarintany…',
-    copy: 'Adikao ny kaodin\'ny sarintany',
+    sharePlaceholder: "Apetaho ny kaodin'ny sarintany…",
+    copy: "Adikao ny kaodin'ny sarintany",
     copied: 'Vo adika!',
     importMap: 'Manafatra sarintany',
     importBtn: 'Ampidiro',
-    importEmpty: 'Apetaho ny kaodin\'ny sarintany hampidirana azy.',
+    importEmpty: "Apetaho ny kaodin'ny sarintany hampidirana azy.",
     importSuccess: nodes => `Nampidirina ny sarintany misy ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'sarintany nafarana',
-    resetToMine: 'Miverina amin\'ny sarintaniko',
+    resetToMine: "Miverina amin'ny sarintaniko"
   },
   cron: {
     editTitle: 'Ovaina ny asa cron',
     createTitle: 'Asa cron vaovao',
-    editDesc: 'Havaozina ny fandaharam-potoana, ny baiko, na ny toerana andefasana. Mihatra amin\'ny famoahana manaraka ny fanovana.',
-    createDesc: 'Fandaharo mandeha ho azy ny baiko. Ampiasao ny syntax cron na andian-teny voajanahary toy ny "isaky ny 15 minitra".',
+    editDesc:
+      "Havaozina ny fandaharam-potoana, ny baiko, na ny toerana andefasana. Mihatra amin'ny famoahana manaraka ny fanovana.",
+    createDesc:
+      'Fandaharo mandeha ho azy ny baiko. Ampiasao ny syntax cron na andian-teny voajanahary toy ny "isaky ny 15 minitra".',
     nameLabel: 'Anarana',
     namePlaceholder: 'Famintinana maraina',
     promptLabel: 'Baiko',
-    promptPlaceholder: 'Fintino ny thread Slack tsy voavakiko ary alefaso amin\'ny mailaka ny 5 ambony...',
+    promptPlaceholder: "Fintino ny thread Slack tsy voavakiko ary alefaso amin'ny mailaka ny 5 ambony...",
     frequencyLabel: 'Fahita matetika',
-    deliverLabel: 'Alefa any amin\'ny',
+    deliverLabel: "Alefa any amin'ny",
     deliverNeedsHomeChannel: 'safidio aloha ny fantsona fototra',
     modelLabel: 'Modely',
     modelDefault: 'Mahazatra (modely maneran-tany)',
     customScheduleLabel: 'Fandaharam-potoana manokana',
-    customPlaceholder: '0 9 * * * na andro fiasana amin\'ny 9 maraina',
+    customPlaceholder: "0 9 * * * na andro fiasana amin'ny 9 maraina",
     customHint: 'Fiteny cron, na andian-teny toy ny "isaky ny ora" na "andro fiasana amin\'ny 9 maraina".',
     optional: 'Tsy voatery',
     promptRequired: 'Ilaina ny baiko.',
@@ -1649,11 +1704,11 @@ export const mg = defineLocale({
     createAction: 'Hamorona cron',
     tabs: {
       jobs: 'Asa',
-      blueprints: 'Drafitra',
+      blueprints: 'Drafitra'
     },
     blueprints: {
       tab: 'Drafitra',
-      startFrom: 'Manomboka amin\'ny',
+      startFrom: "Manomboka amin'ny",
       custom: 'Manokana',
       subtitle: 'Fandaharana mandeha ho azy efa vonona',
       dialogDesc: 'Fenoy ny antsipiriany ary fandaharo izany.',
@@ -1663,7 +1718,7 @@ export const mg = defineLocale({
       loading: 'Mampiditra drafitra...',
       failedLoad: 'Tsy afaka nampiditra drafitra',
       emptyTitle: 'Tsy misy drafitra azo ampiasaina',
-      emptyDesc: 'Tsy misy drafitra fandaharana mandeha ho azy azo ampiasaina amin\'ity backend ity.',
+      emptyDesc: "Tsy misy drafitra fandaharana mandeha ho azy azo ampiasaina amin'ity backend ity."
     },
     close: 'Akatona ny fandaharam-potoana',
     title: 'Asa voalahatra',
@@ -1677,32 +1732,32 @@ export const mg = defineLocale({
       paused: 'naato',
       disabled: 'nofoanana',
       error: 'hadisoana',
-      completed: 'vita',
+      completed: 'vita'
     },
     deliveryLabels: {
       local: 'Ity solosaina ity',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Mailaka',
+      email: 'Mailaka'
     },
     scheduleLabels: {
-      daily: 'Isan\'andro',
+      daily: "Isan'andro",
       weekdays: 'Andro fiasana',
       weekly: 'Isan-kerinandro',
       monthly: 'Isam-bolana',
-      hourly: 'Isan\'ora',
+      hourly: "Isan'ora",
       'every-15-minutes': 'Isaky ny 15 minitra',
-      custom: 'Namboarina manokana',
+      custom: 'Namboarina manokana'
     },
     scheduleHints: {
-      daily: 'Isan\'andro amin\'ny 9:00 maraina',
-      weekdays: 'Alatsinainy hatramin\'ny Zoma amin\'ny 9:00 maraina',
-      weekly: 'Isaky ny Alatsinainy amin\'ny 9:00 maraina',
-      monthly: 'Ny andro voalohany isam-bolana amin\'ny 9:00 maraina',
-      hourly: 'Isaky ny fiandohan\'ny ora',
+      daily: "Isan'andro amin'ny 9:00 maraina",
+      weekdays: "Alatsinainy hatramin'ny Zoma amin'ny 9:00 maraina",
+      weekly: "Isaky ny Alatsinainy amin'ny 9:00 maraina",
+      monthly: "Ny andro voalohany isam-bolana amin'ny 9:00 maraina",
+      hourly: "Isaky ny fiandohan'ny ora",
       'every-15-minutes': 'Isaky ny 15 minitra',
-      custom: 'Fitsipi-panoratana Cron na fiteny mahazatra',
+      custom: 'Fitsipi-panoratana Cron na fiteny mahazatra'
     },
     days: {
       '0': 'Alahady',
@@ -1712,17 +1767,18 @@ export const mg = defineLocale({
       '4': 'Alakamisy',
       '5': 'Zoma',
       '6': 'Asabotsy',
-      '7': 'Alahady',
+      '7': 'Alahady'
     },
     dayFallback: value => `andro ${value}`,
     everyDayAt: time => `Isan'andro amin'ny ${time}`,
     weekdaysAt: time => `Andro fiasana amin'ny ${time}`,
     everyDayOfWeekAt: (day, time) => `Isaky ny ${day} amin'ny ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Isam-bolana amin'ny andro ${dayOfMonth} amin'ny ${time}`,
-    topOfHour: 'Isaky ny fiandohan\'ny ora',
+    topOfHour: "Isaky ny fiandohan'ny ora",
     everyHourAt: minute => `Isan'ora amin'ny :${minute}`,
     newCron: 'Fandaharam-potoana vaovao',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -1755,7 +1811,7 @@ export const mg = defineLocale({
     failedUpdate: 'Failed to update cron job',
     failedTrigger: 'Failed to trigger cron job',
     failedDelete: 'Failed to delete cron job',
-    failedSave: 'Failed to save cron job',
+    failedSave: 'Failed to save cron job'
   },
   artifacts: {
     search: 'Hikaroka artifacts...',
@@ -1789,7 +1845,7 @@ export const mg = defineLocale({
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   profiles: {
     editSoul: 'Ovay SOUL.md…',
@@ -1798,7 +1854,7 @@ export const mg = defineLocale({
     modelLabel: 'Modely',
     skillsLabel: 'Fahaizana',
     notSet: 'Tsy voafaritra',
-    soulDesc: 'Ny baiko rafitra sy ny toromarika persona tafiditra ao anatin\'ity profil ity.',
+    soulDesc: "Ny baiko rafitra sy ny toromarika persona tafiditra ao anatin'ity profil ity.",
     soulOptional: 'tsy voatery',
     soulPlaceholderCloned: 'voakopia',
     soulPlaceholderEmpty: 'foana',
@@ -1814,16 +1870,17 @@ export const mg = defineLocale({
     deleting: 'Mamafa...',
     createDesc: 'Ny profil dia tontolo OpenAmer mahaleo tena: misaraka ny fandrindrana, fahaizana, ary SOUL.md.',
     nameLabel: 'Anarana',
-    cloneFrom: 'Kopia avy amin\'ny',
+    cloneFrom: "Kopia avy amin'ny",
     cloneFromNone: 'Tsy misy (banga)',
-    cloneFromDesc: 'Mandika ny fandrindrana, fahaizana, ary SOUL.md avy amin\'ny profil loharano voafidy.',
-    cloneFromDefault: 'Kopia avy amin\'ny mahazatra',
-    cloneFromDefaultDesc: 'Adikao ny fandrindrana, fahaizana, ary SOUL.md avy amin\'ny profil mahazatrao.',
+    cloneFromDesc: "Mandika ny fandrindrana, fahaizana, ary SOUL.md avy amin'ny profil loharano voafidy.",
+    cloneFromDefault: "Kopia avy amin'ny mahazatra",
+    cloneFromDefaultDesc: "Adikao ny fandrindrana, fahaizana, ary SOUL.md avy amin'ny profil mahazatrao.",
     nameRequired: 'Ilaina ny anarana.',
     creating: 'Mamorona...',
     createAction: 'Mamorona profil',
-    renameTitle: 'Hanova anaran\'ny profil',
-    renameDescPrefix: 'Ny fanovana anarana dia manavao ny lahatahirin\'ny profil sy ny script wrapper rehetra ao amin\'ny',
+    renameTitle: "Hanova anaran'ny profil",
+    renameDescPrefix:
+      "Ny fanovana anarana dia manavao ny lahatahirin'ny profil sy ny script wrapper rehetra ao amin'ny",
     renameDescSuffix: '.',
     newNameLabel: 'Anarana vaovao',
     renaming: 'Manova anarana...',
@@ -1833,7 +1890,8 @@ export const mg = defineLocale({
     setupCopied: 'Voakopia ny baiko fanamboarana',
     soulSaved: 'Voatahiry SOUL.md',
     close: 'Akatona ny mombamomba',
-    nameHint: 'Litera madinika, tarehimarika, tsipi-panohizana ary tsipika ambany. Tsy maintsy manomboka amin\'ny litera na tarehimarika.',
+    nameHint:
+      "Litera madinika, tarehimarika, tsipi-panohizana ary tsipika ambany. Tsy maintsy manomboka amin'ny litera na tarehimarika.",
     title: 'Mombamomba',
     count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
     search: 'Hikaroka mombamomba...',
@@ -1867,10 +1925,10 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     failedLoadSoul: 'Tsy voaloa ny SOUL.md',
     failedSaveSoul: 'Tsy voatahiry ny SOUL.md',
     failedCreate: 'Tsy voaforona ny mombamomba',
-    failedRename: 'Tsy nahomby ny fanovana anaran\'ny mombamomba',
+    failedRename: "Tsy nahomby ny fanovana anaran'ny mombamomba"
   },
   composer: {
-    voiceDictation: 'Fanoratana amin\'ny feo',
+    voiceDictation: "Fanoratana amin'ny feo",
     speakReplies: 'Vakio mafy ny valiny',
     stopSpeakingReplies: 'Ajanony ny famakiana mafy ny valiny',
     lookupLoading: 'Mitady…',
@@ -1884,9 +1942,9 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       '/help': 'lisitra feno ny baiko + fanalahidy haingana',
       '/clear': 'manomboka sesiona vaovao',
       '/resume': 'hanohy sesiona teo aloha',
-      '/details': 'mifehy ny haavon\'ny antsipirian\'ny dika',
-      '/copy': 'adikao ny fifantenana na ny hafatra farany avy amin\'ny mpanampy',
-      '/quit': 'mivoaha amin\'ny openamer',
+      '/details': "mifehy ny haavon'ny antsipirian'ny dika",
+      '/copy': "adikao ny fifantenana na ny hafatra farany avy amin'ny mpanampy",
+      '/quit': "mivoaha amin'ny openamer"
     },
     hotkeyDescs: {
       'composer.mention': 'manondro rakitra, lahatahiry, url, git',
@@ -1896,23 +1954,23 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       'composer.sendQueued': 'alefa ny fihodinana manaraka voarindra',
       'keybinds.openPanel': 'ny fanalahidy haingana rehetra',
       'composer.cancel': 'akatona ny varavarankely kely · hanafoana ny fampandehanana',
-      'composer.history': 'mifandimby varavarankely kely / tantara',
+      'composer.history': 'mifandimby varavarankely kely / tantara'
     },
     attachUrlTitle: 'Ampidiro URL',
-    attachUrlDesc: 'Haka ny pejy ny OpenAmer ary hampiditra azy ho fanazavana amin\'ity fihodinana ity.',
+    attachUrlDesc: "Haka ny pejy ny OpenAmer ary hampiditra azy ho fanazavana amin'ity fihodinana ity.",
     urlPlaceholder: 'https://example.com/post',
     urlHintPre: 'Ampidiro ny URL feno, ohatra',
     attach: 'Ampidiro',
     attachmentOnly: 'Fihodinana misy fametahana ihany',
     emptyTurn: 'Fihodinana foana',
-    editingInComposer: 'Fanovana ao amin\'ny sehatra fanoratana',
-    editingQueuedInComposer: 'Fanovana fihodinana voarindra ao amin\'ny sehatra fanoratana',
+    editingInComposer: "Fanovana ao amin'ny sehatra fanoratana",
+    editingQueuedInComposer: "Fanovana fihodinana voarindra ao amin'ny sehatra fanoratana",
     queueEdit: 'Ovay',
     queueSendNext: 'Manaraka',
     queueSend: 'Alefa',
     queueDelete: 'Fafao',
     queueResume: 'Hanohy',
-    queueResumeTip: 'Najanona tamin\'ny Stop — tohizo ny fandefasana ny fihodinana voarindra',
+    queueResumeTip: "Najanona tamin'ny Stop — tohizo ny fandefasana ny fihodinana voarindra",
     queueStuckTitle: 'Tsy nalefa ny hafatra voarindra',
     message: 'Message',
     wakingProfile: profile => `Waking up ${profile}…`,
@@ -1926,7 +1984,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1935,7 +1993,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1988,26 +2046,26 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
   },
   modelPicker: {
     noAuthenticatedProviders: 'Tsy misy mpamatsy voamarina.',
     proNeedsSubscription: 'Modely Pro dia mila famandrihana OpenAmer voaloa.',
     free: 'Maimaim-poana',
     freeTier: 'Sosona maimaim-poana',
-    priceTitle: 'Vidin\'ny fampidirana / famoahana isaky ny tapitrisa tokena',
+    priceTitle: "Vidin'ny fampidirana / famoahana isaky ny tapitrisa tokena",
     wasPrice: 'taloha',
     title: 'Switch model',
     current: 'current:',
@@ -2016,13 +2074,13 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     noModels: 'No models found.',
     addProvider: 'Add provider',
     loadFailed: 'Could not load models',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Modely',
     search: 'Hikaroka modely',
     noAuthenticatedProviders: 'Tsy misy mpamatsy voamarina.',
-    addProvider: 'Hanampy mpamatsy…',
+    addProvider: 'Hanampy mpamatsy…'
   },
   shell: {
     windowControls: 'Fifehezana varavarankely',
@@ -2033,10 +2091,10 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       noModels: 'Tsy misy modely hita',
       editModels: 'Hanova modely…',
       refreshModels: 'Havaozina modely',
-      fast: 'Haingana',
+      fast: 'Haingana'
     },
     modelOptions: {
-      noOptions: 'Tsy misy safidy amin\'ity modely ity',
+      noOptions: "Tsy misy safidy amin'ity modely ity",
       options: 'Safidy',
       thinking: 'Mieritreritra',
       fast: 'Haingana',
@@ -2048,8 +2106,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       xhigh: 'Ambony be',
       max: 'Fara-tampony',
       ultra: 'Mihoatra',
-      updateFailed: 'Tsy nahomby ny fanavaozana safidin\'ny modely',
-      fastFailed: 'Tsy nahomby ny fanavaozana fomba haingana',
+      updateFailed: "Tsy nahomby ny fanavaozana safidin'ny modely",
+      fastFailed: 'Tsy nahomby ny fanavaozana fomba haingana'
     },
     gatewayMenu: {
       gateway: 'Vavahady',
@@ -2064,7 +2122,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2074,7 +2132,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2130,13 +2188,13 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2149,15 +2207,16 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   zones: {
     hideHeader: 'Afenoy ny lohateny',
     minimize: 'Ahena',
     restore: 'Avereno',
     closeRunningTitle: 'Hidio ny tabila mandeha?',
-    closeRunningBody: 'Mbola mandeha ity resaka ity (na miandry ny fampidiranao). Ny fanidiana ny tabila dia manafina azy — mitazona ny fandrosoany ny fivoriana ary azo sokafana indray avy amin\'ny sisin-dàlana.',
+    closeRunningBody:
+      "Mbola mandeha ity resaka ity (na miandry ny fampidiranao). Ny fanidiana ny tabila dia manafina azy — mitazona ny fandrosoany ny fivoriana ary azo sokafana indray avy amin'ny sisin-dàlana.",
     closeRunningConfirm: 'Hidio ny tabila',
     closeOthers: 'Hidio ny hafa',
     closeToRight: 'Hidio ny eo ankavanana',
@@ -2167,9 +2226,10 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     dirDown: 'ambany',
     dirLeft: 'ankavia',
     dirRight: 'ankavanana',
-    pluginDisabledBody: 'Avereno velona ao amin\'ny Fandrindrana → Plugin izy mba hiverenan\'ny panela.',
+    pluginDisabledBody: "Avereno velona ao amin'ny Fandrindrana → Plugin izy mba hiverenan'ny panela.",
     editTitle: 'Fandaminana',
-    editHint: 'Misafidiana fandaminana, na tarito ny panela eo anelanelan\'ny faritra. Tsindrio havanana ny faritra iray mba hizara.',
+    editHint:
+      "Misafidiana fandaminana, na tarito ny panela eo anelanelan'ny faritra. Tsindrio havanana ny faritra iray mba hizara.",
     reset: 'Avereno',
     templates: 'Modely',
     custom: 'Manokana',
@@ -2178,12 +2238,14 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     nameLayoutPlaceholder: 'Asio anarana ity fandaminana ity…',
     zoneEditorTitle: 'Mpandamina faritra',
     editorHintPre: 'tsindrio hizara ·',
-    editorHintPost: 'mamadika ny tsipika · tarito manerana ny faritra hampifangaro · tarito ny sisiny iraisana hanovana habe',
+    editorHintPost:
+      'mamadika ny tsipika · tarito manerana ny faritra hampifangaro · tarito ny sisiny iraisana hanovana habe',
     templateColumns: 'Tsanganana',
     templateRows: 'Andalana',
     templatePriority: 'Laharam-pahamehana',
     saveApply: 'Tehirizo & ampiharo',
-    notExpressible: 'mifamatotra (pinwheel) ity fandaminana ity — tsy azo aseho amin\'ny fizarana mifanongoa izany amin\'izao',
+    notExpressible:
+      "mifamatotra (pinwheel) ity fandaminana ity — tsy azo aseho amin'ny fizarana mifanongoa izany amin'izao",
     showHeader: 'Asehoy ny loha',
     split: dir => `Split ${dir}`,
     move: dir => `Move ${dir}`,
@@ -2195,32 +2257,32 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   preview: {
     discardReload: 'Ario & avereno',
     console: {
-      deselect: 'Esory amin\'ny safidy ny singa',
+      deselect: "Esory amin'ny safidy ny singa",
       select: 'Fidio ny singa',
       copyFailed: 'Tsy afaka nandika ny vokatra console',
       copyEntry: 'Adikao ity singa ity',
-      sendEntry: 'Alefaso amin\'ny chat ity singa ity',
-      resize: 'Ovay ny haben\'ny console fijery mialoha',
+      sendEntry: "Alefaso amin'ny chat ity singa ity",
+      resize: "Ovay ny haben'ny console fijery mialoha",
       title: 'Console fijery mialoha',
-      sendToChat: 'Alefaso amin\'ny chat',
-      copySelected: 'Adikao ao amin\'ny clipboard ny voafidy',
-      copyAll: 'Adikao ao amin\'ny clipboard ny rehetra',
+      sendToChat: "Alefaso amin'ny chat",
+      copySelected: "Adikao ao amin'ny clipboard ny voafidy",
+      copyAll: "Adikao ao amin'ny clipboard ny rehetra",
       copy: 'Adikao',
       clear: 'Fafao',
       empty: 'Tsy mbola misy hafatra console.',
       promptHeader: 'Console fijery mialoha:',
-      sentTitle: 'Nalefa tamin\'ny chat',
+      sentTitle: "Nalefa tamin'ny chat",
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
-      appFailedToBoot: 'Tsy nahomby ny fanombohan\'ny app fijery mialoha',
+      appFailedToBoot: "Tsy nahomby ny fanombohan'ny app fijery mialoha",
       serverNotFound: 'Tsy hita ny server',
       failedToLoad: 'Tsy nahomby ny famenoana ny fijery mialoha',
       tryAgain: 'Andramo indray',
@@ -2238,9 +2300,11 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       reloadingNow: 'Avereno izao ny fijery mialoha.',
       restartFailedTitle: 'Tsy nahomby ny famerenana hanomboka ny fijery mialoha',
       restartFailedMessage: 'Tsy afaka namerina nanomboka ny server i OpenAmer.',
-      stillWorking: 'Mbola miasa i OpenAmer, saingy tsy mbola tonga ny valin\'ny famerenana hanomboka. Mety ho mandeha ao amin\'ny foreground ny baiko server.',
+      stillWorking:
+        "Mbola miasa i OpenAmer, saingy tsy mbola tonga ny valin'ny famerenana hanomboka. Mety ho mandeha ao amin'ny foreground ny baiko server.",
       workspaceReloading: 'Niova ny workspace, averina ny fijery mialoha',
-      moduleMimeDescription: 'Ny script modules dia aroso amin\'ny karazana MIME diso. Matetika midika izany fa misy server rakitra static manolotra app Vite/React fa tsy ny dev server an\'ny tetikasa.',
+      moduleMimeDescription:
+        "Ny script modules dia aroso amin'ny karazana MIME diso. Matetika midika izany fa misy server rakitra static manolotra app Vite/React fa tsy ny dev server an'ny tetikasa.",
       unreachableDescription: 'Tsy afaka tongavina ny pejy fijery mialoha.',
       fallbackTitle: 'Fijery mialoha',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -2251,7 +2315,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'Preview',
     closeTab: label => `Close ${label}`,
@@ -2284,8 +2348,9 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
-    overwrite: 'Overwrite',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    overwrite: 'Overwrite'
   },
   common: {
     apply: 'Ampiasa',
@@ -2326,13 +2391,13 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     update: 'Fanavaozana',
     tryHint: term => `Matiky “${term}”`,
     on: 'Velona',
-    off: 'Vono',
+    off: 'Vono'
   },
   fileMenu: {
-    revealFinder: 'Fantarana amin\'ny Finder',
-    revealExplorer: 'Hamakafaka amin\'ny File Explorer',
+    revealFinder: "Fantarana amin'ny Finder",
+    revealExplorer: "Hamakafaka amin'ny File Explorer",
     revealFileManager: 'Bukana ny Folder Mifandraika',
-    revealInSidebar: 'Hamakafaka amin\'ny filetree',
+    revealInSidebar: "Hamakafaka amin'ny filetree",
     copyPath: 'Dikao ny Lalana',
     copyRelativePath: 'Dikao ny Lalana Relatyv',
     rename: 'Aloha anarana…',
@@ -2340,18 +2405,19 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     renameTitle: 'Aloha anarana',
     renameLabel: 'Anarana vaovao',
     deleteTitle: name => `Fafana ${name}?`,
-    deleteBody: 'Hodina amin\'ny Trash — azonao atao ny hanamboatra azy avy any.',
-    pathCopied: 'Lalana voadika',
+    deleteBody: "Hodina amin'ny Trash — azonao atao ny hanamboatra azy avy any.",
+    pathCopied: 'Lalana voadika'
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering software active — display remote voahita (${reason}). GPU acceleration voafafy mba tsy hisy flickering.`,
+    message: reason =>
+      `Rendering software active — display remote voahita (${reason}). GPU acceleration voafafy mba tsy hisy flickering.`
   },
   agents: {
     close: 'Akatona ireo mpanampy',
-    title: 'Hazon\'ny famoronana',
-    subtitle: 'Hetsiky ny mpanampy zana-masoivoho mivantana amin\'ity fihodinana ity.',
+    title: "Hazon'ny famoronana",
+    subtitle: "Hetsiky ny mpanampy zana-masoivoho mivantana amin'ity fihodinana ity.",
     emptyTitle: 'Tsy misy zana-masoivoho miasa mivantana',
-    emptyDesc: 'Rehefa mizara asa ny fihodinana iray, dia miseho eto mivantana ny fandrosoan\'ny zana-masoivoho.',
+    emptyDesc: "Rehefa mizara asa ny fihodinana iray, dia miseho eto mivantana ny fandrosoan'ny zana-masoivoho.",
     running: 'Mandeha',
     failed: 'Tsy nahomby',
     done: 'Vita',
@@ -2374,7 +2440,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     ageDays: days => `${days} andro lasa`,
     durationSeconds: seconds => `${seconds} segondra`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} seg`,
-    tokens: value => `${value} singa`,
+    tokens: value => `${value} singa`
   },
   webhooks: {
     search: 'Hikaroka webhook...',
@@ -2384,7 +2450,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     hint: 'Mihatra avy hatrany ny fanovana famandrihana rehefa mandeha ny mpandray. Mandà ny hetsika miditra ny famandrihana tsy navitrika.',
     empty: 'Tsy mbola misy famandrihana webhook.',
     disabledTitle: 'Tsy navitrika ny mpandray webhook',
-    disabledBody: 'Manana sehatra vavahady manokana ny webhook. Alefaso eto izy ireo handraisana hetsika HTTP miditra; ilaina ihany ny fantsona fifampiresahana rehefa mandefa any amin\'ny Telegram, Discord, Slack, na fantsona hafa ny famandrihana.',
+    disabledBody:
+      "Manana sehatra vavahady manokana ny webhook. Alefaso eto izy ireo handraisana hetsika HTTP miditra; ilaina ihany ny fantsona fifampiresahana rehefa mandefa any amin'ny Telegram, Discord, Slack, na fantsona hafa ny famandrihana.",
     enable: 'Hampandeha webhook',
     enabling: 'Mampandeha...',
     enabled: (name: string) => `Navitrika: "${name}"`,
@@ -2395,13 +2462,14 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     deleting: 'Mamafa...',
     deleted: 'Voafafa ny webhook',
     deleteTitle: 'Fafao ny webhook',
-    deleteDescPrefix: 'Hanaisotra tanteraka an\'i ',
+    deleteDescPrefix: "Hanaisotra tanteraka an'i ",
     deleteDescSuffix: '. Tsy azo averina intsony izany.',
     deleteFailed: (name: string) => `Tsy voafafa ny "${name}"`,
     toggleFailed: (name: string) => `Tsy voavao ny "${name}"`,
     newSubscription: 'Famandrihana vaovao',
     restarting: 'Manomboka indray ny vavahady...',
-    restartNeeded: 'Mandeha ny antso an-tranonkala, saingy mbola mila atomboka indray ny vavahady vao afaka miasa ny mpandray.',
+    restartNeeded:
+      'Mandeha ny antso an-tranonkala, saingy mbola mila atomboka indray ny vavahady vao afaka miasa ny mpandray.',
     restartGateway: 'Atombohy indray ny vavahady',
     restartingGateway: 'Manomboka indray...',
     restartFailed: (detail: string) => `Tsy nahomby ny fanombohana indray ny vavahady${detail}`,
@@ -2410,21 +2478,21 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     deliverOnly: 'mandefa ihany',
     createdTitle: 'Voaforona ny famandrihana',
     createdSecretHint: 'Adikao izao ny tsiambaratelo — indray mandeha ihany no aseho izy io.',
-    webhookUrl: 'URL an\'ny antso an-tranonkala',
+    webhookUrl: "URL an'ny antso an-tranonkala",
     secretOnce: 'Tsiambaratelo (aseho indray mandeha)',
     done: 'Vita',
     fieldName: 'Anarana',
     fieldNamePlaceholder: 'oh. github-push',
     fieldDescription: 'Famaritana',
-    fieldDescriptionPlaceholder: 'Izay ataon\'ity webhook ity (tsy voatery)',
+    fieldDescriptionPlaceholder: "Izay ataon'ity webhook ity (tsy voatery)",
     fieldEvents: 'Hetsika',
-    fieldEventsPlaceholder: 'saraho amin\'ny faingo, avelao ho banga raha izy rehetra',
+    fieldEventsPlaceholder: "saraho amin'ny faingo, avelao ho banga raha izy rehetra",
     fieldSkills: 'Fahaiza-manao',
-    fieldSkillsPlaceholder: 'anaran\'ny fahaiza-manao sarahina amin\'ny faingo (tsy voatery)',
-    fieldDeliver: 'Alefa any amin\'ny',
+    fieldSkillsPlaceholder: "anaran'ny fahaiza-manao sarahina amin'ny faingo (tsy voatery)",
+    fieldDeliver: "Alefa any amin'ny",
     fieldDeliverOnly: 'Alefaso ny angona ihany',
     fieldPrompt: 'Toromarika',
-    fieldPromptPlaceholder: 'Toromarika ho an\'ny solontena rehefa voahetsika ity antso an-tranonkala ity (tsy voatery)',
+    fieldPromptPlaceholder: "Toromarika ho an'ny solontena rehefa voahetsika ity antso an-tranonkala ity (tsy voatery)",
     nameRequired: 'Ilaina ny anarana',
     create: 'Mamorona',
     creating: 'Mamorona...',
@@ -2432,20 +2500,20 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     createFailed: (detail: string) => `Tsy nahomby ny famoronana: ${detail}`,
     copy: 'Adika',
     deliverOptions: {
-      log: 'Diarin\'ny hetsika',
+      log: "Diarin'ny hetsika",
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
       email: 'Mailaka',
-      github_comment: 'Fanehoan-kevitra ao amin\'ny GitHub',
-    },
+      github_comment: "Fanehoan-kevitra ao amin'ny GitHub"
+    }
   },
   sidebar: {
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -2497,7 +2565,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -2519,13 +2588,15 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -2563,15 +2634,15 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   statusStack: {
     agents: 'Agents',
@@ -2619,13 +2690,14 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
-    },
+      worktrees: 'Worktrees'
+    }
   },
   updates: {
     stages: {
@@ -2640,7 +2712,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2660,15 +2732,19 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2679,12 +2755,13 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2692,17 +2769,19 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2710,7 +2789,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2737,8 +2817,10 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2752,7 +2834,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2772,28 +2854,29 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2806,7 +2889,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2820,10 +2903,12 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2835,7 +2920,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   rightSidebar: {
     aria: 'Right sidebar',
@@ -2871,7 +2956,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     terminalNew: 'New terminal',
     terminalCloseOthers: 'Close others',
     terminalCloseAll: 'Close all',
-    addToChat: 'Add to chat',
+    addToChat: 'Add to chat'
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2882,7 +2967,7 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2899,7 +2984,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2910,7 +2996,8 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2950,31 +3037,31 @@ Avelao ho foana mba hitazonana ny fanaovana mahazatra ${mode}.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

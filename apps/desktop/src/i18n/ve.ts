@@ -24,7 +24,7 @@ export const ve = defineLocale({
       noSpeechDetected: 'A hu na u amba ho wanalaho',
       playbackFailed: 'U tamba ipfi ho kundelwa',
       recordingFailed: 'U rekhoda ipfi ho kundelwa',
-      transcriptionFailed: 'U shandula ipfi uri ḽi vhe maṅwalwa zwo kundelwa',
+      transcriptionFailed: 'U shandula ipfi uri ḽi vhe maṅwalwa zwo kundelwa'
     },
     native: {
       approvalTitle: 'Kuvhumela kwa swakudinga',
@@ -37,7 +37,7 @@ export const ve = defineLocale({
       turnErrorTitle: 'Moḓomi o fukile',
       backgroundDoneTitle: 'Tiro ya lokwaho e fikile',
       backgroundFailedTitle: 'Tiro ya lokwaho e fukile',
-      creditsTitle: 'Tikhodo',
+      creditsTitle: 'Tikhodo'
     },
     region: 'Nḓivhadzo',
     hide: 'Dzumba',
@@ -49,22 +49,24 @@ export const ve = defineLocale({
     copyDetail: 'Kopani zwidodombedzwa',
     copyDetailFailed: 'Zwo kundikana u kopa zwidodombedzwa zwa ndivhadzo',
     backendOutOfDateTitle: 'Tshipiḓa tsha murahu tsho fhelelwa nga tshifhinga',
-    backendOutOfDateMessage: 'Tshipiḓa tsha murahu tsha OpenAmer yaṋu ndi tsha kale u fhira iyi mbekanyamushumo ya khomphyutha nahone tshi nga si shume zwavhuḓi. Tshi khwinifhadzeni uri zwi tshimbidzane.',
+    backendOutOfDateMessage:
+      'Tshipiḓa tsha murahu tsha OpenAmer yaṋu ndi tsha kale u fhira iyi mbekanyamushumo ya khomphyutha nahone tshi nga si shume zwavhuḓi. Tshi khwinifhadzeni uri zwi tshimbidzane.',
     installMethodUnsupportedTitle: 'Nḓila ya u dzhenisa a i tikedzwi',
     updateOpenAmer: 'Khwinifhadzani OpenAmer',
     updateReadyTitle: 'Khwinifhadzo yo lugela u dzheniswa',
     updateReadyMessage: count => `${count} tshanduko ntswa${count === 1 ? '' : 's'} dzi hone.`,
-    seeWhatsNew: "Vhonani zwi re zwiswa",
+    seeWhatsNew: 'Vhonani zwi re zwiswa',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT i ṱoḓa ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs yo hana khii ya API (401).',
       gatewayAuthFailed: 'U khwaṱhisedza vhuṋe kha gethwei zwo kundelwa — ṱolani API_SERVER_KEY yaṋu.',
-      methodNotAllowed: 'Sisṱeme ya murahu ya desikithopo yo hana khumbelo iyo (405 Maitele ha tendelwi). Lingedzani u thoma hafhu OpenAmer ya Desikithopo.',
+      methodNotAllowed:
+        'Sisṱeme ya murahu ya desikithopo yo hana khumbelo iyo (405 Maitele ha tendelwi). Lingedzani u thoma hafhu OpenAmer ya Desikithopo.',
       microphonePermission: 'Thendelo ya u shumisa maikhirofounu yo hanelwa.',
       openaiRejectedApiKey: 'OpenAI yo hana khii ya API.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI yo hana khii ya API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'TTS ya OpenAI i ṱoḓa VOICE_TOOLS_OPENAI_KEY kana OPENAI_API_KEY.',
-    },
+      openaiTtsNeedsKey: 'TTS ya OpenAI i ṱoḓa VOICE_TOOLS_OPENAI_KEY kana OPENAI_API_KEY.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'U tshite tikwodo tia OpenAmer',
@@ -72,7 +74,7 @@ export const ve = defineLocale({
     openBilling: 'Vula bilingi',
     addCredits: 'Ndisa tikwodo',
     dismiss: 'Kwayisa',
-    titleProvider: provider => `Khiredithi dzo fhela — ${provider}`,
+    titleProvider: provider => `Khiredithi dzo fhela — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Bana sidebar',
@@ -89,7 +91,7 @@ export const ve = defineLocale({
     openStarmap: 'Vula tshengetedzo ya kuvhumbeleka',
     openKeybinds: 'Tinhwalo tia keyboard',
     layoutEditor: 'Mundzudisi wa ma布局',
-    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout',
+    layoutEditorTitle: 'Layout editor — ⌘-click resets the layout'
   },
   keybinds: {
     title: 'Tinhwalo tia keyboard',
@@ -104,7 +106,7 @@ export const ve = defineLocale({
       profiles: 'Profayili',
       session: 'Seshoni',
       navigation: 'Ndidelezi',
-      view: 'Ndilawo',
+      view: 'Ndilawo'
     },
     actions: {
       'keybinds.openPanel': 'Vula izitshenziswa sekibondela',
@@ -183,10 +185,10 @@ export const ve = defineLocale({
       'composer.queue': 'Vhea mulaedza kha muduba',
       'composer.sendQueued': 'Rumela mulaedza u tevhelaho kha muduba',
       'composer.mention': 'Sumbedza faela, foluda na URLs',
-      'composer.slash': 'Phalete ya ndaela dza mutalo wo sendamaho',
+      'composer.slash': 'Phalete ya ndaela dza mutalo wo sendamaho'
     },
     subtitle: open => `Kilikani nḓila ya u ṱavhanya uri ni i vhofhe hafhu · ${open} i vula phanele iyi hafhu.`,
-    conflictWith: label => `Yo dovha ya vhofhiwa kha “${label}”`,
+    conflictWith: label => `Yo dovha ya vhofhiwa kha “${label}”`
   },
   settings: {
     plugins: {
@@ -194,49 +196,51 @@ export const ve = defineLocale({
       kinds: {
         bundled: 'ehangiswa',
         disk: 'kwama-disk',
-        runtime: 'nako yo tshila',
+        runtime: 'nako yo tshila'
       },
       title: 'Dziplugini dza desktop',
-      blurb: 'Zwowedzaho zwa UI zwo loadiwaho kha app iyi — zwo bundelwa na build, kana zwo tshimbiswa kha folder ya desktop-plugins (u katela na zwine OpenAmer ya ṅwala). U litsha u tshumisa hu unloada plugin nga u ṱavhanya nahone hu dzula hu tshee hone ngei murahu ha u restart.',
+      blurb:
+        'Zwowedzaho zwa UI zwo loadiwaho kha app iyi — zwo bundelwa na build, kana zwo tshimbiswa kha folder ya desktop-plugins (u katela na zwine OpenAmer ya ṅwala). U litsha u tshumisa hu unloada plugin nga u ṱavhanya nahone hu dzula hu tshee hone ngei murahu ha u restart.',
       openFolder: 'Vula folder ya dziplugini',
       rescan: 'Skena hafhu',
       reveal: 'Sumedza kha file manager',
       enable: 'Tshumisa',
       disable: 'Litsha',
       failed: 'ho kundwa',
-      count: n => `${n} dzo dzheniswa`,
+      count: n => `${n} dzo dzheniswa`
     },
     notifications: {
       title: 'Tizazisi',
-      intro: 'Tizazisi tdesktop-native, ezitsephezweni nemilayezo yenkambanbo. Zi funengwa mudivhengu la computer—computer yin\'we iyana iina seteishini yayo.',
+      intro:
+        "Tizazisi tdesktop-native, ezitsephezweni nemilayezo yenkambanbo. Zi funengwa mudivhengu la computer—computer yin'we iyana iina seteishini yayo.",
       enableAll: 'Vula tizazisi',
       enableAllDesc: 'Switsha nkulu. Yiwela ku tika hiyo wena ku funa tizazisi hinkwato tshiitivha.',
       focusedHint: 'Tizazisi tspamala tshi funa kusebenzisa ha OpenAmer etimela emnyama.',
       kinds: {
         approval: {
           label: 'Ku funiwa kwetendwa',
-          description: 'Command yin\'we ilinde ukwamalula kana kufuniwa kwayo.',
+          description: "Command yin'we ilinde ukwamalula kana kufuniwa kwayo."
         },
         input: {
           label: 'Tshimo to funwa',
-          description: 'OpenAmer o bonile nquestion kana o funa password kana secret.',
+          description: 'OpenAmer o bonile nquestion kana o funa password kana secret.'
         },
         turnDone: {
           label: 'Karabo yo tekanwa',
-          description: 'Tiro yopela ha OpenAmer etimela emnyama.',
+          description: 'Tiro yopela ha OpenAmer etimela emnyama.'
         },
         turnError: {
           label: 'Tiro yo hana',
-          description: 'Tiro opela ka errora.',
+          description: 'Tiro opela ka errora.'
         },
         backgroundDone: {
           label: 'Tiro yo emnyama yopela',
-          description: 'Command yo terminal eyo tshila ka nt背景 yopela.',
+          description: 'Command yo terminal eyo tshila ka nt背景 yopela.'
         },
         credits: {
           label: 'Tizazisi tsa khiredi',
-          description: 'Khiredi yotangwa kana yabuyiswa.',
-        },
+          description: 'Khiredi yotangwa kana yabuyiswa.'
+        }
       },
       test: 'Yisa tizazisi ya ndatshe',
       testTitle: 'OpenAmer',
@@ -245,7 +249,7 @@ export const ve = defineLocale({
       testUnsupported: 'Sistimu yino hai tsungi native notifications.',
       completionSoundTitle: 'Lwi la kupela',
       completionSoundDesc: 'Lodzwa ha tiro ya watsi ipela. Tsala preset u ndzi itale haha.',
-      completionSoundPreview: 'Ita',
+      completionSoundPreview: 'Ita'
     },
     sections: {
       model: 'Mododeli',
@@ -255,7 +259,7 @@ export const ve = defineLocale({
       safety: 'Mpilo',
       memory: 'Ngekhodo & Kwalalula',
       voice: 'Lwi',
-      advanced: 'Tshi tshibilaka',
+      advanced: 'Tshi tshibilaka'
     },
     searchPlaceholder: {
       about: 'Ka OpenAmer Desktop',
@@ -263,17 +267,19 @@ export const ve = defineLocale({
       gateway: 'Kopano ka Gateway...',
       keys: 'Ṱoḓa khii dza API...',
       mcp: 'Ṱoḓa seva dza MCP...',
-      sessions: 'Ṱoḓa zwifhinga zwa mushumo zwo vhulungwaho...',
+      sessions: 'Ṱoḓa zwifhinga zwa mushumo zwo vhulungwaho...'
     },
     gateway: {
       modeTitle: 'Nzila yotambula',
       localTitle: 'Mula ya gwale',
-      localDesc: 'Songula backend ya OpenAmer ya ndi private kha localhost. Enha iyi ndi khonwa na u shuma nga ho nga internet.',
+      localDesc:
+        'Songula backend ya OpenAmer ya ndi private kha localhost. Enha iyi ndi khonwa na u shuma nga ho nga internet.',
       inheritTitle: 'Shumisa mula ya khonwa',
       inheritDesc: 'Remove phokhothi ya profaili enu u shumise yotambula ya khonwa.',
       remoteTitle: 'Mula ya tshitemela',
       remoteDesc: 'Kana desktop shell enu kha backend ya OpenAmer ya tshitemela.',
-      remoteAuthHint: 'Mula dzi shelefwa dzi shumisa OAuth kana username na password; dzi shelefwa hi vhosted dzi nga shumisa token ya session.',
+      remoteAuthHint:
+        'Mula dzi shelefwa dzi shumisa OAuth kana username na password; dzi shelefwa hi vhosted dzi nga shumisa token ya session.',
       cloudDesc: 'Tshelela ka eonce kha OpenAmer Cloud u kha vho vushumisani vha akhaunti yenu — ho nga URL yo paste.',
       cloudSignIn: 'Tshelela kha OpenAmer Cloud',
       cloudSignedIn: 'U tshelelile kha OpenAmer Cloud',
@@ -287,7 +293,7 @@ export const ve = defineLocale({
       cloudNoAgents: {
         before: 'A ho na vho vushumisani vha ku found kha akhaunti enu. Yonga iya kha',
         linkText: 'poso ya OpenAmer',
-        after: ', u shulela kutani.',
+        after: ', u shulela kutani.'
       },
       cloudRefresh: 'Tshilaela',
       cloudConnect: 'Kana',
@@ -301,7 +307,8 @@ export const ve = defineLocale({
       cloudConnectedPill: 'Ho kana',
       cloudAgentProvisioning: 'E funengwa…',
       remoteUrlTitle: 'URL ya tshitemela',
-      remoteUrlDesc: 'URL ya khonwa ya backend ya dashboard ya tshitemela. Prefix dza path dzi tebulu, kha tshembiso /openamer.',
+      remoteUrlDesc:
+        'URL ya khonwa ya backend ya dashboard ya tshitemela. Prefix dza path dzi tebulu, kha tshembiso /openamer.',
       probing: 'E tshila te ndlela mula eno ya tshilela…',
       probeError: 'A nga swelelwa ku fikisa mula enu. Tsila URL — ndlela ya tshilela i do teba mutanga i respond.',
       signedIn: 'U tshelelile',
@@ -312,14 +319,16 @@ export const ve = defineLocale({
       authSignedInOauth: 'Gatedya iyi itshwatsa OAuth. U kangantile; sesheni yi funduka hi funduwa.',
       authNeedsPassword: 'Gatedya iyi itshwatsa username na password. Kangana u tshine app ya desktop.',
       tokenTitle: 'Token ya sesheni',
-      tokenDesc: 'Token ya sesheni ya dashboard ehi tirhisiwa ka REST na WebSocket. Tsala blank u tshambe u tshimbwile token yo tshi savewa.',
+      tokenDesc:
+        'Token ya sesheni ya dashboard ehi tirhisiwa ka REST na WebSocket. Tsala blank u tshambe u tshimbwile token yo tshi savewa.',
       savedToken: 'Yo tshi savewa',
       pasteSessionToken: 'Namela token ya sesheni',
       testRemote: 'Kangana remote',
       saveForRestart: 'Save u tshambe u tula',
       saveAndReconnect: 'Save u kandela',
       diagnostics: 'Tiko',
-      diagnosticsDesc: 'Tombelana desktop.log kumulayisi wa mafayila — yo nga nthusa ha gatedya hi nga pfumelela ku start.',
+      diagnosticsDesc:
+        'Tombelana desktop.log kumulayisi wa mafayila — yo nga nthusa ha gatedya hi nga pfumelela ku start.',
       openLogs: 'Tumbulana mafayila',
       incompleteTitle: 'Gatedya ya remote ha yi',
       incompleteSignIn: 'Namela URL ya remote u kangane pele u tshimbela ka remote.',
@@ -341,7 +350,8 @@ export const ve = defineLocale({
       applyFailed: 'A hi nga tshimbise setting ya gatedya',
       saveFailed: 'A hi nga save setting ya gatedya',
       sshTitle: 'Kangana nga SSH',
-      sshDesc: 'OpenAmer i launchwa e host ka SSH na i tunnelwa kwa app iyi — u nga na start na u nga na udavise. E funwa ku tshimbela nga SSH key ehi tirhisiwa ku fana.',
+      sshDesc:
+        'OpenAmer i launchwa e host ka SSH na i tunnelwa kwa app iyi — u nga na start na u nga na udavise. E funwa ku tshimbela nga SSH key ehi tirhisiwa ku fana.',
       sshTrustHint: 'Host key ya nga la e tsonga i trustwa na i pinwa; tshinetjho vha tshimbela ha nga pfumelela.',
       sshHostDesc: 'user@host, kana Host alias eha ~/.ssh/config.',
       sshHostPick: 'Keta host…',
@@ -363,10 +373,14 @@ export const ve = defineLocale({
       sshButtonsHint: 'Vhulunga zwi shuma kha u thoma luningine. Tanganya i tanganya hafhu zwino.',
       sshIncompleteHost: 'Dzhenisa muhali wa SSH ni sa athu tanganya.',
       sshErrUnreachable: 'A zwo ngo kona u swika kha muhali iyo nga SSH. Ṱola muhali, port, na netiweke yanu.',
-      sshErrAuth: 'U ḓivhulula ha SSH ho kundelwa. Dzhenisa kii yanu kha ssh-agent (ssh-add) kana ni vheele IdentityFile kha ~/.ssh/config — OpenAmer i shumisa ssh nga u sa dzhenelela.',
-      sshErrHostKey: 'Kii ya muhali yo SHANDUKA u bva tshifhinga tsha u fhedza u tanganya. Sedzulusa uri zwi tou teea, nga murahu shumisa ssh-keygen -R <host> ni tanganye hafhu.',
-      sshErrNotInstalled: 'OpenAmer a yo ngo dzheniswa kha muhali wa kule. I dzhenise afho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kana ni vheele phathi ya OpenAmer.',
-      sshErrPlatform: 'Platiformu ya kule a i tshegetshelwi. Modu ya OpenAmer Desktop SSH i tshegetshela mihali ya kule ya Linux, macOS, na Windows.',
+      sshErrAuth:
+        'U ḓivhulula ha SSH ho kundelwa. Dzhenisa kii yanu kha ssh-agent (ssh-add) kana ni vheele IdentityFile kha ~/.ssh/config — OpenAmer i shumisa ssh nga u sa dzhenelela.',
+      sshErrHostKey:
+        'Kii ya muhali yo SHANDUKA u bva tshifhinga tsha u fhedza u tanganya. Sedzulusa uri zwi tou teea, nga murahu shumisa ssh-keygen -R <host> ni tanganye hafhu.',
+      sshErrNotInstalled:
+        'OpenAmer a yo ngo dzheniswa kha muhali wa kule. I dzhenise afho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kana ni vheele phathi ya OpenAmer.',
+      sshErrPlatform:
+        'Platiformu ya kule a i tshegetshelwi. Modu ya OpenAmer Desktop SSH i tshegetshela mihali ya kule ya Linux, macOS, na Windows.',
       sshErrTimeout: 'U tanganya ha SSH ho fhela tshifhinga. Muhali u nga vha u sa swikeleli kana wo edela.',
       sshErrUpdateRequired: 'Vhuyedza OpenAmer kha muhali wa kule ni sa athu tanganya na Desktop SSH.',
       sshErrUnknown: 'U tanganya ha SSH ho kundelwa.',
@@ -375,27 +389,32 @@ export const ve = defineLocale({
       unavailableDesc: 'Cầu nối IPC trên máy tính để bàn không hiển thị cài đặt cổng.',
       title: 'Kết nối cổng',
       envOverride: 'điều chỉnh môi trường',
-      intro: 'OpenAmer Desktop mặc định khởi động cổng địa phương riêng. Sử dụng cổng từ xa khi bạn muốn ứng dụng này điều khiển một backend OpenAmer đã chạy trên máy khác hoặc qua một proxy tin cậy. Chọn một hồ sơ dưới đây để cấp cho nó máy chủ từ xa riêng.',
+      intro:
+        'OpenAmer Desktop mặc định khởi động cổng địa phương riêng. Sử dụng cổng từ xa khi bạn muốn ứng dụng này điều khiển một backend OpenAmer đã chạy trên máy khác hoặc qua một proxy tin cậy. Chọn một hồ sơ dưới đây để cấp cho nó máy chủ từ xa riêng.',
       appliesTo: 'Áp dụng cho',
       allProfiles: 'Tất cả hồ sơ',
       defaultConnection: 'Kết nối mặc định cho mọi hồ sơ không có điều chỉnh riêng.',
-      profileConnection: profile => `Kết nối chỉ được sử dụng khi “${profile}” là hồ sơ đang hoạt động. Chọn Sử dụng cổng mặc định để loại bỏ điều chỉnh của nó.`,
+      profileConnection: profile =>
+        `Kết nối chỉ được sử dụng khi “${profile}” là hồ sơ đang hoạt động. Chọn Sử dụng cổng mặc định để loại bỏ điều chỉnh của nó.`,
       envOverrideTitle: 'Biến môi trường đang điều khiển phiên làm việc trên máy tính này.',
-      envOverrideDesc: 'Bỏ đặt OPENAMER_DESKTOP_REMOTE_URL và OPENAMER_DESKTOP_REMOTE_TOKEN để sử dụng cài đặt đã lưu bên dưới.',
+      envOverrideDesc:
+        'Bỏ đặt OPENAMER_DESKTOP_REMOTE_URL và OPENAMER_DESKTOP_REMOTE_TOKEN để sử dụng cài đặt đã lưu bên dưới.',
       cloudTitle: 'Gole ḽa OpenAmer',
       cloudSignInTitle: 'Gole ḽa OpenAmer',
       cloudOrgRole: role => `Vai trò: ${role}`,
       cloudConnectedTo: name => `Đã kết nối với ${name}.`,
       cloudStatusLabel: status => `Tshiimo: ${status}`,
       signInWith: provider => `Đăng nhập bằng ${provider}`,
-      authNeedsOauth: provider => `Cổng này sử dụng OAuth. Đăng nhập bằng ${provider} để cấp quyền cho ứng dụng trên máy tính này.`,
+      authNeedsOauth: provider =>
+        `Cổng này sử dụng OAuth. Đăng nhập bằng ${provider} để cấp quyền cho ứng dụng trên máy tính này.`,
       existingToken: value => `Token hiện có ${value}`,
       connectedTo: (baseUrl, version) => `Đã kết nối với ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshPortTitle: 'Photho',
-      sshReachable: (host, platform) => `Có thể truy cập: ${host} (${platform}) — OpenAmer được tìm thấy`,
+      sshReachable: (host, platform) => `Có thể truy cập: ${host} (${platform}) — OpenAmer được tìm thấy`
     },
     toolsets: {
-      noProviderOptions: 'Lunuseti leri ha lina mveledisi dzakho—u nga ri funula naswona u ta tirisa leswi u sivi na kona.',
+      noProviderOptions:
+        'Lunuseti leri ha lina mveledisi dzakho—u nga ri funula naswona u ta tirisa leswi u sivi na kona.',
       noProviders: 'A ku na mveledisi namuntlha.',
       ready: 'Ko lokota',
       needsSignIn: 'E funwa ku ngisa',
@@ -436,8 +455,9 @@ export const ve = defineLocale({
         inUse: 'Kusa shumiswa',
         selectedTitle: 'Backend yo endlelelwe',
         needsSetupHint: 'U nga kheta backend leyi namuntlha—swikimi swi ta tala ngafana gohla go hola.',
-        selectedMessage: backend => `Ndaela dza theminaḽa zwino dzi shuma nga ${backend}. Zwi shuma kha dzisesheni ntswa.`,
-        failedSelect: backend => `Zwo kundelwa u nanga ${backend}`,
+        selectedMessage: backend =>
+          `Ndaela dza theminaḽa zwino dzi shuma nga ${backend}. Zwi shuma kha dzisesheni ntswa.`,
+        failedSelect: backend => `Zwo kundelwa u nanga ${backend}`
       },
       loadingConfig: 'Hu khou laiswa nzudzanyo',
       savedTitle: 'Zwidodombedzwa zwa u dzhena zwo vhulungwa',
@@ -454,8 +474,10 @@ export const ve = defineLocale({
       selectedMessage: provider => `${provider} i khou shuma zwino.`,
       failedSelect: provider => `Zwo kundelwa u nanga ${provider}`,
       failedLoad: 'Nzudzanyo ya tshishumiswa yo kundelwa u dzheniswa',
-      openamerAuthNeededMessage: provider => `${provider} yo vhulungwa, fhedzi a i nga shumi u swika ni tshi dzhena kha Khoro ya OpenAmer.`,
-      postSetupHint: step => `Sisiteme iyi ya murahu i ṱoḓa u dzheniswa luthihi (${step}). I shuma kha uyu mutshini — zwi nga dzhia minetse i si gathi.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} yo vhulungwa, fhedzi a i nga shumi u swika ni tshi dzhena kha Khoro ya OpenAmer.`,
+      postSetupHint: step =>
+        `Sisiteme iyi ya murahu i ṱoḓa u dzheniswa luthihi (${step}). I shuma kha uyu mutshini — zwi nga dzhia minetse i si gathi.`,
       postSetupCompleteMessage: step => `${step} yo dzheniswa.`,
       postSetupErrorMessage: step => `Ṱolani rekhodo ya ${step}.`,
       postSetupFailed: step => `U dzudzanya ${step} zwo kundelwa`,
@@ -465,7 +487,7 @@ export const ve = defineLocale({
       failedSelectCapability: provider => `U vhea ${provider} zwo kundelwa`,
       modelCount: count => `${count} modele${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} i shuma kha dzisesheni ntswa.`,
-      failedSelectModel: model => `U nanga ${model} zwo kundelwa`,
+      failedSelectModel: model => `U nanga ${model} zwo kundelwa`
     },
     closeSettings: 'Vala zwiitea',
     exportConfig: 'Khumisela config',
@@ -489,12 +511,12 @@ export const ve = defineLocale({
       billing: 'Mbalelwa',
       notifications: 'Ndivhadzo',
       plugins: 'Dziplugini',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     keys: {
       loading: 'U paka kii dza API na vhuṱanzi...',
       failedLoad: 'Kii dza API dzo kundelwa u pakiwa',
-      empty: 'A hu na tsho vheiwaho kha khethekanyo iyi.',
+      empty: 'A hu na tsho vheiwaho kha khethekanyo iyi.'
     },
     mcp: {
       loading: 'U paka maseva a MCP...',
@@ -546,7 +568,8 @@ export const ve = defineLocale({
       catalogInstallFailed: name => `Zwo kundelwa u dzhenisa ${name}`,
       catalogEnvPrompt: name => `${name} i ṱoḓa zwidodombedzwa zwa u dzhena`,
       catalogEnvRequired: 'Ḓadzani zwidodombedzwa zwi ṱoḓeaho ni sa athu dzhenisa.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yo vulwa`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yo vulwa`,
       statusConnecting: 'Hu khou ṱumanywa…',
       statusNeedsAuth: 'Hu ṱoḓea u khwaṱhisedza vhuṋe',
       statusError: 'Vhukhakhi',
@@ -559,37 +582,41 @@ export const ve = defineLocale({
       unsavedConnect: 'A zwo ngo vhulungwa — vhulungani mcp.json uri ni ṱumane.',
       enableTool: tool => `Tendelani ${tool}`,
       disableTool: tool => `Thivhelani ${tool}`,
-      noOutput: 'A hu na mvelelo zwino.',
+      noOutput: 'A hu na mvelelo zwino.'
     },
     modeOptions: {
       light: {
         label: 'Tshedza',
-        description: 'Zwipiḓa zwa desikithopo zwi penyaho',
+        description: 'Zwipiḓa zwa desikithopo zwi penyaho'
       },
       dark: {
         label: 'Swiswi',
-        description: 'Fhethu ha u shumela hu sa penyisesi',
+        description: 'Fhethu ha u shumela hu sa penyisesi'
       },
       system: {
         label: 'Sisiṱeme',
-        description: 'Tevhelani mbonalo ya OS',
-      },
+        description: 'Tevhelani mbonalo ya OS'
+      }
     },
     appearance: {
       title: 'Mbonalo',
-      intro: 'Hedzi ndi khetho dza mbonalo dza app ya khomphiyutha fhedzi. Moudi i langa u penya; thero i langa mivhala ya u khavhisa na tshitaela tsha fhethu ha nyambedzano.',
+      intro:
+        'Hedzi ndi khetho dza mbonalo dza app ya khomphiyutha fhedzi. Moudi i langa u penya; thero i langa mivhala ya u khavhisa na tshitaela tsha fhethu ha nyambedzano.',
       colorMode: 'Moudi wa Mivhala',
       colorModeDesc: 'Nangani moudi wo khwaṱhaho kana ni tendele OpenAmer i tshi tevhela nzudzanyo ya sisiṱeme yaṋu.',
       toolViewTitle: 'U Sumbedza u Vhidzwa ha Zwishumiswa',
-      toolViewDesc: 'Tshibveledzwa tshi dzumba datha yo livhaho ya zwishumiswa; Vhuthekiniki vhu sumbedza zwoṱhe zwo dzheniswaho na zwo bviswaho.',
+      toolViewDesc:
+        'Tshibveledzwa tshi dzumba datha yo livhaho ya zwishumiswa; Vhuthekiniki vhu sumbedza zwoṱhe zwo dzheniswaho na zwo bviswaho.',
       uiScaleTitle: 'Tshikalo tsha UI',
-      uiScaleDesc: (percent: number) => `I shandula vhuhulwane ha maṅwalwa na zwilangi kha app yoṱhe. Cmd/Ctrl na +, - na 0 na zwone zwi a shuma. Zwa zwino: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `I shandula vhuhulwane ha maṅwalwa na zwilangi kha app yoṱhe. Cmd/Ctrl na +, - na 0 na zwone zwi a shuma. Zwa zwino: ${percent}%.`,
       translucencyTitle: 'U vhonetshela ha fasiṱere',
       translucencyDesc: 'Vhonani desikithopo yaṋu nga kha fasiṱere ḽoṱhe. Kha macOS na Windows fhedzi.',
       backdropTitle: 'Siangane ya nyambedzano',
       backdropDesc: 'Tshifanyiso tsha tshivhumbeo tshi sa vhonalesiho murahu ha nyambedzano.',
       embedsTitle: 'Zwo dzheniswaho ngomu',
-      embedsDesc: 'Mbonelo dza u thoma dzo pfumaho dzi hwaliwa u bva kha saithi dza vhaṅwe (YouTube, X, …). Vhudzisani i sumbedza tshifaredzi u swika ni tshi tendela iṅwe na iṅwe; Tshifhinga tshoṱhe i dzi hwala nga yoṱhe; Zwo dzimiwa i sia ḽinki dzo ḓoweleaho.',
+      embedsDesc:
+        'Mbonelo dza u thoma dzo pfumaho dzi hwaliwa u bva kha saithi dza vhaṅwe (YouTube, X, …). Vhudzisani i sumbedza tshifaredzi u swika ni tshi tendela iṅwe na iṅwe; Tshifhinga tshoṱhe i dzi hwala nga yoṱhe; Zwo dzimiwa i sia ḽinki dzo ḓoweleaho.',
       embedsAsk: 'Vhudzisani',
       embedsAlways: 'Tshifhinga tshoṱhe',
       embedsOff: 'Zwo dzimiwa',
@@ -597,12 +624,15 @@ export const ve = defineLocale({
       product: 'Tshibveledzwa',
       productDesc: 'Mishumo ya zwishumiswa i leluwaho u pfesesa, i re na manweledzo mapfufhi.',
       technical: 'Zwa thekiniki',
-      technicalDesc: 'Katela pharamitha na mvelelo dza zwishumiswa zwi songo shandukiswaho na zwidodombedzwa zwa mutheo.',
+      technicalDesc:
+        'Katela pharamitha na mvelelo dza zwishumiswa zwi songo shandukiswaho na zwidodombedzwa zwa mutheo.',
       themeTitle: 'Tshitaela',
       themeDesc: 'Phalete dza mivhala dza desikithopo fhedzi. Maitele o nangiwaho a shumiswa nṱha hadzo.',
-      themeProfileNote: profile => `Yo vhulungelwa phurofaili ya ${profile} — phurofaili iṅwe na iṅwe i na tshitaela tshayo.`,
+      themeProfileNote: profile =>
+        `Yo vhulungelwa phurofaili ya ${profile} — phurofaili iṅwe na iṅwe i na tshitaela tshayo.`,
       installTitle: 'Dzhenisani u bva kha VS Code',
-      installDesc: 'Nambatedzani ID ya nyengedzedzo ya Marketplace (sa dracula-theme.theme-dracula) u shandukisa tshitaela tshayo tsha mivhala uri tshi vhe phalete ya desikithopo.',
+      installDesc:
+        'Nambatedzani ID ya nyengedzedzo ya Marketplace (sa dracula-theme.theme-dracula) u shandukisa tshitaela tshayo tsha mivhala uri tshi vhe phalete ya desikithopo.',
       installPlaceholder: 'muandadzi.nyengedzedzo',
       installButton: 'Dzhenisani',
       installing: 'I khou dzheniswa…',
@@ -612,8 +642,10 @@ export const ve = defineLocale({
       importedBadge: 'Zwo dzheniswa',
       pet: {
         title: 'Tshifuwo',
-        intro: 'Nangani tshifuwo tsha petdex tshine tsha tshimbila, tsha papamala nṱha ha app na u fhindula kha zwine OpenAmer ya khou ita — tshi gidima musi zwishumiswa zwi tshi khou shuma, tshi pembela musi zwo bvelela, tshi ṱungufhala musi hu na vhukhakhi.',
-        restartHint: 'Zwifuwo zwi ṱoḓa uri app i thomiwe hafhu — app i khou shumaho yo thoma musi tshumelo iyi i sa athu engedzwa. Valani ni dovhe ni vule OpenAmer, ni kone u vhuya hafha.',
+        intro:
+          'Nangani tshifuwo tsha petdex tshine tsha tshimbila, tsha papamala nṱha ha app na u fhindula kha zwine OpenAmer ya khou ita — tshi gidima musi zwishumiswa zwi tshi khou shuma, tshi pembela musi zwo bvelela, tshi ṱungufhala musi hu na vhukhakhi.',
+        restartHint:
+          'Zwifuwo zwi ṱoḓa uri app i thomiwe hafhu — app i khou shumaho yo thoma musi tshumelo iyi i sa athu engedzwa. Valani ni dovhe ni vule OpenAmer, ni kone u vhuya hafha.',
         on: 'Zwo vulwa',
         off: 'Zwo valwa',
         scaleTitle: 'Muelo',
@@ -623,7 +655,8 @@ export const ve = defineLocale({
         chooseTitle: 'Nangani tshifuwo',
         chooseDesc: 'U nanga tshithihi zwi a tshi dzhenisa (arali zwi tshi ṱoḓea) zwa ita uri tshi shume.',
         searchPlaceholder: 'Ṱoḓani zwifuwo…',
-        unreachable: "A zwo ngo konadzea u swikelela galari ya zwifuwo. Ṱolani vhukwamani haṋu ni vule siaṱari iḽi hafhu.",
+        unreachable:
+          'A zwo ngo konadzea u swikelela galari ya zwifuwo. Ṱolani vhukwamani haṋu ni vule siaṱari iḽi hafhu.',
         noMatch: query => `A hu na zwifuwo zwine zwa elana na "${query}".`,
         installedTag: 'zwo dzheniswaho',
         generatedTag: 'Zwo sikwaho',
@@ -632,7 +665,7 @@ export const ve = defineLocale({
         uninstall: name => `Bvisani ${name}`,
         delete: name => `Thuthani ${name}`,
         deleteTitle: name => `Thuthani ${name}?`,
-        deleteBody: "Hezwi zwi thutha tshifuwo lwa tshoṱhe — a tshi nga dzheniswi hafhu.",
+        deleteBody: 'Hezwi zwi thutha tshifuwo lwa tshoṱhe — a tshi nga dzheniswi hafhu.',
         deleteConfirm: 'Thuthani',
         rename: name => `Shandulani dzina ${name}`,
         renameTitle: 'Shandulani dzina ḽa tshipuka',
@@ -645,8 +678,8 @@ export const ve = defineLocale({
         exportFailed: slug => `A zwo ngo konadzea u rumela nnḓa ${slug}`,
         noneAvailable: 'A hu na zwifuwo zwa u vusa zwino.',
         turnOnFailed: 'Ho kundelwa u vusa tshifuwo.',
-        turnOffFailed: 'Ho kundelwa u dzima tshifuwo.',
-      },
+        turnOffFailed: 'Ho kundelwa u dzima tshifuwo.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -657,25 +690,27 @@ export const ve = defineLocale({
       updates: 'Khwinifhadzo',
       checkNow: 'Ṱolani zwino',
       checking: 'Hu khou ṱolwa…',
-      seeWhatsNew: "Vhonani zwi re zwiswa",
+      seeWhatsNew: 'Vhonani zwi re zwiswa',
       updateNow: 'Khwinifhadzani zwino',
       releaseNotes: 'Notsi dza u bviswa',
-      onLatest: "Ni kha nzudzanyo ya zwinozwino.",
+      onLatest: 'Ni kha nzudzanyo ya zwinozwino.',
       installing: 'Khwiniso i khou dzheniswa zwino.',
-      cantUpdate: "Iyi nzudzanyo a i koni u ḓikhwinisa i ngomu ha mbekanyamushumo.",
-      cantReach: "A ro ngo kona u swikelela seva ya khwiniso.",
+      cantUpdate: 'Iyi nzudzanyo a i koni u ḓikhwinisa i ngomu ha mbekanyamushumo.',
+      cantReach: 'A ro ngo kona u swikelela seva ya khwiniso.',
       tapCheck: 'Kandani "Ṱolani zwino" u ṱola khwiniso.',
-      updateReady: count => `Khwiniso ntswa yo lugela u dzheniswa (${count} tshanduko${count === 1 ? '' : 's'} dzo katelwa).`,
+      updateReady: count =>
+        `Khwiniso ntswa yo lugela u dzheniswa (${count} tshanduko${count === 1 ? '' : 's'} dzo katelwa).`,
       lastChecked: age => `Yo ṱolwa lwa u fhedzisela ${age}`,
       justNowSuffix: ' · zwino zwino',
       automaticUpdates: 'Khwinifhadzo dza nga dzoṱhe',
-      automaticUpdatesDesc: 'OpenAmer i ṱola khwinifhadzo nga yoṱhe i tshi khou shuma murahu, ya ni ḓivhadza musi khwinifhadzo yo no luga.',
+      automaticUpdatesDesc:
+        'OpenAmer i ṱola khwinifhadzo nga yoṱhe i tshi khou shuma murahu, ya ni ḓivhadza musi khwinifhadzo yo no luga.',
       branchCommit: (branch, commit) => `Davhi ${branch} · U vhulunga ${commit}`,
       never: 'na luthihi',
       justNow: 'vừa rồi',
       minAgo: count => `minetse ya ${count} yo fhiraho`,
       hoursAgo: count => `awara dza ${count} dzo fhiraho`,
-      daysAgo: count => `maḓuvha a ${count} o fhiraho`,
+      daysAgo: count => `maḓuvha a ${count} o fhiraho`
     },
     config: {
       none: 'Không có',
@@ -691,7 +726,7 @@ export const ve = defineLocale({
       imported: 'Cấu hình đã được nhập',
       invalidJson: 'JSON cấu hình không hợp lệ',
       keepAwakeTitle: 'Giữ máy tính tỉnh',
-      keepAwakeDesc: 'Ngăn máy tính ngủ để các chạy dài hoặc qua đêm tiếp tục. Màn hình vẫn có thể tắt sáng.',
+      keepAwakeDesc: 'Ngăn máy tính ngủ để các chạy dài hoặc qua đêm tiếp tục. Màn hình vẫn có thể tắt sáng.'
     },
     credentials: {
       pasteKey: 'Dán khóa',
@@ -701,7 +736,7 @@ export const ve = defineLocale({
       couldNotSave: 'Không thể lưu thông tin đăng nhập.',
       remove: 'Xóa',
       getKey: 'Lấy một khóa',
-      saving: 'Đang lưu',
+      saving: 'Đang lưu'
     },
     envActions: {
       actionsFor: label => `Hành động cho ${label}`,
@@ -712,11 +747,12 @@ export const ve = defineLocale({
       revealValue: 'Hiển thị giá trị',
       replace: 'Thay thế',
       set: 'Vheani',
-      clear: 'Xóa',
+      clear: 'Xóa'
     },
     model: {
       loading: 'Hu khou longelwa nzudzanyo ya modele...',
-      appliesDesc: 'Zwi shuma kha sesheni ntswa. Shumisani tshinangi tsha modele kha tshishumiswa tsha u ṅwala u shandula modele kha nyambedzano i re kushumoni.',
+      appliesDesc:
+        'Zwi shuma kha sesheni ntswa. Shumisani tshinangi tsha modele kha tshishumiswa tsha u ṅwala u shandula modele kha nyambedzano i re kushumoni.',
       provider: 'Muṋetshedzi',
       model: 'Modele',
       applying: 'Hu khou shumiswa...',
@@ -726,53 +762,57 @@ export const ve = defineLocale({
       defaultsFailed: 'Zwo kundikana u vhulunga nzudzanyo dza u thoma dza modele',
       auxiliaryTitle: 'Modele dza thuso',
       resetAllToMain: 'Vhuyedzedzani zwoṱhe kha ya ndeme',
-      auxiliaryDesc: 'Mishumo ya thuso i shumisa modele ya ndeme nga nzudzanyo dza u thoma. Nangani modele yo khetheaho ya mushumo muṅwe na muṅwe u shandula hezwi.',
+      auxiliaryDesc:
+        'Mishumo ya thuso i shumisa modele ya ndeme nga nzudzanyo dza u thoma. Nangani modele yo khetheaho ya mushumo muṅwe na muṅwe u shandula hezwi.',
       setToMain: 'Vheani kha ya ndeme',
       change: 'Shandulani',
       autoUseMain: 'nga yoṱhe · shumisani modele ya ndeme',
       providerDefault: '(nzudzanyo ya u thoma ya muṋetshedzi)',
       fallbackAdd: 'Engedzani ya u dzhiela vhudzulo',
-      fallbackEmpty: 'A hu na modele dza u dzhiela vhudzulo — hu shumiswa modele ya u thoma nga nnḓa ha musi yo kundelwa.',
-      notInCatalog: "a i ho kha mutevhe wa mimodele wa uyu muṋetshedzi — khumbelo dzi nga shumisa modele ya u ima tshikhalani.",
+      fallbackEmpty:
+        'A hu na modele dza u dzhiela vhudzulo — hu shumiswa modele ya u thoma nga nnḓa ha musi yo kundelwa.',
+      notInCatalog:
+        'a i ho kha mutevhe wa mimodele wa uyu muṋetshedzi — khumbelo dzi nga shumisa modele ya u ima tshikhalani.',
       tasks: {
         vision: {
           label: 'U vhona',
-          hint: 'U sengulusa tshifanyiso',
+          hint: 'U sengulusa tshifanyiso'
         },
         web_extract: {
           label: 'U bvisa mafhungo kha webe',
-          hint: 'U pfufhifhadza siaṱari',
+          hint: 'U pfufhifhadza siaṱari'
         },
         compression: {
           label: 'U tsikeledza',
-          hint: 'U pfufhifhadza mafhungo a nyimele',
+          hint: 'U pfufhifhadza mafhungo a nyimele'
         },
         skills_hub: {
           label: 'Tshisima tsha vhukoni',
-          hint: 'U ṱoḓa vhukoni',
+          hint: 'U ṱoḓa vhukoni'
         },
         approval: {
           label: 'U tendela',
-          hint: 'U tendela nga u ḓiita nga vhuṱali',
+          hint: 'U tendela nga u ḓiita nga vhuṱali'
         },
         mcp: {
           label: 'MCP',
-          hint: 'U livhisa zwishumiswa zwa MCP',
+          hint: 'U livhisa zwishumiswa zwa MCP'
         },
         title_generation: {
           label: 'U bveledza ṱhoho',
-          hint: 'Ṱhoho dza madzulo',
+          hint: 'Ṱhoho dza madzulo'
         },
         curator: {
           label: 'Mudzudzanyi',
-          hint: 'U sedzulusa kushumisele kwa vhukoni',
-        },
-      },
+          hint: 'U sedzulusa kushumisele kwa vhukoni'
+        }
+      }
     },
     providers: {
       connectAccount: 'Ṱumanyani akhaunthu',
       haveApiKey: 'Ni na khii ya API nṱhani hazwo?',
-      intro: 'Dzhenani nga vhuṅwalisi — a hu na khii ya API ine na tea u i kopa. OpenAmer i ni dzhenisa nga tshisevhi, henefha kha apḽikheishini.',
+      intro:
+        'Dzhenani nga vhuṅwalisi — a hu na khii ya API ine na tea u i kopa. OpenAmer i ni dzhenisa nga tshisevhi, henefha kha apḽikheishini.',
       connected: 'Yo ṱumanywa',
       collapse: 'Ṱukufhadzani',
       connectAnother: 'Ṱumanyani muṅwe muṋetshedzi',
@@ -782,7 +822,8 @@ export const ve = defineLocale({
       removeConfirm: provider => `Bvisa ${provider}?`,
       removeExternalGeneric: provider => `${provider} i langulwa nga CLI yayo — i bviseni henefho.`,
       removeKeyManaged: provider => `${provider} yo dzudzanywa nga khii ya API. I bviseni kha Khii dza API.`,
-      removeTerminalConfirm: (provider, command) => `Ṱumulula ${provider}? Izwi zwi shumisa "${command}" kha theminali u bvisa zwidodombedzwa zwa u dzhena.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Ṱumulula ${provider}? Izwi zwi shumisa "${command}" kha theminali u bvisa zwidodombedzwa zwa u dzhena.`,
       removeTerminalRunning: provider => `Hu khou shumiswa ndaela ya u ṱumulula ${provider} kha theminali…`,
       removedTitle: 'Akhaunthu yo bviswa',
       removedMessage: provider => `${provider} yo bviswa.`,
@@ -792,14 +833,16 @@ export const ve = defineLocale({
       noKeysMatch: 'A hu na vhaṋetshedzi vhane vha fana na zwe na ṱoḓa.',
       localEndpoint: {
         title: 'Magumo a vhukwamani a henefha / o dzudzanywaho',
-        description: 'Livhisani OpenAmer kha magumo maṅwe na maṅwe a vhukwamani ane a shumisana na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na zwiṅwe).',
+        description:
+          'Livhisani OpenAmer kha magumo maṅwe na maṅwe a vhukwamani ane a shumisana na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, na zwiṅwe).'
       },
-      loading: 'Hu khou dzheniswa vhaṋetshedzi...',
+      loading: 'Hu khou dzheniswa vhaṋetshedzi...'
     },
     sessions: {
       loading: 'Hu khou dzheniswa nyambedzano dzo vhulungwaho…',
       archivedTitle: 'Nyambedzano dzo vhulungwaho',
-      archivedIntro: 'Nyambedzano dzo vhulungwaho dzi a dzumbiwa kha bara ya thungo, fhedzi dzi vhulunga milaedza yadzo yoṱhe. Puṱedzani Ctrl/⌘ ni tshi khilikha nyambedzano kha bara ya thungo uri ni i vhulunge.',
+      archivedIntro:
+        'Nyambedzano dzo vhulungwaho dzi a dzumbiwa kha bara ya thungo, fhedzi dzi vhulunga milaedza yadzo yoṱhe. Puṱedzani Ctrl/⌘ ni tshi khilikha nyambedzano kha bara ya thungo uri ni i vhulunge.',
       emptyArchivedTitle: 'A hu na zwo vhulungwaho',
       emptyArchivedDesc: 'Vhulungani nyambedzano uri ni i dzumbe hafha.',
       unarchive: 'Bvisani kha zwo vhulungwaho',
@@ -808,13 +851,16 @@ export const ve = defineLocale({
       restored: 'Zwo vhuyedzedzwa',
       deleteConfirm: title => `Thutha "${title}" lwa tshoṱhe? Hezwi zwi nga si humiselwe murahu.`,
       autoArchiveTitle: 'Vhulunga nyambedzano dzi sa shumiswi nga othomathiki',
-      autoArchiveDesc: "Vhulunga nga othomathiki nyambedzano dze na fhedza tshifhinga ni sa dzi shumisi. Nyambedzano dzo ṱumiwaho a dzi vhulungwi, nahone a hu thuthiwi tshithu — nyambedzano dzo vhulungwaho dzi sokou pfuluselwa fhano.",
+      autoArchiveDesc:
+        'Vhulunga nga othomathiki nyambedzano dze na fhedza tshifhinga ni sa dzi shumisi. Nyambedzano dzo ṱumiwaho a dzi vhulungwi, nahone a hu thuthiwi tshithu — nyambedzano dzo vhulungwaho dzi sokou pfuluselwa fhano.',
       autoArchiveDaysLabel: 'Vhulunga nga murahu ha',
       autoArchiveDaysUnit: 'maḓuvha a u sa shumiswa',
       autoArchiveFailed: 'U khwinisa u vhulunga nga othomathiki zwo kundelwa',
       defaultDirTitle: 'Foḽuda ya thandela ya u thoma',
-      defaultDirDesc: 'Zwifhinga zwiswa zwa mushumo zwi thoma kha iyi foḽuda nga nnḓa ha musi ni tshi khetha iṅwe. Ni songo i vhea arali ni tshi ṱoḓa u shumisa foḽuda yaṋu ya hayani.',
-      defaultDirUpdated: 'Foḽuda ya thandela ya u thoma yo khwiniswa — thomani nyambedzano ntswa (Ctrl/⌘+N) uri tshanduko i thome u shuma',
+      defaultDirDesc:
+        'Zwifhinga zwiswa zwa mushumo zwi thoma kha iyi foḽuda nga nnḓa ha musi ni tshi khetha iṅwe. Ni songo i vhea arali ni tshi ṱoḓa u shumisa foḽuda yaṋu ya hayani.',
+      defaultDirUpdated:
+        'Foḽuda ya thandela ya u thoma yo khwiniswa — thomani nyambedzano ntswa (Ctrl/⌘+N) uri tshanduko i thome u shuma',
       defaultsTo: label => `I shumisa ${label} arali ni sa khethi tshiṅwe.`,
       change: 'Shandula',
       choose: 'Nangani',
@@ -824,8 +870,8 @@ export const ve = defineLocale({
       unarchiveFailed: 'U bvisa kha zwo vhulungwaho zwo kundelwa',
       deleteFailed: 'U thutha zwo kundelwa',
       updateDirFailed: 'A zwo konadzea u khwinifhadza foludara yo dzudzanywaho',
-      clearDirFailed: 'A zwo konadzea u thutha foludara yo dzudzanywaho',
-    },
+      clearDirFailed: 'A zwo konadzea u thutha foludara yo dzudzanywaho'
+    }
   },
   sidebar: {
     groupAriaUngrouped: 'Songulusa vhiki hiwa',
@@ -848,9 +894,9 @@ export const ve = defineLocale({
       addFolderTitle: 'Fambela dokotera',
       namePlaceholder: 'sa wu bona Skunkworks',
       foldersLabel: 'Dokotera',
-      ideaLabel: 'Lupfun\'wa',
+      ideaLabel: "Lupfun'wa",
       ideaPlaceholder: 'Muro uyi u vhulaka mulatu wa yona? (a ku savesha kwa `IDEA.md`)',
-      ideaGenerate: 'Tavha lupfun\'wa',
+      ideaGenerate: "Tavha lupfun'wa",
       ideaGenerating: 'Yo tavha…',
       ideaShuffle: 'Hundulukisa tshemulete',
       noFolders: 'A ku na dokotera e fambiwaho.',
@@ -869,7 +915,8 @@ export const ve = defineLocale({
       copyPath: 'Kopanya tsela',
       removeFromSidebar: 'Tika e sidebarini',
       createFailed: 'A ho kgone ku tenda muro',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -891,19 +938,21 @@ export const ve = defineLocale({
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     nav: {
       'new-session': 'New session',
       skills: 'Capabilities',
       messaging: 'Messaging',
-      artifacts: 'Artifacts',
+      artifacts: 'Artifacts'
     },
     searchAria: 'Search sessions',
     searchPlaceholder: 'Search sessions…',
@@ -950,15 +999,15 @@ export const ve = defineLocale({
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   desktop: {
     yoloToggleFailed: 'Ha go swika YOLO',
@@ -970,7 +1019,8 @@ export const ve = defineLocale({
     editFailed: 'Ho loko fa ho phetoho',
     resumeFailed: 'Ho loko fa ho tsoha',
     resumeStrandedTitle: 'Ha go swika load seshini ena',
-    resumeStrandedBody: 'Khconnectishoni ya seshini ena e lokofile mme maqepho a khahlelwe a lahleheloa. Etsahisise fa gateway e sebetsa, e bile o le pheta.',
+    resumeStrandedBody:
+      'Khconnectishoni ya seshini ena e lokofile mme maqepho a khahlelwe a lahleheloa. Etsahisise fa gateway e sebetsa, e bile o le pheta.',
     resumeRetry: 'Pheta',
     nothingToBranch: 'Ha ho na seo ho branching',
     branchNeedsChat: 'Qala kana tsoha mmbiyo wa hau pele u branching.',
@@ -1011,7 +1061,7 @@ export const ve = defineLocale({
       timedOut: 'Tshifhinga tsho fhela ro lindela gateway. `openamer gateway` i khou shuma?',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     audioReadFailed: 'A si kone u vhala mivumo yo ralisiwaho',
     sessionUnavailable: 'Seshini a i na',
@@ -1024,10 +1074,11 @@ export const ve = defineLocale({
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   language: {
     label: 'Luambo',
@@ -1036,7 +1087,7 @@ export const ve = defineLocale({
     saveError: 'U khwiniswa ha luambo ho kundwa',
     switchTo: 'Shandukisa luambo',
     searchPlaceholder: 'Sosa luambo…',
-    noResults: 'A hu na luambo lwo wanalaho',
+    noResults: 'A hu na luambo lwo wanalaho'
   },
   commandCenter: {
     searchPlaceholder: 'Ṱoḓa sesheni, mavone, na nyito',
@@ -1062,7 +1113,7 @@ export const ve = defineLocale({
       generatedTag: 'Yo bveledzwa',
       adoptFailed: 'A ro ngo kona u dzhia tshifuwo itsho.',
       toggleFailed: 'A ro ngo kona u shandula tshifuwo.',
-      noneAvailable: 'A hu na zwifuwo zwi re hone — nanga tshinwe kha zwi re fhasi u vhea.',
+      noneAvailable: 'A hu na zwifuwo zwi re hone — nanga tshinwe kha zwi re fhasi u vhea.'
     },
     generatePet: {
       title: 'Bveledza tshifuwo',
@@ -1086,12 +1137,13 @@ export const ve = defineLocale({
       slowProviderHint: 'This can take several minutes',
       remix: 'Remix',
       remixConfirmTitle: 'Remix this look?',
-      remixConfirmBody: 'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
+      remixConfirmBody:
+        'This generates a fresh set of drafts using this one as the starting point. It can take several minutes.',
       genericError: 'Generation failed — try again or pick a suggestion.',
       referenceImageTooLarge: 'Reference image is too large. Use one under 16 MB.',
       referenceImageInvalid: 'Could not read that reference image. Try a PNG, JPG, WebP, or GIF.',
       adopt: 'Adopt',
-      startOver: 'Start over',
+      startOver: 'Start over'
     },
     close: 'Close command center',
     paletteTitle: 'Command palette',
@@ -1107,7 +1159,7 @@ export const ve = defineLocale({
       install: 'Install',
       installing: 'Installing...',
       installed: 'Installed',
-      installs: count => `${count} installs`,
+      installs: count => `${count} installs`
     },
     settingsFields: 'Settings fields',
     mcpServers: 'MCP servers',
@@ -1116,49 +1168,49 @@ export const ve = defineLocale({
       maintenance: 'Maintenance',
       sessions: 'Sessions',
       system: 'System',
-      usage: 'Usage',
+      usage: 'Usage'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostics, backups, curator, and memory data',
       sessions: 'Search and manage sessions',
       system: 'Status, logs, and system actions',
-      usage: 'Token, cost, and skill activity over time',
+      usage: 'Token, cost, and skill activity over time'
     },
     nav: {
       newChat: {
         title: 'New session',
-        detail: 'Start a fresh session',
+        detail: 'Start a fresh session'
       },
       settings: {
         title: 'Settings',
-        detail: 'Configure OpenAmer desktop',
+        detail: 'Configure OpenAmer desktop'
       },
       skills: {
         title: 'Capabilities',
-        detail: 'Skills, tools, and MCP servers',
+        detail: 'Skills, tools, and MCP servers'
       },
       messaging: {
         title: 'Messaging',
-        detail: 'Set up Telegram, Slack, Discord, and more',
+        detail: 'Set up Telegram, Slack, Discord, and more'
       },
       artifacts: {
         title: 'Artifacts',
-        detail: 'Browse generated outputs',
-      },
+        detail: 'Browse generated outputs'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sessions panel',
-        detail: 'Search, pin, and manage sessions',
+        detail: 'Search, pin, and manage sessions'
       },
       system: {
         title: 'System panel',
-        detail: 'Gateway status, logs, restart/update',
+        detail: 'Gateway status, logs, restart/update'
       },
       usage: {
         title: 'Usage panel',
-        detail: 'Token, cost, and skill activity',
-      },
+        detail: 'Token, cost, and skill activity'
+      }
     },
     providerNavigate: 'Navigate',
     providerSessions: 'Sessions',
@@ -1246,8 +1298,8 @@ export const ve = defineLocale({
       actionStarted: name => `${name} started — tailing log...`,
       actionFailed: name => `${name} failed to start`,
       running: 'Running...',
-      viewLog: 'Action log',
-    },
+      viewLog: 'Action log'
+    }
   },
   profiles: {
     env: 'mupfure',
@@ -1325,7 +1377,7 @@ Leave blank to keep the ${mode} default.`,
     failedLoadSoul: 'Failed to load SOUL.md',
     failedSaveSoul: 'Failed to save SOUL.md',
     failedCreate: 'Failed to create profile',
-    failedRename: 'Failed to rename profile',
+    failedRename: 'Failed to rename profile'
   },
   statusStack: {
     coding: {
@@ -1362,7 +1414,8 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Vula PR',
       ghMissing: 'Dzhenisa GitHub CLI (gh) na u rina uri u vule ma-PR',
       agentShip: 'Humbela OpenAmer u vula PR',
-      agentShipPrompt: 'Sedzulusa tshanduko dza zwino, dzi khomekhedze na mulaedza wo pfalaho wa conventional-commit, sunduzela davhu, na u vula khumbelo ya u dzhia.',
+      agentShipPrompt:
+        'Sedzulusa tshanduko dza zwino, dzi khomekhedze na mulaedza wo pfalaho wa conventional-commit, sunduzela davhu, na u vula khumbelo ya u dzhia.',
       newBranch: 'Davhu ḽiswa',
       worktrees: 'Miri ya mushumo',
       changed: count => `${count} changed`,
@@ -1370,7 +1423,7 @@ Leave blank to keep the ${mode} default.`,
       behind: count => `${count} behind`,
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
-      switchFailed: branch => `Could not switch to ${branch}`,
+      switchFailed: branch => `Could not switch to ${branch}`
     },
     agents: 'Agents',
     background: count => `${count} Background`,
@@ -1379,7 +1432,7 @@ Leave blank to keep the ${mode} default.`,
     running: 'Running',
     stop: 'Stop',
     dismiss: 'Dismiss',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   updates: {
     stages: {
@@ -1394,7 +1447,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     errorBody: 'Sa khou humbela — a si na nthu yo lahilelwaho. Vha nga tendela u itela ha-no tshifhinga tshivhili.',
     notNow: 'A zwino',
@@ -1404,11 +1457,14 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend ya u thoma ha murahu u vhola vhupdethi…',
       notAvailable: 'Vhupdethi a i na ha backend ino.',
       failed: 'Vhupdethi ha backend ya vhifhaile.',
-      noReturn: 'Backend a i bvelela online ha murahu. Vhupdethi vhathu vha vha si vhe vha fhedzile — linga host ya backend.',
+      noReturn:
+        'Backend a i bvelela online ha murahu. Vhupdethi vhathu vha vha si vhe vha fhedzile — linga host ya backend.'
     },
     appErrors: {
-      updateLocked: 'Vhupdethi yo bviselwaho: fhestere ya OpenAmer inwe kana thimunali yo shumisaho openamer i bveledza instolo ino. Vhulela yo itela ha murahu.',
-      updateFailed: 'Vhupdethi a i fhedzi. Sa khou humbela — a si na nthu yo lahilelwaho. Vha nga tendela u itela ha-no tshifhinga tshivhili.',
+      updateLocked:
+        'Vhupdethi yo bviselwaho: fhestere ya OpenAmer inwe kana thimunali yo shumisaho openamer i bveledza instolo ino. Vhulela yo itela ha murahu.',
+      updateFailed:
+        'Vhupdethi a i fhedzi. Sa khou humbela — a si na nthu yo lahilelwaho. Vha nga tendela u itela ha-no tshifhinga tshivhili.'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -1428,17 +1484,21 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
-    errorTitle: 'Update didn’t finish',
+    errorTitle: 'Update didn’t finish'
   },
   modelPicker: {
     search: 'Sefa vhafhaṋi na mifanyiso...',
@@ -1454,13 +1514,13 @@ Leave blank to keep the ${mode} default.`,
     title: 'Dzhienisa modeli',
     current: 'zwino:',
     unknown: '(tshi si zwone)',
-    pro: 'Pro',
+    pro: 'Pro'
   },
   modelVisibility: {
     title: 'Mifanyiso',
     search: 'Todisisa mifanyiso',
     noAuthenticatedProviders: 'A hu na vhafhaṋi vho netefaliswaho.',
-    addProvider: 'Engedza mufhaṋi…',
+    addProvider: 'Engedza mufhaṋi…'
   },
   shell: {
     windowControls: 'Nḓila dza windo',
@@ -1471,7 +1531,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'A hu na mifanyiso yo wanalaho',
       editModels: 'Lulamisa Mifanyiso…',
       refreshModels: 'Vusuludza Mifanyiso',
-      fast: 'Ṱavhanya',
+      fast: 'Ṱavhanya'
     },
     modelOptions: {
       noOptions: 'A hu na zwikhethwa kha mufanyiso uyu',
@@ -1487,7 +1547,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'Maksimamu',
       updateFailed: 'U khwinisa zwikhethwa zwa mufanyiso ho kundwa',
       fastFailed: 'U khwinisa modi ya ṱavhanya ho kundwa',
-      ultra: 'Ultra',
+      ultra: 'Ultra'
     },
     gatewayMenu: {
       gateway: 'Gedi',
@@ -1502,7 +1562,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'Mishumo ya zwino',
       viewAllLogs: 'Vhona logs dzoṱhe →',
       messagingPlatforms: 'Pulatifomo dza meseji',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'Modo ya thendelo',
@@ -1512,7 +1572,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'Sedzulusa nyito nga u tou ita na u vhudzisa musi zwi tshi ṱoḍea',
       off: 'Zwo dzima',
       offDescription: 'Shuma hu si na mivhudziso ya thendelo',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'A zwi divhei',
@@ -1551,24 +1611,27 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'Thavhanyiso dza vhaofisiri vha tshitlha',
           system_prompt: 'Khumbudzo ya sisiteme',
           tool_definitions: 'Thavhanyiso dza zwishumiswa',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'A hu na dza matshenzhembo fhasi',
         loading: 'Ri khou vhula tshikatshikelelo…',
         title: 'Tshumiso ya Matshenzhembo',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Vhula tshikatshikelelo tsha tshumiso ya matshenzhembo',
       session: 'Seshini',
       runtimeSessionElapsed: 'Tshifhinga tsha seshini tsha u sebetsela tshi fhele',
-      yoloOn: 'YOLO yo vhulaho — u tendela maano a vhutshili u tothea. Dzhiela u ya fhisa. Shift+click i do dzhienisa ifhio na ifhio.',
-      yoloOff: 'YOLO yo fhisaho — dzhiela u tendela maano a vhutshili u tothea. Shift+click i do dzhienisa ifhio na ifhio.',
+      yoloOn:
+        'YOLO yo vhulaho — u tendela maano a vhutshili u tothea. Dzhiela u ya fhisa. Shift+click i do dzhienisa ifhio na ifhio.',
+      yoloOff:
+        'YOLO yo fhisaho — dzhiela u tendela maano a vhutshili u tothea. Shift+click i do dzhienisa ifhio na ifhio.',
       modelNone: 'tshilaho',
       noModel: 'a hu na modeli',
       switchModel: 'Dzhienisa modeli',
       openModelPicker: 'Vhula mutholi wa modeli',
-      modelPinned: 'i bveledzwaho nga wena; vhudavhidzani vha tsha vhutshilo vha shumisa iyi si tshifhinga tsha Settings',
+      modelPinned:
+        'i bveledzwaho nga wena; vhudavhidzani vha tsha vhutshilo vha shumisa iyi si tshifhinga tsha Settings',
       commitsBehind: (count, branch) => `${count} commit${count === 1 ? '' : 's'} behind ${branch}`,
       desktopVersion: version => `OpenAmer Desktop v${version}`,
       backendVersion: version => `Backend v${version}`,
@@ -1587,13 +1650,14 @@ Leave blank to keep the ${mode} default.`,
       running: count => `${count} running`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   preview: {
     unsavedChanges: 'Tshanduko dzo sa vhulungwaho',
     diskChangedTitle: 'Faela yo shanduka kha disiki',
-    diskChangedBody: 'Faela iyi yo shanduka u bva tshe no i vula. I vhuedzele nga vhezheni yanu, kana litsha dzanduko dzanu ni dovhe ni i lode?',
+    diskChangedBody:
+      'Faela iyi yo shanduka u bva tshe no i vula. I vhuedzele nga vhezheni yanu, kana litsha dzanduko dzanu ni dovhe ni i lode?',
     overwrite: 'Vhuedzela',
     discardReload: 'Litsha & loda hafhu',
     console: {
@@ -1614,7 +1678,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'Zwo rumelwa kha tshata',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'App ya mbonelo yo kundelwa u thoma',
@@ -1635,9 +1699,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'I khou loda mbonelo zwino.',
       restartFailedTitle: 'U thoma hafhu ha mbonelo ho kundelwa',
       restartFailedMessage: 'OpenAmer a yo kona u thoma server hafhu.',
-      stillWorking: 'OpenAmer i kha shanda, fhedzi mvelelo ya u thoma hafhu a yo swiki. Ndaela ya server i nga vha i khou shanda phanda.',
+      stillWorking:
+        'OpenAmer i kha shanda, fhedzi mvelelo ya u thoma hafhu a yo swiki. Ndaela ya server i nga vha i khou shanda phanda.',
       workspaceReloading: 'Fhethu ha mushumo ho shanduka, hu khou lodiwa mbonelo hafhu',
-      moduleMimeDescription: 'Skripte dza mudiyulu dzi tshi vhonelwa nga taipu ya MIME isi siyo. Zwi o tshivha zwa uri seva ya fayela ya statiki i tshi vhonela apha ya Vite/React vhukuma i sa fhati seva ya tshumelo ya phurojeke.',
+      moduleMimeDescription:
+        'Skripte dza mudiyulu dzi tshi vhonelwa nga taipu ya MIME isi siyo. Zwi o tshivha zwa uri seva ya fayela ya statiki i tshi vhonela apha ya Vite/React vhukuma i sa fhati seva ya tshumelo ya phurojeke.',
       unreachableDescription: 'Phesha ya vhuvhoni a i swikeleli.',
       fallbackTitle: 'Vhuvhoni',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -1648,7 +1714,7 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     tab: 'U vhonelela',
     closeOthers: 'Vala vhunzhi',
@@ -1678,31 +1744,31 @@ Leave blank to keep the ${mode} default.`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   errors: {
     genericFailure: 'Ho khakhea',
     boundaryTitle: 'Ho khakhea kha interface',
     boundaryDesc: 'Tshivhonwa tsho wana vhukhakhi vhu sa lavhelelwaho. Tshivhidzo na setingi zwo tsireledzea.',
     reloadWindow: 'Louda windo',
-    openLogs: 'Vula logs',
+    openLogs: 'Vula logs'
   },
   ui: {
     search: {
-      clear: 'Sula tshunguluso',
+      clear: 'Sula tshunguluso'
     },
     pagination: {
       label: 'phaginesheni',
       previous: 'Murahu',
       previousAria: 'Ya kha sia la murahu',
       next: 'Phanda',
-      nextAria: 'Ya kha sia la phanda',
+      nextAria: 'Ya kha sia la phanda'
     },
     sidebar: {
       title: 'Bara ya thavha',
       description: 'I sumbedza bara ya thavha ya mobile.',
-      toggle: 'Shandukisa bara ya thavha',
-    },
+      toggle: 'Shandukisa bara ya thavha'
+    }
   },
   rightSidebar: {
     remotePickerSelect: 'Tevha fholoda',
@@ -1738,35 +1804,37 @@ Leave blank to keep the ${mode} default.`,
     remotePickerDescription: 'Linganisa mafolda a backend yo tanganedzwaho.',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   onboarding: {
     openRouterPitch: 'Thivhi ḓou, zwidzhenzwaho zwi khulwane — thivhi ḓo vhona',
     apiKeyOptions: {
       fireworks: {
         short: 'API ya modeli ya u bva ha vhukati',
-        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa Fireworks AI.',
+        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa Fireworks AI.'
       },
       openrouter: {
         short: 'Thivhi ḓou, zwidzhenzwaho zwa vhugai',
-        description: 'Vha vha na zwidzhenzwaho zwi khulwane kha thivhi ḓou. Thivhi ḓo vhona zwavhuḓi kha vhunwe ha vhutshilo.',
+        description:
+          'Vha vha na zwidzhenzwaho zwi khulwane kha thivhi ḓou. Thivhi ḓo vhona zwavhuḓi kha vhunwe ha vhutshilo.'
       },
       openai: {
         short: 'Zwidzhenzwaho zwa GPT',
-        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa OpenAI.',
+        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa OpenAI.'
       },
       gemini: {
         short: 'Zwidzhenzwaho zwa Gemini',
-        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa Google Gemini.',
+        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa Google Gemini.'
       },
       xai: {
         short: 'Zwidzhenzwaho zwa Grok',
-        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa xAI Grok.',
+        description: 'U kona u bva ha vhukati kha zwidzhenzwaho zwa xAI Grok.'
       },
       local: {
         short: 'Self-hosted',
-        description: 'Siedza OpenAmer kha endpoint ya OpenAI-compatible ya local kana ya self-hosted (vLLM, llama.cpp, Ollama, zwithu zwa vhugai).',
-      },
+        description:
+          'Siedza OpenAmer kha endpoint ya OpenAI-compatible ya local kana ya self-hosted (vLLM, llama.cpp, Ollama, zwithu zwa vhugai).'
+      }
     },
     backToSignIn: 'Nḓila ya u ya u nguda',
     getKey: 'Thola thivhi',
@@ -1779,7 +1847,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Vhula browser yavho u nguda, ipfi ra qhubeka kha',
       device_code: 'Vhula pheji ya u netshisa kha browser yavho — OpenAmer i konekta u bva ha vhukati',
-      external: 'Nguda ṋwe kha terminal yavho, ipfi vhuya u amba',
+      external: 'Nguda ṋwe kha terminal yavho, ipfi vhuya u amba'
     },
     signInFailed: 'U nguda a hu na mpfumelelo. Ṅwedzisa haṋwe.',
     pickDifferentProvider: 'Tshikhethe munei wa vhugai',
@@ -1816,12 +1884,14 @@ Leave blank to keep the ${mode} default.`,
     connectedPicking: provider => `${provider} connected. Picking a default model...`,
     signInWith: provider => `Sign in with ${provider}`,
     openedBrowser: provider => `We opened ${provider} in your browser.`,
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     pro: 'Pro',
     price: (input, output) => `${input} in / ${output} out per Mtok`,
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   zones: {
     showHeader: 'Vhonisa mutwe',
@@ -1829,7 +1899,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'Tshinyanyisa',
     restore: 'Bvisa',
     closeRunningTitle: 'Vala thabe yo shumaho?',
-    closeRunningBody: 'Ndaedzo iyi i sa shuma (kha u tendela maitele a vhone). U vala thabe hu siela — seshini i bva na tshifhinga tshayo na u vhonala hape kha saidibara.',
+    closeRunningBody:
+      'Ndaedzo iyi i sa shuma (kha u tendela maitele a vhone). U vala thabe hu siela — seshini i bva na tshifhinga tshayo na u vhonala hape kha saidibara.',
     closeRunningConfirm: 'Vala thabe',
     closeOthers: 'Vala zwinwe',
     closeToRight: 'Vala vhunzhi ha vhudzieli',
@@ -1866,7 +1937,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -1891,7 +1962,8 @@ Leave blank to keep the ${mode} default.`,
       restoreCheckpoint: 'Bvisa tshipida',
       restoreFromHere: 'Bvisa tshipida — shumisa ha tshifhinga tsha kha ndivho iyi',
       restoreTitle: 'Bvisa kha tshipida tshili?',
-      restoreBody: 'Zwithu zwoṱhe zwa u bva kha ndivho iyi zwo bviswaho kha ndambo, ndivho i shumisa ha tshifhinga tsha kha ndivho iyi.',
+      restoreBody:
+        'Zwithu zwoṱhe zwa u bva kha ndivho iyi zwo bviswaho kha ndambo, ndivho i shumisa ha tshifhinga tsha kha ndivho iyi.',
       restoreConfirm: 'Bvisa & shumisa ha tshifhinga tsha',
       restoreNext: 'Bvisa tshipida tsha u landela',
       goForward: 'Ya phambili',
@@ -1902,7 +1974,7 @@ Leave blank to keep the ${mode} default.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Muvhuso wa OpenAmer a si na vhudavhidzani',
@@ -1916,7 +1988,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'Kana',
       alwaysTitle: 'Ndi hufhano u vhula mulaedza uyo?',
       alwaysAllow: 'Vhulunga vhathu',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'Mbuelo ya u khwinisa a i sa koni',
@@ -1930,7 +2003,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'Qhubeka',
       lateAnswerTip: 'Bhalela mbuelo iyi nga murenzhe wa muṅwe',
       lateAnswerHint: 'Mudzudzisi iyi a i sa linde. Teḓa zwithu u i bhalela nga murenzhe wa muṅwe.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'Khoutu',
@@ -1964,123 +2037,123 @@ Leave blank to keep the ${mode} default.`,
         running: 'Rula',
         ranCode: 'Rulile khoveri',
         runningCode: 'Khoveri',
-        ran: 'Ran',
+        ran: 'Ran'
       },
       titles: {
         list_files: {
           pendingAction: 'U vhala',
           done: 'Faila dzi listwaho',
-          pending: 'U lista faila',
+          pending: 'U lista faila'
         },
         patch: {
           done: 'Faili yo vhumbululwaho',
           pending: 'U vhumbulula faili',
-          pendingAction: 'U vhumbulula',
+          pendingAction: 'U vhumbulula'
         },
         read_file: {
           done: 'U vhala faili',
           pending: 'U vhala faili',
-          pendingAction: 'U vhala',
+          pendingAction: 'U vhala'
         },
         search_files: {
           done: 'Faili dzo tewaho',
           pending: 'U tewa faili',
-          pendingAction: 'U tewa',
+          pendingAction: 'U tewa'
         },
         session_search_recall: {
           done: 'Historia ya sesheni yo tewaho',
           pending: 'U tewa historia ya sesheni',
-          pendingAction: 'U tewa',
+          pendingAction: 'U tewa'
         },
         terminal: {
           done: 'Khamende yo shumiswaho',
           pending: 'U shumisa khamende',
-          pendingAction: 'U shumisa',
+          pendingAction: 'U shumisa'
         },
         todo: {
           done: 'Zwidzimisa zwo vhumbululwaho',
           pending: 'U vhumbulula zwidzimisa',
-          pendingAction: 'U vhumbulula',
+          pendingAction: 'U vhumbulula'
         },
         vision_analyze: {
           done: 'Muvhigo wo vhaliwaho',
           pending: 'U vhala muvhigo',
-          pendingAction: 'U vhala',
+          pendingAction: 'U vhala'
         },
         web_extract: {
           done: 'U vhala pheji ya webhu',
           pending: 'U vhala pheji ya webhu',
-          pendingAction: 'U vhala',
+          pendingAction: 'U vhala'
         },
         web_search: {
           done: 'Webhu yo tewaho',
           pending: 'U tewa webhu',
-          pendingAction: 'U tewa',
+          pendingAction: 'U tewa'
         },
         write_file: {
           done: 'Faili yo vhumbululwaho',
           pending: 'U vhumbulula faili',
-          pendingAction: 'U vhumbulula',
+          pendingAction: 'U vhumbulula'
         },
         browser_click: {
           done: 'Thivhele ya peji',
           pending: 'U thivha thivhele',
-          pendingAction: 'U thivha',
+          pendingAction: 'U thivha'
         },
         browser_fill: {
           done: 'Fomu i fhisiwaho',
           pending: 'U fhisa fomu',
-          pendingAction: 'U fhisa',
+          pendingAction: 'U fhisa'
         },
         browser_navigate: {
           done: 'Peji i vhulungaho',
           pending: 'U vhulunga peji',
-          pendingAction: 'U vhulunga',
+          pendingAction: 'U vhulunga'
         },
         browser_snapshot: {
           done: 'Sinetse ya peji',
           pending: 'U tewa sinetse',
-          pendingAction: 'U tewa',
+          pendingAction: 'U tewa'
         },
         browser_take_screenshot: {
           done: 'Skrinshothu i tewaho',
           pending: 'U tewa skrinshothu',
-          pendingAction: 'U tewa',
+          pendingAction: 'U tewa'
         },
         browser_type: {
           done: 'I raliwaho peji',
           pending: 'U rala peji',
-          pendingAction: 'U rala',
+          pendingAction: 'U rala'
         },
         clarify: {
           done: 'Ndivho i vhudzwa',
           pending: 'U vhudza ndivho',
-          pendingAction: 'U vhudza',
+          pendingAction: 'U vhudza'
         },
         cronjob: {
           done: 'Mushumo wa Cron',
           pending: 'U bea Cron',
-          pendingAction: 'U bea',
+          pendingAction: 'U bea'
         },
         edit_file: {
           done: 'Faila i sedzuluswaho',
           pending: 'U sedzulusa faila',
-          pendingAction: 'U sedzulusa',
+          pendingAction: 'U sedzulusa'
         },
         execute_code: {
           done: 'Rulile khoveri',
           pending: 'Khoveri',
-          pendingAction: 'Khoveri',
+          pendingAction: 'Khoveri'
         },
         image_generate: {
           done: 'Zwifaniso zwa vhumbwa',
           pending: 'U vhumba zwifaniso',
-          pendingAction: 'U vhumba',
-        },
+          pendingAction: 'U vhumba'
+        }
       },
       prefixes: {
         browser: 'Brawuza',
-        web: 'Webu',
+        web: 'Webu'
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -2090,9 +2163,9 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   install: {
     signIn: 'Ngia',
@@ -2109,8 +2182,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'U bviswa ha vhupo ha vhunzhi',
     settingUpTitle: 'U vhona OpenAmer Agent',
     finishingTitle: 'U fhedza',
-    failedDesc: 'Nḓila ya u bviswa ha vhupo ha vhunzhi i shaiswa. Kha Windows, zwi nga itea uri OpenAmer CLI na instance ya desktop i vhona i shaya. Thoma zwothe zwine zwa shaya OpenAmer, u bva u lingisa ha tshifhinga tsha vhunzhi. Lingisa zwiṱukiso zwa fhasi na log ya desktop u bva kha transikripiti ya u fhedza.',
-    activeDesc: 'Zwi tshifhinga tsha u bviswa ha vhupo tsha u tevha u tshiṱu tshinwe. Mubvisi wa OpenAmer u bvisa zwine zwa vhuye na u vhona mashini ya wone. U bviswa ha vhunzhi ha u landela ha u tshiṱu tsha u landela ha u bva u shumisa zwiṱukiso zwa u bviswa ha vhupo.',
+    failedDesc:
+      'Nḓila ya u bviswa ha vhupo ha vhunzhi i shaiswa. Kha Windows, zwi nga itea uri OpenAmer CLI na instance ya desktop i vhona i shaya. Thoma zwothe zwine zwa shaya OpenAmer, u bva u lingisa ha tshifhinga tsha vhunzhi. Lingisa zwiṱukiso zwa fhasi na log ya desktop u bva kha transikripiti ya u fhedza.',
+    activeDesc:
+      'Zwi tshifhinga tsha u bviswa ha vhupo tsha u tevha u tshiṱu tshinwe. Mubvisi wa OpenAmer u bvisa zwine zwa vhuye na u vhona mashini ya wone. U bviswa ha vhunzhi ha u landela ha u tshiṱu tsha u landela ha u bva u shumisa zwiṱukiso zwa u bviswa ha vhupo.',
     fetchingManifest: 'U bvisa manifest ya mubvisi...',
     error: 'Mphephu',
     hideOutput: 'Siela mvelelo ya mubvisi',
@@ -2127,7 +2202,7 @@ Leave blank to keep the ${mode} default.`,
       running: 'Vho instola',
       succeeded: 'Fhedziwe',
       skipped: 'Yo kipisiwaho',
-      failed: 'Vhifhaile',
+      failed: 'Vhifhaile'
     },
     oneTimeTitle: 'OpenAmer i nga vhoni instolo ya tshifhinga tshinwe',
     installCommand: 'Mulaedzo ya u instola',
@@ -2136,15 +2211,18 @@ Leave blank to keep the ${mode} default.`,
     installTo: 'I do instolwa ku',
     retryAfterRun: 'Ndi a yi shumisa -- tendela ha murahu',
     setupChoiceTitle: 'Vhulunga OpenAmer Desktop',
-    setupChoiceDesc: 'Kongeseta app ino na geyithi ya OpenAmer vha yo shumisa, kana instola OpenAmer local kha khomphyutha ino.',
+    setupChoiceDesc:
+      'Kongeseta app ino na geyithi ya OpenAmer vha yo shumisa, kana instola OpenAmer local kha khomphyutha ino.',
     connectExistingTitle: 'Kongeseta na OpenAmer yo tou kona',
     connectExistingShort: 'Kongeseta yo tou kona',
-    connectExistingDesc: 'Shumisa backend ya vhukati na thokheni ya seshini kana u nguda kha brouzara. Instolo ya local a i thomi.',
+    connectExistingDesc:
+      'Shumisa backend ya vhukati na thokheni ya seshini kana u nguda kha brouzara. Instolo ya local a i thomi.',
     installLocalTitle: 'Instola OpenAmer local',
     installLocalDesc: 'Dauniloda OpenAmer, vhumba vhupo ha Python ha yone, a u shuma backend kha khomphyutha ino.',
     localStartUnavailable: 'Instolo ya local a i thomi. Thoma ha murahu OpenAmer Desktop a u tendela ha murahu.',
     remoteSetupTitle: 'Kongeseta na OpenAmer yo tou kona',
-    remoteSetupDesc: 'Dzhia URL ya geyithi yavho. OpenAmer Desktop i do linga uri i nga vhoni thokheni kana u nguda kha brouzara.',
+    remoteSetupDesc:
+      'Dzhia URL ya geyithi yavho. OpenAmer Desktop i do linga uri i nga vhoni thokheni kana u nguda kha brouzara.',
     remoteUrlTitle: 'URL ya Geyithi',
     remoteUrlDesc: 'Shumisa URL ya mushumo wa OpenAmer gateway, vhudzulo na https:// ha vha vhukati.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2154,24 +2232,26 @@ Leave blank to keep the ${mode} default.`,
     authTitle: 'U vhonwa',
     authSignedIn: 'U nguda kha brouzara fhedziwe.',
     connected: 'Kongesetelwaho',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     authNeedsOauth: provider => `Sign in with ${provider} before testing this gateway.`,
     signInWith: provider => `Sign in with ${provider}`,
     testSucceeded: (baseUrl, version) => `Connected to ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   prompts: {
     gatewayDisconnected: 'Geithi ya OpenAmer a i konektedzi',
     sudoSendFailed: 'A si kwane u romela phasivhode ya sudo',
     secretSendFailed: 'A si kwane u romela tshilungu',
     sudoTitle: 'Phasivhode ya muvhuseli',
-    sudoDesc: 'OpenAmer inea phasivhode yavho ya sudo u itela u shumisa khamende ya vhukoni. I romelwaho fhedzi kha muhumbuli wavho wa local.',
+    sudoDesc:
+      'OpenAmer inea phasivhode yavho ya sudo u itela u shumisa khamende ya vhukoni. I romelwaho fhedzi kha muhumbuli wavho wa local.',
     sudoPlaceholder: 'phasivhode ya sudo',
     secretTitle: 'Tshilungu tshoneaho',
     secretDesc: 'OpenAmer inea tshivhumbelo u ya phambili.',
-    secretPlaceholder: 'tshilungu tsha vhaliu',
+    secretPlaceholder: 'tshilungu tsha vhaliu'
   },
   common: {
     apply: 'Tətbiq et',
@@ -2212,7 +2292,7 @@ Leave blank to keep the ${mode} default.`,
     update: 'Khwinifhadza',
     tryHint: term => `“${term}” yoxla`,
     on: 'Açıq',
-    off: 'Qapalı',
+    off: 'Qapalı'
   },
   fileMenu: {
     revealFinder: 'Finder-də göstər',
@@ -2227,7 +2307,7 @@ Leave blank to keep the ${mode} default.`,
     renameLabel: 'Yeni ad',
     deleteTitle: name => `${name} silinsin?`,
     deleteBody: 'O, Zibil qutusuna köçürüləcək — oradan bərpa edə bilərsiniz.',
-    pathCopied: 'Yol kopyalandı',
+    pathCopied: 'Yol kopyalandı'
   },
   boot: {
     ready: 'OpenAmer Desktop hazırdır',
@@ -2237,7 +2317,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'OpenAmer parametrləri yüklənir',
       loadingSessions: 'Son sessiyalar yüklənir',
       startingDesktopConnection: 'Masaüstü bağlantısı qurulur',
-      startingOpenAmerDesktop: 'OpenAmer Desktop başladılır…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop başladılır…'
     },
     errors: {
       backgroundExited: 'OpenAmer fon prosesi dayandı.',
@@ -2246,23 +2326,28 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'Masaüstü yüklənməsi uğursuz oldu',
       gatewayConnectionLost: 'Şlüzlə bağlantı kəsildi',
       gatewaySignInRequired: 'Şlüzə giriş tələb olunur',
-      ipcBridgeUnavailable: 'Masaüstü IPC körpüsü əlçatmazdır.',
+      ipcBridgeUnavailable: 'Masaüstü IPC körpüsü əlçatmazdır.'
     },
     failure: {
-      title: "OpenAmer yo kundelwa u thoma",
-      description: "Khoro ya murahu a yo ngo thoma. Lingedzani iṅwe ya nḓila dza u vusulusa dzi re afho fhasi. A hu na tshithu afha tshine tsha thutha nyambedzano kana nzudzanyo dzaṋu.",
+      title: 'OpenAmer yo kundelwa u thoma',
+      description:
+        'Khoro ya murahu a yo ngo thoma. Lingedzani iṅwe ya nḓila dza u vusulusa dzi re afho fhasi. A hu na tshithu afha tshine tsha thutha nyambedzano kana nzudzanyo dzaṋu.',
       remoteTitle: 'U tea u dzhena kha khoro ya kule',
-      remoteDescription: 'Tshifhinga tshaṋu tsha u shumisa khoro ya kule tsho fhela. Dzhenani hafhu uri ni ṱumane hafhu. A hu na tshithu afha tshine tsha thutha nyambedzano kana nzudzanyo dzaṋu.',
+      remoteDescription:
+        'Tshifhinga tshaṋu tsha u shumisa khoro ya kule tsho fhela. Dzhenani hafhu uri ni ṱumane hafhu. A hu na tshithu afha tshine tsha thutha nyambedzano kana nzudzanyo dzaṋu.',
       retry: 'Lingedzani hafhu',
       repairInstall: 'Lugisani u dzhenya',
       useLocalGateway: 'Shumisani khoro ya henefhano',
       gatewaySettings: 'Nzudzanyo dza khoro',
       back: 'Murahu',
       openLogs: 'Vhulani rekhodo',
-      repairHint: 'U lugisa zwi dovha zwa tshimbidza mbekanyamushumo ya u dzhenisa nahone zwi nga dzhia minetse i si gathi kha khomphyutha ntswa.',
-      remoteSignInHint: signInLabel => `Zwi bvisa kha dzulo ḽo vhulungwaho ḽa tshiswaswari tsha kule, zwa kona u vula ${signInLabel}. Shumisani khoro ya henefhano uri ni shandukele kha sisiteme ya murahu yo katelwaho.`,
+      repairHint:
+        'U lugisa zwi dovha zwa tshimbidza mbekanyamushumo ya u dzhenisa nahone zwi nga dzhia minetse i si gathi kha khomphyutha ntswa.',
+      remoteSignInHint: signInLabel =>
+        `Zwi bvisa kha dzulo ḽo vhulungwaho ḽa tshiswaswari tsha kule, zwa kona u vula ${signInLabel}. Shumisani khoro ya henefhano uri ni shandukele kha sisiteme ya murahu yo katelwaho.`,
       signOutAndSignIn: 'Bvani ni dovhe ni dzhene',
-      remoteFailureHint: 'Ṱolani URL ya khoro na u dzhena kha Nzudzanyo dza khoro, kana ni shandukele kha khoro ya henefhano.',
+      remoteFailureHint:
+        'Ṱolani URL ya khoro na u dzhena kha Nzudzanyo dza khoro, kana ni shandukele kha khoro ya henefhano.',
       hideRecentLogs: 'Dzumbani rekhodo dza zwino',
       showRecentLogs: 'Sumbedzani rekhodo dza zwino',
       signedInTitle: 'No dzhena',
@@ -2272,11 +2357,12 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'U dzhena ho kundelwa',
       signInToRemoteGateway: 'Dzhena kha khoro ya kule',
       signInWithProvider: provider => `Dzhena nga ${provider}`,
-      identityProvider: 'muṋetshedzi wa vhuṋe haṋu',
-    },
+      identityProvider: 'muṋetshedzi wa vhuṋe haṋu'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `U sumbedza nga sofuthiwee hu khou shuma — ho wanala tshikirini tsha kule (${reason}). U ṱavhanyisa nga GPU ho dzimiwa u thivhela u penya-penya.`,
+    message: reason =>
+      `U sumbedza nga sofuthiwee hu khou shuma — ho wanala tshikirini tsha kule (${reason}). U ṱavhanyisa nga GPU ho dzimiwa u thivhela u penya-penya.`
   },
   skills: {
     tabSkills: 'Vhukoni',
@@ -2296,7 +2382,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'No description.',
     configured: 'Configured',
     needsKeys: 'Needs keys',
-    visionModelHint: 'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
+    visionModelHint:
+      'Vision uses your auxiliary model configuration — the image-capable model is picked there, not per-provider here.',
     visionModelLink: 'Choose vision model in Settings → Models',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled`,
     configureToolset: label => `Configure ${label}`,
@@ -2322,7 +2409,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'Learned',
       bundled: 'Built-in',
-      hub: 'Hub',
+      hub: 'Hub'
     },
     emptyNoneFound: noun => `No ${noun} found`,
     emptyNothingMatches: query => `Nothing matches “${query}”.`,
@@ -2340,7 +2427,8 @@ Leave blank to keep the ${mode} default.`,
       connectingHubs: 'Connecting to skill hubs...',
       connectedHubs: 'Connected hubs:',
       featured: 'Featured skills',
-      landingHint: 'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
+      landingHint:
+        'Search the hub to browse installable skills from the official index, GitHub, and community sources.',
       noResults: 'No matching skills found in the hub.',
       resultCount: (count, ms) => `${count} result${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Timed out: ${sources}`,
@@ -2360,7 +2448,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'builtin',
         trusted: 'trusted',
-        community: 'community',
+        community: 'community'
       },
       verdictSafe: 'Safe',
       verdictCaution: 'Caution',
@@ -2378,8 +2466,8 @@ Leave blank to keep the ${mode} default.`,
       loadFailed: 'Skill hub failed to load',
       previewFailed: 'Skill preview failed',
       scanFailed: 'Security scan failed',
-      searchFailed: 'Hub search failed',
-    },
+      searchFailed: 'Hub search failed'
+    }
   },
   starmap: {
     title: 'Memory Graph',
@@ -2396,7 +2484,8 @@ Leave blank to keep the ${mode} default.`,
     emptyTitle: 'Nothing learned yet',
     emptyDesc: 'As OpenAmer builds skills and memories for your work, they appear here.',
     share: 'Share map',
-    shareHint: 'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
+    shareHint:
+      'Copy the code to share this map, or paste one to load. It only includes the layout, not your memory or skill text.',
     shareTitle: 'Import / export map',
     sharePlaceholder: 'Paste a map code…',
     copy: 'Copy map code',
@@ -2406,7 +2495,7 @@ Leave blank to keep the ${mode} default.`,
     importEmpty: 'Paste a map code to load it.',
     importSuccess: nodes => `Loaded a map with ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imported map',
-    resetToMine: 'Back to my map',
+    resetToMine: 'Back to my map'
   },
   agents: {
     close: 'Close agents',
@@ -2436,7 +2525,7 @@ Leave blank to keep the ${mode} default.`,
     ageDays: days => `${days}d ago`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   messaging: {
     search: 'Search messaging...',
@@ -2451,7 +2540,7 @@ Leave blank to keep the ${mode} default.`,
       not_configured: 'Needs setup',
       pending_restart: 'Restart needed',
       retrying: 'Retrying',
-      startup_failed: 'Startup failed',
+      startup_failed: 'Startup failed'
     },
     unknown: 'Unknown',
     hintPendingRestart: 'Restart the gateway from the status bar to apply this change.',
@@ -2490,127 +2579,126 @@ Leave blank to keep the ${mode} default.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot token',
         help: 'Create a bot with @BotFather, then paste the token it gives you.',
-        placeholder: 'Paste Telegram bot token',
+        placeholder: 'Paste Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Allowed Telegram user IDs',
-        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.',
+        help: 'Recommended. Comma-separated numeric IDs from @userinfobot. Without this, anyone can DM your bot.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxy URL',
-        help: 'Only needed on networks where Telegram is blocked.',
+        help: 'Only needed on networks where Telegram is blocked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot token',
-        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.',
+        help: 'Create an application in the Discord Developer Portal, add a bot, then paste its token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Allowed Discord user IDs',
-        help: 'Recommended. Comma-separated Discord user IDs.',
+        help: 'Recommended. Comma-separated Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Reply style',
-        help: 'first, all, or off.',
+        help: 'first, all, or off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Allow all Discord users',
-        help: 'Development only. When true, anyone can DM the bot without an allowlist.',
+        help: 'Development only. When true, anyone can DM the bot without an allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Home channel ID',
-        help: 'Channel where the bot sends proactive messages (cron output, reminders).',
+        help: 'Channel where the bot sends proactive messages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Home channel name',
-        help: 'Display name for the home channel in logs and status output.',
+        help: 'Display name for the home channel in logs and status output.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Allow all iMessage users',
-        help: 'When true, skip the BlueBubbles allowlist.',
+        help: 'When true, skip the BlueBubbles allowlist.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Allow all Mattermost users',
+        label: 'Allow all Mattermost users'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Home channel',
+        label: 'Home channel'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Allow all QQ users',
+        label: 'Allow all QQ users'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ home channel',
-        help: 'Default channel or group for cron delivery.',
+        help: 'Default channel or group for cron delivery.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ home channel name',
+        label: 'QQ home channel name'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token',
         help: 'Use the bot token from OAuth & Permissions after installing your Slack app.',
-        placeholder: 'Paste Slack bot token',
+        placeholder: 'Paste Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token',
         help: 'Use the app-level token required for Socket Mode.',
-        placeholder: 'Paste Slack app token',
+        placeholder: 'Paste Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Allowed Slack user IDs',
-        help: 'Recommended. Comma-separated Slack user IDs.',
+        help: 'Recommended. Comma-separated Slack user IDs.'
       },
       MATTERMOST_URL: {
         label: 'Server URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot token',
+        label: 'Bot token'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Allowed user IDs',
-        help: 'Recommended. Comma-separated Mattermost user IDs.',
+        help: 'Recommended. Comma-separated Mattermost user IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Access token',
+        label: 'Access token'
       },
       MATRIX_USER_ID: {
         label: 'Bot user ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Allowed Matrix user IDs',
-        help: 'Recommended. Comma-separated user IDs in @user:server format.',
+        help: 'Recommended. Comma-separated user IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL of a running signal-cli REST bridge.',
+        help: 'URL of a running signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Phone number',
-        help: 'The number registered with your signal-cli bridge.',
+        help: 'The number registered with your signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Allowed Signal users',
-        help: 'Recommended. Comma-separated Signal identifiers.',
+        help: 'Recommended. Comma-separated Signal identifiers.'
       },
       WHATSAPP_ENABLED: {
         label: 'Enable WhatsApp bridge',
-        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.',
+        help: 'Set automatically by the toggle below. Leave alone unless you know you need it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mode',
+        label: 'Bridge mode'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Allowed WhatsApp users',
-        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.',
-      },
+        help: 'Recommended. Comma-separated phone numbers or WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Search webhooks...',
@@ -2620,7 +2708,8 @@ Leave blank to keep the ${mode} default.`,
     hint: 'Subscription changes hot-reload once the receiver is running. Disabled subscriptions reject incoming events.',
     empty: 'No webhook subscriptions yet.',
     disabledTitle: 'Webhook receiver disabled',
-    disabledBody: 'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
+    disabledBody:
+      'Webhooks are their own gateway platform. Enable them here to accept incoming HTTP events; chat channels are only needed when a subscription delivers to Telegram, Discord, Slack, or another channel.',
     enable: 'Enable webhooks',
     enabling: 'Enabling...',
     enabled: (name: string) => `Enabled: "${name}"`,
@@ -2673,8 +2762,8 @@ Leave blank to keep the ${mode} default.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   cron: {
     close: 'Close cron',
@@ -2689,14 +2778,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'paused',
       disabled: 'disabled',
       error: 'error',
-      completed: 'completed',
+      completed: 'completed'
     },
     deliveryLabels: {
       local: 'This desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Email',
+      email: 'Email'
     },
     scheduleLabels: {
       daily: 'Daily',
@@ -2705,7 +2794,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'Monthly',
       hourly: 'Hourly',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Custom',
+      custom: 'Custom'
     },
     scheduleHints: {
       daily: 'Every day at 9:00 AM',
@@ -2714,7 +2803,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'The first day of each month at 9:00 AM',
       hourly: 'At the top of every hour',
       'every-15-minutes': 'Every 15 minutes',
-      custom: 'Cron syntax or natural language',
+      custom: 'Cron syntax or natural language'
     },
     days: {
       '0': 'Sunday',
@@ -2724,7 +2813,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     dayFallback: value => `day ${value}`,
     everyDayAt: time => `Every day at ${time}`,
@@ -2734,7 +2823,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -2793,7 +2883,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -2807,8 +2897,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     search: 'Search artifacts...',
@@ -2842,7 +2932,7 @@ Leave blank to keep the ${mode} default.`,
     kindLink: 'link',
     chat: 'Chat',
     copyUrl: 'Copy URL',
-    copyPath: 'Copy path',
+    copyPath: 'Copy path'
   },
   composer: {
     message: 'Message',
@@ -2857,7 +2947,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -2866,7 +2956,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -2902,7 +2992,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'resume a prior session',
       '/details': 'control transcript detail level',
       '/copy': 'copy selection or last assistant message',
-      '/quit': 'exit openamer',
+      '/quit': 'exit openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'reference files, folders, urls, git',
@@ -2912,7 +3002,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'send next queued turn',
       'keybinds.openPanel': 'all keyboard shortcuts',
       'composer.cancel': 'close popover · cancel run',
-      'composer.history': 'cycle popover / history',
+      'composer.history': 'cycle popover / history'
     },
     attachUrlTitle: 'Attach a URL',
     attachUrlDesc: 'OpenAmer will fetch the page and include it as context for this turn.',
@@ -2963,18 +3053,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'Code review',
         description: 'Audit the current change for regressions, dropped edge cases, and missing tests.',
-        text: 'Please review this for bugs, regressions, and missing tests.',
+        text: 'Please review this for bugs, regressions, and missing tests.'
       },
       implementationPlan: {
         label: 'Implementation plan',
         description: 'Outline an approach before touching code so the diff stays focused.',
-        text: 'Please make a concise implementation plan before changing code.',
+        text: 'Please make a concise implementation plan before changing code.'
       },
       explainThis: {
         label: 'Explain this',
         description: 'Walk through how the selected code works and link to the key files.',
-        text: 'Please explain how this works and point me to the key files.',
-      },
-    },
-  },
+        text: 'Please explain how this works and point me to the key files.'
+      }
+    }
+  }
 })

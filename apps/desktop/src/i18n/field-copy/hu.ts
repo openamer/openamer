@@ -6,249 +6,254 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Alapértelmezett modell",
-    modelContextLength: "Kontextusablak",
-    fallbackProviders: "Tartalék modellek",
-    toolsets: "Engedélyezett eszközkészletek",
-    timezone: "Időzóna",
-    display: {
-      personality: "Persona",
-      showReasoning: "Gondolkodási blokkok",
+  model: 'Alapértelmezett modell',
+  modelContextLength: 'Kontextusablak',
+  fallbackProviders: 'Tartalék modellek',
+  toolsets: 'Engedélyezett eszközkészletek',
+  timezone: 'Időzóna',
+  display: {
+    personality: 'Persona',
+    showReasoning: 'Gondolkodási blokkok'
+  },
+  desktop: {
+    repoScanEnabled: 'Automatikus tárolófelderítés',
+    repoScanRoots: 'Tárolófelderítési gyökerek',
+    repoScanExcludePaths: 'Kizárt tárolóútvonalak'
+  },
+  agent: {
+    maxTurns: 'Max. ügynöklépés',
+    imageInputMode: 'Képmellékletek',
+    apiMaxRetries: 'API-újrapróbálkozások',
+    serviceTier: 'Szolgáltatási szint',
+    toolUseEnforcement: 'Eszközhasználat kikényszerítése'
+  },
+  terminal: {
+    cwd: 'Munkakönyvtár',
+    backend: 'Végrehajtási backend',
+    timeout: 'Parancs időtúllépése',
+    persistentShell: 'Tartós shell',
+    envPassthrough: 'Környezet átadása',
+    dockerImage: 'Docker-kép',
+    singularityImage: 'Singularity-kép',
+    modalImage: 'Modal-kép',
+    daytonaImage: 'Daytona-kép'
+  },
+  fileReadMaxChars: 'Fájlolvasási korlát',
+  toolOutput: {
+    maxBytes: 'Terminálkimeneti korlát',
+    maxLines: 'Fájloldalkorlát',
+    maxLineLength: 'Sorhossz-korlát'
+  },
+  codeExecution: {
+    mode: 'Kódvégrehajtási mód'
+  },
+  approvals: {
+    mode: 'Jóváhagyási mód',
+    timeout: 'Jóváhagyási időtúllépés',
+    mcpReloadConfirm: 'MCP-újratöltések megerősítése'
+  },
+  commandAllowlist: 'Parancs engedélyezési lista',
+  security: {
+    redactSecrets: 'Titkok elrejtése',
+    allowPrivateUrls: 'Privát URL-ek engedélyezése'
+  },
+  browser: {
+    allowPrivateUrls: 'Böngésző privát URL-ek',
+    autoLocalForPrivateUrls: 'Helyi böngésző privát URL-ekhez'
+  },
+  checkpoints: {
+    enabled: 'Fájlellenőrzőpontok',
+    maxSnapshots: 'Ellenőrzőpont-korlát'
+  },
+  voice: {
+    recordKey: 'Hangparancs',
+    maxRecordingSeconds: 'Max. felvételhossz',
+    autoTts: 'Válaszok felolvasása'
+  },
+  stt: {
+    enabled: 'Beszéd szöveggé alakítása',
+    echoTranscripts: 'Átiratok visszhangzása',
+    provider: 'Beszéd-szöveggé alakító szolgáltató',
+    local: {
+      model: 'Helyi átírási modell',
+      language: 'Átírás nyelve'
     },
-    desktop: {
-      repoScanEnabled: "Automatikus tárolófelderítés",
-      repoScanRoots: "Tárolófelderítési gyökerek",
-      repoScanExcludePaths: "Kizárt tárolóútvonalak",
+    openai: {
+      model: 'OpenAI STT-modell'
     },
-    agent: {
-      maxTurns: "Max. ügynöklépés",
-      imageInputMode: "Képmellékletek",
-      apiMaxRetries: "API-újrapróbálkozások",
-      serviceTier: "Szolgáltatási szint",
-      toolUseEnforcement: "Eszközhasználat kikényszerítése",
+    groq: {
+      model: 'Groq STT-modell'
     },
-    terminal: {
-      cwd: "Munkakönyvtár",
-      backend: "Végrehajtási backend",
-      timeout: "Parancs időtúllépése",
-      persistentShell: "Tartós shell",
-      envPassthrough: "Környezet átadása",
-      dockerImage: "Docker-kép",
-      singularityImage: "Singularity-kép",
-      modalImage: "Modal-kép",
-      daytonaImage: "Daytona-kép",
+    mistral: {
+      model: 'Mistral STT-modell'
     },
-    fileReadMaxChars: "Fájlolvasási korlát",
-    toolOutput: {
-      maxBytes: "Terminálkimeneti korlát",
-      maxLines: "Fájloldalkorlát",
-      maxLineLength: "Sorhossz-korlát",
+    elevenlabs: {
+      modelId: 'ElevenLabs STT-modell',
+      languageCode: 'ElevenLabs nyelve',
+      tagAudioEvents: 'Hang-események címkézése',
+      diarize: 'Beszélők elkülönítése'
+    }
+  },
+  tts: {
+    provider: 'Szövegből beszéddé alakító szolgáltató',
+    edge: {
+      voice: 'Edge-hang'
     },
-    codeExecution: {
-      mode: "Kódvégrehajtási mód",
+    openai: {
+      model: 'OpenAI TTS-modell',
+      voice: 'OpenAI-hang'
     },
-    approvals: {
-      mode: "Jóváhagyási mód",
-      timeout: "Jóváhagyási időtúllépés",
-      mcpReloadConfirm: "MCP-újratöltések megerősítése",
+    elevenlabs: {
+      voiceId: 'ElevenLabs-hang',
+      modelId: 'ElevenLabs-modell'
     },
-    commandAllowlist: "Parancs engedélyezési lista",
-    security: {
-      redactSecrets: "Titkok elrejtése",
-      allowPrivateUrls: "Privát URL-ek engedélyezése",
+    xai: {
+      voiceId: 'xAI (Grok)-hang',
+      language: 'xAI nyelve',
+      speed: 'xAI lejátszási sebesség',
+      autoSpeechTags: 'xAI automatikus beszédcímkék',
+      optimizeStreamingLatency: 'xAI streaming késlelmény-optimalizálás',
+      sampleRate: 'xAI mintavételi ráta',
+      bitRate: 'xAI bitrátája'
     },
-    browser: {
-      allowPrivateUrls: "Böngésző privát URL-ek",
-      autoLocalForPrivateUrls: "Helyi böngésző privát URL-ekhez",
+    minimax: {
+      model: 'MiniMax TTS-modell',
+      voiceId: 'MiniMax-hang'
     },
-    checkpoints: {
-      enabled: "Fájlellenőrzőpontok",
-      maxSnapshots: "Ellenőrzőpont-korlát",
+    mistral: {
+      model: 'Mistral TTS-modell',
+      voiceId: 'Mistral-hang'
     },
-    voice: {
-      recordKey: "Hangparancs",
-      maxRecordingSeconds: "Max. felvételhossz",
-      autoTts: "Válaszok felolvasása",
+    gemini: {
+      model: 'Gemini TTS-modell',
+      voice: 'Gemini-hang'
     },
-    stt: {
-      enabled: "Beszéd szöveggé alakítása",
-      echoTranscripts: "Átiratok visszhangzása",
-      provider: "Beszéd-szöveggé alakító szolgáltató",
-      local: {
-        model: "Helyi átírási modell",
-        language: "Átírás nyelve",
-      },
-      openai: {
-        model: "OpenAI STT-modell",
-      },
-      groq: {
-        model: "Groq STT-modell",
-      },
-      mistral: {
-        model: "Mistral STT-modell",
-      },
-      elevenlabs: {
-        modelId: "ElevenLabs STT-modell",
-        languageCode: "ElevenLabs nyelve",
-        tagAudioEvents: "Hang-események címkézése",
-        diarize: "Beszélők elkülönítése",
-      },
+    neutts: {
+      model: 'NeuTTS-modell',
+      device: 'NeuTTS-eszköz'
     },
-    tts: {
-      provider: "Szövegből beszéddé alakító szolgáltató",
-      edge: {
-        voice: "Edge-hang",
-      },
-      openai: {
-        model: "OpenAI TTS-modell",
-        voice: "OpenAI-hang",
-      },
-      elevenlabs: {
-        voiceId: "ElevenLabs-hang",
-        modelId: "ElevenLabs-modell",
-      },
-      xai: {
-        voiceId: "xAI (Grok)-hang",
-        language: "xAI nyelve",
-        speed: "xAI lejátszási sebesség",
-        autoSpeechTags: "xAI automatikus beszédcímkék",
-        optimizeStreamingLatency: "xAI streaming késlelmény-optimalizálás",
-        sampleRate: "xAI mintavételi ráta",
-        bitRate: "xAI bitrátája",
-      },
-      minimax: {
-        model: "MiniMax TTS-modell",
-        voiceId: "MiniMax-hang",
-      },
-      mistral: {
-        model: "Mistral TTS-modell",
-        voiceId: "Mistral-hang",
-      },
-      gemini: {
-        model: "Gemini TTS-modell",
-        voice: "Gemini-hang",
-      },
-      neutts: {
-        model: "NeuTTS-modell",
-        device: "NeuTTS-eszköz",
-      },
-      kittentts: {
-        model: "KittenTTS-modell",
-        voice: "KittenTTS-hang",
-      },
-      piper: {
-        voice: "Piper-hang",
-      },
-      deepinfra: {
-        model: "DeepInfra TTS-modell",
-        voice: "DeepInfra-hang",
-      },
+    kittentts: {
+      model: 'KittenTTS-modell',
+      voice: 'KittenTTS-hang'
     },
-    memory: {
-      memoryEnabled: "Tartós memória",
-      userProfileEnabled: "Felhasználói profil",
-      memoryCharLimit: "Memóriakeret",
-      userCharLimit: "Profilkeret",
-      provider: "Memóriaszolgáltató",
+    piper: {
+      voice: 'Piper-hang'
     },
-    context: {
-      engine: "Kontextusmotor",
-    },
-    compression: {
-      enabled: "Automatikus tömörítés",
-      threshold: "Tömörítési küszöb",
-      targetRatio: "Tömörítési cél",
-      protectLastN: "Védett legutóbbi üzenetek",
-    },
-    delegation: {
-      model: "Alügynök-modell",
-      provider: "Alügynök-szolgáltató",
-      maxIterations: "Alügynök-fordulók korlátja",
-      maxConcurrentChildren: "Párhuzamos alügynökök",
-      childTimeoutSeconds: "Alügynök időtúllépése",
-      reasoningEffort: "Alügynök gondolkodási erőfeszítése",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Alkalmazáson belüli frissítés helyi módosításai",
-    },
+    deepinfra: {
+      model: 'DeepInfra TTS-modell',
+      voice: 'DeepInfra-hang'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Tartós memória',
+    userProfileEnabled: 'Felhasználói profil',
+    memoryCharLimit: 'Memóriakeret',
+    userCharLimit: 'Profilkeret',
+    provider: 'Memóriaszolgáltató'
+  },
+  context: {
+    engine: 'Kontextusmotor'
+  },
+  compression: {
+    enabled: 'Automatikus tömörítés',
+    threshold: 'Tömörítési küszöb',
+    targetRatio: 'Tömörítési cél',
+    protectLastN: 'Védett legutóbbi üzenetek'
+  },
+  delegation: {
+    model: 'Alügynök-modell',
+    provider: 'Alügynök-szolgáltató',
+    maxIterations: 'Alügynök-fordulók korlátja',
+    maxConcurrentChildren: 'Párhuzamos alügynökök',
+    childTimeoutSeconds: 'Alügynök időtúllépése',
+    reasoningEffort: 'Alügynök gondolkodási erőfeszítése'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Alkalmazáson belüli frissítés helyi módosításai'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Új csevegésekhez használatos, kivéve ha más modellt választasz az írásmezőben.",
-    modelContextLength: "Hagyd 0-n, hogy a kiválasztott modell észlelt kontextusablakát használja.",
-    fallbackProviders: "Biztonsági másolat szolgáltató:modell párok, amelyeket kipróbál, ha az alapértelmezett modell nem működik.",
-    display: {
-      personality: "Alapértelmezett asszisztensstílus új munkamenetekhez.",
-      showReasoning: "Gondolkodási szakaszok megjelenítése, ha a backend biztosítja őket.",
+  model: 'Új csevegésekhez használatos, kivéve ha más modellt választasz az írásmezőben.',
+  modelContextLength: 'Hagyd 0-n, hogy a kiválasztott modell észlelt kontextusablakát használja.',
+  fallbackProviders:
+    'Biztonsági másolat szolgáltató:modell párok, amelyeket kipróbál, ha az alapértelmezett modell nem működik.',
+  display: {
+    personality: 'Alapértelmezett asszisztensstílus új munkamenetekhez.',
+    showReasoning: 'Gondolkodási szakaszok megjelenítése, ha a backend biztosítja őket.'
+  },
+  desktop: {
+    repoScanEnabled: 'Helyi mappák beolvasása Git-tárolók keresésére, hogy megjelenjenek a Projektekben.',
+    repoScanRoots: 'Beolvasandó mappák. Hagyjad üresen a saját könyvtár beolvasásához.',
+    repoScanExcludePaths: 'Mappák és az alattuk lévő könyvtárak, amelyeket a tárolókeresés során ki kell hagyni.'
+  },
+  timezone:
+    'Akkor használatos, amikor az OpenAmer helyi időkontextust igényel. Üresen a rendszer időzónáját használja.',
+  agent: {
+    imageInputMode: 'Szabályozza, hogyan küldjük a kép-mellékleteket a modellnek.',
+    maxTurns: 'Az eszközhívási fordulók felső korlátja, mielőtt az OpenAmer leállítja a futást.'
+  },
+  terminal: {
+    cwd: 'Alapértelmezett projektmappa az eszköz- és terminálmunkákhoz.',
+    persistentShell: 'A shell állapotának megőrzése a parancsok között, ha a backend támogatja.',
+    envPassthrough: 'Környezeti változók, amelyeket átadunk az eszköz végrehajtásának.',
+    dockerImage: 'A konténerkép, amelyet a Docker végrehajtási backend használ.',
+    singularityImage: 'A kép, amelyet a Singularity végrehajtási backend használ.',
+    modalImage: 'A kép, amelyet a Modal végrehajtási backend használ.',
+    daytonaImage: 'A kép, amelyet a Daytona végrehajtási backend használ.'
+  },
+  codeExecution: {
+    mode: 'Mennyire szigorúan korlátozott a kódvégrehajtás az aktuális projektre.'
+  },
+  fileReadMaxChars: 'A legtöbb karakter, amelyet az OpenAmer egy fájlról olvasva beolvashat.',
+  approvals: {
+    mode: 'Hogyan kezeli az OpenAmer azokat a parancsokat, amelyekhez explicit jóváhagyás szükséges.',
+    timeout: 'Meddig várnak a jóváhagyási kérdések az időtúlépés előtt.'
+  },
+  security: {
+    redactSecrets: 'Az észlelt titkok elrejtése a modell számára látható tartalomból, ha lehetséges.'
+  },
+  checkpoints: {
+    enabled: 'Visszavonási pillanatképek létrehozása a fájlmódosítások előtt.'
+  },
+  memory: {
+    memoryEnabled: 'Tartós memóriák mentése, amelyek segíthetik a jövőbeli munkameneteket.',
+    userProfileEnabled: 'A felhasználói preferenciák kompakt profiljának karbantartása.'
+  },
+  context: {
+    engine: 'Stratégia a hosszú beszélgetések kezelésére a kontextuslimit közelében.'
+  },
+  compression: {
+    enabled: 'A régebbi kontextus összefoglalása, amikor a beszélgetések nagyra nőnek.'
+  },
+  voice: {
+    autoTts: 'Asszisztensválaszok automatikus felolvasása.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'xAI hangazonosító (pl. eve) vagy egyéni hangazonosító.',
+      language: 'Beszélt nyelv kódja (pl. en, pt-BR) vagy "auto" az automatikus felismeréshez.',
+      speed: 'Lejátszási sebesség. 0,7 = lassabb, 1,0 = normál, 1,5 = gyorsabb.',
+      autoSpeechTags:
+        'Hagyjuk, hogy egy LLM kifejező hangcímkéket ([laughing], [sighs]) illesszen a szövegbe a szintézis előtt.',
+      optimizeStreamingLatency:
+        'A késleltetés és a minőség közötti kompromisszum. 0 = legjobb minőség, 2 = legalacsonyabb késleltetés.',
+      sampleRate: 'Audio mintavételi sebesség Hz-ben. Magasabb = jobb minőség, nagyobb fájlok.',
+      bitRate: 'MP3 bitrát bps-ben. Csak akkor érvényes, ha a kodek mp3.'
     },
-    desktop: {
-      repoScanEnabled: "Helyi mappák beolvasása Git-tárolók keresésére, hogy megjelenjenek a Projektekben.",
-      repoScanRoots: "Beolvasandó mappák. Hagyjad üresen a saját könyvtár beolvasásához.",
-      repoScanExcludePaths: "Mappák és az alattuk lévő könyvtárak, amelyeket a tárolókeresés során ki kell hagyni.",
-    },
-    timezone: "Akkor használatos, amikor az OpenAmer helyi időkontextust igényel. Üresen a rendszer időzónáját használja.",
-    agent: {
-      imageInputMode: "Szabályozza, hogyan küldjük a kép-mellékleteket a modellnek.",
-      maxTurns: "Az eszközhívási fordulók felső korlátja, mielőtt az OpenAmer leállítja a futást.",
-    },
-    terminal: {
-      cwd: "Alapértelmezett projektmappa az eszköz- és terminálmunkákhoz.",
-      persistentShell: "A shell állapotának megőrzése a parancsok között, ha a backend támogatja.",
-      envPassthrough: "Környezeti változók, amelyeket átadunk az eszköz végrehajtásának.",
-      dockerImage: "A konténerkép, amelyet a Docker végrehajtási backend használ.",
-      singularityImage: "A kép, amelyet a Singularity végrehajtási backend használ.",
-      modalImage: "A kép, amelyet a Modal végrehajtási backend használ.",
-      daytonaImage: "A kép, amelyet a Daytona végrehajtási backend használ.",
-    },
-    codeExecution: {
-      mode: "Mennyire szigorúan korlátozott a kódvégrehajtás az aktuális projektre.",
-    },
-    fileReadMaxChars: "A legtöbb karakter, amelyet az OpenAmer egy fájlról olvasva beolvashat.",
-    approvals: {
-      mode: "Hogyan kezeli az OpenAmer azokat a parancsokat, amelyekhez explicit jóváhagyás szükséges.",
-      timeout: "Meddig várnak a jóváhagyási kérdések az időtúlépés előtt.",
-    },
-    security: {
-      redactSecrets: "Az észlelt titkok elrejtése a modell számára látható tartalomból, ha lehetséges.",
-    },
-    checkpoints: {
-      enabled: "Visszavonási pillanatképek létrehozása a fájlmódosítások előtt.",
-    },
-    memory: {
-      memoryEnabled: "Tartós memóriák mentése, amelyek segíthetik a jövőbeli munkameneteket.",
-      userProfileEnabled: "A felhasználói preferenciák kompakt profiljának karbantartása.",
-    },
-    context: {
-      engine: "Stratégia a hosszú beszélgetések kezelésére a kontextuslimit közelében.",
-    },
-    compression: {
-      enabled: "A régebbi kontextus összefoglalása, amikor a beszélgetések nagyra nőnek.",
-    },
-    voice: {
-      autoTts: "Asszisztensválaszok automatikus felolvasása.",
-    },
-    tts: {
-      xai: {
-        voiceId: "xAI hangazonosító (pl. eve) vagy egyéni hangazonosító.",
-        language: "Beszélt nyelv kódja (pl. en, pt-BR) vagy \"auto\" az automatikus felismeréshez.",
-        speed: "Lejátszási sebesség. 0,7 = lassabb, 1,0 = normál, 1,5 = gyorsabb.",
-        autoSpeechTags: "Hagyjuk, hogy egy LLM kifejező hangcímkéket ([laughing], [sighs]) illesszen a szövegbe a szintézis előtt.",
-        optimizeStreamingLatency: "A késleltetés és a minőség közötti kompromisszum. 0 = legjobb minőség, 2 = legalacsonyabb késleltetés.",
-        sampleRate: "Audio mintavételi sebesség Hz-ben. Magasabb = jobb minőség, nagyobb fájlok.",
-        bitRate: "MP3 bitrát bps-ben. Csak akkor érvényes, ha a kodek mp3.",
-      },
-      neutts: {
-        device: "Helyi inféziós eszköz a NeuTTS-hez.",
-      },
-    },
-    stt: {
-      enabled: "Helyi vagy szolgáltató által támogatott beszédátírás engedélyezése.",
-      echoTranscripts: "A hangüzenetek nyers 🎙️ átiratának visszaküldése a csevegésbe.",
-      elevenlabs: {
-        languageCode: "Opcionális ISO-639-3 nyelvkód. Üresen az ElevenLabs automatikusan felismeri.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Amikor az OpenAmer az alkalmazásból frissíti magát (terminálkérés nélkül), a helyi forrásmódosításokat megőrzi (stash) vagy eldobja (discard). A terminálos frissítések mindig kérdeznek.",
-    },
+    neutts: {
+      device: 'Helyi inféziós eszköz a NeuTTS-hez.'
+    }
+  },
+  stt: {
+    enabled: 'Helyi vagy szolgáltató által támogatott beszédátírás engedélyezése.',
+    echoTranscripts: 'A hangüzenetek nyers 🎙️ átiratának visszaküldése a csevegésbe.',
+    elevenlabs: {
+      languageCode: 'Opcionális ISO-639-3 nyelvkód. Üresen az ElevenLabs automatikusan felismeri.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Amikor az OpenAmer az alkalmazásból frissíti magát (terminálkérés nélkül), a helyi forrásmódosításokat megőrzi (stash) vagy eldobja (discard). A terminálos frissítések mindig kérdeznek.'
+  }
 })

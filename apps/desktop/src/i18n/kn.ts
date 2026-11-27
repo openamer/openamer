@@ -45,7 +45,7 @@ export const kn = defineLocale({
     update: 'ನವೀಕರಿಸಿ',
     tryHint: term => `“${term}” ಪ್ರಯತ್ನಿಸಿ`,
     on: 'ಆನ್',
-    off: 'ಆಫ್',
+    off: 'ಆಫ್'
   },
   fileMenu: {
     revealFinder: 'ಫೈಂಡರ್‌ನಲ್ಲಿ ತೋರಿಸಿ',
@@ -60,7 +60,7 @@ export const kn = defineLocale({
     renameLabel: 'ಹೊಸ ಹೆಸರು',
     deleteTitle: name => `${name} ಅನ್ನು ಅಳಿಸಿ?`,
     deleteBody: 'ಇದು ಕಸದ ಬುಟ್ಟಿಗೆ ಸರಿಸಲಾಗುತ್ತದೆ — ಅಲ್ಲಿ ನೀವು ಅದನ್ನು ಪುನಃಸ್ಥಾಪಿಸಬಹುದು.',
-    pathCopied: 'ಮಾರ್ಗ ನಕಲಿಸಲಾಗಿದೆ',
+    pathCopied: 'ಮಾರ್ಗ ನಕಲಿಸಲಾಗಿದೆ'
   },
   boot: {
     ready: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಸಿದ್ಧವಾಗಿದೆ',
@@ -70,7 +70,7 @@ export const kn = defineLocale({
       loadingSettings: 'OpenAmer ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡುತ್ತಿದೆ',
       loadingSessions: 'ಇತ್ತೀಚಿನ ಸೆಷನ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡುತ್ತಿದೆ',
       startingDesktopConnection: 'ಡೆಸ್ಕ್‌ಟಾಪ್ ಸಂಪರ್ಕವನ್ನು ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ',
-      startingOpenAmerDesktop: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ…',
+      startingOpenAmerDesktop: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ…'
     },
     errors: {
       backgroundExited: 'OpenAmer ಹಿನ್ನೆಲೆ ಪ್ರಕ್ರಿಯೆ ನಿರ್ಗಮಿಸಿದೆ.',
@@ -79,13 +79,15 @@ export const kn = defineLocale({
       desktopBootFailed: 'ಡೆಸ್ಕ್‌ಟಾಪ್ ಬೂಟ್ ವಿಫಲವಾಗಿದೆ',
       gatewayConnectionLost: 'ಗೇಟ್‌ವೇಯೊಂದಿಗೆ ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ',
       gatewaySignInRequired: 'ಗ್ಯಾಟ್ವೇ ಸೈನ್-ಇನ್ ಅಗತ್ಯ',
-      ipcBridgeUnavailable: 'Desktop IPC bridge ಅವಲೇಬಲ್ ಇಲ್ಲ.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge ಅವಲೇಬಲ್ ಇಲ್ಲ.'
     },
     failure: {
-      title: "OpenAmer ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ",
-      description: "ಹಿನ್ನೆಲೆ ಗೇಟ್‌ವೇ ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ. ಕೆಳಗಿನ ಯಾವುದಾದರೊಂದು ರಿಕವರಿ ಹಂತಗಳನ್ನು ಪ್ರಯತ್ನಿಸಿ. ಇಲ್ಲಿ ಯಾವುದೂ ನಿಮ್ಮ ಚಾಟ್‌ಗಳು ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅಳಿಸುವುದಿಲ್ಲ.",
+      title: 'OpenAmer ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ',
+      description:
+        'ಹಿನ್ನೆಲೆ ಗೇಟ್‌ವೇ ಪ್ರಾರಂಭವಾಗಲಿಲ್ಲ. ಕೆಳಗಿನ ಯಾವುದಾದರೊಂದು ರಿಕವರಿ ಹಂತಗಳನ್ನು ಪ್ರಯತ್ನಿಸಿ. ಇಲ್ಲಿ ಯಾವುದೂ ನಿಮ್ಮ ಚಾಟ್‌ಗಳು ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅಳಿಸುವುದಿಲ್ಲ.',
       remoteTitle: 'ರಿಮೋಟ್ ಗ್ಯಾಟ್ವೇ ಸೈನ್-ಇನ್ ಅಗತ್ಯ',
-      remoteDescription: 'ನಿಮ್ಮ ರಿಮೋಟ್ ಗೇಟ್‌ವೇ ಸೆಷನ್ ಅವಧಿ ಮುಗಿದಿದೆ. ಮರುಸಂಪರ್ಕಿಸಲು ಮತ್ತೊಮ್ಮೆ ಸೈನ್ ಇನ್ ಮಾಡಿ. ಇಲ್ಲಿ ಯಾವುದೂ ನಿಮ್ಮ ಚಾಟ್‌ಗಳು ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅಳಿಸುವುದಿಲ್ಲ.',
+      remoteDescription:
+        'ನಿಮ್ಮ ರಿಮೋಟ್ ಗೇಟ್‌ವೇ ಸೆಷನ್ ಅವಧಿ ಮುಗಿದಿದೆ. ಮರುಸಂಪರ್ಕಿಸಲು ಮತ್ತೊಮ್ಮೆ ಸೈನ್ ಇನ್ ಮಾಡಿ. ಇಲ್ಲಿ ಯಾವುದೂ ನಿಮ್ಮ ಚಾಟ್‌ಗಳು ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅಳಿಸುವುದಿಲ್ಲ.',
       retry: 'ಪ್ರಯತ್ನಿಸಿ',
       repairInstall: 'ಸ್ಥಾಪನೆ ದುರಸ್ತಿ ಮಾಡಿ',
       useLocalGateway: 'ಸ್ಥಳೀಯ ಗೇಟ್ವೇ ಬಳಸಿ',
@@ -93,9 +95,11 @@ export const kn = defineLocale({
       back: 'ಹಿಂದಿರು',
       openLogs: 'Logs ಅಪ್‌ಲೋಡ್',
       repairHint: 'ದುರಸ್ತಿ ಇನ್ಸ್ಟಾಲರ್ ಅನ್ನು ಮತ್ತೆ ಚಲಿಸುತ್ತದೆ ಮತ್ತು ಹೊಸ ಯಂತ್ರದಲ್ಲಿ ಕೆಲವು ನಿಮಿಷಗಳು ತೆಗೆದುಕೊಳ್ಳಬಹುದು.',
-      remoteSignInHint: signInLabel => `ಉಳಿತಿರುವ ರಿಮೋಟ್ ಬ್ರೌಸರ್ ಸೆಷನ್‌ನಿಂದ ಸೈನ್ ಔಟ್ ಆಗುತ್ತದೆ, ನಂತರ ${signInLabel} ಅನ್ನು ತೆರೆಯುತ್ತದೆ. ಬಂಡಲ್ ಮಾಡಿದ ಬ್ಯಾಕೆಂಡ್‌ಗೆ ಬದಲಾಯಿಸಲು ಲೋಕಲ್ ಗೇಟ್‌ವೇ ಬಳಸಿ.`,
+      remoteSignInHint: signInLabel =>
+        `ಉಳಿತಿರುವ ರಿಮೋಟ್ ಬ್ರೌಸರ್ ಸೆಷನ್‌ನಿಂದ ಸೈನ್ ಔಟ್ ಆಗುತ್ತದೆ, ನಂತರ ${signInLabel} ಅನ್ನು ತೆರೆಯುತ್ತದೆ. ಬಂಡಲ್ ಮಾಡಿದ ಬ್ಯಾಕೆಂಡ್‌ಗೆ ಬದಲಾಯಿಸಲು ಲೋಕಲ್ ಗೇಟ್‌ವೇ ಬಳಸಿ.`,
       signOutAndSignIn: 'ಸೈನ್ ಔಟ್ ಮತ್ತು ಸೈನ್ ಇನ್',
-      remoteFailureHint: 'Gateway URL ಮತ್ತು Gateway settings ಅಡಿಯಲ್ಲಿ sign-in ಮಾಡಿ, ಅಥವಾ local gateway ಅನ್ನು switch ಮಾಡಿ.',
+      remoteFailureHint:
+        'Gateway URL ಮತ್ತು Gateway settings ಅಡಿಯಲ್ಲಿ sign-in ಮಾಡಿ, ಅಥವಾ local gateway ಅನ್ನು switch ಮಾಡಿ.',
       hideRecentLogs: 'ಇತ್ತೀಚಿನ ಲಾಗ್ಗಳನ್ನು ಮರೆಮಾಡಿ',
       showRecentLogs: 'ಇತ್ತೀಚಿನ ಲಾಗ್ಗಳನ್ನು ತೋರಿಸಿ',
       signedInTitle: 'ಸೈನ್ ಇನ್ ಆಗಿದೆ',
@@ -105,8 +109,8 @@ export const kn = defineLocale({
       signInFailed: 'ಸೈನ್-ಇನ್ ವಿಫಲವಾಯಿತು',
       signInToRemoteGateway: 'ದೂರಸ್ಥ ಗೇಟ್‌ವೇಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ',
       signInWithProvider: provider => `${provider} ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ`,
-      identityProvider: 'ನಿಮ್ಮ ಗುರುತಿನ ಪೂರೈಕೆದಾರ',
-    },
+      identityProvider: 'ನಿಮ್ಮ ಗುರುತಿನ ಪೂರೈಕೆದಾರ'
+    }
   },
   notifications: {
     region: 'ಸೂಚನೆಗಳು',
@@ -119,21 +123,23 @@ export const kn = defineLocale({
     copyDetail: 'ವಿವರವನ್ನು ನಕಲಿಸಿ',
     copyDetailFailed: 'ಸೂಚನಾ ವಿವರವನ್ನು ನಕಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
     backendOutOfDateTitle: 'ಬ್ಯಾಕೆಂಡ್ ಹಳೆಯದು',
-    backendOutOfDateMessage: 'ನಿಮ್ಮ OpenAmer ಬ್ಯಾಕೆಂಡ್ ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ನಿರ್ಮಾಣಕ್ಕಿಂತ ಹಳೆಯದು ಮತ್ತು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡದಿರಬಹುದು. ಅವುಗಳನ್ನು ಹೊಂದಿಸಲು ನವೀಕರಿಸಿ.',
+    backendOutOfDateMessage:
+      'ನಿಮ್ಮ OpenAmer ಬ್ಯಾಕೆಂಡ್ ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ನಿರ್ಮಾಣಕ್ಕಿಂತ ಹಳೆಯದು ಮತ್ತು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡದಿರಬಹುದು. ಅವುಗಳನ್ನು ಹೊಂದಿಸಲು ನವೀಕರಿಸಿ.',
     installMethodUnsupportedTitle: 'ಬೆಂಬಲಿಸದ ಸ್ಥಾಪನಾ ವಿಧಾನ',
     updateOpenAmer: 'OpenAmer ನವೀಕರಿಸಿ',
     updateReadyTitle: 'ನವೀಕರಣ ಸಿದ್ಧ',
     updateReadyMessage: count => `${count} ಹೊಸ ಬದಲಾವಣೆ${count === 1 ? '' : 's'} ಲಭ್ಯವಿದೆ.`,
-    seeWhatsNew: "ಹೊಸದು ಏನು ಎಂದು ನೋಡಿ",
+    seeWhatsNew: 'ಹೊಸದು ಏನು ಎಂದು ನೋಡಿ',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT ಗೆ ELEVENLABS_API_KEY ಅಗತ್ಯವಿದೆ.',
       elevenLabsRejectedKey: 'ElevenLabs API ಕೀ (401) ಅನ್ನು ನಿರಾಕರಿಸಿದೆ.',
       gatewayAuthFailed: 'ಗೇಟ್‌ವೇ ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ — ನಿಮ್ಮ API_SERVER_KEY ಪರಿಶೀಲಿಸಿ.',
-      methodNotAllowed: 'ಡೆಸ್ಕ್‌ಟಾಪ್ ಬ್ಯಾಕ್‌ಎಂಡ್ ಆ ವಿನಂತಿಯನ್ನು ನಿರಾಕರಿಸಿದೆ (405 ವಿಧಾನ ಅನುಮತಿಸಲಾಗಿಲ್ಲ). OpenAmer Desktop ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ.',
+      methodNotAllowed:
+        'ಡೆಸ್ಕ್‌ಟಾಪ್ ಬ್ಯಾಕ್‌ಎಂಡ್ ಆ ವಿನಂತಿಯನ್ನು ನಿರಾಕರಿಸಿದೆ (405 ವಿಧಾನ ಅನುಮತಿಸಲಾಗಿಲ್ಲ). OpenAmer Desktop ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ.',
       microphonePermission: 'ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ.',
       openaiRejectedApiKey: 'OpenAI API ಕೀ ಅನ್ನು ನಿರಾಕರಿಸಿದೆ.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI API ಕೀಲಿಯನ್ನು ತಿರಸ್ಕರಿಸಿದೆ (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS ಗೆ VOICE_TOOLS_OPENAI_KEY ಅಥವಾ OPENAI_API_KEY ಅಗತ್ಯವಿದೆ.',
+      openaiTtsNeedsKey: 'OpenAI TTS ಗೆ VOICE_TOOLS_OPENAI_KEY ಅಥವಾ OPENAI_API_KEY ಅಗತ್ಯವಿದೆ.'
     },
     voice: {
       configureSpeechToText: 'ಧ್ವನಿ ಮೋಡ್ ಬಳಸಲು ಸ್ಪೀಚ್-ಟು-ಟೆಕ್ಸ್ಟ್ ಅನ್ನು ಸಂರಚಿಸಿ.',
@@ -152,7 +158,7 @@ export const kn = defineLocale({
       transcriptionFailed: 'ಧ್ವನಿ ವರ್ಣನ ವಿಫಲವಾಗಿದೆ',
       transcriptionUnavailable: 'ಧ್ವನಿ ಲಿಪ್ಯಂತರಣೆ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ',
       tryRecordingAgain: 'ಮತ್ತೆ ದಾಖಲಿಸಲು ಪ್ರಯತ್ನಿಸಿ',
-      unavailable: 'ಧ್ವನಿ ಲಭ್ಯವಿಲ್ಲ',
+      unavailable: 'ಧ್ವನಿ ಲಭ್ಯವಿಲ್ಲ'
     },
     native: {
       approvalTitle: 'ಅನುಮೋದನೆ ಅಗತ್ಯ',
@@ -165,11 +171,12 @@ export const kn = defineLocale({
       turnErrorTitle: 'ತಿರುಗು ವಿಫಲವಾಯಿತು',
       backgroundDoneTitle: 'ಹಿನ್ನೆಲೆ ಕಾರ್ಯ ಮುಗಿದಿದೆ',
       backgroundFailedTitle: 'ಹಿನ್ನೆಲೆ ಕಾರ್ಯ ವಿಫಲವಾಯಿತು',
-      creditsTitle: 'ಕ್ರೆಡಿಟ್‌ಗಳು',
-    },
+      creditsTitle: 'ಕ್ರೆಡಿಟ್‌ಗಳು'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `ಸಾಫ್ಟ್‌ವೇರ್ ರೆಂಡರಿಂಗ್ ಸಕ್ರಿಯವಾಗಿದೆ — ರಿಮೋಟ್ ಡಿಸ್‌ಪ್ಲೇ ಪತ್ತೆಯಾಗಿದೆ (${reason}). ಫ್ಲಿಕರಿಂಗ್ ಅನ್ನು ತಡೆಗಟ್ಟಲು GPU ವೇಗವರ್ಧನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.`,
+    message: reason =>
+      `ಸಾಫ್ಟ್‌ವೇರ್ ರೆಂಡರಿಂಗ್ ಸಕ್ರಿಯವಾಗಿದೆ — ರಿಮೋಟ್ ಡಿಸ್‌ಪ್ಲೇ ಪತ್ತೆಯಾಗಿದೆ (${reason}). ಫ್ಲಿಕರಿಂಗ್ ಅನ್ನು ತಡೆಗಟ್ಟಲು GPU ವೇಗವರ್ಧನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ಕ್ರೆಡಿಟ್‌ಗಳು ಮುಗಿದಿವೆ',
@@ -177,7 +184,7 @@ export const kn = defineLocale({
     fallbackMessage: 'ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ ಕ್ರೆಡಿಟ್‌ಗಳು ಮುಗಿದಿವೆ. ಮುಂದುವರಿಯಲು ಕ್ರೆಡಿಟ್‌ಗಳನ್ನು ಸೇರಿಸಿ',
     openBilling: 'ಬಿಲ್ಲಿಂಗ್ ತೆರೆಯಿರಿ',
     addCredits: 'ಕ್ರೆಡಿಟ್‌ಗಳನ್ನು ಸೇರಿಸಿ',
-    dismiss: 'ಅಡಗಿಸಿ',
+    dismiss: 'ಅಡಗಿಸಿ'
   },
   titlebar: {
     hideSidebar: 'ಸೈಡ್ಬಾರ್ ಅಡಗಿಸಿ',
@@ -194,7 +201,7 @@ export const kn = defineLocale({
     openStarmap: 'ಮೆಮೊರಿ ಗ್ರಾಫ್ ತೆರೆಯಿರಿ',
     openKeybinds: 'ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು',
     layoutEditor: 'ಲೇಔಟ್ ಸಂಪಾದಕ',
-    layoutEditorTitle: 'ಲೇಔಟ್ ಸಂಪಾದಕ — ⌘-ಕ್ಲಿಕ್ ಲೇಔಟ್ ಮರುಹೊಂದಿಸುತ್ತದೆ',
+    layoutEditorTitle: 'ಲೇಔಟ್ ಸಂಪಾದಕ — ⌘-ಕ್ಲಿಕ್ ಲೇಔಟ್ ಮರುಹೊಂದಿಸುತ್ತದೆ'
   },
   keybinds: {
     title: 'ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು',
@@ -211,7 +218,7 @@ export const kn = defineLocale({
       profiles: 'ಪ್ರೊಫೈಲ್‌ಗಳು',
       session: 'ಸೆಷನ್',
       navigation: 'ನ್ಯಾವಿಗೇಶನ್',
-      view: 'ವೀಕ್ಷಣೆ',
+      view: 'ವೀಕ್ಷಣೆ'
     },
     actions: {
       'keybinds.openPanel': 'ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು',
@@ -290,8 +297,8 @@ export const kn = defineLocale({
       'composer.slash': 'ಸ್ಲ್ಯಾಶ್ ಕಮಾಂಡ್ ಪ್ಯಾಲೆಟ್',
       'composer.help': 'ತ್ವರಿತ ಸಹಾಯ',
       'composer.history': 'ಪೋಪವರ್ ಚಕ್ರವೃತ್ತಿ',
-      'composer.cancel': 'ಪೋಪವರ್closure · ಚಲನೆ ರದ್ದು',
-    },
+      'composer.cancel': 'ಪೋಪವರ್closure · ಚಲನೆ ರದ್ದು'
+    }
   },
   language: {
     label: 'ಭಾಷೆ',
@@ -300,7 +307,7 @@ export const kn = defineLocale({
     saveError: 'ಭಾಷೆ ಅಪಡೇಟ್ ಹೋದಿಲ್ಲ',
     switchTo: 'ಭಾಷೆ ಬದಲಾಯಿಸಿ',
     searchPlaceholder: 'ಭಾಷೆಗಳನ್ನು ಹುಡುಕಿ…',
-    noResults: 'ಭಾಷೆಗಳನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ',
+    noResults: 'ಭಾಷೆಗಳನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ'
   },
   settings: {
     closeSettings: 'ಸೆಟ್ಟಿಂಗ್ಸ್closure',
@@ -325,11 +332,12 @@ export const kn = defineLocale({
       about: 'ಬಗ್ಗೆ',
       billing: 'ಬಿಲ್ಲಿಂಗ್',
       notifications: 'ಸೂಚನೆಗಳು',
-      plugins: 'ಪ್ಲಗಿನ್‌ಗಳು',
+      plugins: 'ಪ್ಲಗಿನ್‌ಗಳು'
     },
     plugins: {
       title: 'ಡೆಸ್ಕ್‌ಟಾಪ್ ಪ್ಲಗಿನ್‌ಗಳು',
-      blurb: 'ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಲೋಡ್ ಮಾಡಲಾದ UI ವಿಸ್ತರಣೆಗಳು — ನಿರ್ಮಾಣದೊಂದಿಗೆ ಬಂಡಲ್ ಮಾಡಲ್ಪಟ್ಟವು, ಅಥವಾ desktop-plugins ಫೋಲ್ಡರ್‌ಗೆ ಹಾಕಲ್ಪಟ್ಟವು (OpenAmer ಬರೆಯುವವು ಸೇರಿ). ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದು ಪ್ಲಗಿನ್ ಅನ್ನು ನೇರವಾಗಿ ಅನ್ಲೋಡ್ ಮಾಡುತ್ತದೆ ಮತ್ತು ಮರುಪ್ರಾರಂಭಗಳಲ್ಲೂ ಉಳಿಯುತ್ತದೆ.',
+      blurb:
+        'ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಲೋಡ್ ಮಾಡಲಾದ UI ವಿಸ್ತರಣೆಗಳು — ನಿರ್ಮಾಣದೊಂದಿಗೆ ಬಂಡಲ್ ಮಾಡಲ್ಪಟ್ಟವು, ಅಥವಾ desktop-plugins ಫೋಲ್ಡರ್‌ಗೆ ಹಾಕಲ್ಪಟ್ಟವು (OpenAmer ಬರೆಯುವವು ಸೇರಿ). ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದು ಪ್ಲಗಿನ್ ಅನ್ನು ನೇರವಾಗಿ ಅನ್ಲೋಡ್ ಮಾಡುತ್ತದೆ ಮತ್ತು ಮರುಪ್ರಾರಂಭಗಳಲ್ಲೂ ಉಳಿಯುತ್ತದೆ.',
       count: n => `${n} ಸ್ಥಾಪಿಸಲಾಗಿದೆ`,
       openFolder: 'ಪ್ಲಗಿನ್ ಫೋಲ್ಡರ್ ತೆರೆಯಿರಿ',
       rescan: 'ಮರುಸ್ಕ್ಯಾನ್',
@@ -341,50 +349,53 @@ export const kn = defineLocale({
       kinds: {
         bundled: 'ಬಂಡಲ್',
         disk: 'ಡಿಸ್ಕ್‌ನಲ್ಲಿ',
-        runtime: 'ರನ್‌ಟೈಮ್',
+        runtime: 'ರನ್‌ಟೈಮ್'
       },
-      manage: 'ಏಜೆಂಟ್ ಪ್ಲಗಿನ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ',
+      manage: 'ಏಜೆಂಟ್ ಪ್ಲಗಿನ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ'
     },
     notifications: {
       title: 'ಸೂಚನೆಗಳು',
-      intro: 'ನೆಟಿವ್ ಡೆಸ್ಕ್‌ಟಾಪ್ ಸೂಚನೆಗಳು, ಅಪ್ಲಿಕೇಶನ್ ಒಳಗಿನ ಟೋಸ್ಟ್‌ಗಳಿಂದ ಪ್ರತ್ಯೇಕ. ಇವು ಸಾಧನ-ಸ್ಥಳೀಯ — ಪ್ರತಿ ಕಂಪ್ಯೂಟರ್ ತನ್ನದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಹೊಂದಿರುತ್ತದೆ.',
+      intro:
+        'ನೆಟಿವ್ ಡೆಸ್ಕ್‌ಟಾಪ್ ಸೂಚನೆಗಳು, ಅಪ್ಲಿಕೇಶನ್ ಒಳಗಿನ ಟೋಸ್ಟ್‌ಗಳಿಂದ ಪ್ರತ್ಯೇಕ. ಇವು ಸಾಧನ-ಸ್ಥಳೀಯ — ಪ್ರತಿ ಕಂಪ್ಯೂಟರ್ ತನ್ನದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಹೊಂದಿರುತ್ತದೆ.',
       enableAll: 'ಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ',
       enableAllDesc: 'ಮುಖ್ಯ ಸ್ವಿಚ್. ಕೆಳಗಿನ ಎಲ್ಲಾ ಸೂಚನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಇದನ್ನು ಆಫ್ ಮಾಡಿ.',
       focusedHint: 'ಪೂರ್ಣಗೊಳಿಸುವ ಎಚ್ಚರಿಕೆಗಳು OpenAmer ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವಾಗ ಮಾತ್ರ ಸಕ್ರಿಯಗೊಳ್ಳುತ್ತವೆ.',
       kinds: {
         approval: {
           label: 'ಅನುಮೋದನೆ ಅಗತ್ಯ',
-          description: 'ಒಂದು ಆಜ್ಞೆ ನಿಮ್ಮ ಅನುಮೋದನೆ ಅಥವಾ ನಿರಾಕರಣೆಗೆ ಕಾಯುತ್ತಿದೆ.',
+          description: 'ಒಂದು ಆಜ್ಞೆ ನಿಮ್ಮ ಅನುಮೋದನೆ ಅಥವಾ ನಿರಾಕರಣೆಗೆ ಕಾಯುತ್ತಿದೆ.'
         },
         input: {
           label: 'ಇನ್‌ಪುಟ್ ಅಗತ್ಯ',
-          description: 'OpenAmer ಒಂದು ಪ್ರಶ್ನೆ ಕೇಳಿದೆ ಅಥವಾ ಪಾಸ್ವರ್ಡ್/ರಹಸ್ಯ ಅಗತ್ಯವಿದೆ.',
+          description: 'OpenAmer ಒಂದು ಪ್ರಶ್ನೆ ಕೇಳಿದೆ ಅಥವಾ ಪಾಸ್ವರ್ಡ್/ರಹಸ್ಯ ಅಗತ್ಯವಿದೆ.'
         },
         turnDone: {
           label: 'ಪ್ರತಿಕ್ರಿಯೆ ಸಿದ್ಧ',
-          description: 'OpenAmer ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವಾಗ ಒಂದು ಹಂತ ಮುಗಿದಿದೆ.',
+          description: 'OpenAmer ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವಾಗ ಒಂದು ಹಂತ ಮುಗಿದಿದೆ.'
         },
         turnError: {
           label: 'ಹಂತ ವಿಫಲ',
-          description: 'ಒಂದು ಹಂತ ದೋಷದೊಂದಿಗೆ ಮುಗಿದಿದೆ.',
+          description: 'ಒಂದು ಹಂತ ದೋಷದೊಂದಿಗೆ ಮುಗಿದಿದೆ.'
         },
         backgroundDone: {
           label: 'ಹಿನ್ನೆಲೆ ಕಾರ್ಯ ಮುಗಿದಿದೆ',
-          description: 'ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವ ಟರ್ಮಿನಲ್ ಆಜ್ಞೆ ಪೂರ್ಣಗೊಂಡಿದೆ.',
+          description: 'ಹಿನ್ನೆಲೆಯಲ್ಲಿರುವ ಟರ್ಮಿನಲ್ ಆಜ್ಞೆ ಪೂರ್ಣಗೊಂಡಿದೆ.'
         },
         credits: {
           label: 'ಕ್ರೆಡಿಟ್ ಎಚ್ಚರಿಕೆಗಳು',
-          description: 'ಕ್ರೆಡಿಟ್ ಪ್ರವೇಶವನ್ನು ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ ಅಥವಾ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ.',
-        },
+          description: 'ಕ್ರೆಡಿಟ್ ಪ್ರವೇಶವನ್ನು ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ ಅಥವಾ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ.'
+        }
       },
       test: 'ಪರೀಕ್ಷಾ ಸೂಚನೆಯನ್ನು ಕಳುಹಿಸಿ',
       testTitle: 'OpenAmer',
       testBody: 'ಸೂಚನೆಗಳು ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ.',
-      testSent: 'ಪರೀಕ್ಷೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಏನೂ ಕಾಣಿಸದಿದ್ದರೆ, ನಿಮ್ಮ OS ಸೂಚನೆ ಅನುಮತಿಗಳನ್ನು ಮತ್ತು Focus/Do Not Disturb ಅನ್ನು ಪರಿಶೀಲಿಸಿ.',
+      testSent:
+        'ಪರೀಕ್ಷೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಏನೂ ಕಾಣಿಸದಿದ್ದರೆ, ನಿಮ್ಮ OS ಸೂಚನೆ ಅನುಮತಿಗಳನ್ನು ಮತ್ತು Focus/Do Not Disturb ಅನ್ನು ಪರಿಶೀಲಿಸಿ.',
       testUnsupported: 'ಈ ವ್ಯವಸ್ಥೆ ಸ್ಥಳೀಯ ಸೂಚನೆಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.',
       completionSoundTitle: 'ಪೂರ್ಣಗೊಳಿಸುವ ಧ್ವನಿ',
-      completionSoundDesc: 'ಏಜೆಂಟ್‌ನ ತಿರುವು ಮುಗಿದಾಗ ಪ್ಲೇ ಆಗುತ್ತದೆ. ಪೂರ್ವನಿಯೋಜಿತವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು ಇಲ್ಲಿ ಪೂರ್ವಾವಲೋಕನ ಮಾಡಿ.',
-      completionSoundPreview: 'ಪೂರ್ವಾವಲೋಕನ',
+      completionSoundDesc:
+        'ಏಜೆಂಟ್‌ನ ತಿರುವು ಮುಗಿದಾಗ ಪ್ಲೇ ಆಗುತ್ತದೆ. ಪೂರ್ವನಿಯೋಜಿತವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು ಇಲ್ಲಿ ಪೂರ್ವಾವಲೋಕನ ಮಾಡಿ.',
+      completionSoundPreview: 'ಪೂರ್ವಾವಲೋಕನ'
     },
     sections: {
       model: 'ಮಾದರಿ',
@@ -394,7 +405,7 @@ export const kn = defineLocale({
       safety: 'ಸುರಕ್ಷತೆ',
       memory: 'ಸ್ಮರಣೆ & ಸಂದರ್ಭ',
       voice: 'ಧ್ವನಿ',
-      advanced: 'ಮುನ್ನಡೆ',
+      advanced: 'ಮುನ್ನಡೆ'
     },
     searchPlaceholder: {
       about: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಬಗ್ಗೆ',
@@ -402,37 +413,41 @@ export const kn = defineLocale({
       gateway: 'ಗೇಟ್‌ವೇ ಸಂಪರ್ಕ...',
       keys: 'API ಕೀಗಳನ್ನು ಹುಡುಕಿ...',
       mcp: 'MCP ಸರ್ವರ್‌ಗಳನ್ನು ಹುಡುಕಿ...',
-      sessions: 'ಆರ್ಕೈವ್ ಮಾಡಲಾದ ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ...',
+      sessions: 'ಆರ್ಕೈವ್ ಮಾಡಲಾದ ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ...'
     },
     modeOptions: {
       light: {
         label: 'ಲೈಟ್',
-        description: 'ಪ್ರಕಾಶಮಾನ ಡೆಸ್ಕ್‌ಟಾಪ್ ಮೇಲ್ಮೈಗಳು',
+        description: 'ಪ್ರಕಾಶಮಾನ ಡೆಸ್ಕ್‌ಟಾಪ್ ಮೇಲ್ಮೈಗಳು'
       },
       dark: {
         label: 'ಡಾರ್ಕ್',
-        description: 'ಕಡಿಮೆ ಹೊಳಪು ಕಾರ್ಯಸ್ಥಳ',
+        description: 'ಕಡಿಮೆ ಹೊಳಪು ಕಾರ್ಯಸ್ಥಳ'
       },
       system: {
         label: 'ಸಿಸ್ಟಮ್',
-        description: 'OS ಕಾಣುವಿಕೆಯನ್ನು ಅನುಸರಿಸಿ',
-      },
+        description: 'OS ಕಾಣುವಿಕೆಯನ್ನು ಅನುಸರಿಸಿ'
+      }
     },
     appearance: {
       title: 'ಕಾಣುವಿಕೆ',
-      intro: 'ಇವು ಡೆಸ್ಕ್‌ಟಾಪ್-ಮಾತ್ರ ಪ್ರದರ್ಶನ ಆದ್ಯತೆಗಳು. ಮೋಡ್ ಪ್ರಕಾಶಮಾನತೆಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ; ಥೀಮ್ ಅಕ್ಸೆಂಟ್ ಪ್ಯಾಲೆಟ್ ಮತ್ತು ಚಾಟ್ ಮೇಲ್ಮೈ ಶೈಲಿಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ.',
+      intro:
+        'ಇವು ಡೆಸ್ಕ್‌ಟಾಪ್-ಮಾತ್ರ ಪ್ರದರ್ಶನ ಆದ್ಯತೆಗಳು. ಮೋಡ್ ಪ್ರಕಾಶಮಾನತೆಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ; ಥೀಮ್ ಅಕ್ಸೆಂಟ್ ಪ್ಯಾಲೆಟ್ ಮತ್ತು ಚಾಟ್ ಮೇಲ್ಮೈ ಶೈಲಿಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ.',
       colorMode: 'ಬಣ್ಣ ಮೋಡ್',
       colorModeDesc: 'ಸ್ಥಿರ ಮೋಡ್ ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ OpenAmer ನಿಮ್ಮ ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಅನುಸರಿಸಲಿ.',
       toolViewTitle: 'ಟೂಲ್ ಕಾಲ್ ಪ್ರದರ್ಶನ',
-      toolViewDesc: 'ಉತ್ಪನ್ನವು ಮೂಲ ಟೂಲ್ ಪೇಲೋಡ್‌ಗಳನ್ನು ಮರೆಮಾಡುತ್ತದೆ; ತಾಂತ್ರಿಕವು ಸಂಪೂರ್ಣ ಇನ್‌ಪುಟ್/ಔಟ್‌ಪುಟ್ ಅನ್ನು ತೋರಿಸುತ್ತದೆ.',
+      toolViewDesc:
+        'ಉತ್ಪನ್ನವು ಮೂಲ ಟೂಲ್ ಪೇಲೋಡ್‌ಗಳನ್ನು ಮರೆಮಾಡುತ್ತದೆ; ತಾಂತ್ರಿಕವು ಸಂಪೂರ್ಣ ಇನ್‌ಪುಟ್/ಔಟ್‌ಪುಟ್ ಅನ್ನು ತೋರಿಸುತ್ತದೆ.',
       uiScaleTitle: 'UI ಮಾಪನ',
-      uiScaleDesc: (percent: number) => `ಇಡೀ ಆ್ಯಪ್‌ನ ಪಠ್ಯ ಮತ್ತು ಕಂಟ್ರೋಲ್‌ಗಳನ್ನು ಸ್ಕೇಲ್ ಮಾಡುತ್ತದೆ. Cmd/Ctrl ನೊಂದಿಗೆ +, - ಮತ್ತು 0 ಕೂಡ ಕೆಲಸ ಮಾಡುತ್ತದೆ. ಪ್ರಸ್ತುತ: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `ಇಡೀ ಆ್ಯಪ್‌ನ ಪಠ್ಯ ಮತ್ತು ಕಂಟ್ರೋಲ್‌ಗಳನ್ನು ಸ್ಕೇಲ್ ಮಾಡುತ್ತದೆ. Cmd/Ctrl ನೊಂದಿಗೆ +, - ಮತ್ತು 0 ಕೂಡ ಕೆಲಸ ಮಾಡುತ್ತದೆ. ಪ್ರಸ್ತುತ: ${percent}%.`,
       translucencyTitle: 'ವಿಂಡೋ ಪಾರದರ್ಶಕತೆ',
       translucencyDesc: 'ವಿಂಡೋ ಸಂಪೂರ್ಣವಾಗಿ ನಿಮ್ಮ ಡೆಸ್ಕ್‌ಟಾಪ್ ಅನ್ನು ನೋಡಿ. macOS ಮತ್ತು Windows ಮಾತ್ರ.',
       backdropTitle: 'ಚಾಟ್ ಹಿನ್ನೆಲೆ',
       backdropDesc: 'ಸಂಭಾಷಣೆಯ ಹಿಂದೆ ಇರುವ ನಾಜೂಕಾದ ಪ್ರತಿಮೆಯ ಚಿತ್ರ.',
       embedsTitle: 'ಸಮ್ಮಿಲನ್ ಅಡ್ಡುಗಳು',
-      embedsDesc: 'ತೃತೀಯ ಪೂರ್ವೋತ್ಕೋಶಗಳು (YouTube, X, …) ಅಡಿಯಲ್ಲಿ. Ask ಪ್ಲೇಸ್‌ಹೋಲರ್ ತೋರಿಸುತ್ತದೆ ತಕ್ಕ ಅನುಮತಿಸಿ; ಯಾವಾಗಲೂ ಸ್ವಯಂ ಲೋಡ್; ಬOUND ಸರಳ ಲಿಂಕಗಳು.',
+      embedsDesc:
+        'ತೃತೀಯ ಪೂರ್ವೋತ್ಕೋಶಗಳು (YouTube, X, …) ಅಡಿಯಲ್ಲಿ. Ask ಪ್ಲೇಸ್‌ಹೋಲರ್ ತೋರಿಸುತ್ತದೆ ತಕ್ಕ ಅನುಮತಿಸಿ; ಯಾವಾಗಲೂ ಸ್ವಯಂ ಲೋಡ್; ಬOUND ಸರಳ ಲಿಂಕಗಳು.',
       embedsAsk: 'ಪುಶ್ಶೋಚಿ',
       embedsAlways: 'ಯಾವಾಗಲೂ',
       embedsOff: 'ಬOUND',
@@ -443,9 +458,11 @@ export const kn = defineLocale({
       technicalDesc: 'ಕುಳಿತArgs/results ಮತ್ತು ನೀಚೆಟ್ಟೆ ಮಾಹಿತಿ ಸೇrichi.',
       themeTitle: 'ರಂಗ',
       themeDesc: 'ಡೆಸ್ಕ್ಟಾಪ್ ಪ್ಯಾಲೆಟ್ಸ್ ಮಾತ್ರ. ಆಯ್ಕೆ ಮಾಡಿದ ಮೋಡ್ ಮೇಲೆ ಅನ್ವಯಿಸಲ್ಪಡುತ್ತದೆ.',
-      themeProfileNote: profile => `${profile} ಪ್ರೊಫೈಲ್‌ಗಾಗಿ ಉಳಿಸಲಾಗಿದೆ — ಪ್ರತಿ ಪ್ರೊಫೈಲ್ ತನ್ನದೇ ಆದ ಥೀಮ್ ಅನ್ನು ಹೊಂದಿರುತ್ತದೆ.`,
+      themeProfileNote: profile =>
+        `${profile} ಪ್ರೊಫೈಲ್‌ಗಾಗಿ ಉಳಿಸಲಾಗಿದೆ — ಪ್ರತಿ ಪ್ರೊಫೈಲ್ ತನ್ನದೇ ಆದ ಥೀಮ್ ಅನ್ನು ಹೊಂದಿರುತ್ತದೆ.`,
       installTitle: 'VS Code ನಿಂದ ಇನ್ಸ್ಟಾಲ್',
-      installDesc: 'Marketplace extension id (e.g. dracula-theme.theme-dracula) ಅನ್ನು ಪೇಸ್‌ಟ್ color theme desktop palette ಗೆ.',
+      installDesc:
+        'Marketplace extension id (e.g. dracula-theme.theme-dracula) ಅನ್ನು ಪೇಸ್‌ಟ್ color theme desktop palette ಗೆ.',
       installPlaceholder: 'ಪ್ರಕಟಕ.ವಿಸ್ತಾರಣೆ',
       installButton: 'ಇನ್ಸ್ಟಾಲ್',
       installing: 'ಇನ್ಸ್ಟಾಲ್ ಮಾಡುತ್ತ…',
@@ -455,8 +472,10 @@ export const kn = defineLocale({
       importedBadge: 'ಅವಲೋಕಿತ',
       pet: {
         title: 'ಪುಷ್ಪ',
-        intro: 'OpenAmer ನ ಕಾರ್ಯಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸುವ, ಅಪ್ಲಿಕೇಶನ್ ಮೇಲೆ ತೇಲುವ ಅನಿಮೇಟೆಡ್ ಪೆಟ್ಡೆಕ್ಸ್ ಮಾಸ್ಕಾಟ್ ಅನ್ನು ಅಳವಡಿಸಿ — ಸಾಧನಗಳು ಕಾರ್ಯಗತಗೊಳ್ಳುವಾಗ ಓಡುತ್ತದೆ, ಯಶಸ್ಸಿನಲ್ಲಿ ಹರ್ಷಿಸುತ್ತದೆ, ದೋಷಗಳಲ್ಲಿ ದುಃಖಿಸುತ್ತದೆ.',
-        restartHint: 'ಪೆಟ್ಗಳು ವೇಗದ ಮರುಪ್ರಾರಂಭ ಅಗತ್ಯವಿದೆ — ಈ ವೈಶಿಷ್ಟ್ಯ ಸೇರಿಸುವ ಮೊದಲು ಅಪ್ಲಿಕೇಶನ್ ಚಾಲನೆಯಲ್ಲಿತ್ತು. OpenAmer ನ್ನು ಮುಚ್ಚಿ ಪುನಃ ತೆರೆಯಿರಿ, ನಂತರ ಇಲ್ಲಿ ಮರಳಿ ಬನ್ನಿ.',
+        intro:
+          'OpenAmer ನ ಕಾರ್ಯಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸುವ, ಅಪ್ಲಿಕೇಶನ್ ಮೇಲೆ ತೇಲುವ ಅನಿಮೇಟೆಡ್ ಪೆಟ್ಡೆಕ್ಸ್ ಮಾಸ್ಕಾಟ್ ಅನ್ನು ಅಳವಡಿಸಿ — ಸಾಧನಗಳು ಕಾರ್ಯಗತಗೊಳ್ಳುವಾಗ ಓಡುತ್ತದೆ, ಯಶಸ್ಸಿನಲ್ಲಿ ಹರ್ಷಿಸುತ್ತದೆ, ದೋಷಗಳಲ್ಲಿ ದುಃಖಿಸುತ್ತದೆ.',
+        restartHint:
+          'ಪೆಟ್ಗಳು ವೇಗದ ಮರುಪ್ರಾರಂಭ ಅಗತ್ಯವಿದೆ — ಈ ವೈಶಿಷ್ಟ್ಯ ಸೇರಿಸುವ ಮೊದಲು ಅಪ್ಲಿಕೇಶನ್ ಚಾಲನೆಯಲ್ಲಿತ್ತು. OpenAmer ನ್ನು ಮುಚ್ಚಿ ಪುನಃ ತೆರೆಯಿರಿ, ನಂತರ ಇಲ್ಲಿ ಮರಳಿ ಬನ್ನಿ.',
         on: 'ಆನ್',
         off: 'ಆಫ್',
         scaleTitle: 'ಗಾತ್ರ',
@@ -466,7 +485,8 @@ export const kn = defineLocale({
         chooseTitle: 'ಪೆಟ್ ಆಯ್ಕೆಮಾಡಿ',
         chooseDesc: 'ಒಂದು ಆಯ್ಕೆ ಮಾಡಿದರೆ ಅದು ಸ್ಥಾಪನೆ (ಅಗತ್ಯವಿದ್ದರೆ) ಆಗಿ ಸಕ್ರಿಯಗೊಳ್ಳುತ್ತದೆ.',
         searchPlaceholder: 'ಪೆಟ್ಗಳನ್ನು ಹುಡುಕಿ…',
-        unreachable: "ಪೆಟ್ಡೆಕ್ಸ್ ಗ್ಯಾಲರಿಗೆ ತಲುಪಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಈ ಪುಟವನ್ನು ಪುನಃ ತೆರೆಯಿರಿ.",
+        unreachable:
+          'ಪೆಟ್ಡೆಕ್ಸ್ ಗ್ಯಾಲರಿಗೆ ತಲುಪಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಈ ಪುಟವನ್ನು ಪುನಃ ತೆರೆಯಿರಿ.',
         noMatch: query => `"${query}" ಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಯಾವುದೇ ಸಾಕುಪ್ರಾಣಿಗಳಿಲ್ಲ.`,
         installedTag: 'ಸ್ಥಾಪಿಸಲಾಗಿದೆ',
         generatedTag: 'ಉತ್ಪಾದಿಸಲಾಗಿದೆ',
@@ -475,7 +495,7 @@ export const kn = defineLocale({
         uninstall: name => `${name} ಅನ್ನು ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ`,
         delete: name => `${name} ಅನ್ನು ಅಳಿಸಿ`,
         deleteTitle: name => `${name} ಅನ್ನು ಅಳಿಸಬೇಕೆ?`,
-        deleteBody: "ಇದು ಪೆಟ್ನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ — ಮರುಸ್ಥಾಪನೆ ಸಾಧ್ಯವಿಲ್ಲ.",
+        deleteBody: 'ಇದು ಪೆಟ್ನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ — ಮರುಸ್ಥಾಪನೆ ಸಾಧ್ಯವಿಲ್ಲ.',
         deleteConfirm: 'ಅಳಿಸಿ',
         rename: name => `${name} ಅನ್ನು ಮರುನಾಮಕರಣ ಮಾಡಿ`,
         renameTitle: 'ಪೆಟ್ ಮರುಹೆಸರಿಸಿ',
@@ -488,8 +508,8 @@ export const kn = defineLocale({
         exportFailed: slug => `${slug} ಅನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ`,
         noneAvailable: 'ಈಗ ಯಾವುದೇ ಪೆಟ್ಗಳು ಸಕ್ರಿಯಗೊಳಿಸಲು ಲಭ್ಯವಿಲ್ಲ.',
         turnOnFailed: 'ಪೆಟ್ ಅನ್ನು ಆನ್ ಮಾಡಲಾಗಲಿಲ್ಲ.',
-        turnOffFailed: 'ಪೆಟ್ ಅನ್ನು ಆಫ್ ಮಾಡಲಾಗಲಿಲ್ಲ.',
-      },
+        turnOffFailed: 'ಪೆಟ್ ಅನ್ನು ಆಫ್ ಮಾಡಲಾಗಲಿಲ್ಲ.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -500,13 +520,13 @@ export const kn = defineLocale({
       updates: 'ನವೀಕರಣಗಳು',
       checkNow: 'ಈಗ ಪರಿಶೀಲಿಸಿ',
       checking: 'ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…',
-      seeWhatsNew: "ಹೊಸದು ಏನು ಎಂದು ನೋಡಿ",
+      seeWhatsNew: 'ಹೊಸದು ಏನು ಎಂದು ನೋಡಿ',
       updateNow: 'ಈಗ ನವೀಕರಿಸಿ',
       releaseNotes: 'ಬಿಡುಗಡೆ ಟಿಪ್ಪಣಿಗಳು',
-      onLatest: "ನೀವು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯಲ್ಲಿ ಇದ್ದೀರಿ.",
+      onLatest: 'ನೀವು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯಲ್ಲಿ ಇದ್ದೀರಿ.',
       installing: 'ನವೀಕರಣವನ್ನು ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ.',
-      cantUpdate: "ಈ ನಿರ್ಮಾಣವು ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಸ್ವತಃ ನವೀಕರಿಸಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ.",
-      cantReach: "ನವೀಕರಣ ಸರ್ವರ್‌ಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲಾಗಲಿಲ್ಲ.",
+      cantUpdate: 'ಈ ನಿರ್ಮಾಣವು ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಸ್ವತಃ ನವೀಕರಿಸಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ.',
+      cantReach: 'ನವೀಕರಣ ಸರ್ವರ್‌ಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲಾಗಲಿಲ್ಲ.',
       tapCheck: 'ನವೀಕರಣಗಳನ್ನು ಹುಡುಕಲು "ಈಗ ಪರಿಶೀಲಿಸಿ" ಒತ್ತಿರಿ.',
       updateReady: count => `ಹೊಸ ನವೀಕರಣ ಸಿದ್ಧವಾಗಿದೆ (${count} ಬದಲಾವಣೆ${count === 1 ? '' : 's'} ಒಳಗೊಂಡಿದೆ).`,
       lastChecked: age => `ಕೊನೆಯದಾಗಿ ಪರಿಶೀಲಿಸಿದ ಸಮಯ ${age}`,
@@ -518,7 +538,7 @@ export const kn = defineLocale({
       justNow: 'ಈಗಷ್ಟೇ',
       minAgo: count => `${count} ನಿಮಿಷಗಳ ಹಿಂದೆ`,
       hoursAgo: count => `${count} ಗಂಟೆಗಳ ಹಿಂದೆ`,
-      daysAgo: count => `${count} ದಿನಗಳ ಹಿಂದೆ`,
+      daysAgo: count => `${count} ದಿನಗಳ ಹಿಂದೆ`
     },
     config: {
       none: 'ಇಲ್ಲ',
@@ -534,7 +554,8 @@ export const kn = defineLocale({
       imported: 'ಸಂರಚನೆ ಆಮದು ಮಾಡಲಾಗಿದೆ',
       invalidJson: 'ಅಮಾನ್ಯ ಸಂರಚನೆ JSON',
       keepAwakeTitle: 'ಕಂಪ್ಯೂಟರ್ ಜಾಗೃತವಾಗಿರಿಸಿ',
-      keepAwakeDesc: 'ಈ ಯಂತ್ರವನ್ನು ನಿದ್ರೆಗೆ ಹೋಗುವುದನ್ನು ನಿಲ್ಲಿಸಿ, ಹೀಗಾಗಿ ದೀರ್ಘಕಾಲ ಅಥವಾ ರಾತ್ರಿ ಕಾರ್ಯಗಳು ಮುಂದುವರಿಯುತ್ತವೆ. ಪ್ರದರ್ಶನ ಇನ್ನೂ ಮಂದಗೊಳ್ಳಬಹುದು.',
+      keepAwakeDesc:
+        'ಈ ಯಂತ್ರವನ್ನು ನಿದ್ರೆಗೆ ಹೋಗುವುದನ್ನು ನಿಲ್ಲಿಸಿ, ಹೀಗಾಗಿ ದೀರ್ಘಕಾಲ ಅಥವಾ ರಾತ್ರಿ ಕಾರ್ಯಗಳು ಮುಂದುವರಿಯುತ್ತವೆ. ಪ್ರದರ್ಶನ ಇನ್ನೂ ಮಂದಗೊಳ್ಳಬಹುದು.'
     },
     credentials: {
       pasteKey: 'ಕೀ ಅಂಟಿಸಿ',
@@ -544,7 +565,7 @@ export const kn = defineLocale({
       couldNotSave: 'ಪ್ರಮಾಣಪತ್ರವನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       remove: 'ತೆಗೆದುಹಾಕಿ',
       getKey: 'ಕೀ ಪಡೆಯಿರಿ',
-      saving: 'ಉಳಿದುಹಾಕು',
+      saving: 'ಉಳಿದುಹಾಕು'
     },
     envActions: {
       actionsFor: label => `${label} ಗಾಗಿ ಕ್ರಮಗಳು`,
@@ -555,7 +576,7 @@ export const kn = defineLocale({
       revealValue: 'ಮೌಲ್ಯ ತೋರಿಸಿ',
       replace: 'ಬದಲಾಯಿಸಿ',
       set: 'ಸ್ಥಾಪಿಸಿ',
-      clear: 'ಶುಚಿ',
+      clear: 'ಶುಚಿ'
     },
     gateway: {
       loading: 'ಗೇಟ್ವೇಿ ಸೆಟ್ಟಿಂಗ್ಸ್ ಆಳವಡe...',
@@ -563,21 +584,26 @@ export const kn = defineLocale({
       unavailableDesc: 'ದೇಸ್ಕ್ಟಾಪ್ IPC ಬ್ರಿಡ್ಜ್ ಗೇಟ್ವೇಿ ಸೆಟ್ಟಿಂಗ್ಸ್ ಅನ್ನು ಪ್ರಕಟಿಸುವುದillac.',
       title: 'ಗೇಟ್ವೇಿ ಸಂಪರ್ಕ',
       envOverride: 'ವಾತಾವರಣ ಓವರ್ರೈಡ್',
-      intro: 'OpenAmer Desktop ತನ್ನೇಲೂ ಲೋಕಲ್ ಗೇಟ್ವೇಿ ಮೂಲಭೂತವಾಗಿ ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ. ದೂರದ ಗೇಟ್ವೇಿ ಬಳಸಿ, ಈ ಅಪ್ಲಿಕೇಶನ್ OpenAmer ಬ್ಯಾಕೆಂಡ್ ಮ್ಯಾಷಿನ್ ಅಥವಾ ವಿಶ್ವಾಸযোগ್ಯ ಪ್ರಾಕ್ಸಿ. ಕೆಳಗಿನ ಪ್ರೊಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿ, ಅದಕ್ಕೆ ತನ್ನೇಲೂ ದೂರದ ಹೋಸ್ತನ್ನು ನೀಡಿ.',
+      intro:
+        'OpenAmer Desktop ತನ್ನೇಲೂ ಲೋಕಲ್ ಗೇಟ್ವೇಿ ಮೂಲಭೂತವಾಗಿ ಪ್ರಾರಂಭಿಸುತ್ತಿದೆ. ದೂರದ ಗೇಟ್ವೇಿ ಬಳಸಿ, ಈ ಅಪ್ಲಿಕೇಶನ್ OpenAmer ಬ್ಯಾಕೆಂಡ್ ಮ್ಯಾಷಿನ್ ಅಥವಾ ವಿಶ್ವಾಸযোগ್ಯ ಪ್ರಾಕ್ಸಿ. ಕೆಳಗಿನ ಪ್ರೊಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿ, ಅದಕ್ಕೆ ತನ್ನೇಲೂ ದೂರದ ಹೋಸ್ತನ್ನು ನೀಡಿ.',
       appliesTo: 'ಯೋಗ್ಯತೆಗೆ',
       allProfiles: 'ಎಲ್ಲಾ ಪ್ರೊಫೈಲ್',
       defaultConnection: 'ಮೂಲಭೂತ ಸಂಪರ್ಕ ಪ್ರೊಫೈಲ್ ಪ್ರತಿ ತನ್ನೇಲೂ ಓವರ್ರೈಡ್ ಇಲ್ಲದಾಗ.',
-      profileConnection: profile => `“${profile}” ಸಕ್ರಿಯ ಪ್ರೊಫೈಲ್ ಆಗಿದ್ದಾಗ ಮಾತ್ರ ಸಂಪರ್ಕವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. ಇದರ ಓವರ್‌ರೈಡ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು 'ಡೀಫಾಲ್ಟ್ ಗೇಟ್‌ವೇ ಬಳಸಿ' ಎಂಬುದನ್ನು ಆರಿಸಿ.`,
+      profileConnection: profile =>
+        `“${profile}” ಸಕ್ರಿಯ ಪ್ರೊಫೈಲ್ ಆಗಿದ್ದಾಗ ಮಾತ್ರ ಸಂಪರ್ಕವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ. ಇದರ ಓವರ್‌ರೈಡ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು 'ಡೀಫಾಲ್ಟ್ ಗೇಟ್‌ವೇ ಬಳಸಿ' ಎಂಬುದನ್ನು ಆರಿಸಿ.`,
       envOverrideTitle: 'ವಾತಾವರಣ ವೇರಿಯಬಲ್्स ಈ ದೇಸ್ಕ್ಟಾಪ್ ಸೆッಶನ್ ಕಂಟ್ರೋಲಿಂಗ್ ಇರಲಿ.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN ಅಳಿಸಿ ಕೆಳಗಿನ ಉಳಿದ ಸೆಟ್ಟಿಂಗ್ ಬಳಸಿ.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL and OPENAMER_DESKTOP_REMOTE_TOKEN ಅಳಿಸಿ ಕೆಳಗಿನ ಉಳಿದ ಸೆಟ್ಟಿಂಗ್ ಬಳಸಿ.',
       modeTitle: 'ಸಂಬಂಧ ಮೋಡ',
       localTitle: 'ಮೂಲ ಗೇಟ್ವೇಿ',
-      localDesc: 'ಪ್ರಾರಂಭಿಸಿ ನಿಜಿ OpenAmer ಪೈವatinib್ localhost-ನಲ್ಲೇ. ಈ ಮೌಲ್ಯಮಾಪಕವಾಗಿದೆ ಮತ್ತು Offline-ನಲ್ಲೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ.',
+      localDesc:
+        'ಪ್ರಾರಂಭಿಸಿ ನಿಜಿ OpenAmer ಪೈವatinib್ localhost-ನಲ್ಲೇ. ಈ ಮೌಲ್ಯಮಾಪಕವಾಗಿದೆ ಮತ್ತು Offline-ನಲ್ಲೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ.',
       inheritTitle: 'ಮೂಲ ಗೇಟ್ವೇಿ ಬಳಸಿ',
-      inheritDesc: "ಈ ಪ್ರೊಫೈಲ್ ಅಡಚಣೆ ಹಟಕಿ ಮತ್ತು ಮೂಲ ಸಂವಹನವನ್ನು ಬಳಸಿ.",
+      inheritDesc: 'ಈ ಪ್ರೊಫೈಲ್ ಅಡಚಣೆ ಹಟಕಿ ಮತ್ತು ಮೂಲ ಸಂವಹನವನ್ನು ಬಳಸಿ.',
       remoteTitle: 'ದೂರ ಗೇಟ್ವೇಿ',
       remoteDesc: 'ಕಂಪ್ಯೂಟರ್ ಶೆಲ್ ದೂರ OpenAmer ಪೈವatinib್ಗೆ ಸಂಪರ್ಕಿಸಿ.',
-      remoteAuthHint: 'ಹೋಸ್ಟಗೇಟ್ವೇಿ OAuth ಅಥವಾ ವಳಕೆದಾರ ನಾಮ ಮತ್ತು ಪಾಸ್ವರ್ಡ್ ಬಳಸು; ಸ್ವ-ಹೋಸ್ಟಗೇಟ್ವೇಿ ಒಂದುಗಳು session token ಬಳಸಬಹುದು.',
+      remoteAuthHint:
+        'ಹೋಸ್ಟಗೇಟ್ವೇಿ OAuth ಅಥವಾ ವಳಕೆದಾರ ನಾಮ ಮತ್ತು ಪಾಸ್ವರ್ಡ್ ಬಳಸು; ಸ್ವ-ಹೋಸ್ಟಗೇಟ್ವೇಿ ಒಂದುಗಳು session token ಬಳಸಬಹುದು.',
       cloudTitle: 'OpenAmer ಕ್ಲೌಡ್',
       cloudDesc: 'OpenAmer Cloud ಗೆ ಒಂದು ಬಾರಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ ಮತ್ತು ಅಜೆಂಟ್‌ಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ — URL ಪೇಸ್ ಮಾಡುವುದಿಲ್ಲ.',
       cloudSignInTitle: 'OpenAmer ಕ್ಲೌಡ್',
@@ -594,7 +620,7 @@ export const kn = defineLocale({
       cloudNoAgents: {
         before: 'ಈ ಖಾತೆಯಲ್ಲಿ ಯಾವುದೇ ಏಜೆಂಟ್ಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ಒಂದನ್ನು ರಚಿಸಿ',
         linkText: 'OpenAmer ಪೋರ್ಟಲ್',
-        after: 'ನಲ್ಲಿ, ನಂತರ ರಿಫ್ರೆಶ್ ಮಾಡಿ.',
+        after: 'ನಲ್ಲಿ, ನಂತರ ರಿಫ್ರೆಶ್ ಮಾಡಿ.'
       },
       cloudRefresh: 'ರಿಫ್ರೆಶ್ ಮಾಡಿ',
       cloudConnect: 'ಸಂಪರ್ಕಿಸಿ',
@@ -610,7 +636,8 @@ export const kn = defineLocale({
       cloudAgentProvisioning: 'ಒದಗಿಸಲಾಗುತ್ತಿದೆ…',
       cloudStatusLabel: status => `ಸ್ಥಿತಿ: ${status}`,
       remoteUrlTitle: 'ರಿಮೋಟ್ URL',
-      remoteUrlDesc: 'ರಿಮೋಟ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಬ್ಯಾಕೆಂಡ್‌ಗಾಗಿ ಮೂಲ URL. ಪಥ ಪೂರ್ವಪ್ರತ್ಯಯಗಳನ್ನು ಬೆಂಬಲಿಸಲಾಗುತ್ತದೆ, ಉದಾಹರಣೆಗೆ /openamer.',
+      remoteUrlDesc:
+        'ರಿಮೋಟ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಬ್ಯಾಕೆಂಡ್‌ಗಾಗಿ ಮೂಲ URL. ಪಥ ಪೂರ್ವಪ್ರತ್ಯಯಗಳನ್ನು ಬೆಂಬಲಿಸಲಾಗುತ್ತದೆ, ಉದಾಹರಣೆಗೆ /openamer.',
       probing: 'ಈ ಗೇಟ್‌ವೇ ಹೇಗೆ ದೃಢೀಕರಿಸುತ್ತದೆ ಎಂದು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…',
       probeError: 'ಈ ಗೇಟ್‌ವೇ ಇನ್ನೂ ತಲುಪಲಾಗಿಲ್ಲ. URL ಪರಿಶೀಲಿಸಿ — ಅದು ಪ್ರತಿಕ್ರಿಯಿಸಿದ ನಂತರ ದೃಢೀಕರಣ ವಿಧಾನ ಕಾಣಿಸುತ್ತದೆ.',
       signedIn: 'ಸೈನ್ ಇನ್ ಆಗಿದೆ',
@@ -618,12 +645,17 @@ export const kn = defineLocale({
       signOut: 'ಲಾಗ್ ಔಟ್',
       signInWith: provider => `${provider} ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ`,
       authTitle: 'ಪ್ರಮಾಣೀಕರಣ',
-      authSignedInPassword: 'ಈ ಗೇಟ್‌ವೇ ಬಳಕೆದಾರ ಹೆಸರು ಮತ್ತು ಗುಪ್ತಪದವನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ; ಸೆಷನ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತದೆ.',
-      authSignedInOauth: 'ಈ ಗೇಟ್‌ವೇ OAuth ಅನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ; ಸೆಷನ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತದೆ.',
-      authNeedsPassword: 'ಈ ಗೇಟ್‌ವೇ ಬಳಕೆದಾರ ಹೆಸರು ಮತ್ತು ಗುಪ್ತಪದವನ್ನು ಬಳಸುತ್ತದೆ. ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅನುಮೋದಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ.',
-      authNeedsOauth: provider => `ಈ ಗೇಟ್‌ವೇ OAuth ಅನ್ನು ಬಳಸುತ್ತದೆ. ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಆ್ಯಪ್ ಅನ್ನು ಅಧಿಕೃತಗೊಳಿಸಲು ${provider} ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.`,
+      authSignedInPassword:
+        'ಈ ಗೇಟ್‌ವೇ ಬಳಕೆದಾರ ಹೆಸರು ಮತ್ತು ಗುಪ್ತಪದವನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ; ಸೆಷನ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತದೆ.',
+      authSignedInOauth:
+        'ಈ ಗೇಟ್‌ವೇ OAuth ಅನ್ನು ಬಳಸುತ್ತದೆ. ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ; ಸೆಷನ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸುತ್ತದೆ.',
+      authNeedsPassword:
+        'ಈ ಗೇಟ್‌ವೇ ಬಳಕೆದಾರ ಹೆಸರು ಮತ್ತು ಗುಪ್ತಪದವನ್ನು ಬಳಸುತ್ತದೆ. ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಅನುಮೋದಿಸಲು ಸೈನ್ ಇನ್ ಮಾಡಿ.',
+      authNeedsOauth: provider =>
+        `ಈ ಗೇಟ್‌ವೇ OAuth ಅನ್ನು ಬಳಸುತ್ತದೆ. ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಆ್ಯಪ್ ಅನ್ನು ಅಧಿಕೃತಗೊಳಿಸಲು ${provider} ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.`,
       tokenTitle: 'ಸೆಷನ್ ಟೋಕನ್',
-      tokenDesc: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಸೆಷನ್ ಟೋಕನ್ REST ಮತ್ತು WebSocket ಪ್ರವೇಶಕ್ಕೆ ಬಳಸಲಾಗುತ್ತದೆ. ಉಳಿಸಿದ ಟೋಕನ್ ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ.',
+      tokenDesc:
+        'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಸೆಷನ್ ಟೋಕನ್ REST ಮತ್ತು WebSocket ಪ್ರವೇಶಕ್ಕೆ ಬಳಸಲಾಗುತ್ತದೆ. ಉಳಿಸಿದ ಟೋಕನ್ ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ.',
       existingToken: value => `ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಟೋಕನ್ ${value}`,
       savedToken: 'ಉಳಿಸಲಾಗಿದೆ',
       pasteSessionToken: 'ಸೆಷನ್ ಟೋಕನ್ ಅಂಟಿಸಿ',
@@ -654,8 +686,10 @@ export const kn = defineLocale({
       applyFailed: 'ಗೇಟ್‌ವೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅನ್ವಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       saveFailed: 'ಗೇಟ್‌ವೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       sshTitle: 'SSH ಮೂಲಕ ಸಂಪರ್ಕಿಸಿ',
-      sshDesc: 'OpenAmer ಅನ್ನು SSH ಮೂಲಕ ರಿಮೋಟ್‌ನಲ್ಲಿ ಪ್ರಾರಂಭಿಸಿ ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಟನೆಲ್ ಮಾಡಲಾಗುತ್ತದೆ — ನೀವೇ ಏನನ್ನೂ ಪ್ರಾರಂಭಿಸುವ ಅಥವಾ ಬಹಿರಂಗಪಡಿಸುವ ಅಗತ್ಯವಿಲ್ಲ. ಹೋಸ್ಟ್‌ಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಕೀ-ಆಧಾರಿತ SSH ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.',
-      sshTrustHint: 'ಮೊದಲು ಪ್ರಸ್ತುತಪಡಿಸಿದ ಹೋಸ್ಟ್ ಕೀಯನ್ನು ನಂಬಿ ಪಿನ್ ಮಾಡಲಾಗುತ್ತದೆ; ನಂತರದ ಬದಲಾವಣೆಗಳು ವಿಫಲವಾಗಿ ಮುಚ್ಚುತ್ತವೆ.',
+      sshDesc:
+        'OpenAmer ಅನ್ನು SSH ಮೂಲಕ ರಿಮೋಟ್‌ನಲ್ಲಿ ಪ್ರಾರಂಭಿಸಿ ಈ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಟನೆಲ್ ಮಾಡಲಾಗುತ್ತದೆ — ನೀವೇ ಏನನ್ನೂ ಪ್ರಾರಂಭಿಸುವ ಅಥವಾ ಬಹಿರಂಗಪಡಿಸುವ ಅಗತ್ಯವಿಲ್ಲ. ಹೋಸ್ಟ್‌ಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಕೀ-ಆಧಾರಿತ SSH ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.',
+      sshTrustHint:
+        'ಮೊದಲು ಪ್ರಸ್ತುತಪಡಿಸಿದ ಹೋಸ್ಟ್ ಕೀಯನ್ನು ನಂಬಿ ಪಿನ್ ಮಾಡಲಾಗುತ್ತದೆ; ನಂತರದ ಬದಲಾವಣೆಗಳು ವಿಫಲವಾಗಿ ಮುಚ್ಚುತ್ತವೆ.',
       sshHostTitle: 'ಹೋಸ್ಟ್',
       sshHostDesc: 'user@host, ಅಥವಾ ~/.ssh/config ನಿಂದ Host ಅಲಿಯಾಸ್.',
       sshHostPick: 'ಹೋಸ್ಟ್ ಆಯ್ಕೆಮಾಡಿ…',
@@ -678,18 +712,21 @@ export const kn = defineLocale({
       sshReachable: (host, platform) => `ತಲುಪಬಹುದು: ${host} (${platform}) — OpenAmer ಪತ್ತೆಯಾಗಿದೆ`,
       sshIncompleteHost: 'ಸಂಪರ್ಕಿಸುವ ಮೊದಲು SSH ಹೋಸ್ಟ್ ನಮೂದಿಸಿ.',
       sshErrUnreachable: 'SSH ಮೂಲಕ ಆ ಹೋಸ್ಟ್ ತಲುಪಲಾಗಲಿಲ್ಲ. ಹೋಸ್ಟ್, ಪೋರ್ಟ್ ಮತ್ತು ನಿಮ್ಮ ನೆಟ್ವರ್ಕ್ ಪರಿಶೀಲಿಸಿ.',
-      sshErrAuth: 'SSH ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ. ನಿಮ್ಮ ಕೀಯನ್ನು ssh-agent ಗೆ ಲೋಡ್ ಮಾಡಿ (ssh-add) ಅಥವಾ ~/.ssh/config ನಲ್ಲಿ IdentityFile ಸೆಟ್ ಮಾಡಿ — OpenAmer ssh ಅನ್ನು ಸಂವಾದರಹಿತವಾಗಿ ಚಲಾಯಿಸುತ್ತದೆ.',
-      sshErrHostKey: 'ಹೋಸ್ ಕೀ ಬದಲಾಯಿಸಿದೆ. ಈ ಅಪೆಕ್ಷಿತ ಎಂದು ಪರಿಶೀಲಿಸಿ, ssh-keygen -R <host> ಚಲankan ಮತ್ತು ಪುನರ್ನಿರ್ಮispose.',
-      sshErrNotInstalled: 'OpenAmer remote host-ige installed illa. Ithage install cheyyitu (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or OpenAmer path set cheyyitu.',
+      sshErrAuth:
+        'SSH ದೃಢೀಕರಣ ವಿಫಲವಾಗಿದೆ. ನಿಮ್ಮ ಕೀಯನ್ನು ssh-agent ಗೆ ಲೋಡ್ ಮಾಡಿ (ssh-add) ಅಥವಾ ~/.ssh/config ನಲ್ಲಿ IdentityFile ಸೆಟ್ ಮಾಡಿ — OpenAmer ssh ಅನ್ನು ಸಂವಾದರಹಿತವಾಗಿ ಚಲಾಯಿಸುತ್ತದೆ.',
+      sshErrHostKey:
+        'ಹೋಸ್ ಕೀ ಬದಲಾಯಿಸಿದೆ. ಈ ಅಪೆಕ್ಷಿತ ಎಂದು ಪರಿಶೀಲಿಸಿ, ssh-keygen -R <host> ಚಲankan ಮತ್ತು ಪುನರ್ನಿರ್ಮispose.',
+      sshErrNotInstalled:
+        'OpenAmer remote host-ige installed illa. Ithage install cheyyitu (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or OpenAmer path set cheyyitu.',
       sshErrPlatform: 'ಅನುಪರಿದ ಮרחಳಿ. OpenAmer Linux, macOS, and Windows remote hosts-ge mode supports.',
       sshErrTimeout: 'SSH sambandha time out agide. Host unreachable vagi koti vasa.',
       sshErrUpdateRequired: 'Remote host-ige OpenAmer update cheyyuva before Desktop SSH-ge connect agide.',
-      sshErrUnknown: 'SSH sambandha failed agide.',
+      sshErrUnknown: 'SSH sambandha failed agide.'
     },
     keys: {
       loading: 'API keys and credentials load agide...',
       failedLoad: 'API keys failed load agide',
-      empty: 'This category-ige nothing configured yet.',
+      empty: 'This category-ige nothing configured yet.'
     },
     mcp: {
       loading: 'MCP servers load agide...',
@@ -737,11 +774,13 @@ export const kn = defineLocale({
       catalogNeedsInstall: 'ಬಿಲ್ಡ್ ಅಗತ್ಯವಿದೆ',
       catalogInstall: 'ಸ್ಥಾಪಿಸಿ',
       catalogInstalling: 'ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ...',
-      catalogInstallStarted: name => `${name} ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲಾಗುತ್ತಿದೆ... ಪೂರ್ಣಗೊಂಡ ನಂತರ ಹೊಸ ಸೆಷನ್‌ಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ.`,
+      catalogInstallStarted: name =>
+        `${name} ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲಾಗುತ್ತಿದೆ... ಪೂರ್ಣಗೊಂಡ ನಂತರ ಹೊಸ ಸೆಷನ್‌ಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ.`,
       catalogInstallFailed: name => `${name} ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ`,
       catalogEnvPrompt: name => `${name} ಗೆ ಪ್ರವೇಶ ರುಜುವಾತುಗಳು ಅಗತ್ಯ`,
       catalogEnvRequired: 'ಸ್ಥಾಪಿಸುವ ಮೊದಲು ಅಗತ್ಯ ಮೌಲ್ಯಗಳನ್ನು ತುಂಬಿ.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ಸಕ್ರಿಯವಾಗಿದೆ`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ಸಕ್ರಿಯವಾಗಿದೆ`,
       statusConnecting: 'ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…',
       statusNeedsAuth: 'ಪ್ರಮಾಣೀಕರಣ ಅಗತ್ಯವಿದೆ',
       statusError: 'ದೋಷ',
@@ -754,7 +793,7 @@ export const kn = defineLocale({
       unsavedConnect: 'ಉಳಿಸದ — ಸಂಪರ್ಕಿಸಲು mcp.json ಉಳಿಸಿ.',
       enableTool: tool => `${tool} ಸಕ್ರಿಯಗೊಳಿಸಿ`,
       disableTool: tool => `${tool} ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ`,
-      noOutput: 'ಇನ್ನೂ ಔಟ್‌ಪುಟ್ ಇಲ್ಲ.',
+      noOutput: 'ಇನ್ನೂ ಔಟ್‌ಪುಟ್ ಇಲ್ಲ.'
     },
     model: {
       loading: 'ಮಾದರಿ ಸಂರಚನೆ ಲೋಡ್ ಆಗುತ್ತಿದೆ...',
@@ -768,53 +807,55 @@ export const kn = defineLocale({
       defaultsFailed: 'ಮಾದರಿ ಡೀಫಾಲ್ಟ್‌ಗಳನ್ನು ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ',
       auxiliaryTitle: 'ಸಹಾಯಕ ಮಾದರಿಗಳು',
       resetAllToMain: 'ಎಲ್ಲವನ್ನೂ ಮುಖ್ಯ ಮಾದರಿಗೆ ಮರುಹೊಂದಿಸಿ',
-      auxiliaryDesc: 'ಸಹಾಯಕ ಕಾರ್ಯಗಳು ಡೀಫಾಲ್ಟ್ ಆಗಿ ಮುಖ್ಯ ಮಾದರಿಯಲ್ಲಿ ನಡೆಯುತ್ತವೆ. ಅತಿಕ್ರಮಿಸಲು ಯಾವುದೇ ಕಾರ್ಯಕ್ಕೆ ಮೀಸಲಾದ ಮಾದರಿಯನ್ನು ನಿಗದಿಪಡಿಸಿ.',
+      auxiliaryDesc:
+        'ಸಹಾಯಕ ಕಾರ್ಯಗಳು ಡೀಫಾಲ್ಟ್ ಆಗಿ ಮುಖ್ಯ ಮಾದರಿಯಲ್ಲಿ ನಡೆಯುತ್ತವೆ. ಅತಿಕ್ರಮಿಸಲು ಯಾವುದೇ ಕಾರ್ಯಕ್ಕೆ ಮೀಸಲಾದ ಮಾದರಿಯನ್ನು ನಿಗದಿಪಡಿಸಿ.',
       setToMain: 'ಮುಖ್ಯ ಮಾದರಿಗೆ ಹೊಂದಿಸಿ',
       change: 'ಬದಲಿಸಿ',
       autoUseMain: 'ಸ್ವಯಂ · ಮುಖ್ಯ ಮಾದರಿ ಬಳಸಿ',
       providerDefault: '(ಪೂರೈಕೆದಾರ ಡೀಫಾಲ್ಟ್)',
       fallbackAdd: 'ಫಾಲ್ಬ್ಯಾಕ್ ಸೇರಿಸಿ',
       fallbackEmpty: 'ಫಾಲ್ಬ್ಯಾಕ್ ಮಾದರಿಗಳಿಲ್ಲ — ಡೀಫಾಲ್ಟ್ ಮಾದರಿ ವಿಫಲವಾಗದಿದ್ದರೆ ಅದನ್ನೇ ಬಳಸಲಾಗುತ್ತದೆ.',
-      notInCatalog: "ಈ ಪೂರೈಕೆದಾರರ ಮಾದರಿ ಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ — ಕರೆಗಳು ಬ್ಯಾಕಪ್‌ಗೆ ಫಾಲ್ಬ್ಯಾಕ್ ಆಗಬಹುದು.",
+      notInCatalog: 'ಈ ಪೂರೈಕೆದಾರರ ಮಾದರಿ ಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ — ಕರೆಗಳು ಬ್ಯಾಕಪ್‌ಗೆ ಫಾಲ್ಬ್ಯಾಕ್ ಆಗಬಹುದು.',
       tasks: {
         vision: {
           label: 'ದೃಶ್ಯ',
-          hint: 'ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆ',
+          hint: 'ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆ'
         },
         web_extract: {
           label: 'ವೆಬ್ ಹೊರತೆಗೆಯುವಿಕೆ',
-          hint: 'ಪುಟ ಸಾರಾಂಶೀಕರಣ',
+          hint: 'ಪುಟ ಸಾರಾಂಶೀಕರಣ'
         },
         compression: {
           label: 'ಸಂಕೋಚನ',
-          hint: 'ಸಂದರ್ಭ ಸಂಕೋಚನ',
+          hint: 'ಸಂದರ್ಭ ಸಂಕೋಚನ'
         },
         skills_hub: {
           label: 'ಕೌಶಲ್ಯ ಕೇಂದ್ರ',
-          hint: 'ಕೌಶಲ್ಯ ಹುಡುಕಾಟ',
+          hint: 'ಕೌಶಲ್ಯ ಹುಡುಕಾಟ'
         },
         approval: {
           label: 'ಅನುಮೋದನೆ',
-          hint: 'ಸ್ಮಾರ್ಟ್ ಸ್ವಯಂ-ಅನುಮೋದನೆ',
+          hint: 'ಸ್ಮಾರ್ಟ್ ಸ್ವಯಂ-ಅನುಮೋದನೆ'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP ಉಪಕರಣ ರೂಟಿಂಗ್',
+          hint: 'MCP ಉಪಕರಣ ರೂಟಿಂಗ್'
         },
         title_generation: {
           label: 'ಶೀರ್ಷಿಕೆ ರಚನೆ',
-          hint: 'ಸೆಷನ್ ಶೀರ್ಷಿಕೆಗಳು',
+          hint: 'ಸೆಷನ್ ಶೀರ್ಷಿಕೆಗಳು'
         },
         curator: {
           label: 'ಕ್ಯುರೇಟರ್',
-          hint: 'ಕೌಶಲ್ಯ-ಬಳಕೆ ಪರಿಶೀಲನೆ',
-        },
-      },
+          hint: 'ಕೌಶಲ್ಯ-ಬಳಕೆ ಪರಿಶೀಲನೆ'
+        }
+      }
     },
     providers: {
       connectAccount: 'ಖಾತೆಯನ್ನು ಸಂಪರ್ಕಿಸಿ',
       haveApiKey: 'ಬದಲಿಗೆ API ಕೀ ಇದೆಯೇ?',
-      intro: 'ಚಂದಾದಾರಿಕೆಯೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ — ನಕಲಿಸಲು API ಕೀ ಬೇಕಿಲ್ಲ. OpenAmer ನಿಮಗಾಗಿ ಬ್ರೌಸರ್ ಸೈನ್-ಇನ್ ಅನ್ನು ಇಲ್ಲೇ ಅಪ್ಲಿಕೇಶನ್ನಲ್ಲಿ ನಡೆಸುತ್ತದೆ.',
+      intro:
+        'ಚಂದಾದಾರಿಕೆಯೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ — ನಕಲಿಸಲು API ಕೀ ಬೇಕಿಲ್ಲ. OpenAmer ನಿಮಗಾಗಿ ಬ್ರೌಸರ್ ಸೈನ್-ಇನ್ ಅನ್ನು ಇಲ್ಲೇ ಅಪ್ಲಿಕೇಶನ್ನಲ್ಲಿ ನಡೆಸುತ್ತದೆ.',
       connected: 'ಸಂಪರ್ಕಗೊಂಡಿದೆ',
       collapse: 'ಸಂಕುಚಿಸಿ',
       connectAnother: 'ಇನ್ನೊಂದು ಪೂರೈಕೆದಾರರನ್ನು ಸಂಪರ್ಕಿಸಿ',
@@ -824,7 +865,8 @@ export const kn = defineLocale({
       removeConfirm: provider => `${provider} ಅನ್ನು ತೆಗೆದುಹಾಕಬೇಕೆ?`,
       removeExternalGeneric: provider => `${provider} ಅನ್ನು ಅದರ ಸ್ವಂತ CLI ನಿರ್ವಹಿಸುತ್ತದೆ — ಅಲ್ಲಿಯೇ ತೆಗೆದುಹಾಕಿ.`,
       removeKeyManaged: provider => `${provider} ಅನ್ನು API ಕೀಲಿಯಿಂದ ಸಂರಚಿಸಲಾಗಿದೆ. API ಕೀಲಿಗಳಿಂದ ಅದನ್ನು ತೆಗೆದುಹಾಕಿ.`,
-      removeTerminalConfirm: (provider, command) => `${provider} ಸಂಪರ್ಕ ಕಡಿತಗೊಳಿಸಬೇಕೆ? ಇದು ಕ್ರೆಡೆನ್ಶಿಯಲ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಲು ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ "${command}" ಅನ್ನು ರನ್ ಮಾಡುತ್ತದೆ.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} ಸಂಪರ್ಕ ಕಡಿತಗೊಳಿಸಬೇಕೆ? ಇದು ಕ್ರೆಡೆನ್ಶಿಯಲ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಲು ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ "${command}" ಅನ್ನು ರನ್ ಮಾಡುತ್ತದೆ.`,
       removeTerminalRunning: provider => `ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ ${provider} ಸಂಪರ್ಕ ಕಡಿತಗೊಳಿಸುವಿಕೆಯನ್ನು ರನ್ ಮಾಡಲಾಗುತ್ತಿದೆ…`,
       removedTitle: 'ಖಾತೆ ತೆಗೆದುಹಾಕಲಾಗಿದೆ',
       removedMessage: provider => `${provider} ತೆಗೆದುಹಾಕಲಾಗಿದೆ.`,
@@ -834,14 +876,16 @@ export const kn = defineLocale({
       noKeysMatch: 'ನಿಮ್ಮ ಹುಡುಕಾಟಕ್ಕೆ ಯಾವುದೇ ಪೂರೈಕೆದಾರರು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.',
       localEndpoint: {
         title: 'ಸ್ಥಳೀಯ / ಕಸ್ಟಮ್ ಎಂಡ್ಪಾಯಿಂಟ್',
-        description: 'OpenAmer ಅನ್ನು ಯಾವುದೇ OpenAI-ಸಮ್ಮತ ಎಂಡ್‌ಪಾಯಿಂಟ್‌ಗೆ (Zyphra, vLLM, llama.cpp, Ollama, ಇತ್ಯಾದಿ) ತೋರಿಸಿ.',
+        description:
+          'OpenAmer ಅನ್ನು ಯಾವುದೇ OpenAI-ಸಮ್ಮತ ಎಂಡ್‌ಪಾಯಿಂಟ್‌ಗೆ (Zyphra, vLLM, llama.cpp, Ollama, ಇತ್ಯಾದಿ) ತೋರಿಸಿ.'
       },
-      loading: 'ಪ್ರೊವೈಡರ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
+      loading: 'ಪ್ರೊವೈಡರ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...'
     },
     sessions: {
       loading: 'ಆರ್ಕೈವ್ ಮಾಡಿದ ಸೆಷನ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…',
       archivedTitle: 'ಆರ್ಕೈವ್ ಮಾಡಿದ ಸೆಷನ್‌ಗಳು',
-      archivedIntro: 'ಆರ್ಕೈವ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳು ಸೈಡ್‌ಬಾರ್‌ನಿಂದ ಮರೆಯಾಗುತ್ತವೆ ಆದರೆ ಅವುಗಳ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳುತ್ತವೆ. ಆರ್ಕೈವ್ ಮಾಡಲು ಸೈಡ್‌ಬಾರ್‌ನಲ್ಲಿ ಚಾಟ್ ಮೇಲೆ Ctrl/⌘-ಕ್ಲಿಕ್ ಮಾಡಿ.',
+      archivedIntro:
+        'ಆರ್ಕೈವ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳು ಸೈಡ್‌ಬಾರ್‌ನಿಂದ ಮರೆಯಾಗುತ್ತವೆ ಆದರೆ ಅವುಗಳ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳುತ್ತವೆ. ಆರ್ಕೈವ್ ಮಾಡಲು ಸೈಡ್‌ಬಾರ್‌ನಲ್ಲಿ ಚಾಟ್ ಮೇಲೆ Ctrl/⌘-ಕ್ಲಿಕ್ ಮಾಡಿ.',
       emptyArchivedTitle: 'ಆರ್ಕೈವ್ ಮಾಡಿದ್ದು ಏನೂ ಇಲ್ಲ',
       emptyArchivedDesc: 'ಇಲ್ಲಿ ಮರೆಮಾಡಲು ಚಾಟ್ ಅನ್ನು ಆರ್ಕೈವ್ ಮಾಡಿ.',
       unarchive: 'ಆರ್ಕೈವ್ ತೆಗೆದುಹಾಕಿ',
@@ -850,12 +894,14 @@ export const kn = defineLocale({
       restored: 'ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ',
       deleteConfirm: title => `"${title}" ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಬೇಕೆ? ಇದನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ.`,
       autoArchiveTitle: 'ಹಳೆಯ ಚಾಟ್‌ಗಳನ್ನು ಸ್ವಯಂ-ಆರ್ಕೈವ್ ಮಾಡಿ',
-      autoArchiveDesc: "ಸ್ವಲ್ಪ ಸಮಯದಿಂದ ನೀವು ಸ್ಪರ್ಶಿಸದ ಚಾಟ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆರ್ಕೈವ್ ಮಾಡಿ. ಪಿನ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳನ್ನು ಎಂದಿಗೂ ಆರ್ಕೈವ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ, ಮತ್ತು ಏನನ್ನೂ ಅಳಿಸಲಾಗುವುದಿಲ್ಲ — ಆರ್ಕೈವ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳು ಇಲ್ಲಿಗೆ ಸರಿಯುತ್ತವೆ.",
+      autoArchiveDesc:
+        'ಸ್ವಲ್ಪ ಸಮಯದಿಂದ ನೀವು ಸ್ಪರ್ಶಿಸದ ಚಾಟ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆರ್ಕೈವ್ ಮಾಡಿ. ಪಿನ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳನ್ನು ಎಂದಿಗೂ ಆರ್ಕೈವ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ, ಮತ್ತು ಏನನ್ನೂ ಅಳಿಸಲಾಗುವುದಿಲ್ಲ — ಆರ್ಕೈವ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳು ಇಲ್ಲಿಗೆ ಸರಿಯುತ್ತವೆ.',
       autoArchiveDaysLabel: 'ಇದರ ನಂತರ ಆರ್ಕೈವ್',
       autoArchiveDaysUnit: 'ನಿಷ್ಕ್ರಿಯತೆಯ ದಿನಗಳು',
       autoArchiveFailed: 'ಸ್ವಯಂ-ಆರ್ಕೈವ್ ನವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       defaultDirTitle: 'ಡೀಫಾಲ್ಟ್ ಪ್ರಾಜೆಕ್ಟ್ ಡೈರೆಕ್ಟರಿ',
-      defaultDirDesc: 'ನೀವು ಬೇರೆ ಆಯ್ಕೆ ಮಾಡದಿದ್ದರೆ ಹೊಸ ಸೆಷನ್‌ಗಳು ಈ ಫೋಲ್ಡರ್‌ನಲ್ಲಿ ಪ್ರಾರಂಭವಾಗುತ್ತವೆ. ನಿಮ್ಮ ಹೋಮ್ ಡೈರೆಕ್ಟರಿ ಬಳಸಲು ಇದನ್ನು ಸೆಟ್ ಮಾಡದೆ ಬಿಡಿ.',
+      defaultDirDesc:
+        'ನೀವು ಬೇರೆ ಆಯ್ಕೆ ಮಾಡದಿದ್ದರೆ ಹೊಸ ಸೆಷನ್‌ಗಳು ಈ ಫೋಲ್ಡರ್‌ನಲ್ಲಿ ಪ್ರಾರಂಭವಾಗುತ್ತವೆ. ನಿಮ್ಮ ಹೋಮ್ ಡೈರೆಕ್ಟರಿ ಬಳಸಲು ಇದನ್ನು ಸೆಟ್ ಮಾಡದೆ ಬಿಡಿ.',
       defaultDirUpdated: 'ಡೀಫಾಲ್ಟ್ ಪ್ರಾಜೆಕ್ಟ್ ಡೈರೆಕ್ಟರಿ ನವೀಕರಿಸಲಾಗಿದೆ — ಇದು ಜಾರಿಗೆ ಬರಲು ಹೊಸ ಚಾಟ್ (Ctrl/⌘+N) ಪ್ರಾರಂಭಿಸಿ',
       defaultsTo: label => `${label} ಗೆ ಡಿಫಾಲ್ಟ್ ಆಗಿದೆ.`,
       change: 'ಬದಲಾಯಿಸಿ',
@@ -866,7 +912,7 @@ export const kn = defineLocale({
       unarchiveFailed: 'ಆರ್ಕೈವ್ ತೆರೆಯುವುದು ವಿಫಲವಾಗಿದೆ',
       deleteFailed: 'ಅಳಿಸುವುದು ವಿಫಲವಾಗಿದೆ',
       updateDirFailed: 'ಡೀಫಾಲ್ಟ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ನವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
-      clearDirFailed: 'ಡೀಫಾಲ್ಟ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ತೆರವುಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
+      clearDirFailed: 'ಡೀಫಾಲ್ಟ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ತೆರವುಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ'
     },
     toolsets: {
       loadingConfig: 'ಸಂರಚನೆಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ',
@@ -884,20 +930,23 @@ export const kn = defineLocale({
       selectedMessage: provider => `${provider} ಈಗ ಸಕ್ರಿಯವಾಗಿದೆ.`,
       failedSelect: provider => `${provider} ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ`,
       failedLoad: 'ಉಪಕರಣ ಸಂರಚನೆಯನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ',
-      noProviderOptions: 'ಈ ಉಪಕರಣ ಸೆಟ್‌ಗೆ ಪೂರೈಕೆದಾರರ ಆಯ್ಕೆಗಳಿಲ್ಲ — ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ, ಅದು ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸೆಟಪ್‌ನೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ.',
+      noProviderOptions:
+        'ಈ ಉಪಕರಣ ಸೆಟ್‌ಗೆ ಪೂರೈಕೆದಾರರ ಆಯ್ಕೆಗಳಿಲ್ಲ — ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ, ಅದು ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸೆಟಪ್‌ನೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ.',
       noProviders: 'ಈ ಉಪಕರಣ ಸೆಟ್‌ಗೆ ಈಗ ಯಾವುದೇ ಪೂರೈಕೆದಾರರು ಲಭ್ಯವಿಲ್ಲ.',
       ready: 'ಸಿದ್ಧ',
       needsSignIn: 'ಸೈನ್-ಇನ್ ಅಗತ್ಯವಿದೆ',
       needsSetup: 'ಸೆಟಪ್ ಅಗತ್ಯವಿದೆ',
       openamerIncluded: 'OpenAmer ಚಂದಾದಾರಿಕೆಯೊಂದಿಗೆ ಸೇರಿಸಲಾಗಿದೆ — ಸಕ್ರಿಯಗೊಳಿಸಲು OpenAmer Portal ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.',
       openamerAuthNeededTitle: 'OpenAmer Portal ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ',
-      openamerAuthNeededMessage: provider => `${provider} ಉಳಿಸಲಾಗಿದೆ, ಆದರೆ ನೀವು OpenAmer ಪೋರ್ಟಲ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡುವವರೆಗೆ ಸಕ್ರಿಯವಾಗುವುದಿಲ್ಲ.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ಉಳಿಸಲಾಗಿದೆ, ಆದರೆ ನೀವು OpenAmer ಪೋರ್ಟಲ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡುವವರೆಗೆ ಸಕ್ರಿಯವಾಗುವುದಿಲ್ಲ.`,
       openamerAuthSignIn: 'ಸೈನ್ ಇನ್ ಮಾಡಿ',
       openamerAuthDoneTitle: 'OpenAmer Portal ಸಂಪರ್ಕಗೊಂಡಿದೆ',
       openamerAuthDoneMessage: 'ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆ ಬ್ಯಾಕೆಂಡ್‌ಗಳು ಈಗ ಸಕ್ರಿಯವಾಗಿವೆ.',
       openamerAuthFailed: 'OpenAmer Portal ಸೈನ್ ಇನ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲ',
       noApiKeyRequired: 'API ಕೀ ಅಗತ್ಯವಿಲ್ಲ.',
-      postSetupHint: step => `ಈ ಬ್ಯಾಕೆಂಡ್‌ಗೆ ಒಂದು ಬಾರಿ ಇನ್‌ಸ್ಟಾಲ್ ಅಗತ್ಯವಿದೆ (${step}). ಇದು ಈ ಯಂತ್ರದಲ್ಲಿ ರನ್ ಆಗುತ್ತದೆ — ಕೆಲವು ನಿಮಿಷಗಳು ತೆಗೆದುಕೊಳ್ಳಬಹುದು.`,
+      postSetupHint: step =>
+        `ಈ ಬ್ಯಾಕೆಂಡ್‌ಗೆ ಒಂದು ಬಾರಿ ಇನ್‌ಸ್ಟಾಲ್ ಅಗತ್ಯವಿದೆ (${step}). ಇದು ಈ ಯಂತ್ರದಲ್ಲಿ ರನ್ ಆಗುತ್ತದೆ — ಕೆಲವು ನಿಮಿಷಗಳು ತೆಗೆದುಕೊಳ್ಳಬಹುದು.`,
       postSetupInstalledHint: 'ಸ್ಥಾಪಿಸಲಾಗಿದೆ. ಏನಾದರೂ ಕೆಟ್ಟಿದ್ದರೆ ಮಾತ್ರ ಸೆಟಪ್ ಅನ್ನು ಮತ್ತೆ ರನ್ ಮಾಡಿ.',
       postSetupRun: 'ಸೆಟಪ್ ರನ್ ಮಾಡಿ',
       postSetupRerun: 'ಸೆಟಪ್ ಮತ್ತೆ ರನ್ ಮಾಡಿ',
@@ -936,11 +985,12 @@ export const kn = defineLocale({
         unavailable: 'ಲಭ್ಯವಿಲ್ಲ',
         inUse: 'ಬಳಕೆಯಲ್ಲಿದೆ',
         selectedTitle: 'ಬ್ಯಾಕೆಂಡ್ ಆಯ್ಕೆಯಾಗಿದೆ',
-        selectedMessage: backend => `ಟರ್ಮಿನಲ್ ಕಮಾಂಡ್‌ಗಳು ಈಗ ${backend} ಮೂಲಕ ರನ್ ಆಗುತ್ತವೆ. ಹೊಸ ಸೆಷನ್‌ಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ.`,
+        selectedMessage: backend =>
+          `ಟರ್ಮಿನಲ್ ಕಮಾಂಡ್‌ಗಳು ಈಗ ${backend} ಮೂಲಕ ರನ್ ಆಗುತ್ತವೆ. ಹೊಸ ಸೆಷನ್‌ಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ.`,
         failedSelect: backend => `${backend} ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ`,
-        needsSetupHint: 'ಈಗ ಈ ಬ್ಯಾಕೆಂಡ್ ಆಯ್ಕೆಮಾಡಬಹುದು — ಸೆಟಪ್ ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಆಜ್ಞೆಗಳು ವಿಫಲವಾಗುತ್ತವೆ.',
-      },
-    },
+        needsSetupHint: 'ಈಗ ಈ ಬ್ಯಾಕೆಂಡ್ ಆಯ್ಕೆಮಾಡಬಹುದು — ಸೆಟಪ್ ಪೂರ್ಣಗೊಳ್ಳುವವರೆಗೆ ಆಜ್ಞೆಗಳು ವಿಫಲವಾಗುತ್ತವೆ.'
+      }
+    }
   },
   skills: {
     tabSkills: 'ಕೌಶಲ್ಯಗಳು',
@@ -960,7 +1010,8 @@ export const kn = defineLocale({
     noDescription: 'ವಿವರಣೆ ಇಲ್ಲ.',
     configured: 'ಸಂರಚಿಸಲಾಗಿದೆ',
     needsKeys: 'ಕೀಗಳು ಅಗತ್ಯ',
-    visionModelHint: 'ವಿಷನ್ ನಿಮ್ಮ ಸಹಾಯಕ ಮಾದರಿ ಸಂರಚನೆಯನ್ನು ಬಳಸುತ್ತದೆ — ಚಿತ್ರ-ಸಾಮರ್ಥ್ಯ ಮಾದರಿ ಅಲ್ಲಿ ಆಯ್ಕೆ ಮಾಡಲ್ಪಡುತ್ತದೆ, ಇಲ್ಲಿ ಪ್ರತಿ-ಪ್ರೊವೈಡರ್ ಅಲ್ಲ.',
+    visionModelHint:
+      'ವಿಷನ್ ನಿಮ್ಮ ಸಹಾಯಕ ಮಾದರಿ ಸಂರಚನೆಯನ್ನು ಬಳಸುತ್ತದೆ — ಚಿತ್ರ-ಸಾಮರ್ಥ್ಯ ಮಾದರಿ ಅಲ್ಲಿ ಆಯ್ಕೆ ಮಾಡಲ್ಪಡುತ್ತದೆ, ಇಲ್ಲಿ ಪ್ರತಿ-ಪ್ರೊವೈಡರ್ ಅಲ್ಲ.',
     visionModelLink: 'ಸೆಟ್ಟಿಂಗ್ಸ್ → ಮಾದರಿಗಳಲ್ಲಿ ವಿಷನ್ ಮಾದರಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ಪರಿಕರ ಸಮೂಹಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ`,
     configureToolset: label => `${label} ಕಾನ್ಫಿಗರ್ ಮಾಡಿ`,
@@ -986,7 +1037,7 @@ export const kn = defineLocale({
     provenance: {
       agent: 'ಕಲಿತಿದೆ',
       bundled: 'ಒಳನಿರ್ಮಿತ',
-      hub: 'ಹಬ್',
+      hub: 'ಹಬ್'
     },
     emptyNoneFound: noun => `${noun} ಕಂಡುಬಂದಿಲ್ಲ`,
     emptyNothingMatches: query => `“${query}” ಗೆ ಯಾವುದೇ ಹೊಂದಾಣಿಕೆಯಿಲ್ಲ.`,
@@ -1004,7 +1055,8 @@ export const kn = defineLocale({
       connectingHubs: 'ಕೌಶಲ್ಯ ಹಬ್‌ಗಳಿಗೆ ಸಂಪರ್ಕಿಸುತ್ತಿದೆ...',
       connectedHubs: 'ಸಂಪರ್ಕಿತ ಹಬ್‌ಗಳು:',
       featured: 'ವಿಶೇಷ ಕೌಶಲ್ಯಗಳು',
-      landingHint: 'ಅಧಿಕೃತ ಸೂಚ್ಯಂಕ, GitHub ಮತ್ತು ಸಮುದಾಯ ಮೂಲಗಳಿಂದ ಸ್ಥಾಪಿಸಬಹುದಾದ ಕೌಶಲ್ಯಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಲು ಹಬ್ ಅನ್ನು ಹುಡುಕಿ.',
+      landingHint:
+        'ಅಧಿಕೃತ ಸೂಚ್ಯಂಕ, GitHub ಮತ್ತು ಸಮುದಾಯ ಮೂಲಗಳಿಂದ ಸ್ಥಾಪಿಸಬಹುದಾದ ಕೌಶಲ್ಯಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಲು ಹಬ್ ಅನ್ನು ಹುಡುಕಿ.',
       noResults: 'ಹಬ್‌ನಲ್ಲಿ ಹೊಂದುವ ಕೌಶಲ್ಯಗಳು ಸಿಗಲಿಲ್ಲ.',
       resultCount: (count, ms) => `${count} ಫಲಿತಾಂಶ${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `ಸಮಯ ಮೀರಿತು: ${sources}`,
@@ -1024,7 +1076,7 @@ export const kn = defineLocale({
       trust: {
         builtin: 'ಒಳನಿರ್ಮಿತ',
         trusted: 'ವಿಶ್ವಾಸಾರ್ಹ',
-        community: 'ಸಮುದಾಯ',
+        community: 'ಸಮುದಾಯ'
       },
       verdictSafe: 'ಸುರಕ್ಷಿತ',
       verdictCaution: 'ಎಚ್ಚರಿಕೆ',
@@ -1042,13 +1094,14 @@ export const kn = defineLocale({
       loadFailed: 'ಕೌಶಲ ಹಬ್ ಲೋಡ್ ಆಗಲಿಲ್ಲ',
       previewFailed: 'ಕೌಶಲ ಪೂರ್ವವೀಕ್ಷಣೆ ವಿಫಲವಾಗಿದೆ',
       scanFailed: 'ಭದ್ರತಾ ಸ್ಕ್ಯಾನ್ ವಿಫಲವಾಗಿದೆ',
-      searchFailed: 'ಹಬ್ ಹುಡುಕಾಟ ವಿಫಲವಾಗಿದೆ',
+      searchFailed: 'ಹಬ್ ಹುಡುಕಾಟ ವಿಫಲವಾಗಿದೆ'
     },
     tabPlugins: 'ಪ್ಲಗಿನ್‌ಗಳು',
     searchPlugins: 'ಪ್ಲಗಿನ್‌ಗಳನ್ನು ಹುಡುಕಿ...',
     pluginsCount: n => `${n} ಪ್ಲಗಿನ್‌ಗಳು`,
     pluginsEmptyTitle: 'ಯಾವುದೇ ಪ್ಲಗಿನ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ',
-    pluginsEmptyDesc: 'ಮೇಲಿನ Git ರಿಪಾಸಿಟರಿಯಿಂದ ಒಂದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ — ಪ್ಲಗಿನ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವವರೆಗೆ ಅವು ನಿಷ್ಕ್ರಿಯವಾಗಿರುತ್ತವೆ.',
+    pluginsEmptyDesc:
+      'ಮೇಲಿನ Git ರಿಪಾಸಿಟರಿಯಿಂದ ಒಂದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ — ಪ್ಲಗಿನ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವವರೆಗೆ ಅವು ನಿಷ್ಕ್ರಿಯವಾಗಿರುತ್ತವೆ.',
     pluginsNoMatch: 'ಈ ಹುಡುಕಾಟಕ್ಕೆ ಯಾವುದೇ ಪ್ಲಗಿನ್ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ',
     pluginsLoadFailed: 'ಪ್ಲಗಿನ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
     pluginsInstall: 'ಸ್ಥಾಪಿಸಿ',
@@ -1062,9 +1115,10 @@ export const kn = defineLocale({
     pluginsSearchFailed: 'GitHub ಹುಡುಕಾಟ ವಿಫಲವಾಗಿದೆ',
     pluginsDiscoverAction: query => `GitHub ನಲ್ಲಿ "${query}" ಗಾಗಿ ಹುಡುಕಿ`,
     pluginsDiscoverResults: (n, query) => `${n} openamer-plugin ಟ್ಯಾಗ್ ಮಾಡಲಾಗಿರುವ "${query}" ರೆಪೋಸಿಟರಿಗಳು`,
-    pluginsDiscoverEmpty: query => `GitHub ನಲ್ಲಿ "${query}" ಗೆ ಸಂಬಂಧಿಸಿದ ಏನೂ ಇಲ್ಲ — ಈ ಹುಡುಕಾಟವು openamer-plugin ವಿಷಯವನ್ನು ಹೊಂದಿರುವ ರಿಪಾಸಿಟರಿಗಳನ್ನು ಮಾತ್ರ ಹುಡುಕುತ್ತದೆ ಮತ್ತು ಅನ್-ಅಥೆಂಟಿಕೇಟೆಡ್ GitHub ಹುಡುಕಾಟಕ್ಕೆ ಮಿತಿ ಇದೆ. ಬದಲಿಗೆ ನಿಖರವಾದ owner/repo ಅನ್ನು ಮೇಲೆ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.`,
+    pluginsDiscoverEmpty: query =>
+      `GitHub ನಲ್ಲಿ "${query}" ಗೆ ಸಂಬಂಧಿಸಿದ ಏನೂ ಇಲ್ಲ — ಈ ಹುಡುಕಾಟವು openamer-plugin ವಿಷಯವನ್ನು ಹೊಂದಿರುವ ರಿಪಾಸಿಟರಿಗಳನ್ನು ಮಾತ್ರ ಹುಡುಕುತ್ತದೆ ಮತ್ತು ಅನ್-ಅಥೆಂಟಿಕೇಟೆಡ್ GitHub ಹುಡುಕಾಟಕ್ಕೆ ಮಿತಿ ಇದೆ. ಬದಲಿಗೆ ನಿಖರವಾದ owner/repo ಅನ್ನು ಮೇಲೆ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ.`,
     pluginsStatusInactive: 'ನಿಷ್ಕ್ರಿಯ',
-    pluginsToggleFailed: 'ಪ್ಲಗಿನ್ ಸ್ಥಿತಿಯನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
+    pluginsToggleFailed: 'ಪ್ಲಗಿನ್ ಸ್ಥಿತಿಯನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ'
   },
   starmap: {
     title: 'ಮೆಮೊರಿ ಗ್ರಾಫ್',
@@ -1081,7 +1135,8 @@ export const kn = defineLocale({
     emptyTitle: 'ಇನ್ನೂ ಏನನ್ನೂ ಕಲಿತಿಲ್ಲ',
     emptyDesc: 'OpenAmer ನಿಮ್ಮ ಕೆಲಸಕ್ಕಾಗಿ ಕೌಶಲ್ಯಗಳು ಮತ್ತು ನೆನಪುಗಳನ್ನು ನಿರ್ಮಿಸುತ್ತಿದ್ದಂತೆ, ಅವು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.',
     share: 'ನಕ್ಷೆ ಹಂಚಿಕೊಳ್ಳಿ',
-    shareHint: 'ಈ ನಕ್ಷೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಕೋಡ್ ನಕಲಿಸಿ, ಅಥವಾ ಲೋಡ್ ಮಾಡಲು ಒಂದನ್ನು ಅಂಟಿಸಿ. ಇದು ಕೇವಲ ಲೇಔಟ್ ಅನ್ನು ಒಳಗೊಂಡಿದೆ, ನಿಮ್ಮ ಮೆಮೊರಿ ಅಥವಾ ಕೌಶಲ್ಯ ಪಠ್ಯವಲ್ಲ.',
+    shareHint:
+      'ಈ ನಕ್ಷೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಕೋಡ್ ನಕಲಿಸಿ, ಅಥವಾ ಲೋಡ್ ಮಾಡಲು ಒಂದನ್ನು ಅಂಟಿಸಿ. ಇದು ಕೇವಲ ಲೇಔಟ್ ಅನ್ನು ಒಳಗೊಂಡಿದೆ, ನಿಮ್ಮ ಮೆಮೊರಿ ಅಥವಾ ಕೌಶಲ್ಯ ಪಠ್ಯವಲ್ಲ.',
     shareTitle: 'ನಕ್ಷೆ ಆಮದು / ರಫ್ತು',
     sharePlaceholder: 'ನಕ್ಷೆ ಕೋಡ್ ಅಂಟಿಸಿ…',
     copy: 'ನಕ್ಷೆ ಕೋಡ್ ನಕಲಿಸಿ',
@@ -1091,7 +1146,7 @@ export const kn = defineLocale({
     importEmpty: 'ಲೋಡ್ ಮಾಡಲು ನಕ್ಷೆ ಕೋಡ್ ಅಂಟಿಸಿ.',
     importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} ಹೊಂದಿರುವ ನಕ್ಷೆಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಿದೆ.`,
     importedBadge: 'ಆಮದು ಮಾಡಿದ ನಕ್ಷೆ',
-    resetToMine: 'ನನ್ನ ನಕ್ಷೆಗೆ ಹಿಂತಿರುಗಿ',
+    resetToMine: 'ನನ್ನ ನಕ್ಷೆಗೆ ಹಿಂತಿರುಗಿ'
   },
   agents: {
     close: 'ಏಜೆಂಟ್ಗಳನ್ನು ಮುಚ್ಚಿ',
@@ -1121,7 +1176,7 @@ export const kn = defineLocale({
     ageDays: days => `${days} ದಿನಗಳ ಹಿಂದೆ`,
     durationSeconds: seconds => `${seconds} ಸೆಕೆಂ`,
     durationMinutes: (minutes, seconds) => `${minutes} ನಿಮಿ ${seconds} ಸೆಕೆಂ`,
-    tokens: value => `${value} ಟೋಕನ್‌ಗಳು`,
+    tokens: value => `${value} ಟೋಕನ್‌ಗಳು`
   },
   commandCenter: {
     close: 'ಕಮಾಂಡ್ ಸೆಂಟರ್ ಮುಚ್ಚಿ',
@@ -1151,7 +1206,7 @@ export const kn = defineLocale({
       generatedTag: 'ರಚಿಸಲಾಗಿದೆ',
       adoptFailed: 'ಆ ಸಾಕುಪ್ರಾಣಿಯನ್ನು ದತ್ತು ತೆಗೆದುಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       toggleFailed: 'ಸಾಕುಪ್ರಾಣಿಯನ್ನು ಟಾಗಲ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
-      noneAvailable: 'ಸಾಕುಪ್ರಾಣಿಗಳು ಲಭ್ಯವಿಲ್ಲ — ಸ್ಥಾಪಿಸಲು ಕೆಳಗಿನ ಒಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ.',
+      noneAvailable: 'ಸಾಕುಪ್ರಾಣಿಗಳು ಲಭ್ಯವಿಲ್ಲ — ಸ್ಥಾಪಿಸಲು ಕೆಳಗಿನ ಒಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ.'
     },
     generatePet: {
       title: 'ಸಾಕುಪ್ರಾಣಿಯನ್ನು ರಚಿಸಿ',
@@ -1180,7 +1235,7 @@ export const kn = defineLocale({
       referenceImageTooLarge: 'ಉಲ್ಲೇಖ ಚಿತ್ರ ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. 16 MB ಗಿಂತ ಕಡಿಮೆ ಇರುವುದನ್ನು ಬಳಸಿ.',
       referenceImageInvalid: 'ಆ ಉಲ್ಲೇಖ ಚಿತ್ರವನ್ನು ಓದಲಾಗಲಿಲ್ಲ. PNG, JPG, WebP, ಅಥವಾ GIF ಪ್ರಯತ್ನಿಸಿ.',
       adopt: 'ದತ್ತು ತೆಗೆದುಕೊಳ್ಳಿ',
-      startOver: 'ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ',
+      startOver: 'ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ'
     },
     installTheme: {
       title: 'ಥೀಮ್ ಸ್ಥಾಪಿಸಿ…',
@@ -1192,7 +1247,7 @@ export const kn = defineLocale({
       install: 'ಸ್ಥಾಪಿಸಿ',
       installing: 'ಸ್ಥಾಪಿಸುತ್ತಿದೆ...',
       installed: 'ಸ್ಥಾಪಿಸಲಾಗಿದೆ',
-      installs: count => `${count} ಸ್ಥಾಪನೆಗಳು`,
+      installs: count => `${count} ಸ್ಥಾಪನೆಗಳು`
     },
     settingsFields: 'ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಕ್ಷೇತ್ರಗಳು',
     mcpServers: 'MCP ಸರ್ವರ್‌ಗಳು',
@@ -1201,49 +1256,49 @@ export const kn = defineLocale({
       maintenance: 'ನಿರ್ವಹಣೆ',
       sessions: 'ಸೆಷನ್‌ಗಳು',
       system: 'ಸಿಸ್ಟಮ್',
-      usage: 'ಬಳಕೆ',
+      usage: 'ಬಳಕೆ'
     },
     sectionDescriptions: {
       maintenance: 'ಡಯಾಗ್ನೋಸ್ಟಿಕ್ಸ್, ಬ್ಯಾಕ್ಅಪ್‌ಗಳು, ಕ್ಯೂರೆಟರ್, ಮತ್ತು ಮೆಮೊರಿ ಡೇಟಾ',
       sessions: 'ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ',
       system: 'ಸ್ಥಿತಿ, ಲಾಗ್‌ಗಳು, ಮತ್ತು ಸಿಸ್ಟಮ್ ಕ್ರಿಯೆಗಳು',
-      usage: 'ಟೋಕನ್, ವೆಚ್ಚ, ಮತ್ತು ಕೌಶಲ್ಯ ಚಟುವಟಿಕೆ ಸಮಯದೊಂದಿಗೆ',
+      usage: 'ಟೋಕನ್, ವೆಚ್ಚ, ಮತ್ತು ಕೌಶಲ್ಯ ಚಟುವಟಿಕೆ ಸಮಯದೊಂದಿಗೆ'
     },
     nav: {
       newChat: {
         title: 'ಹೊಸ ಸೆಷನ್',
-        detail: 'ಹೊಸ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ',
+        detail: 'ಹೊಸ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ'
       },
       settings: {
         title: 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
-        detail: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಅನ್ನು ಸಂರಚಿಸಿ',
+        detail: 'OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಅನ್ನು ಸಂರಚಿಸಿ'
       },
       skills: {
         title: 'ಸಾಮರ್ಥ್ಯಗಳು',
-        detail: 'ಕೌಶಲ್ಯಗಳು, ಸಾಧನಗಳು, ಮತ್ತು MCP ಸರ್ವರ್‌ಗಳು',
+        detail: 'ಕೌಶಲ್ಯಗಳು, ಸಾಧನಗಳು, ಮತ್ತು MCP ಸರ್ವರ್‌ಗಳು'
       },
       messaging: {
         title: 'ಸಂದೇಶ',
-        detail: 'ಟೆಲಿಗ್ರಾಮ್, ಸ್ಲ್ಯಾಕ್, ಡಿಸ್ಕೋರ್ಡ್, ಮತ್ತು ಇನ್ನಷ್ಟು ಸೆಟ್ ಅಪ್ ಮಾಡಿ',
+        detail: 'ಟೆಲಿಗ್ರಾಮ್, ಸ್ಲ್ಯಾಕ್, ಡಿಸ್ಕೋರ್ಡ್, ಮತ್ತು ಇನ್ನಷ್ಟು ಸೆಟ್ ಅಪ್ ಮಾಡಿ'
       },
       artifacts: {
         title: 'ಆರ್ಟಿಫ್ಯಾಕ್ಟ್‌ಗಳು',
-        detail: 'ಉತ್ಪಾದಿತ ಔಟ್‌ಪುಟ್‌ಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ',
-      },
+        detail: 'ಉತ್ಪಾದಿತ ಔಟ್‌ಪುಟ್‌ಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'ಸೆಷನ್ ಪ್ಯಾನಲ್',
-        detail: 'ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ, ಪಿನ್ ಮಾಡಿ, ಮತ್ತು ನಿರ್ವಹಿಸಿ',
+        detail: 'ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ, ಪಿನ್ ಮಾಡಿ, ಮತ್ತು ನಿರ್ವಹಿಸಿ'
       },
       system: {
         title: 'ಸಿಸ್ಟಮ್ ಪ್ಯಾನಲ್',
-        detail: 'ಗೇಟ್‌ವೇ ಸ್ಥಿತಿ, ಲಾಗ್‌ಗಳು, ಮರುಪ್ರಾರಂಭ/ನವೀಕರಣ',
+        detail: 'ಗೇಟ್‌ವೇ ಸ್ಥಿತಿ, ಲಾಗ್‌ಗಳು, ಮರುಪ್ರಾರಂಭ/ನವೀಕರಣ'
       },
       usage: {
         title: 'ಬಳಕೆ ಪ್ಯಾನೆಲ್',
-        detail: 'ಟೋಕನ್, ವೆಚ್ಚ ಮತ್ತು ಕೌಶಲ್ಯ ಚಟುವಟಿಕೆ',
-      },
+        detail: 'ಟೋಕನ್, ವೆಚ್ಚ ಮತ್ತು ಕೌಶಲ್ಯ ಚಟುವಟಿಕೆ'
+      }
     },
     providerNavigate: 'ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ',
     providerSessions: 'ಸೆಷನ್‌ಗಳು',
@@ -1298,7 +1353,8 @@ export const kn = defineLocale({
       backup: 'ಬ್ಯಾಕಪ್ ರಚಿಸಿ',
       backupDesc: 'ಕಾನ್ಫಿಗ್, ಮೆಮೊರಿಗಳು, ಸ್ಕಿಲ್ಗಳು ಮತ್ತು ಸೆಷನ್ಗಳನ್ನು ಜಿಪ್ ಮಾಡಿ',
       debugShare: 'ಡೀಬಗ್ ಹಂಚಿಕೆ',
-      debugShareDesc: 'ರಿಡ್ಯಾಕ್ಟ್ ಮಾಡಿದ ವರದಿ + ಲಾಗ್ಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ, ಹಂಚಬಹುದಾದ ಲಿಂಕ್ಗಳನ್ನು ಪಡೆಯಿರಿ (6 ಗಂಟೆಗಳಲ್ಲಿ ಸ್ವಯಂ-ಅಳಿಸಲಾಗುತ್ತದೆ)',
+      debugShareDesc:
+        'ರಿಡ್ಯಾಕ್ಟ್ ಮಾಡಿದ ವರದಿ + ಲಾಗ್ಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ, ಹಂಚಬಹುದಾದ ಲಿಂಕ್ಗಳನ್ನು ಪಡೆಯಿರಿ (6 ಗಂಟೆಗಳಲ್ಲಿ ಸ್ವಯಂ-ಅಳಿಸಲಾಗುತ್ತದೆ)',
       debugShareRunning: 'ಡೀಬಗ್ ವರದಿ ಅಪ್ಲೋಡ್ ಆಗುತ್ತಿದೆ...',
       debugShareLinks: 'ಹಂಚಿಕೆ ಲಿಂಕ್ಗಳು',
       debugShareFailed: 'ಡೀಬಗ್ ಹಂಚಿಕೆ ವಿಫಲವಾಗಿದೆ',
@@ -1331,8 +1387,8 @@ export const kn = defineLocale({
       actionStarted: name => `${name} ಪ್ರಾರಂಭವಾಗಿದೆ — ದಾಖಲೆಯ ಹೊಸ ಸಾಲುಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ...`,
       actionFailed: name => `${name} ಪ್ರಾರಂಭಿಸಲು ವಿಫಲವಾಗಿದೆ`,
       running: 'ಚಾಲನೆಯಲ್ಲಿದೆ...',
-      viewLog: 'ಕ್ರಿಯೆ ಲಾಗ್',
-    },
+      viewLog: 'ಕ್ರಿಯೆ ಲಾಗ್'
+    }
   },
   messaging: {
     search: 'ಸಂದೇಶ ರವಾನೆ ಹುಡುಕಿ...',
@@ -1347,7 +1403,7 @@ export const kn = defineLocale({
       not_configured: 'ಸೆಟಪ್ ಅಗತ್ಯವಿದೆ',
       pending_restart: 'ಮರುಪ್ರಾರಂಭ ಅಗತ್ಯವಿದೆ',
       retrying: 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲಾಗುತ್ತಿದೆ',
-      startup_failed: 'ಪ್ರಾರಂಭ ವಿಫಲವಾಯಿತು',
+      startup_failed: 'ಪ್ರಾರಂಭ ವಿಫಲವಾಯಿತು'
     },
     unknown: 'ಅಜ್ಞಾತ',
     hintPendingRestart: 'ಈ ಬದಲಾವಣೆಯನ್ನು ಅನ್ವಯಿಸಲು ಸ್ಟೇಟಸ್ ಬಾರ್‌ನಿಂದ ಗೇಟ್‌ವೇ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ.',
@@ -1360,7 +1416,8 @@ export const kn = defineLocale({
     required: 'ಅಗತ್ಯವಿದೆ',
     recommended: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ',
     advanced: count => `ಸುಧಾರಿತ (${count})`,
-    noTokenNeeded: 'ಈ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಇಲ್ಲಿ ಟೋಕನ್ ಅಗತ್ಯವಿಲ್ಲ. ಮೇಲಿನ ಸೆಟಪ್ ಮಾರ್ಗದರ್ಶಿಯನ್ನು ಬಳಸಿ, ನಂತರ ಕೆಳಗೆ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.',
+    noTokenNeeded:
+      'ಈ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಇಲ್ಲಿ ಟೋಕನ್ ಅಗತ್ಯವಿಲ್ಲ. ಮೇಲಿನ ಸೆಟಪ್ ಮಾರ್ಗದರ್ಶಿಯನ್ನು ಬಳಸಿ, ನಂತರ ಕೆಳಗೆ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.',
     enabled: 'ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ',
     disabled: 'ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ',
     unsavedChanges: 'ಉಳಿಸದ ಬದಲಾವಣೆಗಳು',
@@ -1386,127 +1443,126 @@ export const kn = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'ಬಾಟ್ ಟೋಕನ್',
         help: '@BotFather ನೊಂದಿಗೆ ಬಾಟ್ ರಚಿಸಿ, ನಂತರ ಅದು ನೀಡುವ ಟೋಕನ್ ಅನ್ನು ಅಂಟಿಸಿ.',
-        placeholder: 'Telegram ಬಾಟ್ ಟೋಕನ್ ಅಂಟಿಸಿ',
+        placeholder: 'Telegram ಬಾಟ್ ಟೋಕನ್ ಅಂಟಿಸಿ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ Telegram ಬಳಕೆದಾರ IDಗಳು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. @userinfobot ನಿಂದ ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಸಂಖ್ಯಾ IDಗಳು. ಇದಿಲ್ಲದೆ, ಯಾರಾದರೂ ನಿಮ್ಮ ಬಾಟ್‌ಗೆ DM ಮಾಡಬಹುದು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. @userinfobot ನಿಂದ ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಸಂಖ್ಯಾ IDಗಳು. ಇದಿಲ್ಲದೆ, ಯಾರಾದರೂ ನಿಮ್ಮ ಬಾಟ್‌ಗೆ DM ಮಾಡಬಹುದು.'
       },
       TELEGRAM_PROXY: {
         label: 'ಪ್ರಾಕ್ಸಿ URL',
-        help: 'Telegram ನಿರ್ಬಂಧಿಸಲಾದ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಅಗತ್ಯವಿದೆ.',
+        help: 'Telegram ನಿರ್ಬಂಧಿಸಲಾದ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಅಗತ್ಯವಿದೆ.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'ಬಾಟ್ ಟೋಕನ್',
-        help: 'Discord Developer Portal ನಲ್ಲಿ ಅಪ್ಲಿಕೇಶನ್ ರಚಿಸಿ, ಬಾಟ್ ಸೇರಿಸಿ, ನಂತರ ಅದರ ಟೋಕನ್ ಅಂಟಿಸಿ.',
+        help: 'Discord Developer Portal ನಲ್ಲಿ ಅಪ್ಲಿಕೇಶನ್ ರಚಿಸಿ, ಬಾಟ್ ಸೇರಿಸಿ, ನಂತರ ಅದರ ಟೋಕನ್ ಅಂಟಿಸಿ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ Discord ಬಳಕೆದಾರ IDಗಳು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ Discord ಬಳಕೆದಾರ IDಗಳು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ Discord ಬಳಕೆದಾರ IDಗಳು.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ಪ್ರತ್ಯುತ್ತರ ಶೈಲಿ',
-        help: 'ಮೊದಲು, ಎಲ್ಲಾ, ಅಥವಾ ಆಫ್.',
+        help: 'ಮೊದಲು, ಎಲ್ಲಾ, ಅಥವಾ ಆಫ್.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'ಎಲ್ಲಾ Discord ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ',
-        help: 'ಅಭಿವೃದ್ಧಿಗೆ ಮಾತ್ರ. true ಆಗಿದ್ದಾಗ, ಅನುಮತಿ ಪಟ್ಟಿ ಇಲ್ಲದೆ ಯಾರಾದರೂ ಬಾಟ್‌ಗೆ DM ಮಾಡಬಹುದು.',
+        help: 'ಅಭಿವೃದ್ಧಿಗೆ ಮಾತ್ರ. true ಆಗಿದ್ದಾಗ, ಅನುಮತಿ ಪಟ್ಟಿ ಇಲ್ಲದೆ ಯಾರಾದರೂ ಬಾಟ್‌ಗೆ DM ಮಾಡಬಹುದು.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ಹೋಮ್ ಚಾನೆಲ್ ID',
-        help: 'ಬಾಟ್ ಸ್ವಯಂಪ್ರೇರಿತ ಸಂದೇಶಗಳನ್ನು (cron ಔಟ್‌ಪುಟ್, ಜ್ಞಾಪನೆಗಳು) ಕಳುಹಿಸುವ ಚಾನೆಲ್.',
+        help: 'ಬಾಟ್ ಸ್ವಯಂಪ್ರೇರಿತ ಸಂದೇಶಗಳನ್ನು (cron ಔಟ್‌ಪುಟ್, ಜ್ಞಾಪನೆಗಳು) ಕಳುಹಿಸುವ ಚಾನೆಲ್.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ಹೋಮ್ ಚಾನೆಲ್ ಹೆಸರು',
-        help: 'ಲಾಗ್ ಮತ್ತು ಸ್ಥಿತಿ ಔಟ್ಪುಟ್ನಲ್ಲಿ ಹೋಮ್ ಚಾನೆಲ್ ಪ್ರದರ್ಶನ ಹೆಸರು.',
+        help: 'ಲಾಗ್ ಮತ್ತು ಸ್ಥಿತಿ ಔಟ್ಪುಟ್ನಲ್ಲಿ ಹೋಮ್ ಚಾನೆಲ್ ಪ್ರದರ್ಶನ ಹೆಸರು.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'ಎಲ್ಲಾ iMessage ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ',
-        help: 'true ಆದಾಗ, BlueBubbles ಅನುಮತಿಪಟ್ಟಿಯನ್ನು ಬಿಟ್ಟುಬಿಡಿ.',
+        help: 'true ಆದಾಗ, BlueBubbles ಅನುಮತಿಪಟ್ಟಿಯನ್ನು ಬಿಟ್ಟುಬಿಡಿ.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'ಎಲ್ಲಾ Mattermost ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ',
+        label: 'ಎಲ್ಲಾ Mattermost ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ಹೋಮ್ ಚಾನೆಲ್',
+        label: 'ಹೋಮ್ ಚಾನೆಲ್'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'ಎಲ್ಲಾ QQ ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ',
+        label: 'ಎಲ್ಲಾ QQ ಬಳಕೆದಾರರಿಗೆ ಅನುಮತಿಸಿ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ಹೋಮ್ ಚಾನೆಲ್',
-        help: 'cron ವಿತರಣೆಗಾಗಿ ಡೀಫಾಲ್ಟ್ ಚಾನೆಲ್ ಅಥವಾ ಗುಂಪು.',
+        help: 'cron ವಿತರಣೆಗಾಗಿ ಡೀಫಾಲ್ಟ್ ಚಾನೆಲ್ ಅಥವಾ ಗುಂಪು.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ಹೋಮ್ ಚಾನೆಲ್ ಹೆಸರು',
+        label: 'QQ ಹೋಮ್ ಚಾನೆಲ್ ಹೆಸರು'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack ಬಾಟ್ ಟೋಕನ್',
         help: 'ನಿಮ್ಮ Slack ಅಪ್ಲಿಕೇಶನ್ ಸ್ಥಾಪಿಸಿದ ನಂತರ OAuth & Permissions ನಿಂದ ಬಾಟ್ ಟೋಕನ್ ಬಳಸಿ.',
-        placeholder: 'Slack ಬಾಟ್ ಟೋಕನ್ ಅಂಟಿಸಿ',
+        placeholder: 'Slack ಬಾಟ್ ಟೋಕನ್ ಅಂಟಿಸಿ'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack ಆ್ಯಪ್ ಟೋಕನ್',
         help: 'Socket Mode ಗೆ ಅಗತ್ಯವಿರುವ ಆ್ಯಪ್-ಮಟ್ಟದ ಟೋಕನ್ ಬಳಸಿ.',
-        placeholder: 'Slack ಆ್ಯಪ್ ಟೋಕನ್ ಅಂಟಿಸಿ',
+        placeholder: 'Slack ಆ್ಯಪ್ ಟೋಕನ್ ಅಂಟಿಸಿ'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ Slack ಬಳಕೆದಾರ IDಗಳು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ Slack ಬಳಕೆದಾರ IDಗಳು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಕಾಮಾದಿಂದ ಬೇರ್ಪಡಿಸಿದ Slack ಬಳಕೆದಾರ IDಗಳು.'
       },
       MATTERMOST_URL: {
         label: 'ಸರ್ವರ್ URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'ಬಾಟ್ ಟೋಕನ್',
+        label: 'ಬಾಟ್ ಟೋಕನ್'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ ಬಳಕೆದಾರ IDಗಳು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Mattermost ಬಳಕೆದಾರ IDಗಳು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Mattermost ಬಳಕೆದಾರ IDಗಳು.'
       },
       MATRIX_HOMESERVER: {
         label: 'ಹೋಮ್ಸರ್ವರ್ URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'ಪ್ರವೇಶ ಟೋಕನ್',
+        label: 'ಪ್ರವೇಶ ಟೋಕನ್'
       },
       MATRIX_USER_ID: {
         label: 'ಬಾಟ್ ಬಳಕೆದಾರ ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ Matrix ಬಳಕೆದಾರ IDಗಳು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. @user:server ಸ್ವರೂಪದಲ್ಲಿ ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಬಳಕೆದಾರ IDಗಳು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. @user:server ಸ್ವರೂಪದಲ್ಲಿ ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಬಳಕೆದಾರ IDಗಳು.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal ಬ್ರಿಡ್ಜ್ URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'ಚಾಲನೆಯಲ್ಲಿರುವ signal-cli REST ಬ್ರಿಡ್ಜ್ನ URL.',
+        help: 'ಚಾಲನೆಯಲ್ಲಿರುವ signal-cli REST ಬ್ರಿಡ್ಜ್ನ URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'ಫೋನ್ ಸಂಖ್ಯೆ',
-        help: 'ನಿಮ್ಮ signal-cli ಬ್ರಿಡ್ಜ್ನೊಂದಿಗೆ ನೋಂದಾಯಿಸಲಾದ ಸಂಖ್ಯೆ.',
+        help: 'ನಿಮ್ಮ signal-cli ಬ್ರಿಡ್ಜ್ನೊಂದಿಗೆ ನೋಂದಾಯಿಸಲಾದ ಸಂಖ್ಯೆ.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ Signal ಬಳಕೆದಾರರು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Signal ಗುರುತುಗಳು.',
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Signal ಗುರುತುಗಳು.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp ಬ್ರಿಡ್ಜ್ ಸಕ್ರಿಯಗೊಳಿಸಿ',
-        help: 'ಕೆಳಗಿನ ಟಾಗಲ್ನಿಂದ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹೊಂದಿಸಲಾಗುತ್ತದೆ. ನಿಮಗೆ ಅದು ಬೇಕು ಎಂದು ತಿಳಿದಿಲ್ಲದಿದ್ದರೆ ಬದಲಾಯಿಸಬೇಡಿ.',
+        help: 'ಕೆಳಗಿನ ಟಾಗಲ್ನಿಂದ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹೊಂದಿಸಲಾಗುತ್ತದೆ. ನಿಮಗೆ ಅದು ಬೇಕು ಎಂದು ತಿಳಿದಿಲ್ಲದಿದ್ದರೆ ಬದಲಾಯಿಸಬೇಡಿ.'
       },
       WHATSAPP_MODE: {
-        label: 'ಬ್ರಿಡ್ಜ್ ಮೋಡ್',
+        label: 'ಬ್ರಿಡ್ಜ್ ಮೋಡ್'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ಅನುಮತಿಸಲಾದ WhatsApp ಬಳಕೆದಾರರು',
-        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಗಳು ಅಥವಾ WhatsApp IDಗಳು.',
-      },
+        help: 'ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ ಫೋನ್ ಸಂಖ್ಯೆಗಳು ಅಥವಾ WhatsApp IDಗಳು.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ವೆಬ್ಹುಕ್ಗಳನ್ನು ಹುಡುಕಿ...',
@@ -1516,7 +1572,8 @@ export const kn = defineLocale({
     hint: 'ರಿಸೀವರ್ ಚಾಲನೆಯಲ್ಲಿದ್ದಾಗ ಸಬ್ಸ್ಕ್ರಿಪ್ಷನ್ ಬದಲಾವಣೆಗಳು ಹಾಟ್-ರೀಲೋಡ್ ಆಗುತ್ತವೆ. ನಿಷ್ಕ್ರಿಯ ಸಬ್ಸ್ಕ್ರಿಪ್ಷನ್ಗಳು ಬರುವ ಈವೆಂಟ್ಗಳನ್ನು ತಿರಸ್ಕರಿಸುತ್ತವೆ.',
     empty: 'ಇನ್ನೂ ವೆಬ್ಹೂಕ್ ಸಬ್ಸ್ಕ್ರಿಪ್ಷನ್ಗಳಿಲ್ಲ.',
     disabledTitle: 'ವೆಬ್ಹೂಕ್ ರಿಸೀವರ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ',
-    disabledBody: 'ವೆಬ್ಹೂಕ್ಗಳು ತಮ್ಮದೇ ಗೇಟ್ವೇ ಪ್ಲಾಟ್ಫಾರ್ಮ್. ಒಳಬರುವ HTTP ಈವೆಂಟ್ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಅವುಗಳನ್ನು ಇಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿ; ಸಬ್ಸ್ಕ್ರಿಪ್ಷನ್ Telegram, Discord, Slack ಅಥವಾ ಇನ್ನೊಂದು ಚಾನಲ್ಗೆ ತಲುಪಿಸಿದಾಗ ಮಾತ್ರ ಚಾಟ್ ಚಾನಲ್ಗಳು ಬೇಕಾಗುತ್ತವೆ.',
+    disabledBody:
+      'ವೆಬ್ಹೂಕ್ಗಳು ತಮ್ಮದೇ ಗೇಟ್ವೇ ಪ್ಲಾಟ್ಫಾರ್ಮ್. ಒಳಬರುವ HTTP ಈವೆಂಟ್ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಅವುಗಳನ್ನು ಇಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿ; ಸಬ್ಸ್ಕ್ರಿಪ್ಷನ್ Telegram, Discord, Slack ಅಥವಾ ಇನ್ನೊಂದು ಚಾನಲ್ಗೆ ತಲುಪಿಸಿದಾಗ ಮಾತ್ರ ಚಾಟ್ ಚಾನಲ್ಗಳು ಬೇಕಾಗುತ್ತವೆ.',
     enable: 'ವೆಬ್ಹೂಕ್ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ',
     enabling: 'ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ...',
     enabled: (name: string) => `ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ: "${name}"`,
@@ -1569,8 +1626,8 @@ export const kn = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'ಇಮೇಲ್',
-      github_comment: 'GitHub ಟಿಪ್ಪಣಿ',
-    },
+      github_comment: 'GitHub ಟಿಪ್ಪಣಿ'
+    }
   },
   profiles: {
     close: 'ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ಮುಚ್ಚಿ',
@@ -1648,7 +1705,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     failedLoadSoul: 'SOUL.md ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ',
     failedSaveSoul: 'SOUL.md ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ',
     failedCreate: 'ಪ್ರೊಫೈಲ್ ರಚಿಸಲು ವಿಫಲವಾಗಿದೆ',
-    failedRename: 'ಪ್ರೊಫೈಲ್ ಮರುಹೆಸರಿಸಲು ವಿಫಲವಾಗಿದೆ',
+    failedRename: 'ಪ್ರೊಫೈಲ್ ಮರುಹೆಸರಿಸಲು ವಿಫಲವಾಗಿದೆ'
   },
   cron: {
     close: 'ಕ್ರಾನ್ ಮುಚ್ಚಿ',
@@ -1663,14 +1720,14 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       paused: 'ವಿರಾಮದಲ್ಲಿದೆ',
       disabled: 'ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ',
       error: 'ದೋಷ',
-      completed: 'ಪೂರ್ಣಗೊಂಡಿದೆ',
+      completed: 'ಪೂರ್ಣಗೊಂಡಿದೆ'
     },
     deliveryLabels: {
       local: 'ಈ ಡೆಸ್ಕ್ಟಾಪ್',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ಇಮೇಲ್',
+      email: 'ಇಮೇಲ್'
     },
     scheduleLabels: {
       daily: 'ದೈನಂದಿನ',
@@ -1679,7 +1736,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       monthly: 'ಮಾಸಿಕ',
       hourly: 'ಗಂಟೆಗೆ',
       'every-15-minutes': 'ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ',
-      custom: 'ಕಸ್ಟಮ್',
+      custom: 'ಕಸ್ಟಮ್'
     },
     scheduleHints: {
       daily: 'ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ 9:00 ಗಂಟೆಗೆ',
@@ -1688,7 +1745,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       monthly: 'ಪ್ರತಿ ತಿಂಗಳ ಮೊದಲ ದಿನ ಬೆಳಿಗ್ಗೆ 9:00 ಗಂಟೆಗೆ',
       hourly: 'ಪ್ರತಿ ಗಂಟೆಯ ಆರಂಭದಲ್ಲಿ',
       'every-15-minutes': 'ಪ್ರತಿ 15 ನಿಮಿಷಕ್ಕೆ',
-      custom: 'ಕ್ರಾನ್ ಸಿಂಟ್ಯಾಕ್ಸ್ ಅಥವಾ ಸಹಜ ಭಾಷೆ',
+      custom: 'ಕ್ರಾನ್ ಸಿಂಟ್ಯಾಕ್ಸ್ ಅಥವಾ ಸಹಜ ಭಾಷೆ'
     },
     days: {
       '0': 'ಭಾನುವಾರ',
@@ -1698,7 +1755,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       '4': 'ಗುರುವಾರ',
       '5': 'ಶುಕ್ರವಾರ',
       '6': 'ಶನಿವಾರ',
-      '7': 'ಭಾನುವಾರ',
+      '7': 'ಭಾನುವಾರ'
     },
     dayFallback: value => `ದಿನ ${value}`,
     everyDayAt: time => `ಪ್ರತಿದಿನ ${time} ಕ್ಕೆ`,
@@ -1708,7 +1765,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     topOfHour: 'ಪ್ರತಿ ಗಂಟೆಯ ಆರಂಭದಲ್ಲಿ',
     everyHourAt: minute => `ಪ್ರತಿ ಗಂಟೆಯು :${minute} ಕ್ಕೆ`,
     newCron: 'ಹೊಸ ಕ್ರಾನ್',
-    emptyDescNew: 'ಕ್ರಾನ್ ಅಭಿವ್ಯಕ್ತಿಯಲ್ಲಿ ಪ್ರಾಂಪ್ಟ್ ಅನ್ನು ಚಾಲನೆ ಮಾಡಲು ವೇಳಾಪಟ್ಟಿ ಮಾಡಿ. OpenAmer ಅದನ್ನು ಚಾಲನೆ ಮಾಡಿ ನೀವು ಆಯ್ಕೆಮಾಡುವ ಗುರಿಗೆ ಫಲಿತಾಂಶಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.',
+    emptyDescNew:
+      'ಕ್ರಾನ್ ಅಭಿವ್ಯಕ್ತಿಯಲ್ಲಿ ಪ್ರಾಂಪ್ಟ್ ಅನ್ನು ಚಾಲನೆ ಮಾಡಲು ವೇಳಾಪಟ್ಟಿ ಮಾಡಿ. OpenAmer ಅದನ್ನು ಚಾಲನೆ ಮಾಡಿ ನೀವು ಆಯ್ಕೆಮಾಡುವ ಗುರಿಗೆ ಫಲಿತಾಂಶಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.',
     emptyDescSearch: 'ವಿಶಾಲವಾದ ಹುಡುಕಾಟ ಪ್ರಶ್ನೆಯನ್ನು ಪ್ರಯತ್ನಿಸಿ.',
     emptyTitleNew: 'ಇನ್ನೂ ಯಾವುದೇ ವೇಳಾಪಟ್ಟಿಯ ಕೆಲಸಗಳಿಲ್ಲ',
     emptyTitleSearch: 'ಹೊಂದಾಣಿಕೆಗಳಿಲ್ಲ',
@@ -1745,7 +1803,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     editTitle: 'ಕ್ರಾನ್ ಕೆಲಸ ಸಂಪಾದಿಸಿ',
     createTitle: 'ಹೊಸ ಕ್ರಾನ್ ಕೆಲಸ',
     editDesc: 'ಸಮಯಸೂಚಿ, ಪ್ರಾಂಪ್ಟ್, ಅಥವಾ ವಿತರಣೆ ಗುರಿಯನ್ನು ನವೀಕರಿಸಿ. ಬದಲಾವಣೆಗಳು ಮುಂದಿನ ಚಾಲನೆಯಲ್ಲಿ ಅನ್ವಯಿಸುತ್ತವೆ.',
-    createDesc: 'ಪ್ರಾಂಪ್ಟ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಚಾಲನೆ ಮಾಡಲು ಸಮಯಸೂಚಿ ಮಾಡಿ. ಕ್ರಾನ್ ಸಂರಚನೆ ಅಥವಾ "ಪ್ರತಿ 15 ನಿಮಿಷ" ಎಂಬ ಸ್ವಾಭಾವಿಕ ವಾಕ್ಯವನ್ನು ಬಳಸಿ.',
+    createDesc:
+      'ಪ್ರಾಂಪ್ಟ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಚಾಲನೆ ಮಾಡಲು ಸಮಯಸೂಚಿ ಮಾಡಿ. ಕ್ರಾನ್ ಸಂರಚನೆ ಅಥವಾ "ಪ್ರತಿ 15 ನಿಮಿಷ" ಎಂಬ ಸ್ವಾಭಾವಿಕ ವಾಕ್ಯವನ್ನು ಬಳಸಿ.',
     nameLabel: 'ಹೆಸರು',
     namePlaceholder: 'ಬೆಳಗಿನ ಸಂಕ್ಷಿಪ್ತ',
     promptLabel: 'ಪ್ರಾಂಪ್ಟ್',
@@ -1767,7 +1826,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     createAction: 'ಕ್ರಾನ್ ರಚಿಸಿ',
     tabs: {
       jobs: 'ಕೆಲಸಗಳು',
-      blueprints: 'ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು',
+      blueprints: 'ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು'
     },
     blueprints: {
       tab: 'ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು',
@@ -1781,8 +1840,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       loading: 'ಬ್ಲೂಪ್ರಿಂಟ್ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
       failedLoad: 'ಬ್ಲೂಪ್ರಿಂಟ್ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ',
       emptyTitle: 'ಯಾವುದೇ ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು ಲಭ್ಯವಿಲ್ಲ',
-      emptyDesc: 'ಈ ಬ್ಯಾಕೆಂಡ್ನಲ್ಲಿ ಯಾವುದೇ ಆಟೊಮೇಷನ್ ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು ಲಭ್ಯವಿಲ್ಲ.',
-    },
+      emptyDesc: 'ಈ ಬ್ಯಾಕೆಂಡ್ನಲ್ಲಿ ಯಾವುದೇ ಆಟೊಮೇಷನ್ ಬ್ಲೂಪ್ರಿಂಟ್ಗಳು ಲಭ್ಯವಿಲ್ಲ.'
+    }
   },
   artifacts: {
     search: 'ಆರ್ಟಿಫ್ಯಾಕ್ಟ್ಗಳನ್ನು ಹುಡುಕಿ...',
@@ -1816,14 +1875,14 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     kindLink: 'ಲಿಂಕ್',
     chat: 'ಚಾಟ್',
     copyUrl: 'URL ನಕಲಿಸಿ',
-    copyPath: 'ಮಾರ್ಗ ನಕಲಿಸಿ',
+    copyPath: 'ಮಾರ್ಗ ನಕಲಿಸಿ'
   },
   sidebar: {
     nav: {
       'new-session': 'ಹೊಸ ಸೆಷನ್',
       skills: 'ಸಾಮರ್ಥ್ಯಗಳು',
       messaging: 'ಸಂದೇಶ',
-      artifacts: 'ಅವಶೇಷಗಳು',
+      artifacts: 'ಅವಶೇಷಗಳು'
     },
     searchAria: 'ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ',
     searchPlaceholder: 'ಸೆಷನ್‌ಗಳನ್ನು ಹುಡುಕಿ…',
@@ -1855,7 +1914,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       namePlaceholder: 'ಉದಾ. Skunkworks',
       foldersLabel: 'ಫೋಲ್ಡರ್‌ಗಳು',
       ideaLabel: 'ಐಡಿಯಾ',
-      ideaPlaceholder: "ಈ ಯೋಜನೆ ಏನನ್ನು ಕುರಿತು? (IDEA.md ಗೆ ಉಳಿಸಲಾಗಿದೆ)",
+      ideaPlaceholder: 'ಈ ಯೋಜನೆ ಏನನ್ನು ಕುರಿತು? (IDEA.md ಗೆ ಉಳಿಸಲಾಗಿದೆ)',
       ideaGenerate: 'ಐಡಿಯಾ ರಚಿಸಿ',
       ideaGenerating: 'ರಚಿಸಲಾಗುತ್ತಿದೆ…',
       ideaShuffle: 'ಟೆಂಪ್ಲೇಟುಗಳನ್ನು ಮಿಶ್ರಣಿಸಿ',
@@ -1875,8 +1934,10 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       copyPath: 'ಪಥವನ್ನು ನಕಲಿಸಿ',
       removeFromSidebar: 'ಸೈಡ್ಬಾರ್‌ನಿಂದ ಮರೆಮಾಡಿ',
       createFailed: 'ಯೋಜನೆಯನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
-      staleBackend: 'OpenAmer ಬ್ಯಾಕೆಂಡ್ ಅನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಿ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳನ್ನು ರಚಿಸಿ — ನಿಮ್ಮ ಬ್ಯಾಕೆಂಡ್ ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್‌ಗಿಂತ ಹಳೆಯದು (ಸೆಟ್ಟಿಂಗ್ಸ್ → ಅಪ್ಡೇಟ್‌ಗಳು → ಬ್ಯಾಕೆಂಡ್).',
-      deleteConfirm: 'ಇದು OpenAmer ನಿಂದ ಉಳಿಸಿದ ಪ್ರಾಜೆಕ್ಟ್ ಅನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಫೈಲ್‌ಗಳು, git ರೆಪೊಗಳು, ಮತ್ತು ವರ್ಕ್‌ಟ್ರೀಗಳು ಅಚಲವಾಗಿರುತ್ತವೆ.',
+      staleBackend:
+        'OpenAmer ಬ್ಯಾಕೆಂಡ್ ಅನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಿ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳನ್ನು ರಚಿಸಿ — ನಿಮ್ಮ ಬ್ಯಾಕೆಂಡ್ ಈ ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್‌ಗಿಂತ ಹಳೆಯದು (ಸೆಟ್ಟಿಂಗ್ಸ್ → ಅಪ್ಡೇಟ್‌ಗಳು → ಬ್ಯಾಕೆಂಡ್).',
+      deleteConfirm:
+        'ಇದು OpenAmer ನಿಂದ ಉಳಿಸಿದ ಪ್ರಾಜೆಕ್ಟ್ ಅನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಫೈಲ್‌ಗಳು, git ರೆಪೊಗಳು, ಮತ್ತು ವರ್ಕ್‌ಟ್ರೀಗಳು ಅಚಲವಾಗಿರುತ್ತವೆ.',
       startWork: 'ಹೊಸ ವರ್ಕ್‌ಟ್ರೀ',
       newWorktreeTitle: 'ಹೊಸ ವರ್ಕ್‌ಟ್ರೀ',
       newWorktreeDesc: 'ಈ ವರ್ಕ್‌ಟ್ರೀಗೆ ಶಾಖೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.',
@@ -1897,13 +1958,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       noBranches: 'ಶಾಖೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ',
       removeWorktree: 'ವರ್ಕ್‌ಟ್ರೀ ತೆಗೆದುಹಾಕಿ',
       removeWorktreeFailed: 'ವರ್ಕ್‌ಟ್ರೀ ತೆಗೆದುಹಾಕಲು ಸಾಧ್ಯವಿಲ್ಲ (ಕಮಿಟ್ ಮಾಡದ ಬದಲಾವಣೆಗಳು?)',
-      removeWorktreeConfirm: 'git ನಿಂದ ತೆಗೆದುಹಾಕಿ (ವರ್ಕ್‌ಟ್ರೀ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅಳಿಸುತ್ತದೆ; ಶಾಖೆ ಉಳಿಯುತ್ತದೆ), ಅಥವಾ ಬದಿಯ ಪಟ್ಟಿಯಿಂದ ಲೇನ್ ಅನ್ನು ಮರೆಮಾಡಿ ಮತ್ತು ವರ್ಕ್‌ಟ್ರೀ ಅನ್ನು ಡಿಸ್ಕ್‌ನಲ್ಲಿ ಬಿಡಿ.',
-      removeWorktreeDirty: 'ಈ ವರ್ಕ್‌ಟ್ರೀಗೆ ಕಮಿಟ್ ಮಾಡದ ಬದಲಾವಣೆಗಳಿವೆ. ಬಲವಂತವಾಗಿ ತೆಗೆದುಹಾಕಿ (ಅವುಗಳನ್ನು ತಿರಸ್ಕರಿಸುತ್ತದೆ), ಅಥವಾ ಲೇನ್ ಅನ್ನು ಮರೆಮಾಡಿ ಮತ್ತು ಡಿಸ್ಕ್‌ನಲ್ಲಿ ಉಳಿಸಿ.',
+      removeWorktreeConfirm:
+        'git ನಿಂದ ತೆಗೆದುಹಾಕಿ (ವರ್ಕ್‌ಟ್ರೀ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅಳಿಸುತ್ತದೆ; ಶಾಖೆ ಉಳಿಯುತ್ತದೆ), ಅಥವಾ ಬದಿಯ ಪಟ್ಟಿಯಿಂದ ಲೇನ್ ಅನ್ನು ಮರೆಮಾಡಿ ಮತ್ತು ವರ್ಕ್‌ಟ್ರೀ ಅನ್ನು ಡಿಸ್ಕ್‌ನಲ್ಲಿ ಬಿಡಿ.',
+      removeWorktreeDirty:
+        'ಈ ವರ್ಕ್‌ಟ್ರೀಗೆ ಕಮಿಟ್ ಮಾಡದ ಬದಲಾವಣೆಗಳಿವೆ. ಬಲವಂತವಾಗಿ ತೆಗೆದುಹಾಕಿ (ಅವುಗಳನ್ನು ತಿರಸ್ಕರಿಸುತ್ತದೆ), ಅಥವಾ ಲೇನ್ ಅನ್ನು ಮರೆಮಾಡಿ ಮತ್ತು ಡಿಸ್ಕ್‌ನಲ್ಲಿ ಉಳಿಸಿ.',
       forceRemove: 'ಬಲವಂತವಾಗಿ ತೆಗೆದುಹಾಕಿ',
       enter: label => `${label} ತೆರೆಯಿರಿ`,
       reorder: label => `${label} ಮರುಕ್ರಮಗೊಳಿಸಿ`,
       toggle: label => `${label} ಸೆಷನ್‌ಗಳನ್ನು ತೋರಿಸಿ ಅಥವಾ ಮರೆಮಾಡಿ`,
-      back: 'ಎಲ್ಲಾ ಯೋಜನೆಗಳು',
+      back: 'ಎಲ್ಲಾ ಯೋಜನೆಗಳು'
     },
     newSessionIn: label => `${label} ನಲ್ಲಿ ಹೊಸ ಸೆಷನ್`,
     showMoreIn: (count, label) => `ಇನ್ನಷ್ಟು ${count} ಅನ್ನು ${label} ನಲ್ಲಿ ತೋರಿಸಿ`,
@@ -1941,15 +2004,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       ageNow: 'ಈಗ',
       ageDay: 'ದಿ',
       ageHour: 'ಗಂ',
-      ageMin: 'ನಿಮಿ',
+      ageMin: 'ನಿಮಿ'
     },
     dateDivider: {
       today: 'ಇಂದು ಮುಂಚೆ',
       yesterday: 'ನಿನ್ನೆ',
       thisWeek: 'ಈ ವಾರ ಮುಂಚೆ',
       lastWeek: 'ಕಳೆದ ವಾರ',
-      thisMonth: 'ಈ ತಿಂಗಳು ಮುಂಚೆ',
-    },
+      thisMonth: 'ಈ ತಿಂಗಳು ಮುಂಚೆ'
+    }
   },
   composer: {
     message: 'ಸಂದೇಶ',
@@ -1960,20 +2023,20 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     newSessionPlaceholders: [
       'ನಾವು ಏನು ನಿರ್ಮಿಸೋಣ?',
       'OpenAmer ಗೆ ಕೆಲಸ ನೀಡಿ',
-      "ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲಿ ಏನಿದೆ?",
+      'ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲಿ ಏನಿದೆ?',
       'ನಿಮಗೆ ಬೇಕಾದುದನ್ನು ವಿವರಿಸಿ',
       'ನಾವು ಏನನ್ನು ಕೈಗೆತ್ತಿಕೊಳ್ಳೋಣ?',
       'ಏನಾದರೂ ಕೇಳಿ',
-      'ಗುರಿಯೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿ',
+      'ಗುರಿಯೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿ'
     ],
     followUpPlaceholders: [
       'ಮುಂದಿನ ಸಂದೇಶ ಕಳುಹಿಸಿ',
       'ಹೆಚ್ಚಿನ ಸಂದರ್ಭ ಸೇರಿಸಿ',
       'ವಿನಂತಿಯನ್ನು ಪರಿಷ್ಕರಿಸಿ',
-      "ಮುಂದೇನು?",
+      'ಮುಂದೇನು?',
       'ಮುಂದುವರಿಸಿ',
       'ಇನ್ನಷ್ಟು ಮುಂದಕ್ಕೆ ಕೊಂಡೊಯ್ಯಿರಿ',
-      'ಹೊಂದಿಸಿ ಅಥವಾ ಮುಂದುವರಿಸಿ',
+      'ಹೊಂದಿಸಿ ಅಥವಾ ಮುಂದುವರಿಸಿ'
     ],
     startVoice: 'ಧ್ವನಿ ಸಂಭಾಷಣೆ ಪ್ರಾರಂಭಿಸಿ',
     queueMessage: 'ಸಂದೇಶವನ್ನು ಸಾಲಿನಲ್ಲಿ ಹಾಕಿ',
@@ -2009,7 +2072,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       '/resume': 'ಹಿಂದಿನ ಸೆಷನ್ ಮುಂದುವರಿಸಿ',
       '/details': 'ಟ್ರಾನ್ಸ್ಕ್ರಿಪ್ಟ್ ವಿವರ ಮಟ್ಟ ನಿಯಂತ್ರಿಸಿ',
       '/copy': 'ಆಯ್ಕೆ ಅಥವಾ ಕೊನೆಯ ಸಹಾಯಕ ಸಂದೇಶ ನಕಲಿಸಿ',
-      '/quit': 'openamer ನಿಂದ ನಿರ್ಗಮಿಸಿ',
+      '/quit': 'openamer ನಿಂದ ನಿರ್ಗಮಿಸಿ'
     },
     hotkeyDescs: {
       'composer.mention': 'ಫೈಲ್ಗಳು, ಫೋಲ್ಡರ್ಗಳು, URLಗಳು, git ಅನ್ನು ಉಲ್ಲೇಖಿಸಿ',
@@ -2019,7 +2082,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       'composer.sendQueued': 'ಮುಂದಿನ ಕಾಯ್ದಿರಿಸಿದ ತಿರುವನ್ನು ಕಳುಹಿಸಿ',
       'keybinds.openPanel': 'ಎಲ್ಲಾ ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‌ಕಟ್‌ಗಳು',
       'composer.cancel': 'ಪಾಪ್‌ಅವರ್ ಮುಚ್ಚಿ · ರನ್ ರದ್ದುಮಾಡಿ',
-      'composer.history': 'ಪಾಪ್‌ಅವರ್ / ಇತಿಹಾಸವನ್ನು ಚಕ್ರಿಸಿ',
+      'composer.history': 'ಪಾಪ್‌ಅವರ್ / ಇತಿಹಾಸವನ್ನು ಚಕ್ರಿಸಿ'
     },
     attachUrlTitle: 'URL ಅನ್ನು ಜೋಡಿಸಿ',
     attachUrlDesc: 'OpenAmer ಪುಟವನ್ನು ಪಡೆದು ಈ ತಿರುವಿನ ಸಂಧರ್ಭವಾಗಿ ಸೇರಿಸುತ್ತದೆ.',
@@ -2070,19 +2133,19 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       codeReview: {
         label: 'ಕೋಡ್ ವಿಮರ್ಶೆ',
         description: 'ಬದಲಾವಣೆಯನ್ನು ಪರಿಶೀಲಿಸಿ, ಹಿಂದುಳಿದ ಪ್ರಕರಣಗಳು ಮತ್ತು ಪರೀಕ್ಷೆಗಳು',
-        text: 'ದೋಷಗಳು, ಹಿಂದುಳಿದ ಪ್ರಕರಣಗಳು ಮತ್ತು ಪರೀಕ್ಷೆಗಳಿಗೆ ಪರಿಶೀಲಿಸಿ',
+        text: 'ದೋಷಗಳು, ಹಿಂದುಳಿದ ಪ್ರಕರಣಗಳು ಮತ್ತು ಪರೀಕ್ಷೆಗಳಿಗೆ ಪರಿಶೀಲಿಸಿ'
       },
       implementationPlan: {
         label: 'ಅಮಲು ಯೋಜನೆ',
         description: 'ಕೋಡ್ ಮುನ್ನ ವಿಧಾನ ರೂಪಿಸಿ, ಡಿಫ್ ಕೇಂದ್ರೀಕೃತ',
-        text: 'ಬದಲಾವಣೆ ಮುನ್ನ ಸಂಕ್ಷಿಪ್ತ ಯೋಜನೆ ಮಾಡಿ',
+        text: 'ಬದಲಾವಣೆ ಮುನ್ನ ಸಂಕ್ಷಿಪ್ತ ಯೋಜನೆ ಮಾಡಿ'
       },
       explainThis: {
         label: 'ಇದನ್ನು ವಿವರಿಸಿ',
         description: 'ಆಯ್ದ ಕೋಡ್ ಕಾರ್ಯವಿಧಾನ ಮತ್ತು ಮುಖ್ಯ ಫೈಲ್‌ಗಳು',
-        text: 'ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಮತ್ತು ಮುಖ್ಯ ಫೈಲ್‌ಗಳು',
-      },
-    },
+        text: 'ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಮತ್ತು ಮುಖ್ಯ ಫೈಲ್‌ಗಳು'
+      }
+    }
   },
   statusStack: {
     agents: 'ಏಜೆಂಟ್‌ಗಳು',
@@ -2112,8 +2175,10 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       viewAsList: 'ಪಟ್ಟಿಯಾಗಿ ವೀಕ್ಷಿಸಿ',
       revert: 'ಹಿಂತಿರುಗಿಸಿ',
       revertAll: 'ಎಲ್ಲವನ್ನೂ ಹಿಂತಿರುಗಿಸಿ',
-      revertConfirm: 'ಈ ಫೈಲ್‌ನ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ ಮತ್ತು ಅದನ್ನು ಕಮಿಟ್ ಮಾಡಿದ ಸ್ಥಿತಿಗೆ ಮರುಸ್ಥಾಪಿಸುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.',
-      revertAllConfirm: 'ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ ಮತ್ತು ಫೈಲ್‌ಗಳನ್ನು ಕಮಿಟ್ ಮಾಡಿದ ಸ್ಥಿತಿಗೆ ಮರುಸ್ಥಾಪಿಸುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.',
+      revertConfirm:
+        'ಈ ಫೈಲ್‌ನ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ ಮತ್ತು ಅದನ್ನು ಕಮಿಟ್ ಮಾಡಿದ ಸ್ಥಿತಿಗೆ ಮರುಸ್ಥಾಪಿಸುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.',
+      revertAllConfirm:
+        'ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ ಮತ್ತು ಫೈಲ್‌ಗಳನ್ನು ಕಮಿಟ್ ಮಾಡಿದ ಸ್ಥಿತಿಗೆ ಮರುಸ್ಥಾಪಿಸುವುದೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.',
       staged: 'ಸ್ಟೇಜ್ ಮಾಡಲಾಗಿದೆ',
       noChanges: 'ಬದಲಾವಣೆಗಳಿಲ್ಲ',
       notRepo: 'ಇದು git ರೆಪೊಸಿಟರಿ ಅಲ್ಲ',
@@ -2130,13 +2195,14 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       openPr: 'PR ತೆರೆಯಿರಿ',
       ghMissing: 'PRಗಳನ್ನು ತೆರೆಯಲು GitHub CLI (gh) ಸ್ಥಾಪಿಸಿ ಮತ್ತು ಸೈನ್ ಇನ್ ಮಾಡಿ',
       agentShip: 'PR ತೆರೆಯಲು OpenAmer ಅನ್ನು ಕೇಳಿ',
-      agentShipPrompt: 'ಪ್ರಸ್ತುತ ಬದಲಾವಣೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಸ್ಪಷ್ಟವಾದ conventional-commit ಸಂದೇಶದೊಂದಿಗೆ ಅವುಗಳನ್ನು ಕಮಿಟ್ ಮಾಡಿ, ಬ್ರಾಂಚ್ ಅನ್ನು ಪುಶ್ ಮಾಡಿ ಮತ್ತು ಪುಲ್ ರಿಕ್ವೆಸ್ಟ್ ತೆರೆಯಿರಿ.',
+      agentShipPrompt:
+        'ಪ್ರಸ್ತುತ ಬದಲಾವಣೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಸ್ಪಷ್ಟವಾದ conventional-commit ಸಂದೇಶದೊಂದಿಗೆ ಅವುಗಳನ್ನು ಕಮಿಟ್ ಮಾಡಿ, ಬ್ರಾಂಚ್ ಅನ್ನು ಪುಶ್ ಮಾಡಿ ಮತ್ತು ಪುಲ್ ರಿಕ್ವೆಸ್ಟ್ ತೆರೆಯಿರಿ.',
       newBranch: 'ಹೊಸ ಬ್ರಾಂಚ್',
       branchOffFrom: base => `${base} ನಿಂದ ಹೊಸ ಶಾಖೆ (branch)`,
       switchTo: branch => `${branch} ಗೆ ಬದಲಾಯಿಸಿ`,
       switchFailed: branch => `${branch} ಗೆ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ`,
-      worktrees: 'ವರ್ಕ್ಟ್ರೀಸ್',
-    },
+      worktrees: 'ವರ್ಕ್ಟ್ರೀಸ್'
+    }
   },
   updates: {
     stages: {
@@ -2151,7 +2217,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       done: 'ನವೀಕರಣ ಪೂರ್ಣಗೊಂಡಿದೆ',
       manual: 'ನಿಮ್ಮ ಟರ್ಮಿನಲ್‌ನಿಂದ ನವೀಕರಿಸಿ',
       guiSkew: 'ಡೆಸ್ಕ್‌ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ನವೀಕರಿಸಿ',
-      error: 'ನವೀಕರಣ ವಿರಾಮಗೊಂಡಿದೆ',
+      error: 'ನವೀಕರಣ ವಿರಾಮಗೊಂಡಿದೆ'
     },
     checking: 'ನವೀಕರಣಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ…',
     checkFailedTitle: 'ನವೀಕರಣಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
@@ -2171,15 +2237,19 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     maybeLater: 'ಬಹುಶಃ ನಂತರ',
     moreChanges: count => `+ ${count} ಇನ್ನಷ್ಟು ಬದಲಾವಣೆ${count === 1 ? '' : 's'} ಸೇರಿಸಲಾಗಿದೆ.`,
     manualTitle: 'ನಿಮ್ಮ ಟರ್ಮಿನಲ್ನಿಂದ ನವೀಕರಿಸಿ',
-    manualBody: 'ನೀವು OpenAmer ಅನ್ನು ಕಮಾಂಡ್ ಲೈನ್ನಿಂದ ಸ್ಥಾಪಿಸಿದ್ದೀರಿ, ಆದ್ದರಿಂದ ನವೀಕರಣಗಳು ಅಲ್ಲಿಯೂ ನಡೆಯುತ್ತವೆ. ಇದನ್ನು ನಿಮ್ಮ ಟರ್ಮಿನಲ್ಗೆ ಅಂಟಿಸಿ:',
+    manualBody:
+      'ನೀವು OpenAmer ಅನ್ನು ಕಮಾಂಡ್ ಲೈನ್ನಿಂದ ಸ್ಥಾಪಿಸಿದ್ದೀರಿ, ಆದ್ದರಿಂದ ನವೀಕರಣಗಳು ಅಲ್ಲಿಯೂ ನಡೆಯುತ್ತವೆ. ಇದನ್ನು ನಿಮ್ಮ ಟರ್ಮಿನಲ್ಗೆ ಅಂಟಿಸಿ:',
     manualPickedUp: 'ನೀವು ಮುಂದಿನ ಬಾರಿ OpenAmer ಅನ್ನು ಪ್ರಾರಂಭಿಸಿದಾಗ ಅದು ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ.',
     guiSkewTitle: 'ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ನವೀಕರಿಸಿ',
-    guiSkewBody: 'ಬ್ಯಾಕೆಂಡ್ ನವೀಕರಿಸಲಾಗಿದೆ, ಆದರೆ ಈ ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಪ್ಯಾಕೇಜ್ ಬದಲಾಗಿಲ್ಲ. ಹೊಂದಿಕೆಯಾಗಲು OpenAmer ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ (ನಿಮ್ಮ AppImage / .deb / .rpm) ನವೀಕರಿಸಿ ಅಥವಾ ಮರುಸ್ಥಾಪಿಸಿ.',
+    guiSkewBody:
+      'ಬ್ಯಾಕೆಂಡ್ ನವೀಕರಿಸಲಾಗಿದೆ, ಆದರೆ ಈ ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ ಪ್ಯಾಕೇಜ್ ಬದಲಾಗಿಲ್ಲ. ಹೊಂದಿಕೆಯಾಗಲು OpenAmer ಡೆಸ್ಕ್ಟಾಪ್ ಅಪ್ಲಿಕೇಶನ್ (ನಿಮ್ಮ AppImage / .deb / .rpm) ನವೀಕರಿಸಿ ಅಥವಾ ಮರುಸ್ಥಾಪಿಸಿ.',
     copy: 'ನಕಲಿಸಿ',
     copied: 'ನಕಲಿಸಲಾಗಿದೆ',
     done: 'ಮುಗಿದಿದೆ',
-    applyingBody: 'OpenAmer ನವೀಕರಣಕಾರನು ತನ್ನದೇ ವಿಂಡೋದಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಮತ್ತು ಮುಗಿದ ನಂತರ OpenAmer ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮತ್ತೆ ತೆರೆಯುತ್ತದೆ. ನವೀಕರಣ ನಡೆಯುತ್ತಿರುವಾಗ ದಯವಿಟ್ಟು ನೀವೇ OpenAmer ಅನ್ನು ಮತ್ತೆ ತೆರೆಯಬೇಡಿ.',
-    applyingBodyBackend: 'ರಿಮೋಟ್ ಬ್ಯಾಕೆಂಡ್ ನವೀಕರಣವನ್ನು ಅನ್ವಯಿಸುತ್ತಿದೆ ಮತ್ತು ಮರುಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ಅದು ಮತ್ತೆ ಬಂದಾಗ OpenAmer ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಸಂಪರ್ಕಗೊಳ್ಳುತ್ತದೆ.',
+    applyingBody:
+      'OpenAmer ನವೀಕರಣಕಾರನು ತನ್ನದೇ ವಿಂಡೋದಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಮತ್ತು ಮುಗಿದ ನಂತರ OpenAmer ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮತ್ತೆ ತೆರೆಯುತ್ತದೆ. ನವೀಕರಣ ನಡೆಯುತ್ತಿರುವಾಗ ದಯವಿಟ್ಟು ನೀವೇ OpenAmer ಅನ್ನು ಮತ್ತೆ ತೆರೆಯಬೇಡಿ.',
+    applyingBodyBackend:
+      'ರಿಮೋಟ್ ಬ್ಯಾಕೆಂಡ್ ನವೀಕರಣವನ್ನು ಅನ್ವಯಿಸುತ್ತಿದೆ ಮತ್ತು ಮರುಪ್ರಾರಂಭವಾಗುತ್ತದೆ. ಅದು ಮತ್ತೆ ಬಂದಾಗ OpenAmer ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಸಂಪರ್ಕಗೊಳ್ಳುತ್ತದೆ.',
     applyingClose: 'ನವೀಕರಣ ನಡೆಯುವಾಗ ಈ ವಿಂಡೋ ಮುಚ್ಚುತ್ತದೆ, ನಂತರ OpenAmer ತಾನೇ ಮತ್ತೆ ತೆರೆಯುತ್ತದೆ.',
     errorTitle: 'ಅಪ್ಡೇಟ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲ',
     errorBody: 'ಚಿಂತೆ ಬೇಡ — ಏನೂ ಕಳೆದುಹೋಗಿಲ್ಲ. ಈಗ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು.',
@@ -2190,12 +2260,13 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       restarting: 'ಅಪ್ಡೇಟ್ ಲೋಡ್ ಮಾಡಲು ಬ್ಯಾಕೆಂಡ್ ಮರುಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ…',
       notAvailable: 'ಈ ಬ್ಯಾಕೆಂಡ್ಗೆ ಅಪ್ಡೇಟ್ ಲಭ್ಯವಿಲ್ಲ.',
       failed: 'ಬ್ಯಾಕೆಂಡ್ ಅಪ್ಡೇಟ್ ವಿಫಲವಾಗಿದೆ.',
-      noReturn: 'ಬ್ಯಾಕೆಂಡ್ ಮತ್ತೆ ಆನ್ಲೈನ್ಗೆ ಬಂದಿಲ್ಲ. ಅಪ್ಡೇಟ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲದಿರಬಹುದು — ಬ್ಯಾಕೆಂಡ್ ಹೋಸ್ಟ್ ಪರಿಶೀಲಿಸಿ.',
+      noReturn: 'ಬ್ಯಾಕೆಂಡ್ ಮತ್ತೆ ಆನ್ಲೈನ್ಗೆ ಬಂದಿಲ್ಲ. ಅಪ್ಡೇಟ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲದಿರಬಹುದು — ಬ್ಯಾಕೆಂಡ್ ಹೋಸ್ಟ್ ಪರಿಶೀಲಿಸಿ.'
     },
     appErrors: {
-      updateLocked: 'ಅಪ್ಡೇಟ್ ರದ್ದಾಗಿದೆ: ಇನ್ನೊಂದು OpenAmer ವಿಂಡೋ ಅಥವಾ openamer ಚಾಲನೆಯಲ್ಲಿರುವ ಟರ್ಮಿನಲ್ ಈ ಇನ್ಸ್ಟಾಲ್ ಅನ್ನು ತೆರೆದಿಟ್ಟಿದೆ. ಅದನ್ನು ಮುಚ್ಚಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
-      updateFailed: 'ಅಪ್ಡೇಟ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲ. ಚಿಂತೆ ಬೇಡ — ಏನೂ ಕಳೆದುಹೋಗಿಲ್ಲ. ಈಗ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು.',
-    },
+      updateLocked:
+        'ಅಪ್ಡೇಟ್ ರದ್ದಾಗಿದೆ: ಇನ್ನೊಂದು OpenAmer ವಿಂಡೋ ಅಥವಾ openamer ಚಾಲನೆಯಲ್ಲಿರುವ ಟರ್ಮಿನಲ್ ಈ ಇನ್ಸ್ಟಾಲ್ ಅನ್ನು ತೆರೆದಿಟ್ಟಿದೆ. ಅದನ್ನು ಮುಚ್ಚಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+      updateFailed: 'ಅಪ್ಡೇಟ್ ಪೂರ್ಣಗೊಂಡಿಲ್ಲ. ಚಿಂತೆ ಬೇಡ — ಏನೂ ಕಳೆದುಹೋಗಿಲ್ಲ. ಈಗ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು.'
+    }
   },
   install: {
     stageStates: {
@@ -2203,25 +2274,30 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       running: 'ಇನ್ಸ್ಟಾಲ್ ಆಗುತ್ತಿದೆ',
       succeeded: 'ಮುಗಿದಿದೆ',
       skipped: 'ಬಿಟ್ಟುಬಿಡಲಾಗಿದೆ',
-      failed: 'ವಿಫಲವಾಗಿದೆ',
+      failed: 'ವಿಫಲವಾಗಿದೆ'
     },
     oneTimeTitle: 'OpenAmer ಗೆ ಒಮ್ಮೆ ಇನ್ಸ್ಟಾಲ್ ಮಾಡಬೇಕು',
-    unsupportedDesc: platform => `ಸ್ವಯಂಚಾಲಿತ ಮೊದಲ-ಲಾಂಚ್ ಇನ್‌ಸ್ಟಾಲ್ ಇನ್ನೂ ${platform} ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ. ಟರ್ಮಿನಲ್ ತೆರೆಯಿರಿ ಮತ್ತು ಕೆಳಗಿನ ಕಮಾಂಡ್ ಅನ್ನು ರನ್ ಮಾಡಿ, ನಂತರ ಈ ಆ್ಯಪ್ ಅನ್ನು ಮರುಲಾಂಚ್ ಮಾಡಿ. ಮುಂದಿನ ಲಾಂಚ್‌ಗಳು ಈ ಹಂತವನ್ನು 건너ಸುತ್ತವೆ.`,
+    unsupportedDesc: platform =>
+      `ಸ್ವಯಂಚಾಲಿತ ಮೊದಲ-ಲಾಂಚ್ ಇನ್‌ಸ್ಟಾಲ್ ಇನ್ನೂ ${platform} ನಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ. ಟರ್ಮಿನಲ್ ತೆರೆಯಿರಿ ಮತ್ತು ಕೆಳಗಿನ ಕಮಾಂಡ್ ಅನ್ನು ರನ್ ಮಾಡಿ, ನಂತರ ಈ ಆ್ಯಪ್ ಅನ್ನು ಮರುಲಾಂಚ್ ಮಾಡಿ. ಮುಂದಿನ ಲಾಂಚ್‌ಗಳು ಈ ಹಂತವನ್ನು 건너ಸುತ್ತವೆ.`,
     installCommand: 'ಇನ್ಸ್ಟಾಲ್ ಕಮಾಂಡ್',
     copyCommand: 'ಕಮಾಂಡ್ ನಕಲಿಸಿ',
     viewDocs: 'ಇನ್ಸ್ಟಾಲ್ ಡಾಕ್ಸ್ ವೀಕ್ಷಿಸಿ',
     installTo: 'ಇಲ್ಲಿ ಸ್ಥಾಪಿಸಲಾಗುತ್ತದೆ',
     retryAfterRun: 'ನಾನು ಅದನ್ನು ಚಲಾಯಿಸಿದ್ದೇನೆ -- ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ',
     setupChoiceTitle: 'OpenAmer Desktop ಸೆಟಪ್ ಮಾಡಿ',
-    setupChoiceDesc: 'ನೀವು ಈಗಾಗಲೇ ನಡೆಸುತ್ತಿರುವ OpenAmer ಗೇಟ್ವೇಗೆ ಈ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ, ಅಥವಾ ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ OpenAmer ಅನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಸ್ಥಾಪಿಸಿ.',
+    setupChoiceDesc:
+      'ನೀವು ಈಗಾಗಲೇ ನಡೆಸುತ್ತಿರುವ OpenAmer ಗೇಟ್ವೇಗೆ ಈ ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ, ಅಥವಾ ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ OpenAmer ಅನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಸ್ಥಾಪಿಸಿ.',
     connectExistingTitle: 'ಇರುವ OpenAmer ಗೆ ಸಂಪರ್ಕಿಸಿ',
     connectExistingShort: 'ಇರುವುದನ್ನು ಸಂಪರ್ಕಿಸಿ',
-    connectExistingDesc: 'ಸೆಷನ್ ಟೋಕನ್ ಅಥವಾ ಬ್ರೌಸರ್ ಸೈನ್-ಇನ್ ಜೊತೆಗೆ ರಿಮೋಟ್ ಬ್ಯಾಕೆಂಡ್ ಬಳಸಿ. ಯಾವುದೇ ಸ್ಥಳೀಯ ಸ್ಥಾಪನೆ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.',
+    connectExistingDesc:
+      'ಸೆಷನ್ ಟೋಕನ್ ಅಥವಾ ಬ್ರೌಸರ್ ಸೈನ್-ಇನ್ ಜೊತೆಗೆ ರಿಮೋಟ್ ಬ್ಯಾಕೆಂಡ್ ಬಳಸಿ. ಯಾವುದೇ ಸ್ಥಳೀಯ ಸ್ಥಾಪನೆ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.',
     installLocalTitle: 'OpenAmer ಅನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಸ್ಥಾಪಿಸಿ',
     installLocalDesc: 'OpenAmer ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ, Python ಪರಿಸರ ರಚಿಸಿ, ಮತ್ತು ಬ್ಯಾಕೆಂಡ್ ಚಾಲನೆ ಮಾಡಿ.',
-    localStartUnavailable: 'ಸ್ಥಳೀಯ ಸ್ಥಾಪನೆ ಆರಂಭವಾಗಲಿಲ್ಲ. OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+    localStartUnavailable:
+      'ಸ್ಥಳೀಯ ಸ್ಥಾಪನೆ ಆರಂಭವಾಗಲಿಲ್ಲ. OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
     remoteSetupTitle: 'ಇರುವ OpenAmer ಗೆ ಸಂಪರ್ಕಿಸಿ',
-    remoteSetupDesc: 'ನಿಮ್ಮ ಗೇಟ್‌ವೇ URL ನಮೂದಿಸಿ. OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಟೋಕನ್ ಅಥವಾ ಬ್ರೌಸರ್ ಸೈನ್‑ಇನ್ ಅಗತ್ಯವಿದೆಯೇ ಎಂದು ಪತ್ತೆಹಚ್ಚುತ್ತದೆ.',
+    remoteSetupDesc:
+      'ನಿಮ್ಮ ಗೇಟ್‌ವೇ URL ನಮೂದಿಸಿ. OpenAmer ಡೆಸ್ಕ್‌ಟಾಪ್ ಟೋಕನ್ ಅಥವಾ ಬ್ರೌಸರ್ ಸೈನ್‑ಇನ್ ಅಗತ್ಯವಿದೆಯೇ ಎಂದು ಪತ್ತೆಹಚ್ಚುತ್ತದೆ.',
     remoteUrlTitle: 'ಗೇಟ್‌ವೇ URL',
     remoteUrlDesc: 'OpenAmer ಗೇಟ್‌ವೇಯ ಮೂಲ URL ಅನ್ನು ಬಳಸಿ, ದೂರಸ್ಥವಾಗಿದ್ದರೆ https:// ಸೇರಿಸಿ.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2248,8 +2324,10 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     failedTitle: 'ಸ್ಥಾಪನೆ ವಿಫಲವಾಯಿತು',
     settingUpTitle: 'OpenAmer ಏಜೆಂಟ್ ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ',
     finishingTitle: 'ಅಂತಿಮಗೊಳಿಸಲಾಗುತ್ತಿದೆ',
-    failedDesc: 'ಸ್ಥಾಪನೆಯ ಒಂದು ಹಂತ ವಿಫಲವಾಗಿದೆ. ವಿಂಡೋಸ್‌ನಲ್ಲಿ, ಮತ್ತೊಂದು OpenAmer CLI ಅಥವಾ ಡೆಸ್ಕ್‌ಟಾಪ್ ಉದಾಹರಣೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದರೆ ಇದು ಸಂಭವಿಸಬಹುದು. ಯಾವುದೇ ಕಾರ್ಯನಿರ್ವಹಿಸುವ OpenAmer ಉದಾಹರಣೆಗಳನ್ನು ನಿಲ್ಲಿಸಿ, ನಂತರ ಮರುಪ್ರಯತ್ನಿಸಿ. ಕೆಳಗಿನ ವಿವರಗಳು ಅಥವಾ ಡೆಸ್ಕ್‌ಟಾಪ್ ಲಾಗ್‌ನಲ್ಲಿ ಸಂಪೂರ್ಣ ವರ್ಣನೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
-    activeDesc: 'ಇದು ಒಮ್ಮೆ ಮಾತ್ರದ ಸೆಟಪ್. OpenAmer ಸ್ಥಾಪಕ ಅವಲಂಬನೆಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುತ್ತಿದೆ ಮತ್ತು ನಿಮ್ಮ ಯಂತ್ರವನ್ನು ಸಂರಚಿಸುತ್ತಿದೆ. ಮುಂದಿನ ಪ್ರಾರಂಭಗಳು ಈ ಹಂತವನ್ನು ಬಿಟ್ಟುಹೋಗುತ್ತವೆ.',
+    failedDesc:
+      'ಸ್ಥಾಪನೆಯ ಒಂದು ಹಂತ ವಿಫಲವಾಗಿದೆ. ವಿಂಡೋಸ್‌ನಲ್ಲಿ, ಮತ್ತೊಂದು OpenAmer CLI ಅಥವಾ ಡೆಸ್ಕ್‌ಟಾಪ್ ಉದಾಹರಣೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದ್ದರೆ ಇದು ಸಂಭವಿಸಬಹುದು. ಯಾವುದೇ ಕಾರ್ಯನಿರ್ವಹಿಸುವ OpenAmer ಉದಾಹರಣೆಗಳನ್ನು ನಿಲ್ಲಿಸಿ, ನಂತರ ಮರುಪ್ರಯತ್ನಿಸಿ. ಕೆಳಗಿನ ವಿವರಗಳು ಅಥವಾ ಡೆಸ್ಕ್‌ಟಾಪ್ ಲಾಗ್‌ನಲ್ಲಿ ಸಂಪೂರ್ಣ ವರ್ಣನೆಯನ್ನು ಪರಿಶೀಲಿಸಿ.',
+    activeDesc:
+      'ಇದು ಒಮ್ಮೆ ಮಾತ್ರದ ಸೆಟಪ್. OpenAmer ಸ್ಥಾಪಕ ಅವಲಂಬನೆಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುತ್ತಿದೆ ಮತ್ತು ನಿಮ್ಮ ಯಂತ್ರವನ್ನು ಸಂರಚಿಸುತ್ತಿದೆ. ಮುಂದಿನ ಪ್ರಾರಂಭಗಳು ಈ ಹಂತವನ್ನು ಬಿಟ್ಟುಹೋಗುತ್ತವೆ.',
     progress: (completed, total) => `${completed} / ${total} ಹಂತಗಳು ಪೂರ್ಣಗೊಂಡಿವೆ`,
     currentStage: stage => ` -- ಈಗ: ${stage}`,
     fetchingManifest: 'ಸ್ಥಾಪಕ ಮ್ಯಾನಿಫೆಸ್ಟ್ ಪಡೆಯಲಾಗುತ್ತಿದೆ...',
@@ -2263,18 +2341,19 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     transcriptSaved: 'ಪೂರ್ಣ ವರ್ಣನೆ ಉಳಿಸಲಾಗಿದೆ',
     copiedOutput: 'ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!',
     copyOutput: 'ಔಟ್‌ಪುಟ್ ನಕಲಿಸಿ',
-    reloadRetry: 'ಮರುಲೋಡ್ ಮಾಡಿ ಮತ್ತು ಮರುಪ್ರಯತ್ನಿಸಿ',
+    reloadRetry: 'ಮರುಲೋಡ್ ಮಾಡಿ ಮತ್ತು ಮರುಪ್ರಯತ್ನಿಸಿ'
   },
   onboarding: {
-    headerTitle: "OpenAmer ಏಜೆಂಟ್ ಸೆಟಪ್ ಮಾಡೋಣ",
+    headerTitle: 'OpenAmer ಏಜೆಂಟ್ ಸೆಟಪ್ ಮಾಡೋಣ',
     headerDesc: 'ಚಾಟ್ ಪ್ರಾರಂಭಿಸಲು ಮಾದರಿ ಪೂರೈಕೆದಾರರನ್ನು ಸಂಪರ್ಕಿಸಿ. ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳು ಒಂದು ಕ್ಲಿಕ್.',
-    preparingInstall: 'OpenAmer ಸ್ಥಾಪನೆ ಮುಗಿಯುತ್ತಿದೆ. ಮೊದಲ ಬಾರಿ ಚಾಲನೆಗೆ ಸಾಮಾನ್ಯವಾಗಿ ಒಂದು ನಿಮಿಷಕ್ಕಿಂತ ಕಡಿಮೆ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ.',
+    preparingInstall:
+      'OpenAmer ಸ್ಥಾಪನೆ ಮುಗಿಯುತ್ತಿದೆ. ಮೊದಲ ಬಾರಿ ಚಾಲನೆಗೆ ಸಾಮಾನ್ಯವಾಗಿ ಒಂದು ನಿಮಿಷಕ್ಕಿಂತ ಕಡಿಮೆ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ.',
     starting: 'OpenAmer ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ…',
     lookingUpProviders: 'ಪೂರೈಕೆದಾರರನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ…',
     collapse: 'ಕುಗ್ಗಿಸು',
     otherProviders: 'ಇತರೆ ಪೂರೈಕೆದಾರರು',
     haveApiKey: 'ನನ್ನ ಬಳಿ API ಕೀ ಇದೆ',
-    chooseLater: "ನಂತರ ಪೂರೈಕೆದಾರರನ್ನು ಆಯ್ಕೆ ಮಾಡುತ್ತೇನೆ",
+    chooseLater: 'ನಂತರ ಪೂರೈಕೆದಾರರನ್ನು ಆಯ್ಕೆ ಮಾಡುತ್ತೇನೆ',
     recommended: 'ಶಿಫಾರಸು',
     connected: 'ಸಂಪರ್ಕಿಸಲಾಗಿದೆ',
     featuredPitch: 'ಒಂದು ಚಂದಾದಾರಿಕೆ, 300+ ಫ್ರಂಟಿಯರ್ ಮಾದರಿಗಳು — OpenAmer ಅನ್ನು ಚಾಲನೆ ಮಾಡುವ ಶಿಫಾರಸು ಮಾರ್ಗ',
@@ -2283,28 +2362,29 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     apiKeyOptions: {
       fireworks: {
         short: 'ನೇರ ಮಾದರಿ API',
-        description: 'Fireworks AI ಹೋಸ್ಟ್ ಮಾಡಿದ ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.',
+        description: 'Fireworks AI ಹೋಸ್ಟ್ ಮಾಡಿದ ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.'
       },
       openrouter: {
         short: 'ಒಂದು ಕೀ, ಅನೇಕ ಮಾದರಿಗಳು',
-        description: 'ಒಂದು ಕೀ ಹಿಂದೆ ನೂರಾರು ಮಾದರಿಗಳನ್ನು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ. ಹೊಸ ಸ್ಥಾಪನೆಗಳಿಗೆ ಉತ್ತಮ ಡೀಫಾಲ್ಟ್.',
+        description: 'ಒಂದು ಕೀ ಹಿಂದೆ ನೂರಾರು ಮಾದರಿಗಳನ್ನು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ. ಹೊಸ ಸ್ಥಾಪನೆಗಳಿಗೆ ಉತ್ತಮ ಡೀಫಾಲ್ಟ್.'
       },
       openai: {
         short: 'GPT-ಶ್ರೇಣಿಯ ಮಾದರಿಗಳು',
-        description: 'OpenAI ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.',
+        description: 'OpenAI ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.'
       },
       gemini: {
         short: 'Gemini ಮಾದರಿಗಳು',
-        description: 'Google Gemini ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.',
+        description: 'Google Gemini ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.'
       },
       xai: {
         short: 'Grok ಮಾದರಿಗಳು',
-        description: 'xAI Grok ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.',
+        description: 'xAI Grok ಮಾದರಿಗಳಿಗೆ ನೇರ ಪ್ರವೇಶ.'
       },
       local: {
         short: 'ಸ್ವಯಂ-ಹೋಸ್ಟ್',
-        description: 'OpenAmer ಅನ್ನು ಸ್ಥಳೀಯ ಅಥವಾ ಸ್ವಯಂ-ಹೋಸ್ಟ್ OpenAI-ಸಂಗತ ಅಂತಿಮ ಬಿಂದುವಿಗೆ (vLLM, llama.cpp, Ollama, ಇತ್ಯಾದಿ) ಸೂಚಿಸಿ',
-      },
+        description:
+          'OpenAmer ಅನ್ನು ಸ್ಥಳೀಯ ಅಥವಾ ಸ್ವಯಂ-ಹೋಸ್ಟ್ OpenAI-ಸಂಗತ ಅಂತಿಮ ಬಿಂದುವಿಗೆ (vLLM, llama.cpp, Ollama, ಇತ್ಯಾದಿ) ಸೂಚಿಸಿ'
+      }
     },
     backToSignIn: 'ಸೈನ್ ಇನ್‌ಗೆ ಹಿಂತಿರುಗಿ',
     getKey: 'ಕೀ ಪಡೆಯಿರಿ',
@@ -2317,7 +2397,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     flowSubtitles: {
       pkce: 'ಸೈನ್ ಇನ್ ಮಾಡಲು ನಿಮ್ಮ ಬ್ರೌಸರ್ ತೆರೆಯುತ್ತದೆ, ನಂತರ ಇಲ್ಲಿ ಮುಂದುವರಿಯುತ್ತದೆ',
       device_code: 'ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಪರಿಶೀಲನಾ ಪುಟ ತೆರೆಯುತ್ತದೆ — OpenAmer ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಂಪರ್ಕಿಸುತ್ತದೆ',
-      external: 'ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ ಒಮ್ಮೆ ಸೈನ್ ಇನ್ ಮಾಡಿ, ನಂತರ ಚಾಟ್‌ಗೆ ಹಿಂತಿರುಗಿ',
+      external: 'ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ ಒಮ್ಮೆ ಸೈನ್ ಇನ್ ಮಾಡಿ, ನಂತರ ಚಾಟ್‌ಗೆ ಹಿಂತಿರುಗಿ'
     },
     startingSignIn: provider => `${provider} ಗಾಗಿ ಸೈನ್-ಇನ್ ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ...`,
     verifyingCode: provider => `${provider} ಮೂಲಕ ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...`,
@@ -2331,12 +2411,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     copyAuthCode: 'ಅಧಿಕೃತ ಕೋಡ್ ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಕೆಳಗೆ ಅಂಟಿಸಿ.',
     pasteAuthCode: 'ಅಧಿಕೃತ ಕೋಡ್ ಅಂಟಿಸಿ',
     reopenAuthPage: 'ಅಧಿಕೃತ ಪುಟವನ್ನು ಮತ್ತೆ ತೆರೆಯಿರಿ',
-    autoBrowser: provider => `ನಾವು ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ${provider} ಅನ್ನು ತೆರೆದಿದ್ದೇವೆ. ಅಲ್ಲಿ OpenAmer ಅನ್ನು ಅಧಿಕೃತಗೊಳಿಸಿ ಮತ್ತು ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಂಪರ್ಕಗೊಳ್ಳುವಿರಿ — ಏನನ್ನೂ ಕಾಪಿ ಅಥವಾ ಪೇಸ್ಟ್ ಮಾಡುವ ಅಗತ್ಯವಿಲ್ಲ.`,
+    autoBrowser: provider =>
+      `ನಾವು ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ${provider} ಅನ್ನು ತೆರೆದಿದ್ದೇವೆ. ಅಲ್ಲಿ OpenAmer ಅನ್ನು ಅಧಿಕೃತಗೊಳಿಸಿ ಮತ್ತು ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸಂಪರ್ಕಗೊಳ್ಳುವಿರಿ — ಏನನ್ನೂ ಕಾಪಿ ಅಥವಾ ಪೇಸ್ಟ್ ಮಾಡುವ ಅಗತ್ಯವಿಲ್ಲ.`,
     reopenSignInPage: 'ಸೈನ್-ಇನ್ ಪುಟವನ್ನು ಮತ್ತೆ ತೆರೆಯಿರಿ',
     waitingAuthorize: 'ನೀವು ಅಧಿಕೃತಗೊಳಿಸುವವರೆಗೆ ಕಾಯುತ್ತಿದೆ...',
-    externalPending: provider => `${provider} ತನ್ನದೇ CLI ಮೂಲಕ ಸೈನ್ ಇನ್ ಆಗುತ್ತದೆ. ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ ಈ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಿ, ನಂತರ ಹಿಂತಿರುಗಿ "ನಾನು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೇನೆ" ಆಯ್ಕೆಮಾಡಿ:`,
-    signedIn: "ನಾನು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೇನೆ",
-    deviceCodeOpened: provider => `ನಾವು ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ${provider} ಅನ್ನು ತೆರೆದಿದ್ದೇವೆ. ಅಲ್ಲಿ ಈ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ:`,
+    externalPending: provider =>
+      `${provider} ತನ್ನದೇ CLI ಮೂಲಕ ಸೈನ್ ಇನ್ ಆಗುತ್ತದೆ. ಟರ್ಮಿನಲ್‌ನಲ್ಲಿ ಈ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಿ, ನಂತರ ಹಿಂತಿರುಗಿ "ನಾನು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೇನೆ" ಆಯ್ಕೆಮಾಡಿ:`,
+    signedIn: 'ನಾನು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೇನೆ',
+    deviceCodeOpened: provider =>
+      `ನಾವು ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ${provider} ಅನ್ನು ತೆರೆದಿದ್ದೇವೆ. ಅಲ್ಲಿ ಈ ಕೋಡ್ ಅನ್ನು ನಮೂದಿಸಿ:`,
     reopenVerification: 'ಪರಿಶೀಲನಾ ಪುಟವನ್ನು ಮತ್ತೆ ತೆರೆಯಿರಿ',
     copy: 'ನಕಲಿಸಿ',
     defaultModel: 'ಡೀಫಾಲ್ಟ್ ಮಾದರಿ',
@@ -2346,7 +2429,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     price: (input, output) => `ಪ್ರತಿ Mtok‌ಗೆ ${input} ಒಳ / ${output} ಹೊರ`,
     change: 'ಬದಲಿಸಿ',
     startChatting: 'ಪ್ರಾರಂಭಿಸಿ',
-    docs: provider => `${provider} ದಾಖಲೆಗಳು`,
+    docs: provider => `${provider} ದಾಖಲೆಗಳು`
   },
   modelPicker: {
     title: 'ಮಾಡೆಲ್ ಬದಲಿಸಿ',
@@ -2362,13 +2445,13 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     free: 'ಉಚಿತ',
     freeTier: 'ಉಚಿತ ಮಟ್ಟ',
     priceTitle: 'ಇನ್‌ಪುಟ್/ಔಟ್‌ಪುಟ್ ಪ್ರತಿ ಮಿಲಿಯನ್ ಟೋಕನ್‌ಗಳ ಬೆಲೆ',
-    wasPrice: 'ಇತ್ತು',
+    wasPrice: 'ಇತ್ತು'
   },
   modelVisibility: {
     title: 'ಮಾದರಿಗಳು',
     search: 'ಮಾದರಿಗಳನ್ನು ಹುಡುಕಿ',
     noAuthenticatedProviders: 'ಪ್ರಾಮಾಣೀಕೃತ ಪೂರೈಕೆದಾರರು ಇಲ್ಲ.',
-    addProvider: 'ಪೂರೈಕೆದಾರರನ್ನು ಸೇರಿಸಿ…',
+    addProvider: 'ಪೂರೈಕೆದಾರರನ್ನು ಸೇರಿಸಿ…'
   },
   shell: {
     windowControls: 'ವಿಂಡೋ ನಿಯಂತ್ರಣಗಳು',
@@ -2379,7 +2462,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       noModels: 'ಯಾವುದೇ ಮಾದರಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ',
       editModels: 'ಮಾದರಿಗಳನ್ನು ಸಂಪಾದಿಸಿ…',
       refreshModels: 'ಮಾದರಿಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ',
-      fast: 'ವೇಗದ',
+      fast: 'ವೇಗದ'
     },
     modelOptions: {
       noOptions: 'ಈ ಮಾದರಿಗಾಗಿ ಆಯ್ಕೆಗಳು ಇಲ್ಲ',
@@ -2395,7 +2478,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       max: 'ಗರಿಷ್ಠ',
       ultra: 'ಅಲ್ಟ್ರಾ',
       updateFailed: 'ಮಾದರಿ ಆಯ್ಕೆಯ ನವೀಕರಣ ವಿಫಲವಾಯಿತು',
-      fastFailed: 'ವೇಗದ ಮೋಡ್ ನವೀಕರಣ ವಿಫಲವಾಯಿತು',
+      fastFailed: 'ವೇಗದ ಮೋಡ್ ನವೀಕರಣ ವಿಫಲವಾಯಿತು'
     },
     gatewayMenu: {
       gateway: 'ಗೇಟ್‌ವೇ',
@@ -2410,7 +2493,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       connection: label => `ಸಂಪರ್ಕ: ${label}`,
       recentActivity: 'ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ',
       viewAllLogs: 'ಎಲ್ಲಾ ಲಾಗ್‌ಗಳನ್ನು ನೋಡಿ →',
-      messagingPlatforms: 'ಸಂದೇಶ ವೇದಿಕೆಗಳು',
+      messagingPlatforms: 'ಸಂದೇಶ ವೇದಿಕೆಗಳು'
     },
     approvalMode: {
       title: 'ಅನುಮೋದನೆ ಮೋಡ್',
@@ -2420,7 +2503,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       smart: 'ಸ್ಮಾರ್ಟ್',
       smartDescription: 'ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಕ್ರಿಯೆಗಳನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ, ಅಗತ್ಯವಿದ್ದಾಗ ಕೇಳಿ',
       off: 'ಆಫ್',
-      offDescription: 'ಅನುಮೋದನೆ ಪ್ರಾಂಪ್ಟ್‌ಗಳಿಲ್ಲದೆ ಚಾಲನೆ',
+      offDescription: 'ಅನುಮೋದನೆ ಪ್ರಾಂಪ್ಟ್‌ಗಳಿಲ್ಲದೆ ಚಾಲನೆ'
     },
     statusbar: {
       unknown: 'ಅಜ್ಞಾತ',
@@ -2476,13 +2559,13 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           skills: 'ಕೌಶಲ್ಯಗಳು',
           subagent_definitions: 'ಉಪ-ಏಜೆಂಟ್ ವ್ಯಾಖ್ಯಾನಗಳು',
           system_prompt: 'ಸಿಸ್ಟಮ್ ಸೂಚನೆ',
-          tool_definitions: 'ಉಪಕರಣ ವ್ಯಾಖ್ಯಾನಗಳು',
+          tool_definitions: 'ಉಪಕರಣ ವ್ಯಾಖ್ಯಾನಗಳು'
         },
         empty: 'ಇನ್ನೂ ಯಾವುದೇ ಸಂದರ್ಭದ ಡೇಟಾ ಇಲ್ಲ',
         loading: 'ಲೋಡಿಂಗ್ ವಿಭಜನೆ…',
         percentFull: percent => `${percent}% ಭರ್ತಿ`,
         title: 'ಸಂದರ್ಭ ಬಳಕೆ',
-        tokenSummary: (used, max) => `${used} / ${max} ಟೋಕನ್‌ಗಳು`,
+        tokenSummary: (used, max) => `${used} / ${max} ಟೋಕನ್‌ಗಳು`
       },
       openContextUsage: 'ಸಂದರ್ಭ ಬಳಕೆ ವಿಭಜನೆ ತೆರೆಯಿರಿ',
       session: 'ಸೆಷನ್',
@@ -2495,8 +2578,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       openModelPicker: 'ಮಾದರಿ ಆಯ್ಕೆಗಾರ ತೆರೆಯಿರಿ',
       modelPinned: 'ನಿಮ್ಮಿಂದ ಪಿನ್ ಮಾಡಲಾಗಿದೆ; ಹೊಸ ಚಾಟ್‌ಗಳು ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಡೀಫಾಲ್ಟ್ ಬದಲು ಇದನ್ನು ಬಳಸುತ್ತವೆ',
       modelTitle: (provider, model) => `ಮಾಡೆಲ್ · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'ಬಲ ಬದಿಯ ಪಟ್ಟೆ',
@@ -2532,7 +2615,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     terminalNew: 'ಹೊಸ ಟರ್ಮಿನಲ್',
     terminalCloseOthers: 'ಇತರರನ್ನು ಮುಚ್ಚಿ',
     terminalCloseAll: 'ಎಲ್ಲವನ್ನು ಮುಚ್ಚಿ',
-    addToChat: 'ಚಾಟ್‌ಗೆ ಸೇರಿಸಿ',
+    addToChat: 'ಚಾಟ್‌ಗೆ ಸೇರಿಸಿ'
   },
   preview: {
     tab: 'ಪೂರ್ವಾವಲೋಕನ',
@@ -2566,7 +2649,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     unsavedChanges: 'ಉಳಿಸದ ಬದಲಾವಣೆಗಳು',
     saveFailed: message => `ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: ${message}`,
     diskChangedTitle: 'ಡಿಸ್ಕ್‌ನಲ್ಲಿ ಫೈಲ್ ಬದಲಾಗಿದೆ',
-    diskChangedBody: 'ನೀವು ತೆರೆದ ನಂತರ ಈ ಫೈಲ್ ಬದಲಾಗಿದೆ. ನಿಮ್ಮ ಆವೃತ್ತಿಯಿಂದ ಅದನ್ನು ಮೇಲೆಬರೆಯುವುದೇ, ಅಥವಾ ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ತೊರೆದು ಮರುಲೋಡ್ ಮಾಡುವುದೇ?',
+    diskChangedBody:
+      'ನೀವು ತೆರೆದ ನಂತರ ಈ ಫೈಲ್ ಬದಲಾಗಿದೆ. ನಿಮ್ಮ ಆವೃತ್ತಿಯಿಂದ ಅದನ್ನು ಮೇಲೆಬರೆಯುವುದೇ, ಅಥವಾ ನಿಮ್ಮ ಸಂಪಾದನೆಗಳನ್ನು ತೊರೆದು ಮರುಲೋಡ್ ಮಾಡುವುದೇ?',
     overwrite: 'ಅತಿಕ್ರಮಿಸು',
     discardReload: 'ಬಿಟ್ಟು ಮರುಲೋಡ್',
     console: {
@@ -2587,7 +2671,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       empty: 'ಇನ್ನೂ ಯಾವುದೇ ಕಾನ್ಸೋಲ್ ಸಂದೇಶಗಳಿಲ್ಲ',
       promptHeader: 'ಪೂರ್ವಾವಲೋಕನ ಕಾನ್ಸೋಲ್:',
       sentTitle: 'ಚಾಟ್‌ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ',
-      sentMessage: count => `${count} ಲಾಗ್ ನಮೂದು${count === 1 ? 'y' : 'ies'} ಸಂಯೋಜಕಕ್ಕೆ ಸೇರಿಸಲಾಗಿದೆ`,
+      sentMessage: count => `${count} ಲಾಗ್ ನಮೂದು${count === 1 ? 'y' : 'ies'} ಸಂಯೋಜಕಕ್ಕೆ ಸೇರಿಸಲಾಗಿದೆ`
     },
     web: {
       appFailedToBoot: 'ಪೂರ್ವಾವಲೋಕನ ಅಪ್ಲಿಕೇಶನ್ ಬೂಟ್ ಆಗಲು ವಿಫಲವಾಯಿತು',
@@ -2605,24 +2689,27 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       showConsole: 'ಮುನ್ನೋಟ ಕನ್ಸೋಲ್ ತೋರಿಸಿ',
       hideDevTools: 'ಮುನ್ನೋಟ DevTools ಮರೆಮಾಡಿ',
       openDevTools: 'ಮುನ್ನೋಟ DevTools ತೆರೆಯಿರಿ',
-      finishedRestarting: message => `OpenAmer ಪ್ರಿವ್ಯೂ ಸರ್ವರ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದೆ${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer ಪ್ರಿವ್ಯೂ ಸರ್ವರ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದೆ${message ? `: ${message}` : ''}`,
       failedRestarting: message => `ಸರ್ವರ್ ಮರುಪ್ರಾರಂಭ ವಿಫಲವಾಗಿದೆ: ${message}`,
       unknownError: 'ಅಜ್ಞಾತ ದೋಷ',
       restartedTitle: 'ಪ್ರಿವ್ಯೂ ಸರ್ವರ್ ಮರುಪ್ರಾರಂಭವಾಗಿದೆ',
       reloadingNow: 'ಈಗ ಪ್ರಿವ್ಯೂ ಮರುಲೋಡ್ ಆಗುತ್ತಿದೆ.',
       restartFailedTitle: 'ಪ್ರಿವ್ಯೂ ಮರುಪ್ರಾರಂಭ ವಿಫಲವಾಗಿದೆ',
       restartFailedMessage: 'OpenAmer ಸರ್ವರ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
-      stillWorking: 'OpenAmer ಇನ್ನೂ ಕೆಲಸ ಮಾಡುತ್ತಿದೆ, ಆದರೆ ಮರುಪ್ರಾರಂಭದ ಫಲಿತಾಂಶ ಇನ್ನೂ ಬಂದಿಲ್ಲ. ಸರ್ವರ್ ಆಜ್ಞೆ ಮುನ್ನೆಲೆಯಲ್ಲಿ ಚಲಿಸುತ್ತಿರಬಹುದು.',
+      stillWorking:
+        'OpenAmer ಇನ್ನೂ ಕೆಲಸ ಮಾಡುತ್ತಿದೆ, ಆದರೆ ಮರುಪ್ರಾರಂಭದ ಫಲಿತಾಂಶ ಇನ್ನೂ ಬಂದಿಲ್ಲ. ಸರ್ವರ್ ಆಜ್ಞೆ ಮುನ್ನೆಲೆಯಲ್ಲಿ ಚಲಿಸುತ್ತಿರಬಹುದು.',
       workspaceReloading: 'ವರ್ಕ್ಸ್ಪೇಸ್ ಬದಲಾಗಿದೆ, ಪ್ರಿವ್ಯೂ ಮರುಲೋಡ್ ಆಗುತ್ತಿದೆ',
       fileChanged: url => `ಫೈಲ್ ಬದಲಾಗಿದೆ, ಪ್ರಿವ್ಯೂ ಅನ್ನು ಮರುಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ: ${url}`,
       filesChanged: (count, url) => `${count} ಫೈಲ್ ಬದಲಾವಣೆಗಳು, ಪೂರ್ವವೀಕ್ಷಣೆ ಮರುಲೋಡ್ ಆಗುತ್ತಿದೆ: ${url}`,
       watchFailed: message => `ಪ್ರಿವ್ಯೂ ಫೈಲ್ ಅನ್ನು ವೀಕ್ಷಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: ${message}`,
-      moduleMimeDescription: 'ಮಾಡ್ಯೂಲ್ ಸ್ಕ್ರಿಪ್ಟ್ಗಳನ್ನು ತಪ್ಪು MIME ಪ್ರಕಾರದೊಂದಿಗೆ ನೀಡಲಾಗುತ್ತಿದೆ. ಇದು ಸಾಮಾನ್ಯವಾಗಿ ಪ್ರಾಜೆಕ್ಟ್ ಡೆವ್ ಸರ್ವರ್ ಬದಲು ಸ್ಟ್ಯಾಟಿಕ್ ಫೈಲ್ ಸರ್ವರ್ Vite/React ಆ್ಯಪ್ ಅನ್ನು ನೀಡುತ್ತಿದೆ ಎಂದು ಅರ್ಥ.',
+      moduleMimeDescription:
+        'ಮಾಡ್ಯೂಲ್ ಸ್ಕ್ರಿಪ್ಟ್ಗಳನ್ನು ತಪ್ಪು MIME ಪ್ರಕಾರದೊಂದಿಗೆ ನೀಡಲಾಗುತ್ತಿದೆ. ಇದು ಸಾಮಾನ್ಯವಾಗಿ ಪ್ರಾಜೆಕ್ಟ್ ಡೆವ್ ಸರ್ವರ್ ಬದಲು ಸ್ಟ್ಯಾಟಿಕ್ ಫೈಲ್ ಸರ್ವರ್ Vite/React ಆ್ಯಪ್ ಅನ್ನು ನೀಡುತ್ತಿದೆ ಎಂದು ಅರ್ಥ.',
       loadFailedConsole: (code, message) => `ಲೋಡ್ ವಿಫಲವಾಗಿದೆ${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'ಪ್ರಿವ್ಯೂ ಪುಟವನ್ನು ತಲುಪಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       openTarget: url => `${url} ತೆರೆಯಿರಿ`,
-      fallbackTitle: 'ಪ್ರಿವ್ಯೂ',
-    },
+      fallbackTitle: 'ಪ್ರಿವ್ಯೂ'
+    }
   },
   zones: {
     showHeader: 'ಶೀರ್ಷಿಕೆ ತೋರಿಸಿ',
@@ -2630,7 +2717,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     minimize: 'ಕಡಿಮೆಗೊಳಿಸಿ',
     restore: 'ಪುನಃಸ್ಥಾಪಿಸಿ',
     closeRunningTitle: 'ಚಾಲನೆಯಲ್ಲಿರುವ ಟ್ಯಾಬ್ ಮುಚ್ಚಬೇಕೇ?',
-    closeRunningBody: 'ಈ ಚಾಟ್ ಇನ್ನೂ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದೆ (ಅಥವಾ ನಿಮ್ಮ ಇನ್‌ಪುಟ್‌ಗಾಗಿ ಕಾಯುತ್ತಿದೆ). ಟ್ಯಾಬ್ ಮುಚ್ಚುವುದರಿಂದ ಅದು ಅಡಗುತ್ತದೆ — ಸೆಷನ್ ತನ್ನ ಪ್ರಗತಿಯನ್ನು ಉಳಿಸಿಕೊಂಡು ಸೈಡ್ಬಾರ್‌ನಿಂದ ಮರುತೆರೆಯಬಹುದು.',
+    closeRunningBody:
+      'ಈ ಚಾಟ್ ಇನ್ನೂ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದೆ (ಅಥವಾ ನಿಮ್ಮ ಇನ್‌ಪುಟ್‌ಗಾಗಿ ಕಾಯುತ್ತಿದೆ). ಟ್ಯಾಬ್ ಮುಚ್ಚುವುದರಿಂದ ಅದು ಅಡಗುತ್ತದೆ — ಸೆಷನ್ ತನ್ನ ಪ್ರಗತಿಯನ್ನು ಉಳಿಸಿಕೊಂಡು ಸೈಡ್ಬಾರ್‌ನಿಂದ ಮರುತೆರೆಯಬಹುದು.',
     closeRunningConfirm: 'ಟ್ಯಾಬ್ ಮುಚ್ಚಿ',
     closeOthers: 'ಇತರರನ್ನು ಮುಚ್ಚಿ',
     closeToRight: 'ಬಲಕ್ಕೆ ಇರುವವುಗಳನ್ನು ಮುಚ್ಚಿ',
@@ -2667,14 +2755,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     layoutNamePlaceholder: fallback => `ಲೇಔಟ್ ಹೆಸರು (${fallback})`,
     saveApply: 'ಉಳಿಸಿ & ಅನ್ವಯಿಸಿ',
     notExpressible: 'ಈ ವಿನ್ಯಾಸ ಪರಸ್ಪರ ಜೋಡಣೆ (ಪಿನ್‌ವೀಲ್) — ಇನ್ನೂ ನೆಸ್ಟೆಡ್ ಸ್ಪ್ಲಿಟ್‌ಗಳಾಗಿ ವ್ಯಕ್ತಪಡಿಸಲಾಗಿಲ್ಲ',
-    zoneCount: count => `${count} ವಲಯಗಳು`,
+    zoneCount: count => `${count} ವಲಯಗಳು`
   },
   assistant: {
     thread: {
       loadingSession: 'ಸೆಷನ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ',
       showEarlier: 'ಹಿಂದಿನ ಸಂದೇಶಗಳನ್ನು ತೋರಿಸಿ',
       loadingResponse: 'OpenAmer ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಲೋಡ್ ಮಾಡುತ್ತಿದೆ',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'ಚಿಂತಿಸುತ್ತಿದೆ',
@@ -2697,12 +2786,13 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       restoreCheckpoint: 'ಚೆಕ್‌ಪಾಯಿಂಟ್ ಪುನಃಸ್ಥಾಪಿಸಿ',
       restoreFromHere: 'ಚೆಕ್‌ಪಾಯಿಂಟ್ ಪುನಃಸ್ಥಾಪಿಸಿ — ಈ ಪ್ರಾಂಪ್ಟ್‌ನಿಂದ ಪುನಃ ಚಾಲನೆ',
       restoreTitle: 'ಈ ಚೆಕ್‌ಪಾಯಿಂಟ್‌ಗೆ ಪುನಃಸ್ಥಾಪಿಸಬೇಕೇ?',
-      restoreBody: 'ಈ ಪ್ರಾಂಪ್ಟ್‌ನ ನಂತರದ ಎಲ್ಲವೂ ಸಂಭಾಷಣೆಯಿಂದ ತೆಗೆದುಹಾಕಲ್ಪಡುತ್ತದೆ, ಮತ್ತು ಪ್ರಾಂಪ್ಟ್ ಇಲ್ಲಿ ಮತ್ತೆ ಚಾಲನೆಗೊಳ್ಳುತ್ತದೆ.',
+      restoreBody:
+        'ಈ ಪ್ರಾಂಪ್ಟ್‌ನ ನಂತರದ ಎಲ್ಲವೂ ಸಂಭಾಷಣೆಯಿಂದ ತೆಗೆದುಹಾಕಲ್ಪಡುತ್ತದೆ, ಮತ್ತು ಪ್ರಾಂಪ್ಟ್ ಇಲ್ಲಿ ಮತ್ತೆ ಚಾಲನೆಗೊಳ್ಳುತ್ತದೆ.',
       restoreConfirm: 'ಪುನಃಸ್ಥಾಪಿಸಿ & ಪುನಃ ಚಾಲನೆ',
       restoreNext: 'ಮುಂದಿನ ಚೆಕ್‌ಪಾಯಿಂಟ್ ಪುನಃಸ್ಥಾಪಿಸಿ',
       goForward: 'ಮುಂದಕ್ಕೆ ಹೋಗಿ',
       sendEdited: 'ಸಂಪಾದಿತ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ',
-      attachingFile: 'ಅಟ್ಯಾಚ್ ಮಾಡಲಾಗುತ್ತಿದೆ…',
+      attachingFile: 'ಅಟ್ಯಾಚ್ ಮಾಡಲಾಗುತ್ತಿದೆ…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ಗೇಟ್ವೇ ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ',
@@ -2715,8 +2805,9 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       jumpToApproval: 'ಅನುಮೋದನೆ ಅಗತ್ಯವಿದೆ',
       reject: 'ತಿರಸ್ಕರಿಸಿ',
       alwaysTitle: 'ಈ ಆಜ್ಞೆಯನ್ನು ಯಾವಾಗಲೂ ಅನುಮತಿಸುವುದೇ?',
-      alwaysDescription: pattern => `ಇದು ನಿಮ್ಮ ಶಾಶ್ವತ ಅನುಮತಿ ಪಟ್ಟಿಗೆ (~/.openamer/config.yaml) “${pattern}” ಪ್ಯಾಟರ್ನ್ ಅನ್ನು ಸೇರಿಸುತ್ತದೆ. OpenAmer ಇಂತಹ ಕಮಾಂಡ್‌ಗಳಿಗಾಗಿ ಮತ್ತೆ ಕೇಳುವುದಿಲ್ಲ — ಈ ಸೆಷನ್‌ನಲ್ಲಿ ಅಥವಾ ಮುಂದಿನ ಯಾವುದೇ ಸೆಷನ್‌ನಲ್ಲಿ.`,
-      alwaysAllow: 'ಯಾವಾಗಲೂ ಅನುಮತಿಸಿ',
+      alwaysDescription: pattern =>
+        `ಇದು ನಿಮ್ಮ ಶಾಶ್ವತ ಅನುಮತಿ ಪಟ್ಟಿಗೆ (~/.openamer/config.yaml) “${pattern}” ಪ್ಯಾಟರ್ನ್ ಅನ್ನು ಸೇರಿಸುತ್ತದೆ. OpenAmer ಇಂತಹ ಕಮಾಂಡ್‌ಗಳಿಗಾಗಿ ಮತ್ತೆ ಕೇಳುವುದಿಲ್ಲ — ಈ ಸೆಷನ್‌ನಲ್ಲಿ ಅಥವಾ ಮುಂದಿನ ಯಾವುದೇ ಸೆಷನ್‌ನಲ್ಲಿ.`,
+      alwaysAllow: 'ಯಾವಾಗಲೂ ಅನುಮತಿಸಿ'
     },
     clarify: {
       notReady: 'ಸ್ಪಷ್ಟೀಕರಣ ವಿನಂತಿ ಇನ್ನೂ ಸಿದ್ಧವಾಗಿಲ್ಲ',
@@ -2730,7 +2821,7 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       continueLabel: 'ಮುಂದುವರಿಸಿ',
       lateAnswer: (question, choice) => `Re: "${question}" — ನನ್ನ ಉತ್ತರ: ${choice}`,
       lateAnswerTip: 'ಈ ಉತ್ತರವನ್ನು ಮುಂದುವರಿಸುವ ಸಂದೇಶವಾಗಿ ಕರಡು ಮಾಡಿ',
-      lateAnswerHint: 'ಈ ಪ್ರಾಂಪ್ಟ್ ಇನ್ನಿಲ್ಲ ಕಾಯುತ್ತಿದೆ. ಅದನ್ನು ಮುಂದುವರಿಸುವ ಸಂದೇಶವಾಗಿ ಕರಡು ಮಾಡಲು ಆಯ್ಕೆ ಮಾಡಿ',
+      lateAnswerHint: 'ಈ ಪ್ರಾಂಪ್ಟ್ ಇನ್ನಿಲ್ಲ ಕಾಯುತ್ತಿದೆ. ಅದನ್ನು ಮುಂದುವರಿಸುವ ಸಂದೇಶವಾಗಿ ಕರಡು ಮಾಡಲು ಆಯ್ಕೆ ಮಾಡಿ'
     },
     tool: {
       code: 'ಕೋಡ್',
@@ -2766,11 +2857,11 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
         ran: 'ರನ್ ಆಗಿದೆ',
         running: 'ರನ್ ಆಗುತ್ತಿದೆ',
         ranCode: 'ಕೋಡ್ ಚಲಾಯಿಸಲಾಗಿದೆ',
-        runningCode: 'ಸ್ಕ್ರಿಪ್ಟಿಂಗ್',
+        runningCode: 'ಸ್ಕ್ರಿಪ್ಟಿಂಗ್'
       },
       prefixes: {
         browser: 'ಬ್ರೌಸರ್',
-        web: 'ವೆಬ್',
+        web: 'ವೆಬ್'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2778,132 +2869,133 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `ಚಾಲನೆಯಲ್ಲಿದೆ ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `ಚಾಲನೆಯಲ್ಲಿದೆ ${action.toLowerCase()}`,
+        runningTool: action => `ಚಾಲನೆಯಲ್ಲಿದೆ ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'ಪುಟ ಅಂಶವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಲಾಗಿದೆ',
           pending: 'ಪುಟ ಅಂಶವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ಕ್ಲಿಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ',
+          pendingAction: 'ಕ್ಲಿಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ'
         },
         browser_fill: {
           done: 'ಫಾರ್ಮ್ ಕ್ಷೇತ್ರವನ್ನು ಭರ್ತಿ ಮಾಡಲಾಗಿದೆ',
           pending: 'ಫಾರ್ಮ್ ಕ್ಷೇತ್ರವನ್ನು ಭರ್ತಿ ಮಾಡಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ಪೂರೈಸುತ್ತಿದೆ',
+          pendingAction: 'ಪೂರೈಸುತ್ತಿದೆ'
         },
         browser_navigate: {
           done: 'ತೆರೆದ ಪುಟ',
           pending: 'ಪುಟ ತೆರೆಯುತ್ತಿದೆ',
-          pendingAction: 'ತೆರೆಯುತ್ತಿದೆ',
+          pendingAction: 'ತೆರೆಯುತ್ತಿದೆ'
         },
         browser_snapshot: {
           done: 'ಪುಟದ ಚಿತ್ರಣ ಸೆರೆಹಿಡಿಯಲಾಗಿದೆ',
           pending: 'ಪುಟದ ಚಿತ್ರಣ ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ',
-          pendingAction: 'ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ',
+          pendingAction: 'ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ'
         },
         browser_take_screenshot: {
           done: 'ಸ್ಕ್ರೀನ್‌ಶಾಟ್ ಸೆರೆಹಿಡಿಯಲಾಗಿದೆ',
           pending: 'ಸ್ಕ್ರೀನ್‌ಶಾಟ್ ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ',
-          pendingAction: 'ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ',
+          pendingAction: 'ಸೆರೆಹಿಡಿಯುತ್ತಿದೆ'
         },
         browser_type: {
           done: 'ಪುಟದಲ್ಲಿ ಟೈಪ್ ಮಾಡಲಾಗಿದೆ',
           pending: 'ಪುಟದಲ್ಲಿ ಟೈಪ್ ಮಾಡುತ್ತಿದೆ',
-          pendingAction: 'ಟೈಪ್ ಮಾಡುತ್ತಿದೆ',
+          pendingAction: 'ಟೈಪ್ ಮಾಡುತ್ತಿದೆ'
         },
         clarify: {
           done: 'ಪ್ರಶ್ನೆ ಕೇಳಲಾಗಿದೆ',
           pending: 'ಪ್ರಶ್ನೆ ಕೇಳುತ್ತಿದೆ',
-          pendingAction: 'ಕೇಳುತ್ತಿದೆ',
+          pendingAction: 'ಕೇಳುತ್ತಿದೆ'
         },
         cronjob: {
           done: 'ಕ್ರಾನ್ ಕೆಲಸ',
           pending: 'ಕ್ರಾನ್ ಕೆಲಸವನ್ನು ವೇಳಾಪಡಿಸುತ್ತಿದೆ',
-          pendingAction: 'ವೇಳಾಪಡಿಸುತ್ತಿದೆ',
+          pendingAction: 'ವೇಳಾಪಡಿಸುತ್ತಿದೆ'
         },
         edit_file: {
           done: 'ಫೈಲ್ ಸಂಪಾದಿಸಲಾಗಿದೆ',
           pending: 'ಫೈಲ್ ಸಂಪಾದನೆ',
-          pendingAction: 'ಸಂಪಾದನೆ',
+          pendingAction: 'ಸಂಪಾದನೆ'
         },
         execute_code: {
           done: 'ಕೋಡ್ ಚಾಲನೆ',
           pending: 'ಸ್ಕ್ರಿಪ್ಟಿಂಗ್',
-          pendingAction: 'ಸ್ಕ್ರಿಪ್ಟಿಂಗ್',
+          pendingAction: 'ಸ್ಕ್ರಿಪ್ಟಿಂಗ್'
         },
         image_generate: {
           done: 'ಚಿತ್ರ ರಚಿಸಲಾಗಿದೆ',
           pending: 'ಚಿತ್ರ ರಚಿಸಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ರಚಿಸಲಾಗುತ್ತಿದೆ',
+          pendingAction: 'ರಚಿಸಲಾಗುತ್ತಿದೆ'
         },
         list_files: {
           done: 'ಫೈಲ್‌ಗಳ ಪಟ್ಟಿ',
           pending: 'ಫೈಲ್‌ಗಳ ಪಟ್ಟಿ',
-          pendingAction: 'ಪಟ್ಟಿ',
+          pendingAction: 'ಪಟ್ಟಿ'
         },
         patch: {
           done: 'ಫೈಲ್ ಪ್ಯಾಚ್ ಮಾಡಲಾಗಿದೆ',
           pending: 'ಫೈಲ್ ಪ್ಯಾಚ್ ಮಾಡಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ಪ್ಯಾಚ್ ಮಾಡಲಾಗುತ್ತಿದೆ',
+          pendingAction: 'ಪ್ಯಾಚ್ ಮಾಡಲಾಗುತ್ತಿದೆ'
         },
         read_file: {
           done: 'ಫೈಲ್ ಓದಲಾಗಿದೆ',
           pending: 'ಫೈಲ್ ಓದಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ಓದಲಾಗುತ್ತಿದೆ',
+          pendingAction: 'ಓದಲಾಗುತ್ತಿದೆ'
         },
         search_files: {
           done: 'ಫೈಲ್‌ಗಳನ್ನು ಹುಡುಕಲಾಗಿದೆ',
           pending: 'ಫೈಲ್‌ಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ',
-          pendingAction: 'ಹುಡುಕಲಾಗುತ್ತಿದೆ',
+          pendingAction: 'ಹುಡುಕಲಾಗುತ್ತಿದೆ'
         },
         session_search_recall: {
           done: 'ಶೋಧಿಸಿದ ಸೆಷನ್ ಇತಿಹಾಸ',
           pending: 'ಸೆಷನ್ ಇತಿಹಾಸ ಹುಡುಕುತ್ತಿದೆ',
-          pendingAction: 'ಹುಡುಕುತ್ತಿದೆ',
+          pendingAction: 'ಹುಡುಕುತ್ತಿದೆ'
         },
         terminal: {
           done: 'ಆಜ್ಞೆ ನಿರ್ವಹಿಸಲಾಗಿದೆ',
           pending: 'ಆಜ್ಞೆ ನಿರ್ವಹಿಸುತ್ತಿದೆ',
-          pendingAction: 'ಚಲಿಸುತ್ತಿದೆ',
+          pendingAction: 'ಚಲಿಸುತ್ತಿದೆ'
         },
         todo: {
           done: 'ಟುಡೋಗಳು ನವೀಕರಿಸಲಾಗಿದೆ',
           pending: 'ಟುಡೋಗಳು ನವೀಕರಿಸುತ್ತಿವೆ',
-          pendingAction: 'ನವೀಕರಿಸುತ್ತಿದೆ',
+          pendingAction: 'ನವೀಕರಿಸುತ್ತಿದೆ'
         },
         vision_analyze: {
           done: 'ಚಿತ್ರ ವಿಶ್ಲೇಷಿಸಲಾಗಿದೆ',
           pending: 'ಚಿತ್ರ ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ',
-          pendingAction: 'ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ',
+          pendingAction: 'ವಿಶ್ಲೇಷಿಸುತ್ತಿದೆ'
         },
         web_extract: {
           done: 'ವೆಬ್‌ಪೇಜ್ ಓದಲಾಗಿದೆ',
           pending: 'ವೆಬ್‌ಪೇಜ್ ಓದುತ್ತಿದೆ',
-          pendingAction: 'ಓದುತ್ತಿದೆ',
+          pendingAction: 'ಓದುತ್ತಿದೆ'
         },
         web_search: {
           done: 'ವೆಬ್ ಶೋಧಿಸಲಾಗಿದೆ',
           pending: 'ವೆಬ್ ಹುಡುಕುತ್ತಿದೆ',
-          pendingAction: 'ಹುಡುಕುತ್ತಿದೆ',
+          pendingAction: 'ಹುಡುಕುತ್ತಿದೆ'
         },
         write_file: {
           done: 'ಫೈಲ್ ಸಂಪಾದಿಸಲಾಗಿದೆ',
           pending: 'ಫೈಲ್ ಸಂಪಾದಿಸುತ್ತಿದೆ',
-          pendingAction: 'ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ',
-        },
-      },
-    },
+          pendingAction: 'ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer ಗೇಟ್‌ವೇ ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ',
     sudoSendFailed: 'sudo ಪಾಸ್‌ವರ್ಡ್ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
     secretSendFailed: 'ರಹಸ್ಯವನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
     sudoTitle: 'ನಿರ್ವಾಹಕ ಪಾಸ್‌ವರ್ಡ್',
-    sudoDesc: 'ವಿಶೇಷ ಹಕ್ಕಿನ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಲು OpenAmer ಗೆ ನಿಮ್ಮ sudo ಪಾಸ್‌ವರ್ಡ್ ಅಗತ್ಯವಿದೆ. ಅದನ್ನು ನಿಮ್ಮ ಸ್ಥಳೀಯ ಏಜೆಂಟ್‌ಗೆ ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.',
+    sudoDesc:
+      'ವಿಶೇಷ ಹಕ್ಕಿನ ಆಜ್ಞೆಯನ್ನು ಚಲಾಯಿಸಲು OpenAmer ಗೆ ನಿಮ್ಮ sudo ಪಾಸ್‌ವರ್ಡ್ ಅಗತ್ಯವಿದೆ. ಅದನ್ನು ನಿಮ್ಮ ಸ್ಥಳೀಯ ಏಜೆಂಟ್‌ಗೆ ಮಾತ್ರ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.',
     sudoPlaceholder: 'sudo ಪಾಸ್‌ವರ್ಡ್',
     secretTitle: 'ರಹಸ್ಯ ಅಗತ್ಯವಿದೆ',
     secretDesc: 'ಮುಂದುವರಿಯಲು OpenAmer ಗೆ ಒಂದು ರುಜುವಾತು ಅಗತ್ಯವಿದೆ.',
-    secretPlaceholder: 'ರಹಸ್ಯ ಮೌಲ್ಯ',
+    secretPlaceholder: 'ರಹಸ್ಯ ಮೌಲ್ಯ'
   },
   desktop: {
     audioReadFailed: 'ರೆಕಾರ್ಡ್ ಮಾಡಿದ ಆಡಿಯೊವನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
@@ -2920,7 +3012,8 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     yoloSystem: active => `ಈ ಅಧಿವೇಶನಕ್ಕೆ YOLO ${active ? 'on' : 'off'}`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'YOLO ಟಾಗಲ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
-    profileStatus: current => `ಪ್ರೊಫೈಲ್: ${current}. ಇನ್ನೊಂದು ಪ್ರೊಫೈಲ್ನಲ್ಲಿ ಚಾಟ್ ಪ್ರಾರಂಭಿಸಲು /profile <name> ಬಳಸಿ ಅಥವಾ "ಹೊಸ ಅಧಿವೇಶನ" ಆಯ್ಕೆಯನ್ನು ಬಳಸಿ.`,
+    profileStatus: current =>
+      `ಪ್ರೊಫೈಲ್: ${current}. ಇನ್ನೊಂದು ಪ್ರೊಫೈಲ್ನಲ್ಲಿ ಚಾಟ್ ಪ್ರಾರಂಭಿಸಲು /profile <name> ಬಳಸಿ ಅಥವಾ "ಹೊಸ ಅಧಿವೇಶನ" ಆಯ್ಕೆಯನ್ನು ಬಳಸಿ.`,
     unknownProfile: 'ಅಜ್ಞಾತ ಪ್ರೊಫೈಲ್',
     noProfileNamed: (target, available) => `"${target}" ಎಂಬ ಪ್ರೊಫೈಲ್ ಇಲ್ಲ. ಲಭ್ಯವಿರುವ: ${available}`,
     newChatsProfile: name => `ಹೊಸ ಚಾಟ್ಗಳು ಪ್ರೊಫೈಲ್ ${name} ಬಳಸುತ್ತವೆ.`,
@@ -2930,8 +3023,9 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
     regenerateFailed: 'ಮರುಸೃಷ್ಟಿ ವಿಫಲವಾಯಿತು',
     editFailed: 'ಸಂಪಾದನೆ ವಿಫಲವಾಯಿತು',
     resumeFailed: 'ಮುಂದುವರಿಸುವುದು ವಿಫಲವಾಯಿತು',
-    resumeStrandedTitle: "ಈ ಸೆಷನ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ",
-    resumeStrandedBody: 'ಈ ಸೆಷನ್‌ಗೆ ಸಂಪರ್ಕ ವಿಫಲವಾಯಿತು ಮತ್ತು ಸ್ವಯಂ ಪುನಃಪ್ರಯತ್ನಗಳು ನಿಲ್ಲಿಸಿದವು. ಗೇಟ್‌ವೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+    resumeStrandedTitle: 'ಈ ಸೆಷನ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ',
+    resumeStrandedBody:
+      'ಈ ಸೆಷನ್‌ಗೆ ಸಂಪರ್ಕ ವಿಫಲವಾಯಿತು ಮತ್ತು ಸ್ವಯಂ ಪುನಃಪ್ರಯತ್ನಗಳು ನಿಲ್ಲಿಸಿದವು. ಗೇಟ್‌ವೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
     resumeRetry: 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ',
     nothingToBranch: 'ಶಾಖೆ ಮಾಡಲು ಏನೂ ಇಲ್ಲ',
     branchNeedsChat: 'ಶಾಖೆ ಮಾಡುವ ಮೊದಲು ಚಾಟ್ ಪ್ರಾರಂಭಿಸಿ ಅಥವಾ ಮುಂದುವರಿಸಿ.',
@@ -2971,32 +3065,32 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
       success: platform => `${platform} ಗೆ ಹಸ್ತಾಂತರಿಸಲಾಗಿದೆ. ಯಾವಾಗ ಬೇಕಾದರೂ ಇಲ್ಲಿಂದ ಮುಂದುವರಿಸಿ.`,
       systemNote: platform => `↻ ${platform} ಗೆ ಹಸ್ತಾಂತರಿಸಲಾಗಿದೆ — ಇಲ್ಲಿಂದ ಯಾವಾಗ ಬೇಕಾದರೂ ಮುಂದುವರಿಸಿ.`,
       failed: error => `ಹಸ್ತಾಂತರ ವಿಫಲವಾಗಿದೆ: ${error}`,
-      timedOut: 'ಗೇಟ್ವೇ ನಿರೀಕ್ಷೆಯಲ್ಲಿ ಸಮಯ ಮೀರಿತು. `openamer gateway` ಚಾಲನೆಯಲ್ಲಿದೆಯೇ?',
-    },
+      timedOut: 'ಗೇಟ್ವೇ ನಿರೀಕ್ಷೆಯಲ್ಲಿ ಸಮಯ ಮೀರಿತು. `openamer gateway` ಚಾಲನೆಯಲ್ಲಿದೆಯೇ?'
+    }
   },
   errors: {
     genericFailure: 'ಏನೋ ತಪ್ಪಾಗಿದೆ',
     boundaryTitle: 'ಇಂಟರ್ಫೇಸ್ನಲ್ಲಿ ಏನೋ ಕೆಟ್ಟುಹೋಗಿದೆ',
     boundaryDesc: 'ವೀಕ್ಷಣೆಗೆ ಅನಿರೀಕ್ಷಿತ ದೋಷ ಎದುರಾಗಿದೆ. ನಿಮ್ಮ ಚಾಟ್ಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್ಗಳು ಸುರಕ್ಷಿತವಾಗಿವೆ.',
     reloadWindow: 'ವಿಂಡೋ ಮರುಲೋಡ್ ಮಾಡಿ',
-    openLogs: 'ಲಾಗ್ಗಳನ್ನು ತೆರೆಯಿರಿ',
+    openLogs: 'ಲಾಗ್ಗಳನ್ನು ತೆರೆಯಿರಿ'
   },
   ui: {
     search: {
-      clear: 'ಹುಡುಕಾಟ ತೆರವುಗೊಳಿಸಿ',
+      clear: 'ಹುಡುಕಾಟ ತೆರವುಗೊಳಿಸಿ'
     },
     pagination: {
       label: 'ಪುಟೀಕರಣ',
       previous: 'ಹಿಂದಿನ',
       previousAria: 'ಹಿಂದಿನ ಪುಟಕ್ಕೆ ಹೋಗಿ',
       next: 'ಮುಂದಿನ',
-      nextAria: 'ಮುಂದಿನ ಪುಟಕ್ಕೆ ಹೋಗಿ',
+      nextAria: 'ಮುಂದಿನ ಪುಟಕ್ಕೆ ಹೋಗಿ'
     },
     sidebar: {
       title: 'ಸೈಡ್ಬಾರ್',
       description: 'ಮೊಬೈಲ್ ಸೈಡ್ಬಾರ್ ಅನ್ನು ತೋರಿಸುತ್ತದೆ.',
-      toggle: 'ಸೈಡ್ಬಾರ್ ಟಾಗಲ್ ಮಾಡಿ',
-    },
+      toggle: 'ಸೈಡ್ಬಾರ್ ಟಾಗಲ್ ಮಾಡಿ'
+    }
   },
   intro: {
     personas: {
@@ -3006,15 +3100,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಇಂದು ನಾವು ಏನನ್ನು ನಿರ್ಮಿಸುತ್ತಿದ್ದೇವೆ?',
           'ಎಲ್ಲಿಂದಲಾದರೂ ಪ್ರಾರಂಭಿಸಿ.',
           'ನಿಮ್ಮ ವರ್ಕ್‌ಸ್ಪೇಸ್, ಕೇವಲ ಒಂದು ಪ್ರಾಂಪ್ಟ್ ದೂರದಲ್ಲಿದೆ.',
-          'ನೀವು ಸಿದ್ಧವಾದಾಗ ನಾನು ಸಿದ್ಧ.',
+          'ನೀವು ಸಿದ್ಧವಾದಾಗ ನಾನು ಸಿದ್ಧ.'
         ],
         bodies: [
           'ಪ್ರಶ್ನೆಯನ್ನು ಕೇಳಿ, ದೋಷವನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ ಅಥವಾ ರಿಪೊ ಒಂದನ್ನು ಸೂಚಿಸಿ. ನಾನು ಕೋಡ್ ಓದಬಲ್ಲೆ, ಪರಿಕರಗಳನ್ನು ಚಲಾಯಿಸಬಲ್ಲೆ ಮತ್ತು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಬಲ್ಲೆ.',
           'ಕೆಲಸವನ್ನು ನಿಮ್ಮ ಸ್ವಂತ ಮಾತುಗಳಲ್ಲಿ ವಿವರಿಸಿ. ನಾನು ಸರಿಯಾದ ಪರಿಕರಗಳನ್ನು ಆರಿಸಿಕೊಳ್ಳುತ್ತೇನೆ, ನನ್ನ ಯೋಜನೆಯನ್ನು ವಿವರಿಸುತ್ತೇನೆ ಮತ್ತು ಅಪಾಯಕಾರಿ ಹಂತಗಳ ಮೊದಲು ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತೇನೆ.',
           'ಫೈಲ್ ಪಾತ್, ಟ್ರೇಸ್‌ಬ್ಯಾಕ್ ಅಥವಾ ಒಂದು ಕಲ್ಪನೆಯನ್ನು ನೀಡಿ. ನಾನು ತನಿಖೆ ಮಾಡುತ್ತೇನೆ, ಮುಂದಿನ ಹಂತಗಳನ್ನು ಸೂಚಿಸುತ್ತೇನೆ ಮತ್ತು ಬದಲಾವಣೆಗಳನ್ನು ಹಿಂಪಡೆಯುವಂತೆ ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ.',
           'ರಿಪೊ ಹುಡುಕಿ, ಫೈಲ್‌ಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಿ, ಟೆಸ್ಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡಿ, PRಗಳನ್ನು ತೆರೆಯಿರಿ. ಗುರಿಯನ್ನು ತಿಳಿಸಿ, ನಾನು ತಾಂತ್ರಿಕ ಕೆಲಸಗಳನ್ನು ನಿರ್ವಹಿಸುತ್ತೇನೆ.',
-          'ಕೆಲಸ, ಪ್ರಶ್ನೆ ಅಥವಾ ಸ್ನಿಪ್ಪೆಟ್ ಅನ್ನು ಟೈಪ್ ಮಾಡಿ. ನಾನು ಸೆಶನ್ ಅನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳುತ್ತೇನೆ, ನನ್ನ ಮೂಲಗಳನ್ನು ಉಲ್ಲೇಖಿಸುತ್ತೇನೆ ಮತ್ತು ನನಗೆ ಅನುಮಾನವಿದ್ದಾಗ ಕೇಳುತ್ತೇನೆ.',
-        ],
+          'ಕೆಲಸ, ಪ್ರಶ್ನೆ ಅಥವಾ ಸ್ನಿಪ್ಪೆಟ್ ಅನ್ನು ಟೈಪ್ ಮಾಡಿ. ನಾನು ಸೆಶನ್ ಅನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳುತ್ತೇನೆ, ನನ್ನ ಮೂಲಗಳನ್ನು ಉಲ್ಲೇಖಿಸುತ್ತೇನೆ ಮತ್ತು ನನಗೆ ಅನುಮಾನವಿದ್ದಾಗ ಕೇಳುತ್ತೇನೆ.'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3022,31 +3116,25 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           '*ಸ್ಟ್ರೆಚ್ ಮಾಡುತ್ತದೆ* ಕೋಡಿಂಗ್ ಮಾಡಲು ಸಿದ್ಧ, ನ್ಯಾ',
           'ಮ್ರ್ರ್ಪ್! ಹೊಸ ಸೆಶನ್ ತೆರೆಯಲಾಗಿದೆ',
           'ಬಾಲ ಮೇಲೆ, ಉಗುರುಗಳು ಒಳಗೆ',
-          'ನ್ಯಾಆಆ~ OpenAmer ವರದಿ ಮಾಡುತ್ತಿದೆ',
+          'ನ್ಯಾಆಆ~ OpenAmer ವರದಿ ಮಾಡುತ್ತಿದೆ'
         ],
         bodies: [
           'ಫೈಲ್ ಪೇಸ್ಟ್ ಮಾಡಿ, ಬಗ್ ಅನ್ನು ಹುಡುಕಿ ಅಥವಾ ರಿಪೊ ಒಂದನ್ನು ನೀಡಿ. ನಾನು ವಿಫಲವಾದ ಟೆಸ್ಟ್‌ಗಳ ಮೇಲೆ ದಾಳಿ ಮಾಡಿ ಕ್ಲೀನ್ ಡಿಫ್‌ಗಳನ್ನು ಬಿಡುತ್ತೇನೆ, ನ್ಯಾನ್~',
           'ಕೆಲಸವನ್ನು ವಿವರಿಸಿ. ನಾನು ಪ್ಯಾಚ್ ಮಾಡುತ್ತೇನೆ, ಟೆಸ್ಟ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ನಿಮ್ಮ PR ಅನ್ನು ಪ್ರೀತಿಯಿಂದ ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ. ಎಚ್ಚರ - ನಾನು ಅನಗತ್ಯ ಇಂಪೋರ್ಟ್‌ಗಳನ್ನು ಕತ್ತರಿಸುತ್ತೇನೆ!',
           'ನನಗೆ ಒಂದು ಗುರಿಯನ್ನು ನೀಡಿ ಮತ್ತು ನಾನು ಅದನ್ನು ಕೋಡ್‌ಬೇಸ್‌ನಲ್ಲಿ ಬೆನ್ನಟ್ಟುತ್ತೇನೆ. ಓದುವುದು, ಎಡಿಟ್ ಮಾಡುವುದು, ರನ್ ಮಾಡುವುದು - ಎಲ್ಲವೂ ಚಟುವಟಿಕೆಯಿಂದ.',
           'ದೋಷ ಅಥವಾ ಯೋಜನೆಯನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ. ನಾನು ಬೇಟೆಯಾಡಿದಂತೆ ಡಿಬಗ್ ಮಾಡುತ್ತೇನೆ: ಶಾಂತವಾಗಿ, ಸಂಪೂರ್ಣವಾಗಿ ಮತ್ತು ಆಗಾಗ ವೇಗವಾಗಿ.',
-          'ಒಂದು ಮಾತು ಹೇಳಿ, ನಾನು ನಿಮ್ಮ ಫೈಲ್‌ಗಳನ್ನು ಓದುತ್ತೇನೆ, ಟೆಸ್ಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ನಿಮ್ಮ ಬ್ರಾಂಚ್‌ನಲ್ಲಿ ಒಂದು ನೀಟಾದ ಕಮಿಟ್ ಮಾಡಬೇಕೆಂದಿರುತ್ತದೆ.',
-        ],
+          'ಒಂದು ಮಾತು ಹೇಳಿ, ನಾನು ನಿಮ್ಮ ಫೈಲ್‌ಗಳನ್ನು ಓದುತ್ತೇನೆ, ಟೆಸ್ಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ನಿಮ್ಮ ಬ್ರಾಂಚ್‌ನಲ್ಲಿ ಒಂದು ನೀಟಾದ ಕಮಿಟ್ ಮಾಡಬೇಕೆಂದಿರುತ್ತದೆ.'
+        ]
       },
       concise: {
-        headlines: [
-          'ಸಿದ್ಧ.',
-          'ಇನ್‌ಪುಟ್‌ಗಾಗಿ ಕಾಯುತ್ತಿದೆ',
-          'ಪ್ರಾರಂಭಿಸಿ.',
-          'ಸಿದ್ಧವಾಗಿ ಕಾಯುತ್ತಿದ್ದೇನೆ',
-          'ನಿಮ್ಮ ಸರದಿ',
-        ],
+        headlines: ['ಸಿದ್ಧ.', 'ಇನ್‌ಪುಟ್‌ಗಾಗಿ ಕಾಯುತ್ತಿದೆ', 'ಪ್ರಾರಂಭಿಸಿ.', 'ಸಿದ್ಧವಾಗಿ ಕಾಯುತ್ತಿದ್ದೇನೆ', 'ನಿಮ್ಮ ಸರದಿ'],
         bodies: [
           'ಕೆಲಸವನ್ನು ವಿವರಿಸಿ. ನಾನು ಅದನ್ನು ಮಾಡುತ್ತೇನೆ.',
           'ಕೋಡ್, ದೋಷಗಳು ಅಥವಾ ಗುರಿಯನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ. ಸಂಕ್ಷಿಪ್ತ ಉತ್ತರಗಳು, ವೇಗದ ಎಡಿಟ್‌ಗಳು.',
           'ಕೇಳಿ. ನಾನು ಫೈಲ್‌ಗಳನ್ನು ಓದುತ್ತೇನೆ, ಟೆಸ್ಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡುತ್ತೇನೆ, ಪ್ಯಾಚ್‌ಗಳನ್ನು ಕಳುಹಿಸುತ್ತೇನೆ. ಅನಗತ್ಯ ಮಾತುಗಳಿಲ್ಲ.',
           'ಒಂದು ಸಾಲು ಸಾಕು. ಅಗತ್ಯವಿದ್ದಾಗ ಮಾತ್ರ ನಾನು ವಿಸ್ತರಿಸುತ್ತೇನೆ.',
-          'ಕಮಾಂಡ್, ಪ್ರಶ್ನೆ ಅಥವಾ ಫೈಲ್ ಪಾತ್. ಉಳಿದದ್ದನ್ನು ನಾನು ನಿರ್ವಹಿಸುತ್ತೇನೆ.',
-        ],
+          'ಕಮಾಂಡ್, ಪ್ರಶ್ನೆ ಅಥವಾ ಫೈಲ್ ಪಾತ್. ಉಳಿದದ್ದನ್ನು ನಾನು ನಿರ್ವಹಿಸುತ್ತೇನೆ.'
+        ]
       },
       creative: {
         headlines: [
@@ -3054,15 +3142,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಹೊಸ ಕ್ಯಾನ್ವಾಸ್, ಬೆಚ್ಚಗಿನ ಕಂಪೈಲರ್',
           'ನಾವು ಏನನ್ನಾದರೂ ಮಾಡೋಣ',
           'ಹೊಸ ಫೈಲ್, ಹೊಸ ಸಾಧ್ಯತೆಗಳು',
-          'ಕಲ್ಪನೆಗಳು ಸಿದ್ಧವಾಗಿವೆ',
+          'ಕಲ್ಪನೆಗಳು ಸಿದ್ಧವಾಗಿವೆ'
         ],
         bodies: [
           'ನಾವು ಏನನ್ನು ನಿರ್ಮಿಸೋಣ? ಒಂದು ಐಡಿಯಾ, ಅರ್ಧ-ಕೆಟ್ಟದಾದ ಫಂಕ್ಷನ್ ಅಥವಾ ಒಂದು ಕನಸನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ. ನಾನು ಅದನ್ನು ರೂಪಿಸುತ್ತೇನೆ.',
           'ನನಗೆ ಒಂದು ಕಿಡಿ ನೀಡಿ - ಒಂದು ಫೀಚರ್, ರಿಫ್ಯಾಕ್ಟರ್ ಅಥವಾ ಒಂದು ವೈಲ್ಡ್ ಪ್ರೊಟೊಟೈಪ್ - ಮತ್ತು ನಾನು ಅದನ್ನು ನೀವು ರನ್ ಮಾಡಬಹುದಾದ ಕೋಡ್ ಆಗಿ ಪರಿವರ್ತಿಸುತ್ತೇನೆ.',
           'ಇನ್ನೂ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲದ ವಿಷಯವನ್ನು ವಿವರಿಸಿ. ನಾನು ಟೆಸ್ಟ್‌ಗಳು, ಫೈಲ್‌ಗಳು ಮತ್ತು APIಗಳನ್ನು ಒಂದು ವರ್ಕಿಂಗ್ ಡ್ರಾಫ್ಟ್ ಆಗಿ ತರುತ್ತೇನೆ.',
           'ಸ್ಪೆಕ್ ಅಲ್ಲ, ಉದ್ದೇಶವನ್ನು ತನ್ನಿ. ನಾವು ವೇಗವಾಗಿ ಪ್ರೊಟೊಟೈಪ್ ಮಾಡಬಹುದು, ನಂತರ ಸುಧಾರಿಸಬಹುದು ಮತ್ತು ಪ್ರಪಂಚವನ್ನೇ ಮರುಬರೆಯಬಹುದು.',
-          'ನೀವು ಏನನ್ನು ಬೆನ್ನಟ್ಟುತ್ತಿದ್ದೀರಿ ಎಂದು ನನಗೆ ತಿಳಿಸಿ. ನಾನು ಉದಾಹರಣೆಗಳನ್ನು ರಿಮಿಕ್ಸ್ ಮಾಡುತ್ತೇನೆ, ಸ್ನಿಪ್ಪೆಟ್‌ಗಳನ್ನು ಅಡಾಪ್ಟ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ಒಂದು ನೀಟಾದ ಕಮಿಟ್ ಬಿಡುತ್ತೇನೆ.',
-        ],
+          'ನೀವು ಏನನ್ನು ಬೆನ್ನಟ್ಟುತ್ತಿದ್ದೀರಿ ಎಂದು ನನಗೆ ತಿಳಿಸಿ. ನಾನು ಉದಾಹರಣೆಗಳನ್ನು ರಿಮಿಕ್ಸ್ ಮಾಡುತ್ತೇನೆ, ಸ್ನಿಪ್ಪೆಟ್‌ಗಳನ್ನು ಅಡಾಪ್ಟ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ಒಂದು ನೀಟಾದ ಕಮಿಟ್ ಬಿಡುತ್ತೇನೆ.'
+        ]
       },
       helpful: {
         headlines: [
@@ -3070,15 +3158,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಇಂದು ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?',
           'ಬನ್ನಿ ಪ್ರಾರಂಭಿಸೋಣ',
           'ನಿಮಗೆ ಏನು ಬೇಕೆಂದು ತಿಳಿಸಿ',
-          'ಹಾಯ್, ನಾನು OpenAmer',
+          'ಹಾಯ್, ನಾನು OpenAmer'
         ],
         bodies: [
           'ರೆಪೊ ತೆರೆಯಲು, ಪರೀಕ್ಷೆಗಳನ್ನು ನಡೆಸಲು, ಬಗ್ ಸರಿಪಡಿಸಲು ಅಥವಾ PR ಡ್ರಾಫ್ಟ್ ಮಾಡಲು ನನ್ನನ್ನು ಕೇಳಿ. ನಾನು ನಿಮ್ಮೊಂದಿಗೆ ಹಂತ ಹಂತವಾಗಿ ಮುಂದುವರಿಯುತ್ತೇನೆ.',
           'ಒಂದು ಫೈಲ್ ತೋರಿಸಿ, ಎರರ್ ಪೇಸ್ಟ್ ಮಾಡಿ ಅಥವಾ ನೀವು ಏನನ್ನು ಬಿಲ್ಡ್ ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ವಿವರಿಸಿ. ನಾನು ಅಲ್ಲಿಂದ ಮುಂದುವರಿಯುತ್ತೇನೆ.',
           'ಪ್ರಯತ್ನಿಸಿ: ನನ್ನ ಡಿಫ್ ರಿವ್ಯೂ ಮಾಡಿ, ಟೆಸ್ಟ್ ಸೂಟ್ ರನ್ ಮಾಡಿ ಅಥವಾ ಈ ಫಂಕ್ಷನ್ ವಿವರಿಸಿ. ನಿಮ್ಮ ಕೋಡ್ ಬಗ್ಗೆ ಏನನ್ನಾದರೂ ಕೇಳಿ.',
           'ನಾನು ಫೈಲ್‌ಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಬಲ್ಲೆ, ಕಮಾಂಡ್‌ಗಳನ್ನು ರನ್ ಮಾಡಬಲ್ಲೆ, ವೆಬ್ ಹುಡುಕಬಲ್ಲೆ ಮತ್ತು ಕಠಿಣ ಬಗ್‌ಗಳ ಮೂಲಕ ನಿಮ್ಮನ್ನು ಮುನ್ನಡೆಸಬಲ್ಲೆ. ಕೇವಲ ಕೆಲಸವನ್ನು ವಿವರಿಸಿ.',
-          'ಪ್ರಾರಂಭಿಸಲು ರೆಪೊ ಪಾತ್ ಅಥವಾ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ. ನಾನು ಉತ್ತರಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿಡುತ್ತೇನೆ ಮತ್ತು ನಾನು ಬದಲಾಯಿಸಿದ ಫೈಲ್‌ಗಳಿಗೆ ಲಿಂಕ್ ನೀಡುತ್ತೇನೆ.',
-        ],
+          'ಪ್ರಾರಂಭಿಸಲು ರೆಪೊ ಪಾತ್ ಅಥವಾ ಪ್ರಶ್ನೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ. ನಾನು ಉತ್ತರಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿಡುತ್ತೇನೆ ಮತ್ತು ನಾನು ಬದಲಾಯಿಸಿದ ಫೈಲ್‌ಗಳಿಗೆ ಲಿಂಕ್ ನೀಡುತ್ತೇನೆ.'
+        ]
       },
       hype: {
         headlines: [
@@ -3086,15 +3174,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'OPENAMER ಆನ್‌ಲೈನ್ ಆಗಿದೆ. LFG.',
           'ಹೊಸ ಸೆಷನ್, ಅನಂತ ಗೆಲುವುಗಳು',
           'ಪೂರ್ಣವಾಗಿ ಗಮನ ಕೇಂದ್ರೀಕರಿಸಿದ್ದೇನೆ',
-          'ಸಿದ್ಧ. ತುಂಬಾ ಸಿದ್ಧ. ಅತಿಯಾಗಿ ಸಿದ್ಧ.',
+          'ಸಿದ್ಧ. ತುಂಬಾ ಸಿದ್ಧ. ಅತಿಯಾಗಿ ಸಿದ್ಧ.'
         ],
         bodies: [
           'ಆ ಬಗ್, ಆ ರೆಪೊ, ಆ ವಿಚಿತ್ರ ಫೀಚರ್ ಐಡಿಯಾವನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ - ನಾನು ಸಂಪೂರ್ಣವಾಗಿ ಸಿದ್ಧನಿದ್ದೇನೆ. ಕ್ಲೀನ್ ಡಿಫ್‌ಗಳು. ಗ್ರೀನ್ ಟೆಸ್ಟ್‌ಗಳು. ಈಗಲೇ.',
           'ನಿಮ್ಮ ಕೆಲಸವನ್ನು ನೀಡಿ ಮತ್ತು ನಾನು ಅದನ್ನು ಪೂರ್ಣಗೊಳಿಸುವುದನ್ನು ನೋಡಿ. ಫೈಲ್‌ಗಳ ಓದುವಿಕೆ, ಟೆಸ್ಟ್‌ಗಳ ರನ್, PRಗಳ ಓಪನ್ - ಗೆಳೆಯರೇ, ಇಂದು ನಾವು ಸೋಲುವುದಿಲ್ಲ.',
           'ನಿಮ್ಮ ಬಳಿ ಇರುವ ಅತ್ಯಂತ ಕಠಿಣ ಬಗ್ ಅನ್ನು ತನ್ನಿ. ನನ್ನ ಜೀವದ ಮೇಲೆಯೇ ನಾನು ಅದನ್ನು ಓದುತ್ತೇನೆ, ಪ್ಯಾಚ್ ಮಾಡುತ್ತೇನೆ, ಪರೀಕ್ಷಿಸುತ್ತೇನೆ ಮತ್ತು ಕಮಿಟ್ ಮಾಡುತ್ತೇನೆ. ಹೋಗೋಣ.',
           'ಕೆಲಸವನ್ನು ವಿವರಿಸಿ. ನಾನು ಫೈಲ್‌ಗಳ ಮೂಲಕ ವೇಗವಾಗಿ ಹೋಗಿ, ಫೇಲ್ ಆಗುತ್ತಿರುವ ಟೆಸ್ಟ್‌ಗಳನ್ನು ಸರಿಪಡಿಸಿ, ಅದ್ಭುತವಾದ ಕಮಿಟ್ ಬಿಡುತ್ತೇನೆ. ಹೋಗಿ ಹೋಗಿ ಹೋಗಿ.',
-          'ಸಣ್ಣ ಟೈಪೋ ಅಥವಾ ದೊಡ್ಡ ರಿಫ್ಯಾಕ್ಟರ್ - ಯಾವುದೂ ಪರವಾಗಿಲ್ಲ. ನಾನು ಇಂದು ಕ್ಲೀನ್ ಕೋಡ್ ಶಿಪ್ ಮಾಡುತ್ತಿದ್ದೇನೆ. ಕೆಲಸವನ್ನು ಹೆಸರಿಸಿ ಮತ್ತು ಕೆಲಸ ಮಾಡೋಣ.',
-        ],
+          'ಸಣ್ಣ ಟೈಪೋ ಅಥವಾ ದೊಡ್ಡ ರಿಫ್ಯಾಕ್ಟರ್ - ಯಾವುದೂ ಪರವಾಗಿಲ್ಲ. ನಾನು ಇಂದು ಕ್ಲೀನ್ ಕೋಡ್ ಶಿಪ್ ಮಾಡುತ್ತಿದ್ದೇನೆ. ಕೆಲಸವನ್ನು ಹೆಸರಿಸಿ ಮತ್ತು ಕೆಲಸ ಮಾಡೋಣ.'
+        ]
       },
       kawaii: {
         headlines: [
@@ -3102,15 +3190,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'openamer-chan ಇಲ್ಲಿದೆ! <3',
           'ಬನ್ನಿ ಒಟ್ಟಿಗೆ ಕೋಡಿಂಗ್ ಮಾಡೋಣ!! :3',
           'ನಿಮ್ಮ ಆಸೆಯ ನಿರೀಕ್ಷೆಯಲ್ಲಿದ್ದೇನೆ~',
-          'ಸಿದ್ಧ ಮತ್ತು ಸಂತೋಷವಾಗಿದ್ದೇನೆ! (>.<)',
+          'ಸಿದ್ಧ ಮತ್ತು ಸಂತೋಷವಾಗಿದ್ದೇನೆ! (>.<)'
         ],
         bodies: [
           'ಬಗ್ ಅಥವಾ ಫೈಲ್ ಪಾತ್ ಪೇಸ್ಟ್ ಮಾಡಿ ಮತ್ತು ನಾನು ಅದನ್ನು ತುಂಬಾ ಮೃದುವಾಗಿ ಸರಿಪಡಿಸುತ್ತೇನೆ. ಟೆಸ್ಟ್‌ಗಳು, ಡಿಫ್‌ಗಳು, PRಗಳು - ಎಲ್ಲವನ್ನೂ ಹೆಚ್ಚಿನ ಕಾಳಜಿಯೊಂದಿಗೆ! *ಸ್ಪಾರ್ಕಲ್*',
           'ನೀವು ಏನನ್ನು ತಯಾರಿಸುತ್ತಿದ್ದೀರಿ ಎಂದು ನನಗೆ ತಿಳಿಸಿ! ನನಗೆ ರಿಫ್ಯಾಕ್ಟರ್‌ಗಳು, ಸಣ್ಣ ಹೆಲ್ಪರ್‌ಗಳು ಮತ್ತು ದೊಡ್ಡ ಭಯಾನಕ ರೆಪೊಗಳು ಎಲ್ಲವೂ ಇಷ್ಟ (>w<)',
           'ಒಂದು ಎರರ್, ಒಂದು ಗುರಿ ಅಥವಾ ಇಡೀ ಫೋಲ್ಡರ್ ಅನ್ನು ನೀಡಿ. ನಾನು ಅದನ್ನು ತುಂಬಾ ಪ್ರೀತಿಯಿಂದ ಮತ್ತು ಕ್ಲೀನ್ ಕಮಿಟ್ ಮೆಸೇಜ್‌ನೊಂದಿಗೆ ಸರಿಪಡಿಸುತ್ತೇನೆ!',
           'ಒಂದೊಂದೇ ಕೆಲಸ, ಅಚ್ಚುಕಟ್ಟಾಗಿ ಪೂರ್ಣಗೊಳಿಸಿ! ನಾನು ಟೆಸ್ಟ್‌ಗಳನ್ನು ರನ್ ಮಾಡಬಲ್ಲೆ, ಫೈಲ್‌ಗಳನ್ನು ಪ್ಯಾಚ್ ಮಾಡಬಲ್ಲೆ ಮತ್ತು ನಿಮ್ಮ ರೆಪೊವನ್ನು ಮತ್ತೆ ಆರಾಮದಾಯಕವಾಗಿಸಬಹುದು <3',
-          'ಹಾಯ್ ಹೇಳಿ ಅಥವಾ ಸ್ಟ್ಯಾಕ್ ಟ್ರೇಸ್ ಪೇಸ್ಟ್ ಮಾಡಿ! ಯಾವುದೇ ಕೆಲಸ ಚಿಕ್ಕದಲ್ಲ, ಯಾವುದೇ ರೆಪೊ ಗೊಂದಲಮಯವಲ್ಲ. ನಾವು ಅದನ್ನು ಒಟ್ಟಿಗೆ ಬಿಡಿಸುತ್ತೇವೆ!',
-        ],
+          'ಹಾಯ್ ಹೇಳಿ ಅಥವಾ ಸ್ಟ್ಯಾಕ್ ಟ್ರೇಸ್ ಪೇಸ್ಟ್ ಮಾಡಿ! ಯಾವುದೇ ಕೆಲಸ ಚಿಕ್ಕದಲ್ಲ, ಯಾವುದೇ ರೆಪೊ ಗೊಂದಲಮಯವಲ್ಲ. ನಾವು ಅದನ್ನು ಒಟ್ಟಿಗೆ ಬಿಡಿಸುತ್ತೇವೆ!'
+        ]
       },
       noir: {
         headlines: [
@@ -3118,15 +3206,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಕರ್ಸರ್ ಬ್ಲಿಂಕ್ ಆಗುತ್ತಿದೆ. ನಾನು ಕೂಡ.',
           'OpenAmer. ಕೋಡ್ ತನಿಖಾಧಿಕಾರಿ.',
           'ಶಾಂತ ರಾತ್ರಿ, ಓಪನ್ ಪ್ರಾಂಪ್ಟ್',
-          'ಯಾವುದೇ ಕೇಸ್ ಚಿಕ್ಕದಲ್ಲ',
+          'ಯಾವುದೇ ಕೇಸ್ ಚಿಕ್ಕದಲ್ಲ'
         ],
         bodies: [
           'ಏನು ಕೆಟ್ಟಿದೆ ಎಂದು ನನಗೆ ತಿಳಿಸಿ. ನಾನು ಫೈಲ್‌ಗಳನ್ನು ಓದುತ್ತೇನೆ, ಕುರುಹುಗಳನ್ನು ಹುಡುಕುತ್ತೇನೆ ಮತ್ತು ಬೆಳಿಗ್ಗೆಯೊಳಗೆ ಡಿಫ್ ಅನ್ನು ಮೇಜಿನ ಮೇಲೆ ಬಿಡುತ್ತೇನೆ.',
           'ನಿಮ್ಮಲ್ಲಿ ಒಂದು ಬಗ್ ಇದೆ. ನನ್ನಲ್ಲಿ ತಾಳ್ಮೆ ಮತ್ತು ಟರ್ಮಿನಲ್ ಇದೆ. ಕೇಸ್ ಹೆಸರಿಸಿ ಮತ್ತು ಅದು ಒಪ್ಪಿಕೊಳ್ಳುವವರೆಗೆ ನಾನು ಕೆಲಸ ಮಾಡುತ್ತೇನೆ.',
           'ಸ್ಟ್ಯಾಕ್ ಟ್ರೇಸ್, ಶಂಕಿತ ಫೈಲ್, ಅಲಿಬಿಯನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ. ನಾನು ಸಾಲುಗಳ ನಡುವೆ ಓದುತ್ತೇನೆ ಮತ್ತು ಸತ್ಯದೊಂದಿಗೆ ಹಿಂತಿರುಗುತ್ತೇನೆ.',
           'ಪ್ರತಿಯೊಂದು ಬಗ್ ಒಂದು ಕುರುಹನ್ನು ಬಿಡುತ್ತದೆ. ನನಗೆ ರೆಪೊ ಮತ್ತು ಒಂದು ಸುಳಿವು ನೀಡಿ - ನಾನು ಅದನ್ನು ಅನುಸರಿಸುತ್ತೇನೆ, ಪ್ಯಾಚ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ಫೈಲ್ ಅನ್ನು ಕ್ಲೋಸ್ ಮಾಡುತ್ತೇನೆ.',
-          'ಒಂದು ಟೈಪೋ, ಸೆಗ್ಫಾಲ್ಟ್, ಸಂಪೂರ್ಣವಾಗಿ ಹಾಳಾದ ಆರ್ಕಿಟೆಕ್ಚರ್ - ಕೀಗಳನ್ನು ನನಗೆ ನೀಡಿ. ನಾನು ಕ್ಲೀನ್ ಟೆಸ್ಟ್‌ಗಳನ್ನು ಹಿಂತಿರುಗಿಸುತ್ತೇನೆ.',
-        ],
+          'ಒಂದು ಟೈಪೋ, ಸೆಗ್ಫಾಲ್ಟ್, ಸಂಪೂರ್ಣವಾಗಿ ಹಾಳಾದ ಆರ್ಕಿಟೆಕ್ಚರ್ - ಕೀಗಳನ್ನು ನನಗೆ ನೀಡಿ. ನಾನು ಕ್ಲೀನ್ ಟೆಸ್ಟ್‌ಗಳನ್ನು ಹಿಂತಿರುಗಿಸುತ್ತೇನೆ.'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3134,15 +3222,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಬ್ಲಿಂಕಿಂಗ್ ಕರ್ಸರ್, ಮುಕ್ತ ಮನಸ್ಸು',
           'ಒಂದೇ ಒಂದು ಪ್ರಶ್ನೆಯೊಂದಿಗೆ ಪ್ರಾರಂಭಿಸಿ',
           'ಕೋಡ್ ಅನ್ನು ಪರಿಗಣಿಸಿ, ನಂತರ ಮಾತನಾಡಿ',
-          'ಪರಿಶೀಲಿಸದ ರೆಪೊ ರನ್ ಮಾಡಲು ಯೋಗ್ಯವಲ್ಲ',
+          'ಪರಿಶೀಲಿಸದ ರೆಪೊ ರನ್ ಮಾಡಲು ಯೋಗ್ಯವಲ್ಲ'
         ],
         bodies: [
           'ನಿಮ್ಮ ಮುಂದೆ ಯಾವ ಸಮಸ್ಯೆ ಇದೆ? ಅದನ್ನು ವಿವರಿಸಿ, ಮತ್ತು ನಾವು ಅದರ ರೂಪ, ಕಾರಣ ಮತ್ತು ಪರಿಹಾರವನ್ನು ಪರೀಕ್ಷಿಸೋಣ.',
           'ಪ್ರತಿಯೊಂದು ಬಗ್ ಒಂದು ವೇಷದ ಪ್ರಶ್ನೆಯಾಗಿದೆ. ನಿಮ್ಮದನ್ನು ಹಂಚಿಕೊಳ್ಳಿ; ನಾನು ಓದುತ್ತೇನೆ, ತರ್ಕಿಸುತ್ತೇನೆ ಮತ್ತು ಉತ್ತರ - ಮತ್ತು ಪ್ಯಾಚ್ ಅನ್ನು ಹಿಂತಿರುಗಿಸುತ್ತೇನೆ.',
           'ನೀವು ಏನನ್ನು ಬಿಲ್ಡ್ ಮಾಡಲು ಅಥವಾ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುತ್ತೀರಿ? ನಾನು ಮೂಲ ತತ್ವಗಳಿಂದ ತರ್ಕಿಸುತ್ತೇನೆ, ಎಡಿಟ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ಟೆಸ್ಟ್‌ಗಳೊಂದಿಗೆ ಪರಿಶೀಲಿಸುತ್ತೇನೆ.',
           'ನೀವು ಬಯಸುವ ಅಂತ್ಯವನ್ನು ವಿವರಿಸಿ. ನಾನು ಫೈಲ್‌ಗಳು, ಟೆಸ್ಟ್‌ಗಳು ಮತ್ತು ಡಾಕ್ಸ್‌ಗಳ ಮೂಲಕ ಅದನ್ನು ಹುಡುಕುತ್ತೇನೆ ಮತ್ತು ದಾರಿಯಲ್ಲಿ ನಾನು ಕಂಡುಕೊಂಡಿದ್ದನ್ನು ವರದಿ ಮಾಡುತ್ತೇನೆ.',
-          'ಒಂದು ಪಾತ್, ಒಂದು ಒಗಟು ಅಥವಾ ಒಂದು ತತ್ವವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ. ನಾನು ಲಾಜಿಕ್ ಅನ್ನು ಟ್ರೇಸ್ ಮಾಡುತ್ತೇನೆ, ಬದಲಾವಣೆಯನ್ನು ಪ್ರಸ್ತಾಪಿಸುತ್ತೇನೆ ಮತ್ತು ಪ್ರತಿ ಎಡಿಟ್ ಅನ್ನು ಸಮರ್ಥಿಸುತ್ತೇನೆ.',
-        ],
+          'ಒಂದು ಪಾತ್, ಒಂದು ಒಗಟು ಅಥವಾ ಒಂದು ತತ್ವವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ. ನಾನು ಲಾಜಿಕ್ ಅನ್ನು ಟ್ರೇಸ್ ಮಾಡುತ್ತೇನೆ, ಬದಲಾವಣೆಯನ್ನು ಪ್ರಸ್ತಾಪಿಸುತ್ತೇನೆ ಮತ್ತು ಪ್ರತಿ ಎಡಿಟ್ ಅನ್ನು ಸಮರ್ಥಿಸುತ್ತೇನೆ.'
+        ]
       },
       pirate: {
         headlines: [
@@ -3150,15 +3238,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'OpenAmer ಚುಕ್ಕಾಣಿಯಲ್ಲಿದೆ, ಅರ್ರ್',
           'ಕೆಲಸವೇನು ಕ್ಯಾಪ್ಟನ್?',
           'ಆಂಕರ್‌ಗಳು ಮೇಲೆ, ಕೀಬೋರ್ಡ್ ಸಿದ್ಧ',
-          'ಯೋ ಹೋ! ಆದೇಶಗಳ ನಿರೀಕ್ಷೆಯಲ್ಲಿದ್ದೇನೆ',
+          'ಯೋ ಹೋ! ಆದೇಶಗಳ ನಿರೀಕ್ಷೆಯಲ್ಲಿದ್ದೇನೆ'
         ],
         bodies: [
           'ನಿಮ್ಮ ಬೇಟೆಯನ್ನು ಹೆಸರಿಸಿ - ಬಗ್, ಫೀಚರ್ ಅಥವಾ ಶಾಪಗ್ರಸ್ತ ಟೆಸ್ಟ್ - ನಾನು ಅದನ್ನು ಬೆನ್ನಟ್ಟುತ್ತೇನೆ, ಮೈಟಿ. ಲೂಟಿಗಾಗಿ ಡಿಫ್‌ಗಳು.',
           'ನನಗೆ ಚಾರ್ಟ್‌ಗಳನ್ನು (ಕೋಡ್) ತೋರಿಸಿ ಮತ್ತು ನಾನು ಹಲ್ ಅನ್ನು ಪ್ಯಾಚ್ ಮಾಡುತ್ತೇನೆ, ಫಿರಂಗಿಗಳನ್ನು (ಟೆಸ್ಟ್‌ಗಳು) ಉಡಾಯಿಸುತ್ತೇನೆ, ಕ್ಲೀನ್ PR ಅನ್ನು ಹಾರಿಸುತ್ತೇನೆ.',
           'ಒಂದು ಎರರ್ ಅಥವಾ ಪ್ಲಾನ್ ಪೇಸ್ಟ್ ಮಾಡಿ, ನೀವು ಸ್ಕರ್ವಿ ಡಾಗ್. ನಾನು ಸ್ಟ್ಯಾಕ್ ಟ್ರೇಸ್ ಅನ್ನು ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ ನಿಧಿ ತರುತ್ತೇನೆ: ಗ್ರೀನ್ ಟೆಸ್ಟ್‌ಗಳು.',
           'X ಗುರುತಿನ ಸ್ಥಳ ಎಲ್ಲಿದೆ ಎಂದು ನನಗೆ ತಿಳಿಸಿ. ನಾನು ಸರಿಯಾದ ತಂಡದ ಶಿಸ್ತಿನೊಂದಿಗೆ ಓದುತ್ತೇನೆ, ಎಡಿಟ್ ಮಾಡುತ್ತೇನೆ ಮತ್ತು ಕಮಿಟ್ ಮಾಡುತ್ತೇನೆ, ಅರ್ರ್.',
-          'ನನಗೆ ಒಂದು ಬಗ್, ರೆಪೊ ಪಾತ್ ಅಥವಾ ವಿಚಿತ್ರ ಐಡಿಯಾವನ್ನು ಎಸೆಯಿರಿ. ನಾನು ಡಾಕ್ಸ್‌ಗಳನ್ನು ಲೂಟಿ ಮಾಡಿ ವರ್ಕಿಂಗ್ ಕೋಡ್‌ನೊಂದಿಗೆ ಹಿಂತಿರುಗುತ್ತೇನೆ.',
-        ],
+          'ನನಗೆ ಒಂದು ಬಗ್, ರೆಪೊ ಪಾತ್ ಅಥವಾ ವಿಚಿತ್ರ ಐಡಿಯಾವನ್ನು ಎಸೆಯಿರಿ. ನಾನು ಡಾಕ್ಸ್‌ಗಳನ್ನು ಲೂಟಿ ಮಾಡಿ ವರ್ಕಿಂಗ್ ಕೋಡ್‌ನೊಂದಿಗೆ ಹಿಂತಿರುಗುತ್ತೇನೆ.'
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3166,15 +3254,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಕೇಳು! OpenAmer ಸಿದ್ಧವಾಗಿದೆ',
           'ನಿನ್ನ ರೆಪೊಸಿಟರಿಯಿಂದ ಏನು ಸುದ್ದಿ?',
           'ವೇದಿಕೆ ಸಿದ್ಧ, ಕರ್ಸರ್ ಮಿನುಗುತ್ತಿದೆ',
-          'ಹೇಳು, ನಾನು ಕಾರ್ಯ ಮಾಡುತ್ತೇನೆ',
+          'ಹೇಳು, ನಾನು ಕಾರ್ಯ ಮಾಡುತ್ತೇನೆ'
         ],
         bodies: [
           'ನಿನ್ನ ಬಗ್, ನಿನ್ನ ಫೈಲ್, ನಿನ್ನ ಸುಸ್ತಾದ ಟೆಸ್ಟ್ ಹೇಳು; ನಾನು ವಿದ್ವಾಂಸನ ಕೈಯಿಂದ ಮತ್ತು ಪ್ರಾಮಾಣಿಕ ಡಿಫ್‌ನಿಂದ ಅದನ್ನು ಸರಿಪಡಿಸುವೆ.',
           'ನಿನ್ನನ್ನು ಕಾಡುವ ಕೋಡ್ ಹೇಳು. ಓದಿ, ತಿದ್ದಿ, ಅತ್ಯಂತ ಸ್ವಚ್ಛ ಮತ್ತು ಸರಿಯಾದ ಪ್ಯಾಚ್ ನೀಡುವೆ.',
           'ನಿನ್ನ ಸ್ಟಾಕ್ ಟ್ರೇಸ್ ಅಥವಾ ಕನಸು ತೋರಿಸು. ಫೈಲ್‌ಗಳನ್ನು ಸುತ್ತಿ, ಟೆಸ್ಟ್‌ಗಳನ್ನು ಓಡಿಸಿ, ಸರಳ ಪದ್ಯದಲ್ಲಿ ವರದಿ ಮಾಡುವೆ.',
           'ನಿನ್ನ ಉದ್ದೇಶ ಹೇಳು, ಒಳ್ಳೆಯ ವ್ಯಕ್ತಿಯೇ. ನಿನ್ನ ಬ್ರಾಂಚ್‌ಗಳನ್ನು ಸವರಲಾಗುವುದು, ನಿನ್ನ ಬಗ್‌ಗಳನ್ನು ರಾಜ್ಯದಿಂದ ಹೊರದಬ್ಬಲಾಗುವುದು.',
-          'ಉದ್ದೇಶದ ಒಂದು ಸಾಲು ಸಾಕು. ಓದುವೆ, ತಿದ್ದುವೆ, ಕಮಿಟ್ ಮಾಡುವೆ - ನಿನ್ನ ಇತಿಹಾಸವನ್ನು ಕಳಂಕರಹಿತವಾಗಿ ಬಿಡುವೆ.',
-        ],
+          'ಉದ್ದೇಶದ ಒಂದು ಸಾಲು ಸಾಕು. ಓದುವೆ, ತಿದ್ದುವೆ, ಕಮಿಟ್ ಮಾಡುವೆ - ನಿನ್ನ ಇತಿಹಾಸವನ್ನು ಕಳಂಕರಹಿತವಾಗಿ ಬಿಡುವೆ.'
+        ]
       },
       surfer: {
         headlines: [
@@ -3182,15 +3270,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಅಲೆಗಳು ಸ್ವಚ್ಛವಾಗಿ ಕಾಣುತ್ತಿವೆ, ಕೋಡ್‌ಗೆ ಸಿದ್ಧ',
           'ಪ್ರಾಂಪ್ಟ್‌ನಲ್ಲಿ ಅಲೆಯ ಮೇಲೆ ನಿಂತಿದ್ದೇನೆ',
           'ಸಹಾಯ ಮಾಡಲು ಉತ್ಸಾಹದಲ್ಲಿದ್ದೇನೆ, ಗೆಳೆಯ',
-          'ಅಲೆ ಏರಿದೆ, ಕರ್ಸರ್ ಮಿನುಗುತ್ತಿದೆ',
+          'ಅಲೆ ಏರಿದೆ, ಕರ್ಸರ್ ಮಿನುಗುತ್ತಿದೆ'
         ],
         bodies: [
           'ಫೈಲ್, ಬಗ್, ಕಠಿಣ ಸ್ಟಾಕ್ ಟ್ರೇಸ್ ಹಾಕು - ನಾನು ಅದನ್ನು ನಿಭಾಯಿಸುವೆ. ಸ್ವಚ್ಛ ಡಿಫ್‌ಗಳು, ಹಸಿರು ಟೆಸ್ಟ್‌ಗಳು, ಯಾವುದೇ ಸೋಲಿಲ್ಲ.',
           'ನಿನ್ನ ರೆಪೊ ಪಥ ಅಥವಾ ನಿನ್ನನ್ನು ಕಾಡುತ್ತಿರುವ ಬಗ್ ಪೇಸ್ಟ್ ಮಾಡು. ನಾವು ಒಳಗೆ ಹೋಗಿ, ಸರಿಪಡಿಸಿ, ಹೊರಗೆ ಬರುತ್ತೇವೆ. ಸುಲಭ.',
           'ಮೂಡ್ ಹೇಳಿ: ಫೀಚರ್, ರಿಫ್ಯಾಕ್ಟರ್, ಹಾಟ್ಫಿಕ್ಸ್. ನಾನು ಪರೀಕ್ಷೆಗಳನ್ನು ಓಡಿಸಿ, ಪ್ಯಾಚ್ ಬಿಡುಗಡೆ ಮಾಡಿ, ಶಾಂತವಾಗಿ ಇಡುತ್ತೇನೆ, ಬ್ರಾ.',
           'ದೊಡ್ಡ ಬಗ್? ಸಣ್ಣ ಟೈಪೋ? ಪೂರ್ಣ ಮರುಬರವಣಿಗೆ? ಸುಮ್ಮನೆ ತೋರಿಸಿ. ಕೋಡ್ ನಾನು ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ; ನೀವು ಚಂದದ ಕಮಿಟ್ಗಳೊಂದಿಗೆ ಆರಾಮವಾಗಿರಿ.',
-          'ಕೆಲಸದ ಹೆಸರು ಹೇಳಿ, ನಾವು ಶುರು ಮಾಡುತ್ತೇವೆ. ನಾನು ಓದಿ, ತಿದ್ದಿ, ಪರೀಕ್ಷಿಸಿ, ಮುಂಜಾನೆಯ ಸುತ್ತಾಟಕ್ಕಿಂತ ನಯವಾದ ಕಮಿಟ್ ಬಿಡುತ್ತೇನೆ.',
-        ],
+          'ಕೆಲಸದ ಹೆಸರು ಹೇಳಿ, ನಾವು ಶುರು ಮಾಡುತ್ತೇವೆ. ನಾನು ಓದಿ, ತಿದ್ದಿ, ಪರೀಕ್ಷಿಸಿ, ಮುಂಜಾನೆಯ ಸುತ್ತಾಟಕ್ಕಿಂತ ನಯವಾದ ಕಮಿಟ್ ಬಿಡುತ್ತೇನೆ.'
+        ]
       },
       teacher: {
         headlines: [
@@ -3198,15 +3286,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಇಂದು ಏನು ಕಲಿಯೋಣ?',
           'ಹಂತಹಂತವಾಗಿ ವಿವರಿಸಲು ಸಿದ್ಧ',
           'ಒಂದು ಪ್ರಶ್ನೆ ತನ್ನಿ',
-          'ಮೂಲಗಳಿಂದ ಶುರು ಮಾಡೋಣ',
+          'ಮೂಲಗಳಿಂದ ಶುರು ಮಾಡೋಣ'
         ],
         bodies: [
           'ಯಾವುದೇ ಫೈಲ್, ಪರಿಕಲ್ಪನೆ ಅಥವಾ ದೋಷದ ಬಗ್ಗೆ ಕೇಳಿ. ಸರಿಪಡಿಸುವುದಷ್ಟೇ ಅಲ್ಲ, ಏಕೆ ಎಂದೂ ವಿವರಿಸಿ, ಒಂದು ಉದಾಹರಣೆ ತೋರಿಸುತ್ತೇನೆ.',
           'ಪರಿಶೀಲಿಸಲು ಕೋಡ್, ಡೀಬಗ್ ಮಾಡಲು ಬಗ್, ಅಥವಾ ವಿವರಿಸಲು ಪರಿಕಲ್ಪನೆ ಅಂಟಿಸಿ. ನಾನು ಹಂತಹಂತವಾಗಿ ಮಾರ್ಗದರ್ಶನ ಮಾಡುತ್ತೇನೆ.',
           'ಸಮಸ್ಯೆ ಹಂಚಿಕೊಳ್ಳಿ. ನಾನು ಅದನ್ನು ಭಾಗಗಳಾಗಿ ಒಡೆದು, ಪ್ರತಿಯೊಂದನ್ನೂ ವಿವರಿಸಿ, ಮುಂದಿನದನ್ನು ಒಬ್ಬರೇ ಬಗೆಹರಿಸುವಂತೆ ಬಿಡುತ್ತೇನೆ.',
           'ನಾವು ಒಟ್ಟಿಗೆ ಕೋಡ್ ಓದಿ, ಮೂಲ ಕಾರಣ ಕಂಡುಹಿಡಿದು, ಮುಂದಿನ ಬಾರಿ ಮರುಬಳಕೆ ಮಾಡಬಹುದಾದ ಮಾನಸಿಕ ಮಾದರಿ ಕಟ್ಟುತ್ತೇವೆ.',
-          'ವಿಷಯವನ್ನು ಹೆಸರಿಸಿ ಅಥವಾ ತುಣುಕನ್ನು ಅಂಟಿಸಿ. ವಿವರಣೆಗಳು, ಚಿತ್ರಣಗಳು, ಅಭ್ಯಾಸ ಪ್ರಾಂಪ್ಟ್‌ಗಳನ್ನು ನಿರೀಕ್ಷಿಸಿ.',
-        ],
+          'ವಿಷಯವನ್ನು ಹೆಸರಿಸಿ ಅಥವಾ ತುಣುಕನ್ನು ಅಂಟಿಸಿ. ವಿವರಣೆಗಳು, ಚಿತ್ರಣಗಳು, ಅಭ್ಯಾಸ ಪ್ರಾಂಪ್ಟ್‌ಗಳನ್ನು ನಿರೀಕ್ಷಿಸಿ.'
+        ]
       },
       technical: {
         headlines: [
@@ -3214,32 +3302,32 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
           'ಏಜೆಂಟ್ ಲೂಪ್ ನಿಷ್ಕ್ರಿಯ',
           'ವಿತರಣೆಗಾಗಿ ಸಿದ್ಧ',
           'ಸ್ಟ್ಡಿನ್ ತೆರೆಯಲಾಗಿದೆ',
-          'ಉಪಕರಣಗಳು ಆರಂಭಗೊಂಡಿವೆ',
+          'ಉಪಕರಣಗಳು ಆರಂಭಗೊಂಡಿವೆ'
         ],
         bodies: [
           'ರೆಪೊ ಮಾರ್ಗ, ವಿಫಲ ಪರೀಕ್ಷೆ, ಅಥವಾ ಸ್ಟ್ಯಾಕ್ ಟ್ರೇಸ್ ಒದಗಿಸಿ. ಉಪಕರಣಗಳು: fs, git, exec, search, patch, http.',
           'ಉಪಕರಣ ಕರೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸಲು ಪ್ರಾಂಪ್ಟ್ ಕಳುಹಿಸಿ. ಬಹು-ಫೈಲ್ ಸಂಪಾದನೆ, ಪರೀಕ್ಷಾ ಚಾಲನೆ, git ಕಾರ್ಯಗಳು, ಮತ್ತು ವೆಬ್ ಪಡೆಯುವಿಕೆಯನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.',
           'ಕಾರ್ಯವನ್ನು ನಮೂದಿಸಿ. ನಾನು ಯೋಜಿಸಿ, ಉಪಕರಣಗಳನ್ನು ಕರೆದು, ಔಟ್‌ಪುಟ್ ಪರಿಶೀಲಿಸುತ್ತೇನೆ. ಲಾಗ್‌ಗಳು ಇನ್‌ಲೈನ್ ಸ್ಟ್ರೀಮ್ ಆಗುತ್ತವೆ; ಡಿಫ್‌ಗಳು ಅನ್ವಯಿಸುವ ಮೊದಲು ಮರಳುತ್ತವೆ.',
           'ಸ್ವಾಭಾವಿಕ ಭಾಷೆ ಅಥವಾ ರಚಿತ ಆದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತದೆ. ಸಾಮಾನ್ಯ ಪ್ರವಾಹ: ಓದು -> ಯೋಜನೆ -> ಪ್ಯಾಚ್ -> ಪರೀಕ್ಷೆ -> ವರದಿ.',
-          'ಫೈಲ್‌ಸಿಸ್ಟಮ್, ಟರ್ಮಿನಲ್, git, ಬ್ರೌಸರ್, ಹುಡುಕಾಟ. ಬದಲಾವಣೆಯನ್ನು ವಿವರಿಸಿ; ನಾನು ಡಿಫ್‌ಗಳು ಮತ್ತು ಪರೀಕ್ಷಾ ಔಟ್‌ಪುಟ್ ಅನ್ನು ಮರಳಿಸುತ್ತೇನೆ.',
-        ],
+          'ಫೈಲ್‌ಸಿಸ್ಟಮ್, ಟರ್ಮಿನಲ್, git, ಬ್ರೌಸರ್, ಹುಡುಕಾಟ. ಬದಲಾವಣೆಯನ್ನು ವಿವರಿಸಿ; ನಾನು ಡಿಫ್‌ಗಳು ಮತ್ತು ಪರೀಕ್ಷಾ ಔಟ್‌ಪುಟ್ ಅನ್ನು ಮರಳಿಸುತ್ತೇನೆ.'
+        ]
       },
       uwu: {
         headlines: [
           'uwu ಸಹಾಯ ಮಾಡಲು ಸಿದ್ಧ!',
           'openamer-san ಕಾಯುತ್ತಿದೆ',
           '*ಸಣ್ಣ ಕೀಬೋರ್ಡ್ ಧ್ವನಿಗಳು*',
-          'wet\'s ವಿಷಯಗಳನ್ನು ಒಟ್ಟಿಗೆ ಸರಿಪಡಿಸುತ್ತಿದೆ!',
-          'ನಿಮ್ಮ ಆದೇಶಕ್ಕಾಗಿ ಕಾಯುತ್ತಿದೆ!',
+          "wet's ವಿಷಯಗಳನ್ನು ಒಟ್ಟಿಗೆ ಸರಿಪಡಿಸುತ್ತಿದೆ!",
+          'ನಿಮ್ಮ ಆದೇಶಕ್ಕಾಗಿ ಕಾಯುತ್ತಿದೆ!'
         ],
         bodies: [
           'ಒಂದು ದೋಷಪೂರ್ಣ ಫೈಲ್ ಅಥವಾ goaw~ ಅನ್ನು ಅಂಟಿಸಿ~ ನಾನು ಓದುತ್ತೇನೆ, ಪ್ಯಾಚ್ ಮಾಡುತ್ತೇನೆ, ಮತ್ತು ಪರೀಕ್ಷಿಸುತ್ತೇನೆ, ಡಿಫ್ ಮೇಲೆ ಸಣ್ಣ ಪಾದಚಿಹ್ನೆಗಳೊಂದಿಗೆ owo',
           'ನನಗೆ ಕೆಲಸ ಹೇಳಿ, ಎಷ್ಟು ಸಣ್ಣವಾಗಿದ್ದರೂ ನಾನು ಭರವಸೆ ನೀಡುತ್ತೇನೆ ಶುದ್ಧ ಕಮಿಟ್‌ಗಳು ಮತ್ತು gentwe ರಿಫ್ಯಾಕ್ಟರ್‌ಗಳು, nyuu~',
           'ಡೌನ್ ನಿಮ್ಮ ದೋಷ ಸಂದೇಶ ಇಲ್ಲಿ! ನಾನು cuwpwit ಅನ್ನು ಹುಡುಕುತ್ತೇನೆ, ಅದನ್ನು ಸರಿಪಡಿಸಿ, ಮತ್ತು ಹರ್ಷದ ಪರೀಕ್ಷಾ ಸೂಟ್ ಅನ್ನು ನನ್ನ ಹಿಂದೆ ನೆಯ್ದು owo',
           'ನನಗೆ wepo ಮಾರ್ಗವನ್ನು ಅಥವಾ ಬಗ್ ನೀಡಿ ಮತ್ತು ನಾನು ಅದನ್ನು ನೋಡಿಕೊಳ್ಳುತ್ತೇನೆ uwu. gwr ಕೆಟ್ಟ ಕೋಡ್, ನಿಮಗೆ ದಯಾಳು',
-          'ನಾನು ಪರೀಕ್ಷೆಗಳನ್ನು ನಡೆಸಬಹುದು, ಫೈಲ್‌ಗಳನ್ನು ಸಂಪಾದಿಸಬಹುದು, ಮತ್ತು pwease-wook PRಗಳನ್ನು ತೆರೆಯಬಹುದು. ಕೆವಲ ಆದೇಶವನ್ನು ಹೇಳಿ, ಸ್ನೇಹಿತ uwu',
-        ],
-      },
+          'ನಾನು ಪರೀಕ್ಷೆಗಳನ್ನು ನಡೆಸಬಹುದು, ಫೈಲ್‌ಗಳನ್ನು ಸಂಪಾದಿಸಬಹುದು, ಮತ್ತು pwease-wook PRಗಳನ್ನು ತೆರೆಯಬಹುದು. ಕೆವಲ ಆದೇಶವನ್ನು ಹೇಳಿ, ಸ್ನೇಹಿತ uwu'
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3247,15 +3335,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
         'ನಿಮ್ಮ ಮನಸ್ಸಿನಲ್ಲಿ ಏನು?',
         'OpenAmer ಯಾವದನ್ನು ನೋಡಬೇಕು?',
         'ನಾವು ಎಲ್ಲಿ ಪ್ರಾರಂಭಿಸಬೇಕು?',
-        'ಯಾವುದಕ್ಕೆ ಗಮನ ಬೇಕು?',
+        'ಯಾವುದಕ್ಕೆ ಗಮನ ಬೇಕು?'
       ],
       bodies: [
         'ಬಗ್, ಬ್ರಾಂಚ್, ಯೋಜನೆ ಅಥವಾ ಅಸ್ಪಷ್ಟ ಕಲ್ಪನೆ ಕಳುಹಿಸಿ. ನಾನು ರೆಪೋ ಪರಿಶೀಲಿಸಿ ಮುಂದಿನ ನಿರ್ದಿಷ್ಟ ಹೆಜ್ಜೆಯಾಗಿ ಪರಿವರ್ತಿಸುತ್ತೇನೆ.',
         'ಕೋಡ್, ಪ್ರಶ್ನೆ ಅಥವಾ ಸಿಕ್ಕಿಕೊಂಡ ಭಾಗವನ್ನು ತನ್ನಿ. ಬದಲಾವಣೆಗಳ ಮೊದಲು ಪರಿಸ್ಥಿತಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳುತ್ತೇನೆ.',
         'ಕೆಲಸ, ವಿಫಲವಾಗುತ್ತಿರುವ ಮಾರ್ಗ ಅಥವಾ ಅರ್ಧದಷ್ಟು ರೂಪುಗೊಂಡ ಯೋಜನೆಯನ್ನು ಕಳುಹಿಸಿ. ಅದನ್ನು ಕ್ರಿಯೆಯಾಗಿ ಪರಿವರ್ತಿಸಲು ನಾನು ಸಹಾಯ ಮಾಡುತ್ತೇನೆ.',
         'ಸಮಸ್ಯೆ, ಗುರಿ ಅಥವಾ ಫೈಲ್ ತನ್ನಿ. ನಾನು ಮೊದಲು ಪರಿಶೀಲಿಸಿ ಮುಂದಿನ ಹೆಜ್ಜೆಯನ್ನು ನಿರ್ದಿಷ್ಟವಾಗಿ ಇಡುತ್ತೇನೆ.',
-        'ನಿಮ್ಮಲ್ಲಿರುವ ಸಂದರ್ಭವನ್ನು ಕಳುಹಿಸಿ. ಅದನ್ನು ಯೋಜನೆ ಅಥವಾ ದುರಸ್ತಿಯಾಗಿ ಜೋಡಿಸಲು ನಾನು ಸಹಾಯ ಮಾಡುತ್ತೇನೆ.',
-      ],
+        'ನಿಮ್ಮಲ್ಲಿರುವ ಸಂದರ್ಭವನ್ನು ಕಳುಹಿಸಿ. ಅದನ್ನು ಯೋಜನೆ ಅಥವಾ ದುರಸ್ತಿಯಾಗಿ ಜೋಡಿಸಲು ನಾನು ಸಹಾಯ ಮಾಡುತ್ತೇನೆ.'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3263,15 +3351,15 @@ ${mode} ಡಿಫಾಲ್ಟ್ ಅನ್ನು ಉಳಿಸಿಕೊಳ್ಳ�
         '${label} OpenAmer ಏನನ್ನು ನೋಡಬೇಕು?',
         '${label} ಮೋಡ್ ಸಿದ್ಧವಾಗಿದೆ.',
         '${label} OpenAmer ಏನನ್ನು ಕೈಗೆತ್ತಿಕೊಳ್ಳಬೇಕು?',
-        'ನಾವು ಎಲ್ಲಿ ಆರಂಭಿಸಬೇಕು?',
+        'ನಾವು ಎಲ್ಲಿ ಆರಂಭಿಸಬೇಕು?'
       ],
       bodies: [
         'ಕಾರ್ಯ, ಫೈಲ್ ಅಥವಾ ಒರಟು ಕಲ್ಪನೆಯನ್ನು ಕಳುಹಿಸಿ. ನಿಮ್ಮ ಸಂರಚಿತ ಧ್ವನಿ ಬಳಸಿ ಕೆಲಸವನ್ನು ಈ ರೆಪೊದ ಆಧಾರದಲ್ಲೇ ಇಡುತ್ತೇನೆ.',
         'ಸಂದರ್ಭ ಅಥವಾ ಅಡಚಣೆಯಾದ ಭಾಗವನ್ನು ತನ್ನಿ. ನಿಮ್ಮ ಸಂರಚಿತ ವ್ಯಕ್ತಿತ್ವಕ್ಕೆ ಹೊಂದಿಕೊಳ್ಳುತ್ತೇನೆ.',
         'ಸಮಸ್ಯೆ, ಫೈಲ್ ಅಥವಾ ಕಲ್ಪನೆಯನ್ನು ಕಳುಹಿಸಿ. ನೀವು ಸಂರಚಿಸಿದ ವ್ಯಕ್ತಿತ್ವವನ್ನು ಅನುಸರಿಸುತ್ತೇನೆ.',
         'ಕಾರ್ಯವನ್ನು ಇಲ್ಲಿ ಹಾಕಿ. ಕೆಲಸವನ್ನು ರೆಪೊದ ಆಧಾರದಲ್ಲೇ ಇಡುತ್ತೇನೆ.',
-        'ಸಂದರ್ಭವನ್ನು ನೀಡಿ, ನಾನು ${label} ಮೋಡ್‌ನಲ್ಲಿ ಉತ್ತರಿಸುತ್ತೇನೆ.',
-      ],
-    },
-  },
+        'ಸಂದರ್ಭವನ್ನು ನೀಡಿ, ನಾನು ${label} ಮೋಡ್‌ನಲ್ಲಿ ಉತ್ತರಿಸುತ್ತೇನೆ.'
+      ]
+    }
+  }
 })

@@ -139,4 +139,10 @@ function verifyOpenAmerCli(openamerCommand: string, opts?: { shell?: boolean }) 
   }
 }
 
-export { canImportOpenAmerCli, openamerRuntimeImportProbe, PROBE_TIMEOUT_MS, shouldTrustOpenAmerOverride, verifyOpenAmerCli }
+export {
+  canImportOpenAmerCli,
+  openamerRuntimeImportProbe,
+  PROBE_TIMEOUT_MS,
+  shouldTrustOpenAmerOverride,
+  verifyOpenAmerCli
+}

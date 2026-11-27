@@ -10,13 +10,16 @@ export const xh = defineLocale({
     gateway: {
       modeTitle: 'Imowudi yoqhagamshelo',
       localTitle: 'Isango lendawo',
-      localDesc: 'Qalisa umva we-OpenAmer wabucala kwi-localhost. Le yeyokungagqibekanga kwaye isebenza ngaphandle kwenethiwekhi.',
+      localDesc:
+        'Qalisa umva we-OpenAmer wabucala kwi-localhost. Le yeyokungagqibekanga kwaye isebenza ngaphandle kwenethiwekhi.',
       inheritTitle: 'Sebenzisa isango elingagqibekanga',
       inheritDesc: 'Susa ugqithiso lwale profayile kwaye usebenzise uqhagamshelo olungagqibekanga.',
       remoteTitle: 'Isango elikude',
       remoteDesc: 'Qhagamshela eli qokobhe ledesktop kumva we-OpenAmer okude.',
-      remoteAuthHint: 'Amasango abanjweyo asebenzisa i-OAuth okanye igama lomsebenzisi negama lokugqitha; awabanjwe ngokwawo anokusebenzisa itokheni yeseshini.',
-      cloudDesc: 'Ngena kanye kwi-OpenAmer Cloud kwaye ukhethe kwii-arhente ezikwiakhawunti yakho — akukho URL yokunamathisela.',
+      remoteAuthHint:
+        'Amasango abanjweyo asebenzisa i-OAuth okanye igama lomsebenzisi negama lokugqitha; awabanjwe ngokwawo anokusebenzisa itokheni yeseshini.',
+      cloudDesc:
+        'Ngena kanye kwi-OpenAmer Cloud kwaye ukhethe kwii-arhente ezikwiakhawunti yakho — akukho URL yokunamathisela.',
       cloudSignIn: 'Ngena kwi-OpenAmer Cloud',
       cloudSignedIn: 'Ungene kwi-OpenAmer Cloud',
       cloudNeedsSignIn: 'Ngena kwi-OpenAmer Cloud ukuze ufumane ii-arhente ezikwiakhawunti yakho.',
@@ -29,7 +32,7 @@ export const xh = defineLocale({
       cloudNoAgents: {
         before: 'Akukho arhente ifunyenweyo kule akhawunti. Yenza enye kwi ',
         linkText: 'iportal ye-OpenAmer',
-        after: ', emva koko uhlaziya.',
+        after: ', emva koko uhlaziya.'
       },
       cloudRefresh: 'Hlaziya',
       cloudConnect: 'Qhagamshela',
@@ -53,13 +56,16 @@ export const xh = defineLocale({
       unavailableDesc: 'Ibhulorho ye-IPC yedesktop ayivezi iisetingi zesango.',
       title: 'Uqhagamshelo lwesango',
       envOverride: 'ukugqitha kwe-env',
-      intro: 'I-OpenAmer Desktop iqalisa isango layo lendawo ngokungagqibekanga. Sebenzisa isango elikude xa ufuna le app ilawule umva we-OpenAmer osele usebenza komnye umatshini okanye emva kweproksi ethenjwayo. Khetha iprofayile ngezantsi ukuyinika umphathi wayo wakude.',
+      intro:
+        'I-OpenAmer Desktop iqalisa isango layo lendawo ngokungagqibekanga. Sebenzisa isango elikude xa ufuna le app ilawule umva we-OpenAmer osele usebenza komnye umatshini okanye emva kweproksi ethenjwayo. Khetha iprofayile ngezantsi ukuyinika umphathi wayo wakude.',
       appliesTo: 'Kusebenza ku',
       allProfiles: 'Zonke iiprofayile',
       defaultConnection: 'Uqhagamshelo olungagqibekanga kuyo yonke iprofayile engenalo ugqithiso lwayo.',
-      profileConnection: profile => `Uqhagamshelo olusetyenziswa kuphela xa “${profile}” iyiprofayile esebenzayo. Khetha Sebenzisa isango elingagqibekanga ukususa ugqithiso lwayo.`,
+      profileConnection: profile =>
+        `Uqhagamshelo olusetyenziswa kuphela xa “${profile}” iyiprofayile esebenzayo. Khetha Sebenzisa isango elingagqibekanga ukususa ugqithiso lwayo.`,
       envOverrideTitle: 'Izinto eziguqukayo zendalo zilawula le seshini yedesktop.',
-      envOverrideDesc: 'Susa i-OPENAMER_DESKTOP_REMOTE_URL ne-OPENAMER_DESKTOP_REMOTE_TOKEN ukuze usebenzise isetingi egciniweyo ngezantsi.',
+      envOverrideDesc:
+        'Susa i-OPENAMER_DESKTOP_REMOTE_URL ne-OPENAMER_DESKTOP_REMOTE_TOKEN ukuze usebenzise isetingi egciniweyo ngezantsi.',
       cloudTitle: 'OpenAmer I-CLOUD',
       cloudSignInTitle: 'OpenAmer I-CLOUD',
       cloudOrgRole: role => `Indima: ${role}`,
@@ -68,12 +74,16 @@ export const xh = defineLocale({
       signOut: 'Phuma',
       signInWith: provider => `Ngena nge-${provider}`,
       authTitle: 'Uqinisekiso',
-      authSignedInPassword: 'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
+      authSignedInPassword:
+        'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
       authSignedInOauth: 'Eli sango lisebenzisa i-OAuth. Ungenile; iseshini iyahlaziyeka ngokuzenzekelayo.',
-      authNeedsPassword: 'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ngena ukuze ugunyazise le app yedesktop.',
-      authNeedsOauth: provider => `Eli sango lisebenzisa i-OAuth. Ngena nge-${provider} ukuze ugunyazise le app yedesktop.`,
+      authNeedsPassword:
+        'Eli sango lisebenzisa igama lomsebenzisi negama lokugqitha. Ngena ukuze ugunyazise le app yedesktop.',
+      authNeedsOauth: provider =>
+        `Eli sango lisebenzisa i-OAuth. Ngena nge-${provider} ukuze ugunyazise le app yedesktop.`,
       tokenTitle: 'Itokheni yeseshini',
-      tokenDesc: 'Itokheni yeseshini yedashboard esetyenziswa kufikelelo lwe-REST ne-WebSocket. Yiyeke ingenanto ukuze ugcine itokheni egciniweyo.',
+      tokenDesc:
+        'Itokheni yeseshini yedashboard esetyenziswa kufikelelo lwe-REST ne-WebSocket. Yiyeke ingenanto ukuze ugcine itokheni egciniweyo.',
       existingToken: value => `Itokheni ekhoyo ${value}`,
       savedToken: 'igciniwe',
       pasteSessionToken: 'Namathisela itokheni yeseshini',
@@ -91,7 +101,8 @@ export const xh = defineLocale({
       enterUrlFirst: 'Faka i-URL ekude kuqala.',
       restartingTitle: 'Uqhagamshelo lwesango luyaqalisa kwakhona',
       savedTitle: 'Iisetingi zesango zigciniwe',
-      restartingMessage: 'I-OpenAmer Desktop iya kuphinda iqhagamshele isebenzisa iisetingi ezigciniweyo — iqokobhe lihlala livulekile.',
+      restartingMessage:
+        'I-OpenAmer Desktop iya kuphinda iqhagamshele isebenzisa iisetingi ezigciniweyo — iqokobhe lihlala livulekile.',
       savedMessage: 'Kugcinelwe ukuqalisa kwakhona okulandelayo.',
       connectedTo: (baseUrl, version) => `Kuqhagamshelwe ku-${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Isango elikude liyafikeleleka',
@@ -104,8 +115,10 @@ export const xh = defineLocale({
       applyFailed: 'Ayikwazanga ukusebenzisa iisetingi zesango',
       saveFailed: 'Ayikwazanga ukugcina iisetingi zesango',
       sshTitle: 'Qhagamshela nge-SSH',
-      sshDesc: 'I-OpenAmer iqaliswa kude nge-SSH ize ifakwe kwithumbu ukuya kule app — akukho nto ukuyiqalisa okanye ukuyiveza ngokwakho. Idinga ukufikelela kwe-SSH okusebenzayo okusekelwe kwisitshixo kumphathi.',
-      sshTrustHint: 'Isitshixo somphathi sokuqala esibonisiweyo siyathenjwa kwaye siphiniwe; utshintsho lwamva lusilela luvaliwe.',
+      sshDesc:
+        'I-OpenAmer iqaliswa kude nge-SSH ize ifakwe kwithumbu ukuya kule app — akukho nto ukuyiqalisa okanye ukuyiveza ngokwakho. Idinga ukufikelela kwe-SSH okusebenzayo okusekelwe kwisitshixo kumphathi.',
+      sshTrustHint:
+        'Isitshixo somphathi sokuqala esibonisiweyo siyathenjwa kwaye siphiniwe; utshintsho lwamva lusilela luvaliwe.',
       sshHostTitle: 'Umphathi',
       sshHostDesc: 'user@host, okanye i-alias yomPhathi evela ku ~/.ssh/config.',
       sshHostPick: 'Khetha umphathi…',
@@ -127,14 +140,19 @@ export const xh = defineLocale({
       sshButtonsHint: 'Ugcino lusebenza ekuqaliseni okulandelayo. Uqhagamshelo luphinda luqhagamshele ngoku.',
       sshReachable: (host, platform) => `Kuyafikeleleka: ${host} (${platform}) — i-OpenAmer ifunyenwe`,
       sshIncompleteHost: 'Faka umphathi we-SSH phambi kokuqhagamshela.',
-      sshErrUnreachable: 'Ayikwazanga ukufikelela kulo mphathi nge-SSH. Jonga umphathi, iphothi, kunye nenethiwekhi yakho.',
-      sshErrAuth: 'Uqinisekiso lwe-SSH lusilele. Layisha isitshixo sakho kwi-ssh-agent (ssh-add) okanye misela i-IdentityFile ku ~/.ssh/config — i-OpenAmer iqhuba i-ssh ngaphandle konxibelelwano.',
-      sshErrHostKey: 'Isitshixo somphathi SITSHA TSHINTSHA ukusukela okokugqibela uqhagamshele. Qinisekisa ukuba oku kulindelekile, emva koko qhuba ssh-keygen -R <host> kwaye uqhagamshele kwakhona.',
-      sshErrNotInstalled: 'I-OpenAmer ayifakwanga kumphathi okude. Yifake apho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) okanye misela umendo we-OpenAmer.',
-      sshErrPlatform: 'Iqonga elikude alixhaswanga. Imowudi ye-SSH ye-OpenAmer Desktop ixhasa iimphathi ezikude ze-Linux, macOS ne-Windows.',
+      sshErrUnreachable:
+        'Ayikwazanga ukufikelela kulo mphathi nge-SSH. Jonga umphathi, iphothi, kunye nenethiwekhi yakho.',
+      sshErrAuth:
+        'Uqinisekiso lwe-SSH lusilele. Layisha isitshixo sakho kwi-ssh-agent (ssh-add) okanye misela i-IdentityFile ku ~/.ssh/config — i-OpenAmer iqhuba i-ssh ngaphandle konxibelelwano.',
+      sshErrHostKey:
+        'Isitshixo somphathi SITSHA TSHINTSHA ukusukela okokugqibela uqhagamshele. Qinisekisa ukuba oku kulindelekile, emva koko qhuba ssh-keygen -R <host> kwaye uqhagamshele kwakhona.',
+      sshErrNotInstalled:
+        'I-OpenAmer ayifakwanga kumphathi okude. Yifake apho (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) okanye misela umendo we-OpenAmer.',
+      sshErrPlatform:
+        'Iqonga elikude alixhaswanga. Imowudi ye-SSH ye-OpenAmer Desktop ixhasa iimphathi ezikude ze-Linux, macOS ne-Windows.',
       sshErrTimeout: 'Uqhagamshelo lwe-SSH luphelelwe lixesha. Umphathi usenokungafikeleleki okanye ulele.',
       sshErrUpdateRequired: 'Hlaziya i-OpenAmer kumphathi okude phambi kokuqhagamshela nge-SSH yedesktop.',
-      sshErrUnknown: 'Uqhagamshelo lwe-SSH lusilele.',
+      sshErrUnknown: 'Uqhagamshelo lwe-SSH lusilele.'
     },
     closeSettings: 'Vala iisetingi',
     exportConfig: 'Khupha i-config',
@@ -158,11 +176,12 @@ export const xh = defineLocale({
       about: 'Malunga',
       billing: 'Intlawulo',
       notifications: 'Izaziso',
-      plugins: 'Iiplagini',
+      plugins: 'Iiplagini'
     },
     plugins: {
       title: 'Iiplagini zedesktop',
-      blurb: 'Izandiso ze-UI ezilayishwe kule app — ezidityaniswe nolwakhiwo, okanye ezifakwe kwifolda yeeplagini zedesktop (kuquka ezo zibhalwa yi-OpenAmer). Ukuzicima kuyayikhulula iplagiini ngoko nangoko kwaye kuhlala kusebenza nangemva kokuqalisa kwakhona.',
+      blurb:
+        'Izandiso ze-UI ezilayishwe kule app — ezidityaniswe nolwakhiwo, okanye ezifakwe kwifolda yeeplagini zedesktop (kuquka ezo zibhalwa yi-OpenAmer). Ukuzicima kuyayikhulula iplagiini ngoko nangoko kwaye kuhlala kusebenza nangemva kokuqalisa kwakhona.',
       count: n => `${n} ifakiwe`,
       openFolder: 'Vula ifolda yeeplagini',
       rescan: 'Khangela kwakhona',
@@ -174,49 +193,51 @@ export const xh = defineLocale({
       kinds: {
         bundled: 'edityanisiweyo',
         disk: 'kwiDisk',
-        runtime: 'ixesha lokusebenza',
-      },
+        runtime: 'ixesha lokusebenza'
+      }
     },
     notifications: {
       title: 'Izaziso',
-      intro: 'Izaziso zedesktop zomthonyama, ezahlukileyo kwiitoast zangaphakathi kwapp. Ezi zezendawo yesixhobo — ikhompyutha nganye igcina iisetingi zayo.',
+      intro:
+        'Izaziso zedesktop zomthonyama, ezahlukileyo kwiitoast zangaphakathi kwapp. Ezi zezendawo yesixhobo — ikhompyutha nganye igcina iisetingi zayo.',
       enableAll: 'Vula izaziso',
       enableAllDesc: 'Isitshixo esiyintloko. Cima oku ukuze uthule zonke izaziso ezingezantsi.',
       focusedHint: 'Izilumkiso zokugqiba zivakala kuphela xa i-OpenAmer ikwangasemva.',
       kinds: {
         approval: {
           label: 'Kufuneka mvume',
-          description: 'Umyalelo ulindele ukuba uwuvume okanye uwale.',
+          description: 'Umyalelo ulindele ukuba uwuvume okanye uwale.'
         },
         input: {
           label: 'Kufuneka igalelo',
-          description: 'I-OpenAmer ibuza umbuzo okanye idinga igama lokugqitha okanye imfihlo.',
+          description: 'I-OpenAmer ibuza umbuzo okanye idinga igama lokugqitha okanye imfihlo.'
         },
         turnDone: {
           label: 'Impendulo ilungile',
-          description: 'Ijiko lagqiba ngelixa i-OpenAmer yayingasemva.',
+          description: 'Ijiko lagqiba ngelixa i-OpenAmer yayingasemva.'
         },
         turnError: {
           label: 'Ijiko lisilele',
-          description: 'Ijiko laphela ngempazamo.',
+          description: 'Ijiko laphela ngempazamo.'
         },
         backgroundDone: {
           label: 'Umsebenzi wangasemva ugqibile',
-          description: 'Umyalelo wetheminali wangasemva ugqibile.',
+          description: 'Umyalelo wetheminali wangasemva ugqibile.'
         },
         credits: {
           label: 'Izilumkiso zeekhredithi',
-          description: 'Ukufikelela kwiikhredithi kumisiwe okanye kubuyiselwe.',
-        },
+          description: 'Ukufikelela kwiikhredithi kumisiwe okanye kubuyiselwe.'
+        }
       },
       test: 'Thumela isaziso sovavanyo',
       testTitle: 'OpenAmer',
       testBody: 'Izaziso ziyasebenza.',
-      testSent: 'Uvavanyo luthunyelwe. Ukuba akukho nto ivela, jonga iimvume zezaziso ze-OS yakho kunye neFocus/Do Not Disturb.',
+      testSent:
+        'Uvavanyo luthunyelwe. Ukuba akukho nto ivela, jonga iimvume zezaziso ze-OS yakho kunye neFocus/Do Not Disturb.',
       testUnsupported: 'Le nkqubo ayixhasi izaziso zomthonyama.',
       completionSoundTitle: 'Isandi sokugqiba',
       completionSoundDesc: 'Sidlalwa xa ijiko le-arhente ligqiba. Khetha ipreset kwaye uyibone apha.',
-      completionSoundPreview: 'Umboniso',
+      completionSoundPreview: 'Umboniso'
     },
     sections: {
       model: 'Imodeli',
@@ -226,7 +247,7 @@ export const xh = defineLocale({
       safety: 'Ukhuseleko',
       memory: 'Imemori nomxholo',
       voice: 'Ilizwi',
-      advanced: 'Okuphezulu',
+      advanced: 'Okuphezulu'
     },
     searchPlaceholder: {
       about: 'Malunga ne-OpenAmer Desktop',
@@ -234,37 +255,40 @@ export const xh = defineLocale({
       gateway: 'Uqhagamshelo lwesango...',
       keys: 'Khangela izitshixo ze-API...',
       mcp: 'Khangela iiseva ze-MCP...',
-      sessions: 'Khangela iiseshini ezigciniweyo...',
+      sessions: 'Khangela iiseshini ezigciniweyo...'
     },
     modeOptions: {
       light: {
         label: 'Ukukhanya',
-        description: 'Imiphezulu yedesktop eqaqambileyo',
+        description: 'Imiphezulu yedesktop eqaqambileyo'
       },
       dark: {
         label: 'Ubumnyama',
-        description: 'Indawo yokusebenza engakhanyisi kakhulu',
+        description: 'Indawo yokusebenza engakhanyisi kakhulu'
       },
       system: {
         label: 'Inkqubo',
-        description: 'Landela inkangeleko ye-OS',
-      },
+        description: 'Landela inkangeleko ye-OS'
+      }
     },
     appearance: {
       title: 'Inkangeleko',
-      intro: 'Ezi ziintandokazi zokubonisa zedesktop kuphela. Imowudi ilawula ukuqaqamba; itimu ilawula iphalethi ye-accent kunye nesimbo somphezulu wencoko.',
+      intro:
+        'Ezi ziintandokazi zokubonisa zedesktop kuphela. Imowudi ilawula ukuqaqamba; itimu ilawula iphalethi ye-accent kunye nesimbo somphezulu wencoko.',
       colorMode: 'Imowudi yemibala',
       colorModeDesc: 'Khetha imowudi esisigxina okanye vumela i-OpenAmer ilandele isetingi senkqubo yakho.',
       toolViewTitle: 'Umboniso wokufowuna kwezixhobo',
       toolViewDesc: 'I-Product ifihla imithwalo yezixhobo ekrwada; i-Technical ibonisa igalelo/imvelaphi epheleleyo.',
       uiScaleTitle: 'Isikali se-UI',
-      uiScaleDesc: (percent: number) => `Ikala umbhalo nezilawuli kuyo yonke iapp. I-Cmd/Ctrl kunye no +, - no 0 nayo iyasebenza. Okwangoku: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ikala umbhalo nezilawuli kuyo yonke iapp. I-Cmd/Ctrl kunye no +, - no 0 nayo iyasebenza. Okwangoku: ${percent}%.`,
       translucencyTitle: 'Ukukhanya kwefestile',
       translucencyDesc: 'Jonga idesktop yakho kwifestile yonke. I-macOS ne-Windows kuphela.',
       backdropTitle: 'Umva wencoko',
       backdropDesc: 'Umfanekiso omfiliba wesithombe emva kwencoko.',
       embedsTitle: 'Izifakelo ezingaphakathi',
-      embedsDesc: 'Umboniso otyebileyo ulayishwa kwiiwebhusayithi zomntu wesithathu (YouTube, X, …). I-Ask ibonisa indawo ebambeleyo de uvume nganye; i-Always izilayisha ngokuzenzekelayo; i-Off igcina amakhonkco alula.',
+      embedsDesc:
+        'Umboniso otyebileyo ulayishwa kwiiwebhusayithi zomntu wesithathu (YouTube, X, …). I-Ask ibonisa indawo ebambeleyo de uvume nganye; i-Always izilayisha ngokuzenzekelayo; i-Off igcina amakhonkco alula.',
       embedsAsk: 'Buza',
       embedsAlways: 'Soloko',
       embedsOff: 'Icimile',
@@ -277,7 +301,8 @@ export const xh = defineLocale({
       themeDesc: 'Iiphalethi zedesktop kuphela. Imowudi ekhethiweyo isetyenziswa ngaphezulu.',
       themeProfileNote: profile => `Igcinelwe iprofayile ${profile} — iprofayile nganye igcina itimu yayo.`,
       installTitle: 'Faka ku-VS Code',
-      installDesc: 'Namathisela i-id yesandiso se-Marketplace (umz. dracula-theme.theme-dracula) ukuguqula itimu yayo yemibala ibe yiphalethi yedesktop.',
+      installDesc:
+        'Namathisela i-id yesandiso se-Marketplace (umz. dracula-theme.theme-dracula) ukuguqula itimu yayo yemibala ibe yiphalethi yedesktop.',
       installPlaceholder: 'umshicileli.isalathiso',
       installButton: 'Faka',
       installing: 'Iyafaka…',
@@ -287,8 +312,10 @@ export const xh = defineLocale({
       importedBadge: 'Ingenisiwe',
       pet: {
         title: 'Isilwanyana',
-        intro: 'Yamkela umascot we-petdex ophilayo ondanda phezu kweapp kwaye usabela koko i-OpenAmer ikwenzayo — ubaleka xa izixhobo zisebenza, uvuyisana xa kuphumelele, ukhathazeka xa kukho iimpazamo.',
-        restartHint: 'Izilwanyana zidinga ukuqalisa kwakhona ngokukhawuleza — iapp esebenzayo yaqala phambi kokuba lo msebenzi wongezwe. Phuma kwaye uvule kwakhona i-OpenAmer, emva koko ubuyele apha.',
+        intro:
+          'Yamkela umascot we-petdex ophilayo ondanda phezu kweapp kwaye usabela koko i-OpenAmer ikwenzayo — ubaleka xa izixhobo zisebenza, uvuyisana xa kuphumelele, ukhathazeka xa kukho iimpazamo.',
+        restartHint:
+          'Izilwanyana zidinga ukuqalisa kwakhona ngokukhawuleza — iapp esebenzayo yaqala phambi kokuba lo msebenzi wongezwe. Phuma kwaye uvule kwakhona i-OpenAmer, emva koko ubuyele apha.',
         on: 'Ivuliwe',
         off: 'Icimile',
         scaleTitle: 'Ubungakanani',
@@ -298,7 +325,8 @@ export const xh = defineLocale({
         chooseTitle: 'Khetha isilwanyana',
         chooseDesc: 'Ukukhetha esinye kuyasifaka (ukuba kuyimfuneko) kwaye kusenze sisebenze.',
         searchPlaceholder: 'Khangela izilwanyana…',
-        unreachable: "Ayikwazanga ukufikelela kwigalari ye-petdex. Jonga uqhagamshelo lwakho kwaye uvule kwakhona eli phepha.",
+        unreachable:
+          'Ayikwazanga ukufikelela kwigalari ye-petdex. Jonga uqhagamshelo lwakho kwaye uvule kwakhona eli phepha.',
         noMatch: query => `Akukho zilwanyana ezihambelana no "${query}".`,
         installedTag: 'ifakiwe',
         generatedTag: 'Yenziwe',
@@ -307,7 +335,7 @@ export const xh = defineLocale({
         uninstall: name => `Susa ${name}`,
         delete: name => `Cima ${name}`,
         deleteTitle: name => `Cima ${name}?`,
-        deleteBody: "Oku kucima isilwanyana ngonaphakade — asinakufakwa kwakhona.",
+        deleteBody: 'Oku kucima isilwanyana ngonaphakade — asinakufakwa kwakhona.',
         deleteConfirm: 'Cima',
         rename: name => `Thiya igama ${name}`,
         renameTitle: 'Thiya igama lesilwanyana',
@@ -320,8 +348,8 @@ export const xh = defineLocale({
         exportFailed: slug => `Ayikwazanga ukukhupha ${slug}`,
         noneAvailable: 'Akukho zilwanyana zikhoyo ukuze zivulwe ngoku.',
         turnOnFailed: 'Ayikwazanga ukuvula isilwanyana.',
-        turnOffFailed: 'Ayikwazanga ukucima isilwanyana.',
-      },
+        turnOffFailed: 'Ayikwazanga ukucima isilwanyana.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -332,13 +360,13 @@ export const xh = defineLocale({
       updates: 'Uhlaziyo',
       checkNow: 'Jonga ngoku',
       checking: 'Iyajonga…',
-      seeWhatsNew: "Jonga okutsha",
+      seeWhatsNew: 'Jonga okutsha',
       updateNow: 'Hlaziya ngoku',
       releaseNotes: 'Amanqaku okukhutshwa',
-      onLatest: "Usebenzisa eyona nguqulo intsha.",
+      onLatest: 'Usebenzisa eyona nguqulo intsha.',
       installing: 'Uhlaziyo luyafakwa ngoku.',
-      cantUpdate: "Olu lwakhiwo alunakuzihlaziya ngokwalo ngaphakathi kweapp.",
-      cantReach: "Asikwazanga ukufikelela kwiseva yohlaziyo.",
+      cantUpdate: 'Olu lwakhiwo alunakuzihlaziya ngokwalo ngaphakathi kweapp.',
+      cantReach: 'Asikwazanga ukufikelela kwiseva yohlaziyo.',
       tapCheck: 'Cofa "Jonga ngoku" ukuze ukhangele uhlaziyo.',
       updateReady: count => `Uhlaziyo olutsha lulungile (${count} change${count === 1 ? '' : 's'} included).`,
       lastChecked: age => `Kwajongwa okokugqibela ${age}`,
@@ -350,7 +378,7 @@ export const xh = defineLocale({
       justNow: 'ngoku kanye',
       minAgo: count => `${count} min ezidlulileyo`,
       hoursAgo: count => `${count} iiyure ezidlulileyo`,
-      daysAgo: count => `${count} iintsuku ezidlulileyo`,
+      daysAgo: count => `${count} iintsuku ezidlulileyo`
     },
     config: {
       none: 'Akukho',
@@ -366,7 +394,8 @@ export const xh = defineLocale({
       imported: 'I-config ingenisiwe',
       invalidJson: 'I-JSON ye-config ayisebenzi',
       keepAwakeTitle: 'Gcina ikhompyutha iphaphile',
-      keepAwakeDesc: 'Yeka lo matshini ukulala ukuze imisebenzi emide okanye yasebusuku iqhubeke. Isiboniso sisengafipala.',
+      keepAwakeDesc:
+        'Yeka lo matshini ukulala ukuze imisebenzi emide okanye yasebusuku iqhubeke. Isiboniso sisengafipala.'
     },
     credentials: {
       pasteKey: 'Namathisela isitshixo',
@@ -376,7 +405,7 @@ export const xh = defineLocale({
       couldNotSave: 'Ayikwazanga ukugcina isiqinisekiso.',
       remove: 'Susa',
       getKey: 'Fumana isitshixo',
-      saving: 'Iyagcina',
+      saving: 'Iyagcina'
     },
     envActions: {
       actionsFor: label => `Izenzo ze-${label}`,
@@ -387,12 +416,12 @@ export const xh = defineLocale({
       revealValue: 'Bonisa ixabiso',
       replace: 'Faka endaweni',
       set: 'Misela',
-      clear: 'Cima',
+      clear: 'Cima'
     },
     keys: {
       loading: 'Iyalayisha izitshixo ze-API neziqinisekiso...',
       failedLoad: 'Izitshixo ze-API zasilela ukulayisha',
-      empty: 'Akukho nto ilungiselelweyo kolu candelo okwangoku.',
+      empty: 'Akukho nto ilungiselelweyo kolu candelo okwangoku.'
     },
     mcp: {
       loading: 'Iyalayisha iiseva ze-MCP...',
@@ -444,7 +473,8 @@ export const xh = defineLocale({
       catalogInstallFailed: name => `Kwehlulekile ukufaka ${name}`,
       catalogEnvPrompt: name => `${name} idinga iziqinisekiso`,
       catalogEnvRequired: 'Gcwalisa amaxabiso afunekayo phambi kokufaka.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ivuliwe`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ivuliwe`,
       statusConnecting: 'Iyaqhagamshela…',
       statusNeedsAuth: 'Idinga uqinisekiso',
       statusError: 'Impazamo',
@@ -457,11 +487,12 @@ export const xh = defineLocale({
       unsavedConnect: 'Akugcinwanga — gcina i-mcp.json ukuze uqhagamshele.',
       enableTool: tool => `Vula ${tool}`,
       disableTool: tool => `Cima ${tool}`,
-      noOutput: 'Akukho mvelaphi okwangoku.',
+      noOutput: 'Akukho mvelaphi okwangoku.'
     },
     model: {
       loading: 'Iyalayisha i-config yemodeli...',
-      appliesDesc: 'Isebenza kwiiseshini ezintsha. Sebenzisa umkhethi wemodeli kumbhali ukutshintsha incoko esebenzayo ngokukhawuleza.',
+      appliesDesc:
+        'Isebenza kwiiseshini ezintsha. Sebenzisa umkhethi wemodeli kumbhali ukutshintsha incoko esebenzayo ngokukhawuleza.',
       provider: 'Umnikezeli',
       model: 'Imodeli',
       applying: 'Iyasebenzisa...',
@@ -471,53 +502,55 @@ export const xh = defineLocale({
       defaultsFailed: 'Kwehlulekile ukugcina okuqhelekileyo kwemodeli',
       auxiliaryTitle: 'Iimodeli ezincedisayo',
       resetAllToMain: 'Seta konke kwimodeli eyintloko',
-      auxiliaryDesc: 'Imisebenzi encedisayo isebenza kwimodeli eyintloko ngokungagqibekanga. Yabela imodeli ezineleyo kuwuphi na umsebenzi ukuze ugqithe.',
+      auxiliaryDesc:
+        'Imisebenzi encedisayo isebenza kwimodeli eyintloko ngokungagqibekanga. Yabela imodeli ezineleyo kuwuphi na umsebenzi ukuze ugqithe.',
       setToMain: 'Misela kwimodeli eyintloko',
       change: 'Tshintsha',
       autoUseMain: 'okuzenzekelayo · sebenzisa imodeli eyintloko',
       providerDefault: '(okungagqibekanga kommikezeli)',
       fallbackAdd: 'Yongeza indlela yokubuyela',
       fallbackEmpty: 'Akukho modeli zokubuyela — kusetyenziswa imodeli engagqibekanga ngaphandle kokuba isilele.',
-      notInCatalog: "ayikho kuluhlu lweemodeli zalo mnikezeli — iifowuni zisenokubuyela kugcino.",
+      notInCatalog: 'ayikho kuluhlu lweemodeli zalo mnikezeli — iifowuni zisenokubuyela kugcino.',
       tasks: {
         vision: {
           label: 'Umbono',
-          hint: 'Uhlalutyo lomfanekiso',
+          hint: 'Uhlalutyo lomfanekiso'
         },
         web_extract: {
           label: 'Ukukhupha iwebhu',
-          hint: 'Ukushwankathela iphepha',
+          hint: 'Ukushwankathela iphepha'
         },
         compression: {
           label: 'Uxinzelelo',
-          hint: 'Ukudibanisa umxholo',
+          hint: 'Ukudibanisa umxholo'
         },
         skills_hub: {
           label: 'Iziko lezakhono',
-          hint: 'Ukukhangela izakhono',
+          hint: 'Ukukhangela izakhono'
         },
         approval: {
           label: 'Imvume',
-          hint: 'Ukuvuma okuzenzekelayo okukrelekrele',
+          hint: 'Ukuvuma okuzenzekelayo okukrelekrele'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Ukuhambisa izixhobo ze-MCP',
+          hint: 'Ukuhambisa izixhobo ze-MCP'
         },
         title_generation: {
           label: 'Ukuvelisa isihloko',
-          hint: 'Izihloko zeeseshini',
+          hint: 'Izihloko zeeseshini'
         },
         curator: {
           label: 'Umlondolozi',
-          hint: 'Ukuphonononga ukusetyenziswa kwezakhono',
-        },
-      },
+          hint: 'Ukuphonononga ukusetyenziswa kwezakhono'
+        }
+      }
     },
     providers: {
       connectAccount: 'Qhagamshela iakhawunti',
       haveApiKey: 'Unesitshixo se-API endaweni yoko?',
-      intro: 'Ngena ngomrhumo — akukho sitshixo se-API sokukhuphela. I-OpenAmer iqhuba ukungena kwebhrawuza yakho, apha kule app.',
+      intro:
+        'Ngena ngomrhumo — akukho sitshixo se-API sokukhuphela. I-OpenAmer iqhuba ukungena kwebhrawuza yakho, apha kule app.',
       connected: 'Kuqhagamshelwe',
       collapse: 'Songa',
       connectAnother: 'Qhagamshela omnye umnikezeli',
@@ -527,7 +560,8 @@ export const xh = defineLocale({
       removeConfirm: provider => `Susa ${provider}?`,
       removeExternalGeneric: provider => `${provider} ilawulwa yi-CLI yayo — yisuse apho.`,
       removeKeyManaged: provider => `${provider} ilungiselelwe kwisitshixo se-API. Yisuse kwiZitshixo ze-API.`,
-      removeTerminalConfirm: (provider, command) => `Qhawula ${provider}? Oku kuqhuba "${command}" kwitheminali ukucima isiqinisekiso.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Qhawula ${provider}? Oku kuqhuba "${command}" kwitheminali ukucima isiqinisekiso.`,
       removeTerminalRunning: provider => `Iqhuba ukuqhawula kwe-${provider} kwitheminali…`,
       removedTitle: 'Iakhawunti isusiwe',
       removedMessage: provider => `${provider} isusiwe.`,
@@ -537,14 +571,16 @@ export const xh = defineLocale({
       noKeysMatch: 'Akukho mnikezeli uhambelana nokukhangela kwakho.',
       localEndpoint: {
         title: 'Indawo yokugqibela yendawo / eyeqhelekileyo',
-        description: 'Jonga i-OpenAmer kuyo nayiphi na indawo yokugqibela ehambelana ne-OpenAI (Zyphra, vLLM, llama.cpp, Ollama, njl).',
+        description:
+          'Jonga i-OpenAmer kuyo nayiphi na indawo yokugqibela ehambelana ne-OpenAI (Zyphra, vLLM, llama.cpp, Ollama, njl).'
       },
-      loading: 'Iyalayisha abanikezeli...',
+      loading: 'Iyalayisha abanikezeli...'
     },
     sessions: {
       loading: 'Iyalayisha iiseshini ezigciniweyo…',
       archivedTitle: 'Iiseshini ezigciniweyo',
-      archivedIntro: 'Iincoko ezigciniweyo zifihliwe kwibha esecaleni kodwa zigcina yonke imiyalezo yazo. Ctrl/⌘-cofa incoko kwibha esecaleni ukuyigcina.',
+      archivedIntro:
+        'Iincoko ezigciniweyo zifihliwe kwibha esecaleni kodwa zigcina yonke imiyalezo yazo. Ctrl/⌘-cofa incoko kwibha esecaleni ukuyigcina.',
       emptyArchivedTitle: 'Akukho nto igciniweyo',
       emptyArchivedDesc: 'Gcina incoko ukuyifihla apha.',
       unarchive: 'Susa ukugcinwa',
@@ -553,13 +589,16 @@ export const xh = defineLocale({
       restored: 'Kubuyiselwe',
       deleteConfirm: title => `Cima ngonaphakade "${title}"? Oku akunakubuyiselwa.`,
       autoArchiveTitle: 'Gcina ngokuzenzekelayo iincoko ezindala',
-      autoArchiveDesc: "Gcina ngokuzenzekelayo iincoko ongazange uzichukumise ixesha. Iincoko eziphiniweyo azikaze zigcinwe, kwaye akukho nto icinywayo — iincoko ezigciniweyo zifudukela apha.",
+      autoArchiveDesc:
+        'Gcina ngokuzenzekelayo iincoko ongazange uzichukumise ixesha. Iincoko eziphiniweyo azikaze zigcinwe, kwaye akukho nto icinywayo — iincoko ezigciniweyo zifudukela apha.',
       autoArchiveDaysLabel: 'Gcina emva kwe',
       autoArchiveDaysUnit: 'iintsuku zokungasebenzi',
       autoArchiveFailed: 'Ayikwazanga ukuhlaziya ukugcina okuzenzekelayo',
       defaultDirTitle: 'Ifolda yeprojekthi engagqibekanga',
-      defaultDirDesc: 'Iiseshini ezintsha ziqala kule folda ngaphandle kokuba ukhetha enye. Yiyeke ingamiselwanga ukuze usebenzise ifolda yasekhaya.',
-      defaultDirUpdated: 'Ifolda yeprojekthi engagqibekanga ihlaziyiwe — qalisa incoko entsha (Ctrl/⌘+N) ukuze isebenze',
+      defaultDirDesc:
+        'Iiseshini ezintsha ziqala kule folda ngaphandle kokuba ukhetha enye. Yiyeke ingamiselwanga ukuze usebenzise ifolda yasekhaya.',
+      defaultDirUpdated:
+        'Ifolda yeprojekthi engagqibekanga ihlaziyiwe — qalisa incoko entsha (Ctrl/⌘+N) ukuze isebenze',
       defaultsTo: label => `Kukungagqibekanga ${label}.`,
       change: 'Tshintsha',
       choose: 'Khetha',
@@ -569,7 +608,7 @@ export const xh = defineLocale({
       unarchiveFailed: 'Ukususa ukugcinwa kusilele',
       deleteFailed: 'Ukucima kusilele',
       updateDirFailed: 'Ayikwazanga ukuhlaziya ifolda engagqibekanga',
-      clearDirFailed: 'Ayikwazanga ukucima ifolda engagqibekanga',
+      clearDirFailed: 'Ayikwazanga ukucima ifolda engagqibekanga'
     },
     toolsets: {
       loadingConfig: 'Iyalayisha i-config',
@@ -587,20 +626,23 @@ export const xh = defineLocale({
       selectedMessage: provider => `${provider} iyasebenza ngoku.`,
       failedSelect: provider => `Kwehlulekile ukukhetha ${provider}`,
       failedLoad: 'I-config yezixhobo yasilela ukulayisha',
-      noProviderOptions: 'Eli seti lezixhobo alinazo iinketho zomnikezeli — livule kwaye lisebenza noluseto lwakho lwangoku.',
+      noProviderOptions:
+        'Eli seti lezixhobo alinazo iinketho zomnikezeli — livule kwaye lisebenza noluseto lwakho lwangoku.',
       noProviders: 'Akukho banikezeli bakhoyo kule seti yezixhobo ngoku.',
       ready: 'Ilungile',
       needsSignIn: 'Idinga ukungena',
       needsSetup: 'Idinga useto',
       openamerIncluded: 'Kubandakanyiwe nomrhumo we-OpenAmer — ngena kwiPortal ye-OpenAmer ukuyisebenzisa.',
       openamerAuthNeededTitle: 'Ngena kwiPortal ye-OpenAmer',
-      openamerAuthNeededMessage: provider => `${provider} igciniwe kodwa ayiyi kusebenza de ungene kwiPortal ye-OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} igciniwe kodwa ayiyi kusebenza de ungene kwiPortal ye-OpenAmer.`,
       openamerAuthSignIn: 'Ngena',
       openamerAuthDoneTitle: 'IPortal ye-OpenAmer iqhagamshelwe',
       openamerAuthDoneMessage: 'Imva yakho yomrhumo iyasebenza ngoku.',
       openamerAuthFailed: 'Ukungena kwiPortal ye-OpenAmer akuphelelanga',
       noApiKeyRequired: 'Akukho sitshixo se-API sifunekayo.',
-      postSetupHint: step => `Lo mva udinga ufakelo kanye (${step}). Usebenza kulo matshini — kungathatha imizuzu embalwa.`,
+      postSetupHint: step =>
+        `Lo mva udinga ufakelo kanye (${step}). Usebenza kulo matshini — kungathatha imizuzu embalwa.`,
       postSetupInstalledHint: 'Ifakiwe. Phinda uqhube useto kuphela ukuba kukho into eyaphukileyo.',
       postSetupRun: 'Qhuba useto',
       postSetupRerun: 'Phinda uqhube useto',
@@ -639,11 +681,12 @@ export const xh = defineLocale({
         unavailable: 'Ayifumaneki',
         inUse: 'Iyasebenza',
         selectedTitle: 'Umva ukhethiwe',
-        selectedMessage: backend => `Imiyalelo yetheminali isebenza ngoku nge-${backend}. Isebenza kwiiseshini ezintsha.`,
+        selectedMessage: backend =>
+          `Imiyalelo yetheminali isebenza ngoku nge-${backend}. Isebenza kwiiseshini ezintsha.`,
         failedSelect: backend => `Kwehlulekile ukukhetha ${backend}`,
-        needsSetupHint: 'Ungakhetha lo mva ngoku — imiyalelo iya kusilela de useto luphele.',
-      },
-    },
+        needsSetupHint: 'Ungakhetha lo mva ngoku — imiyalelo iya kusilela de useto luphele.'
+      }
+    }
   },
   commandCenter: {
     branches: 'Amasebe',
@@ -666,7 +709,7 @@ export const xh = defineLocale({
       generatedTag: 'Yenziwe',
       adoptFailed: 'Ayikwazanga ukwamkela eso silwanyana.',
       toggleFailed: 'Ayikwazanga ukuguqula isilwanyana.',
-      noneAvailable: 'Akukho zilwanyana zikhoyo — khetha esinye ngezantsi ukuze ufake.',
+      noneAvailable: 'Akukho zilwanyana zikhoyo — khetha esinye ngezantsi ukuze ufake.'
     },
     generatePet: {
       title: 'Yenza isilwanyana',
@@ -693,9 +736,10 @@ export const xh = defineLocale({
       remixConfirmBody: 'Oku kwenza imizobo emitsha kusetyenziswa lo mzobo njengesiqalo. Kungathatha imizuzu eliqela.',
       genericError: 'Ukwenza kusilele — phinda uzame okanye ukhethe icebiso.',
       referenceImageTooLarge: 'Umfanekiso wesalathiso mkhulu kakhulu. Sebenzisa ongaphantsi kwe-16 MB.',
-      referenceImageInvalid: 'Akukwazekanga ukufunda loo mfanekiso wesalathiso. Zama i-PNG, i-JPG, i-WebP okanye i-GIF.',
+      referenceImageInvalid:
+        'Akukwazekanga ukufunda loo mfanekiso wesalathiso. Zama i-PNG, i-JPG, i-WebP okanye i-GIF.',
       adopt: 'Yamkela',
-      startOver: 'Qala kwakhona',
+      startOver: 'Qala kwakhona'
     },
     close: 'Vala iziko lemiyalelo',
     paletteTitle: 'Iphalethi yemiyalelo',
@@ -714,7 +758,7 @@ export const xh = defineLocale({
       install: 'Faka',
       installing: 'Kuyafakwa...',
       installed: 'Ifakiwe',
-      installs: count => `Kufakwe izihlandlo ezi-${count}`,
+      installs: count => `Kufakwe izihlandlo ezi-${count}`
     },
     settingsFields: 'Iindawo zeesetingi',
     mcpServers: 'Iiseva ze-MCP',
@@ -723,49 +767,49 @@ export const xh = defineLocale({
       maintenance: 'Ulondolozo',
       sessions: 'Iiseshoni',
       system: 'Inkqubo',
-      usage: 'Ukusetyenziswa',
+      usage: 'Ukusetyenziswa'
     },
     sectionDescriptions: {
       maintenance: 'Uxilongo, iikopi zogcino, umlondolozi kunye nedatha yememori',
       sessions: 'Khangela uze ulawule iiseshoni',
       system: 'Isimo, iilog kunye nezenzo zenkqubo',
-      usage: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono ekuhambeni kwexesha',
+      usage: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono ekuhambeni kwexesha'
     },
     nav: {
       newChat: {
         title: 'Iseshoni entsha',
-        detail: 'Qala iseshoni entsha',
+        detail: 'Qala iseshoni entsha'
       },
       settings: {
         title: 'Iisetingi',
-        detail: 'Lungiselela i-OpenAmer Desktop',
+        detail: 'Lungiselela i-OpenAmer Desktop'
       },
       skills: {
         title: 'Izakhono',
-        detail: 'Izakhono, izixhobo kunye neeseva ze-MCP',
+        detail: 'Izakhono, izixhobo kunye neeseva ze-MCP'
       },
       messaging: {
         title: 'Imiyalezo',
-        detail: 'Lungiselela i-Telegram, i-Slack, i-Discord nezinye',
+        detail: 'Lungiselela i-Telegram, i-Slack, i-Discord nezinye'
       },
       artifacts: {
         title: 'Iziphumo ezenziweyo',
-        detail: 'Khangela kwiziphumo ezenziweyo',
-      },
+        detail: 'Khangela kwiziphumo ezenziweyo'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Iphaneli yeeseshoni',
-        detail: 'Khangela, phina uze ulawule iiseshoni',
+        detail: 'Khangela, phina uze ulawule iiseshoni'
       },
       system: {
         title: 'Iphaneli yenkqubo',
-        detail: 'Isimo sesango, iilog, ukuqala kwakhona nokuhlaziya',
+        detail: 'Isimo sesango, iilog, ukuqala kwakhona nokuhlaziya'
       },
       usage: {
         title: 'Iphaneli yokusetyenziswa',
-        detail: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono',
-      },
+        detail: 'Ukusetyenziswa kweethokheni, iindleko kunye nomsebenzi wezakhono'
+      }
     },
     providerNavigate: 'Yiya',
     providerSessions: 'Iiseshoni',
@@ -820,7 +864,8 @@ export const xh = defineLocale({
       backup: 'Yenza ikopi yogcino',
       backupDesc: 'Pakisha ulungiselelo, iinkumbulo, izakhono kunye neeseshoni kwifayile ye-ZIP',
       debugShare: 'Yabelana ngedatha yokulungisa iimpazamo',
-      debugShareDesc: 'Layisha ingxelo esuswe ulwazi olubuthathaka kunye neelog, ufumane amakhonkco okwabelana (icinywa ngokuzenzekelayo emva kweeyure ezi-6)',
+      debugShareDesc:
+        'Layisha ingxelo esuswe ulwazi olubuthathaka kunye neelog, ufumane amakhonkco okwabelana (icinywa ngokuzenzekelayo emva kweeyure ezi-6)',
       debugShareRunning: 'Kulayishwa ingxelo yokulungisa iimpazamo...',
       debugShareLinks: 'Amakhonkco okwabelana',
       debugShareFailed: 'Ukwabelana ngedatha yokulungisa iimpazamo kusilele',
@@ -853,8 +898,8 @@ export const xh = defineLocale({
       actionStarted: name => `${name} iqalisiwe — kulandelwa ilog...`,
       actionFailed: name => `${name} ayikwazanga ukuqalisa`,
       running: 'Kuyasebenza...',
-      viewLog: 'Ilog yesenzo',
-    },
+      viewLog: 'Ilog yesenzo'
+    }
   },
   profiles: {
     renameMenu: 'Qhaqa…',
@@ -898,7 +943,8 @@ export const xh = defineLocale({
     deleted: 'Iprofayili isuswe',
     setupCopied: 'Umyalelo wokusetho ukukopishelwe',
     close: 'Vala iiprofayile',
-    nameHint: 'Oonobumba abancinane, amanani, amaqhagamshela kunye nemigca esezantsi. Kufuneka iqale ngonobumba okanye inani.',
+    nameHint:
+      'Oonobumba abancinane, amanani, amaqhagamshela kunye nemigca esezantsi. Kufuneka iqale ngonobumba okanye inani.',
     title: 'Iiprofayile',
     count: count => `${count} ${count === 1 ? 'profile' : 'profiles'}`,
     search: 'Khangela iiprofayile...',
@@ -932,7 +978,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     failedLoadSoul: 'Ukulayisha i-SOUL.md kusilele',
     failedSaveSoul: 'Ukugcina i-SOUL.md kusilele',
     failedCreate: 'Ukwenza iprofayile kusilele',
-    failedRename: 'Ukuthiya iprofayile ngokutsha kusilele',
+    failedRename: 'Ukuthiya iprofayile ngokutsha kusilele'
   },
   statusStack: {
     coding: {
@@ -965,7 +1011,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       openPr: 'Vutela i-PR',
       ghMissing: 'Faka i-GitHub CLI (gh) kwaye ungene ngaphakathi ukuze uvule i-PRs',
       agentShip: 'Cela i-OpenAmer ivule i-PR',
-      agentShipPrompt: 'Phokupha utshintsho lwangoku, uwamkele ngomlayezo olucacileyo wokwamkela, uphushele i-brashi, uze uvule i-pull request.',
+      agentShipPrompt:
+        'Phokupha utshintsho lwangoku, uwamkele ngomlayezo olucacileyo wokwamkela, uphushele i-brashi, uze uvule i-pull request.',
       newBranch: 'Brashi entsha',
       worktrees: 'Itahegi zomsebenzi',
       title: 'Umthi wokusebenza',
@@ -977,7 +1024,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       close: 'Vala',
       branchOffFrom: base => `Isebe elitsha elisuka ku-${base}`,
       switchTo: branch => `Tshintshela ku-${branch}`,
-      switchFailed: branch => `Akukwazekanga ukutshintshela ku-${branch}`,
+      switchFailed: branch => `Akukwazekanga ukutshintshela ku-${branch}`
     },
     agents: 'Ii-arhente',
     background: count => `${count} ngasemva`,
@@ -986,7 +1033,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     running: 'Kuyasebenza',
     stop: 'Misa',
     dismiss: 'Vala',
-    exit: code => `ikhowudi yokuphuma ${code}`,
+    exit: code => `ikhowudi yokuphuma ${code}`
   },
   updates: {
     stages: {
@@ -1001,7 +1048,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       done: 'Uhlaziyo lugqityiwe',
       manual: 'Hlaziya kwitheminali yakho',
       guiSkew: 'Hlaziya usetyenziso lwedesktop',
-      error: 'Uhlaziyo lunqunyanyisiwe',
+      error: 'Uhlaziyo lunqunyanyisiwe'
     },
     checking: 'Kukhangelwa uhlaziyo…',
     checkFailedTitle: 'Akukwazekanga ukukhangela uhlaziyo',
@@ -1021,15 +1068,19 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     maybeLater: 'Mhlawumbi kamva',
     moreChanges: count => `+ ${count} ezinye iziguquko${count === 1 ? '' : 's'} zihlanganisiwe.`,
     manualTitle: 'Hlaziya kwitheminali yakho',
-    manualBody: 'Ufake i-OpenAmer ngomgca wemiyalelo, ngoko nohlaziyo luqhutywa apho. Ncamathisela oku kwitheminali yakho:',
+    manualBody:
+      'Ufake i-OpenAmer ngomgca wemiyalelo, ngoko nohlaziyo luqhutywa apho. Ncamathisela oku kwitheminali yakho:',
     manualPickedUp: 'I-OpenAmer iya kusebenzisa inguqulelo entsha xa uyivula kwakhona.',
     guiSkewTitle: 'Hlaziya usetyenziso lwedesktop',
-    guiSkewBody: 'Inkonzo yangasemva ihlaziyiwe, kodwa le phakheji yosetyenziso lwedesktop ayitshintshanga. Hlaziya okanye ufake kwakhona usetyenziso lwedesktop lwe-OpenAmer (i-AppImage / .deb / .rpm yakho) ukuze zihambelane.',
+    guiSkewBody:
+      'Inkonzo yangasemva ihlaziyiwe, kodwa le phakheji yosetyenziso lwedesktop ayitshintshanga. Hlaziya okanye ufake kwakhona usetyenziso lwedesktop lwe-OpenAmer (i-AppImage / .deb / .rpm yakho) ukuze zihambelane.',
     copy: 'Khuphela',
     copied: 'Kukhutshelwe',
     done: 'Kugqityiwe',
-    applyingBody: 'Isihlaziyi se-OpenAmer siya kuqhubeka kwifestile yaso size sivule i-OpenAmer kwakhona ngokuzenzekelayo xa sigqibile. Nceda ungayivuli ngokwakho i-OpenAmer ngoxa ihlaziywa.',
-    applyingBodyBackend: 'Inkonzo yangasemva ekude ifaka uhlaziyo yaye iza kuqalisa kwakhona. I-OpenAmer iqhagamshela kwakhona ngokuzenzekelayo xa ibuyile.',
+    applyingBody:
+      'Isihlaziyi se-OpenAmer siya kuqhubeka kwifestile yaso size sivule i-OpenAmer kwakhona ngokuzenzekelayo xa sigqibile. Nceda ungayivuli ngokwakho i-OpenAmer ngoxa ihlaziywa.',
+    applyingBodyBackend:
+      'Inkonzo yangasemva ekude ifaka uhlaziyo yaye iza kuqalisa kwakhona. I-OpenAmer iqhagamshela kwakhona ngokuzenzekelayo xa ibuyile.',
     applyingClose: 'Le festile iza kuvala ngoxa uhlaziyo luqhuba, emva koko i-OpenAmer iya kuzivula kwakhona.',
     errorTitle: 'Uhlaziyo alugqitywanga',
     errorBody: 'Ungakhathazeki — akukho nto ilahlekileyo. Ungaphinda uzame ngoku.',
@@ -1040,12 +1091,14 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       restarting: 'Inkonzo yangasemva iyaqalisa kwakhona ukuze ilayishe uhlaziyo…',
       notAvailable: 'Uhlaziyo alufumaneki kule nkonzo yangasemva.',
       failed: 'Uhlaziyo lwenkonzo yangasemva lusilele.',
-      noReturn: 'Inkonzo yangasemva ayibuyelanga ekusebenzeni. Uhlaziyo lusenokuba alugqitywanga — jonga umatshini wenkonzo yangasemva.',
+      noReturn:
+        'Inkonzo yangasemva ayibuyelanga ekusebenzeni. Uhlaziyo lusenokuba alugqitywanga — jonga umatshini wenkonzo yangasemva.'
     },
     appErrors: {
-      updateLocked: 'Uhlaziyo luyekiwe: enye ifestile ye-OpenAmer okanye itheminali eqhuba i-openamer igcine olu fakelo luvulekile. Yivale uze uzame kwakhona.',
-      updateFailed: 'Uhlaziyo alugqitywanga. Ungakhathazeki — akukho nto ilahlekileyo. Ungaphinda uzame ngoku.',
-    },
+      updateLocked:
+        'Uhlaziyo luyekiwe: enye ifestile ye-OpenAmer okanye itheminali eqhuba i-openamer igcine olu fakelo luvulekile. Yivale uze uzame kwakhona.',
+      updateFailed: 'Uhlaziyo alugqitywanga. Ungakhathazeki — akukho nto ilahlekileyo. Ungaphinda uzame ngoku.'
+    }
   },
   zones: {
     showHeader: 'Bonisa iheader',
@@ -1053,7 +1106,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     minimize: 'Yenza mncincizo',
     restore: 'Phumisa kwakhona',
     closeRunningTitle: 'Uvala ithebhu elisebenzayo?',
-    closeRunningBody: 'Ichat esisebenzayo, okanye ilinde igxinputo yakho. Ukuvala ithebhu kuyifihla—iseshini sisalela intuthuko yalo futhi singavulwa kwakhona kwisidebar.',
+    closeRunningBody:
+      'Ichat esisebenzayo, okanye ilinde igxinputo yakho. Ukuvala ithebhu kuyifihla—iseshini sisalela intuthuko yalo futhi singavulwa kwakhona kwisidebar.',
     closeRunningConfirm: 'Vala ithebhu',
     closeOthers: 'Vala ezinye',
     closeToRight: 'Vala ngakunene',
@@ -1074,7 +1128,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     nameLayoutPlaceholder: 'Biza esi ukuhleleko…',
     zoneEditorTitle: 'Umhleli wezinda',
     editorHintPre: 'Cofa ukuze uyahlule ·',
-    editorHintPost: 'uguqula umgqibelo · uhambise kuzinda ukuze udibanise · uhambise imiphetho efanayo ukuze ulungise usayizi',
+    editorHintPost:
+      'uguqula umgqibelo · uhambise kuzinda ukuze udibanise · uhambise imiphetho efanayo ukuze ulungise usayizi',
     templateColumns: 'Amatshintshi',
     templateRows: 'Imigqa',
     templateGrid: 'Igridi',
@@ -1090,7 +1145,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     mergeZones: count => `Dibanisa imimandla eyi-${count}`,
     customZoneName: count => `Imimandla eyi-${count} elungiselelweyo`,
     layoutNamePlaceholder: fallback => `Igama lesakhiwo (${fallback})`,
-    zoneCount: count => `${count} imimandla`,
+    zoneCount: count => `${count} imimandla`
   },
   assistant: {
     thread: {
@@ -1126,7 +1181,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       restoreNext: 'Buyisela indawo yogcino elandelayo',
       goForward: 'Yiya phambili',
       sendEdited: 'Thumela umyalezo ohleliweyo',
-      attachingFile: 'Kuyancamathiselwa…',
+      attachingFile: 'Kuyancamathiselwa…'
     },
     approval: {
       gatewayDisconnected: 'Isango le-OpenAmer aliqhagamshelwanga',
@@ -1139,8 +1194,9 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       jumpToApproval: 'Kufuneka imvume',
       reject: 'Yala',
       alwaysTitle: 'Vumela lo myalelo rhoqo?',
-      alwaysDescription: pattern => `Oku kongeza ipateni ethi “${pattern}” kuluhlu lwakho olusisigxina lwabavumelekileyo (~/.openamer/config.yaml). I-OpenAmer ayisayi kuphinda ibuze ngemiyalelo efana nale — kule seshoni okanye nakweyiphi elandelayo.`,
-      alwaysAllow: 'Vumela rhoqo',
+      alwaysDescription: pattern =>
+        `Oku kongeza ipateni ethi “${pattern}” kuluhlu lwakho olusisigxina lwabavumelekileyo (~/.openamer/config.yaml). I-OpenAmer ayisayi kuphinda ibuze ngemiyalelo efana nale — kule seshoni okanye nakweyiphi elandelayo.`,
+      alwaysAllow: 'Vumela rhoqo'
     },
     clarify: {
       notReady: 'Isicelo sokucacisa asikakulungeli',
@@ -1154,7 +1210,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       continueLabel: 'Qhubeka',
       lateAnswer: (question, choice) => `Malunga no-"${question}" — impendulo yam: ${choice}`,
       lateAnswerTip: 'Lungiselela le mpendulo njengomyalezo wokulandelela',
-      lateAnswerHint: 'Esi sicelo asisalindanga mpendulo. Khetha inketho ukuze uyilungiselele njengomyalezo wokulandelela.',
+      lateAnswerHint:
+        'Esi sicelo asisalindanga mpendulo. Khetha inketho ukuze uyilungiselele njengomyalezo wokulandelela.'
     },
     tool: {
       code: 'Ikhowudi',
@@ -1190,11 +1247,11 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
         ran: 'Iqhube',
         running: 'Iyaqhuba',
         ranCode: 'Iqhube ikhowudi',
-        runningCode: 'Iqhuba isikripthi',
+        runningCode: 'Iqhuba isikripthi'
       },
       prefixes: {
         browser: 'Ibhrawuza',
-        web: 'Iwebhu',
+        web: 'Iwebhu'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1202,121 +1259,121 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Kuyasebenza: ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Kuyasebenza: ${action.toLowerCase()}`,
+        runningTool: action => `Kuyasebenza: ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Icofe into yephepha',
           pending: 'Icofa into yephepha',
-          pendingAction: 'Iyacofa',
+          pendingAction: 'Iyacofa'
         },
         browser_fill: {
           done: 'Igcwalise indawo yefomu',
           pending: 'Igcwalisa indawo yefomu',
-          pendingAction: 'Iyagcwalisa',
+          pendingAction: 'Iyagcwalisa'
         },
         browser_navigate: {
           done: 'Ivule iphepha',
           pending: 'Ivula iphepha',
-          pendingAction: 'Iyavula',
+          pendingAction: 'Iyavula'
         },
         browser_snapshot: {
           done: 'Ithathe umfanekiso wemeko yephepha',
           pending: 'Ithatha umfanekiso wemeko yephepha',
-          pendingAction: 'Iyathatha',
+          pendingAction: 'Iyathatha'
         },
         browser_take_screenshot: {
           done: 'Ithathe umfanekiso wesikrini',
           pending: 'Ithatha umfanekiso wesikrini',
-          pendingAction: 'Iyathatha',
+          pendingAction: 'Iyathatha'
         },
         browser_type: {
           done: 'Ichwetheze ephepheni',
           pending: 'Ichwetheza ephepheni',
-          pendingAction: 'Iyachwetheza',
+          pendingAction: 'Iyachwetheza'
         },
         clarify: {
           done: 'Ibuze umbuzo',
           pending: 'Ibuza umbuzo',
-          pendingAction: 'Iyabuza',
+          pendingAction: 'Iyabuza'
         },
         cronjob: {
           done: 'Umsebenzi we-cron',
           pending: 'Icwangcisa umsebenzi we-cron',
-          pendingAction: 'Iyacwangcisa',
+          pendingAction: 'Iyacwangcisa'
         },
         edit_file: {
           done: 'Ihlele ifayile',
           pending: 'Ihlela ifayile',
-          pendingAction: 'Iyahlela',
+          pendingAction: 'Iyahlela'
         },
         execute_code: {
           done: 'Iqhube ikhowudi',
           pending: 'Iqhuba isikripthi',
-          pendingAction: 'Iqhuba isikripthi',
+          pendingAction: 'Iqhuba isikripthi'
         },
         image_generate: {
           done: 'Yenze umfanekiso',
           pending: 'Yenza umfanekiso',
-          pendingAction: 'Iyenza',
+          pendingAction: 'Iyenza'
         },
         list_files: {
           done: 'Idwelise iifayile',
           pending: 'Idwelisa iifayile',
-          pendingAction: 'Iyadwelisa',
+          pendingAction: 'Iyadwelisa'
         },
         patch: {
           done: 'Ilungise ifayile',
           pending: 'Ilungisa ifayile',
-          pendingAction: 'Iyalungisa',
+          pendingAction: 'Iyalungisa'
         },
         read_file: {
           done: 'Ifunde ifayile',
           pending: 'Ifunda ifayile',
-          pendingAction: 'Iyafunda',
+          pendingAction: 'Iyafunda'
         },
         search_files: {
           done: 'Ikhangele kwiifayile',
           pending: 'Ikhangela kwiifayile',
-          pendingAction: 'Iyakhangela',
+          pendingAction: 'Iyakhangela'
         },
         session_search_recall: {
           done: 'Ikhangele kwimbali yeeseshoni',
           pending: 'Ikhangela kwimbali yeeseshoni',
-          pendingAction: 'Iyakhangela',
+          pendingAction: 'Iyakhangela'
         },
         terminal: {
           done: 'Iqhube umyalelo',
           pending: 'Iqhuba umyalelo',
-          pendingAction: 'Iyaqhuba',
+          pendingAction: 'Iyaqhuba'
         },
         todo: {
           done: 'Ihlaziye uluhlu lwemisebenzi',
           pending: 'Ihlaziya uluhlu lwemisebenzi',
-          pendingAction: 'Iyahlaziya',
+          pendingAction: 'Iyahlaziya'
         },
         vision_analyze: {
           done: 'Ihlalutye umfanekiso',
           pending: 'Ihlalutya umfanekiso',
-          pendingAction: 'Iyahlalutya',
+          pendingAction: 'Iyahlalutya'
         },
         web_extract: {
           done: 'Ifunde iphepha lewebhu',
           pending: 'Ifunda iphepha lewebhu',
-          pendingAction: 'Iyafunda',
+          pendingAction: 'Iyafunda'
         },
         web_search: {
           done: 'Ikhangele kwiwebhu',
           pending: 'Ikhangela kwiwebhu',
-          pendingAction: 'Iyakhangela',
+          pendingAction: 'Iyakhangela'
         },
         write_file: {
           done: 'Ihlele ifayile',
           pending: 'Ihlela ifayile',
-          pendingAction: 'Iyahlela',
-        },
-      },
-    },
+          pendingAction: 'Iyahlela'
+        }
+      }
+    }
   },
   common: {
     apply: 'Sebenzisa',
@@ -1357,7 +1414,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     update: 'Hlaziya',
     tryHint: term => `Zama “${term}”`,
     on: 'Ivuliwe',
-    off: 'Icimile',
+    off: 'Icimile'
   },
   fileMenu: {
     revealFinder: 'Bonisa kwi-Finder',
@@ -1372,7 +1429,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     renameLabel: 'Igama elitsha',
     deleteTitle: name => `Cima ${name}?`,
     deleteBody: 'Iya kusiwa kuMgodlo — unokuyibuyisela ukusuka apho.',
-    pathCopied: 'Umendo ukhutshelwe',
+    pathCopied: 'Umendo ukhutshelwe'
   },
   boot: {
     ready: 'I-OpenAmer Desktop ilungile',
@@ -1382,7 +1439,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       loadingSettings: 'Iyalayisha iisetingi ze-OpenAmer',
       loadingSessions: 'Iyalayisha iiseshini zamva nje',
       startingDesktopConnection: 'Iqalisa uqhagamshelo lwedesktop',
-      startingOpenAmerDesktop: 'Iqalisa i-OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Iqalisa i-OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Inkqubo yangasemva ye-OpenAmer iphumile.',
@@ -1391,13 +1448,15 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       desktopBootFailed: 'Ukuqalisa iDesktop kusilele',
       gatewayConnectionLost: 'Uqhagamshelo kwisango lulahlekile',
       gatewaySignInRequired: 'Kufuneka ungene kwisango',
-      ipcBridgeUnavailable: 'Ibhulorho ye-IPC yedesktop ayifumaneki.',
+      ipcBridgeUnavailable: 'Ibhulorho ye-IPC yedesktop ayifumaneki.'
     },
     failure: {
-      title: "I-OpenAmer ayikwazanga ukuqalisa",
-      description: "Isango langasemva alizange livuke. Zama elinye lamanyathelo okubuyisela ngezantsi. Akukho nto apha ecima iincoko okanye iisetingi zakho.",
+      title: 'I-OpenAmer ayikwazanga ukuqalisa',
+      description:
+        'Isango langasemva alizange livuke. Zama elinye lamanyathelo okubuyisela ngezantsi. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
       remoteTitle: 'Kufuneka ungene kwisango elikude',
-      remoteDescription: 'Iseshini yakho yesango elikude iphelile. Ngena kwakhona ukuze uqhagamshele. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
+      remoteDescription:
+        'Iseshini yakho yesango elikude iphelile. Ngena kwakhona ukuze uqhagamshele. Akukho nto apha ecima iincoko okanye iisetingi zakho.',
       retry: 'Phinda uzame',
       repairInstall: 'Lungisa ufakelo',
       useLocalGateway: 'Sebenzisa isango lendawo',
@@ -1405,9 +1464,11 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       back: 'Emva',
       openLogs: 'Vula iilog',
       repairHint: 'Ukulungisa kuphinda kuqalise isifakeli kwaye kungathatha imizuzu embalwa kumatshini omtsha.',
-      remoteSignInHint: signInLabel => `Iphuma kwiseshini yebhrawuza ekude egciniweyo, ize ivule ${signInLabel}. Sebenzisa isango lendawo ukutshintshela kumva odityanisiweyo endaweni yoko.`,
+      remoteSignInHint: signInLabel =>
+        `Iphuma kwiseshini yebhrawuza ekude egciniweyo, ize ivule ${signInLabel}. Sebenzisa isango lendawo ukutshintshela kumva odityanisiweyo endaweni yoko.`,
       signOutAndSignIn: 'Phuma & ngena',
-      remoteFailureHint: 'Jonga i-URL yesango nokungena phantsi kweeSethingi zesango, okanye tshintshela kwisango lendawo.',
+      remoteFailureHint:
+        'Jonga i-URL yesango nokungena phantsi kweeSethingi zesango, okanye tshintshela kwisango lendawo.',
       hideRecentLogs: 'Fihla iilog zamva nje',
       showRecentLogs: 'Bonisa iilog zamva nje',
       signedInTitle: 'Ungenile',
@@ -1417,8 +1478,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       signInFailed: 'Ukungena kusilele',
       signInToRemoteGateway: 'Ngena kwisango elikude',
       signInWithProvider: provider => `Ngena nge-${provider}`,
-      identityProvider: 'umnikezeli wesazisi sakho',
-    },
+      identityProvider: 'umnikezeli wesazisi sakho'
+    }
   },
   notifications: {
     region: 'Izaziso',
@@ -1431,21 +1492,23 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     copyDetail: 'Khuphela inkcukacha',
     copyDetailFailed: 'Ayikwazanga ukukhuphela iinkcukacha zesaziso',
     backendOutOfDateTitle: 'Umva uphelelwe lixesha',
-    backendOutOfDateMessage: 'Umva wakho we-OpenAmer mdala kunolu lwakhiwo lwedesktop kwaye usenokungasebenzi ngokuchanekileyo. Hlaziya ukuze uhambelane.',
+    backendOutOfDateMessage:
+      'Umva wakho we-OpenAmer mdala kunolu lwakhiwo lwedesktop kwaye usenokungasebenzi ngokuchanekileyo. Hlaziya ukuze uhambelane.',
     installMethodUnsupportedTitle: 'Indlela yofakelo engaxhaswanga',
     updateOpenAmer: 'Hlaziya i-OpenAmer',
     updateReadyTitle: 'Uhlaziyo lulungile',
     updateReadyMessage: count => `${count} ushintsho olutsha olunikezelayo ${count === 1 ? '' : 's'}.`,
-    seeWhatsNew: "Jonga okutsha",
+    seeWhatsNew: 'Jonga okutsha',
     errors: {
       elevenLabsNeedsKey: 'I-ElevenLabs STT idinga i-ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'I-ElevenLabs yalile isitshixo se-API (401).',
       gatewayAuthFailed: 'Uqinisekiso lwesango lusilele — jonga i-API_SERVER_KEY yakho.',
-      methodNotAllowed: 'Umva wedesktop wasikhaba eso sicelo (405 Method Not Allowed). Zama ukuqalisa kwakhona i-OpenAmer Desktop.',
+      methodNotAllowed:
+        'Umva wedesktop wasikhaba eso sicelo (405 Method Not Allowed). Zama ukuqalisa kwakhona i-OpenAmer Desktop.',
       microphonePermission: 'Imvume yemakrofoni yaliwe.',
       openaiRejectedApiKey: 'I-OpenAI yalile isitshixo se-API.',
       openaiRejectedApiKeyWithStatus: status => `I-OpenAI yalile isitshixo se-API (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'I-OpenAI TTS idinga i-VOICE_TOOLS_OPENAI_KEY okanye i-OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'I-OpenAI TTS idinga i-VOICE_TOOLS_OPENAI_KEY okanye i-OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Lungiselela intetho-kuya-kumbhalo ukuze usebenzise imowudi yelizwi.',
@@ -1464,7 +1527,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       transcriptionFailed: 'Ukubhala ilizwi kusilele',
       transcriptionUnavailable: 'Ukubhala ilizwi akukafumaneki.',
       tryRecordingAgain: 'Zama ukurekhoda kwakhona.',
-      unavailable: 'Ilizwi alifumaneki',
+      unavailable: 'Ilizwi alifumaneki'
     },
     native: {
       approvalTitle: 'Kufuneka mvume',
@@ -1477,11 +1540,12 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       turnErrorTitle: 'Ijiko lisilele',
       backgroundDoneTitle: 'Umsebenzi wangasemva ugqibile',
       backgroundFailedTitle: 'Umsebenzi wangasemva usilele',
-      creditsTitle: 'Iikhredithi',
-    },
+      creditsTitle: 'Iikhredithi'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Ukuzoba ngesoftware kuyasebenza — isiboniso esikude sifunyenwe (${reason}). Ukukhawulezisa kwe-GPU kucinyiwe ukuthintela ukudanyaza.`,
+    message: reason =>
+      `Ukuzoba ngesoftware kuyasebenza — isiboniso esikude sifunyenwe (${reason}). Ukukhawulezisa kwe-GPU kucinyiwe ukuthintela ukudanyaza.`
   },
   billingBlock: {
     titleOpenamer: 'Iikhredithi ze-OpenAmer ziphelile',
@@ -1489,7 +1553,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     fallbackMessage: 'Iakhawunti yakho iphelelwe ziikhredithi. Yongeza iikhredithi ukuze uqhubeke.',
     openBilling: 'Vula intlawulo',
     addCredits: 'Yongeza iikhredithi',
-    dismiss: 'Susa',
+    dismiss: 'Susa'
   },
   titlebar: {
     hideSidebar: 'Fihla ibha esecaleni',
@@ -1506,7 +1570,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     openStarmap: 'Vula igrafu yememori',
     openKeybinds: 'Iindlela ezimfutshane zebhodi yezitshixo',
     layoutEditor: 'Umhleli wokuhlelwa',
-    layoutEditorTitle: 'Umhleli wokuhlelwa — ⌘-cofa kuseta ngokutsha ukuhlelwa',
+    layoutEditorTitle: 'Umhleli wokuhlelwa — ⌘-cofa kuseta ngokutsha ukuhlelwa'
   },
   keybinds: {
     title: 'Iindlela ezimfutshane zebhodi yezitshixo',
@@ -1523,7 +1587,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       profiles: 'Iiprofayile',
       session: 'Iseshini',
       navigation: 'Ukuhamba',
-      view: 'Umbono',
+      view: 'Umbono'
     },
     actions: {
       'keybinds.openPanel': 'Vula iindlela ezimfutshane zebhodi yezitshixo',
@@ -1602,8 +1666,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       'composer.slash': 'Iphalethi yemiyalelo yeslash',
       'composer.help': 'Uncedo olukhawulezayo',
       'composer.history': 'Jikeleza ipopover / imbali',
-      'composer.cancel': 'Vala ipopover · rhoxisa ukuqhuba',
-    },
+      'composer.cancel': 'Vala ipopover · rhoxisa ukuqhuba'
+    }
   },
   language: {
     label: 'Ulwimi',
@@ -1612,7 +1676,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     saveError: 'Uhlaziyo lolwimi lusilele',
     switchTo: 'Tshintsha ulwimi',
     searchPlaceholder: 'Khangela iilwimi…',
-    noResults: 'Akukho lwimi lufunyenweyo',
+    noResults: 'Akukho lwimi lufunyenweyo'
   },
   skills: {
     tabSkills: 'Izakhono',
@@ -1632,7 +1696,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     noDescription: 'Akukho nkcazo.',
     configured: 'Ilungiselelwe',
     needsKeys: 'Idinga izitshixo',
-    visionModelHint: 'Umbono usebenzisa i-config yakho yemodeli encedisayo — imodeli ekwaziyo imifanekiso ikhethwa apho, hayi kumnikezeli ngamnye apha.',
+    visionModelHint:
+      'Umbono usebenzisa i-config yakho yemodeli encedisayo — imodeli ekwaziyo imifanekiso ikhethwa apho, hayi kumnikezeli ngamnye apha.',
     visionModelLink: 'Khetha imodeli yombono kwiSethingi → Iimodeli',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} seti zezixhobo zivuliwe`,
     configureToolset: label => `Lungiselela ${label}`,
@@ -1658,7 +1723,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     provenance: {
       agent: 'Kufundiwe',
       bundled: 'Kwakhelwe ngaphakathi',
-      hub: 'Iziko',
+      hub: 'Iziko'
     },
     emptyNoneFound: noun => `Akukho ${noun} ifunyenweyo`,
     emptyNothingMatches: query => `Akukho nto ihambelana no “${query}”.`,
@@ -1676,7 +1741,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       connectingHubs: 'Iqhagamshela kwiziko lezakhono...',
       connectedHubs: 'Iziko eziqhagamshelweyo:',
       featured: 'Izakhono ezikhethiweyo',
-      landingHint: 'Khangela kwiziko ukukhangela izakhono ezinokufakwa kwisalathiso esisemthethweni, GitHub nemithombo yoluntu.',
+      landingHint:
+        'Khangela kwiziko ukukhangela izakhono ezinokufakwa kwisalathiso esisemthethweni, GitHub nemithombo yoluntu.',
       noResults: 'Akukho zakhono zihambelanayo zifunyenwe kwiziko.',
       resultCount: (count, ms) => `${count} impendulo ${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Kuphelelwe lixesha: ${sources}`,
@@ -1696,7 +1762,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       trust: {
         builtin: 'eyakhelweyo',
         trusted: 'ithenjwayo',
-        community: 'uluntu',
+        community: 'uluntu'
       },
       verdictSafe: 'Kukhuselekile',
       verdictCaution: 'Qaphela',
@@ -1714,8 +1780,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       loadFailed: 'Iziko lezakhono lasilela ukulayisha',
       previewFailed: 'Umboniso wesakhono usilele',
       scanFailed: 'Ukuskena ukhuseleko kusilele',
-      searchFailed: 'Ukukhangela kwiziko kusilele',
-    },
+      searchFailed: 'Ukukhangela kwiziko kusilele'
+    }
   },
   starmap: {
     title: 'Igrafu yememori',
@@ -1732,7 +1798,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     emptyTitle: 'Akukho nto ifundiweyo okwangoku',
     emptyDesc: 'Njengoko i-OpenAmer yakha izakhono neememori zomsebenzi wakho, ziyavela apha.',
     share: 'Yabelana ngemephu',
-    shareHint: 'Khuphela ikhowudi ukuze wabelane ngale mephu, okanye namathisela enye ukuyilayisha. Iquka kuphela ukuhlelwa, hayi imemori yakho okanye umbhalo wesakhono.',
+    shareHint:
+      'Khuphela ikhowudi ukuze wabelane ngale mephu, okanye namathisela enye ukuyilayisha. Iquka kuphela ukuhlelwa, hayi imemori yakho okanye umbhalo wesakhono.',
     shareTitle: 'Ngenisa / khupha imephu',
     sharePlaceholder: 'Namathisela ikhowudi yemephu…',
     copy: 'Khuphela ikhowudi yemephu',
@@ -1742,7 +1809,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     importEmpty: 'Namathisela ikhowudi yemephu ukuyilayisha.',
     importSuccess: nodes => `Kulayishwe imephu ene-${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'imephu engenisiweyo',
-    resetToMine: 'Buyela kwimephu yam',
+    resetToMine: 'Buyela kwimephu yam'
   },
   agents: {
     close: 'Vala ii-arhente',
@@ -1772,7 +1839,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     ageDays: days => `${days}d ezidlulileyo`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} ithokhini`,
+    tokens: value => `${value} ithokhini`
   },
   messaging: {
     search: 'Khangela kumaqonga emiyalezo...',
@@ -1787,7 +1854,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       not_configured: 'Kufuneka kulungiselelwe',
       pending_restart: 'Kufuneka kuqalwe kwakhona',
       retrying: 'Kuyazanywa kwakhona',
-      startup_failed: 'Ukuqalisa kusilele',
+      startup_failed: 'Ukuqalisa kusilele'
     },
     unknown: 'Akwaziwa',
     hintPendingRestart: 'Qalisa kwakhona isango kwibha yesimo ukuze usebenzise olu tshintsho.',
@@ -1800,7 +1867,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     required: 'Kuyafuneka',
     recommended: 'Kuyacetyiswa',
     advanced: count => `Ezongezelelekileyo (${count})`,
-    noTokenNeeded: 'Eli qonga alifuni thokheni apha. Sebenzisa isikhokelo solungiselelo esingentla, uze ulivule ngezantsi.',
+    noTokenNeeded:
+      'Eli qonga alifuni thokheni apha. Sebenzisa isikhokelo solungiselelo esingentla, uze ulivule ngezantsi.',
     enabled: 'Kuvuliwe',
     disabled: 'Kucinyiwe',
     unsavedChanges: 'Utshintsho olungagcinwanga',
@@ -1826,127 +1894,126 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Ithokheni ye-bot',
         help: 'Yenza i-bot nge-@BotFather, uze uncamathisele ithokheni ekunika yona.',
-        placeholder: 'Ncamathisela ithokheni ye-bot ye-Telegram',
+        placeholder: 'Ncamathisela ithokheni ye-bot ye-Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Ii-ID zabasebenzisi be-Telegram abavumelekileyo',
-        help: 'Kuyacetyiswa. Ii-ID zamanani ezivela ku-@userinfobot, zahlulwe ngeekoma. Ngaphandle koku, nabani na angathumela umyalezo wabucala kwi-bot yakho.',
+        help: 'Kuyacetyiswa. Ii-ID zamanani ezivela ku-@userinfobot, zahlulwe ngeekoma. Ngaphandle koku, nabani na angathumela umyalezo wabucala kwi-bot yakho.'
       },
       TELEGRAM_PROXY: {
         label: 'I-URL ye-proxy',
-        help: 'Ifuneka kuphela kuthungelwano apho i-Telegram ivaliweyo.',
+        help: 'Ifuneka kuphela kuthungelwano apho i-Telegram ivaliweyo.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Ithokheni ye-bot',
-        help: 'Yenza usetyenziso kwi-Discord Developer Portal, yongeza i-bot, uze uncamathisele ithokheni yayo.',
+        help: 'Yenza usetyenziso kwi-Discord Developer Portal, yongeza i-bot, uze uncamathisele ithokheni yayo.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Ii-ID zabasebenzisi be-Discord abavumelekileyo',
-        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Discord, zahlulwe ngeekoma.',
+        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Discord, zahlulwe ngeekoma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Indlela yokuphendula',
-        help: 'first, all okanye off.',
+        help: 'first, all okanye off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Vumela bonke abasebenzisi be-Discord',
-        help: 'Yeyophuhliso kuphela. Xa kuyi-true, nabani na angathumela umyalezo wabucala kwi-bot ngaphandle koluhlu lwabavumelekileyo.',
+        help: 'Yeyophuhliso kuphela. Xa kuyi-true, nabani na angathumela umyalezo wabucala kwi-bot ngaphandle koluhlu lwabavumelekileyo.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'I-ID yetshaneli yasekhaya',
-        help: 'Itshaneli apho i-bot ithumela khona imiyalezo ngokwayo (iziphumo ze-cron, izikhumbuzo).',
+        help: 'Itshaneli apho i-bot ithumela khona imiyalezo ngokwayo (iziphumo ze-cron, izikhumbuzo).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Igama letshaneli yasekhaya',
-        help: 'Igama eliboniswayo letshaneli yasekhaya kwiilog nakwiziphumo zesimo.',
+        help: 'Igama eliboniswayo letshaneli yasekhaya kwiilog nakwiziphumo zesimo.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Vumela bonke abasebenzisi be-iMessage',
-        help: 'Xa kuyi-true, sukusebenzisa uluhlu lwabavumelekileyo lwe-BlueBubbles.',
+        help: 'Xa kuyi-true, sukusebenzisa uluhlu lwabavumelekileyo lwe-BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Vumela bonke abasebenzisi be-Mattermost',
+        label: 'Vumela bonke abasebenzisi be-Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Itshaneli yasekhaya',
+        label: 'Itshaneli yasekhaya'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Vumela bonke abasebenzisi be-QQ',
+        label: 'Vumela bonke abasebenzisi be-QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Itshaneli yasekhaya ye-QQ',
-        help: 'Itshaneli okanye iqela elisetyenziswa ngokungagqibekanga ukuthumela iziphumo ze-cron.',
+        help: 'Itshaneli okanye iqela elisetyenziswa ngokungagqibekanga ukuthumela iziphumo ze-cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Igama letshaneli yasekhaya ye-QQ',
+        label: 'Igama letshaneli yasekhaya ye-QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Ithokheni ye-bot ye-Slack',
         help: 'Sebenzisa ithokheni ye-bot evela ku-OAuth & Permissions emva kokufaka usetyenziso lwakho lwe-Slack.',
-        placeholder: 'Ncamathisela ithokheni ye-bot ye-Slack',
+        placeholder: 'Ncamathisela ithokheni ye-bot ye-Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Ithokheni yosetyenziso lwe-Slack',
         help: 'Sebenzisa ithokheni yenqanaba losetyenziso efunekayo kwi-Socket Mode.',
-        placeholder: 'Ncamathisela ithokheni yosetyenziso lwe-Slack',
+        placeholder: 'Ncamathisela ithokheni yosetyenziso lwe-Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Ii-ID zabasebenzisi be-Slack abavumelekileyo',
-        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Slack, zahlulwe ngeekoma.',
+        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Slack, zahlulwe ngeekoma.'
       },
       MATTERMOST_URL: {
         label: 'I-URL yeseva',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Ithokheni ye-bot',
+        label: 'Ithokheni ye-bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Ii-ID zabasebenzisi abavumelekileyo',
-        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Mattermost, zahlulwe ngeekoma.',
+        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi be-Mattermost, zahlulwe ngeekoma.'
       },
       MATRIX_HOMESERVER: {
         label: 'I-URL yeseva yasekhaya',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Ithokheni yokufikelela',
+        label: 'Ithokheni yokufikelela'
       },
       MATRIX_USER_ID: {
         label: 'I-ID yomsebenzisi we-bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Ii-ID zabasebenzisi be-Matrix abavumelekileyo',
-        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi ezikwimo ethi @user:server, zahlulwe ngeekoma.',
+        help: 'Kuyacetyiswa. Ii-ID zabasebenzisi ezikwimo ethi @user:server, zahlulwe ngeekoma.'
       },
       SIGNAL_HTTP_URL: {
         label: 'I-URL yebhulorho ye-Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'I-URL yebhulorho ye-REST ye-signal-cli esebenzayo.',
+        help: 'I-URL yebhulorho ye-REST ye-signal-cli esebenzayo.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Inombolo yefowuni',
-        help: 'Inombolo ebhaliswe kwibhulorho yakho ye-signal-cli.',
+        help: 'Inombolo ebhaliswe kwibhulorho yakho ye-signal-cli.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Abasebenzisi be-Signal abavumelekileyo',
-        help: 'Kuyacetyiswa. Izazisi ze-Signal, zahlulwe ngeekoma.',
+        help: 'Kuyacetyiswa. Izazisi ze-Signal, zahlulwe ngeekoma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Vula ibhulorho ye-WhatsApp',
-        help: 'Imiselwa ngokuzenzekelayo ngeswitshi engezantsi. Musa ukuyitshintsha ngaphandle kokuba uyazi ukuba uyayidinga.',
+        help: 'Imiselwa ngokuzenzekelayo ngeswitshi engezantsi. Musa ukuyitshintsha ngaphandle kokuba uyazi ukuba uyayidinga.'
       },
       WHATSAPP_MODE: {
-        label: 'Imowudi yebhulorho',
+        label: 'Imowudi yebhulorho'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Abasebenzisi be-WhatsApp abavumelekileyo',
-        help: 'Kuyacetyiswa. Iinombolo zefowuni okanye ii-ID ze-WhatsApp, zahlulwe ngeekoma.',
-      },
+        help: 'Kuyacetyiswa. Iinombolo zefowuni okanye ii-ID ze-WhatsApp, zahlulwe ngeekoma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Khangela ii-webhook...',
@@ -1956,7 +2023,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     hint: 'Utshintsho lwemirhumo lulayishwa ngokuzenzekelayo xa umamkeli esebenza. Imirhumo ecinyiweyo iyazikhaba iziganeko ezingenayo.',
     empty: 'Akukho mirhumo yee-webhook okwangoku.',
     disabledTitle: 'Umamkeli wee-webhook ucinyiwe',
-    disabledBody: 'Ii-webhook ziliqonga lazo lesango. Zivule apha ukuze wamkele iziganeko ze-HTTP ezingenayo; iitshaneli zencoko zifuneka kuphela xa umrhumo uthumela kwi-Telegram, kwi-Discord, kwi-Slack okanye kwenye itshaneli.',
+    disabledBody:
+      'Ii-webhook ziliqonga lazo lesango. Zivule apha ukuze wamkele iziganeko ze-HTTP ezingenayo; iitshaneli zencoko zifuneka kuphela xa umrhumo uthumela kwi-Telegram, kwi-Discord, kwi-Slack okanye kwenye itshaneli.',
     enable: 'Vula ii-webhook',
     enabling: 'Kuyavulwa...',
     enabled: (name: string) => `Ivuliwe: "${name}"`,
@@ -2009,8 +2077,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'I-imeyile',
-      github_comment: 'Izimvo kwi-GitHub',
-    },
+      github_comment: 'Izimvo kwi-GitHub'
+    }
   },
   cron: {
     close: 'Vala imisebenzi ecwangcisiweyo',
@@ -2025,14 +2093,14 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       paused: 'inqunyanyisiwe',
       disabled: 'icinyiwe',
       error: 'impazamo',
-      completed: 'igqityiwe',
+      completed: 'igqityiwe'
     },
     deliveryLabels: {
       local: 'Le desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'I-imeyile',
+      email: 'I-imeyile'
     },
     scheduleLabels: {
       daily: 'Yonke imihla',
@@ -2041,7 +2109,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       monthly: 'Nyanga nganye',
       hourly: 'Yure nganye',
       'every-15-minutes': 'Rhoqo ngemizuzu eli-15',
-      custom: 'Ngokwezifiso',
+      custom: 'Ngokwezifiso'
     },
     scheduleHints: {
       daily: 'Yonke imihla ngo-09:00',
@@ -2050,7 +2118,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       monthly: 'Ngosuku lokuqala lwenyanga nganye ngo-09:00',
       hourly: 'Ekuqaleni kweyure nganye',
       'every-15-minutes': 'Rhoqo ngemizuzu eli-15',
-      custom: 'Ubhalo lwe-cron okanye ulwimi oluqhelekileyo',
+      custom: 'Ubhalo lwe-cron okanye ulwimi oluqhelekileyo'
     },
     days: {
       '0': 'NgeCawa',
@@ -2060,7 +2128,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       '4': 'NgoLwesine',
       '5': 'NgoLwesihlanu',
       '6': 'NgoMgqibelo',
-      '7': 'NgeCawa',
+      '7': 'NgeCawa'
     },
     dayFallback: value => `usuku ${value}`,
     everyDayAt: time => `Yonke imihla ngo-${time}`,
@@ -2070,7 +2138,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     topOfHour: 'Ekuqaleni kweyure nganye',
     everyHourAt: minute => `Yure nganye ngo-:${minute}`,
     newCron: 'Umsebenzi omtsha we-cron',
-    emptyDescNew: 'Cwangcisa imiyalelo ukuba iqhutywe ngokubhaliweyo kwe-cron. I-OpenAmer iya kuyiqhuba ize ithumele iziphumo kwindawo oyikhethayo.',
+    emptyDescNew:
+      'Cwangcisa imiyalelo ukuba iqhutywe ngokubhaliweyo kwe-cron. I-OpenAmer iya kuyiqhuba ize ithumele iziphumo kwindawo oyikhethayo.',
     emptyDescSearch: 'Zama umbuzo wokukhangela obanzi ngakumbi.',
     emptyTitleNew: 'Akukho misebenzi icwangcisiweyo okwangoku',
     emptyTitleSearch: 'Akukho zihambelanayo',
@@ -2107,11 +2176,13 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     editTitle: 'Hlela umsebenzi we-cron',
     createTitle: 'Umsebenzi omtsha we-cron',
     editDesc: 'Hlaziya ishedyuli, imiyalelo okanye indawo yokuthumela. Utshintsho lusebenza ekuqhutyweni okulandelayo.',
-    createDesc: 'Cwangcisa imiyalelo ukuba iqhutywe ngokuzenzekelayo. Sebenzisa ubhalo lwe-cron okanye ibinzana eliqhelekileyo elifana no-"every 15 minutes".',
+    createDesc:
+      'Cwangcisa imiyalelo ukuba iqhutywe ngokuzenzekelayo. Sebenzisa ubhalo lwe-cron okanye ibinzana eliqhelekileyo elifana no-"every 15 minutes".',
     nameLabel: 'Igama',
     namePlaceholder: 'Ingxelo yakusasa',
     promptLabel: 'Imiyalelo',
-    promptPlaceholder: 'Shwankathela imisonto yam engafundwanga ye-Slack uze undithumelele emi-5 ephambili nge-imeyile...',
+    promptPlaceholder:
+      'Shwankathela imisonto yam engafundwanga ye-Slack uze undithumelele emi-5 ephambili nge-imeyile...',
     frequencyLabel: 'Ukuphindaphinda',
     deliverLabel: 'Thumela ku',
     deliverNeedsHomeChannel: 'misela itshaneli yasekhaya kuqala',
@@ -2129,7 +2200,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     createAction: 'Yenza umsebenzi we-cron',
     tabs: {
       jobs: 'Imisebenzi',
-      blueprints: 'Izicwangciso ezilungiselelweyo',
+      blueprints: 'Izicwangciso ezilungiselelweyo'
     },
     blueprints: {
       tab: 'Izicwangciso ezilungiselelweyo',
@@ -2143,8 +2214,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       loading: 'Kulayishwa izicwangciso...',
       failedLoad: 'Ukulayisha izicwangciso kusilele',
       emptyTitle: 'Akukho zicwangciso zikhoyo',
-      emptyDesc: 'Akukho zicwangciso zemisebenzi ezenzekelayo zikhoyo kule nkonzo yangasemva.',
-    },
+      emptyDesc: 'Akukho zicwangciso zemisebenzi ezenzekelayo zikhoyo kule nkonzo yangasemva.'
+    }
   },
   artifacts: {
     search: 'Khangela iziphumo ezenziweyo...',
@@ -2178,14 +2249,14 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     kindLink: 'ikhonkco',
     chat: 'Incoko',
     copyUrl: 'Khuphela i-URL',
-    copyPath: 'Khuphela umendo',
+    copyPath: 'Khuphela umendo'
   },
   sidebar: {
     nav: {
       'new-session': 'Iseshoni entsha',
       skills: 'Izakhono',
       messaging: 'Imiyalezo',
-      artifacts: 'Iziphumo ezenziweyo',
+      artifacts: 'Iziphumo ezenziweyo'
     },
     searchAria: 'Khangela iiseshoni',
     searchPlaceholder: 'Khangela iiseshoni…',
@@ -2217,7 +2288,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       namePlaceholder: 'umz. Skunkworks',
       foldersLabel: 'Iifolda',
       ideaLabel: 'Ingcamango',
-      ideaPlaceholder: "Imalunga nantoni le projekthi? (igcinwa kwi-IDEA.md)",
+      ideaPlaceholder: 'Imalunga nantoni le projekthi? (igcinwa kwi-IDEA.md)',
       ideaGenerate: 'Yenza ingcamango',
       ideaGenerating: 'Kuyenziwa…',
       ideaShuffle: 'Xuba iitempleyithi',
@@ -2237,8 +2308,10 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       copyPath: 'Khuphela umendo',
       removeFromSidebar: 'Fihla kwibha esecaleni',
       createFailed: 'Akukwazekanga ukwenza iprojekthi',
-      staleBackend: 'Hlaziya inkonzo yangasemva ye-OpenAmer ukuze wenze iiprojekthi — inkonzo yakho indala kunolu setyenziso lwedesktop (Iisetingi → Uhlaziyo → Inkonzo yangasemva).',
-      deleteConfirm: 'Oku kususa iprojekthi egciniweyo kwi-OpenAmer. Iifayile, oovimba be-git kunye nemithi yokusebenza azichukunyiswa.',
+      staleBackend:
+        'Hlaziya inkonzo yangasemva ye-OpenAmer ukuze wenze iiprojekthi — inkonzo yakho indala kunolu setyenziso lwedesktop (Iisetingi → Uhlaziyo → Inkonzo yangasemva).',
+      deleteConfirm:
+        'Oku kususa iprojekthi egciniweyo kwi-OpenAmer. Iifayile, oovimba be-git kunye nemithi yokusebenza azichukunyiswa.',
       startWork: 'Umthi wokusebenza omtsha',
       newWorktreeTitle: 'Umthi wokusebenza omtsha',
       newWorktreeDesc: 'Nika isebe lalo mthi wokusebenza igama.',
@@ -2249,7 +2322,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       startWorkFailed: 'Akukwazekanga ukwenza umthi wokusebenza',
       convertBranch: 'Guqula isebe…',
       convertBranchTitle: 'Guqula isebe',
-      convertBranchDesc: 'Vula amasebe asele ekhutshelwe ukusebenza, okanye wenze umthi wokusebenza wesebe elingasetyenziswayo.',
+      convertBranchDesc:
+        'Vula amasebe asele ekhutshelwe ukusebenza, okanye wenze umthi wokusebenza wesebe elingasetyenziswayo.',
       convertBranchPlaceholder: 'Khangela amasebe…',
       convertBranchInstead: 'Guqula isebe esele likho',
       branchOpenExisting: 'vula',
@@ -2259,13 +2333,15 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       noBranches: 'Akukho masebe afunyenweyo',
       removeWorktree: 'Susa umthi wokusebenza',
       removeWorktreeFailed: 'Akukwazekanga ukususa umthi wokusebenza (kukho utshintsho olungagcinwanga kwi-git?)',
-      removeWorktreeConfirm: 'Wususe kwi-git (oku kucima ifolda yomthi wokusebenza; isebe lihlala likhona), okanye ufihle indlela yawo kwibha esecaleni uze uwushiye kwidiski.',
-      removeWorktreeDirty: 'Lo mthi wokusebenza unotshintsho olungagcinwanga kwi-git. Wususe ngenkani (ulahle olo tshintsho), okanye ufihle indlela yawo uze uwugcine kwidiski.',
+      removeWorktreeConfirm:
+        'Wususe kwi-git (oku kucima ifolda yomthi wokusebenza; isebe lihlala likhona), okanye ufihle indlela yawo kwibha esecaleni uze uwushiye kwidiski.',
+      removeWorktreeDirty:
+        'Lo mthi wokusebenza unotshintsho olungagcinwanga kwi-git. Wususe ngenkani (ulahle olo tshintsho), okanye ufihle indlela yawo uze uwugcine kwidiski.',
       forceRemove: 'Susa ngenkani',
       enter: label => `Vula ${label}`,
       reorder: label => `Tshintsha indawo ye-${label}`,
       toggle: label => `Bonisa okanye ufihle iiseshoni ze-${label}`,
-      back: 'Zonke iiprojekthi',
+      back: 'Zonke iiprojekthi'
     },
     newSessionIn: label => `Iseshoni entsha kwi-${label}`,
     showMoreIn: (count, label) => `Bonisa ezinye ezi-${count} kwi-${label}`,
@@ -2303,15 +2379,15 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       ageNow: 'ngoku',
       ageDay: 'u',
       ageHour: 'iyure',
-      ageMin: 'umzuzu',
+      ageMin: 'umzuzu'
     },
     dateDivider: {
       today: 'Ngaphambili namhlanje',
       yesterday: 'Izolo',
       thisWeek: 'Ngaphambili kule veki',
       lastWeek: 'Kwiveki ephelileyo',
-      thisMonth: 'Ngaphambili kule nyanga',
-    },
+      thisMonth: 'Ngaphambili kule nyanga'
+    }
   },
   composer: {
     message: 'Umyalezo',
@@ -2322,20 +2398,20 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     newSessionPlaceholders: [
       'Sakha ntoni?',
       'Nika i-OpenAmer umsebenzi',
-      "Ucinga ngantoni?",
+      'Ucinga ngantoni?',
       'Chaza into oyidingayo',
       'Yintoni esimele sisebenze kuyo?',
       'Buza nantoni na',
-      'Qala ngenjongo',
+      'Qala ngenjongo'
     ],
     followUpPlaceholders: [
       'Thumela umyalezo wokulandelela',
       'Yongeza umxholo',
       'Cacisa isicelo',
-      "Yintoni elandelayo?",
+      'Yintoni elandelayo?',
       'Qhubeka',
       'Yisa phambili ngakumbi',
-      'Lungisa okanye uqhubeke',
+      'Lungisa okanye uqhubeke'
     ],
     startVoice: 'Qalisa incoko yelizwi',
     queueMessage: 'Beka umyalezo emgceni',
@@ -2371,7 +2447,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       '/resume': 'qhubeka neseshoni yangaphambili',
       '/details': 'lawula inqanaba leenkcukacha zengxelo yencoko',
       '/copy': 'khuphela okukhethiweyo okanye umyalezo wokugqibela womncedisi',
-      '/quit': 'phuma kwi-openamer',
+      '/quit': 'phuma kwi-openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'bhekisa kwiifayile, iifolda, ii-URL kunye ne-git',
@@ -2381,7 +2457,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       'composer.sendQueued': 'thumela ithuba elilandelayo elisemgceni',
       'keybinds.openPanel': 'zonke iindlela ezimfutshane zebhodi yezitshixo',
       'composer.cancel': 'vala ifestile ephumayo · rhoxisa umsebenzi',
-      'composer.history': 'jikeleza ifestile ephumayo / imbali',
+      'composer.history': 'jikeleza ifestile ephumayo / imbali'
     },
     attachUrlTitle: 'Ncamathisela i-URL',
     attachUrlDesc: 'I-OpenAmer iya kulanda iphepha ize iliquke njengomxholo weli thuba.',
@@ -2402,7 +2478,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     queueResume: 'Qhubeka',
     queueResumeTip: 'Kunqunyanyiswe ngokuthi Misa — qhubeka nokuthumela amathuba asemgceni',
     queueStuckTitle: 'Umyalezo osemgceni awuthunyelwanga',
-    queueStuckBody: 'Ithuba elisemgceni liqhubeke lisilela ukuthunyelwa. Lisahleli emgceni — zama ukulithumela kwakhona.',
+    queueStuckBody:
+      'Ithuba elisemgceni liqhubeke lisilela ukuthunyelwa. Lisahleli emgceni — zama ukulithumela kwakhona.',
     previewUnavailable: 'Umboniso wangaphambili awufumaneki',
     previewLabel: label => `Bonisa ${label}`,
     couldNotPreview: label => `Akukwazekanga ukubonisa ${label}`,
@@ -2431,20 +2508,22 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     snippets: {
       codeReview: {
         label: 'Uphononongo lwekhowudi',
-        description: 'Phicotha utshintsho lwangoku ukuze ufumane ukubuyela kweempazamo, iimeko ezikhethekileyo ezilityelweyo kunye novavanyo olungekhoyo.',
-        text: 'Nceda uphonononge oku ukuze ufumane iimpazamo, ukubuyela kweempazamo kunye novavanyo olungekhoyo.',
+        description:
+          'Phicotha utshintsho lwangoku ukuze ufumane ukubuyela kweempazamo, iimeko ezikhethekileyo ezilityelweyo kunye novavanyo olungekhoyo.',
+        text: 'Nceda uphonononge oku ukuze ufumane iimpazamo, ukubuyela kweempazamo kunye novavanyo olungekhoyo.'
       },
       implementationPlan: {
         label: 'Isicwangciso sokuphumeza',
-        description: 'Cacisa indlela yokusebenza ngaphambi kokuchukumisa ikhowudi ukuze utshintsho luhlale lugxile kwinjongo.',
-        text: 'Nceda wenze isicwangciso esifutshane sokuphumeza ngaphambi kokutshintsha ikhowudi.',
+        description:
+          'Cacisa indlela yokusebenza ngaphambi kokuchukumisa ikhowudi ukuze utshintsho luhlale lugxile kwinjongo.',
+        text: 'Nceda wenze isicwangciso esifutshane sokuphumeza ngaphambi kokutshintsha ikhowudi.'
       },
       explainThis: {
         label: 'Cacisa oku',
         description: 'Chaza indlela esebenza ngayo ikhowudi ekhethiweyo uze udibanise kwiifayile eziphambili.',
-        text: 'Nceda uchaze indlela esebenza ngayo le nto uze undibonise iifayile eziphambili.',
-      },
-    },
+        text: 'Nceda uchaze indlela esebenza ngayo le nto uze undibonise iifayile eziphambili.'
+      }
+    }
   },
   install: {
     stageStates: {
@@ -2452,25 +2531,30 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       running: 'Kuyafakwa',
       succeeded: 'Kugqityiwe',
       skipped: 'Kutsityiwe',
-      failed: 'Kusilele',
+      failed: 'Kusilele'
     },
     oneTimeTitle: 'I-OpenAmer ifuna ukufakwa kube kanye',
-    unsupportedDesc: platform => `Ufakelo oluzenzekelayo ekuvuleni kokuqala alukafumaneki kwi-${platform}. Vula iTheminali uze uqhube umyalelo ongezantsi, emva koko uvule kwakhona olu setyenziso. Xa uvula kwixesha elizayo, eli nyathelo liza kutsitywa.`,
+    unsupportedDesc: platform =>
+      `Ufakelo oluzenzekelayo ekuvuleni kokuqala alukafumaneki kwi-${platform}. Vula iTheminali uze uqhube umyalelo ongezantsi, emva koko uvule kwakhona olu setyenziso. Xa uvula kwixesha elizayo, eli nyathelo liza kutsitywa.`,
     installCommand: 'Umyalelo wokufaka',
     copyCommand: 'Khuphela umyalelo',
     viewDocs: 'Jonga amaxwebhu okufaka',
     installTo: 'Kuza kufakwa ku',
     retryAfterRun: 'Sowuwuqhubile — phinda uzame',
     setupChoiceTitle: 'Lungiselela i-OpenAmer Desktop',
-    setupChoiceDesc: 'Qhagamshela olu setyenziso kwisango le-OpenAmer osele uliqhuba, okanye ufake i-OpenAmer kule khompyutha.',
+    setupChoiceDesc:
+      'Qhagamshela olu setyenziso kwisango le-OpenAmer osele uliqhuba, okanye ufake i-OpenAmer kule khompyutha.',
     connectExistingTitle: 'Qhagamshela kwi-OpenAmer esele ikhona',
     connectExistingShort: 'Qhagamshela esele ikhona',
-    connectExistingDesc: 'Sebenzisa inkonzo yangasemva ekude ngethokheni yeseshoni okanye ngokungena ngebhrawuza. Akukho fakelo lwasekuhlaleni oluza kuqalisa.',
+    connectExistingDesc:
+      'Sebenzisa inkonzo yangasemva ekude ngethokheni yeseshoni okanye ngokungena ngebhrawuza. Akukho fakelo lwasekuhlaleni oluza kuqalisa.',
     installLocalTitle: 'Faka i-OpenAmer kule khompyutha',
     installLocalDesc: 'Khuphela i-OpenAmer, wenze indawo yayo ye-Python uze uqhube inkonzo yangasemva kule khompyutha.',
-    localStartUnavailable: 'Ufakelo lwasekuhlaleni alukwazanga ukuqalisa. Qalisa kwakhona i-OpenAmer Desktop uze uphinde uzame.',
+    localStartUnavailable:
+      'Ufakelo lwasekuhlaleni alukwazanga ukuqalisa. Qalisa kwakhona i-OpenAmer Desktop uze uphinde uzame.',
     remoteSetupTitle: 'Qhagamshela kwi-OpenAmer esele ikhona',
-    remoteSetupDesc: 'Faka i-URL yesango lakho. I-OpenAmer Desktop iya kufumanisa ukuba lifuna ithokheni okanye ukungena ngebhrawuza.',
+    remoteSetupDesc:
+      'Faka i-URL yesango lakho. I-OpenAmer Desktop iya kufumanisa ukuba lifuna ithokheni okanye ukungena ngebhrawuza.',
     remoteUrlTitle: 'I-URL yesango',
     remoteUrlDesc: 'Sebenzisa i-URL esisiseko yesango le-OpenAmer, uquke u-https:// xa likude.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2497,8 +2581,10 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     failedTitle: 'Ufakelo lusilele',
     settingUpTitle: 'Kulungiselelwa i-OpenAmer Agent',
     finishingTitle: 'Kuyagqityezelwa',
-    failedDesc: 'Elinye lamanyathelo okufaka lisilele. Kwi-Windows, oku kunokwenzeka ukuba enye i-OpenAmer CLI okanye idesktop iyasebenza. Misa zonke iimeko ze-OpenAmer ezisebenzayo, uze uphinde uzame. Jonga iinkcukacha ezingezantsi okanye ilog yedesktop ukuze ufumane ingxelo epheleleyo.',
-    activeDesc: 'Olu lulungiselelo olwenziwa kube kanye. Isifakeli se-OpenAmer sikhuphela izinto ezixhomekeke kuzo size silungiselele umatshini wakho. Xa uvula kwixesha elizayo, eli nyathelo liza kutsitywa.',
+    failedDesc:
+      'Elinye lamanyathelo okufaka lisilele. Kwi-Windows, oku kunokwenzeka ukuba enye i-OpenAmer CLI okanye idesktop iyasebenza. Misa zonke iimeko ze-OpenAmer ezisebenzayo, uze uphinde uzame. Jonga iinkcukacha ezingezantsi okanye ilog yedesktop ukuze ufumane ingxelo epheleleyo.',
+    activeDesc:
+      'Olu lulungiselelo olwenziwa kube kanye. Isifakeli se-OpenAmer sikhuphela izinto ezixhomekeke kuzo size silungiselele umatshini wakho. Xa uvula kwixesha elizayo, eli nyathelo liza kutsitywa.',
     progress: (completed, total) => `Amanyathelo agqityiweyo: ${completed} kwayi-${total}`,
     currentStage: stage => ` -- ngoku: ${stage}`,
     fetchingManifest: 'Kulandwa uluhlu lwesifakeli...',
@@ -2512,10 +2598,10 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     transcriptSaved: 'Ingxelo epheleleyo igcinwe ku',
     copiedOutput: 'Kukhutshelwe!',
     copyOutput: 'Khuphela iziphumo',
-    reloadRetry: 'Layisha kwakhona uze uphinde uzame',
+    reloadRetry: 'Layisha kwakhona uze uphinde uzame'
   },
   onboarding: {
-    headerTitle: "Masikulungiselele i-OpenAmer Agent",
+    headerTitle: 'Masikulungiselele i-OpenAmer Agent',
     headerDesc: 'Qhagamshela umnikezeli wemodeli ukuze uqalise incoko. Uninzi lweenketho lufuna ukucofa kube kanye.',
     preparingInstall: 'I-OpenAmer igqibezela ufakelo. Oku kudla ngokuthatha ngaphantsi komzuzu ekuqaleni.',
     starting: 'I-OpenAmer iyaqalisa…',
@@ -2523,7 +2609,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     collapse: 'Songa',
     otherProviders: 'Abanye abanikezeli',
     haveApiKey: 'Ndinesitshixo se-API',
-    chooseLater: "Ndiza kukhetha umnikezeli kamva",
+    chooseLater: 'Ndiza kukhetha umnikezeli kamva',
     recommended: 'Kuyacetyiswa',
     connected: 'Kuqhagamshelwe',
     featuredPitch: 'Umrhumo omnye, iimodeli eziphambili ezingama-300+ — indlela ecetyiswayo yokusebenzisa i-OpenAmer',
@@ -2532,28 +2618,30 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'i-API yemodeli ethe ngqo',
-        description: 'Ukufikelela ngqo kwiimodeli ezisingathwa yi-Fireworks AI.',
+        description: 'Ukufikelela ngqo kwiimodeli ezisingathwa yi-Fireworks AI.'
       },
       openrouter: {
         short: 'isitshixo esinye, iimodeli ezininzi',
-        description: 'Isingatha amakhulu eemodeli ngesitshixo esinye. Lukhetho olulungileyo lokungagqibekanga kufakelo olutsha.',
+        description:
+          'Isingatha amakhulu eemodeli ngesitshixo esinye. Lukhetho olulungileyo lokungagqibekanga kufakelo olutsha.'
       },
       openai: {
         short: 'iimodeli zodidi lwe-GPT',
-        description: 'Ukufikelela ngqo kwiimodeli ze-OpenAI.',
+        description: 'Ukufikelela ngqo kwiimodeli ze-OpenAI.'
       },
       gemini: {
         short: 'iimodeli ze-Gemini',
-        description: 'Ukufikelela ngqo kwiimodeli ze-Google Gemini.',
+        description: 'Ukufikelela ngqo kwiimodeli ze-Google Gemini.'
       },
       xai: {
         short: 'iimodeli ze-Grok',
-        description: 'Ukufikelela ngqo kwiimodeli ze-xAI Grok.',
+        description: 'Ukufikelela ngqo kwiimodeli ze-xAI Grok.'
       },
       local: {
         short: 'ezisingathwa nguwe',
-        description: 'Qhagamshela i-OpenAmer kwidilesi ye-API yasekuhlaleni okanye ozisingathela yona ehambelana ne-OpenAI (vLLM, llama.cpp, Ollama, njl.).',
-      },
+        description:
+          'Qhagamshela i-OpenAmer kwidilesi ye-API yasekuhlaleni okanye ozisingathela yona ehambelana ne-OpenAI (vLLM, llama.cpp, Ollama, njl.).'
+      }
     },
     backToSignIn: 'Buyela ekungeneni',
     getKey: 'Fumana isitshixo',
@@ -2566,7 +2654,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     flowSubtitles: {
       pkce: 'Ivula ibhrawuza yakho ukuze ungene, ize iqhubeke apha',
       device_code: 'Ivula iphepha lokuqinisekisa kwibhrawuza yakho — i-OpenAmer iqhagamshela ngokuzenzekelayo',
-      external: 'Ngena kube kanye kwitheminali yakho, uze ubuyele encokweni',
+      external: 'Ngena kube kanye kwitheminali yakho, uze ubuyele encokweni'
     },
     startingSignIn: provider => `Kuqaliswa ukungena kwi-${provider}...`,
     verifyingCode: provider => `Kuqinisekiswa ikhowudi yakho nge-${provider}...`,
@@ -2580,11 +2668,13 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     copyAuthCode: 'Khuphela ikhowudi yokugunyazisa uze uyincamathisele ngezantsi.',
     pasteAuthCode: 'Ncamathisela ikhowudi yokugunyazisa',
     reopenAuthPage: 'Vula kwakhona iphepha lokugunyazisa',
-    autoBrowser: provider => `Sivule i-${provider} kwibhrawuza yakho. Nika i-OpenAmer imvume apho, uze uqhagamshelwe ngokuzenzekelayo — akukho nto yokukhuphela okanye yokuncamathisela.`,
+    autoBrowser: provider =>
+      `Sivule i-${provider} kwibhrawuza yakho. Nika i-OpenAmer imvume apho, uze uqhagamshelwe ngokuzenzekelayo — akukho nto yokukhuphela okanye yokuncamathisela.`,
     reopenSignInPage: 'Vula kwakhona iphepha lokungena',
     waitingAuthorize: 'Kulindwe ukuba unike imvume...',
-    externalPending: provider => `${provider} ingena nge-CLI yayo. Qhuba lo myalelo kwitheminali, uze ubuye ukhethe u-"Ndingenile":`,
-    signedIn: "Ndingenile",
+    externalPending: provider =>
+      `${provider} ingena nge-CLI yayo. Qhuba lo myalelo kwitheminali, uze ubuye ukhethe u-"Ndingenile":`,
+    signedIn: 'Ndingenile',
     deviceCodeOpened: provider => `Sivule i-${provider} kwibhrawuza yakho. Faka le khowudi apho:`,
     reopenVerification: 'Vula kwakhona iphepha lokuqinisekisa',
     copy: 'Khuphela',
@@ -2595,7 +2685,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     price: (input, output) => `${input} igalelo / ${output} imveliso nge-Mtok`,
     change: 'Tshintsha',
     startChatting: 'Qalisa',
-    docs: provider => `Amaxwebhu e-${provider}`,
+    docs: provider => `Amaxwebhu e-${provider}`
   },
   modelPicker: {
     title: 'Tshintsha imodeli',
@@ -2611,13 +2701,13 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     free: 'Simahla',
     freeTier: 'Inqanaba lasimahla',
     priceTitle: 'Ixabiso legalelo / lemveliso ngesigidi seethokheni',
-    wasPrice: 'lalingu',
+    wasPrice: 'lalingu'
   },
   modelVisibility: {
     title: 'Iimodeli',
     search: 'Khangela iimodeli',
     noAuthenticatedProviders: 'Akukho banikezeli baqinisekisiweyo.',
-    addProvider: 'Yongeza umnikezeli…',
+    addProvider: 'Yongeza umnikezeli…'
   },
   shell: {
     windowControls: 'Izilawuli zefestile',
@@ -2628,7 +2718,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       noModels: 'Akukho zimodeli zifunyenweyo',
       editModels: 'Hlela iimodeli…',
       refreshModels: 'Hlaziya iimodeli',
-      fast: 'Ikhawuleza',
+      fast: 'Ikhawuleza'
     },
     modelOptions: {
       noOptions: 'Akukho nketho zale modeli',
@@ -2644,7 +2734,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       max: 'Owona mkhulu',
       ultra: 'Ogqithisileyo',
       updateFailed: 'Ukuhlaziya inketho yemodeli kusilele',
-      fastFailed: 'Ukuhlaziya indlela ekhawulezayo kusilele',
+      fastFailed: 'Ukuhlaziya indlela ekhawulezayo kusilele'
     },
     gatewayMenu: {
       gateway: 'Isango',
@@ -2659,7 +2749,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       connection: label => `Uqhagamshelo: ${label}`,
       recentActivity: 'Umsebenzi wamva nje',
       viewAllLogs: 'Jonga zonke iilog →',
-      messagingPlatforms: 'Amaqonga emiyalezo',
+      messagingPlatforms: 'Amaqonga emiyalezo'
     },
     approvalMode: {
       title: 'Indlela yokuvuma',
@@ -2669,7 +2759,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       smart: 'Ekrelekrele',
       smartDescription: 'Vavanya izenzo ngokuzenzekelayo uze ubuze xa kuyimfuneko',
       off: 'Icinyiwe',
-      offDescription: 'Qhuba ngaphandle kwemibuzo yemvume',
+      offDescription: 'Qhuba ngaphandle kwemibuzo yemvume'
     },
     statusbar: {
       unknown: 'ayaziwa',
@@ -2725,27 +2815,29 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
           skills: 'Izakhono',
           subagent_definitions: 'Iinkcazelo zee-arhente ezincedisayo',
           system_prompt: 'Imiyalelo yenkqubo',
-          tool_definitions: 'Iinkcazelo zezixhobo',
+          tool_definitions: 'Iinkcazelo zezixhobo'
         },
         empty: 'Akukho datha yomxholo okwangoku',
         loading: 'Kulayishwa iinkcukacha…',
         percentFull: percent => `${percent}% igcwele`,
         title: 'Ukusetyenziswa komxholo',
-        tokenSummary: (used, max) => `${used} / ${max} iithokheni`,
+        tokenSummary: (used, max) => `${used} / ${max} iithokheni`
       },
       openContextUsage: 'Vula iinkcukacha zokusetyenziswa komxholo',
       session: 'Iseshoni',
       runtimeSessionElapsed: 'Ixesha elidlulileyo leseshoni esebenzayo',
-      yoloOn: 'I-YOLO ivuliwe — imiyalelo eyingozi ivunywa ngokuzenzekelayo. Cofa ukuze uyicime. U-Shift+nokucofa kuyayitshintsha kuyo yonke inkqubo.',
-      yoloOff: 'I-YOLO icinyiwe — cofa ukuze uvumele ngokuzenzekelayo imiyalelo eyingozi. U-Shift+nokucofa kuyayitshintsha kuyo yonke inkqubo.',
+      yoloOn:
+        'I-YOLO ivuliwe — imiyalelo eyingozi ivunywa ngokuzenzekelayo. Cofa ukuze uyicime. U-Shift+nokucofa kuyayitshintsha kuyo yonke inkqubo.',
+      yoloOff:
+        'I-YOLO icinyiwe — cofa ukuze uvumele ngokuzenzekelayo imiyalelo eyingozi. U-Shift+nokucofa kuyayitshintsha kuyo yonke inkqubo.',
       modelNone: 'akukho',
       noModel: 'akukho modeli',
       switchModel: 'Tshintsha imodeli',
       openModelPicker: 'Vula umkhethi wemodeli',
       modelPinned: 'uyiphine ngokwakho; iincoko ezintsha zisebenzisa yona endaweni yokungagqibekanga kwiisetingi',
       modelTitle: (provider, model) => `Imodeli · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Ibha esecaleni yasekunene',
@@ -2781,7 +2873,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     terminalNew: 'Itheminali entsha',
     terminalCloseOthers: 'Vala ezinye',
     terminalCloseAll: 'Vala zonke',
-    addToChat: 'Yongeza encokweni',
+    addToChat: 'Yongeza encokweni'
   },
   preview: {
     tab: 'Umboniso wangaphambili',
@@ -2805,7 +2897,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     binaryTitle: 'Oku kukhangeleka njengefayile yokubini',
     binaryBody: label => `Ukubonisa ${label} kunokubonisa umbhalo ongafundekiyo.`,
     largeTitle: 'Le fayile inkulu',
-    largeBody: (label, size) => `${label} inobungakanani obuyi-${size}. I-OpenAmer iya kubonisa kuphela i-512 KB yokuqala.`,
+    largeBody: (label, size) =>
+      `${label} inobungakanani obuyi-${size}. I-OpenAmer iya kubonisa kuphela i-512 KB yokuqala.`,
     previewAnyway: 'Bonisa nangona kunjalo',
     truncated: 'Kuboniswa i-512 KB yokuqala.',
     noInlineTitle: 'Akukho mboniso wangaphambili ngaphakathi kombhalo',
@@ -2815,7 +2908,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     unsavedChanges: 'Utshintsho olungagcinwanga',
     saveFailed: message => `Akukwazekanga ukugcina: ${message}`,
     diskChangedTitle: 'Ifayile itshintshile kwidiski',
-    diskChangedBody: 'Le fayile itshintshile ukususela oko uyivulileyo. Ufuna ukubhala inguqulelo yakho phezu kwayo, okanye ulahle utshintsho lwakho uze uyilayishe kwakhona?',
+    diskChangedBody:
+      'Le fayile itshintshile ukususela oko uyivulileyo. Ufuna ukubhala inguqulelo yakho phezu kwayo, okanye ulahle utshintsho lwakho uze uyilayishe kwakhona?',
     overwrite: 'Bhala phezu kwayo',
     discardReload: 'Lahla uze ulayishe kwakhona',
     console: {
@@ -2836,7 +2930,7 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       empty: 'Akukho miyalezo yekhonsoli okwangoku.',
       promptHeader: 'Ikhonsoli yomboniso wangaphambili:',
       sentTitle: 'Kuthunyelwe encokweni',
-      sentMessage: count => `${count} ingxelo yelog${count === 1 ? 'y' : 'ies'} engezwe kumphandi`,
+      sentMessage: count => `${count} ingxelo yelog${count === 1 ? 'y' : 'ies'} engezwe kumphandi`
     },
     web: {
       appFailedToBoot: 'Usetyenziso lomboniso wangaphambili alukwazanga ukuqalisa',
@@ -2854,42 +2948,48 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       showConsole: 'Bonisa ikhonsoli yomboniso wangaphambili',
       hideDevTools: 'Fihla i-DevTools yomboniso wangaphambili',
       openDevTools: 'Vula i-DevTools yomboniso wangaphambili',
-      finishedRestarting: message => `I-OpenAmer igqibile ukuqalisa kwakhona iseva yomboniso wangaphambili${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `I-OpenAmer igqibile ukuqalisa kwakhona iseva yomboniso wangaphambili${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Ukuqalisa kwakhona iseva kusilele: ${message}`,
       unknownError: 'impazamo engaziwayo',
       restartedTitle: 'Iseva yomboniso wangaphambili iqaliswe kwakhona',
       reloadingNow: 'Umboniso wangaphambili uyalayishwa kwakhona ngoku.',
       restartFailedTitle: 'Ukuqalisa kwakhona umboniso wangaphambili kusilele',
       restartFailedMessage: 'I-OpenAmer ayikwazanga ukuqalisa kwakhona iseva.',
-      stillWorking: 'I-OpenAmer isasebenza, kodwa isiphumo sokuqalisa kwakhona asikafiki. Umyalelo weseva usenokuba usebenza ngaphambili.',
+      stillWorking:
+        'I-OpenAmer isasebenza, kodwa isiphumo sokuqalisa kwakhona asikafiki. Umyalelo weseva usenokuba usebenza ngaphambili.',
       workspaceReloading: 'Indawo yokusebenza itshintshile, kulayishwa kwakhona umboniso wangaphambili',
       fileChanged: url => `Ifayile itshintshile, kulayishwa kwakhona umboniso wangaphambili: ${url}`,
-      filesChanged: (count, url) => `${count} utshintsho lweefayile, kulayishwa kwakhona umboniso wangaphambili: ${url}`,
+      filesChanged: (count, url) =>
+        `${count} utshintsho lweefayile, kulayishwa kwakhona umboniso wangaphambili: ${url}`,
       watchFailed: message => `Akukwazekanga ukubeka iliso kwifayile yomboniso wangaphambili: ${message}`,
-      moduleMimeDescription: 'Izikripthi zeemodyuli zithunyelwa ngohlobo lwe-MIME olungalunganga. Oku kudla ngokuthetha ukuba iseva yeefayile ezimileyo ithumela usetyenziso lwe-Vite/React endaweni yeseva yophuhliso yeprojekthi.',
+      moduleMimeDescription:
+        'Izikripthi zeemodyuli zithunyelwa ngohlobo lwe-MIME olungalunganga. Oku kudla ngokuthetha ukuba iseva yeefayile ezimileyo ithumela usetyenziso lwe-Vite/React endaweni yeseva yophuhliso yeprojekthi.',
       loadFailedConsole: (code, message) => `Ukulayisha kusilele${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Akukwazekanga ukufikelela kwiphepha lomboniso wangaphambili.',
       openTarget: url => `Vula ${url}`,
-      fallbackTitle: 'Umboniso wangaphambili',
-    },
+      fallbackTitle: 'Umboniso wangaphambili'
+    }
   },
   prompts: {
     gatewayDisconnected: 'Isango le-OpenAmer aliqhagamshelwanga',
     sudoSendFailed: 'Akukwazekanga ukuthumela igama lokugqitha le-sudo',
     secretSendFailed: 'Akukwazekanga ukuthumela imfihlo',
     sudoTitle: 'Igama lokugqitha lomlawuli',
-    sudoDesc: 'I-OpenAmer ifuna igama lakho lokugqitha le-sudo ukuze iqhube umyalelo ofuna amalungelo aphezulu. Lithunyelwa kuphela kwi-arhente yakho yasekuhlaleni.',
+    sudoDesc:
+      'I-OpenAmer ifuna igama lakho lokugqitha le-sudo ukuze iqhube umyalelo ofuna amalungelo aphezulu. Lithunyelwa kuphela kwi-arhente yakho yasekuhlaleni.',
     sudoPlaceholder: 'igama lokugqitha le-sudo',
     secretTitle: 'Kufuneka imfihlo',
     secretDesc: 'I-OpenAmer ifuna iinkcukacha zokuqinisekisa ukuze iqhubeke.',
-    secretPlaceholder: 'ixabiso lemfihlo',
+    secretPlaceholder: 'ixabiso lemfihlo'
   },
   desktop: {
     audioReadFailed: 'Akukwazekanga ukufunda isandi esirekhodiweyo',
     sessionUnavailable: 'Iseshoni ayifumaneki',
     createSessionFailed: 'Akukwazekanga ukwenza iseshoni entsha',
     promptFailed: 'Isicelo sisilele',
-    providerCredentialRequired: 'Yongeza iinkcukacha zokuqinisekisa zomnikezeli ngaphambi kokuthumela umyalezo wakho wokuqala.',
+    providerCredentialRequired:
+      'Yongeza iinkcukacha zokuqinisekisa zomnikezeli ngaphambi kokuthumela umyalezo wakho wokuqala.',
     emptySlashCommand: 'umyalelo weslash awunanto',
     desktopCommands: 'Imiyalelo yedesktop',
     skillCommandsAvailable: count => `${count} imiyalelo yezakhono ekhoyo.`,
@@ -2899,7 +2999,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} kwesi seshini`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Akukwazekanga ukutshintsha i-YOLO',
-    profileStatus: current => `Iprofayile: ${current}. Sebenzisa /profile <name> okanye umkhethi othi "Iseshoni entsha" ukuze uqalise incoko kwenye iprofayile.`,
+    profileStatus: current =>
+      `Iprofayile: ${current}. Sebenzisa /profile <name> okanye umkhethi othi "Iseshoni entsha" ukuze uqalise incoko kwenye iprofayile.`,
     unknownProfile: 'Iprofayile engaziwayo',
     noProfileNamed: (target, available) => `Akukho profayile enegama elithi "${target}". Ezikhoyo: ${available}`,
     newChatsProfile: name => `Iincoko ezintsha ziza kusebenzisa iprofayile ethi ${name}.`,
@@ -2909,8 +3010,9 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     regenerateFailed: 'Ukwenza kwakhona kusilele',
     editFailed: 'Ukuhlela kusilele',
     resumeFailed: 'Ukuqhubeka kusilele',
-    resumeStrandedTitle: "Akukwazekanga ukulayisha le seshoni",
-    resumeStrandedBody: 'Uqhagamshelo kule seshoni lusilele yaye ukuzama kwakhona ngokuzenzekelayo kuyekiwe. Jonga ukuba isango liyasebenza, uze uphinde uzame.',
+    resumeStrandedTitle: 'Akukwazekanga ukulayisha le seshoni',
+    resumeStrandedBody:
+      'Uqhagamshelo kule seshoni lusilele yaye ukuzama kwakhona ngokuzenzekelayo kuyekiwe. Jonga ukuba isango liyasebenza, uze uphinde uzame.',
     resumeRetry: 'Phinda uzame',
     nothingToBranch: 'Akukho nto yokwenza isebe kuyo',
     branchNeedsChat: 'Qalisa okanye uqhubeke nencoko ngaphambi kokwenza isebe.',
@@ -2924,7 +3026,8 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
     archiveFailed: 'Ukugcina kuvimba kusilele',
     cwdChangeFailed: 'Ukutshintsha ifolda yokusebenza kusilele',
     cwdStagedTitle: 'Utshintsho lwefolda yokusebenza lulungiselelwe',
-    cwdStagedMessage: 'Qalisa kwakhona inkonzo yangasemva yedesktop ukuze usebenzise utshintsho lwe-cwd kule seshoni isebenzayo.',
+    cwdStagedMessage:
+      'Qalisa kwakhona inkonzo yangasemva yedesktop ukuze usebenzise utshintsho lwe-cwd kule seshoni isebenzayo.',
     modelSwitchFailed: 'Ukutshintsha imodeli kusilele',
     sessionExported: 'Iseshoni ikhutshelwe ngaphandle',
     sessionExportFailed: 'Akukwazekanga ukukhuphela iseshoni ngaphandle',
@@ -2950,31 +3053,31 @@ Shiya kungenanto ukuze ugcine okungagqibekanga kwe-${mode}.`,
       success: platform => `Idluliselwe kwi-${platform}. Qhubeka apha nangaliphi na ixesha.`,
       systemNote: platform => `↻ Idluliselwe kwi-${platform} — qhubeka apha nangaliphi na ixesha.`,
       failed: error => `Ukudlulisela kusilele: ${error}`,
-      timedOut: 'Liphelile ixesha lokulinda isango. Ingaba `openamer gateway` iyasebenza?',
-    },
+      timedOut: 'Liphelile ixesha lokulinda isango. Ingaba `openamer gateway` iyasebenza?'
+    }
   },
   errors: {
     genericFailure: 'Kukho into engahambanga kakuhle',
     boundaryTitle: 'Kukho into eyonakeleyo kujongano',
     boundaryDesc: 'Umbono ufumene impazamo engalindelekanga. Iincoko zakho neesetingi zikhuselekile.',
     reloadWindow: 'Layisha ifestile kwakhona',
-    openLogs: 'Vula iilog',
+    openLogs: 'Vula iilog'
   },
   ui: {
     search: {
-      clear: 'Cima ukhangelo',
+      clear: 'Cima ukhangelo'
     },
     pagination: {
       label: 'ukwahlulwa kwamaphepha',
       previous: 'Elidlulileyo',
       previousAria: 'Yiya kwiphepha elidlulileyo',
       next: 'Elilandelayo',
-      nextAria: 'Yiya kwiphepha elilandelayo',
+      nextAria: 'Yiya kwiphepha elilandelayo'
     },
     sidebar: {
       title: 'Ibha esecaleni',
       description: 'Ibonisa ibha esecaleni yezixhobo eziphathwayo.',
-      toggle: 'Bonisa okanye ufihle ibha esecaleni',
-    },
-  },
+      toggle: 'Bonisa okanye ufihle ibha esecaleni'
+    }
+  }
 })

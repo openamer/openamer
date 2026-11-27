@@ -45,7 +45,7 @@ export const eu = defineLocale({
     delete: 'Ezabatu',
     docs: 'Dokumentuak',
     done: 'Eginda',
-    tryHint: term => `Probatu “${term}”`,
+    tryHint: term => `Probatu “${term}”`
   },
   fileMenu: {
     revealFinder: 'Erakusi Finder-en',
@@ -60,7 +60,7 @@ export const eu = defineLocale({
     renameLabel: 'Izena berria',
     deleteBody: 'Zakurbetira mugituko da — handik berrezkurri dezakezu.',
     pathCopied: 'Bidea kopiatuta',
-    deleteTitle: name => `${name} ezabatu?`,
+    deleteTitle: name => `${name} ezabatu?`
   },
   boot: {
     ready: 'OpenAmer Desktop prest dago',
@@ -69,7 +69,7 @@ export const eu = defineLocale({
       loadingSettings: 'OpenAmer ezarpenak kargatzen',
       loadingSessions: 'Azken saioak kargatzen',
       startingDesktopConnection: 'Mahai-konexioa hasten',
-      startingOpenAmerDesktop: 'OpenAmer Desktop abiarazten…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop abiarazten…'
     },
     errors: {
       backgroundExited: 'OpenAmer atzeko prozesua amaitu da.',
@@ -78,20 +78,23 @@ export const eu = defineLocale({
       desktopBootFailed: 'Mahaiaren abiaraztea huts egin du',
       gatewayConnectionLost: 'Gatewayarekin konexioa galdu da',
       gatewaySignInRequired: 'Gatewayan saioa hasi behar da',
-      ipcBridgeUnavailable: 'Mahaiko IPC zubia ez dago eskuragarri.',
+      ipcBridgeUnavailable: 'Mahaiko IPC zubia ez dago eskuragarri.'
     },
     failure: {
       title: 'OpenAmer ezin izan da abiarazi',
-      description: 'Atzeko gatewaya ez da abian jarri. Saiatu berreskuratzeko urratsetako bat. Honek ez ditu zure txatak edo ezarpenak ezabatzen.',
+      description:
+        'Atzeko gatewaya ez da abian jarri. Saiatu berreskuratzeko urratsetako bat. Honek ez ditu zure txatak edo ezarpenak ezabatzen.',
       remoteTitle: 'Urruneko gatewayan saioa hasi behar da',
-      remoteDescription: 'Urruneko gateway-saioa amaitu da. Saioa hasi berriro konektatzeko. Honek ez ditu zure txatak edo ezarpenak ezabatzen.',
+      remoteDescription:
+        'Urruneko gateway-saioa amaitu da. Saioa hasi berriro konektatzeko. Honek ez ditu zure txatak edo ezarpenak ezabatzen.',
       retry: 'Saiatu berriro',
       repairInstall: 'Instalazioa konpontu',
       useLocalGateway: 'Erabili tokiko gatewaya',
       gatewaySettings: 'Gateway ezarpenak',
       back: 'Atzera',
       openLogs: 'Ireki loguak',
-      repairHint: 'Konpontzeak instalatzailea berriro exekutatzen du eta minutu batzuk har ditzake makina berri batean.',
+      repairHint:
+        'Konpontzeak instalatzailea berriro exekutatzen du eta minutu batzuk har ditzake makina berri batean.',
       signOutAndSignIn: 'Amaitu saioa & hasi saioa',
       remoteFailureHint: 'Egiaztatu gatewayaren URL-a eta hasi saioa Gateway ezarpenetan, edo aldatu tokiko gatewayra.',
       hideRecentLogs: 'Ezkutatu azken loguak',
@@ -103,10 +106,11 @@ export const eu = defineLocale({
       signInFailed: 'Saio-hasiera huts egin da',
       signInToRemoteGateway: 'Saioa egin urruneko gateway-ean',
       identityProvider: 'zure identitatearen hornitzailea',
-      remoteSignInHint: signInLabel => `Saiodistantzia egiten du gordeHako urruneko nabigatzaile saioa, eta ondoren ${signInLabel} irekitzen du. Erabili gateway lokala bundled backend-era aldatzeko.`,
-      signInWithProvider: provider => `Sartu ${provider}-(r)ekin`,
+      remoteSignInHint: signInLabel =>
+        `Saiodistantzia egiten du gordeHako urruneko nabigatzaile saioa, eta ondoren ${signInLabel} irekitzen du. Erabili gateway lokala bundled backend-era aldatzeko.`,
+      signInWithProvider: provider => `Sartu ${provider}-(r)ekin`
     },
-    desktopBootFailedWithMessage: message => ` la boot-desktop fallatu da: ${message}`,
+    desktopBootFailedWithMessage: message => ` la boot-desktop fallatu da: ${message}`
   },
   notifications: {
     region: 'Jakinarazpenak',
@@ -118,7 +122,8 @@ export const eu = defineLocale({
     copyDetail: 'Kopiatu xehetasuna',
     copyDetailFailed: 'Ezin izan da jakinarazpenaren xehetasuna kopiatu',
     backendOutOfDateTitle: 'Atzealdeko softwarea zaharragatik',
-    backendOutOfDateMessage: 'Zure OpenAmer atzealdeko softwarea desktop bertsio honek baino zaharragoa da eta baliteke ondo funtzionatzea. Eguneratu, bien bat etor zitezen.',
+    backendOutOfDateMessage:
+      'Zure OpenAmer atzealdeko softwarea desktop bertsio honek baino zaharragoa da eta baliteke ondo funtzionatzea. Eguneratu, bien bat etor zitezen.',
     installMethodUnsupportedTitle: 'Sostapen ez-onartutako instalazio-metodoa',
     updateOpenAmer: 'Eguneratu OpenAmer',
     updateReadyTitle: 'Eguneraketa prest',
@@ -127,11 +132,12 @@ export const eu = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT-ak `ELEVENLABS_API_KEY` behar du.',
       elevenLabsRejectedKey: 'ElevenLabs API gakoa onartu ez zuen (401).',
       gatewayAuthFailed: 'Atearen autentikazioak huts egin du — egiaztatu zure API_SERVER_KEY.',
-      methodNotAllowed: 'OpenAmer Desktop backendak eskaera hori onartu ez zuen (405 Metodoa Ez Baimatuta). Saiatu OpenAmer Desktop berreiniciatzen.',
+      methodNotAllowed:
+        'OpenAmer Desktop backendak eskaera hori onartu ez zuen (405 Metodoa Ez Baimatuta). Saiatu OpenAmer Desktop berreiniciatzen.',
       microphonePermission: 'Mikrofonoaren baimena ukutu zen.',
       openaiRejectedApiKey: 'OpenAI API gakoa onartu ez zuen.',
       openaiTtsNeedsKey: 'OpenAI TTS-k VOICE_TOOLS_OPENAI_KEY edo OPENAI_API_KEY behar ditu.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI-k API gakoa bazatu du (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI-k API gakoa bazatu du (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Konfiguratu hitz-etetik testurako ahots modua erabiltzeko.',
@@ -150,7 +156,7 @@ export const eu = defineLocale({
       transcriptionFailed: 'Ahotsen transkribizioak huts egin du',
       transcriptionUnavailable: 'Ahots bihurtzea ez dago oraindik eskuragarri.',
       tryRecordingAgain: 'Saiatu berriro grabatzen.',
-      unavailable: 'Ahotsa ez dago eskuragarri',
+      unavailable: 'Ahotsa ez dago eskuragarri'
     },
     native: {
       approvalTitle: 'Onartzea behar da',
@@ -163,10 +169,10 @@ export const eu = defineLocale({
       turnErrorTitle: 'Txanda huts egin da',
       backgroundDoneTitle: 'Atzeko zerega amaitu da',
       backgroundFailedTitle: 'Atzeko zerega huts egin da',
-      creditsTitle: 'Kredituak',
+      creditsTitle: 'Kredituak'
     },
     more: count => `${count} ${count === 1 ? 'notification' : 'notifications'} gehiago`,
-    updateReadyMessage: count => `${count} aldaketa berri${count === 1 ? '' : 's'} eskuragarri.`,
+    updateReadyMessage: count => `${count} aldaketa berri${count === 1 ? '' : 's'} eskuragarri.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kredituak agortu dira',
@@ -174,7 +180,7 @@ export const eu = defineLocale({
     openBilling: 'Fakturazioa ireki',
     addCredits: 'Kredituak gehitu',
     dismiss: 'Utzi',
-    titleProvider: provider => `Kredituak agututa — ${provider}`,
+    titleProvider: provider => `Kredituak agututa — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Alboko barra ezkutatu',
@@ -191,7 +197,7 @@ export const eu = defineLocale({
     openStarmap: 'Ireki memoria grafikoa',
     openKeybinds: 'Laster teklarteak',
     layoutEditor: 'Kantailaren editorea',
-    layoutEditorTitle: 'Kutxaren editzailea — ⌘-klikak layout-a berresetzen du',
+    layoutEditorTitle: 'Kutxaren editzailea — ⌘-klikak layout-a berresetzen du'
   },
   keybinds: {
     title: 'Laster teklarteak',
@@ -206,7 +212,7 @@ export const eu = defineLocale({
       profiles: 'Profilak',
       session: 'Saioa',
       navigation: 'Navegazioa',
-      view: 'Ikusi',
+      view: 'Ikusi'
     },
     actions: {
       'keybinds.openPanel': 'Ireki tekutako lasterbideak',
@@ -285,10 +291,10 @@ export const eu = defineLocale({
       'composer.slash': 'Barra-komandoen paleta',
       'composer.help': 'Lagun azkarra',
       'composer.history': 'Popover / historiaren ziklatzea',
-      'composer.cancel': 'Itxi popovera · bertan utzi exekuzioa',
+      'composer.cancel': 'Itxi popovera · bertan utzi exekuzioa'
     },
     subtitle: open => `Klik egin shortcut batean berbindatzeko · ${open}-(r)ak panel hau berriz irekitzen du.`,
-    conflictWith: label => `“${label}” (r)ekin ere bindatuta`,
+    conflictWith: label => `“${label}” (r)ekin ere bindatuta`
   },
   language: {
     label: 'Hizkuntza',
@@ -297,7 +303,7 @@ export const eu = defineLocale({
     saveError: 'Hizkuntzaren egunerakuntza huts egin du',
     switchTo: 'Aldatu hizkuntza',
     searchPlaceholder: 'Bilatu hizkuntzak…',
-    noResults: 'Ez da hizkuntzarik aurkitu',
+    noResults: 'Ez da hizkuntzarik aurkitu'
   },
   settings: {
     closeSettings: 'Itxi ezarpenak',
@@ -322,11 +328,12 @@ export const eu = defineLocale({
       notifications: 'Jakinarazpenak',
       plugins: 'Plug-inak',
       gateway: 'Atebidea',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Mahaigaineko plug-inak',
-      blurb: 'Aplikazio honetara kargatutako UI hedapenak — eraikuntzarekin batera etorriak edo `desktop-plugins` karpetan jarritakoak (OpenAmer idatzi dituenak barne). Desgaitzeak plug-in bat unean kargatzen kendetzen du eta abioei bizirik irauteko.',
+      blurb:
+        'Aplikazio honetara kargatutako UI hedapenak — eraikuntzarekin batera etorriak edo `desktop-plugins` karpetan jarritakoak (OpenAmer idatzi dituenak barne). Desgaitzeak plug-in bat unean kargatzen kendetzen du eta abioei bizirik irauteko.',
       openFolder: 'Ireki plug-inen karpeta',
       rescan: 'Eskaneatu berriro',
       reveal: 'Erakutsi fitxategi-kudeatzailean',
@@ -337,50 +344,52 @@ export const eu = defineLocale({
       kinds: {
         bundled: 'paketatuta',
         disk: 'diskoan',
-        runtime: 'exekuzio-ingurunea',
+        runtime: 'exekuzio-ingurunea'
       },
-      count: n => `${n} instalatuta`,
+      count: n => `${n} instalatuta`
     },
     notifications: {
       title: 'Jakinarazpenak',
-      intro: 'Mahaioko jakinarazpen natiboak, aplikazioaren barruko toast-etatik bereiz. Hauek gailu lokalak dira — ordenagailu bakoitzak bere ezarpenak mantentzen ditu.',
+      intro:
+        'Mahaioko jakinarazpen natiboak, aplikazioaren barruko toast-etatik bereiz. Hauek gailu lokalak dira — ordenagailu bakoitzak bere ezarpenak mantentzen ditu.',
       enableAll: 'Gaitu jakinarazpenak',
       enableAllDesc: 'Kontu nagusia. Desaktibatu hau beheko jakinarazpen guztiak isilarazteko.',
       focusedHint: 'Amaitze-abisuak soilik gertatzen dira OpenAmer atzealdean dagoenean.',
       kinds: {
         approval: {
           label: 'Onartu behar da',
-          description: 'Komando batek zure onartu edo uko egitea eskatzen du.',
+          description: 'Komando batek zure onartu edo uko egitea eskatzen du.'
         },
         input: {
           label: 'Sarrera behar da',
-          description: 'OpenAmer-k galdera bat egin du edo pasahitza edo sekretua behar du.',
+          description: 'OpenAmer-k galdera bat egin du edo pasahitza edo sekretua behar du.'
         },
         turnDone: {
           label: 'Erantzuna prest',
-          description: 'Txanda bat amaitu da OpenAmer atzealdean zeenean.',
+          description: 'Txanda bat amaitu da OpenAmer atzealdean zeenean.'
         },
         turnError: {
           label: 'Txanda errorearekin amaitu da',
-          description: 'Txanda batek errorearekin amaitu du.',
+          description: 'Txanda batek errorearekin amaitu du.'
         },
         backgroundDone: {
           label: 'Atzealdeko zerega amaituta',
-          description: 'Atzealdean exekutatutako terminal-komandoa amaitu da.',
+          description: 'Atzealdean exekutatutako terminal-komandoa amaitu da.'
         },
         credits: {
           label: 'Kreditu-abisuak',
-          description: 'Kreditu-eskubidea pausatuta edo berrezkurrituta dago.',
-        },
+          description: 'Kreditu-eskubidea pausatuta edo berrezkurrituta dago.'
+        }
       },
       test: 'Proba-notifikazioa bidali',
       testTitle: 'OpenAmer',
       testBody: 'Notifikazioak funtzionatzen ari dira.',
-      testSent: 'Proba bidalita. Ez bada ezer agertzen, egiaztu zure sistema operatzailearen notifikazio-baimenak eta Fokua/Ez pert ur bezalako modua.',
+      testSent:
+        'Proba bidalita. Ez bada ezer agertzen, egiaztu zure sistema operatzailearen notifikazio-baimenak eta Fokua/Ez pert ur bezalako modua.',
       testUnsupported: 'Sistema honek ez du natibo den notifikaziorik onartzen.',
       completionSoundTitle: 'Amenatze-soina',
       completionSoundDesc: 'Agentearen txanda amaitzean jotzen da. Aukeratu preset bat eta aurreikusi hemen.',
-      completionSoundPreview: 'Aurreikusi',
+      completionSoundPreview: 'Aurreikusi'
     },
     sections: {
       model: 'Modeloa',
@@ -390,7 +399,7 @@ export const eu = defineLocale({
       safety: 'Segurtasuna',
       memory: 'Memoria & Testuingurua',
       voice: 'Ahotsa',
-      advanced: 'Aurrerapena',
+      advanced: 'Aurrerapena'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop aplikazioari buruz',
@@ -398,36 +407,39 @@ export const eu = defineLocale({
       gateway: 'Ate-irubidearen konexioa...',
       keys: 'Bilatu API gakoak...',
       mcp: 'Bilatu MCP zerbitzariak...',
-      sessions: 'Bilatu arhivatutako saioak...',
+      sessions: 'Bilatu arhivatutako saioak...'
     },
     modeOptions: {
       light: {
         label: 'Argia',
-        description: 'Mahai gain argiak',
+        description: 'Mahai gain argiak'
       },
       dark: {
         label: 'Iluna',
-        description: 'Glare gutxiko lan-ingurua',
+        description: 'Glare gutxiko lan-ingurua'
       },
       system: {
         label: 'Sistema',
-        description: 'Jarraiti OSaren itxura',
-      },
+        description: 'Jarraiti OSaren itxura'
+      }
     },
     appearance: {
       title: 'Itxura',
-      intro: 'Hona hauek mahaiak baino ikusten diren bistaratze hobespenak dira. Moduak argitasuna kontrolatzen du; gaiak azentuen paleta eta txataren azaleko estiloa kontrolatzen ditu.',
+      intro:
+        'Hona hauek mahaiak baino ikusten diren bistaratze hobespenak dira. Moduak argitasuna kontrolatzen du; gaiak azentuen paleta eta txataren azaleko estiloa kontrolatzen ditu.',
       colorMode: 'Kolore modua',
       colorModeDesc: 'Aukeratu modu fiksoa edo utzi OpenAmer sistemaren ezarpenari jarraitzeko.',
       toolViewTitle: 'Erramenduko deuen bistaratzea',
-      toolViewDesc: 'Produktuak erramenduko kargu gordinak ezkutatzen ditu; Teknikak sarrera/irteera osoa erakusten du.',
+      toolViewDesc:
+        'Produktuak erramenduko kargu gordinak ezkutatzen ditu; Teknikak sarrera/irteera osoa erakusten du.',
       uiScaleTitle: 'UI eskala',
       translucencyTitle: 'Leiho translukentzioa',
       translucencyDesc: 'Ikusi zure mahaiak leiho osoan zehar. soilik macOS eta Windows.',
       backdropTitle: 'Txat atzealdea',
       backdropDesc: 'Elkarrizketaren atzealdeko Estatua irudi ahula.',
       embedsTitle: 'Txertatuak linean',
-      embedsDesc: 'Aurreikusi aberatsak hirugarrenen guneetatik kargatzen dira (YouTube, X, …). Galdetu erakusteko zirriborr bat agertzen da bakoitzari baimena ematen until; Always automatikoki kargatzen ditu; Off estekatu soilik gordetzen ditu.',
+      embedsDesc:
+        'Aurreikusi aberatsak hirugarrenen guneetatik kargatzen dira (YouTube, X, …). Galdetu erakusteko zirriborr bat agertzen da bakoitzari baimena ematen until; Always automatikoki kargatzen ditu; Off estekatu soilik gordetzen ditu.',
       embedsAsk: 'Galdetu',
       embedsAlways: 'Beteta',
       embedsOff: 'Itzali',
@@ -438,7 +450,8 @@ export const eu = defineLocale({
       themeTitle: 'Gaia',
       themeDesc: 'Mahaiko paleta soilik. Hautatutako modua gainean aplikatzen da.',
       installTitle: 'Instalatu VS Code-etik',
-      installDesc: 'Itsatsi Marketplacearen luzapen-id bat (adib. dracula-theme.theme-dracula), bere kolore gaia mahaiko paletara bihurtzeko.',
+      installDesc:
+        'Itsatsi Marketplacearen luzapen-id bat (adib. dracula-theme.theme-dracula), bere kolore gaia mahaiko paletara bihurtzeko.',
       installButton: 'Instalatu',
       installing: 'Instalatzen…',
       installError: 'Ezin izan da gaia instalatu.',
@@ -446,8 +459,10 @@ export const eu = defineLocale({
       importedBadge: 'Inportatuta',
       pet: {
         title: 'Mascota',
-        intro: 'Adopatu animatutako petdex maskota bat, aplikazioaren gaineko flotatzen dena eta OpenAmerrek egiten duenaren arabera erreakzionatzen duena — tresnak exekutatzen direnean korrika egiten, arrakastan ospatzen eta erroreetan suminagarri.',
-        restartHint: 'Petsiak azkar berriz hasi behar du — exekutatzen ari den aplikazioa ezaugarri hau gehitu baino lehen hasi zen. Irten eta berriro ireki OpenAmer, eta itzuli hemen.',
+        intro:
+          'Adopatu animatutako petdex maskota bat, aplikazioaren gaineko flotatzen dena eta OpenAmerrek egiten duenaren arabera erreakzionatzen duena — tresnak exekutatzen direnean korrika egiten, arrakastan ospatzen eta erroreetan suminagarri.',
+        restartHint:
+          'Petsiak azkar berriz hasi behar du — exekutatzen ari den aplikazioa ezaugarri hau gehitu baino lehen hasi zen. Irten eta berriro ireki OpenAmer, eta itzuli hemen.',
         on: 'Aktiboa',
         off: 'Itzalita',
         scaleTitle: 'Tamaina',
@@ -479,13 +494,14 @@ export const eu = defineLocale({
         adoptFailed: slug => `Ezin izan da ${slug} adoptedu`,
         uninstallFailed: slug => `Ezin izan da ${slug} uninstall egin`,
         renameFailed: slug => `Ezin izan da ${slug} izendatu`,
-        exportFailed: slug => `Ezin izan da ${slug} exportatu`,
+        exportFailed: slug => `Ezin izan da ${slug} exportatu`
       },
-      uiScaleDesc: (percent: number) => `Testua eta kontrolak eskalaratzen ditu aplikazio osoan. Cmd/Ctrl +, - eta 0 ere funtzionatzen dute. Gaur egungo: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Testua eta kontrolak eskalaratzen ditu aplikazio osoan. Cmd/Ctrl +, - eta 0 ere funtzionatzen dute. Gaur egungo: ${percent}%.`,
       embedsReset: (count: number) => `Berrezarri baimendutako ${count} ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `${profile} profilerentzat gordatua — profile bakoitzak bere tema gordetzen du.`,
       installPlaceholder: 'argitaratzailea.hedapena',
-      installed: name => `“${name}” instalatua.`,
+      installed: name => `“${name}” instalatua.`
     },
     about: {
       versionUnavailable: 'Bertsioa eskuragarri ez dago',
@@ -502,7 +518,8 @@ export const eu = defineLocale({
       tapCheck: 'Sakatu "Egiaztatu orain" eguneraketak bilatzeko.',
       justNowSuffix: '· orain',
       automaticUpdates: 'Eguneraketa automatikoak',
-      automaticUpdatesDesc: 'OpenAmer atzibeki eguneraketak automatikoki bilatzen ditu eta jakinarazten dizu bat prest dagoenean.',
+      automaticUpdatesDesc:
+        'OpenAmer atzibeki eguneraketak automatikoki bilatzen ditu eta jakinarazten dizu bat prest dagoenean.',
       never: 'inoiz ez',
       justNow: 'orain',
       heading: 'OpenAmer mahaigaina',
@@ -512,7 +529,7 @@ export const eu = defineLocale({
       branchCommit: (branch, commit) => `Adarra: ${branch} · Bidalketa: ${commit}`,
       minAgo: count => `Duela ${count} min`,
       hoursAgo: count => `Duela ${count} ordu`,
-      daysAgo: count => `Duela ${count} egun`,
+      daysAgo: count => `Duela ${count} egun`
     },
     config: {
       none: 'Bat ere ez',
@@ -528,7 +545,8 @@ export const eu = defineLocale({
       imported: 'Konfigurazioa inportatuta',
       invalidJson: 'Konfigurazioaren JSON-a baliogabea',
       keepAwakeTitle: 'Mantendu ordenagailua esirik',
-      keepAwakeDesc: 'Eman ordenagailuari lo egitea, denbora luzeko edo gaueroko lanek jarraitu dezaten. Pantaila oraindik apaldu daiteke.',
+      keepAwakeDesc:
+        'Eman ordenagailuari lo egitea, denbora luzeko edo gaueroko lanek jarraitu dezaten. Pantaila oraindik apaldu daiteke.'
     },
     credentials: {
       pasteKey: 'Itsatsi gakoa',
@@ -538,7 +556,7 @@ export const eu = defineLocale({
       remove: 'Kendu',
       getKey: 'Lortu gakoa',
       saving: 'Gordatzen',
-      pasteLabelKey: label => `Paste ${label} gakoa`,
+      pasteLabelKey: label => `Paste ${label} gakoa`
     },
     envActions: {
       credentialActions: 'Kredentzial-ekintzak',
@@ -549,7 +567,7 @@ export const eu = defineLocale({
       replace: 'Ordezkatu',
       set: 'Ezarri',
       clear: 'Garbitu',
-      actionsFor: label => `Ekintzak ${label}-(r)entzat`,
+      actionsFor: label => `Ekintzak ${label}-(r)entzat`
     },
     gateway: {
       loading: 'Gateway-ezarpenak kargatzen...',
@@ -557,20 +575,24 @@ export const eu = defineLocale({
       unavailableDesc: 'Masaipuaren IPC zubiak ez ditu gateway-ezarpenak eskura uzten.',
       title: 'Gateway-konexioa',
       envOverride: 'Ingurukoornuko gainescritura',
-      intro: 'OpenAmer Desktop-ek lehenetsiz bere lokal gateway-a abiarazten du. Erabili urruneko gatewaya beste makina batean edo proxy fidatu baten atzean dagoen OpenAmer backend-eko bat kontrolatzeko. Hautatu beheko profila bere urruneko ostalia izateko.',
+      intro:
+        'OpenAmer Desktop-ek lehenetsiz bere lokal gateway-a abiarazten du. Erabili urruneko gatewaya beste makina batean edo proxy fidatu baten atzean dagoen OpenAmer backend-eko bat kontrolatzeko. Hautatu beheko profila bere urruneko ostalia izateko.',
       appliesTo: 'Aplikatu egiten zaie',
       allProfiles: 'Profilo guztiak',
       defaultConnection: 'Hasierako konexioa profil bakoitzarentzat, zeinak bere gainescritura propioa ez duen.',
       envOverrideTitle: 'Ingurukoornoek mahaipuaren saio hau kontrolatzen dute.',
-      envOverrideDesc: 'Utzi OPENAMER_DESKTOP_REMOTE_URL eta OPENAMER_DESKTOP_REMOTE_TOKEN ezarrita gabe eta erabili beheko ezarpen gordea.',
+      envOverrideDesc:
+        'Utzi OPENAMER_DESKTOP_REMOTE_URL eta OPENAMER_DESKTOP_REMOTE_TOKEN ezarrita gabe eta erabili beheko ezarpen gordea.',
       modeTitle: 'Konexio modua',
       localTitle: 'Tokiko ateizaina',
-      localDesc: 'Abiarazi OpenAmer backend pribatua localhost-en. Hau da lehenetsia eta lineaz kanpo ere funtzionatzen du.',
+      localDesc:
+        'Abiarazi OpenAmer backend pribatua localhost-en. Hau da lehenetsia eta lineaz kanpo ere funtzionatzen du.',
       inheritTitle: 'Erabili lehenetsitako ateizaina',
       inheritDesc: 'Kendu profil honen gainescritura eta erabili lehenetsitako konexioa.',
       remoteTitle: 'Urruneko ateizaina',
       remoteDesc: 'Konekta masauneko shell hau urruneko OpenAmer backend batera.',
-      remoteAuthHint: 'Ospatutako ateizainek OAuth edo erabiltzaile-izena eta pasahitza erabiltzen dituzte; erakundean bertan instalatutakoek saio-tokena erabil dezakete.',
+      remoteAuthHint:
+        'Ospatutako ateizainek OAuth edo erabiltzaile-izena eta pasahitza erabiltzen dituzte; erakundean bertan instalatutakoek saio-tokena erabil dezakete.',
       cloudDesc: 'Hasi saioa OpenAmer Cloud-en eta aukeratu zure kontuko agentuetatik — URL-rik itsatsi beharrik ez.',
       cloudSignIn: 'Hasi saioa OpenAmer Cloud-en',
       cloudSignedIn: 'Saioa hasita OpenAmer Cloud-en',
@@ -584,7 +606,7 @@ export const eu = defineLocale({
       cloudNoAgents: {
         before: 'Ez da agentzurik aurkitu kontu honetan. Sortu bat',
         linkText: 'OpenAmer portalaren',
-        after: ', eta freskatu.',
+        after: ', eta freskatu.'
       },
       cloudRefresh: 'Freskatu',
       cloudConnect: 'Konektatu',
@@ -598,16 +620,20 @@ export const eu = defineLocale({
       cloudConnectedPill: 'Konektatuta',
       cloudAgentProvisioning: 'Aprovisionatzen…',
       remoteUrlTitle: 'Remoteko URLa',
-      remoteUrlDesc: 'Remote dashboardaren backendaren oinarrizko URLa. Bideen prefixoak onartzen dira, adibidez /openamer.',
+      remoteUrlDesc:
+        'Remote dashboardaren backendaren oinarrizko URLa. Bideen prefixoak onartzen dira, adibidez /openamer.',
       probing: 'Gateway honek nola autentikatzen duen egiaztatzen…',
-      probeError: 'Gateway honetara oraindik ezin izan da iritsi. Egiaztatu URLa — erantzutean autentikazio-metodoa agertuko da.',
+      probeError:
+        'Gateway honetara oraindik ezin izan da iritsi. Egiaztatu URLa — erantzutean autentikazio-metodoa agertuko da.',
       signedIn: 'Saioa hasita',
       signIn: 'Hasi saioa',
       signOut: 'Saioa itxi',
       authTitle: 'Autentikazioa',
-      authSignedInPassword: 'Gateway honek erabiltzaile-izena eta pasahitza erabiltzen ditu. Saioa hasi duzu; saioa automatikoki berritzen da.',
+      authSignedInPassword:
+        'Gateway honek erabiltzaile-izena eta pasahitza erabiltzen ditu. Saioa hasi duzu; saioa automatikoki berritzen da.',
       authSignedInOauth: 'Gateway honek OAuth erabiltzen du. Saioa hasi duzu; saioa automatikoki berritzen da.',
-      authNeedsPassword: 'Gateway honek erabiltzaile-izena eta pasahitza erabiltzen ditu. Hasi saioa mahai-gune aplikazio honek baimena emateko.',
+      authNeedsPassword:
+        'Gateway honek erabiltzaile-izena eta pasahitza erabiltzen ditu. Hasi saioa mahai-gune aplikazio honek baimena emateko.',
       tokenTitle: 'Saio-tokena',
       tokenDesc: 'REST eta WebSocket Sarbiderako erabiltzen den saio-tokena. Utzi hutsik gordetako tokena mantentzeko.',
       savedToken: 'gordea',
@@ -616,7 +642,8 @@ export const eu = defineLocale({
       saveForRestart: 'Gorde hurrengo abiarazteko',
       saveAndReconnect: 'Gorde eta berriro konektatu',
       diagnostics: 'Diagnostikoa',
-      diagnosticsDesc: 'Erakutsi desktop.log fitxategi-kudeatzailean — erabilgarri dago gatewaya hasteko hutsik dagoenean.',
+      diagnosticsDesc:
+        'Erakutsi desktop.log fitxategi-kudeatzailean — erabilgarri dago gatewaya hasteko hutsik dagoenean.',
       openLogs: 'Ireki loguak',
       incompleteTitle: 'Urruneko gatewaya osatuta ez dago',
       incompleteSignIn: 'Sartu urruneko URL bat eta hasi saioa urruneko modura aldatu aurretik.',
@@ -626,7 +653,8 @@ export const eu = defineLocale({
       enterUrlFirst: 'Lehenik, sartu urrun URL bat.',
       restartingTitle: 'Atebidearen konexioa berrez hasten',
       savedTitle: 'Atebidearen ezarpenak gordeak',
-      restartingMessage: 'OpenAmer Desktop-ek gordeko ezarpenak erabiliz berrez konektatuko da — shell-a irekita egongo da.',
+      restartingMessage:
+        'OpenAmer Desktop-ek gordeko ezarpenak erabiliz berrez konektatuko da — shell-a irekita egongo da.',
       savedMessage: 'Gordea hurrengo berrezhasteko.',
       reachableTitle: 'Urrun atebidea eskuragarri',
       signedOutTitle: 'Saioa itxita',
@@ -638,8 +666,10 @@ export const eu = defineLocale({
       applyFailed: 'Atebidearen ezarpenak aplikatu ezin izan ditzute',
       saveFailed: 'Atebidearen ezarpenak gorde ezin izan ditzute',
       sshTitle: 'Konektatu SSH bidez',
-      sshDesc: 'OpenAmer SSH bidez urrun ostalduan abiarazi eta tunel bidez aplikazio honetara bidaltzen da — ez duzu ezer abiarazi edo erakusgarri beharrik. Ostalduarekiko funtzionatzen duen gakoetan oinarritutako SSH saioa behar du.',
-      sshTrustHint: 'Lehenik aurkeztutako ostaldu gakoa fidatzen eta itsasten da; ondorengo aldaketek blokeatu egiten dute.',
+      sshDesc:
+        'OpenAmer SSH bidez urrun ostalduan abiarazi eta tunel bidez aplikazio honetara bidaltzen da — ez duzu ezer abiarazi edo erakusgarri beharrik. Ostalduarekiko funtzionatzen duen gakoetan oinarritutako SSH saioa behar du.',
+      sshTrustHint:
+        'Lehenik aurkeztutako ostaldu gakoa fidatzen eta itsasten da; ondorengo aldaketek blokeatu egiten dute.',
       sshHostTitle: 'Ostaldia',
       sshHostDesc: 'user@host, edo ~/.ssh/config fitxategiko Ostaldearen aliasa.',
       sshHostPick: 'Aukeratu ostaldu bat…',
@@ -661,24 +691,30 @@ export const eu = defineLocale({
       sshButtonsHint: 'Gordetzeak hurrengo abiarazpenean aplikatzen dira. Konektatzeak orain berriro konektatzen du.',
       sshIncompleteHost: 'Sartu SSH ostatua konektatu aurretik.',
       sshErrUnreachable: 'Ezin izan da ostatura SSH bidez iritsi. Egiaztatu ostatua, portua eta zure sarea.',
-      sshErrAuth: 'SSH autentikazioak huts egin du. Kargatu zure gakoa ssh-agent-ean (ssh-add) edo ezarri IdentityFile bat `~/.ssh/config`-en — OpenAmer-ek ssh modu ez-interaktiboan exekutatzen du.',
-      sshErrHostKey: 'Ostatuaren gakoa aldatu da azken konexioaren ondoren. Egiaztatu hori espero zitekeela, ondoren exekutatu ssh-keygen -R <host> eta konektatu berriro.',
-      sshErrNotInstalled: 'OpenAmer ez dago instalatuta urruneko ostalarian. Instalatu han edo ezarri OpenAmerren bidea (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`).',
-      sshErrPlatform: 'Ezagutzen ez den urruneko plataforma. OpenAmer Desktop SSH moduak Linux, macOS eta Windows urruneko ostalariak onartzen ditu.',
+      sshErrAuth:
+        'SSH autentikazioak huts egin du. Kargatu zure gakoa ssh-agent-ean (ssh-add) edo ezarri IdentityFile bat `~/.ssh/config`-en — OpenAmer-ek ssh modu ez-interaktiboan exekutatzen du.',
+      sshErrHostKey:
+        'Ostatuaren gakoa aldatu da azken konexioaren ondoren. Egiaztatu hori espero zitekeela, ondoren exekutatu ssh-keygen -R <host> eta konektatu berriro.',
+      sshErrNotInstalled:
+        'OpenAmer ez dago instalatuta urruneko ostalarian. Instalatu han edo ezarri OpenAmerren bidea (`curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh`).',
+      sshErrPlatform:
+        'Ezagutzen ez den urruneko plataforma. OpenAmer Desktop SSH moduak Linux, macOS eta Windows urruneko ostalariak onartzen ditu.',
       sshErrTimeout: 'SSH konexioaren denbora amaitu da. Ostalaria iritzezina edo loan egon daiteke.',
       sshErrUpdateRequired: 'Eguneratu OpenAmer urruneko ostalarian Desktop SSH bidez konektatu aurretik.',
       sshErrUnknown: 'SSH konexioa huts egin du.',
-      profileConnection: profile => `Konexioa “${profile}” profil aktiboa denean bakarrik erabiltzen da. Aukeratu 'Use default gateway' override-a kentzeko.`,
+      profileConnection: profile =>
+        `Konexioa “${profile}” profil aktiboa denean bakarrik erabiltzen da. Aukeratu 'Use default gateway' override-a kentzeko.`,
       cloudTitle: 'OpenAmer hodeia',
       cloudSignInTitle: 'OpenAmer hodeia',
       cloudOrgRole: role => `Rola: ${role}`,
       cloudConnectedTo: name => `Konektatuta ${name}-(r)ekin.`,
       cloudStatusLabel: status => `Egoera: ${status}`,
       signInWith: provider => `Sartu ${provider}-(r)ekin`,
-      authNeedsOauth: provider => `Gateway honek OAuth erabiltzen du. Sartu ${provider}-(r)ekin aplikazio desktop hau baimendatzeko.`,
+      authNeedsOauth: provider =>
+        `Gateway honek OAuth erabiltzen du. Sartu ${provider}-(r)ekin aplikazio desktop hau baimendatzeko.`,
       existingToken: value => `Token existentea ${value}`,
       connectedTo: (baseUrl, version) => `Konektatuta ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Irizgarria: ${host} (${platform}) — OpenAmer aurkituta`,
+      sshReachable: (host, platform) => `Irizgarria: ${host} (${platform}) — OpenAmer aurkituta`
     },
     mcp: {
       reloadFailed: 'MCP berrkargatzea huts egin du',
@@ -740,19 +776,21 @@ export const eu = defineLocale({
       catalogInstallStarted: name => `Instalatzen ${name}... saio berriei aplikatuko zaizkio amaitu ethane.`,
       catalogInstallFailed: name => `Fallatu egin du ${name} instalatzea`,
       catalogEnvPrompt: name => `${name} erabiltzeko kredentzialak behar dira`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} gaituta`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} gaituta`,
       authenticatedMessage: (server, count) => `${server}: ${count} tresna`,
       enableTool: tool => `Aktibatu ${tool}`,
-      disableTool: tool => `Desaktibatu ${tool}`,
+      disableTool: tool => `Desaktibatu ${tool}`
     },
     keys: {
       loading: 'API gakoak eta kredentzialak kargatzen...',
       failedLoad: 'API gakoak ez dira kargatu',
-      empty: 'Kategoria honetan oraindik ezer ez dago konfiguratuta.',
+      empty: 'Kategoria honetan oraindik ezer ez dago konfiguratuta.'
     },
     model: {
       loading: 'Modeluaren konfigurazioa kargatzen...',
-      appliesDesc: 'Sessione berriei aplikatzen zaie. Aktibo dagoen txataren modeloa berehala aldatzeko, erabili mezua idatzeko eremuko modelua hautatzailea.',
+      appliesDesc:
+        'Sessione berriei aplikatzen zaie. Aktibo dagoen txataren modeloa berehala aldatzeko, erabili mezua idatzeko eremuko modelua hautatzailea.',
       provider: 'Hornitzailea',
       model: 'Modelua',
       applying: 'Aplikatzen...',
@@ -762,7 +800,8 @@ export const eu = defineLocale({
       defaultsFailed: 'Modeluaren lehenetsiak ezin izan dira gorde',
       auxiliaryTitle: 'Modelu laguntzaileak',
       resetAllToMain: 'Berrezarri guztiak nagusiari',
-      auxiliaryDesc: 'Laguntza-zereak nagusiko modeluan exekutatzen dira lehenetsiz. Zere bati modelu dedikatu bat esleitzeko, lehenetsia gainidatuko duzu.',
+      auxiliaryDesc:
+        'Laguntza-zereak nagusiko modeluan exekutatzen dira lehenetsiz. Zere bati modelu dedikatu bat esleitzeko, lehenetsia gainidatuko duzu.',
       setToMain: 'Eman nagusiko modeluari',
       change: 'Aldatu',
       autoUseMain: 'auto · erabili nagusiko modelua',
@@ -773,42 +812,43 @@ export const eu = defineLocale({
       tasks: {
         vision: {
           label: 'Ikusmena',
-          hint: 'Irudien azterketa',
+          hint: 'Irudien azterketa'
         },
         web_extract: {
           label: 'Webetik ateratzea',
-          hint: 'Orrialaren laburpena',
+          hint: 'Orrialaren laburpena'
         },
         compression: {
           label: 'Konpresioa',
-          hint: 'Kontekstuaren txikenketa',
+          hint: 'Kontekstuaren txikenketa'
         },
         skills_hub: {
           label: 'Eskumen zentruma',
-          hint: 'Eskumen bilaketa',
+          hint: 'Eskumen bilaketa'
         },
         approval: {
           label: 'Onarpena',
-          hint: 'Autoonarpen adimutsu',
+          hint: 'Autoonarpen adimutsu'
         },
         mcp: {
           hint: 'MCP tresnen bideratzea',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Izenburuaren generazioa',
-          hint: 'Saioen izenburua',
+          hint: 'Saioen izenburua'
         },
         curator: {
           label: 'Kuratora',
-          hint: 'Eskumen erabileraren berrikuspena',
-        },
-      },
+          hint: 'Eskumen erabileraren berrikuspena'
+        }
+      }
     },
     providers: {
       connectAccount: 'Konektatu kontu bat',
       haveApiKey: 'Zer baduzu API giltza?',
-      intro: 'Hasi saioa harpidapenarekin — API giltzarik kopiatu beharrik gabe. OpenAmer-ek browserreko saio-hasierako prozesua zuzenean aplikazio honen barruan egiten dizu.',
+      intro:
+        'Hasi saioa harpidapenarekin — API giltzarik kopiatu beharrik gabe. OpenAmer-ek browserreko saio-hasierako prozesua zuzenean aplikazio honen barruan egiten dizu.',
       connected: 'Konektatuta',
       collapse: 'Txikendu',
       connectAnother: 'Konektatu beste hornitzaile bat',
@@ -821,16 +861,18 @@ export const eu = defineLocale({
       noKeysMatch: 'Ez da bilaketarekin bat datorren hornitzailerik.',
       localEndpoint: {
         title: 'Tokiko / pertsonalizatako amaiera-puntua',
-        description: 'Eman OpenAmer-era edozein OpenAI-rekin bateragarri amaiera-punturi (Zyphra, vLLM, llama.cpp, Ollama, etab.).',
+        description:
+          'Eman OpenAmer-era edozein OpenAI-rekin bateragarri amaiera-punturi (Zyphra, vLLM, llama.cpp, Ollama, etab.).'
       },
       loading: 'Hornitzaileak kargatzen...',
       removeConfirm: provider => `${provider} kendu?`,
       removeExternalGeneric: provider => `${provider} bere CLI bidez kudeatzen da — kendu bertan.`,
       removeKeyManaged: provider => `${provider} API gako baten bidez konfiguratuta dago. Kendu API gakoetatik.`,
-      removeTerminalConfirm: (provider, command) => `Deskonektatu ${provider}? Honek "${command}" korritzen du terminalean kredentzialak garbitzeko.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Deskonektatu ${provider}? Honek "${command}" korritzen du terminalean kredentzialak garbitzeko.`,
       removeTerminalRunning: provider => `Korritzen ${provider} disconnect terminalean…`,
       removedMessage: provider => `${provider} kendu da.`,
-      failedRemove: provider => `Ezin izan da ${provider} kendu`,
+      failedRemove: provider => `Ezin izan da ${provider} kendu`
     },
     sessions: {
       loading: 'Artxibatutako saioak kargatzen…',
@@ -841,12 +883,14 @@ export const eu = defineLocale({
       deletePermanently: 'Behin betirako ezabatu',
       restored: 'Berrezenduta',
       autoArchiveTitle: 'Artxibatu automatikoki zahartutako txatak',
-      autoArchiveDesc: 'Denbora asko eragitzeko ez duzun txatak automatikoki artxibatzen ditu. Txat fokatuek ez dira inoiz artxibatzen, eta ez da ezer ezabatzen — artxibatutako txatak hemara baina mugitzen dira.',
+      autoArchiveDesc:
+        'Denbora asko eragitzeko ez duzun txatak automatikoki artxibatzen ditu. Txat fokatuek ez dira inoiz artxibatzen, eta ez da ezer ezabatzen — artxibatutako txatak hemara baina mugitzen dira.',
       autoArchiveDaysLabel: 'Artxibatu ondoren',
       autoArchiveDaysUnit: 'inaktibitateko egunetan',
       autoArchiveFailed: 'Auto-arkibatzea eguneratu ezin izan da',
       defaultDirTitle: 'Proiektu direktorio lehenetsia',
-      defaultDirDesc: 'Saio berriak karpet honetan hasten dira, beste bat aukeratzen baduzu. Ezarri gabe utzi zure direktorio nagusia erabiltzeko.',
+      defaultDirDesc:
+        'Saio berriak karpet honetan hasten dira, beste bat aukeratzen baduzu. Ezarri gabe utzi zure direktorio nagusia erabiltzeko.',
       change: 'Aldatu',
       choose: 'Aukeratu',
       clear: 'Garbitu',
@@ -856,11 +900,13 @@ export const eu = defineLocale({
       deleteFailed: 'Ezabatzeak huts egin du',
       updateDirFailed: 'Direktorio lehenetsia eguneratu ezin izan da',
       clearDirFailed: 'Direktorio lehenetsia garbitu ezin izan da',
-      archivedIntro: 'Arkibatutako txat-ak sidebar-etik ezkutatzen dira baina mezu guztiak gordetzen dituzte. Ctrl/⌘-klik egin sidebar-eko txat batean arkibatzeko.',
+      archivedIntro:
+        'Arkibatutako txat-ak sidebar-etik ezkutatzen dira baina mezu guztiak gordetzen dituzte. Ctrl/⌘-klik egin sidebar-eko txat batean arkibatzeko.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Permanentean ezabatu "${title}"? Ezin da honi bide atzera egin.`,
-      defaultDirUpdated: 'Proiekturen direktorio lehenetsua eguneratua — hasi txat berri bat (Ctrl/⌘+N) efektua izateko',
-      defaultsTo: label => `Lehenetsua ${label}.`,
+      defaultDirUpdated:
+        'Proiekturen direktorio lehenetsua eguneratua — hasi txat berri bat (Ctrl/⌘+N) efektua izateko',
+      defaultsTo: label => `Lehenetsua ${label}.`
     },
     toolsets: {
       loadingConfig: 'Konfiguratzailea kargatzen',
@@ -870,7 +916,8 @@ export const eu = defineLocale({
       notSet: 'Ezarrita ez',
       selectedTitle: 'Hornitzailea hautatu da',
       failedLoad: 'Tresnaren konfigurazioa kargatu ezin izan da',
-      noProviderOptions: 'Tresneria honek hornitzaile aukerarik ez du — aktibatu eta zuneko konfigurazioarekin funtzionatuko du.',
+      noProviderOptions:
+        'Tresneria honek hornitzaile aukerarik ez du — aktibatu eta zuneko konfigurazioarekin funtzionatuko du.',
       noProviders: 'Une honetan tresneria honentzat hornitzailerik ez dago.',
       ready: 'Prest',
       needsSignIn: 'Saioa behar du',
@@ -911,8 +958,9 @@ export const eu = defineLocale({
         inUse: 'Erabilera',
         selectedTitle: 'Backend-a hautatuta',
         needsSetupHint: 'Backend hau orain hautatu dezakezu — konfigurazioa osatu arte, komandoak huts egingo dituzte.',
-        selectedMessage: backend => `Terminaleko komandoak ${backend} bidez exekutatzen dira orain. Saio berriei aplikatzen zaie.`,
-        failedSelect: backend => `Ezin izan da ${backend} hautatu`,
+        selectedMessage: backend =>
+          `Terminaleko komandoak ${backend} bidez exekutatzen dira orain. Saio berriei aplikatzen zaie.`,
+        failedSelect: backend => `Ezin izan da ${backend} hautatu`
       },
       savedMessage: key => `${key} eguneratu da.`,
       removedMessage: key => `${key} kendu da.`,
@@ -922,8 +970,10 @@ export const eu = defineLocale({
       removeConfirm: key => `Kendu ${key} .env-tik?`,
       selectedMessage: provider => `${provider} aktibo dago orain.`,
       failedSelect: provider => `Fallatu egin du ${provider} hautatzea`,
-      openamerAuthNeededMessage: provider => `${provider} gordeta dago, baina ez da aktibatuko OpenAmer atarian saioa hasi arte.`,
-      postSetupHint: step => `Backend honek instalazio bakarra behar du (${step}). Makina honetan korrika jartzen da — minutu batzuk hartu ditzake.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} gordeta dago, baina ez da aktibatuko OpenAmer atarian saioa hasi arte.`,
+      postSetupHint: step =>
+        `Backend honek instalazio bakarra behar du (${step}). Makina honetan korrika jartzen da — minutu batzuk hartu ditzake.`,
       postSetupCompleteMessage: step => `${step} instalatuta.`,
       postSetupErrorMessage: step => `Begiratu ${step} erregistroa.`,
       postSetupFailed: step => `Ezin izan da ${step} konfigurazioa exekutatu`,
@@ -933,10 +983,10 @@ export const eu = defineLocale({
       failedSelectCapability: provider => `Ezin izan da ${provider} ezarri`,
       modelCount: count => `${count} eredua${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} saio berriei aplikatzen zaie.`,
-      failedSelectModel: model => `Ezin izan da ${model} hautatu`,
+      failedSelectModel: model => `Ezin izan da ${model} hautatu`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Gaitasunak',
@@ -955,7 +1005,8 @@ export const eu = defineLocale({
     noDescription: 'Deskribapenorik gabe.',
     configured: 'Konfiguratuta',
     needsKeys: 'Gakoak behar ditu',
-    visionModelHint: 'Ikusmenak laguntzailearen modeloaren konfigurazioa erabiltzen du — irudiak ahal izan dezaketen modeloa han hautatzen da, ez hemen hornitzailearen arabera.',
+    visionModelHint:
+      'Ikusmenak laguntzailearen modeloaren konfigurazioa erabiltzen du — irudiak ahal izan dezaketen modeloa han hautatzen da, ez hemen hornitzailearen arabera.',
     visionModelLink: 'Hautatu ikusmenaren modeloa Ezarpenak → Modeluak atalean',
     skillsLoadFailed: 'Gaitasunak kargatzeak huts egin du',
     toolsetsRefreshFailed: 'Ezin izan da tresna multzoak berritu.',
@@ -973,7 +1024,7 @@ export const eu = defineLocale({
     provenance: {
       agent: 'Ikasita',
       bundled: 'Integratuta',
-      hub: 'Gunea',
+      hub: 'Gunea'
     },
     changesApplyNewSessions: 'Aldaketak saio berriei aplikatzen zaizkie.',
     skillUpdated: 'Trekinua eguneratuta',
@@ -988,7 +1039,8 @@ export const eu = defineLocale({
       connectingHubs: 'Gaitasun hub-ekin konektatzen...',
       connectedHubs: 'Konektatutako hub-ak:',
       featured: 'Nabarmendu gaitasunak',
-      landingHint: 'Bilatu hub-ean instalagarri dauden gaitasunak indexe ofizialean, GitHub-en eta komunitatearen iturrietan ikusteko.',
+      landingHint:
+        'Bilatu hub-ean instalagarri dauden gaitasunak indexe ofizialean, GitHub-en eta komunitatearen iturrietan ikusteko.',
       noResults: 'Ez da gaitasun bat aurkitu hub-ean.',
       installed: 'Instalatuta',
       install: 'Instalatu',
@@ -1006,7 +1058,7 @@ export const eu = defineLocale({
       trust: {
         builtin: 'Integratua',
         trusted: 'Fidatuta',
-        community: 'Komunitatea',
+        community: 'Komunitatea'
       },
       verdictSafe: 'Segurra',
       verdictCaution: 'Kontu',
@@ -1026,7 +1078,7 @@ export const eu = defineLocale({
       timedOut: sources => `Denbora-muga gainditu da: ${sources}`,
       findings: count => `${count} aurkikuntza${count === 1 ? '' : 's'}`,
       installStarted: name => `${name} instalatzen...`,
-      uninstallStarted: name => `${name} desinstalatzen...`,
+      uninstallStarted: name => `${name} desinstalatzen...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} tresna-multzo gaituta`,
@@ -1039,7 +1091,7 @@ export const eu = defineLocale({
     usageCount: count => `${count}× erabilita`,
     emptyNoneFound: noun => `Ez da ${noun} aurkitu`,
     emptyNothingMatches: query => `Ez dago “${query}” bilaketarekin bat datorrenik.`,
-    emptyNoneAvailable: noun => `Oraindik ez dago ${noun} erabilgarri.`,
+    emptyNoneAvailable: noun => `Oraindik ez dago ${noun} erabilgarri.`
   },
   starmap: {
     title: 'Memoria-grafoa',
@@ -1055,7 +1107,8 @@ export const eu = defineLocale({
     emptyTitle: 'Oraindik ez da ezer ikasita',
     emptyDesc: 'OpenAmer zure lanarako gaitasunak eta memoriak sortzen dituzun heine, hemen agertuko dira.',
     share: 'Mapan partekatu',
-    shareHint: 'Kopiatu kode hau mapa partekatzeko, edo itsasi bat kargatzeko. kodeak baino ez du barne hartzen, ez zure memoria edo gaitasun testua.',
+    shareHint:
+      'Kopiatu kode hau mapa partekatzeko, edo itsasi bat kargatzeko. kodeak baino ez du barne hartzen, ez zure memoria edo gaitasun testua.',
     shareTitle: 'Mapatu / esportatu',
     sharePlaceholder: 'Itsasi maparen kodea…',
     copy: 'Kopiatu maparen kodea',
@@ -1066,7 +1119,7 @@ export const eu = defineLocale({
     importedBadge: 'importatutako mapa',
     resetToMine: 'Nire mapara itzuli',
     subtitle: (nodes, clusters) => `${nodes} trebetasun ${clusters} kategoriatan`,
-    importSuccess: nodes => `Mapa bat kargatu da ${nodes} ${nodes === 1 ? 'node' : 'nodes'} erabiliz.`,
+    importSuccess: nodes => `Mapa bat kargatu da ${nodes} ${nodes === 1 ? 'node' : 'nodes'} erabiliz.`
   },
   agents: {
     close: 'Agenteak itxi',
@@ -1096,7 +1149,7 @@ export const eu = defineLocale({
     ageDays: days => `duela ${days} egun`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} token`,
+    tokens: value => `${value} token`
   },
   commandCenter: {
     close: 'Agindu-zentroa itxi',
@@ -1125,7 +1178,7 @@ export const eu = defineLocale({
       generatedTag: 'Sortuta',
       adoptFailed: 'Ezin izan da maskol hori adoptatu.',
       toggleFailed: 'Ezin izan da maskola txandakatu.',
-      noneAvailable: 'Ez dago maskolik eskuragarri — aukeratu bat instalatzeko hemengo behean.',
+      noneAvailable: 'Ez dago maskolik eskuragarri — aukeratu bat instalatzeko hemengo behean.'
     },
     generatePet: {
       title: 'Sortu petsia',
@@ -1148,13 +1201,15 @@ export const eu = defineLocale({
       slowProviderHint: 'Hau minutu asko iraun dezake',
       remix: 'Berriremixa',
       remixConfirmTitle: 'Itxura hau berriremixatu?',
-      remixConfirmBody: 'Honek ziberuko idatzi-zerrenda berri bat sortzen du, honen abiapuntuan oinarrituta. Baliteka minutu batzuk iraun ditza.',
+      remixConfirmBody:
+        'Honek ziberuko idatzi-zerrenda berri bat sortzen du, honen abiapuntuan oinarrituta. Baliteka minutu batzuk iraun ditza.',
       genericError: 'Generazioa huts egin du — berriro saiatu edo iradokizun bat hautatu.',
       referenceImageTooLarge: 'Erreferentziaren irudia handiegia da. Erabili 16 MB baino txikiagoa.',
-      referenceImageInvalid: 'Erreferentziaren irudia ezin izan da irakurri. Saiatu PNG, JPG, WebP edo GIF formatuarekin.',
+      referenceImageInvalid:
+        'Erreferentziaren irudia ezin izan da irakurri. Saiatu PNG, JPG, WebP edo GIF formatuarekin.',
       adopt: 'Adopta',
       startOver: 'Berriro hasi',
-      hatchRow: (_state, done, total) => `${done}/${total} fotogramaren zirriborroa egiten…`,
+      hatchRow: (_state, done, total) => `${done}/${total} fotogramaren zirriborroa egiten…`
     },
     installTheme: {
       title: 'Gaia instalatu…',
@@ -1166,7 +1221,7 @@ export const eu = defineLocale({
       install: 'Instalatu',
       installing: 'Instalatzen...',
       installed: 'Instalatuta',
-      installs: count => `${count} instalazio`,
+      installs: count => `${count} instalazio`
     },
     settingsFields: 'Ezarpenen eremuak',
     mcpServers: 'MCP zerbitzariak',
@@ -1175,49 +1230,49 @@ export const eu = defineLocale({
       maintenance: 'Mantentzea',
       sessions: 'Saioak',
       system: 'Sistema',
-      usage: 'Erabilera',
+      usage: 'Erabilera'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostika, segurtasun kopias, kuratore eta memoria datuak',
       sessions: 'Saioak bilatu eta kudeatu',
       system: 'Egoera, erregistroak eta sistemaren ekintzak',
-      usage: 'Tokenen, kostuen eta gaitasunen jarduera denboran zehar',
+      usage: 'Tokenen, kostuen eta gaitasunen jarduera denboran zehar'
     },
     nav: {
       newChat: {
         title: 'Saio berria',
-        detail: 'Saio berri bat hasi',
+        detail: 'Saio berri bat hasi'
       },
       settings: {
         title: 'Ezarpenak',
-        detail: '`OpenAmer` mahaigainua konfiguretu',
+        detail: '`OpenAmer` mahaigainua konfiguretu'
       },
       skills: {
         title: 'Funtzionalitateak',
-        detail: 'Gaitasunak, tresnak eta MCP zerbitzariak',
+        detail: 'Gaitasunak, tresnak eta MCP zerbitzariak'
       },
       messaging: {
         title: 'Mesuentzak',
-        detail: 'Telegram, Slack, Discord eta gehiago konfiguretu',
+        detail: 'Telegram, Slack, Discord eta gehiago konfiguretu'
       },
       artifacts: {
         title: 'Artefaktuak',
-        detail: 'Sortutako irteerak arakatu',
-      },
+        detail: 'Sortutako irteerak arakatu'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Saioen panela',
-        detail: 'Saioak bilatu, apatu eta kudeatu',
+        detail: 'Saioak bilatu, apatu eta kudeatu'
       },
       system: {
         title: 'Sistemaren panela',
-        detail: 'Gateway egoera, erregistroak, berrabiarazi eguneratu',
+        detail: 'Gateway egoera, erregistroak, berrabiarazi eguneratu'
       },
       usage: {
         title: 'Erabilera panela',
-        detail: 'Token-, kostu- eta gaitasun-jarduerak',
-      },
+        detail: 'Token-, kostu- eta gaitasun-jarduerak'
+      }
     },
     providerNavigate: 'Joan',
     providerSessions: 'Saioak',
@@ -1267,7 +1322,8 @@ export const eu = defineLocale({
       backup: 'Sortu babeskopia',
       backupDesc: 'Bildu konfigurazioa, memorietak, gaitasunak eta saioak zip batean',
       debugShare: 'Arazketa partekatzea',
-      debugShareDesc: 'Kargatu txosten eta logen bat iluntzatuta, lortu partekatzeko estekak (6h-tan automatikoki ezabatzen da)',
+      debugShareDesc:
+        'Kargatu txosten eta logen bat iluntzatuta, lortu partekatzeko estekak (6h-tan automatikoki ezabatzen da)',
       debugShareRunning: 'Arazketa txostena kargatzen...',
       debugShareLinks: 'Partekatze-estekak',
       debugShareFailed: 'Arazketa partekatzea huts egon da',
@@ -1300,14 +1356,14 @@ export const eu = defineLocale({
       resetConfirm: target => `${target} ezabatu? Ezin da desegin.`,
       resetDone: files => `${files} ezabatu da.`,
       actionStarted: name => `${name} abiarazi da — erregistroaren jarraipena egiten...`,
-      actionFailed: name => `Ezin izan da ${name} abiarazi`,
+      actionFailed: name => `Ezin izan da ${name} abiarazi`
     },
     startInBranch: branch => `Elkarrizketa berria hemen: ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Saio aktiboak: ${count}`,
     days: count => `${count} e`,
     actualCost: cost => `benetakoa ${cost}`,
     noUsage: period => `Ez da erabili azken ${period} egunetan.`,
-    actions: count => `${count} ekintza`,
+    actions: count => `${count} ekintza`
   },
   messaging: {
     search: 'Bilatu mezuak...',
@@ -1322,7 +1378,7 @@ export const eu = defineLocale({
       not_configured: 'Konfigurazioa behar du',
       pending_restart: 'Berrabiarazketa behar du',
       retrying: 'Berriro saiatzen',
-      startup_failed: 'Hasiera huts egin du',
+      startup_failed: 'Hasiera huts egin du'
     },
     unknown: 'Ezaguna',
     hintPendingRestart: 'Aplikatu aldaketa hau, berriro abiarazteko pasarela egoera barran.',
@@ -1349,124 +1405,124 @@ export const eu = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Boteko tokena',
         help: 'Sortu bot bat @BotFather-ekin, eta itsatsi ematen dizun tokena.',
-        placeholder: 'Itsatsi Telegram botaren tokena',
+        placeholder: 'Itsatsi Telegram botaren tokena'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Baimatutako Telegram erabiltzaileen IDak',
-        help: 'Gomendatua. Zenbakizko IDak, komaz bereizita, @userinfobot-etik. Horri gabe, edonorrek zure botari DMak bidal ditzake.',
+        help: 'Gomendatua. Zenbakizko IDak, komaz bereizita, @userinfobot-etik. Horri gabe, edonorrek zure botari DMak bidal ditzake.'
       },
       TELEGRAM_PROXY: {
         label: 'Proxyaren URL-a',
-        help: 'Beharrezkoa soilik Telegram blokeatuta dagoen sareetan.',
+        help: 'Beharrezkoa soilik Telegram blokeatuta dagoen sareetan.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Boteko tokena',
-        help: 'Sortu aplikazio bat Discord Developer Portal-en, gehitu bot bat, eta itsatsi bere tokena.',
+        help: 'Sortu aplikazio bat Discord Developer Portal-en, gehitu bot bat, eta itsatsi bere tokena.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Baimatutako Discord erabiltzaileen IDak',
-        help: 'Gomendatua. Komaz bereizitako Discord erabiltzaileen IDak.',
+        help: 'Gomendatua. Komaz bereizitako Discord erabiltzaileen IDak.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Erantzun-estiloa',
-        help: 'lehena, guztiak edo desaktibatuta',
+        help: 'lehena, guztiak edo desaktibatuta'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Baimendu Discord erabiltzaile guztiak',
-        help: 'Garapen bakarrik. Aktibatuta dagoenean, edozeinek botari DM bidaldu ahal izango du baimen-zerrendarik gabe.',
+        help: 'Garapen bakarrik. Aktibatuta dagoenean, edozeinek botari DM bidaldu ahal izango du baimen-zerrendarik gabe.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Etxeko kanalaren IDa',
-        help: 'Kanala non botak mezuak bidalzen ditu (cron emaitza, gogoratzeak).',
+        help: 'Kanala non botak mezuak bidalzen ditu (cron emaitza, gogoratzeak).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Etxeko kanalaren izena',
-        help: 'Etxeko kanala logetan eta egoeraren irteerako erakusteko izena.',
+        help: 'Etxeko kanala logetan eta egoeraren irteerako erakusteko izena.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Baimendu iMessage erabiltzaile guztiak',
-        help: 'Aktibatuta dagoenean, saio egin BlueBubbles baimen-zerrendari.',
+        help: 'Aktibatuta dagoenean, saio egin BlueBubbles baimen-zerrendari.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Baimendu Mattermost erabiltzaile guztiak',
+        label: 'Baimendu Mattermost erabiltzaile guztiak'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Etxeko kanala',
+        label: 'Etxeko kanala'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Baimendu QQ erabiltzaile guztiak',
+        label: 'Baimendu QQ erabiltzaile guztiak'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQko etxeko kanala',
-        help: 'Cron bidalgarriaren kanal edo talde lehenetsia.',
+        help: 'Cron bidalgarriaren kanal edo talde lehenetsia.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQko etxeko kanalaren izena',
+        label: 'QQko etxeko kanalaren izena'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot token-a',
         help: 'Erabili zure Slack aplikazioa instalatu ondoren OAuth & Permissions atalean dagoen bot token-a.',
-        placeholder: 'Itsatsi Slack bot token-a',
+        placeholder: 'Itsatsi Slack bot token-a'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app token-a',
         help: 'Erabili Socket Moderarentzat beharrezko aplikazio-tokena.',
-        placeholder: 'Slack aplikazio-tokena itsatsi',
+        placeholder: 'Slack aplikazio-tokena itsatsi'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Baimendutako Slack erabiltzaile-IDak',
-        help: 'Gomendatua. Komaz bereizitako Slack erabiltzaile-IDak.',
+        help: 'Gomendatua. Komaz bereizitako Slack erabiltzaile-IDak.'
       },
       MATTERMOST_URL: {
         label: 'Zerbitzariaren URL-a',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot-tokena',
+        label: 'Bot-tokena'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Baimendutako erabiltzaile-IDak',
-        help: 'Gomendatua. Komaz bereizitako Mattermost erabiltzaile-IDak.',
+        help: 'Gomendatua. Komaz bereizitako Mattermost erabiltzaile-IDak.'
       },
       MATRIX_HOMESERVER: {
         label: 'Etxeko zerbitzariaren URL-a',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Sarbide-tokena',
+        label: 'Sarbide-tokena'
       },
       MATRIX_USER_ID: {
         label: 'Botaren erabiltzaile-IDa',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Baimendutako Matrix erabiltzaile-IDak',
-        help: 'Gomendatua. Komaz bereizitako erabiltzaile-IDak @user:server formatuan.',
+        help: 'Gomendatua. Komaz bereizitako erabiltzaile-IDak @user:server formatuan.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridgearen URL-a',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Funtzionatzeko dagoen signal-cli REST bridgearen URL-a.',
+        help: 'Funtzionatzeko dagoen signal-cli REST bridgearen URL-a.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefono zenbakia',
-        help: 'Zure signal-cli bridgearekin erregistratutako zenbakia.',
+        help: 'Zure signal-cli bridgearekin erregistratutako zenbakia.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Baimendutako Signal erabiltzaileak',
-        help: 'Gomendatua. Signal identifikatzaileak komaz bereizita.',
+        help: 'Gomendatua. Signal identifikatzaileak komaz bereizita.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp bridgea gaitu',
-        help: 'Beheko kontrol automatikoz ezartzen da. Ez aldatu, beharra badakizun.',
+        help: 'Beheko kontrol automatikoz ezartzen da. Ez aldatu, beharra badakizun.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge modua',
+        label: 'Bridge modua'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Baimendutako WhatsApp erabiltzaileak',
-        help: 'Gomendatua. Telefono zenbakiak edo WhatsApp IDak komaz bereizita.',
-      },
+        help: 'Gomendatua. Telefono zenbakiak edo WhatsApp IDak komaz bereizita.'
+      }
     },
     advanced: count => `Aurreratua (${count})`,
     clearField: key => `Garbitu ${key}`,
@@ -1480,8 +1536,7 @@ export const eu = defineLocale({
     failedUpdate: name => `Ezin izan da ${name} eguneratzea`,
     failedSave: name => `Ezin izan da ${name} gorde`,
     failedClear: key => `Ezin izan da ${key} garbitu`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhooks bilatzen...',
@@ -1490,7 +1545,8 @@ export const eu = defineLocale({
     hint: 'Harpidetzen aldaketak berriz kargatzen dira jaszailea martxan dagoenean. Desaktibatutako harpidetzek sarrerako gertakariak uko egiten diote.',
     empty: 'Oraindik ez dago webhook harpidetzik.',
     disabledTitle: 'Webhook jaszailea desaktibatuta dago',
-    disabledBody: 'Webhooks-eak gateway plataforma propioa dira. Gaitu hemen sarrerako HTTP gertakariak onartzeko; txat kanaleak Telegramera, Discordera, Slackera edo beste kanal batera bidaltzen duten harpidetsuetan bakarrik behar dira.',
+    disabledBody:
+      'Webhooks-eak gateway plataforma propioa dira. Gaitu hemen sarrerako HTTP gertakariak onartzeko; txat kanaleak Telegramera, Discordera, Slackera edo beste kanal batera bidaltzen duten harpidetsuetan bakarrik behar dira.',
     enable: 'Webhooks gaitu',
     enabling: 'Gaitzen...',
     enableRow: 'Gaitu',
@@ -1537,7 +1593,7 @@ export const eu = defineLocale({
       github_comment: 'GitHub iruzkina',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Izakintzak (${count})`,
     enabled: (name: string) => `Gaituta: "${name}"`,
@@ -1545,7 +1601,7 @@ export const eu = defineLocale({
     deleteFailed: (name: string) => `Ezin izan da "${name}" ezabatu`,
     toggleFailed: (name: string) => `Ezin izan da "${name}" eguneratu`,
     restartFailed: (detail: string) => `Pasigateen berrabakadura huts egin du${detail}`,
-    createFailed: (detail: string) => `Ezin izan da sortu: ${detail}`,
+    createFailed: (detail: string) => `Ezin izan da sortu: ${detail}`
   },
   profiles: {
     close: 'Itxi profiliak',
@@ -1623,7 +1679,7 @@ export const eu = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `Profil honen sistemaren prompta / persona.
 Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
-    invalidName: hint => `Izen ezaguna. ${hint}`,
+    invalidName: hint => `Izen ezaguna. ${hint}`
   },
   cron: {
     close: 'Itxi cron',
@@ -1637,14 +1693,14 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       paused: 'pausatuta',
       disabled: 'desgaituta',
       error: 'errorea',
-      completed: 'osatuta',
+      completed: 'osatuta'
     },
     deliveryLabels: {
       local: 'Mahaia hau',
       email: 'Emaila',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Igandea',
@@ -1654,11 +1710,12 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       '4': 'Osteguna',
       '5': 'Ostirala',
       '6': 'Larunbata',
-      '7': 'Igandea',
+      '7': 'Igandea'
     },
     topOfHour: 'Ordu bakoitzean, orduro',
     newCron: 'Cron berria',
-    emptyDescNew: 'Programatu ariketa bat cron adierazpenean exekutatzeko. OpenAmer exekutatu eta emaitzak aukeratutako helmugarera bidaliko ditu.',
+    emptyDescNew:
+      'Programatu ariketa bat cron adierazpenean exekutatzeko. OpenAmer exekutatu eta emaitzak aukeratutako helmugarera bidaliko ditu.',
     emptyDescSearch: 'Probatu bilaketa kontsulta orokorragoa.',
     emptyTitleNew: 'Oraindik ez daude programatutako lanik',
     emptyTitleSearch: 'Bat datorrenik ez',
@@ -1677,7 +1734,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       monthly: 'Hilero',
       hourly: 'Orduro',
       'every-15-minutes': '15 minuturo',
-      custom: 'Pertsonalizatuta',
+      custom: 'Pertsonalizatuta'
     },
     scheduleHints: {
       daily: 'Egunero 09:00etan',
@@ -1686,7 +1743,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       monthly: 'Hilabete bakoitzeko lehen egunean 09:00etan',
       hourly: 'Ordu bakoitzeko lehen minutuan',
       'every-15-minutes': '15 minuturo',
-      custom: 'Cron sintaxia edo hizkuntza naturala',
+      custom: 'Cron sintaxia edo hizkuntza naturala'
     },
     resume: 'Berresmatu cron',
     pause: 'Pausatu cron',
@@ -1712,7 +1769,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     editTitle: 'Editatu kron lana',
     createTitle: 'Kron berria',
     editDesc: 'Eguneratu ordutegia, prompta edo bidalketa helburua. Aldaketak hurrengo exekuzioan aplikatzen dira.',
-    createDesc: 'Programatu prompt bat automatikki exekutatzeko. Erabili kron sintaxia edo esaldi naturala, adibidez "15 minutuan behin".',
+    createDesc:
+      'Programatu prompt bat automatikki exekutatzeko. Erabili kron sintaxia edo esaldi naturala, adibidez "15 minutuan behin".',
     nameLabel: 'Izena',
     namePlaceholder: 'Goizeko laburpena',
     promptLabel: 'Prompta',
@@ -1734,7 +1792,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     createAction: 'Crona sortu',
     tabs: {
       jobs: 'Lanak',
-      blueprints: 'Blueprintek',
+      blueprints: 'Blueprintek'
     },
     blueprints: {
       tab: 'Blueprintek',
@@ -1748,7 +1806,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       loading: 'Blueprintek kargatzen...',
       failedLoad: 'Ezin izan da blueprintek kargatu',
       emptyTitle: 'Ez da blueprintenik eskuragarri',
-      emptyDesc: 'Ez da inolako automatismo blueprintenik eskuragarri gune honetako backend-ean.',
+      emptyDesc: 'Ez da inolako automatismo blueprintenik eskuragarri gune honetako backend-ean.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `eguna ${value}`,
@@ -1757,7 +1815,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     everyDayOfWeekAt: (day, time) => ` \`${day}\`ro every ${time}-(r)an`,
     monthlyOnDayAt: (dayOfMonth, time) => `Hilabeteko ${dayOfMonth}. egunean ${time}-(r)an`,
     everyHourAt: minute => `Oraren bakoitzean :${minute}-(r)an`,
-    actionsFor: title => `${title} rakuen ekintzak`,
+    actionsFor: title => `${title} rakuen ekintzak`
   },
   artifacts: {
     search: 'Bilatu artefaktuak...',
@@ -1769,7 +1827,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     tabFiles: 'Fitxategiak',
     tabLinks: 'Estekak',
     noArtifactsTitle: 'Ez da artefakturik aurkitu',
-    noArtifactsDesc: 'Sortutako irudiak eta fitxategien emaitzak hemen agertuko dira saioek horiek sortzen dituztenean.',
+    noArtifactsDesc:
+      'Sortutako irudiak eta fitxategien emaitzak hemen agertuko dira saioek horiek sortzen dituztenean.',
     failedLoad: 'Artefaktuak kargatzeak huts egin du',
     openFailed: 'Irekiteak huts egin du',
     itemsImage: 'irudiak',
@@ -1791,14 +1850,14 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     copyUrl: 'Kopiatu URL',
     copyPath: 'Kopiatu bidea',
     rangeOf: (start, end, total) => `${start}-${end} / ${total}`,
-    goToPage: (itemLabel, page) => `Joan ${itemLabel} orrialde ${page}-(r)a`,
+    goToPage: (itemLabel, page) => `Joan ${itemLabel} orrialde ${page}-(r)a`
   },
   sidebar: {
     nav: {
       'new-session': 'Saio berria',
       skills: 'Gaitasunak',
       messaging: 'Mezuentzuna',
-      artifacts: 'Artefaktuak',
+      artifacts: 'Artefaktuak'
     },
     searchAria: 'Bilatu saioak',
     searchPlaceholder: 'Bilatu saioak…',
@@ -1838,8 +1897,10 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       namePlaceholder: 'adib. Skunkworks',
       foldersLabel: 'Karpetak',
       ideaLabel: 'Ideia',
-      staleBackend: 'Eguneratu OpenAmer backenda — zure backenda desktop aplikazio honek baino zaharragoa da (Ezarpenak → Eguneraketak → Backend).',
-      deleteConfirm: 'Honek OpenAmer-eko gorderatutako proiektua kentzen du. Fitxategiak, git biltegiak eta lan zuhaitzak ez dira ukituko.',
+      staleBackend:
+        'Eguneratu OpenAmer backenda — zure backenda desktop aplikazio honek baino zaharragoa da (Ezarpenak → Eguneraketak → Backend).',
+      deleteConfirm:
+        'Honek OpenAmer-eko gorderatutako proiektua kentzen du. Fitxategiak, git biltegiak eta lan zuhaitzak ez dira ukituko.',
       startWork: 'Lan zuhaitz berria',
       newWorktreeTitle: 'Lan zuhaitz berria',
       newWorktreeDesc: 'Izendatu adarra lan zuhaitz honetarako.',
@@ -1859,14 +1920,16 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       noBranches: 'Ez da adarrak aurkitu',
       removeWorktree: 'Kendu lan zuhaitza',
       removeWorktreeFailed: 'Ezin izan da lan-zuhaitza kendu (aldatuak gorde gabe?)',
-      removeWorktreeConfirm: 'Kendu Git-etik (lan-zuhaitzaren direktorioa ezabatzen du; adarra mantendua egon da), edo besterik ez egin, izekinetik lanea ezkutatu eta lan-zuhaitza diskoan utzi.',
-      removeWorktreeDirty: 'Lan-zuhaitz honek aldatuak gorde gabe ditu. Indartsu kendu (aldatu horiek ezabatzen ditu), edo besterik ez egin, lanea ezkutatu eta diskoan utzi.',
+      removeWorktreeConfirm:
+        'Kendu Git-etik (lan-zuhaitzaren direktorioa ezabatzen du; adarra mantendua egon da), edo besterik ez egin, izekinetik lanea ezkutatu eta lan-zuhaitza diskoan utzi.',
+      removeWorktreeDirty:
+        'Lan-zuhaitz honek aldatuak gorde gabe ditu. Indartsu kendu (aldatu horiek ezabatzen ditu), edo besterik ez egin, lanea ezkutatu eta diskoan utzi.',
       forceRemove: 'Indartsu kendu',
       back: 'Projektu guztiak',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Ireki ${label}`,
       reorder: label => `Ordenatu ${label}`,
-      toggle: label => `Aktibatu/desaktibatu ${label} saioak`,
+      toggle: label => `Aktibatu/desaktibatu ${label} saioak`
     },
     groupAriaUngrouped: 'Bildu saioak lanlekuaren arabera',
     showProjects: 'ErakutsiAldizkarrak',
@@ -1912,19 +1975,19 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       ownedByProfile: profile => `Profila: ${profile}`,
       untitledChat: id => `Txat ${id}`,
       ageHour: 'o',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Gaur goiz',
       yesterday: 'Atzo',
       thisWeek: 'Aste honetan lehenago',
       lastWeek: 'Joan den astea',
-      thisMonth: 'Hilabete honetan lehenago',
+      thisMonth: 'Hilabete honetan lehenago'
     },
     noMatch: query => `Ez dagoenik “${query}”rekin bat egiten duten saioik.`,
     newSessionIn: label => `Saio berria ${label}-(r)an`,
     showMoreIn: (count, label) => `Erakutsi ${count} gehiago ${label}-(r)an`,
-    loadCount: step => `Kargatu ${step} gehiago`,
+    loadCount: step => `Kargatu ${step} gehiago`
   },
   composer: {
     message: 'Mezuak',
@@ -1965,7 +2028,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       '/resume': 'aurreko saio bat berresumatzea',
       '/details': 'transkribiptaren xehetasun maila kontrolatzea',
       '/copy': 'hautapena edo azken laguntzaile mezua kopiatzea',
-      '/quit': 'OpenAmer-etik irtzea',
+      '/quit': 'OpenAmer-etik irtzea'
     },
     hotkeyDescs: {
       'composer.mention': 'fitxategi, karpeta, URL eta git erreferentziak',
@@ -1975,7 +2038,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       'composer.sendQueued': 'bidaldu hurrengo zerezpila',
       'keybinds.openPanel': 'klavieruko laster-tekla guztiak',
       'composer.cancel': 'itxi pop-upa · utzi exekuzioa',
-      'composer.history': 'txandertu pop-upa / historikoa',
+      'composer.history': 'txandertu pop-upa / historikoa'
     },
     attachUrlTitle: 'Gehitu URL bat',
     attachUrlDesc: 'OpenAmer orriala jaso eta testuinguru gisa txertatuko du bidalaldi honetarako.',
@@ -1993,7 +2056,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     queueResume: 'Jarraitu',
     queueResumeTip: 'Gelditu bidez pausatuta — jarraitu zerezpilen bidaltzea',
     queueStuckTitle: 'Mezua pilan utzi da, bidal gabe',
-    queueStuckBody: 'Pilako txanda batek bidaltzen huts egin zuen. Hain gabe dago oraindik pilan — berriro bidali saiatu.',
+    queueStuckBody:
+      'Pilako txanda batek bidaltzen huts egin zuen. Hain gabe dago oraindik pilan — berriro bidali saiatu.',
     previewUnavailable: 'Ezin izan da aurreikusia lortu',
     dictating: 'Diktatzen',
     preparingAudio: 'Audioa prestatzen',
@@ -2019,37 +2083,37 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       codeReview: {
         label: 'Kode berrikusia',
         description: 'Aztertu uneko aldaketa, regressioak, bazter utzitako kasuak eta falta dauden probak bilatuz.',
-        text: 'Mesedez, aztertu hau akatsei, regressioei eta falta dauden probei begiratzeko.',
+        text: 'Mesedez, aztertu hau akatsei, regressioei eta falta dauden probei begiratzeko.'
       },
       implementationPlan: {
         label: 'Inplementazio-plana',
         description: 'Eman ikerpe bat kodea aldatu baino lehen, diff-a zehatza izan dadin.',
-        text: 'Mesedez, egin inplementazio-plan labur bat kodea aldatu baino lehen.',
+        text: 'Mesedez, egin inplementazio-plan labur bat kodea aldatu baino lehen.'
       },
       explainThis: {
         label: 'Azaldu hau',
         description: 'Azaldu hautatutako kodea nola funtzionatzen duen eta estekutu zutazko fitxategietara.',
-        text: 'Mesedez, azaldu nola funtzionatzen duen eta erakutsi zutazko fitxategiak.',
-      },
+        text: 'Mesedez, azaldu nola funtzionatzen duen eta erakutsi zutazko fitxategiak.'
+      }
     },
     wakingProfile: profile => `Esnatzen ari da ${profile}…`,
     newSessionPlaceholders: [
       'Zer eraikitzen ari gara?',
       'Eman OpenAmer-ri zeregin bat',
-      "Zein da zure buruan?",
+      'Zein da zure buruan?',
       'Deskribatu zer behar duzun',
       'Zer konpontu behar dugu?',
       'Galdetu edozerra',
-      'Hasi helburu batekin',
+      'Hasi helburu batekin'
     ],
     followUpPlaceholders: [
       'Bidali jarraipen bat',
       'Gehitu testuinguru gehiago',
       'Hobetu eskaera',
-      "Zein da hurrengoa?",
+      'Zein da hurrengoa?',
       'Mantendu jarraitu',
       'Bultzatu gehiago',
-      'Doitu edo jarraitu',
+      'Doitu edo jarraitu'
     ],
     queued: count => `${count} Ilaran`,
     queuedPaused: count => `${count} Ilaran — pausatuta`,
@@ -2057,7 +2121,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     previewLabel: label => `Aurreikusi ${label}`,
     couldNotPreview: label => `Ezin izan da ${label} aurreikustea`,
     removeAttachment: label => `Kendu ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'AgentEAK',
@@ -2080,8 +2144,10 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       viewAsList: 'Zerrenda gisa ikusi',
       revert: 'Berrezteratzea',
       revertAll: 'Berrezteratu guztiak',
-      revertConfirm: 'Fitxategi honetako aldaketak baztutu eta commit-eko egoerara berrezteratzea? Hori ezin da desegin.',
-      revertAllConfirm: 'Aldaketa guztiak baztutu eta fitxategiak commit-eko egoerara berrezteratzea? Hori ezin da desegin.',
+      revertConfirm:
+        'Fitxategi honetako aldaketak baztutu eta commit-eko egoerara berrezteratzea? Hori ezin da desegin.',
+      revertAllConfirm:
+        'Aldaketa guztiak baztutu eta fitxategiak commit-eko egoerara berrezteratzea? Hori ezin da desegin.',
       staged: 'Gordailuan',
       noChanges: 'Aldaketak ez daude',
       notRepo: 'Ez da git repositoriorik',
@@ -2097,7 +2163,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       openPr: 'Ireki PR-a',
       ghMissing: 'Instalatu GitHub CLI-a (gh) eta hasi saioan PR-ak irekeko',
       agentShip: 'Eskatu OpenAmer-ek PR-a ireki',
-      agentShipPrompt: 'Berrikusi uneko aldaketak, egin commit-a conventional-commit mezu argi batekin, push adarra eta ireki pull request-a.',
+      agentShipPrompt:
+        'Berrikusi uneko aldaketak, egin commit-a conventional-commit mezu argi batekin, push adarra eta ireki pull request-a.',
       newBranch: 'Adar berria',
       worktrees: 'Lan zuhaitzak',
       changed: count => `${count} aldatuta`,
@@ -2106,12 +2173,12 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       commitPlaceholder: 'Mezua (⌘↵ bidaltzeko)',
       branchOffFrom: base => `Adar berria ${base}-(r)en`,
       switchTo: branch => `Pasatu ${branch}-(r)a`,
-      switchFailed: branch => `Ezin izan da ${branch}-(r)a aldatu`,
+      switchFailed: branch => `Ezin izan da ${branch}-(r)a aldatu`
     },
     background: count => `${count} Atzeko planoa`,
     subagents: count => `${count} Azpiagentea${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Zereginak ${done}/${total}`,
-    exit: code => `irteera ${code}`,
+    exit: code => `irteera ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2193,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       done: 'Eguneraketa osatuta',
       manual: 'Eguneratu terminaletik',
       guiSkew: 'Eguneratu mahai aplikazioa',
-      error: 'Eguneraketa pausatuta',
+      error: 'Eguneraketa pausatuta'
     },
     checking: 'Eguneraketak bilatzen…',
     checkFailedTitle: 'Eguneraketak ezin izan ditu egiaztatu',
@@ -2141,20 +2208,26 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     availableBody: 'OpenAmer-en bertsio berria instalatzeko prest dago.',
     availableTitleBackend: 'Atzealdeko zerbitzuaren eguneraketa eskuragarri',
     availableBodyBackend: 'Konektatutako OpenAmer atzealdeko zerbitzuaren bertsio berri bat instalatzeko prest dago.',
-    availableBodyNoChangelog: 'Bertsio berri bat instalatzeko prest dago. Bertsio oharrak ez daude eskuragarri instalazio mota honetarako.',
+    availableBodyNoChangelog:
+      'Bertsio berri bat instalatzeko prest dago. Bertsio oharrak ez daude eskuragarri instalazio mota honetarako.',
     updateNow: 'Eguneratu orain',
     maybeLater: 'Agian geroago',
     manualTitle: 'Eguneratu terminaletik',
-    manualBody: 'OpenAmer komando lerotik instalatu zenuen, beraz eguneraketak ere han egiten dira. Itsasi hau terminalera:',
+    manualBody:
+      'OpenAmer komando lerotik instalatu zenuen, beraz eguneraketak ere han egiten dira. Itsasi hau terminalera:',
     manualPickedUp: 'OpenAmer-ek bertsio berria hurrengo aldiz abiaraztean hartu egingo du.',
     guiSkewTitle: 'Eguneratu mahai aplikazioa',
-    guiSkewBody: 'Atzealdekoa eguneratu zen, baina mahai aplikazioaren paketea ez zen aldatu. Eguneratu edo berreinstalatu OpenAmer mahai aplikazioa (zure AppImage / .deb / .rpm) bat datorrekin.',
+    guiSkewBody:
+      'Atzealdekoa eguneratu zen, baina mahai aplikazioaren paketea ez zen aldatu. Eguneratu edo berreinstalatu OpenAmer mahai aplikazioa (zure AppImage / .deb / .rpm) bat datorrekin.',
     copy: 'Kopiatu',
     copied: 'Kopiatuta',
     done: 'Eginda',
-    applyingBody: 'OpenAmer eguneratzaileak bere leiho batean hartzen du esku eta amaitzean OpenAmer automatikoki irekitzen du. Mesedez, ez ireki OpenAmer berriro eguneratzen ari den bitartean.',
-    applyingBodyBackend: 'Atzealdeko zerbitzariak eguneraket aplikatzen du eta berriderrituko da. OpenAmer automatikoki berriro konektatuko da itzuli duenean.',
-    applyingClose: 'Leiho hau itxiko da eguneraketak funtzionatzen duen bitartean, eta gero OpenAmer bere kabiez irekitako da.',
+    applyingBody:
+      'OpenAmer eguneratzaileak bere leiho batean hartzen du esku eta amaitzean OpenAmer automatikoki irekitzen du. Mesedez, ez ireki OpenAmer berriro eguneratzen ari den bitartean.',
+    applyingBodyBackend:
+      'Atzealdeko zerbitzariak eguneraket aplikatzen du eta berriderrituko da. OpenAmer automatikoki berriro konektatuko da itzuli duenean.',
+    applyingClose:
+      'Leiho hau itxiko da eguneraketak funtzionatzen duen bitartean, eta gero OpenAmer bere kabiez irekitako da.',
     errorTitle: 'Eguneraketa amaitu gabe',
     errorBody: 'Lasai — ezer galdu ez zen. Orain berriro saia zaitezke.',
     notNow: 'Oraind ez',
@@ -2164,13 +2237,15 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       restarting: 'Atzealdekoa berriderritzen eguneraketak kargatzeko…',
       notAvailable: 'Eguneraketa ez dago eskuragarri atzealdeko zerbitzari honek.',
       failed: 'Atzealdeko zerbitzariaren eguneraketa huts egin du.',
-      noReturn: 'Zerbitzariak ez du berriro linean etorri. Eguneraketa ez da osatu dugunean — egiaztatu zerbitzariaren ostalaria.',
+      noReturn:
+        'Zerbitzariak ez du berriro linean etorri. Eguneraketa ez da osatu dugunean — egiaztatu zerbitzariaren ostalaria.'
     },
     appErrors: {
-      updateLocked: 'Eguneraketa bertan behera utzi da: beste OpenAmer leiho batek edo `openamer` terminal bat exekutatzen ari denak instalazio hau irekita mantentz du. Itxi eta saiatu berriro.',
-      updateFailed: 'Eguneraketa ez da osatu. Ez kezkatu — ezer ez da galdu. Orain saiatu zaitezke berriro.',
+      updateLocked:
+        'Eguneraketa bertan behera utzi da: beste OpenAmer leiho batek edo `openamer` terminal bat exekutatzen ari denak instalazio hau irekita mantentz du. Itxi eta saiatu berriro.',
+      updateFailed: 'Eguneraketa ez da osatu. Ez kezkatu — ezer ez da galdu. Orain saiatu zaitezke berriro.'
     },
-    moreChanges: count => `+ ${count} aldaketa${count === 1 ? '' : 's'} gehiago barne.`,
+    moreChanges: count => `+ ${count} aldaketa${count === 1 ? '' : 's'} gehiago barne.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2253,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       running: 'Instalatzen',
       succeeded: 'Eginda',
       skipped: 'Saltatuta',
-      failed: 'Hutsik',
+      failed: 'Hutsik'
     },
     oneTimeTitle: 'OpenAmer-ek behin-behineko instalazioa behar du',
     installCommand: 'Instalatzeko komandoa',
@@ -2187,15 +2262,18 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     installTo: 'Honetan instalatuko da',
     retryAfterRun: 'Exekutatu dut -- berriro saiatu',
     setupChoiceTitle: 'OpenAmer Desktop-a konfiguratu',
-    setupChoiceDesc: 'Konektatu aplikazio hau jada exekutatzen ari zaren OpenAmer gateway batera, edo instalatu OpenAmer lokalki ordenagailu honetan.',
+    setupChoiceDesc:
+      'Konektatu aplikazio hau jada exekutatzen ari zaren OpenAmer gateway batera, edo instalatu OpenAmer lokalki ordenagailu honetan.',
     connectExistingTitle: 'Konektatu existitzen den OpenAmer-era',
     connectExistingShort: 'Existitzen denarekin konektatu',
-    connectExistingDesc: 'Erabili saio-token baten edo browserreko saioaren bidezko urruneko zerbitzari bat. Ez da lokaleko instalaziorik hasiko.',
+    connectExistingDesc:
+      'Erabili saio-token baten edo browserreko saioaren bidezko urruneko zerbitzari bat. Ez da lokaleko instalaziorik hasiko.',
     installLocalTitle: 'Instalatu OpenAmer lokalki',
     installLocalDesc: 'Download OpenAmer, sortu bere Python ingurunea eta exekutatu backend-a ordenagailu honetan.',
     localStartUnavailable: 'Hasiera ez izan daiteke abian. Berrezarri OpenAmer Desktop eta saiatu berriro.',
     remoteSetupTitle: 'Konektatu existitzen den OpenAmer-era',
-    remoteSetupDesc: 'Sartu zure gateway URL-a. OpenAmer Desktop-ek detektatuko du token edo browserreko saioa behar duen.',
+    remoteSetupDesc:
+      'Sartu zure gateway URL-a. OpenAmer Desktop-ek detektatuko du token edo browserreko saioa behar duen.',
     remoteUrlTitle: 'Gateway URL-a',
     remoteUrlDesc: 'Erabili OpenAmer gatewayaren oinarrizko URL-a, barneko sarbidean https:// barne.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2219,8 +2297,10 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     failedTitle: 'Instalazioak huts egin du',
     settingUpTitle: 'OpenAmer Agentea konfiguratzen',
     finishingTitle: 'Amaintzen',
-    failedDesc: 'Instalazioaren urratsetako bat huts egin du. Windows-en, beste OpenAmer CLI edo mahaigaineko instantzia bat exekutatzen ari bada gertatu daiteke. Gelditzu exekutatzen ari diren OpenAmer instantziak, eta saiatu berriro. Ikusi detaileak behean edo mahaigaineko log-ean transkripzio osoa.',
-    activeDesc: 'Hau behin beteko konfigurazioa da. OpenAmer instalatzailea dependentziak deskargatzen eta zure makinan konfiguratzen ari da. Hurrengo abiaraztek ezabatuko du urrats hau.',
+    failedDesc:
+      'Instalazioaren urratsetako bat huts egin du. Windows-en, beste OpenAmer CLI edo mahaigaineko instantzia bat exekutatzen ari bada gertatu daiteke. Gelditzu exekutatzen ari diren OpenAmer instantziak, eta saiatu berriro. Ikusi detaileak behean edo mahaigaineko log-ean transkripzio osoa.',
+    activeDesc:
+      'Hau behin beteko konfigurazioa da. OpenAmer instalatzailea dependentziak deskargatzen eta zure makinan konfiguratzen ari da. Hurrengo abiaraztek ezabatuko du urrats hau.',
     fetchingManifest: 'Instalatzailearen manifestua jasotzen...',
     error: 'Errorea',
     hideOutput: 'Ezkutatu instalatzailearen irteera',
@@ -2232,13 +2312,14 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     copiedOutput: 'Kopiatuta!',
     copyOutput: 'Kopiatu irteera',
     reloadRetry: 'Kargatu berriro eta saiatu berriro',
-    unsupportedDesc: platform => `Lehen abiarazteko instalazio automatikoa ez dago erabilgarri ${platform} plataforman oraindik. Ireki terminala eta exekutatu beheko komandoa; ondoren, abiarazi berriro aplikazio hau. Hurrengo abiarazteetan urrats hau saltatuko da.`,
+    unsupportedDesc: platform =>
+      `Lehen abiarazteko instalazio automatikoa ez dago erabilgarri ${platform} plataforman oraindik. Ireki terminala eta exekutatu beheko komandoa; ondoren, abiarazi berriro aplikazio hau. Hurrengo abiarazteetan urrats hau saltatuko da.`,
     authNeedsOauth: provider => `Hasi saioa ${provider} zerbitzuan atebide hau probatu aurretik.`,
     signInWith: provider => `Hasi saioa ${provider} zerbitzuan`,
     testSucceeded: (baseUrl, version) => `${baseUrl}${version ? ` (${version})` : ''} zerbitzura konektatuta.`,
     progress: (completed, total) => `${total} urratsetatik ${completed} osatuta`,
     currentStage: stage => ` -- orain: ${stage}`,
-    lines: count => `${count} lerro${count === 1 ? '' : 's'}`,
+    lines: count => `${count} lerro${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Ezartzeko OpenAmer Agent-ekin konfiguratuko dugu',
@@ -2258,28 +2339,29 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     apiKeyOptions: {
       fireworks: {
         short: 'zuzeneko modelo APIa',
-        description: 'Fireworks AI-etan ostatutako modeloekan zuzeneko sarbidea.',
+        description: 'Fireworks AI-etan ostatutako modeloekan zuzeneko sarbidea.'
       },
       openrouter: {
         short: 'gako bat, asko modelo',
-        description: 'Ehun modelo ostatzen ditu gako bakarrean. Aukera ona instalazio berrietarako.',
+        description: 'Ehun modelo ostatzen ditu gako bakarrean. Aukera ona instalazio berrietarako.'
       },
       openai: {
         short: 'GPT mailako modeloak',
-        description: 'OpenAI modeloekan zuzeneko sarbidea.',
+        description: 'OpenAI modeloekan zuzeneko sarbidea.'
       },
       gemini: {
         short: 'Gemini modeloak',
-        description: 'Google Gemini modeletara zuzeneko sarbidea.',
+        description: 'Google Gemini modeletara zuzeneko sarbidea.'
       },
       xai: {
         short: 'Grok modeloak',
-        description: 'xAI Grok modeletara zuzeneko sarbidea.',
+        description: 'xAI Grok modeletara zuzeneko sarbidea.'
       },
       local: {
         short: 'Ostatuan ohiratuta',
-        description: 'Eman OpenAmer-ri tokiko edo ostatuan ohiratutako OpenAI bateragarriko endpoint bat (vLLM, llama.cpp, Ollama, etc.).',
-      },
+        description:
+          'Eman OpenAmer-ri tokiko edo ostatuan ohiratutako OpenAI bateragarriko endpoint bat (vLLM, llama.cpp, Ollama, etc.).'
+      }
     },
     backToSignIn: 'Itzuli saio-hasierara',
     getKey: 'Lortu gakoa',
@@ -2292,7 +2374,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     flowSubtitles: {
       pkce: 'Irekitzen du zure nabigadorea saioa hasteko, eta gero hemen jarraitzen du',
       device_code: 'Irekitzen du zure nabigadorean egiaztapen-orri bat — OpenAmer automatikoki konektatzen da',
-      external: 'Saioa hasi behin zure terminalean, eta itzuli txatetara',
+      external: 'Saioa hasi behin zure terminalean, eta itzuli txatetara'
     },
     signInFailed: 'Saio-hasteak huts egin du. Saiatu berriro.',
     pickDifferentProvider: 'Aukeratu beste hornitzaile bat',
@@ -2316,12 +2398,14 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     connectedPicking: provider => `${provider} konektatuta. Eredu lehenetsia hautatzen...`,
     signInWith: provider => `Hasi saioa ${provider} bidez`,
     openedBrowser: provider => `${provider} ireki dugu zure arakatzailean.`,
-    autoBrowser: provider => `${provider} ireki dugu zure arakatzailean. Eman baimena OpenAmer-i bertan eta automatikoki konektatuko zara; ez duzu ezer kopiatu edo itsatsi behar.`,
-    externalPending: provider => `${provider} zerbitzuak bere CLI propioa erabiltzen du saioa hasteko. Exekutatu komando hau terminal batean, itzuli eta hautatu "Saioa hasi dut":`,
+    autoBrowser: provider =>
+      `${provider} ireki dugu zure arakatzailean. Eman baimena OpenAmer-i bertan eta automatikoki konektatuko zara; ez duzu ezer kopiatu edo itsatsi behar.`,
+    externalPending: provider =>
+      `${provider} zerbitzuak bere CLI propioa erabiltzen du saioa hasteko. Exekutatu komando hau terminal batean, itzuli eta hautatu "Saioa hasi dut":`,
     deviceCodeOpened: provider => `${provider} ireki dugu zure arakatzailean. Sartu kode hau bertan:`,
     pro: 'Profesionala',
     price: (input, output) => `${input} sarreran / ${output} irteeran Mtok bakoitzeko`,
-    docs: provider => `${provider} dokumentazioa`,
+    docs: provider => `${provider} dokumentazioa`
   },
   modelPicker: {
     title: 'Aldatu modeloa',
@@ -2337,13 +2421,13 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     freeTier: 'Doako maila',
     priceTitle: 'Sarrera/Irteera prezioa milioi tokeneko',
     wasPrice: 'zen',
-    pro: 'Profesionala',
+    pro: 'Profesionala'
   },
   modelVisibility: {
     title: 'Modeloak',
     search: 'Bilatu modeloak',
     noAuthenticatedProviders: 'Ez dago autentikaturako hornitzailerik.',
-    addProvider: 'Gehitu hornitzailea…',
+    addProvider: 'Gehitu hornitzailea…'
   },
   shell: {
     windowControls: 'Leihoen kontrolak',
@@ -2354,7 +2438,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       noModels: 'Ez da modelo aurkiturik',
       editModels: 'Editatu modeloak…',
       refreshModels: 'Berritsi modeloak',
-      fast: 'Bizkorra',
+      fast: 'Bizkorra'
     },
     modelOptions: {
       noOptions: 'Modelorentzik aukerarik ez',
@@ -2370,7 +2454,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       max: 'Gehienezkoa',
       updateFailed: 'Ezin izan da modelaren aukera eguneratu',
       fastFailed: 'Ezin izan da azkarreko modua eguneratu',
-      ultra: 'Gorena',
+      ultra: 'Gorena'
     },
     gatewayMenu: {
       gateway: 'Ate-irarbidea',
@@ -2385,7 +2469,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       recentActivity: 'Azken jarduera',
       viewAllLogs: 'Ikusi erregistro guztiak →',
       messagingPlatforms: 'Mensajezko plataformak',
-      connection: label => `Konexioa: ${label}`,
+      connection: label => `Konexioa: ${label}`
     },
     approvalMode: {
       title: 'Onarpen modua',
@@ -2395,7 +2479,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       smartDescription: 'Automatikoki ebaluatu eta beharrezkoa denean galdetu',
       off: 'Itzalita',
       offDescription: 'Onarpen-eskaerak gabe exekutatu',
-      ariaLabel: mode => `Onarpen modua: ${mode}`,
+      ariaLabel: mode => `Onarpen modua: ${mode}`
     },
     statusbar: {
       unknown: 'Ezezaguna',
@@ -2434,13 +2518,13 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
           subagent_definitions: 'Azpiordeko definizioak',
           system_prompt: 'Sistemaren prompt',
           tool_definitions: 'Tresnen definizioak',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Oraindik ez dago kontextuko daturik',
         loading: 'Xehapena kargatzen…',
         title: 'Kontextuaren erabilera',
         percentFull: percent => `${percent}% beteta`,
-        tokenSummary: (used, max) => `${used} / ${max} token`,
+        tokenSummary: (used, max) => `${used} / ${max} token`
       },
       openContextUsage: 'Ireki kontextuaren erabilera-xehapena',
       session: 'Saioa',
@@ -2467,11 +2551,13 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       failed: count => `${count} huts eginda`,
       running: count => `${count} martxan`,
       cron: 'Programazioa',
-      yoloOn: 'YOLO aktibatuta — komando arriskutsuak automatikoki onartzen dira. Egin klik desaktibatzeko. Maius+klik eginez, globalki aktibatu edo desaktibatzen da.',
-      yoloOff: 'YOLO desaktibatuta — egin klik komando arriskutsuak automatikoki onartzeko. Maius+klik eginez, globalki aktibatu edo desaktibatzen da.',
+      yoloOn:
+        'YOLO aktibatuta — komando arriskutsuak automatikoki onartzen dira. Egin klik desaktibatzeko. Maius+klik eginez, globalki aktibatu edo desaktibatzen da.',
+      yoloOff:
+        'YOLO desaktibatuta — egin klik komando arriskutsuak automatikoki onartzeko. Maius+klik eginez, globalki aktibatu edo desaktibatzen da.',
       modelTitle: (provider, model) => `Eredua · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Eskuin barra',
@@ -2507,7 +2593,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     addToChat: 'Txatetara gehitu',
     folderTip: cwd => `${cwd} — egin klik karpeta aldatzeko`,
     couldNotPreview: path => `Ezin izan da ${path} aurreikusi`,
-    unreadableBody: error => `Ezin izan da karpeta hau irakurri (${error}).`,
+    unreadableBody: error => `Ezin izan da karpeta hau irakurri (${error}).`
   },
   preview: {
     tab: 'Aurreikusi',
@@ -2535,7 +2621,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     editing: 'Editatzen',
     unsavedChanges: 'Gorde gabeko aldaketak',
     diskChangedTitle: 'Fitxategia diskoan aldatu da',
-    diskChangedBody: 'Fitxategi hau aldatu da ireki zinutetik. Zure bertsioare gainidatzi nahi duzu, edo zure aldaketak baztutu eta berriro kargatu?',
+    diskChangedBody:
+      'Fitxategi hau aldatu da ireki zinutetik. Zure bertsioare gainidatzi nahi duzu, edo zure aldaketak baztutu eta berriro kargatu?',
     overwrite: 'Gainez idatzi',
     discardReload: 'Uko egin eta berriz kargatu',
     console: {
@@ -2556,7 +2643,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       sentTitle: 'Txatera bidalita',
       messages: count => `${count} kontsola-mezu`,
       selected: count => `${count} hautatuta`,
-      sentMessage: count => `${count} erregistro-sarrera${count === 1 ? 'y' : 'ies'} gehitu dira idazketa-eremura`,
+      sentMessage: count => `${count} erregistro-sarrera${count === 1 ? 'y' : 'ies'} gehitu dira idazketa-eremura`
     },
     web: {
       appFailedToBoot: 'Aurreikuskizaren aplikazioak ezin izan du abiarazi',
@@ -2577,27 +2664,31 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       reloadingNow: 'Aurreikuskizuna orain birkargatzen.',
       restartFailedTitle: 'Aurreikuskizunaren berrrestartatzea hutsun egin du',
       restartFailedMessage: 'OpenAmer-ek ezin izan du zerbitzaria berrrestartatu.',
-      stillWorking: 'OpenAmer oraindik lanean dago, baina berrrestartatzearen emaitzarik ez da oraindik iritsi. Zerbitzariaren komandoa aurreko planan egiten egon daiteke.',
+      stillWorking:
+        'OpenAmer oraindik lanean dago, baina berrrestartatzearen emaitzarik ez da oraindik iritsi. Zerbitzariaren komandoa aurreko planan egiten egon daiteke.',
       workspaceReloading: 'Laneko area aldatu da, aurreikuskizuna birkargatzen',
-      moduleMimeDescription: 'Moduluen script-ak MIME mota okerreaz zerbitzatu dira. Honek normalean esan nahi duen estatikako fitxategi zerbitzari bat Vite/React aplikazioa zerbitzatu dela, ez ordenuko garapen zerbitzaria.',
+      moduleMimeDescription:
+        'Moduluen script-ak MIME mota okerreaz zerbitzatu dira. Honek normalean esan nahi duen estatikako fitxategi zerbitzari bat Vite/React aplikazioa zerbitzatu dela, ez ordenuko garapen zerbitzaria.',
       unreachableDescription: 'Aurreikuskizuneko ordua ezin izan da hartu.',
       fallbackTitle: 'Aurreikuskizuna',
       lookingRestart: taskId => `OpenAmer berrabiarazteko aurrebista-zerbitzari baten bila dabil (${taskId})`,
       startRestartFailed: message => `Ezin izan da zerbitzariaren berrabiaraztea hasi: ${message}`,
-      finishedRestarting: message => `OpenAmer-ek aurrebista-zerbitzaria berrabiarazi du${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer-ek aurrebista-zerbitzaria berrabiarazi du${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Zerbitzaria berrabiarazteak huts egin du: ${message}`,
       fileChanged: url => `Fitxategia aldatu da, aurrebista birkargatzen: ${url}`,
       filesChanged: (count, url) => `${count} fitxategi-aldaketa, aurrebista birkargatzen: ${url}`,
       watchFailed: message => `Ezin izan da aurrebista-fitxategia monitorizatu: ${message}`,
       loadFailedConsole: (code, message) => `Kargatzeak huts egin du${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Ireki ${url}`,
+      openTarget: url => `Ireki ${url}`
     },
     closeTab: label => `Itxi ${label}`,
     linkHint: '⌘/Ctrl-klik aurrebista-panela ikusteko',
     binaryBody: label => `${label} aurreikustean testu irakurgaitza ager daiteke.`,
-    largeBody: (label, size) => `${label} fitxategiak ${size} ditu. OpenAmer-ek lehen 512 KB-ak soilik erakutsiko ditu.`,
+    largeBody: (label, size) =>
+      `${label} fitxategiak ${size} ditu. OpenAmer-ek lehen 512 KB-ak soilik erakutsiko ditu.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} testuinguru gisa erants daiteke oraindik.`,
-    saveFailed: message => `Ezin izan da gorde: ${message}`,
+    saveFailed: message => `Ezin izan da gorde: ${message}`
   },
   zones: {
     showHeader: 'Erakutsi gobalaria',
@@ -2605,7 +2696,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     minimize: 'Minimizatu',
     restore: 'Lehenera itzuli',
     closeRunningTitle: 'Itxi une honetan exekutatzen ari den fitxa?',
-    closeRunningBody: 'Txat honek oraindik lan egiten du (edo zure erantzunaren zain dago). Fitxa itxita, ezkutatuko da — saioak bere aurrerapena gorde eta aldeko barran berri ireki dezakezu.',
+    closeRunningBody:
+      'Txat honek oraindik lan egiten du (edo zure erantzunaren zain dago). Fitxa itxita, ezkutatuko da — saioak bere aurrerapena gorde eta aldeko barran berri ireki dezakezu.',
     closeRunningConfirm: 'Itxi fitxa',
     closeOthers: 'Itxi besteak',
     closeToRight: 'Itxi eskuinaldekoak',
@@ -2642,7 +2734,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     mergeZones: count => `Batu ${count} eremu`,
     customZoneName: count => `${count} eremuko pertsonalizatua`,
     layoutNamePlaceholder: fallback => `Diseinuaren izena (${fallback})`,
-    zoneCount: count => `${count} eremu`,
+    zoneCount: count => `${count} eremu`
   },
   assistant: {
     thread: {
@@ -2667,7 +2759,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       restoreCheckpoint: 'Egonlekua berrezarri',
       restoreFromHere: 'Egonlekua berrezarri — berrerri emanaldi honetatik',
       restoreTitle: 'Egonleku honetara berrezarri?',
-      restoreBody: 'Emanaldi honen ondoren dagoen guztia ezabatzen da elkarrizketatik, eta emanaldiak hemendik berriro hasten dira.',
+      restoreBody:
+        'Emanaldi honen ondoren dagoen guztia ezabatzen da elkarrizketatik, eta emanaldiak hemendik berriro hasten dira.',
       restoreConfirm: 'Berrezarri eta berrerri',
       restoreNext: 'Hurrengo egonlekua berrezarri',
       goForward: 'Joan aurrera',
@@ -2678,7 +2771,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Gaur, ${time}`,
-      yesterday: time => `Atzo, ${time}`,
+      yesterday: time => `Atzo, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gatewaya ez dago konektatuta',
@@ -2692,7 +2785,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       reject: 'Ukatu',
       alwaysTitle: 'Komando hau beti baimendu?',
       alwaysAllow: 'Bai, beti baimendu',
-      alwaysDescription: pattern => `Honek «${pattern}» eredua zure baimen-zerrenda iraunkorrean gehitzen du (~/.openamer/config.yaml). OpenAmer-ek ez du berriro galdetuko honelako komandoei buruz, ez saio honetan, ez etorkizunekoetan.`,
+      alwaysDescription: pattern =>
+        `Honek «${pattern}» eredua zure baimen-zerrenda iraunkorrean gehitzen du (~/.openamer/config.yaml). OpenAmer-ek ez du berriro galdetuko honelako komandoei buruz, ez saio honetan, ez etorkizunekoetan.`
     },
     clarify: {
       notReady: 'Argitzeko eskaera oraindik ez dago prest',
@@ -2706,7 +2800,7 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       continueLabel: 'Jarri',
       lateAnswerTip: 'Idatzi erantzun hau jarraipen mezu gisa',
       lateAnswerHint: 'Promptu hau ez dago gehiago zainik. Aukeratu opzio bat erantzuna jarraipen mezu gisa idatzeko.',
-      lateAnswer: (question, choice) => `Gaia: «${question}» — nire erantzuna: ${choice}`,
+      lateAnswer: (question, choice) => `Gaia: «${question}» — nire erantzuna: ${choice}`
     },
     tool: {
       code: 'Kode',
@@ -2740,123 +2834,123 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
         ran: 'Exekutatu',
         running: 'Exekutatzen',
         ranCode: 'Kodea exekutatu',
-        runningCode: 'Scripta idaztea',
+        runningCode: 'Scripta idaztea'
       },
       prefixes: {
         browser: 'Nabigadorea',
-        web: 'Weba',
+        web: 'Weba'
       },
       titles: {
         browser_click: {
           done: 'Orri elementua klikatu',
           pending: 'Orri elementua klikatzen',
-          pendingAction: 'Klikatzen',
+          pendingAction: 'Klikatzen'
         },
         browser_fill: {
           done: 'Formulario eremua bete du',
           pending: 'Formulario eremua betetzen',
-          pendingAction: 'Betetzen',
+          pendingAction: 'Betetzen'
         },
         browser_navigate: {
           done: 'Orria irekita',
           pending: 'Orria irekitzen',
-          pendingAction: 'Irekitzen',
+          pendingAction: 'Irekitzen'
         },
         browser_snapshot: {
           done: 'Orriaren egoera-kaptura egin da',
           pending: 'Orriaren egoera-kaptura egiten',
-          pendingAction: 'Kapturatzen',
+          pendingAction: 'Kapturatzen'
         },
         browser_take_screenshot: {
           done: 'Pantaila-argazkia egin da',
           pending: 'Pantaila-argazkia egiten',
-          pendingAction: 'Kapturatzen',
+          pendingAction: 'Kapturatzen'
         },
         browser_type: {
           done: 'Orrian idatzi da',
           pending: 'Orrian idazten',
-          pendingAction: 'Idazten',
+          pendingAction: 'Idazten'
         },
         clarify: {
           done: 'Galdera egin da',
           pending: 'Galdera egiten',
-          pendingAction: 'Galdetzen',
+          pendingAction: 'Galdetzen'
         },
         cronjob: {
           done: 'Cron lan',
           pending: 'Cron lanaren programazioa',
-          pendingAction: 'Programazioa',
+          pendingAction: 'Programazioa'
         },
         edit_file: {
           done: 'Editatutako fitxategia',
           pending: 'Fitxategia editatzen',
-          pendingAction: 'Editatzen',
+          pendingAction: 'Editatzen'
         },
         execute_code: {
           done: 'Kodea exekutatu',
           pending: 'Script egitea',
-          pendingAction: 'Script egitea',
+          pendingAction: 'Script egitea'
         },
         image_generate: {
           done: 'Sortutako irudia',
           pending: 'Irudia sortzen',
-          pendingAction: 'Sortzen',
+          pendingAction: 'Sortzen'
         },
         list_files: {
           done: 'Fitxategiak zerrendatu',
           pending: 'Fitxategiak zerrendatzen',
-          pendingAction: 'Zerrendatzen',
+          pendingAction: 'Zerrendatzen'
         },
         patch: {
           done: 'Aldatutako fitxategia',
           pending: 'Fitxategia aldatzen',
-          pendingAction: 'Aldatzen',
+          pendingAction: 'Aldatzen'
         },
         read_file: {
           done: 'Fitxategia irakurtu',
           pending: 'Fitxategia irakurtzen',
-          pendingAction: 'Irakurtzen',
+          pendingAction: 'Irakurtzen'
         },
         search_files: {
           done: 'Fitxategiak bilatu',
           pending: 'Fitxategiak bilatzen',
-          pendingAction: 'Bilatzen',
+          pendingAction: 'Bilatzen'
         },
         session_search_recall: {
           done: 'Saio historia bilatu',
           pending: 'Saio historia bilatzen',
-          pendingAction: 'Bilatzen',
+          pendingAction: 'Bilatzen'
         },
         terminal: {
           done: 'Komandoa exekutatu',
           pending: 'Komandoa exekutatzen',
-          pendingAction: 'Exekutatzen',
+          pendingAction: 'Exekutatzen'
         },
         todo: {
           done: 'Zereginak eguneratu',
           pending: 'Zereginak eguneratzen',
-          pendingAction: 'Eguneratzen',
+          pendingAction: 'Eguneratzen'
         },
         vision_analyze: {
           done: 'Irudia aztertu',
           pending: 'Irudia aztertzen',
-          pendingAction: 'Aztertzen',
+          pendingAction: 'Aztertzen'
         },
         web_extract: {
           done: 'Web orria irakurtu',
           pending: 'Web orria irakurtzen',
-          pendingAction: 'Irakurtzen',
+          pendingAction: 'Irakurtzen'
         },
         web_search: {
           done: 'Web bilatu',
           pending: 'Web bilatzen',
-          pendingAction: 'Bilatzen',
+          pendingAction: 'Bilatzen'
         },
         write_file: {
           done: 'Editatutako fitxategia',
           pending: 'Fitxategia editatzen',
-          pendingAction: 'Editatzen',
-        },
+          pendingAction: 'Editatzen'
+        }
       },
       recoveredMany: count => `Huts egindako ${count} urratsen ondoren berreskuratuta`,
       failedMany: count => `${count} urratsek huts egin dute`,
@@ -2866,23 +2960,25 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `${prefix.toLowerCase()} ${action.toLowerCase()} exekutatzen`,
-        runningTool: action => `${action.toLowerCase()} exekutatzen`,
-      },
-    },
+        runningTool: action => `${action.toLowerCase()} exekutatzen`
+      }
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Renderizazio software aktiboa — urruneko pantaila detektatua (${reason}). GPU acceleration desaktibatuta dago flicker-ak saihesteko.`,
+    message: reason =>
+      `Renderizazio software aktiboa — urruneko pantaila detektatua (${reason}). GPU acceleration desaktibatuta dago flicker-ak saihesteko.`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer atea ez dago konektatuta',
     sudoSendFailed: 'Ezin izan da sudo pasahitza bidali',
     secretSendFailed: 'Ezin izan da sekretua bidali',
     sudoTitle: 'Administratzailearen pasahitza',
-    sudoDesc: 'OpenAmer-ek zure sudo pasahitza behar du pribilegiatutako komando bat exekutatzeko. Hori bakarrik zure agent lokala bidaltzen da.',
+    sudoDesc:
+      'OpenAmer-ek zure sudo pasahitza behar du pribilegiatutako komando bat exekutatzeko. Hori bakarrik zure agent lokala bidaltzen da.',
     sudoPlaceholder: 'sudo pasahitza',
     secretTitle: 'Sekretua behar da',
     secretDesc: 'OpenAmer-ek kredentzial bat behar du jarraitzeko.',
-    secretPlaceholder: 'sekretu balioa',
+    secretPlaceholder: 'sekretu balioa'
   },
   desktop: {
     audioReadFailed: 'Ezin izan da grabatutako audioa irakurri',
@@ -2899,7 +2995,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} saio honetarako`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ezin izan da YOLO txandakatu',
-    profileStatus: current => `Profila: ${current}. Erabili /profile <izena> edo "Saio berria" hautatzailea beste profil batean txat bat hasteko.`,
+    profileStatus: current =>
+      `Profila: ${current}. Erabili /profile <izena> edo "Saio berria" hautatzailea beste profil batean txat bat hasteko.`,
     unknownProfile: 'Profil ezezaguna',
     noProfileNamed: (target, available) => `Ez dago "${target}" izeneko profilik. Erabilgarri: ${available}`,
     newChatsProfile: name => `Txat berriek ${name} profila erabiliko dute.`,
@@ -2909,8 +3006,9 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     regenerateFailed: 'Ezin izan da berriro sortu',
     editFailed: 'Ezin izan da editatu',
     resumeFailed: 'Ezin izan da berrekin',
-    resumeStrandedTitle: "Ezin izan da saio hau kargatu",
-    resumeStrandedBody: 'Ezin izan da saio honekin konektatu, eta berriro saiatzeko ahalegin automatikoak agortu dira. Egiaztatu atebidea martxan dagoela, eta saiatu berriro.',
+    resumeStrandedTitle: 'Ezin izan da saio hau kargatu',
+    resumeStrandedBody:
+      'Ezin izan da saio honekin konektatu, eta berriro saiatzeko ahalegin automatikoak agortu dira. Egiaztatu atebidea martxan dagoela, eta saiatu berriro.',
     resumeRetry: 'Saiatu berriro',
     nothingToBranch: 'Ez dago adarkatzeko ezer',
     branchNeedsChat: 'Hasi txat bat edo berrekin lehendik dagoen bati adarkatu aurretik.',
@@ -2924,7 +3022,8 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
     archiveFailed: 'Ezin izan da artxibatu',
     cwdChangeFailed: 'Ezin izan da lan-direktorioa aldatu',
     cwdStagedTitle: 'Lan-direktorioaren aldaketa prest dago',
-    cwdStagedMessage: 'Berrabiarazi mahaigaineko atzeko zerbitzua lan-direktorioaren aldaketak saio aktibo honi aplikatzeko.',
+    cwdStagedMessage:
+      'Berrabiarazi mahaigaineko atzeko zerbitzua lan-direktorioaren aldaketak saio aktibo honi aplikatzeko.',
     modelSwitchFailed: 'Ezin izan da eredua aldatu',
     sessionExported: 'Saioa esportatu da',
     sessionExportFailed: 'Ezin izan da saioa esportatu',
@@ -2950,31 +3049,31 @@ Utzi hutsik ${mode} lehenestekoa mantentzeko.`,
       success: platform => `${platform} hartzaileari eskualdatu zaio. Jarraitu hemen edonoiz.`,
       systemNote: platform => `↻ ${platform} hartzaileari eskualdatu zaio — jarraitu hemen edonoiz.`,
       failed: error => `Eskualdatzeak huts egin du: ${error}`,
-      timedOut: 'Atebidearen zain egoteko denbora agortu da. `openamer gateway` martxan al dago?',
-    },
+      timedOut: 'Atebidearen zain egoteko denbora agortu da. `openamer gateway` martxan al dago?'
+    }
   },
   errors: {
     genericFailure: 'Zerbait gaizki joan da',
     boundaryTitle: 'Zerbait hondatu da interfazean',
     boundaryDesc: 'Ustekabeko errore bat gertatu da ikuspegian. Zure txatak eta ezarpenak seguru daude.',
     reloadWindow: 'Birkargatu leihoa',
-    openLogs: 'Ireki erregistroak',
+    openLogs: 'Ireki erregistroak'
   },
   ui: {
     search: {
-      clear: 'Garbitu bilaketa',
+      clear: 'Garbitu bilaketa'
     },
     pagination: {
       label: 'orrikatzea',
       previous: 'Aurrekoa',
       previousAria: 'Joan aurreko orrira',
       next: 'Hurrengoa',
-      nextAria: 'Joan hurrengo orrira',
+      nextAria: 'Joan hurrengo orrira'
     },
     sidebar: {
       title: 'Alboko barra',
       description: 'Mugikorreko alboko barra erakusten du.',
-      toggle: 'Erakutsi/ezkutatu alboko barra',
-    },
-  },
+      toggle: 'Erakutsi/ezkutatu alboko barra'
+    }
+  }
 })

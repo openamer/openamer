@@ -94,7 +94,9 @@ test('normalizeOpenAmerHomeRoot maps profile homes back to the global OpenAmer r
     '/Users/test/.openamer'
   )
   assert.equal(
-    normalizeOpenAmerHomeRoot('C:\\Users\\test\\AppData\\Local\\openamer\\profiles\\oracle', { pathModule: path.win32 }),
+    normalizeOpenAmerHomeRoot('C:\\Users\\test\\AppData\\Local\\openamer\\profiles\\oracle', {
+      pathModule: path.win32
+    }),
     'C:\\Users\\test\\AppData\\Local\\openamer'
   )
   assert.equal(normalizeOpenAmerHomeRoot('/Users/test/.openamer', { pathModule: path.posix }), '/Users/test/.openamer')

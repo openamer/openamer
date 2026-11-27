@@ -72,7 +72,9 @@ function homeFromInstallBreadcrumb(checkoutDir, deps = {}) {
     return null
   }
 
-  const home = String(recorded).replace(/^\uFEFF/, '').trim()
+  const home = String(recorded)
+    .replace(/^\uFEFF/, '')
+    .trim()
 
   if (!home || !pathModule.isAbsolute(home)) {
     return null

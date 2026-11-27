@@ -44,7 +44,7 @@ export const th = defineLocale({
     update: 'อัปเดต',
     tryHint: term => `ลอง “${term}”`,
     on: 'เปิด',
-    off: 'ปิด',
+    off: 'ปิด'
   },
   fileMenu: {
     revealFinder: 'แสดงใน Finder',
@@ -59,7 +59,7 @@ export const th = defineLocale({
     renameLabel: 'ชื่อใหม่',
     deleteTitle: name => `ลบ ${name}?`,
     deleteBody: 'จะถูกย้ายไปที่ถังขยะ — กู้คืนได้จากที่นั่น',
-    pathCopied: 'คัดลอกพาธแล้ว',
+    pathCopied: 'คัดลอกพาธแล้ว'
   },
   boot: {
     ready: 'OpenAmer Desktop พร้อมใช้งาน',
@@ -69,7 +69,7 @@ export const th = defineLocale({
       loadingSettings: 'กำลังโหลดการตั้งค่า OpenAmer',
       loadingSessions: 'กำลังโหลดเซสชันล่าสุด',
       startingDesktopConnection: 'กำลังเริ่มการเชื่อมต่อเดสก์ท็อป',
-      startingOpenAmerDesktop: 'กำลังเริ่ม OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'กำลังเริ่ม OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'กระบวนการพื้นหลังของ OpenAmer จบการทำงาน',
@@ -78,13 +78,15 @@ export const th = defineLocale({
       desktopBootFailed: 'บูตเดสก์ท็อปล้มเหลว',
       gatewayConnectionLost: 'การเชื่อมต่อเกตเวย์ขาดหาย',
       gatewaySignInRequired: 'ต้องลงชื่อเข้าใช้เกตเวย์',
-      ipcBridgeUnavailable: 'สะพาน IPC ของเดสก์ท็อปใช้ไม่ได้',
+      ipcBridgeUnavailable: 'สะพาน IPC ของเดสก์ท็อปใช้ไม่ได้'
     },
     failure: {
-      title: "OpenAmer เริ่มทำงานไม่ได้",
-      description: "เกตเวย์พื้นหลังไม่สามารถเริ่มได้ ลองขั้นตอนกู้คืนด้านล่างหนึ่งข้อ ไม่มีอะไรที่นี่ลบแชทหรือการตั้งค่าของคุณ",
+      title: 'OpenAmer เริ่มทำงานไม่ได้',
+      description:
+        'เกตเวย์พื้นหลังไม่สามารถเริ่มได้ ลองขั้นตอนกู้คืนด้านล่างหนึ่งข้อ ไม่มีอะไรที่นี่ลบแชทหรือการตั้งค่าของคุณ',
       remoteTitle: 'ต้องลงชื่อเข้าใช้เกตเวย์ระยะไกล',
-      remoteDescription: 'เซสชันเกตเวย์ระยะไกลของคุณหมดอายุ ลงชื่อเข้าใช้อีกครั้งเพื่อเชื่อมต่อใหม่ ไม่มีอะไรที่นี่ลบแชทหรือการตั้งค่าของคุณ',
+      remoteDescription:
+        'เซสชันเกตเวย์ระยะไกลของคุณหมดอายุ ลงชื่อเข้าใช้อีกครั้งเพื่อเชื่อมต่อใหม่ ไม่มีอะไรที่นี่ลบแชทหรือการตั้งค่าของคุณ',
       retry: 'ลองอีกครั้ง',
       repairInstall: 'ซ่อมแซมการติดตั้ง',
       useLocalGateway: 'ใช้เกตเวย์ภายในเครื่อง',
@@ -92,7 +94,8 @@ export const th = defineLocale({
       back: 'ย้อนกลับ',
       openLogs: 'เปิดล็อก',
       repairHint: 'การซ่อมแซมจะรันตัวติดตั้งอีกครั้ง และอาจใช้เวลาสักครู่บนเครื่องใหม่',
-      remoteSignInHint: signInLabel => `ออกจากเซสชันเบราว์เซอร์ระยะไกลที่บันทึกไว้ แล้วเปิด ${signInLabel} ใช้ "ใช้เกตเวย์ภายในเครื่อง" เพื่อสลับไปยังแบ็กเอนด์ในตัว`,
+      remoteSignInHint: signInLabel =>
+        `ออกจากเซสชันเบราว์เซอร์ระยะไกลที่บันทึกไว้ แล้วเปิด ${signInLabel} ใช้ "ใช้เกตเวย์ภายในเครื่อง" เพื่อสลับไปยังแบ็กเอนด์ในตัว`,
       signOutAndSignIn: 'ออกจากระบบและเข้าสู่ระบบ',
       remoteFailureHint: 'ตรวจสอบ URL และการลงชื่อเข้าใช้ในการตั้งค่าเกตเวย์ หรือสลับไปยังเกตเวย์ภายในเครื่อง',
       hideRecentLogs: 'ซ่อนล็อกล่าสุด',
@@ -104,8 +107,8 @@ export const th = defineLocale({
       signInFailed: 'การเข้าสู่ระบบล้มเหลว',
       signInToRemoteGateway: 'ลงชื่อเข้าใช้เกตเวย์ระยะไกล',
       signInWithProvider: provider => `เข้าสู่ระบบด้วย ${provider}`,
-      identityProvider: 'ผู้ให้บริการยืนยันตัวตนของคุณ',
-    },
+      identityProvider: 'ผู้ให้บริการยืนยันตัวตนของคุณ'
+    }
   },
   notifications: {
     region: 'การแจ้งเตือน',
@@ -118,12 +121,14 @@ export const th = defineLocale({
     copyDetail: 'คัดลอกรายละเอียด',
     copyDetailFailed: 'คัดลอกรายละเอียดการแจ้งเตือนไม่สำเร็จ',
     backendOutOfDateTitle: 'แบ็กเอนด์เก่าเกินไป',
-    backendOutOfDateMessage: 'แบ็กเอนด์ OpenAmer ของคุณเก่ากว่าบิลด์เดสก์ท็อปนี้และอาจทำงานไม่ถูกต้อง อัปเดตเพื่อให้ตรงกัน',
+    backendOutOfDateMessage:
+      'แบ็กเอนด์ OpenAmer ของคุณเก่ากว่าบิลด์เดสก์ท็อปนี้และอาจทำงานไม่ถูกต้อง อัปเดตเพื่อให้ตรงกัน',
     installMethodUnsupportedTitle: 'วิธีติดตั้งที่ไม่รองรับ',
     updateOpenAmer: 'อัปเดต OpenAmer',
     updateReadyTitle: 'อัปเดตพร้อมแล้ว',
-    updateReadyMessage: count => `${count} การเปลี่ยนแปลงใหม่${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'} พร้อมใช้งาน.`,
-    seeWhatsNew: "ดูสิ่งใหม่",
+    updateReadyMessage: count =>
+      `${count} การเปลี่ยนแปลงใหม่${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'} พร้อมใช้งาน.`,
+    seeWhatsNew: 'ดูสิ่งใหม่',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT ต้องการ ELEVENLABS_API_KEY',
       elevenLabsRejectedKey: 'ElevenLabs ปฏิเสธคีย์ API (401)',
@@ -132,7 +137,7 @@ export const th = defineLocale({
       microphonePermission: 'สิทธิ์ไมโครโฟนถูกปฏิเสธ',
       openaiRejectedApiKey: 'OpenAI ปฏิเสธคีย์ API',
       openaiRejectedApiKeyWithStatus: status => `OpenAI ปฏิเสธคีย์ API (${status} invalid_api_key)`,
-      openaiTtsNeedsKey: 'OpenAI TTS ต้องการ VOICE_TOOLS_OPENAI_KEY หรือ OPENAI_API_KEY',
+      openaiTtsNeedsKey: 'OpenAI TTS ต้องการ VOICE_TOOLS_OPENAI_KEY หรือ OPENAI_API_KEY'
     },
     voice: {
       configureSpeechToText: 'กำหนดค่าการแปลงเสียงพูดเป็นข้อความเพื่อใช้โหมดเสียง',
@@ -151,7 +156,7 @@ export const th = defineLocale({
       transcriptionFailed: 'การแปลงเสียงเป็นข้อความล้มเหลว',
       transcriptionUnavailable: 'การแปลงเสียงเป็นข้อความยังไม่พร้อมใช้งาน',
       tryRecordingAgain: 'ลองบันทึกอีกครั้ง',
-      unavailable: 'เสียงไม่พร้อมใช้งาน',
+      unavailable: 'เสียงไม่พร้อมใช้งาน'
     },
     native: {
       approvalTitle: 'ต้องได้รับอนุมัติ',
@@ -164,11 +169,12 @@ export const th = defineLocale({
       turnErrorTitle: 'รอบนี้ล้มเหลว',
       backgroundDoneTitle: 'งานพื้นหลังเสร็จสิ้น',
       backgroundFailedTitle: 'งานพื้นหลังล้มเหลว',
-      creditsTitle: 'เครดิต',
-    },
+      creditsTitle: 'เครดิต'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `กำลังเรนเดอร์ด้วยซอฟต์แวร์ — ตรวจพบจอภาพระยะไกล (${reason}) ปิดการเร่งความเร็ว GPU เพื่อป้องกันการกะพริบ`,
+    message: reason =>
+      `กำลังเรนเดอร์ด้วยซอฟต์แวร์ — ตรวจพบจอภาพระยะไกล (${reason}) ปิดการเร่งความเร็ว GPU เพื่อป้องกันการกะพริบ`
   },
   billingBlock: {
     titleOpenamer: 'เครดิต OpenAmer หมด',
@@ -176,7 +182,7 @@ export const th = defineLocale({
     fallbackMessage: 'บัญชีของคุณหมดเครดิต เพิ่มเครดิตเพื่อใช้งานต่อ',
     openBilling: 'เปิดการเรียกเก็บเงิน',
     addCredits: 'เพิ่มเครดิต',
-    dismiss: 'ปิด',
+    dismiss: 'ปิด'
   },
   titlebar: {
     hideSidebar: 'ซ่อนแถบข้าง',
@@ -193,7 +199,7 @@ export const th = defineLocale({
     openStarmap: 'เปิดกราฟความจำ',
     openKeybinds: 'แป้นพิมพ์ลัด',
     layoutEditor: 'ตัวแก้ไขเลย์เอาต์',
-    layoutEditorTitle: 'ตัวแก้ไขเลย์เอาต์ — Cmd/Ctrl+คลิกจะรีเซ็ตเลย์เอาต์',
+    layoutEditorTitle: 'ตัวแก้ไขเลย์เอาต์ — Cmd/Ctrl+คลิกจะรีเซ็ตเลย์เอาต์'
   },
   keybinds: {
     title: 'แป้นพิมพ์ลัด',
@@ -210,7 +216,7 @@ export const th = defineLocale({
       profiles: 'โปรไฟล์',
       session: 'เซสชัน',
       navigation: 'การนำทาง',
-      view: 'มุมมอง',
+      view: 'มุมมอง'
     },
     actions: {
       'keybinds.openPanel': 'เปิดแป้นพิมพ์ลัด',
@@ -289,8 +295,8 @@ export const th = defineLocale({
       'composer.slash': 'พาเลตคำสั่งสแลช',
       'composer.help': 'ช่วยเหลือด่วน',
       'composer.history': 'สลับป็อปโอเวอร์ / ประวัติ',
-      'composer.cancel': 'ปิดป็อปโอเวอร์ · ยกเลิกการรัน',
-    },
+      'composer.cancel': 'ปิดป็อปโอเวอร์ · ยกเลิกการรัน'
+    }
   },
   language: {
     label: 'ภาษา',
@@ -299,7 +305,7 @@ export const th = defineLocale({
     saveError: 'อัปเดตภาษาล้มเหลว',
     switchTo: 'เปลี่ยนภาษา',
     searchPlaceholder: 'ค้นหาภาษา…',
-    noResults: 'ไม่พบภาษา',
+    noResults: 'ไม่พบภาษา'
   },
   settings: {
     closeSettings: 'ปิดการตั้งค่า',
@@ -324,11 +330,12 @@ export const th = defineLocale({
       about: 'เกี่ยวกับ',
       billing: 'การเรียกเก็บเงิน',
       notifications: 'การแจ้งเตือน',
-      plugins: 'ปลั๊กอิน',
+      plugins: 'ปลั๊กอิน'
     },
     plugins: {
       title: 'ปลั๊กอินเดสก์ท็อป',
-      blurb: 'ส่วนขยาย UI ที่โหลดเข้าแอปนี้ — มาพร้อมบิลด์ หรือวางในโฟลเดอร์ desktop-plugins (รวมถึงตัวที่ OpenAmer เขียน) การปิดใช้งานจะถอดปลั๊กอินทันทีและคงอยู่หลังรีสตาร์ต',
+      blurb:
+        'ส่วนขยาย UI ที่โหลดเข้าแอปนี้ — มาพร้อมบิลด์ หรือวางในโฟลเดอร์ desktop-plugins (รวมถึงตัวที่ OpenAmer เขียน) การปิดใช้งานจะถอดปลั๊กอินทันทีและคงอยู่หลังรีสตาร์ต',
       count: n => `${n} ติดตั้งแล้ว`,
       openFolder: 'เปิดโฟลเดอร์ปลั๊กอิน',
       rescan: 'สแกนใหม่',
@@ -340,41 +347,42 @@ export const th = defineLocale({
       kinds: {
         bundled: 'มาพร้อมแอป',
         disk: 'บนดิสก์',
-        runtime: 'รันไทม์',
+        runtime: 'รันไทม์'
       },
-      manage: 'จัดการปลั๊กอินของเอเจนต์',
+      manage: 'จัดการปลั๊กอินของเอเจนต์'
     },
     notifications: {
       title: 'การแจ้งเตือน',
-      intro: 'การแจ้งเตือนเดสก์ท็อปแบบเนทีฟ แยกจากทอสต์ในแอป การตั้งค่าเหล่านี้เป็นแบบเฉพาะอุปกรณ์ — แต่ละคอมพิวเตอร์จะเก็บการตั้งค่าของตัวเอง',
+      intro:
+        'การแจ้งเตือนเดสก์ท็อปแบบเนทีฟ แยกจากทอสต์ในแอป การตั้งค่าเหล่านี้เป็นแบบเฉพาะอุปกรณ์ — แต่ละคอมพิวเตอร์จะเก็บการตั้งค่าของตัวเอง',
       enableAll: 'เปิดการแจ้งเตือน',
       enableAllDesc: 'สวิตช์หลัก ปิดสิ่งนี้เพื่อปิดการแจ้งเตือนทั้งหมดด้านล่าง',
       focusedHint: 'การแจ้งเตือนเมื่อทำงานเสร็จจะแสดงเฉพาะเมื่อ OpenAmer อยู่เบื้องหลัง',
       kinds: {
         approval: {
           label: 'ต้องอนุมัติ',
-          description: 'มีคำสั่งรอให้คุณอนุมัติหรือปฏิเสธ',
+          description: 'มีคำสั่งรอให้คุณอนุมัติหรือปฏิเสธ'
         },
         input: {
           label: 'ต้องป้อนข้อมูล',
-          description: 'OpenAmer ถามคำถามหรือต้องการรหัสผ่านหรือข้อมูลลับ',
+          description: 'OpenAmer ถามคำถามหรือต้องการรหัสผ่านหรือข้อมูลลับ'
         },
         turnDone: {
           label: 'คำตอบพร้อมแล้ว',
-          description: 'รอบการทำงานเสร็จสิ้นขณะ OpenAmer อยู่เบื้องหลัง',
+          description: 'รอบการทำงานเสร็จสิ้นขณะ OpenAmer อยู่เบื้องหลัง'
         },
         turnError: {
           label: 'รอบการทำงานล้มเหลว',
-          description: 'รอบการทำงานสิ้นสุดด้วยข้อผิดพลาด',
+          description: 'รอบการทำงานสิ้นสุดด้วยข้อผิดพลาด'
         },
         backgroundDone: {
           label: 'งานเบื้องหลังเสร็จสิ้น',
-          description: 'คำสั่งเทอร์มินัลที่ทำงานเบื้องหลังเสร็จสมบูรณ์',
+          description: 'คำสั่งเทอร์มินัลที่ทำงานเบื้องหลังเสร็จสมบูรณ์'
         },
         credits: {
           label: 'การแจ้งเตือนเครดิต',
-          description: 'การเข้าถึงเครดิตถูกหยุดชั่วคราวหรือกลับมาใช้งานแล้ว',
-        },
+          description: 'การเข้าถึงเครดิตถูกหยุดชั่วคราวหรือกลับมาใช้งานแล้ว'
+        }
       },
       test: 'ส่งการแจ้งเตือนทดสอบ',
       testTitle: 'OpenAmer',
@@ -383,7 +391,7 @@ export const th = defineLocale({
       testUnsupported: 'ระบบนี้ไม่รองรับการแจ้งเตือนแบบเนทีฟ',
       completionSoundTitle: 'เสียงเมื่อเสร็จสิ้น',
       completionSoundDesc: 'เล่นเมื่อเอเจนต์จบเทิร์น เลือกพรีเซ็ตและพรีวิวได้ที่นี่',
-      completionSoundPreview: 'พรีวิว',
+      completionSoundPreview: 'พรีวิว'
     },
     sections: {
       model: 'โมเดล',
@@ -393,7 +401,7 @@ export const th = defineLocale({
       safety: 'ความปลอดภัย',
       memory: 'ความจำและบริบท',
       voice: 'เสียง',
-      advanced: 'ขั้นสูง',
+      advanced: 'ขั้นสูง'
     },
     searchPlaceholder: {
       about: 'เกี่ยวกับ OpenAmer Desktop',
@@ -401,21 +409,21 @@ export const th = defineLocale({
       gateway: 'การเชื่อมต่อเกตเวย์...',
       keys: 'ค้นหาคีย์ API...',
       mcp: 'ค้นหาเซิร์ฟเวอร์ MCP...',
-      sessions: 'ค้นหาเซสชันที่เก็บถาวร...',
+      sessions: 'ค้นหาเซสชันที่เก็บถาวร...'
     },
     modeOptions: {
       light: {
         label: 'สว่าง',
-        description: 'พื้นผิวสว่าง',
+        description: 'พื้นผิวสว่าง'
       },
       dark: {
         label: 'มืด',
-        description: 'พื้นที่แสงต่ำ',
+        description: 'พื้นที่แสงต่ำ'
       },
       system: {
         label: 'ระบบ',
-        description: 'ตามรูปลักษณ์ของ OS',
-      },
+        description: 'ตามรูปลักษณ์ของ OS'
+      }
     },
     appearance: {
       title: 'รูปลักษณ์',
@@ -425,13 +433,15 @@ export const th = defineLocale({
       toolViewTitle: 'การแสดงการเรียกเครื่องมือ',
       toolViewDesc: 'โหมดผลิตภัณฑ์ซ่อนข้อมูลดิบของเครื่องมือ โหมดเทคนิคแสดงข้อมูลเข้า/ออกเต็มรูปแบบ',
       uiScaleTitle: 'มาตราส่วน UI',
-      uiScaleDesc: (percent: number) => `ปรับขนาดข้อความและตัวควบคุมทั่วทั้งแอป Cmd/Ctrl +, - และ 0 ก็ใช้ได้ ปัจจุบัน: ${percent}%`,
+      uiScaleDesc: (percent: number) =>
+        `ปรับขนาดข้อความและตัวควบคุมทั่วทั้งแอป Cmd/Ctrl +, - และ 0 ก็ใช้ได้ ปัจจุบัน: ${percent}%`,
       translucencyTitle: 'ความโปร่งใสของหน้าต่าง',
       translucencyDesc: 'เห็นเดสก์ท็อปของคุณผ่านหน้าต่างทั้งหมด เฉพาะ macOS และ Windows',
       backdropTitle: 'พื้นหลังแชท',
       backdropDesc: 'ภาพรูปปั้นจางๆ ด้านหลังบทสนทนา',
       embedsTitle: 'เนื้อหาฝังตัว',
-      embedsDesc: 'พรีวิวโหลดจากเว็บไซต์บุคคลที่สาม (YouTube, X, …) ถามจะแสดงตัวแทนจนกว่าคุณจะอนุญาตแต่ละรายการ เสมอจะโหลดอัตโนมัติ ปิดจะคงลิงก์ธรรมดา',
+      embedsDesc:
+        'พรีวิวโหลดจากเว็บไซต์บุคคลที่สาม (YouTube, X, …) ถามจะแสดงตัวแทนจนกว่าคุณจะอนุญาตแต่ละรายการ เสมอจะโหลดอัตโนมัติ ปิดจะคงลิงก์ธรรมดา',
       embedsAsk: 'ถาม',
       embedsAlways: 'เสมอ',
       embedsOff: 'ปิด',
@@ -444,7 +454,8 @@ export const th = defineLocale({
       themeDesc: 'เฉพาะพาเลตเดสก์ท็อป โหมดที่เลือกจะใช้ทับด้านบน',
       themeProfileNote: profile => `บันทึกไว้สำหรับโปรไฟล์ ${profile} — แต่ละโปรไฟล์เก็บธีมของตัวเอง`,
       installTitle: 'ติดตั้งจาก VS Code',
-      installDesc: 'วาง ID ส่วนขยาย Marketplace (เช่น dracula-theme.theme-dracula) เพื่อแปลงธีมสีของมันเป็นพาเลตเดสก์ท็อป',
+      installDesc:
+        'วาง ID ส่วนขยาย Marketplace (เช่น dracula-theme.theme-dracula) เพื่อแปลงธีมสีของมันเป็นพาเลตเดสก์ท็อป',
       installPlaceholder: 'ผู้เผยแพร่.ส่วนขยาย',
       installButton: 'ติดตั้ง',
       installing: 'กำลังติดตั้ง…',
@@ -454,8 +465,10 @@ export const th = defineLocale({
       importedBadge: 'นำเข้าแล้ว',
       pet: {
         title: 'สัตว์เลี้ยง',
-        intro: 'รับเลี้ยงมาสคอต petdex แบบแอนิเมชันที่ลอยอยู่เหนือแอปและตอบสนองต่อสิ่งที่ OpenAmer กำลังทำ — วิ่งขณะเครื่องมือทำงาน ฉลองเมื่อสำเร็จ และงอนเมื่อเกิดข้อผิดพลาด',
-        restartHint: 'สัตว์เลี้ยงต้องรีสตาร์ตสักครั้ง — แอปที่กำลังรันเริ่มทำงานก่อนเพิ่มฟีเจอร์นี้ ออกและเปิด OpenAmer ใหม่ แล้วกลับมาที่นี่',
+        intro:
+          'รับเลี้ยงมาสคอต petdex แบบแอนิเมชันที่ลอยอยู่เหนือแอปและตอบสนองต่อสิ่งที่ OpenAmer กำลังทำ — วิ่งขณะเครื่องมือทำงาน ฉลองเมื่อสำเร็จ และงอนเมื่อเกิดข้อผิดพลาด',
+        restartHint:
+          'สัตว์เลี้ยงต้องรีสตาร์ตสักครั้ง — แอปที่กำลังรันเริ่มทำงานก่อนเพิ่มฟีเจอร์นี้ ออกและเปิด OpenAmer ใหม่ แล้วกลับมาที่นี่',
         on: 'เปิด',
         off: 'ปิด',
         scaleTitle: 'ขนาด',
@@ -465,7 +478,7 @@ export const th = defineLocale({
         chooseTitle: 'เลือกสัตว์เลี้ยง',
         chooseDesc: 'เมื่อเลือกแล้วจะติดตั้ง (หากจำเป็น) และเปิดใช้งาน',
         searchPlaceholder: 'ค้นหาสัตว์เลี้ยง…',
-        unreachable: "ไม่สามารถเชื่อมต่อแกลเลอรี petdex ได้ ตรวจสอบการเชื่อมต่อแล้วเปิดหน้านี้ใหม่",
+        unreachable: 'ไม่สามารถเชื่อมต่อแกลเลอรี petdex ได้ ตรวจสอบการเชื่อมต่อแล้วเปิดหน้านี้ใหม่',
         noMatch: query => `ไม่พบสัตว์เลี้ยงที่ตรงกับ "${query}"`,
         installedTag: 'ติดตั้งแล้ว',
         generatedTag: 'สร้างขึ้น',
@@ -474,7 +487,7 @@ export const th = defineLocale({
         uninstall: name => `ถอนการติดตั้ง ${name}`,
         delete: name => `ลบ ${name}`,
         deleteTitle: name => `ลบ ${name}?`,
-        deleteBody: "การดำเนินการนี้จะลบสัตว์เลี้ยงอย่างถาวร — ไม่สามารถติดตั้งใหม่ได้",
+        deleteBody: 'การดำเนินการนี้จะลบสัตว์เลี้ยงอย่างถาวร — ไม่สามารถติดตั้งใหม่ได้',
         deleteConfirm: 'ลบ',
         rename: name => `เปลี่ยนชื่อ ${name}`,
         renameTitle: 'เปลี่ยนชื่อสัตว์เลี้ยง',
@@ -487,8 +500,8 @@ export const th = defineLocale({
         exportFailed: slug => `ไม่สามารถส่งออก ${slug}`,
         noneAvailable: 'ไม่มีสัตว์เลี้ยงให้เปิดในขณะนี้',
         turnOnFailed: 'ไม่สามารถเปิดสัตว์เลี้ยงได้',
-        turnOffFailed: 'ไม่สามารถปิดสัตว์เลี้ยงได้',
-      },
+        turnOffFailed: 'ไม่สามารถปิดสัตว์เลี้ยงได้'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,15 +512,16 @@ export const th = defineLocale({
       updates: 'การอัปเดต',
       checkNow: 'ตรวจสอบตอนนี้',
       checking: 'กำลังตรวจสอบ…',
-      seeWhatsNew: "ดูสิ่งใหม่",
+      seeWhatsNew: 'ดูสิ่งใหม่',
       updateNow: 'อัปเดตตอนนี้',
       releaseNotes: 'บันทึกประจำรุ่น',
-      onLatest: "คุณใช้เวอร์ชันล่าสุดแล้ว",
+      onLatest: 'คุณใช้เวอร์ชันล่าสุดแล้ว',
       installing: 'กำลังติดตั้งการอัปเดต',
-      cantUpdate: "บิลด์นี้ไม่สามารถอัปเดตตัวเองจากภายในแอปได้",
-      cantReach: "เข้าถึงเซิร์ฟเวอร์อัปเดตไม่ได้",
+      cantUpdate: 'บิลด์นี้ไม่สามารถอัปเดตตัวเองจากภายในแอปได้',
+      cantReach: 'เข้าถึงเซิร์ฟเวอร์อัปเดตไม่ได้',
       tapCheck: 'แตะ "ตรวจสอบตอนนี้" เพื่อค้นหาการอัปเดต',
-      updateReady: count => `มีอัปเดตใหม่พร้อมใช้งาน (รวม ${count} การเปลี่ยนแปลง ${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'}).`,
+      updateReady: count =>
+        `มีอัปเดตใหม่พร้อมใช้งาน (รวม ${count} การเปลี่ยนแปลง ${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'}).`,
       lastChecked: age => `ตรวจสอบล่าสุด ${age}`,
       justNowSuffix: ' · เมื่อสักครู่',
       automaticUpdates: 'การอัปเดตอัตโนมัติ',
@@ -517,7 +531,7 @@ export const th = defineLocale({
       justNow: 'เมื่อสักครู่',
       minAgo: count => `${count} นาทีที่แล้ว`,
       hoursAgo: count => `${count} ชั่วโมงที่แล้ว`,
-      daysAgo: count => `${count} วันที่แล้ว`,
+      daysAgo: count => `${count} วันที่แล้ว`
     },
     config: {
       none: 'ไม่มี',
@@ -533,7 +547,7 @@ export const th = defineLocale({
       imported: 'นำเข้าการกำหนดค่าแล้ว',
       invalidJson: 'JSON การกำหนดค่าไม่ถูกต้อง',
       keepAwakeTitle: 'ทำให้คอมพิวเตอร์ไม่หลับ',
-      keepAwakeDesc: 'ป้องกันไม่ให้เครื่องนี้หลับ เพื่อให้การรันระยะยาวหรือข้ามคืนดำเนินต่อได้ จอยังสามารถหรี่ลงได้',
+      keepAwakeDesc: 'ป้องกันไม่ให้เครื่องนี้หลับ เพื่อให้การรันระยะยาวหรือข้ามคืนดำเนินต่อได้ จอยังสามารถหรี่ลงได้'
     },
     credentials: {
       pasteKey: 'วางคีย์',
@@ -543,7 +557,7 @@ export const th = defineLocale({
       couldNotSave: 'บันทึกข้อมูลรับรองไม่ได้',
       remove: 'ลบ',
       getKey: 'รับคีย์',
-      saving: 'กำลังบันทึก',
+      saving: 'กำลังบันทึก'
     },
     envActions: {
       actionsFor: label => `การดำเนินการสำหรับ ${label}`,
@@ -554,7 +568,7 @@ export const th = defineLocale({
       revealValue: 'แสดงค่า',
       replace: 'แทนที่',
       set: 'ตั้งค่า',
-      clear: 'ล้าง',
+      clear: 'ล้าง'
     },
     gateway: {
       loading: 'กำลังโหลดการตั้งค่าเกตเวย์...',
@@ -562,18 +576,21 @@ export const th = defineLocale({
       unavailableDesc: 'บริดจ์ IPC ของเดสก์ท็อปไม่เปิดเผยการตั้งค่าเกตเวย์',
       title: 'การเชื่อมต่อเกตเวย์',
       envOverride: 'การแทนที่ด้วย env',
-      intro: 'OpenAmer Desktop จะเริ่มเกตเวย์ภายในเครื่องของตนเองเป็นค่าเริ่มต้น ใช้เกตเวย์ระยะไกลเมื่อคุณต้องการให้แอปนี้ควบคุมแบ็กเอนด์ OpenAmer ที่ทำงานอยู่แล้วบนเครื่องอื่นหรือหลังพร็อกซีที่เชื่อถือได้ เลือกโปรไฟล์ด้านล่างเพื่อกำหนดโฮสต์ระยะไกลของตัวเอง',
+      intro:
+        'OpenAmer Desktop จะเริ่มเกตเวย์ภายในเครื่องของตนเองเป็นค่าเริ่มต้น ใช้เกตเวย์ระยะไกลเมื่อคุณต้องการให้แอปนี้ควบคุมแบ็กเอนด์ OpenAmer ที่ทำงานอยู่แล้วบนเครื่องอื่นหรือหลังพร็อกซีที่เชื่อถือได้ เลือกโปรไฟล์ด้านล่างเพื่อกำหนดโฮสต์ระยะไกลของตัวเอง',
       appliesTo: 'ใช้กับ',
       allProfiles: 'ทุกโปรไฟล์',
       defaultConnection: 'การเชื่อมต่อเริ่มต้นสำหรับทุกโปรไฟล์ที่ไม่มีการแทนที่ของตนเอง',
-      profileConnection: profile => `การเชื่อมต่อที่ใช้เฉพาะเมื่อ “${profile}” เป็นโปรไฟล์ที่ใช้งานอยู่ เลือก ใช้เกตเวย์เริ่มต้น เพื่อลบการแทนที่ของโปรไฟล์นี้`,
+      profileConnection: profile =>
+        `การเชื่อมต่อที่ใช้เฉพาะเมื่อ “${profile}” เป็นโปรไฟล์ที่ใช้งานอยู่ เลือก ใช้เกตเวย์เริ่มต้น เพื่อลบการแทนที่ของโปรไฟล์นี้`,
       envOverrideTitle: 'ตัวแปรสภาพแวดล้อมกำลังควบคุมเซสชันเดสก์ท็อปนี้',
-      envOverrideDesc: 'ยกเลิกการตั้งค่า OPENAMER_DESKTOP_REMOTE_URL และ OPENAMER_DESKTOP_REMOTE_TOKEN เพื่อใช้การตั้งค่าที่บันทึกไว้ด้านล่าง',
+      envOverrideDesc:
+        'ยกเลิกการตั้งค่า OPENAMER_DESKTOP_REMOTE_URL และ OPENAMER_DESKTOP_REMOTE_TOKEN เพื่อใช้การตั้งค่าที่บันทึกไว้ด้านล่าง',
       modeTitle: 'โหมดการเชื่อมต่อ',
       localTitle: 'เกตเวย์ภายในเครื่อง',
       localDesc: 'เริ่มแบ็กเอนด์ OpenAmer ส่วนตัวบน localhost นี่คือค่าเริ่มต้นและทำงานแบบออฟไลน์',
       inheritTitle: 'ใช้เกตเวย์เริ่มต้น',
-      inheritDesc: "ลบการแทนที่ของโปรไฟล์นี้ แล้วใช้การเชื่อมต่อเริ่มต้น",
+      inheritDesc: 'ลบการแทนที่ของโปรไฟล์นี้ แล้วใช้การเชื่อมต่อเริ่มต้น',
       remoteTitle: 'เกตเวย์ระยะไกล',
       remoteDesc: 'เชื่อมต่อเชลล์เดสก์ท็อปนี้กับแบ็กเอนด์ OpenAmer ระยะไกล',
       remoteAuthHint: 'เกตเวย์ที่โฮสต์ใช้ OAuth หรือชื่อผู้ใช้และรหัสผ่าน ส่วนเกตเวย์ที่โฮสต์เองอาจใช้โทเค็นเซสชัน',
@@ -593,7 +610,7 @@ export const th = defineLocale({
       cloudNoAgents: {
         before: 'ไม่พบเอเจนต์ในบัญชีนี้ สร้างเอเจนต์ใน ',
         linkText: 'พอร์ทัล OpenAmer',
-        after: ', แล้วรีเฟรช',
+        after: ', แล้วรีเฟรช'
       },
       cloudRefresh: 'รีเฟรช',
       cloudConnect: 'เชื่อมต่อ',
@@ -622,7 +639,8 @@ export const th = defineLocale({
       authNeedsPassword: 'เกตเวย์นี้ใช้ชื่อผู้ใช้และรหัสผ่าน ลงชื่อเข้าใช้เพื่ออนุญาตแอปเดสก์ท็อปนี้',
       authNeedsOauth: provider => `เกตเวย์นี้ใช้ OAuth ลงชื่อเข้าใช้ด้วย${provider}เพื่ออนุญาตแอปเดสก์ท็อปนี้`,
       tokenTitle: 'โทเค็นเซสชัน',
-      tokenDesc: 'โทเค็นเซสชันของแดชบอร์ดที่ใช้สำหรับการเข้าถึง REST และ WebSocket เว้นว่างไว้เพื่อใช้โทเค็นที่บันทึกไว้',
+      tokenDesc:
+        'โทเค็นเซสชันของแดชบอร์ดที่ใช้สำหรับการเข้าถึง REST และ WebSocket เว้นว่างไว้เพื่อใช้โทเค็นที่บันทึกไว้',
       existingToken: value => `โทเค็นที่มีอยู่ ${value}`,
       savedToken: 'บันทึกแล้ว',
       pasteSessionToken: 'วางโทเค็นเซสชัน',
@@ -653,8 +671,10 @@ export const th = defineLocale({
       applyFailed: 'ไม่สามารถใช้การตั้งค่าเกตเวย์ได้',
       saveFailed: 'ไม่สามารถบันทึกการตั้งค่าเกตเวย์ได้',
       sshTitle: 'เชื่อมต่อผ่าน SSH',
-      sshDesc: 'OpenAmer จะถูกรันบนรีโมทผ่าน SSH และส่งต่อมายังแอปนี้ โดยที่คุณไม่ต้องเริ่มการทำงานหรือเปิดพอร์ตเอง จำเป็นต้องมีการเข้าถึง SSH แบบใช้คีย์ที่ใช้งานได้',
-      sshTrustHint: 'โฮสต์คีย์แรกที่ได้รับจะถูกเชื่อถือและปักหมุดไว้ หากมีการเปลี่ยนแปลงในภายหลังการเชื่อมต่อจะถูกปฏิเสธ',
+      sshDesc:
+        'OpenAmer จะถูกรันบนรีโมทผ่าน SSH และส่งต่อมายังแอปนี้ โดยที่คุณไม่ต้องเริ่มการทำงานหรือเปิดพอร์ตเอง จำเป็นต้องมีการเข้าถึง SSH แบบใช้คีย์ที่ใช้งานได้',
+      sshTrustHint:
+        'โฮสต์คีย์แรกที่ได้รับจะถูกเชื่อถือและปักหมุดไว้ หากมีการเปลี่ยนแปลงในภายหลังการเชื่อมต่อจะถูกปฏิเสธ',
       sshHostTitle: 'โฮสต์',
       sshHostDesc: 'user@host หรือนามแฝงโฮสต์จาก ~/.ssh/config',
       sshHostPick: 'เลือกโฮสต์…',
@@ -677,18 +697,22 @@ export const th = defineLocale({
       sshReachable: (host, platform) => `เข้าถึงได้: ${host} (${platform}) — พบ OpenAmer`,
       sshIncompleteHost: 'กรอกโฮสต์ SSH ก่อนเชื่อมต่อ',
       sshErrUnreachable: 'ไม่สามารถเข้าถึงโฮสต์นั้นผ่าน SSH ได้ ตรวจสอบโฮสต์ พอร์ต และเครือข่ายของคุณ',
-      sshErrAuth: 'การยืนยันตัวตน SSH ไม่สำเร็จ โหลดคีย์ของคุณเข้า ssh-agent (ssh-add) หรือตั้งค่า IdentityFile ใน ~/.ssh/config — OpenAmer รัน ssh แบบไม่โต้ตอบ',
-      sshErrHostKey: 'คีย์โฮสต์มีการเปลี่ยนแปลงตั้งแต่การเชื่อมต่อครั้งล่าสุด ตรวจสอบว่าเป็นสิ่งที่คาดไว้ แล้วรัน ssh-keygen -R <host> และเชื่อมต่อใหม่',
-      sshErrNotInstalled: 'OpenAmer ยังไม่ได้ติดตั้งบนโฮสต์ระยะไกล ติดตั้งที่นั่น (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) หรือตั้งค่าเส้นทาง OpenAmer',
-      sshErrPlatform: 'แพลตฟอร์มระยะไกลไม่รองรับ โหมด SSH ของ OpenAmer Desktop รองรับโฮสต์ระยะไกล Linux, macOS และ Windows',
+      sshErrAuth:
+        'การยืนยันตัวตน SSH ไม่สำเร็จ โหลดคีย์ของคุณเข้า ssh-agent (ssh-add) หรือตั้งค่า IdentityFile ใน ~/.ssh/config — OpenAmer รัน ssh แบบไม่โต้ตอบ',
+      sshErrHostKey:
+        'คีย์โฮสต์มีการเปลี่ยนแปลงตั้งแต่การเชื่อมต่อครั้งล่าสุด ตรวจสอบว่าเป็นสิ่งที่คาดไว้ แล้วรัน ssh-keygen -R <host> และเชื่อมต่อใหม่',
+      sshErrNotInstalled:
+        'OpenAmer ยังไม่ได้ติดตั้งบนโฮสต์ระยะไกล ติดตั้งที่นั่น (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) หรือตั้งค่าเส้นทาง OpenAmer',
+      sshErrPlatform:
+        'แพลตฟอร์มระยะไกลไม่รองรับ โหมด SSH ของ OpenAmer Desktop รองรับโฮสต์ระยะไกล Linux, macOS และ Windows',
       sshErrTimeout: 'การเชื่อมต่อ SSH หมดเวลา โฮสต์อาจไม่สามารถเข้าถึงได้หรืออยู่ในโหมดสลีป',
       sshErrUpdateRequired: 'อัปเดต OpenAmer บนโฮสต์ระยะไกลก่อนเชื่อมต่อด้วย Desktop SSH',
-      sshErrUnknown: 'การเชื่อมต่อ SSH ล้มเหลว',
+      sshErrUnknown: 'การเชื่อมต่อ SSH ล้มเหลว'
     },
     keys: {
       loading: 'กำลังโหลดคีย์ API และข้อมูลรับรอง...',
       failedLoad: 'โหลดคีย์ API ไม่สำเร็จ',
-      empty: 'ยังไม่มีการกำหนดค่าในหมวดนี้',
+      empty: 'ยังไม่มีการกำหนดค่าในหมวดนี้'
     },
     mcp: {
       loading: 'กำลังโหลดเซิร์ฟเวอร์ MCP...',
@@ -719,7 +743,8 @@ export const th = defineLocale({
       saveServer: 'บันทึกเซิร์ฟเวอร์',
       test: 'ทดสอบการเชื่อมต่อ',
       testing: 'กำลังทดสอบ...',
-      testOk: count => `เชื่อมต่อแล้ว — มี ${count} เครื่องมือ ${count === 1 ? 'เครื่องมือ' : 'เครื่องมือ'} พร้อมใช้งาน`,
+      testOk: count =>
+        `เชื่อมต่อแล้ว — มี ${count} เครื่องมือ ${count === 1 ? 'เครื่องมือ' : 'เครื่องมือ'} พร้อมใช้งาน`,
       testFailed: 'เชื่อมต่อไม่สำเร็จ',
       enableServer: name => `เปิดใช้งาน ${name}`,
       disableServer: name => `ปิดใช้งาน ${name}`,
@@ -740,7 +765,8 @@ export const th = defineLocale({
       catalogInstallFailed: name => `ติดตั้ง ${name} ไม่สำเร็จ`,
       catalogEnvPrompt: name => `${name} ต้องใช้ข้อมูลรับรอง`,
       catalogEnvRequired: 'กรอกค่าที่จำเป็นก่อนติดตั้ง',
-      capabilitySummary: (tools, prompts, resources) => `เปิดใช้งาน ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} แล้ว`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `เปิดใช้งาน ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} แล้ว`,
       statusConnecting: 'กำลังเชื่อมต่อ…',
       statusNeedsAuth: 'ต้องยืนยันตัวตน',
       statusError: 'ข้อผิดพลาด',
@@ -753,7 +779,7 @@ export const th = defineLocale({
       unsavedConnect: 'ยังไม่บันทึก — บันทึก mcp.json เพื่อเชื่อมต่อ',
       enableTool: tool => `เปิดใช้งาน ${tool}`,
       disableTool: tool => `ปิดใช้งาน ${tool}`,
-      noOutput: 'ยังไม่มีเอาต์พุต',
+      noOutput: 'ยังไม่มีเอาต์พุต'
     },
     model: {
       loading: 'กำลังโหลดการกำหนดค่าโมเดล...',
@@ -774,46 +800,47 @@ export const th = defineLocale({
       providerDefault: '(ค่าเริ่มต้นผู้ให้บริการ)',
       fallbackAdd: 'เพิ่มตัวสำรอง',
       fallbackEmpty: 'ไม่มีโมเดลสำรอง — ใช้โมเดลเริ่มต้นเว้นแต่โมเดลนั้นล้มเหลว',
-      notInCatalog: "ไม่อยู่ในรายการโมเดลของผู้ให้บริการนี้ — การเรียกอาจเปลี่ยนไปใช้ตัวสำรอง",
+      notInCatalog: 'ไม่อยู่ในรายการโมเดลของผู้ให้บริการนี้ — การเรียกอาจเปลี่ยนไปใช้ตัวสำรอง',
       tasks: {
         vision: {
           label: 'การมองเห็น',
-          hint: 'การวิเคราะห์ภาพ',
+          hint: 'การวิเคราะห์ภาพ'
         },
         web_extract: {
           label: 'การดึงข้อมูลเว็บ',
-          hint: 'การสรุปหน้า',
+          hint: 'การสรุปหน้า'
         },
         compression: {
           label: 'การบีบอัด',
-          hint: 'การบีบอัดบริบท',
+          hint: 'การบีบอัดบริบท'
         },
         skills_hub: {
           label: 'ศูนย์ทักษะ',
-          hint: 'ค้นหาทักษะ',
+          hint: 'ค้นหาทักษะ'
         },
         approval: {
           label: 'การอนุมัติ',
-          hint: 'อนุมัติอัตโนมัติอัจฉริยะ',
+          hint: 'อนุมัติอัตโนมัติอัจฉริยะ'
         },
         mcp: {
           label: 'MCP',
-          hint: 'การกำหนดเส้นทางเครื่องมือ MCP',
+          hint: 'การกำหนดเส้นทางเครื่องมือ MCP'
         },
         title_generation: {
           label: 'การสร้างชื่อเรื่อง',
-          hint: 'ชื่อเรื่องเซสชัน',
+          hint: 'ชื่อเรื่องเซสชัน'
         },
         curator: {
           label: 'ผู้คัดสรร',
-          hint: 'การตรวจสอบการใช้ทักษะ',
-        },
-      },
+          hint: 'การตรวจสอบการใช้ทักษะ'
+        }
+      }
     },
     providers: {
       connectAccount: 'เชื่อมต่อบัญชี',
       haveApiKey: 'ใช้คีย์ API แทนหรือไม่?',
-      intro: 'ลงชื่อเข้าใช้ด้วยการสมัครสมาชิก — ไม่ต้องคัดลอกคีย์ API OpenAmer จะทำการลงชื่อเข้าใช้ผ่านเบราว์เซอร์ให้คุณที่นี่ในแอป',
+      intro:
+        'ลงชื่อเข้าใช้ด้วยการสมัครสมาชิก — ไม่ต้องคัดลอกคีย์ API OpenAmer จะทำการลงชื่อเข้าใช้ผ่านเบราว์เซอร์ให้คุณที่นี่ในแอป',
       connected: 'เชื่อมต่อแล้ว',
       collapse: 'ย่อ',
       connectAnother: 'เชื่อมต่อผู้ให้บริการรายอื่น',
@@ -823,7 +850,8 @@ export const th = defineLocale({
       removeConfirm: provider => `ลบ ${provider} หรือไม่?`,
       removeExternalGeneric: provider => `${provider} จัดการผ่าน CLI ของตัวเอง — ให้ลบที่นั่น`,
       removeKeyManaged: provider => `${provider} กำหนดค่าจากคีย์ API ให้ลบจากคีย์ API`,
-      removeTerminalConfirm: (provider, command) => `ยกเลิกการเชื่อมต่อ ${provider} หรือไม่? การดำเนินการนี้จะเรียกใช้ "${command}" ในเทอร์มินัลเพื่อล้างข้อมูลรับรอง`,
+      removeTerminalConfirm: (provider, command) =>
+        `ยกเลิกการเชื่อมต่อ ${provider} หรือไม่? การดำเนินการนี้จะเรียกใช้ "${command}" ในเทอร์มินัลเพื่อล้างข้อมูลรับรอง`,
       removeTerminalRunning: provider => `กำลังยกเลิกการเชื่อมต่อ ${provider} ในเทอร์มินัล…`,
       removedTitle: 'ลบบัญชีแล้ว',
       removedMessage: provider => `ลบ ${provider} แล้ว`,
@@ -833,14 +861,15 @@ export const th = defineLocale({
       noKeysMatch: 'ไม่มีผู้ให้บริการที่ตรงกับการค้นหา',
       localEndpoint: {
         title: 'ปลายทางภายในเครื่อง / กำหนดเอง',
-        description: 'ชี้ OpenAmer ไปยังปลายทางใด ๆ ที่เข้ากันได้กับ OpenAI (Zyphra, vLLM, llama.cpp, Ollama ฯลฯ)',
+        description: 'ชี้ OpenAmer ไปยังปลายทางใด ๆ ที่เข้ากันได้กับ OpenAI (Zyphra, vLLM, llama.cpp, Ollama ฯลฯ)'
       },
-      loading: 'กำลังโหลดผู้ให้บริการ...',
+      loading: 'กำลังโหลดผู้ให้บริการ...'
     },
     sessions: {
       loading: 'กำลังโหลดเซสชันที่เก็บเข้าคลัง…',
       archivedTitle: 'เซสชันที่เก็บเข้าคลัง',
-      archivedIntro: 'แชทที่เก็บเข้าคลังจะถูกซ่อนจากแถบด้านข้างแต่ยังเก็บข้อความทั้งหมดไว้ Ctrl/⌘-คลิกแชทในแถบด้านข้างเพื่อเก็บเข้าคลัง',
+      archivedIntro:
+        'แชทที่เก็บเข้าคลังจะถูกซ่อนจากแถบด้านข้างแต่ยังเก็บข้อความทั้งหมดไว้ Ctrl/⌘-คลิกแชทในแถบด้านข้างเพื่อเก็บเข้าคลัง',
       emptyArchivedTitle: 'ไม่มีรายการที่เก็บเข้าคลัง',
       emptyArchivedDesc: 'เก็บแชทเข้าคลังเพื่อซ่อนไว้ที่นี่',
       unarchive: 'นำออกจากคลัง',
@@ -849,12 +878,14 @@ export const th = defineLocale({
       restored: 'กู้คืนแล้ว',
       deleteConfirm: title => `ลบ "${title}" อย่างถาวรหรือไม่? การดำเนินการนี้ไม่สามารถย้อนกลับได้`,
       autoArchiveTitle: 'เก็บแชทที่ไม่ได้ใช้งานเข้าคลังอัตโนมัติ',
-      autoArchiveDesc: "เก็บแชทที่ไม่ได้ใช้งานมาระยะหนึ่งเข้าคลังโดยอัตโนมัติ แชทที่ปักหมุดจะไม่ถูกเก็บเข้าคลัง และจะไม่มีการลบใด ๆ — แชทที่เก็บเข้าคลังจะย้ายมาที่นี่",
+      autoArchiveDesc:
+        'เก็บแชทที่ไม่ได้ใช้งานมาระยะหนึ่งเข้าคลังโดยอัตโนมัติ แชทที่ปักหมุดจะไม่ถูกเก็บเข้าคลัง และจะไม่มีการลบใด ๆ — แชทที่เก็บเข้าคลังจะย้ายมาที่นี่',
       autoArchiveDaysLabel: 'เก็บเข้าคลังหลังจาก',
       autoArchiveDaysUnit: 'วันโดยไม่มีการใช้งาน',
       autoArchiveFailed: 'อัปเดตการเก็บเข้าคลังอัตโนมัติไม่ได้',
       defaultDirTitle: 'โฟลเดอร์โปรเจกต์เริ่มต้น',
-      defaultDirDesc: 'เซสชันใหม่จะเริ่มในโฟลเดอร์นี้ เว้นแต่คุณจะเลือกโฟลเดอร์อื่น ปล่อยว่างไว้เพื่อใช้โฟลเดอร์บ้านของคุณ',
+      defaultDirDesc:
+        'เซสชันใหม่จะเริ่มในโฟลเดอร์นี้ เว้นแต่คุณจะเลือกโฟลเดอร์อื่น ปล่อยว่างไว้เพื่อใช้โฟลเดอร์บ้านของคุณ',
       defaultDirUpdated: 'อัปเดตไดเรกทอรีโปรเจกต์เริ่มต้นแล้ว — เริ่มแชทใหม่ (Ctrl/⌘+N) เพื่อให้มีผล',
       defaultsTo: label => `ค่าเริ่มต้นคือ ${label}`,
       change: 'เปลี่ยน',
@@ -865,7 +896,7 @@ export const th = defineLocale({
       unarchiveFailed: 'ยกเลิกการเก็บถาวรไม่สำเร็จ',
       deleteFailed: 'ลบไม่สำเร็จ',
       updateDirFailed: 'ไม่สามารถอัปเดตไดเรกทอรีเริ่มต้นได้',
-      clearDirFailed: 'ไม่สามารถล้างไดเรกทอรีเริ่มต้นได้',
+      clearDirFailed: 'ไม่สามารถล้างไดเรกทอรีเริ่มต้นได้'
     },
     toolsets: {
       loadingConfig: 'กำลังโหลดการกำหนดค่า',
@@ -890,7 +921,8 @@ export const th = defineLocale({
       needsSetup: 'ต้องตั้งค่า',
       openamerIncluded: 'รวมอยู่ในการสมัครสมาชิก OpenAmer — ลงชื่อเข้าใช้ OpenAmer Portal เพื่อเปิดใช้งาน',
       openamerAuthNeededTitle: 'ลงชื่อเข้าใช้ OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `บันทึก ${provider} แล้ว แต่จะไม่เปิดใช้งานจนกว่าคุณจะลงชื่อเข้าใช้ OpenAmer Portal`,
+      openamerAuthNeededMessage: provider =>
+        `บันทึก ${provider} แล้ว แต่จะไม่เปิดใช้งานจนกว่าคุณจะลงชื่อเข้าใช้ OpenAmer Portal`,
       openamerAuthSignIn: 'ลงชื่อเข้าใช้',
       openamerAuthDoneTitle: 'เชื่อมต่อ OpenAmer Portal แล้ว',
       openamerAuthDoneMessage: 'แบ็กเอนด์การสมัครสมาชิกของคุณเปิดใช้งานแล้ว',
@@ -937,9 +969,9 @@ export const th = defineLocale({
         selectedTitle: 'เลือกแบ็กเอนด์แล้ว',
         selectedMessage: backend => `คำสั่งเทอร์มินัลจะรันผ่าน ${backend} มีผลกับเซสชันใหม่`,
         failedSelect: backend => `เลือก ${backend} ไม่สำเร็จ`,
-        needsSetupHint: 'เลือกแบ็กเอนด์นี้ได้เลย — คำสั่งจะล้มเหลวจนกว่าจะตั้งค่าเสร็จ',
-      },
-    },
+        needsSetupHint: 'เลือกแบ็กเอนด์นี้ได้เลย — คำสั่งจะล้มเหลวจนกว่าจะตั้งค่าเสร็จ'
+      }
+    }
   },
   skills: {
     tabSkills: 'ทักษะ',
@@ -959,7 +991,8 @@ export const th = defineLocale({
     noDescription: 'ไม่มีคำอธิบาย',
     configured: 'กำหนดค่าแล้ว',
     needsKeys: 'ต้องใช้คีย์',
-    visionModelHint: 'การมองเห็นใช้การกำหนดค่าโมเดลเสริมของคุณ — โมเดลที่รองรับภาพจะถูกเลือกที่นั่น ไม่ใช่กำหนดต่อผู้ให้บริการที่นี่',
+    visionModelHint:
+      'การมองเห็นใช้การกำหนดค่าโมเดลเสริมของคุณ — โมเดลที่รองรับภาพจะถูกเลือกที่นั่น ไม่ใช่กำหนดต่อผู้ให้บริการที่นี่',
     visionModelLink: 'เลือกโมเดลการมองเห็นในการตั้งค่า → โมเดล',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ชุดเครื่องมือที่เปิดใช้งาน`,
     configureToolset: label => `กำหนดค่า ${label}`,
@@ -985,7 +1018,7 @@ export const th = defineLocale({
     provenance: {
       agent: 'เรียนรู้แล้ว',
       bundled: 'ในตัว',
-      hub: 'ฮับ',
+      hub: 'ฮับ'
     },
     emptyNoneFound: noun => `ไม่พบ ${noun}`,
     emptyNothingMatches: query => `ไม่มีรายการที่ตรงกับ “${query}”`,
@@ -1005,7 +1038,8 @@ export const th = defineLocale({
       featured: 'สกิลแนะนำ',
       landingHint: 'ค้นหาฮับเพื่อเรียกดูสกิลที่ติดตั้งได้จากดัชนีทางการ GitHub และแหล่งชุมชน',
       noResults: 'ไม่พบสกิลที่ตรงกันในฮับ',
-      resultCount: (count, ms) => `${count} ผลลัพธ์ ${count === 1 ? 'ผลลัพธ์' : 'ผลลัพธ์'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} ผลลัพธ์ ${count === 1 ? 'ผลลัพธ์' : 'ผลลัพธ์'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `หมดเวลา: ${sources}`,
       installed: 'ติดตั้งแล้ว',
       install: 'ติดตั้ง',
@@ -1023,7 +1057,7 @@ export const th = defineLocale({
       trust: {
         builtin: 'ในตัว',
         trusted: 'เชื่อถือได้',
-        community: 'ชุมชน',
+        community: 'ชุมชน'
       },
       verdictSafe: 'ปลอดภัย',
       verdictCaution: 'ระวัง',
@@ -1041,7 +1075,7 @@ export const th = defineLocale({
       loadFailed: 'โหลดศูนย์รวมสกิลไม่สำเร็จ',
       previewFailed: 'แสดงตัวอย่างสกิลไม่สำเร็จ',
       scanFailed: 'สแกนความปลอดภัยไม่สำเร็จ',
-      searchFailed: 'ค้นหาศูนย์รวมไม่สำเร็จ',
+      searchFailed: 'ค้นหาศูนย์รวมไม่สำเร็จ'
     },
     tabPlugins: 'ปลั๊กอิน',
     searchPlugins: 'ค้นหาปลั๊กอิน...',
@@ -1061,9 +1095,10 @@ export const th = defineLocale({
     pluginsSearchFailed: 'การค้นหา GitHub ล้มเหลว',
     pluginsDiscoverAction: query => `ค้นหา "${query}" บน GitHub`,
     pluginsDiscoverResults: (n, query) => `${n} รีโพซิทอรีที่ติดแท็ก openamer-plugin สำหรับ "${query}"`,
-    pluginsDiscoverEmpty: query => `ไม่พบอะไรบน GitHub สำหรับ "${query}" — การค้นหาจะพบเฉพาะเรโปที่มีหัวข้อ openamer-plugin และการค้นหา GitHub แบบไม่ระบุตัวตนจะถูกจำกัดจำนวนครั้ง โปรดติดตั้งโดยระบุเจ้าของ/เรโปที่ถูกต้องด้านบนแทน`,
+    pluginsDiscoverEmpty: query =>
+      `ไม่พบอะไรบน GitHub สำหรับ "${query}" — การค้นหาจะพบเฉพาะเรโปที่มีหัวข้อ openamer-plugin และการค้นหา GitHub แบบไม่ระบุตัวตนจะถูกจำกัดจำนวนครั้ง โปรดติดตั้งโดยระบุเจ้าของ/เรโปที่ถูกต้องด้านบนแทน`,
     pluginsStatusInactive: 'ไม่ทำงาน',
-    pluginsToggleFailed: 'ไม่สามารถเปลี่ยนสถานะของปลั๊กอินได้',
+    pluginsToggleFailed: 'ไม่สามารถเปลี่ยนสถานะของปลั๊กอินได้'
   },
   starmap: {
     title: 'กราฟความจำ',
@@ -1080,7 +1115,8 @@ export const th = defineLocale({
     emptyTitle: 'ยังไม่มีสิ่งที่เรียนรู้',
     emptyDesc: 'เมื่อ OpenAmer สร้างสกิลและความจำสำหรับงานของคุณ รายการจะปรากฏที่นี่',
     share: 'แชร์แผนที่',
-    shareHint: 'คัดลอกโค้ดเพื่อแชร์แผนที่นี้ หรือวางโค้ดเพื่อโหลด โดยจะรวมเฉพาะเลย์เอาต์ ไม่รวมข้อความความจำหรือสกิลของคุณ',
+    shareHint:
+      'คัดลอกโค้ดเพื่อแชร์แผนที่นี้ หรือวางโค้ดเพื่อโหลด โดยจะรวมเฉพาะเลย์เอาต์ ไม่รวมข้อความความจำหรือสกิลของคุณ',
     shareTitle: 'นำเข้า / ส่งออกแผนที่',
     sharePlaceholder: 'วางโค้ดแผนที่…',
     copy: 'คัดลอกโค้ดแผนที่',
@@ -1090,7 +1126,7 @@ export const th = defineLocale({
     importEmpty: 'วางโค้ดแผนที่เพื่อโหลด',
     importSuccess: nodes => `โหลดแผนที่ที่มี ${nodes} ${nodes === 1 ? 'โหนด' : 'โหนด'} แล้ว.`,
     importedBadge: 'แผนที่ที่นำเข้า',
-    resetToMine: 'กลับไปยังแผนที่ของฉัน',
+    resetToMine: 'กลับไปยังแผนที่ของฉัน'
   },
   agents: {
     close: 'ปิดเอเจนต์',
@@ -1120,7 +1156,7 @@ export const th = defineLocale({
     ageDays: days => `${days} วันที่แล้ว`,
     durationSeconds: seconds => `${seconds} วินาที`,
     durationMinutes: (minutes, seconds) => `${minutes} นาที ${seconds} วินาที`,
-    tokens: value => `${value} โทเคน`,
+    tokens: value => `${value} โทเคน`
   },
   commandCenter: {
     close: 'ปิดศูนย์คำสั่ง',
@@ -1150,7 +1186,7 @@ export const th = defineLocale({
       generatedTag: 'สร้างแล้ว',
       adoptFailed: 'ไม่สามารถรับเลี้ยงสัตว์เลี้ยงตัวนั้นได้',
       toggleFailed: 'ไม่สามารถเปิด/ปิดสัตว์เลี้ยงได้',
-      noneAvailable: 'ไม่มีสัตว์เลี้ยงให้เลือก — เลือกตัวด้านล่างเพื่อติดตั้ง',
+      noneAvailable: 'ไม่มีสัตว์เลี้ยงให้เลือก — เลือกตัวด้านล่างเพื่อติดตั้ง'
     },
     generatePet: {
       title: 'สร้างสัตว์เลี้ยง',
@@ -1179,7 +1215,7 @@ export const th = defineLocale({
       referenceImageTooLarge: 'ภาพอ้างอิงมีขนาดใหญ่เกินไป ใช้ภาพที่เล็กกว่า 16 MB',
       referenceImageInvalid: 'อ่านภาพอ้างอิงนั้นไม่ได้ ลองใช้ PNG, JPG, WebP หรือ GIF',
       adopt: 'รับเลี้ยง',
-      startOver: 'เริ่มใหม่',
+      startOver: 'เริ่มใหม่'
     },
     installTheme: {
       title: 'ติดตั้งธีม…',
@@ -1191,7 +1227,7 @@ export const th = defineLocale({
       install: 'ติดตั้ง',
       installing: 'กำลังติดตั้ง...',
       installed: 'ติดตั้งแล้ว',
-      installs: count => `ติดตั้ง ${count} ครั้ง`,
+      installs: count => `ติดตั้ง ${count} ครั้ง`
     },
     settingsFields: 'ฟิลด์การตั้งค่า',
     mcpServers: 'เซิร์ฟเวอร์ MCP',
@@ -1200,49 +1236,49 @@ export const th = defineLocale({
       maintenance: 'การบำรุงรักษา',
       sessions: 'เซสชัน',
       system: 'ระบบ',
-      usage: 'การใช้งาน',
+      usage: 'การใช้งาน'
     },
     sectionDescriptions: {
       maintenance: 'ข้อมูลการวินิจฉัย การสำรองข้อมูล คิวเรเตอร์ และหน่วยความจำ',
       sessions: 'ค้นหาและจัดการเซสชัน',
       system: 'สถานะ บันทึก และการดำเนินการระบบ',
-      usage: 'กิจกรรมโทเคน ค่าใช้จ่าย และสกิลตามช่วงเวลา',
+      usage: 'กิจกรรมโทเคน ค่าใช้จ่าย และสกิลตามช่วงเวลา'
     },
     nav: {
       newChat: {
         title: 'เซสชันใหม่',
-        detail: 'เริ่มเซสชันใหม่',
+        detail: 'เริ่มเซสชันใหม่'
       },
       settings: {
         title: 'การตั้งค่า',
-        detail: 'กำหนดค่า OpenAmer เดสก์ท็อป',
+        detail: 'กำหนดค่า OpenAmer เดสก์ท็อป'
       },
       skills: {
         title: 'ความสามารถ',
-        detail: 'สกิล เครื่องมือ และเซิร์ฟเวอร์ MCP',
+        detail: 'สกิล เครื่องมือ และเซิร์ฟเวอร์ MCP'
       },
       messaging: {
         title: 'การส่งข้อความ',
-        detail: 'ตั้งค่า Telegram, Slack, Discord และอื่น ๆ',
+        detail: 'ตั้งค่า Telegram, Slack, Discord และอื่น ๆ'
       },
       artifacts: {
         title: 'อาร์ติแฟกต์',
-        detail: 'เรียกดูผลลัพธ์ที่สร้างขึ้น',
-      },
+        detail: 'เรียกดูผลลัพธ์ที่สร้างขึ้น'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'แผงเซสชัน',
-        detail: 'ค้นหา ปักหมุด และจัดการเซสชัน',
+        detail: 'ค้นหา ปักหมุด และจัดการเซสชัน'
       },
       system: {
         title: 'แผงระบบ',
-        detail: 'สถานะเกตเวย์ บันทึก การรีสตาร์ท/อัปเดต',
+        detail: 'สถานะเกตเวย์ บันทึก การรีสตาร์ท/อัปเดต'
       },
       usage: {
         title: 'แผงการใช้งาน',
-        detail: 'กิจกรรมโทเคน ค่าใช้จ่าย และสกิล',
-      },
+        detail: 'กิจกรรมโทเคน ค่าใช้จ่าย และสกิล'
+      }
     },
     providerNavigate: 'นำทาง',
     providerSessions: 'เซสชัน',
@@ -1330,8 +1366,8 @@ export const th = defineLocale({
       actionStarted: name => `${name} เริ่มทำงานแล้ว — กำลังติดตามบันทึก...`,
       actionFailed: name => `${name} เริ่มไม่สำเร็จ`,
       running: 'กำลังทำงาน...',
-      viewLog: 'บันทึกการกระทำ',
-    },
+      viewLog: 'บันทึกการกระทำ'
+    }
   },
   messaging: {
     search: 'ค้นหาการรับส่งข้อความ...',
@@ -1346,7 +1382,7 @@ export const th = defineLocale({
       not_configured: 'ต้องตั้งค่า',
       pending_restart: 'ต้องรีสตาร์ต',
       retrying: 'กำลังลองใหม่',
-      startup_failed: 'เริ่มต้นไม่สำเร็จ',
+      startup_failed: 'เริ่มต้นไม่สำเร็จ'
     },
     unknown: 'ไม่ทราบ',
     hintPendingRestart: 'รีสตาร์ตเกตเวย์จากแถบสถานะเพื่อให้การเปลี่ยนแปลงมีผล',
@@ -1385,127 +1421,126 @@ export const th = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'โทเค็นบอท',
         help: 'สร้างบอตกับ @BotFather แล้ววางโทเค็นที่ได้',
-        placeholder: 'วางโทเค็นบอต Telegram',
+        placeholder: 'วางโทเค็นบอต Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ Telegram ที่อนุญาต',
-        help: 'แนะนำ: ID ตัวเลขคั่นด้วยจุลภาคจาก @userinfobot หากไม่ใส่ ใครก็ส่ง DM ถึงบอตคุณได้',
+        help: 'แนะนำ: ID ตัวเลขคั่นด้วยจุลภาคจาก @userinfobot หากไม่ใส่ ใครก็ส่ง DM ถึงบอตคุณได้'
       },
       TELEGRAM_PROXY: {
         label: 'URL พร็อกซี่',
-        help: 'จำเป็นเฉพาะบนเครือข่ายที่ Telegram ถูกบล็อก',
+        help: 'จำเป็นเฉพาะบนเครือข่ายที่ Telegram ถูกบล็อก'
       },
       DISCORD_BOT_TOKEN: {
         label: 'โทเค็นบอท',
-        help: 'สร้างแอปใน Discord Developer Portal เพิ่มบอต แล้ววางโทเค็นของบอต',
+        help: 'สร้างแอปใน Discord Developer Portal เพิ่มบอต แล้ววางโทเค็นของบอต'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ Discord ที่อนุญาต',
-        help: 'แนะนำ: ID ผู้ใช้ Discord คั่นด้วยจุลภาค',
+        help: 'แนะนำ: ID ผู้ใช้ Discord คั่นด้วยจุลภาค'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'รูปแบบการตอบ',
-        help: 'แบบแรก, ทั้งหมด หรือปิด',
+        help: 'แบบแรก, ทั้งหมด หรือปิด'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'อนุญาตผู้ใช้ Discord ทั้งหมด',
-        help: 'สำหรับการพัฒนเท่านั้น เมื่อเป็น true ใครก็สามารถ DM บอตได้โดยไม่มีรายการอนุญาต',
+        help: 'สำหรับการพัฒนเท่านั้น เมื่อเป็น true ใครก็สามารถ DM บอตได้โดยไม่มีรายการอนุญาต'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ช่องหลัก',
-        help: 'ช่องที่บอทส่งข้อความเชิงรุก (ผลลัพธ์ cron, การแจ้งเตือน)',
+        help: 'ช่องที่บอทส่งข้อความเชิงรุก (ผลลัพธ์ cron, การแจ้งเตือน)'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'ชื่อช่องหลัก',
-        help: 'ชื่อที่แสดงของช่องหลักในบันทึกและผลลัพธ์สถานะ',
+        help: 'ชื่อที่แสดงของช่องหลักในบันทึกและผลลัพธ์สถานะ'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'อนุญาตผู้ใช้ iMessage ทั้งหมด',
-        help: 'เมื่อเป็น true ให้ข้ามรายการอนุญาตของ BlueBubbles',
+        help: 'เมื่อเป็น true ให้ข้ามรายการอนุญาตของ BlueBubbles'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'อนุญาตผู้ใช้ Mattermost ทั้งหมด',
+        label: 'อนุญาตผู้ใช้ Mattermost ทั้งหมด'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'ช่องหลัก',
+        label: 'ช่องหลัก'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'อนุญาตผู้ใช้ QQ ทั้งหมด',
+        label: 'อนุญาตผู้ใช้ QQ ทั้งหมด'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'ช่องหลัก QQ',
-        help: 'ช่องหรือกลุ่มเริ่มต้นสำหรับการส่งด้วย cron',
+        help: 'ช่องหรือกลุ่มเริ่มต้นสำหรับการส่งด้วย cron'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'ชื่อช่องหลัก QQ',
+        label: 'ชื่อช่องหลัก QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'โทเค็นบอท Slack',
         help: 'ใช้โทเค็นบอทจาก OAuth & Permissions หลังจากติดตั้งแอป Slack แล้ว',
-        placeholder: 'วางโทเค็นบอท Slack',
+        placeholder: 'วางโทเค็นบอท Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'โทเค็นแอป Slack',
         help: 'ใช้โทเค็นระดับแอปที่จำเป็นสำหรับ Socket Mode',
-        placeholder: 'วางโทเค็นแอป Slack',
+        placeholder: 'วางโทเค็นแอป Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ Slack ที่อนุญาต',
-        help: 'แนะนำ: ID ผู้ใช้ Slack คั่นด้วยเครื่องหมายจุลภาค',
+        help: 'แนะนำ: ID ผู้ใช้ Slack คั่นด้วยเครื่องหมายจุลภาค'
       },
       MATTERMOST_URL: {
         label: 'URL เซิร์ฟเวอร์',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'โทเค็นบอท',
+        label: 'โทเค็นบอท'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ที่อนุญาต',
-        help: 'แนะนำ: ID ผู้ใช้ Mattermost คั่นด้วยจุลภาค',
+        help: 'แนะนำ: ID ผู้ใช้ Mattermost คั่นด้วยจุลภาค'
       },
       MATRIX_HOMESERVER: {
         label: 'URL โฮมเซิร์ฟเวอร์',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'โทเคนการเข้าถึง',
+        label: 'โทเคนการเข้าถึง'
       },
       MATRIX_USER_ID: {
         label: 'ID ผู้ใช้บอต',
-        placeholder: '@โอเพนอาเมอร์:เอ็กแซมเพิล.ออร์ก',
+        placeholder: '@โอเพนอาเมอร์:เอ็กแซมเพิล.ออร์ก'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID ผู้ใช้ Matrix ที่อนุญาต',
-        help: 'แนะนำ: ID ผู้ใช้ในรูปแบบ @user:server คั่นด้วยจุลภาค',
+        help: 'แนะนำ: ID ผู้ใช้ในรูปแบบ @user:server คั่นด้วยจุลภาค'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL บริดจ์ Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ของบริดจ์ signal-cli REST ที่กำลังทำงาน',
+        help: 'URL ของบริดจ์ signal-cli REST ที่กำลังทำงาน'
       },
       SIGNAL_ACCOUNT: {
         label: 'หมายเลขโทรศัพท์',
-        help: 'หมายเลขที่ลงทะเบียนกับบริดจ์ signal-cli ของคุณ',
+        help: 'หมายเลขที่ลงทะเบียนกับบริดจ์ signal-cli ของคุณ'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'ผู้ใช้ Signal ที่อนุญาต',
-        help: 'แนะนำ: ตัวระบุ Signal คั่นด้วยจุลภาค',
+        help: 'แนะนำ: ตัวระบุ Signal คั่นด้วยจุลภาค'
       },
       WHATSAPP_ENABLED: {
         label: 'เปิดใช้บริดจ์ WhatsApp',
-        help: 'ตั้งค่าอัตโนมัติด้วยสวิตช์ด้านล่าง อย่าแก้ไขเว้นแต่คุณแน่ใจว่าต้องการ',
+        help: 'ตั้งค่าอัตโนมัติด้วยสวิตช์ด้านล่าง อย่าแก้ไขเว้นแต่คุณแน่ใจว่าต้องการ'
       },
       WHATSAPP_MODE: {
-        label: 'โหมดบริดจ์',
+        label: 'โหมดบริดจ์'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'ผู้ใช้ WhatsApp ที่อนุญาต',
-        help: 'แนะนำ: หมายเลขโทรศัพท์หรือ WhatsApp ID คั่นด้วยเครื่องหมายจุลภาค',
-      },
+        help: 'แนะนำ: หมายเลขโทรศัพท์หรือ WhatsApp ID คั่นด้วยเครื่องหมายจุลภาค'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'ค้นหาเว็บฮุก...',
@@ -1515,7 +1550,8 @@ export const th = defineLocale({
     hint: 'การเปลี่ยนแปลงการสมัครรับจะโหลดซ้ำทันทีเมื่อตัวรับทำงานอยู่ การสมัครรับที่ปิดใช้งานจะปฏิเสธเหตุการณ์ขาเข้า',
     empty: 'ยังไม่มีการสมัครรับเว็บฮุก',
     disabledTitle: 'ตัวรับเว็บฮุกถูกปิดใช้งาน',
-    disabledBody: 'เว็บฮุกเป็นแพลตฟอร์มเกตเวย์ของตัวเอง เปิดใช้งานที่นี่เพื่อรับเหตุการณ์ HTTP ขาเข้า; ช่องแชทจำเป็นเฉพาะเมื่อการสมัครรับส่งไปยัง Telegram, Discord, Slack หรือช่องอื่น',
+    disabledBody:
+      'เว็บฮุกเป็นแพลตฟอร์มเกตเวย์ของตัวเอง เปิดใช้งานที่นี่เพื่อรับเหตุการณ์ HTTP ขาเข้า; ช่องแชทจำเป็นเฉพาะเมื่อการสมัครรับส่งไปยัง Telegram, Discord, Slack หรือช่องอื่น',
     enable: 'เปิดใช้งานเว็บฮุก',
     enabling: 'กำลังเปิดใช้งาน...',
     enabled: (name: string) => `เปิดใช้งานแล้ว: "${name}"`,
@@ -1568,8 +1604,8 @@ export const th = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'อีเมล',
-      github_comment: 'คอมเมนต์ GitHub',
-    },
+      github_comment: 'คอมเมนต์ GitHub'
+    }
   },
   profiles: {
     close: 'ปิดโปรไฟล์',
@@ -1647,7 +1683,7 @@ export const th = defineLocale({
     failedLoadSoul: 'โหลด SOUL.md ไม่สำเร็จ',
     failedSaveSoul: 'บันทึก SOUL.md ไม่สำเร็จ',
     failedCreate: 'สร้างโปรไฟล์ไม่สำเร็จ',
-    failedRename: 'เปลี่ยนชื่อโปรไฟล์ไม่สำเร็จ',
+    failedRename: 'เปลี่ยนชื่อโปรไฟล์ไม่สำเร็จ'
   },
   cron: {
     close: 'ปิด cron',
@@ -1662,14 +1698,14 @@ export const th = defineLocale({
       paused: 'หยุดชั่วคราว',
       disabled: 'ปิดใช้งาน',
       error: 'ข้อผิดพลาด',
-      completed: 'เสร็จสิ้น',
+      completed: 'เสร็จสิ้น'
     },
     deliveryLabels: {
       local: 'เดสก์ท็อปนี้',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'อีเมล',
+      email: 'อีเมล'
     },
     scheduleLabels: {
       daily: 'รายวัน',
@@ -1678,7 +1714,7 @@ export const th = defineLocale({
       monthly: 'รายเดือน',
       hourly: 'รายชั่วโมง',
       'every-15-minutes': 'ทุก 15 นาที',
-      custom: 'กำหนดเอง',
+      custom: 'กำหนดเอง'
     },
     scheduleHints: {
       daily: 'ทุกวันเวลา 9:00 น.',
@@ -1687,7 +1723,7 @@ export const th = defineLocale({
       monthly: 'วันแรกของทุกเดือนเวลา 9:00 น.',
       hourly: 'ทุกต้นชั่วโมง',
       'every-15-minutes': 'ทุก 15 นาที',
-      custom: 'ไวยากรณ์ Cron หรือภาษาธรรมชาติ',
+      custom: 'ไวยากรณ์ Cron หรือภาษาธรรมชาติ'
     },
     days: {
       '0': 'วันอาทิตย์',
@@ -1697,7 +1733,7 @@ export const th = defineLocale({
       '4': 'วันพฤหัสบดี',
       '5': 'วันศุกร์',
       '6': 'วันเสาร์',
-      '7': 'วันอาทิตย์',
+      '7': 'วันอาทิตย์'
     },
     dayFallback: value => `วันที่ ${value}`,
     everyDayAt: time => `ทุกวันเวลา ${time}`,
@@ -1766,7 +1802,7 @@ export const th = defineLocale({
     createAction: 'สร้าง cron',
     tabs: {
       jobs: 'งาน',
-      blueprints: 'บลูพรินต์',
+      blueprints: 'บลูพรินต์'
     },
     blueprints: {
       tab: 'บลูพรินต์',
@@ -1780,8 +1816,8 @@ export const th = defineLocale({
       loading: 'กำลังโหลดบลูพรินต์...',
       failedLoad: 'โหลดบลูพรินต์ไม่สำเร็จ',
       emptyTitle: 'ไม่มีบลูพรินต์ที่ใช้ได้',
-      emptyDesc: 'ไม่มีบลูพรินต์ระบบอัตโนมัติบนแบ็กเอนด์นี้',
-    },
+      emptyDesc: 'ไม่มีบลูพรินต์ระบบอัตโนมัติบนแบ็กเอนด์นี้'
+    }
   },
   artifacts: {
     search: 'ค้นหาอาร์ติแฟกต์...',
@@ -1815,14 +1851,14 @@ export const th = defineLocale({
     kindLink: 'ลิงก์',
     chat: 'แชท',
     copyUrl: 'คัดลอก URL',
-    copyPath: 'คัดลอกพาธ',
+    copyPath: 'คัดลอกพาธ'
   },
   sidebar: {
     nav: {
       'new-session': 'เซสชันใหม่',
       skills: 'ความสามารถ',
       messaging: 'การส่งข้อความ',
-      artifacts: 'อาร์ติแฟกต์',
+      artifacts: 'อาร์ติแฟกต์'
     },
     searchAria: 'ค้นหาเซสชัน',
     searchPlaceholder: 'ค้นหาเซสชัน…',
@@ -1854,7 +1890,7 @@ export const th = defineLocale({
       namePlaceholder: 'เช่น Skunkworks',
       foldersLabel: 'โฟลเดอร์',
       ideaLabel: 'แนวคิด',
-      ideaPlaceholder: "โปรเจกต์นี้เกี่ยวกับอะไร (บันทึกไว้ใน IDEA.md)",
+      ideaPlaceholder: 'โปรเจกต์นี้เกี่ยวกับอะไร (บันทึกไว้ใน IDEA.md)',
       ideaGenerate: 'สร้างไอเดีย',
       ideaGenerating: 'กำลังสร้าง…',
       ideaShuffle: 'สลับเทมเพลต',
@@ -1874,7 +1910,8 @@ export const th = defineLocale({
       copyPath: 'คัดลอกพาธ',
       removeFromSidebar: 'ซ่อนจากแถบด้านข้าง',
       createFailed: 'ไม่สามารถสร้างโปรเจกต์',
-      staleBackend: 'อัปเดตแบ็กเอนด์ของ OpenAmer เพื่อสร้างโปรเจกต์ — แบ็กเอนด์ของคุณเก่ากว่าแอปเดสก์ท็อปนี้ (การตั้งค่า → อัปเดต → แบ็กเอนด์)',
+      staleBackend:
+        'อัปเดตแบ็กเอนด์ของ OpenAmer เพื่อสร้างโปรเจกต์ — แบ็กเอนด์ของคุณเก่ากว่าแอปเดสก์ท็อปนี้ (การตั้งค่า → อัปเดต → แบ็กเอนด์)',
       deleteConfirm: 'การดำเนินการนี้จะลบโปรเจกต์ที่บันทึกไว้ออกจาก OpenAmer ไฟล์ รีโป git และเวิร์กทรีจะไม่ถูกแตะต้อง',
       startWork: 'เวิร์กทรีใหม่',
       newWorktreeTitle: 'เวิร์กทรีใหม่',
@@ -1896,13 +1933,15 @@ export const th = defineLocale({
       noBranches: 'ไม่พบสาขา',
       removeWorktree: 'ลบเวิร์กทรี',
       removeWorktreeFailed: 'ไม่สามารถลบเวิร์กทรี (มีการเปลี่ยนแปลงที่ยังไม่คอมมิต?)',
-      removeWorktreeConfirm: 'ลบออกจาก git (ลบไดเรกทอรี worktree; สาขายังอยู่) หรือเพียงซ่อนเลนจากแถบด้านข้างและเก็บ worktree ไว้ในดิสก์',
-      removeWorktreeDirty: 'worktree นี้มีการเปลี่ยนแปลงที่ยังไม่ commit บังคับลบ (ทิ้งการเปลี่ยนแปลงเหล่านั้น) หรือเพียงซ่อนเลนและเก็บไว้ในดิสก์',
+      removeWorktreeConfirm:
+        'ลบออกจาก git (ลบไดเรกทอรี worktree; สาขายังอยู่) หรือเพียงซ่อนเลนจากแถบด้านข้างและเก็บ worktree ไว้ในดิสก์',
+      removeWorktreeDirty:
+        'worktree นี้มีการเปลี่ยนแปลงที่ยังไม่ commit บังคับลบ (ทิ้งการเปลี่ยนแปลงเหล่านั้น) หรือเพียงซ่อนเลนและเก็บไว้ในดิสก์',
       forceRemove: 'บังคับลบ',
       enter: label => `เปิด ${label}`,
       reorder: label => `จัดลำดับ ${label}`,
       toggle: label => `สลับเซสชัน ${label}`,
-      back: 'ทุกโปรเจกต์',
+      back: 'ทุกโปรเจกต์'
     },
     newSessionIn: label => `เซสชันใหม่ใน ${label}`,
     showMoreIn: (count, label) => `แสดง ${count} เพิ่มเติมใน ${label}`,
@@ -1940,15 +1979,15 @@ export const th = defineLocale({
       ageNow: 'ตอนนี้',
       ageDay: 'วัน',
       ageHour: 'ชม.',
-      ageMin: 'ม.',
+      ageMin: 'ม.'
     },
     dateDivider: {
       today: 'วันนี้ก่อนหน้านี้',
       yesterday: 'เมื่อวาน',
       thisWeek: 'สัปดาห์นี้ก่อนหน้านี้',
       lastWeek: 'สัปดาห์ที่แล้ว',
-      thisMonth: 'เดือนนี้ก่อนหน้านี้',
-    },
+      thisMonth: 'เดือนนี้ก่อนหน้านี้'
+    }
   },
   composer: {
     message: 'ข้อความ',
@@ -1959,20 +1998,20 @@ export const th = defineLocale({
     newSessionPlaceholders: [
       'เรากำลังสร้างอะไร?',
       'มอบงานให้ OpenAmer',
-      "คุณกำลังคิดอะไรอยู่?",
+      'คุณกำลังคิดอะไรอยู่?',
       'อธิบายสิ่งที่คุณต้องการ',
       'เราควรจัดการเรื่องอะไร?',
       'ถามได้ทุกเรื่อง',
-      'เริ่มด้วยเป้าหมาย',
+      'เริ่มด้วยเป้าหมาย'
     ],
     followUpPlaceholders: [
       'ส่งข้อความติดตาม',
       'เพิ่มบริบท',
       'ปรับคำขอให้ชัดขึ้น',
-      "ต่อไปคืออะไร?",
+      'ต่อไปคืออะไร?',
       'ทำต่อไป',
       'ต่อยอดอีก',
-      'ปรับหรือทำต่อ',
+      'ปรับหรือทำต่อ'
     ],
     startVoice: 'เริ่มสนทนาด้วยเสียง',
     queueMessage: 'จัดคิวข้อความ',
@@ -2008,7 +2047,7 @@ export const th = defineLocale({
       '/resume': 'กลับไปยังเซสชันก่อนหน้า',
       '/details': 'ควบคุมระดับรายละเอียดของบันทึก',
       '/copy': 'คัดลอกส่วนที่เลือกหรือข้อความล่าสุดของผู้ช่วย',
-      '/quit': 'ออกจาก openamer',
+      '/quit': 'ออกจาก openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'อ้างอิงไฟล์ โฟลเดอร์ url, git',
@@ -2018,7 +2057,7 @@ export const th = defineLocale({
       'composer.sendQueued': 'ส่งคิวถัดไป',
       'keybinds.openPanel': 'ทางลัดแป้นพิมพ์ทั้งหมด',
       'composer.cancel': 'ปิดป๊อปโอเวอร์ · ยกเลิกการรัน',
-      'composer.history': 'สลับป๊อปโอเวอร์ / ประวัติ',
+      'composer.history': 'สลับป๊อปโอเวอร์ / ประวัติ'
     },
     attachUrlTitle: 'แนบ URL',
     attachUrlDesc: 'OpenAmer จะดึงหน้าเว็บและรวมเป็นบริบทสำหรับเทิร์นนี้',
@@ -2069,19 +2108,19 @@ export const th = defineLocale({
       codeReview: {
         label: 'รีวิวโค้ด',
         description: 'ตรวจสอบการเปลี่ยนแปลงปัจจุบันสำหรับรีเกรสชัน เคสขอบที่ตกหล่น และเทสต์ที่ขาดหาย',
-        text: 'โปรดตรวจสิ่งนี้หาบั๊ก รีเกรสชัน และเทสต์ที่ขาด',
+        text: 'โปรดตรวจสิ่งนี้หาบั๊ก รีเกรสชัน และเทสต์ที่ขาด'
       },
       implementationPlan: {
         label: 'แผนการพัฒนา',
         description: 'ร่างแนวทางก่อนแตะโค้ด เพื่อให้ diff กระชับ',
-        text: 'โปรดทำแผนการพัฒนาที่กระชับก่อนแก้โค้ด',
+        text: 'โปรดทำแผนการพัฒนาที่กระชับก่อนแก้โค้ด'
       },
       explainThis: {
         label: 'อธิบายสิ่งนี้',
         description: 'อธิบายการทำงานของโค้ดที่เลือกและลิงก์ไปยังไฟล์สำคัญ',
-        text: 'โปรดอธิบายการทำงานและชี้ไปยังไฟล์สำคัญ',
-      },
-    },
+        text: 'โปรดอธิบายการทำงานและชี้ไปยังไฟล์สำคัญ'
+      }
+    }
   },
   statusStack: {
     agents: 'เอเจนต์',
@@ -2129,13 +2168,14 @@ export const th = defineLocale({
       openPr: 'เปิด PR',
       ghMissing: 'ติดตั้ง GitHub CLI (gh) และลงชื่อเข้าใช้เพื่อเปิด PR',
       agentShip: 'ขอให้ OpenAmer เปิด PR',
-      agentShipPrompt: 'ตรวจสอบการเปลี่ยนแปลงปัจจุบัน, commit ด้วยข้อความ conventional-commit ที่ชัดเจน, push สาขา และเปิด pull request',
+      agentShipPrompt:
+        'ตรวจสอบการเปลี่ยนแปลงปัจจุบัน, commit ด้วยข้อความ conventional-commit ที่ชัดเจน, push สาขา และเปิด pull request',
       newBranch: 'สาขาใหม่',
       branchOffFrom: base => `สร้างสาขาใหม่จาก ${base}`,
       switchTo: branch => `สลับไปที่ ${branch}`,
       switchFailed: branch => `ไม่สามารถสลับไปที่ ${branch} ได้`,
-      worktrees: 'เวิร์กทรี',
-    },
+      worktrees: 'เวิร์กทรี'
+    }
   },
   updates: {
     stages: {
@@ -2150,7 +2190,7 @@ export const th = defineLocale({
       done: 'อัปเดตเสร็จสมบูรณ์',
       manual: 'อัปเดตจากเทอร์มินัลของคุณ',
       guiSkew: 'อัปเดตแอปเดสก์ท็อป',
-      error: 'หยุดการอัปเดตชั่วคราว',
+      error: 'หยุดการอัปเดตชั่วคราว'
     },
     checking: 'กำลังค้นหาการอัปเดต…',
     checkFailedTitle: 'ไม่สามารถตรวจสอบการอัปเดตได้',
@@ -2168,17 +2208,21 @@ export const th = defineLocale({
     availableBodyNoChangelog: 'เวอร์ชันใหม่พร้อมแล้ว ไม่มีบันทึกประจำรุ่นสำหรับการติดตั้งประเภทนี้',
     updateNow: 'อัปเดตตอนนี้',
     maybeLater: 'ไว้ทีหลัง',
-    moreChanges: count => `+ รวมการเปลี่ยนแปลงเพิ่มอีก ${count} รายการ ${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'}.`,
+    moreChanges: count =>
+      `+ รวมการเปลี่ยนแปลงเพิ่มอีก ${count} รายการ ${count === 1 ? 'การเปลี่ยนแปลง' : 'การเปลี่ยนแปลง'}.`,
     manualTitle: 'อัปเดตจากเทอร์มินัลของคุณ',
     manualBody: 'คุณติดตั้ง OpenAmer จากบรรทัดคำสั่ง การอัปเดตจึงทำจากที่นั่นด้วย วางสิ่งนี้ในเทอร์มินัลของคุณ:',
     manualPickedUp: 'OpenAmer จะใช้เวอร์ชันใหม่เมื่อคุณเปิดแอปครั้งถัดไป',
     guiSkewTitle: 'อัปเดตแอปเดสก์ท็อป',
-    guiSkewBody: 'แบ็กเอนด์ได้รับการอัปเดตแล้ว แต่แพ็กเกจแอปเดสก์ท็อปนี้ไม่ได้เปลี่ยนแปลง อัปเดตหรือติดตั้ง OpenAmer เดสก์ท็อปแอปใหม่ (AppImage / .deb / .rpm ของคุณ) ให้ตรงกัน',
+    guiSkewBody:
+      'แบ็กเอนด์ได้รับการอัปเดตแล้ว แต่แพ็กเกจแอปเดสก์ท็อปนี้ไม่ได้เปลี่ยนแปลง อัปเดตหรือติดตั้ง OpenAmer เดสก์ท็อปแอปใหม่ (AppImage / .deb / .rpm ของคุณ) ให้ตรงกัน',
     copy: 'คัดลอก',
     copied: 'คัดลอกแล้ว',
     done: 'เสร็จสิ้น',
-    applyingBody: 'ตัวอัปเดต OpenAmer จะทำงานในหน้าต่างของตัวเองและเปิด OpenAmer ใหม่โดยอัตโนมัติเมื่อเสร็จ โปรดอย่าเปิด OpenAmer เองขณะกำลังอัปเดต',
-    applyingBodyBackend: 'แบ็กเอนด์ระยะไกลกำลังติดตั้งการอัปเดตและจะรีสตาร์ท OpenAmer จะเชื่อมต่อใหม่โดยอัตโนมัติเมื่อกลับมา',
+    applyingBody:
+      'ตัวอัปเดต OpenAmer จะทำงานในหน้าต่างของตัวเองและเปิด OpenAmer ใหม่โดยอัตโนมัติเมื่อเสร็จ โปรดอย่าเปิด OpenAmer เองขณะกำลังอัปเดต',
+    applyingBodyBackend:
+      'แบ็กเอนด์ระยะไกลกำลังติดตั้งการอัปเดตและจะรีสตาร์ท OpenAmer จะเชื่อมต่อใหม่โดยอัตโนมัติเมื่อกลับมา',
     applyingClose: 'หน้าต่างนี้จะปิดระหว่างการอัปเดต จากนั้น OpenAmer จะเปิดขึ้นใหม่เอง',
     errorTitle: 'การอัปเดตไม่เสร็จสิ้น',
     errorBody: 'ไม่ต้องกังวล — ไม่มีข้อมูลสูญหาย คุณลองอีกครั้งได้เลยตอนนี้',
@@ -2189,12 +2233,13 @@ export const th = defineLocale({
       restarting: 'กำลังรีสตาร์ทแบ็กเอนด์เพื่อโหลดการอัปเดต…',
       notAvailable: 'ไม่มีอัปเดตสำหรับแบ็กเอนด์นี้',
       failed: 'อัปเดตแบ็กเอนด์ล้มเหลว',
-      noReturn: 'แบ็กเอนด์กลับมาออนไลน์ไม่สำเร็จ การอัปเดตอาจไม่เสร็จสมบูรณ์ — ตรวจสอบโฮสต์แบ็กเอนด์',
+      noReturn: 'แบ็กเอนด์กลับมาออนไลน์ไม่สำเร็จ การอัปเดตอาจไม่เสร็จสมบูรณ์ — ตรวจสอบโฮสต์แบ็กเอนด์'
     },
     appErrors: {
-      updateLocked: 'การอัปเดตถูกยกเลิก: หน้าต่าง OpenAmer อื่นหรือเทอร์มินัลที่รัน openamer อยู่กำลังถือการติดตั้งนี้ไว้ ปิดแล้วลองอีกครั้ง',
-      updateFailed: 'การอัปเดตไม่เสร็จสมบูรณ์ ไม่ต้องกังวล — ไม่มีข้อมูลสูญหาย คุณลองอีกครั้งได้เลยตอนนี้',
-    },
+      updateLocked:
+        'การอัปเดตถูกยกเลิก: หน้าต่าง OpenAmer อื่นหรือเทอร์มินัลที่รัน openamer อยู่กำลังถือการติดตั้งนี้ไว้ ปิดแล้วลองอีกครั้ง',
+      updateFailed: 'การอัปเดตไม่เสร็จสมบูรณ์ ไม่ต้องกังวล — ไม่มีข้อมูลสูญหาย คุณลองอีกครั้งได้เลยตอนนี้'
+    }
   },
   install: {
     stageStates: {
@@ -2202,10 +2247,11 @@ export const th = defineLocale({
       running: 'กำลังติดตั้ง',
       succeeded: 'เสร็จสิ้น',
       skipped: 'ข้ามแล้ว',
-      failed: 'ล้มเหลว',
+      failed: 'ล้มเหลว'
     },
     oneTimeTitle: 'OpenAmer ต้องติดตั้งครั้งเดียว',
-    unsupportedDesc: platform => `ยังไม่มีการติดตั้งอัตโนมัติเมื่อเปิดครั้งแรกบน ${platform} เปิดเทอร์มินัลและรันคำสั่งด้านล่าง จากนั้นเปิดแอปนี้อีกครั้ง การเปิดครั้งถัดไปจะข้ามขั้นตอนนี้`,
+    unsupportedDesc: platform =>
+      `ยังไม่มีการติดตั้งอัตโนมัติเมื่อเปิดครั้งแรกบน ${platform} เปิดเทอร์มินัลและรันคำสั่งด้านล่าง จากนั้นเปิดแอปนี้อีกครั้ง การเปิดครั้งถัดไปจะข้ามขั้นตอนนี้`,
     installCommand: 'คำสั่งติดตั้ง',
     copyCommand: 'คัดลอกคำสั่ง',
     viewDocs: 'ดูเอกสารติดตั้ง',
@@ -2247,8 +2293,10 @@ export const th = defineLocale({
     failedTitle: 'ติดตั้งไม่สำเร็จ',
     settingUpTitle: 'กำลังตั้งค่า OpenAmer Agent',
     finishingTitle: 'กำลังเสร็จสิ้น',
-    failedDesc: 'มีขั้นตอนการติดตั้งขั้นตอนหนึ่งล้มเหลว บน Windows อาจเกิดขึ้นได้หากมี OpenAmer CLI หรือแอปเดสก์ท็อปอีกตัวกำลังทำงานอยู่ หยุดอินสแตนซ์ OpenAmer ที่กำลังทำงานทั้งหมด แล้วลองอีกครั้ง ตรวจสอบรายละเอียดด้านล่างหรือบันทึกของเดสก์ท็อปสำหรับข้อความเต็ม',
-    activeDesc: 'นี่เป็นการตั้งค่าครั้งเดียว ตัวติดตั้ง OpenAmer กำลังดาวน์โหลด dependencies และกำหนดค่าคอมพิวเตอร์ของคุณ การเปิดครั้งถัดไปจะข้ามขั้นตอนนี้',
+    failedDesc:
+      'มีขั้นตอนการติดตั้งขั้นตอนหนึ่งล้มเหลว บน Windows อาจเกิดขึ้นได้หากมี OpenAmer CLI หรือแอปเดสก์ท็อปอีกตัวกำลังทำงานอยู่ หยุดอินสแตนซ์ OpenAmer ที่กำลังทำงานทั้งหมด แล้วลองอีกครั้ง ตรวจสอบรายละเอียดด้านล่างหรือบันทึกของเดสก์ท็อปสำหรับข้อความเต็ม',
+    activeDesc:
+      'นี่เป็นการตั้งค่าครั้งเดียว ตัวติดตั้ง OpenAmer กำลังดาวน์โหลด dependencies และกำหนดค่าคอมพิวเตอร์ของคุณ การเปิดครั้งถัดไปจะข้ามขั้นตอนนี้',
     progress: (completed, total) => `${completed} จาก ${total} ขั้นตอนเสร็จสิ้น`,
     currentStage: stage => ` -- ตอนนี้: ${stage}`,
     fetchingManifest: 'กำลังดึงรายการติดตั้ง...',
@@ -2262,10 +2310,10 @@ export const th = defineLocale({
     transcriptSaved: 'บันทึกข้อความเต็มไว้ที่',
     copiedOutput: 'คัดลอกแล้ว!',
     copyOutput: 'คัดลอกเอาต์พุต',
-    reloadRetry: 'โหลดใหม่และลองอีกครั้ง',
+    reloadRetry: 'โหลดใหม่และลองอีกครั้ง'
   },
   onboarding: {
-    headerTitle: "มาตั้งค่า OpenAmer Agent กันเถอะ",
+    headerTitle: 'มาตั้งค่า OpenAmer Agent กันเถอะ',
     headerDesc: 'เชื่อมต่อผู้ให้บริการโมเดลเพื่อเริ่มแชต ตัวเลือกส่วนใหญ่ใช้คลิกเดียว',
     preparingInstall: 'OpenAmer กำลังติดตั้งให้เสร็จ โดยปกติใช้เวลาไม่ถึงหนึ่งนาทีในการเปิดครั้งแรก',
     starting: 'กำลังเริ่ม OpenAmer…',
@@ -2273,7 +2321,7 @@ export const th = defineLocale({
     collapse: 'ย่อ',
     otherProviders: 'ผู้ให้บริการอื่น',
     haveApiKey: 'ฉันมีคีย์ API',
-    chooseLater: "จะเลือกผู้ให้บริการภายหลัง",
+    chooseLater: 'จะเลือกผู้ให้บริการภายหลัง',
     recommended: 'แนะนำ',
     connected: 'เชื่อมต่อแล้ว',
     featuredPitch: 'สมัครครั้งเดียว โมเดลล้ำสมัย 300+ — วิธีที่แนะนำในการรัน OpenAmer',
@@ -2282,28 +2330,29 @@ export const th = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API โมเดลโดยตรง',
-        description: 'เข้าถึงโมเดลที่โฮสต์โดย Fireworks AI โดยตรง',
+        description: 'เข้าถึงโมเดลที่โฮสต์โดย Fireworks AI โดยตรง'
       },
       openrouter: {
         short: 'คีย์เดียว หลายโมเดล',
-        description: 'โฮสต์หลายร้อยโมเดลด้วยคีย์เดียว เหมาะเป็นค่าเริ่มต้นสำหรับการติดตั้งใหม่',
+        description: 'โฮสต์หลายร้อยโมเดลด้วยคีย์เดียว เหมาะเป็นค่าเริ่มต้นสำหรับการติดตั้งใหม่'
       },
       openai: {
         short: 'โมเดลระดับ GPT',
-        description: 'เข้าถึงโมเดล OpenAI โดยตรง',
+        description: 'เข้าถึงโมเดล OpenAI โดยตรง'
       },
       gemini: {
         short: 'โมเดล Gemini',
-        description: 'เข้าถึงโมเดล Google Gemini โดยตรง',
+        description: 'เข้าถึงโมเดล Google Gemini โดยตรง'
       },
       xai: {
         short: 'โมเดล Grok',
-        description: 'เข้าถึงโมเดล xAI Grok โดยตรง',
+        description: 'เข้าถึงโมเดล xAI Grok โดยตรง'
       },
       local: {
         short: 'โฮสต์เอง',
-        description: 'ชี้ OpenAmer ไปยังปลายทางที่รองรับ OpenAI ภายในเครื่องหรือที่โฮสต์เอง (vLLM, llama.cpp, Ollama ฯลฯ)',
-      },
+        description:
+          'ชี้ OpenAmer ไปยังปลายทางที่รองรับ OpenAI ภายในเครื่องหรือที่โฮสต์เอง (vLLM, llama.cpp, Ollama ฯลฯ)'
+      }
     },
     backToSignIn: 'กลับไปเข้าสู่ระบบ',
     getKey: 'รับคีย์',
@@ -2316,7 +2365,7 @@ export const th = defineLocale({
     flowSubtitles: {
       pkce: 'เปิดเบราว์เซอร์เพื่อเข้าสู่ระบบ แล้วกลับมาต่อที่นี่',
       device_code: 'เปิดหน้ายืนยันในเบราว์เซอร์ของคุณ — OpenAmer เชื่อมต่อให้อัตโนมัติ',
-      external: 'เข้าสู่ระบบในเทอร์มินัลหนึ่งครั้ง แล้วกลับมาที่แชท',
+      external: 'เข้าสู่ระบบในเทอร์มินัลหนึ่งครั้ง แล้วกลับมาที่แชท'
     },
     startingSignIn: provider => `กำลังเริ่มเข้าสู่ระบบสำหรับ ${provider}...`,
     verifyingCode: provider => `กำลังยืนยันรหัสของคุณกับ ${provider}...`,
@@ -2330,11 +2379,13 @@ export const th = defineLocale({
     copyAuthCode: 'คัดลอกรหัสการอนุญาตแล้ววางด้านล่าง',
     pasteAuthCode: 'วางรหัสการอนุญาต',
     reopenAuthPage: 'เปิดหน้าอนุญาตอีกครั้ง',
-    autoBrowser: provider => `เราเปิด ${provider} ในเบราว์เซอร์ของคุณแล้ว อนุญาตให้ OpenAmer ที่นั่น แล้วคุณจะเชื่อมต่อได้อัตโนมัติ — ไม่ต้องคัดลอกหรือวางอะไร`,
+    autoBrowser: provider =>
+      `เราเปิด ${provider} ในเบราว์เซอร์ของคุณแล้ว อนุญาตให้ OpenAmer ที่นั่น แล้วคุณจะเชื่อมต่อได้อัตโนมัติ — ไม่ต้องคัดลอกหรือวางอะไร`,
     reopenSignInPage: 'เปิดหน้าเข้าสู่ระบบอีกครั้ง',
     waitingAuthorize: 'กำลังรอคุณอนุญาต...',
-    externalPending: provider => `${provider} เข้าสู่ระบบผ่าน CLI ของตัวเอง เรียกคำสั่งนี้ในเทอร์มินัล แล้วกลับมาเลือก "ฉันเข้าสู่ระบบแล้ว":`,
-    signedIn: "ฉันเข้าสู่ระบบแล้ว",
+    externalPending: provider =>
+      `${provider} เข้าสู่ระบบผ่าน CLI ของตัวเอง เรียกคำสั่งนี้ในเทอร์มินัล แล้วกลับมาเลือก "ฉันเข้าสู่ระบบแล้ว":`,
+    signedIn: 'ฉันเข้าสู่ระบบแล้ว',
     deviceCodeOpened: provider => `เราเปิด ${provider} ในเบราว์เซอร์ของคุณแล้ว กรอกรหัสนี้ที่นั่น:`,
     reopenVerification: 'เปิดหน้าการยืนยันอีกครั้ง',
     copy: 'คัดลอก',
@@ -2345,7 +2396,7 @@ export const th = defineLocale({
     price: (input, output) => `${input} ขาเข้า / ${output} ขาออก ต่อล้านโทเคน`,
     change: 'เปลี่ยน',
     startChatting: 'เริ่ม',
-    docs: provider => `${provider} เอกสาร`,
+    docs: provider => `${provider} เอกสาร`
   },
   modelPicker: {
     title: 'สลับโมเดล',
@@ -2361,13 +2412,13 @@ export const th = defineLocale({
     free: 'ฟรี',
     freeTier: 'ระดับฟรี',
     priceTitle: 'ราคาอินพุต / เอาต์พุตต่อล้านโทเค็น',
-    wasPrice: 'เคยเป็น',
+    wasPrice: 'เคยเป็น'
   },
   modelVisibility: {
     title: 'โมเดล',
     search: 'ค้นหาโมเดล',
     noAuthenticatedProviders: 'ไม่มีผู้ให้บริการที่ผ่านการยืนยันตัวตน',
-    addProvider: 'เพิ่มผู้ให้บริการ…',
+    addProvider: 'เพิ่มผู้ให้บริการ…'
   },
   shell: {
     windowControls: 'การควบคุมหน้าต่าง',
@@ -2378,7 +2429,7 @@ export const th = defineLocale({
       noModels: 'ไม่พบโมเดล',
       editModels: 'แก้ไขโมเดล…',
       refreshModels: 'รีเฟรชโมเดล',
-      fast: 'เร็ว',
+      fast: 'เร็ว'
     },
     modelOptions: {
       noOptions: 'ไม่มีตัวเลือกสำหรับโมเดลนี้',
@@ -2394,7 +2445,7 @@ export const th = defineLocale({
       max: 'สูงสุด',
       ultra: 'อัลตร้า',
       updateFailed: 'อัปเดตตัวเลือกโมเดลไม่สำเร็จ',
-      fastFailed: 'อัปเดตโหมดเร็วไม่สำเร็จ',
+      fastFailed: 'อัปเดตโหมดเร็วไม่สำเร็จ'
     },
     gatewayMenu: {
       gateway: 'เกตเวย์',
@@ -2409,7 +2460,7 @@ export const th = defineLocale({
       connection: label => `การเชื่อมต่อ: ${label}`,
       recentActivity: 'กิจกรรมล่าสุด',
       viewAllLogs: 'ดูบันทึกทั้งหมด →',
-      messagingPlatforms: 'แพลตฟอร์มการส่งข้อความ',
+      messagingPlatforms: 'แพลตฟอร์มการส่งข้อความ'
     },
     approvalMode: {
       title: 'โหมดอนุมัติ',
@@ -2419,7 +2470,7 @@ export const th = defineLocale({
       smart: 'อัจฉริยะ',
       smartDescription: 'ประเมินการดำเนินการอัตโนมัติและถามเมื่อจำเป็น',
       off: 'ปิด',
-      offDescription: 'ทำงานโดยไม่มีการแจ้งขออนุมัติ',
+      offDescription: 'ทำงานโดยไม่มีการแจ้งขออนุมัติ'
     },
     statusbar: {
       unknown: 'ไม่ทราบ',
@@ -2475,13 +2526,13 @@ export const th = defineLocale({
           skills: 'ทักษะ',
           subagent_definitions: 'คำจำกัดความเอเจนต์ย่อย',
           system_prompt: 'พรอมต์ระบบ',
-          tool_definitions: 'คำจำกัดความเครื่องมือ',
+          tool_definitions: 'คำจำกัดความเครื่องมือ'
         },
         empty: 'ยังไม่มีข้อมูลบริบท',
         loading: 'กำลังโหลดการแจกแจง…',
         percentFull: percent => `${percent}% เต็ม`,
         title: 'การใช้บริบท',
-        tokenSummary: (used, max) => `${used} / ${max} โทเค็น`,
+        tokenSummary: (used, max) => `${used} / ${max} โทเค็น`
       },
       openContextUsage: 'เปิดการแจกแจงการใช้บริบท',
       session: 'เซสชัน',
@@ -2494,8 +2545,8 @@ export const th = defineLocale({
       openModelPicker: 'เปิดตัวเลือกโมเดล',
       modelPinned: 'ปักหมุดโดยคุณ; แชทใหม่ใช้ค่านี้แทนค่าเริ่มต้นในการตั้งค่า',
       modelTitle: (provider, model) => `โมเดล · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'แถบด้านขวา',
@@ -2531,7 +2582,7 @@ export const th = defineLocale({
     terminalNew: 'เทอร์มินัลใหม่',
     terminalCloseOthers: 'ปิดแท็บอื่นๆ',
     terminalCloseAll: 'ปิดทั้งหมด',
-    addToChat: 'เพิ่มไปยังแชต',
+    addToChat: 'เพิ่มไปยังแชต'
   },
   preview: {
     tab: 'พรีวิว',
@@ -2586,7 +2637,7 @@ export const th = defineLocale({
       empty: 'ยังไม่มีข้อความในคอนโซล',
       promptHeader: 'คอนโซลพรีวิว:',
       sentTitle: 'ส่งไปยังแชตแล้ว',
-      sentMessage: count => `เพิ่ม ${count} รายการบันทึก ${count === 1 ? 'y' : 'ies'} ลงในช่องเขียนข้อความแล้ว`,
+      sentMessage: count => `เพิ่ม ${count} รายการบันทึก ${count === 1 ? 'y' : 'ies'} ลงในช่องเขียนข้อความแล้ว`
     },
     web: {
       appFailedToBoot: 'แอปพรีวิวเริ่มทำงานไม่สำเร็จ',
@@ -2616,12 +2667,13 @@ export const th = defineLocale({
       fileChanged: url => `ไฟล์เปลี่ยน กำลังโหลดพรีวิวใหม่: ${url}`,
       filesChanged: (count, url) => `ไฟล์เปลี่ยนแปลง ${count} รายการ กำลังโหลดพรีวิวใหม่: ${url}`,
       watchFailed: message => `ไม่สามารถติดตามไฟล์พรีวิว: ${message}`,
-      moduleMimeDescription: 'สคริปต์โมดูลถูกส่งด้วยชนิด MIME ที่ไม่ถูกต้อง ซึ่งมักหมายความว่าเซิร์ฟเวอร์ไฟล์สแตติกกำลังให้บริการแอป Vite/React แทนเซิร์ฟเวอร์สำหรับพัฒนาโปรเจกต์',
+      moduleMimeDescription:
+        'สคริปต์โมดูลถูกส่งด้วยชนิด MIME ที่ไม่ถูกต้อง ซึ่งมักหมายความว่าเซิร์ฟเวอร์ไฟล์สแตติกกำลังให้บริการแอป Vite/React แทนเซิร์ฟเวอร์สำหรับพัฒนาโปรเจกต์',
       loadFailedConsole: (code, message) => `โหลดล้มเหลว${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'ไม่สามารถเข้าถึงหน้าพรีวิวได้',
       openTarget: url => `เปิด ${url}`,
-      fallbackTitle: 'พรีวิว',
-    },
+      fallbackTitle: 'พรีวิว'
+    }
   },
   zones: {
     showHeader: 'แสดงส่วนหัว',
@@ -2629,7 +2681,8 @@ export const th = defineLocale({
     minimize: 'ย่อเล็กสุด',
     restore: 'เรียกคืน',
     closeRunningTitle: 'ปิดแท็บที่กำลังทำงานอยู่?',
-    closeRunningBody: 'แชทนี้ยังทำงานอยู่ (หรือกำลังรออินพุตของคุณ) การปิดแท็บจะซ่อนแชทนี้ — เซสชันจะเก็บความคืบหน้าไว้และสามารถเปิดใหม่ได้จากแถบด้านข้าง',
+    closeRunningBody:
+      'แชทนี้ยังทำงานอยู่ (หรือกำลังรออินพุตของคุณ) การปิดแท็บจะซ่อนแชทนี้ — เซสชันจะเก็บความคืบหน้าไว้และสามารถเปิดใหม่ได้จากแถบด้านข้าง',
     closeRunningConfirm: 'ปิดแท็บ',
     closeOthers: 'ปิดแท็บอื่น',
     closeToRight: 'ปิดแท็บด้านขวา',
@@ -2666,14 +2719,15 @@ export const th = defineLocale({
     layoutNamePlaceholder: fallback => `ชื่อเลย์เอาต์ (${fallback})`,
     saveApply: 'บันทึกและใช้',
     notExpressible: 'การจัดวางนี้ประสานกัน (กังหัน) — ยังแสดงเป็นการแบ่งซ้อนไม่ได้',
-    zoneCount: count => `${count} โซน`,
+    zoneCount: count => `${count} โซน`
   },
   assistant: {
     thread: {
       loadingSession: 'กำลังโหลดเซสชัน',
       showEarlier: 'แสดงข้อความก่อนหน้า',
       loadingResponse: 'OpenAmer กำลังโหลดคำตอบ',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'กำลังคิด',
@@ -2701,7 +2755,7 @@ export const th = defineLocale({
       restoreNext: 'คืนค่าจุดตรวจสอบถัดไป',
       goForward: 'ไปข้างหน้า',
       sendEdited: 'ส่งข้อความที่แก้ไขแล้ว',
-      attachingFile: 'กำลังแนบ…',
+      attachingFile: 'กำลังแนบ…'
     },
     approval: {
       gatewayDisconnected: 'เกตเวย์ OpenAmer ไม่ได้เชื่อมต่อ',
@@ -2714,8 +2768,9 @@ export const th = defineLocale({
       jumpToApproval: 'ต้องได้รับการอนุมัติ',
       reject: 'ปฏิเสธ',
       alwaysTitle: 'อนุญาตคำสั่งนี้เสมอหรือไม่?',
-      alwaysDescription: pattern => `การดำเนินการนี้จะเพิ่มรูปแบบ “${pattern}” ลงในรายการอนุญาตถาวรของคุณ (~/.openamer/config.yaml) OpenAmer จะไม่ถามอีกสำหรับคำสั่งลักษณะนี้ — ทั้งในเซสชันนี้หรือเซสชันในอนาคต`,
-      alwaysAllow: 'อนุญาตเสมอ',
+      alwaysDescription: pattern =>
+        `การดำเนินการนี้จะเพิ่มรูปแบบ “${pattern}” ลงในรายการอนุญาตถาวรของคุณ (~/.openamer/config.yaml) OpenAmer จะไม่ถามอีกสำหรับคำสั่งลักษณะนี้ — ทั้งในเซสชันนี้หรือเซสชันในอนาคต`,
+      alwaysAllow: 'อนุญาตเสมอ'
     },
     clarify: {
       notReady: 'คำขอชี้แจงยังไม่พร้อม',
@@ -2729,7 +2784,7 @@ export const th = defineLocale({
       continueLabel: 'ดำเนินการต่อ',
       lateAnswer: (question, choice) => `ตอบกลับ: "${question}" — คำตอบของฉัน: ${choice}`,
       lateAnswerTip: 'ร่างคำตอบนี้เป็นข้อความติดตามผล',
-      lateAnswerHint: 'พรอมต์นี้ไม่ได้อยู่ในสถานะรอแล้ว เลือกตัวเลือกเพื่อร่างเป็นข้อความติดตามผล',
+      lateAnswerHint: 'พรอมต์นี้ไม่ได้อยู่ในสถานะรอแล้ว เลือกตัวเลือกเพื่อร่างเป็นข้อความติดตามผล'
     },
     tool: {
       code: 'โค้ด',
@@ -2765,11 +2820,11 @@ export const th = defineLocale({
         ran: 'รันแล้ว',
         running: 'กำลังทำงาน',
         ranCode: 'รันโค้ดแล้ว',
-        runningCode: 'กำลังสคริปต์',
+        runningCode: 'กำลังสคริปต์'
       },
       prefixes: {
         browser: 'เบราว์เซอร์',
-        web: 'เว็บ',
+        web: 'เว็บ'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2777,132 +2832,133 @@ export const th = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `กำลังรัน ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `กำลังรัน ${action.toLowerCase()}`,
+        runningTool: action => `กำลังรัน ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'คลิกองค์ประกอบหน้าแล้ว',
           pending: 'กำลังคลิกองค์ประกอบหน้า',
-          pendingAction: 'กำลังคลิก',
+          pendingAction: 'กำลังคลิก'
         },
         browser_fill: {
           done: 'กรอกช่องฟอร์มแล้ว',
           pending: 'กำลังกรอกช่องฟอร์ม',
-          pendingAction: 'กำลังกรอก',
+          pendingAction: 'กำลังกรอก'
         },
         browser_navigate: {
           done: 'เปิดหน้าเว็บแล้ว',
           pending: 'กำลังเปิดหน้าเว็บ',
-          pendingAction: 'กำลังเปิด',
+          pendingAction: 'กำลังเปิด'
         },
         browser_snapshot: {
           done: 'จับภาพหน้าเว็บแล้ว',
           pending: 'กำลังจับภาพหน้าเว็บ',
-          pendingAction: 'กำลังจับภาพ',
+          pendingAction: 'กำลังจับภาพ'
         },
         browser_take_screenshot: {
           done: 'จับภาพหน้าจอแล้ว',
           pending: 'กำลังจับภาพหน้าจอ',
-          pendingAction: 'กำลังจับภาพ',
+          pendingAction: 'กำลังจับภาพ'
         },
         browser_type: {
           done: 'พิมพ์ลงในหน้าเว็บแล้ว',
           pending: 'กำลังพิมพ์ลงในหน้าเว็บ',
-          pendingAction: 'กำลังพิมพ์',
+          pendingAction: 'กำลังพิมพ์'
         },
         clarify: {
           done: 'ถามคำถามแล้ว',
           pending: 'กำลังถามคำถาม',
-          pendingAction: 'กำลังถาม',
+          pendingAction: 'กำลังถาม'
         },
         cronjob: {
           done: 'งาน Cron',
           pending: 'กำลังตั้งเวลา cron job',
-          pendingAction: 'กำลังตั้งเวลา',
+          pendingAction: 'กำลังตั้งเวลา'
         },
         edit_file: {
           done: 'แก้ไขไฟล์แล้ว',
           pending: 'กำลังแก้ไขไฟล์',
-          pendingAction: 'กำลังแก้ไข',
+          pendingAction: 'กำลังแก้ไข'
         },
         execute_code: {
           done: 'รันโค้ดแล้ว',
           pending: 'กำลังเขียนสคริปต์',
-          pendingAction: 'กำลังเขียนสคริปต์',
+          pendingAction: 'กำลังเขียนสคริปต์'
         },
         image_generate: {
           done: 'สร้างรูปภาพแล้ว',
           pending: 'กำลังสร้างรูปภาพ',
-          pendingAction: 'กำลังสร้าง',
+          pendingAction: 'กำลังสร้าง'
         },
         list_files: {
           done: 'แสดงรายการไฟล์แล้ว',
           pending: 'กำลังแสดงรายการไฟล์',
-          pendingAction: 'กำลังแสดงรายการ',
+          pendingAction: 'กำลังแสดงรายการ'
         },
         patch: {
           done: 'แพตช์ไฟล์แล้ว',
           pending: 'กำลังแพตช์ไฟล์',
-          pendingAction: 'กำลังแพตช์',
+          pendingAction: 'กำลังแพตช์'
         },
         read_file: {
           done: 'อ่านไฟล์แล้ว',
           pending: 'กำลังอ่านไฟล์',
-          pendingAction: 'กำลังอ่าน',
+          pendingAction: 'กำลังอ่าน'
         },
         search_files: {
           done: 'ค้นหาไฟล์แล้ว',
           pending: 'กำลังค้นหาไฟล์',
-          pendingAction: 'กำลังค้นหา',
+          pendingAction: 'กำลังค้นหา'
         },
         session_search_recall: {
           done: 'ค้นหาประวัติเซสชันแล้ว',
           pending: 'กำลังค้นหาประวัติเซสชัน',
-          pendingAction: 'กำลังค้นหา',
+          pendingAction: 'กำลังค้นหา'
         },
         terminal: {
           done: 'รันคำสั่งแล้ว',
           pending: 'กำลังรันคำสั่ง',
-          pendingAction: 'กำลังรัน',
+          pendingAction: 'กำลังรัน'
         },
         todo: {
           done: 'อัปเดตงานแล้ว',
           pending: 'กำลังอัปเดตงาน',
-          pendingAction: 'กำลังอัปเดต',
+          pendingAction: 'กำลังอัปเดต'
         },
         vision_analyze: {
           done: 'วิเคราะห์รูปภาพแล้ว',
           pending: 'กำลังวิเคราะห์รูปภาพ',
-          pendingAction: 'กำลังวิเคราะห์',
+          pendingAction: 'กำลังวิเคราะห์'
         },
         web_extract: {
           done: 'อ่านหน้าเว็บแล้ว',
           pending: 'กำลังอ่านหน้าเว็บ',
-          pendingAction: 'กำลังอ่าน',
+          pendingAction: 'กำลังอ่าน'
         },
         web_search: {
           done: 'ค้นหาเว็บแล้ว',
           pending: 'กำลังค้นหาเว็บ',
-          pendingAction: 'กำลังค้นหา',
+          pendingAction: 'กำลังค้นหา'
         },
         write_file: {
           done: 'แก้ไขไฟล์แล้ว',
           pending: 'กำลังแก้ไขไฟล์',
-          pendingAction: 'กำลังแก้ไข',
-        },
-      },
-    },
+          pendingAction: 'กำลังแก้ไข'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'เกตเวย์ OpenAmer ไม่ได้เชื่อมต่อ',
     sudoSendFailed: 'ส่งรหัสผ่าน sudo ไม่ได้',
     secretSendFailed: 'ส่งข้อมูลลับไม่ได้',
     sudoTitle: 'รหัสผ่านผู้ดูแลระบบ',
-    sudoDesc: 'OpenAmer ต้องใช้รหัสผ่าน sudo ของคุณเพื่อรันคำสั่งที่มีสิทธิ์พิเศษ โดยจะส่งไปยังเอเจนต์ในเครื่องของคุณเท่านั้น',
+    sudoDesc:
+      'OpenAmer ต้องใช้รหัสผ่าน sudo ของคุณเพื่อรันคำสั่งที่มีสิทธิ์พิเศษ โดยจะส่งไปยังเอเจนต์ในเครื่องของคุณเท่านั้น',
     sudoPlaceholder: 'รหัสผ่าน sudo',
     secretTitle: 'ต้องใช้ข้อมูลลับ',
     secretDesc: 'OpenAmer ต้องมีข้อมูลรับรองเพื่อดำเนินการต่อ',
-    secretPlaceholder: 'ค่าลับ',
+    secretPlaceholder: 'ค่าลับ'
   },
   desktop: {
     audioReadFailed: 'อ่านเสียงที่บันทึกไว้ไม่ได้',
@@ -2919,7 +2975,8 @@ export const th = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'เปิด' : 'ปิด'} สำหรับเซสชันนี้`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'สลับ YOLO ไม่ได้',
-    profileStatus: current => `โปรไฟล์: ${current} ใช้ /profile <name> หรือตัวเลือก "เซสชันใหม่" เพื่อเริ่มแชทในโปรไฟล์อื่น`,
+    profileStatus: current =>
+      `โปรไฟล์: ${current} ใช้ /profile <name> หรือตัวเลือก "เซสชันใหม่" เพื่อเริ่มแชทในโปรไฟล์อื่น`,
     unknownProfile: 'ไม่รู้จักโปรไฟล์',
     noProfileNamed: (target, available) => `ไม่มีโปรไฟล์ชื่อ "${target}" ที่ใช้ได้: ${available}`,
     newChatsProfile: name => `แชทใหม่จะใช้โปรไฟล์ ${name}`,
@@ -2929,8 +2986,9 @@ export const th = defineLocale({
     regenerateFailed: 'สร้างใหม่ไม่สำเร็จ',
     editFailed: 'แก้ไขไม่สำเร็จ',
     resumeFailed: 'กลับเข้าสู่เซสชันไม่สำเร็จ',
-    resumeStrandedTitle: "โหลดเซสชันนี้ไม่ได้",
-    resumeStrandedBody: 'การเชื่อมต่อกับเซสชันนี้ล้มเหลวและการลองใหม่อัตโนมัติหยุดแล้ว ตรวจสอบว่าเกตเวย์กำลังทำงาน แล้วลองอีกครั้ง',
+    resumeStrandedTitle: 'โหลดเซสชันนี้ไม่ได้',
+    resumeStrandedBody:
+      'การเชื่อมต่อกับเซสชันนี้ล้มเหลวและการลองใหม่อัตโนมัติหยุดแล้ว ตรวจสอบว่าเกตเวย์กำลังทำงาน แล้วลองอีกครั้ง',
     resumeRetry: 'ลองใหม่',
     nothingToBranch: 'ไม่มีอะไรให้แตกสาขา',
     branchNeedsChat: 'เริ่มหรือกลับเข้าสู่แชตก่อนแตกสาขา',
@@ -2970,32 +3028,32 @@ export const th = defineLocale({
       success: platform => `ส่งต่อให้ ${platform} แล้ว กลับมาดำเนินการต่อที่นี่ได้ทุกเมื่อ`,
       systemNote: platform => `↻ ส่งต่อให้ ${platform} แล้ว — กลับมาดำเนินการต่อที่นี่ได้ทุกเมื่อ`,
       failed: error => `ส่งต่อล้มเหลว: ${error}`,
-      timedOut: 'หมดเวลาการรอเกตเวย์ `openamer gateway` กำลังทำงานอยู่หรือไม่?',
-    },
+      timedOut: 'หมดเวลาการรอเกตเวย์ `openamer gateway` กำลังทำงานอยู่หรือไม่?'
+    }
   },
   errors: {
     genericFailure: 'เกิดข้อผิดพลาดบางอย่าง',
     boundaryTitle: 'อินเทอร์เฟซทำงานผิดพลาด',
     boundaryDesc: 'มุมมองเกิดข้อผิดพลาดที่ไม่คาดคิด แชทและการตั้งค่าของคุณยังคงปลอดภัย',
     reloadWindow: 'โหลดหน้าต่างใหม่',
-    openLogs: 'เปิดบันทึก',
+    openLogs: 'เปิดบันทึก'
   },
   ui: {
     search: {
-      clear: 'ล้างการค้นหา',
+      clear: 'ล้างการค้นหา'
     },
     pagination: {
       label: 'การแบ่งหน้า',
       previous: 'ก่อนหน้า',
       previousAria: 'ไปหน้าก่อนหน้า',
       next: 'ถัดไป',
-      nextAria: 'ไปหน้าถัดไป',
+      nextAria: 'ไปหน้าถัดไป'
     },
     sidebar: {
       title: 'แถบด้านข้าง',
       description: 'แสดงแถบด้านข้างบนมือถือ',
-      toggle: 'สลับแถบด้านข้าง',
-    },
+      toggle: 'สลับแถบด้านข้าง'
+    }
   },
   intro: {
     personas: {
@@ -3005,15 +3063,15 @@ export const th = defineLocale({
           'วันนี้เราจะสร้างอะไรกันดี?',
           'เริ่มได้จากทุกที่',
           'พื้นที่ทำงานของคุณ อยู่ห่างออกไปเพียงหนึ่งพรอมต์',
-          'พร้อมเมื่อคุณพร้อม',
+          'พร้อมเมื่อคุณพร้อม'
         ],
         bodies: [
           'ถามคำถาม วางข้อผิดพลาด หรือชี้เป้าไปที่เรโป ฉันสามารถอ่านโค้ด รันเครื่องมือ และช่วยคุณส่งงานได้',
           'อธิบายงานด้วยคำพูดของคุณเอง ฉันจะเลือกเครื่องมือที่เหมาะสม อธิบายแผนงาน และตรวจสอบก่อนเริ่มขั้นตอนที่มีความเสี่ยง',
           'วางเส้นทางไฟล์ Traceback หรือไอเดียคร่าวๆ ฉันจะตรวจสอบ แนะนำขั้นตอนถัดไป และทำให้ทุกอย่างย้อนกลับได้',
           'ค้นหาเรโป แก้ไขไฟล์ รันการทดสอบ เปิด PR บอกเป้าหมายมา แล้วฉันจะจัดการส่วนที่เป็นงานเทคนิคเอง',
-          'พิมพ์งาน คำถาม หรือชิ้นส่วนโค้ด ฉันจำเซสชันได้ อ้างอิงแหล่งที่มา และจะหยุดถามเมื่อไม่แน่ใจ',
-        ],
+          'พิมพ์งาน คำถาม หรือชิ้นส่วนโค้ด ฉันจำเซสชันได้ อ้างอิงแหล่งที่มา และจะหยุดถามเมื่อไม่แน่ใจ'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3021,31 +3079,25 @@ export const th = defineLocale({
           '*บิดขี้เกียจ* พร้อมเขียนโค้ดแล้วเนีย',
           'มรึ๊บ! เปิดเซสชันใหม่แล้ว',
           'หางตั้ง กรงเล็บเก็บ',
-          'เนียาาา~ OpenAmer รายงานตัว',
+          'เนียาาา~ OpenAmer รายงานตัว'
         ],
         bodies: [
           'วางไฟล์ ตะปบ บั๊ก หรือโยนเรโปมาให้ฉัน ฉันจะกระโดดใส่การทดสอบที่ล้มเหลวและทิ้ง diff ที่สะอาดไว้ให้ เนียน~',
           'อธิบายงานมาเลย ฉันจะแพตช์ ทดสอบ และครางอย่างพอใจกับ PR ของคุณ ระวังนะ — ฉันจะงับพวก import ที่ไม่ได้ใช้งาน!',
           'บอกเป้าหมายมา แล้วฉันจะไล่ล่ามันผ่านโค้ดเบส อ่าน แก้ไข รัน — ทั้งหมดนี้พร้อมหางที่กระดิกไปมา',
           'วางข้อผิดพลาดหรือแผนงาน ฉันดีบั๊กเหมือนตอนล่าสัตว์: เงียบเชียบ ละเอียดถี่ถ้วน และมีอาการดีดเป็นพักๆ',
-          'สั่งมาคำเดียว แล้วฉันจะอ่านไฟล์ รันการทดสอบ และขดตัวอยู่ใน branch ของคุณพร้อม commit ที่เรียบร้อย',
-        ],
+          'สั่งมาคำเดียว แล้วฉันจะอ่านไฟล์ รันการทดสอบ และขดตัวอยู่ใน branch ของคุณพร้อม commit ที่เรียบร้อย'
+        ]
       },
       concise: {
-        headlines: [
-          'พร้อม',
-          'กำลังรอข้อมูล',
-          'เริ่ม',
-          'เตรียมพร้อม',
-          'ตาคุณแล้ว',
-        ],
+        headlines: ['พร้อม', 'กำลังรอข้อมูล', 'เริ่ม', 'เตรียมพร้อม', 'ตาคุณแล้ว'],
         bodies: [
           'อธิบายงานมา แล้วฉันจะจัดการให้',
           'วางโค้ด ข้อผิดพลาด หรือเป้าหมาย คำตอบสั้นๆ แก้ไขรวดเร็ว',
           'ถามมาได้เลย ฉันจะอ่านไฟล์ รันการทดสอบ ส่งแพตช์ แบบไม่มีน้ำ',
           'บรรทัดเดียวก็พอ ฉันจะขยายความเมื่อจำเป็นเท่านั้น',
-          'คำสั่ง คำถาม หรือเส้นทางไฟล์ ฉันจัดการส่วนที่เหลือเอง',
-        ],
+          'คำสั่ง คำถาม หรือเส้นทางไฟล์ ฉันจัดการส่วนที่เหลือเอง'
+        ]
       },
       creative: {
         headlines: [
@@ -3053,15 +3105,15 @@ export const th = defineLocale({
           'ผืนผ้าใบใหม่ คอมไพเลอร์ที่อุ่นพร้อม',
           'มาสร้างบางอย่างกันเถอะ',
           'ไฟล์ใหม่ ความเป็นไปได้ใหม่',
-          'แรงบันดาลใจถูกแพตช์เข้ามาแล้ว',
+          'แรงบันดาลใจถูกแพตช์เข้ามาแล้ว'
         ],
         bodies: [
           'เราจะสร้างอะไรกันดี? วางไอเดีย ฟังก์ชันที่พังครึ่งหนึ่ง หรือความฝันของคุณมา ฉันจะร่างมันให้เป็นรูปเป็นร่าง',
           'ส่งประกายไฟมาให้ฉัน — ฟีเจอร์ การรีแฟกเตอร์ โปรโตไทป์สุดล้ำ — แล้วฉันจะเปลี่ยนมันเป็นโค้ดที่คุณรันได้',
           'อธิบายสิ่งที่ยังไม่มีอยู่จริง ฉันจะดึงการทดสอบ ไฟล์ และ API มาสร้างเป็นฉบับร่างที่ใช้งานได้',
           'นำความตั้งใจมา ไม่ต้องนำสเปกมา เราสามารถทำโปรโตไทป์ได้อย่างรวดเร็ว ปรับแต่งภายหลัง และเขียนโลกใบใหม่ในช่องว่าง',
-          'บอกฉันว่าคุณกำลังไล่ล่าอะไร ฉันจะรีมิกซ์ตัวอย่าง ปรับแต่งชิ้นส่วนโค้ด และทิ้ง commit ที่เรียบร้อยไว้ให้',
-        ],
+          'บอกฉันว่าคุณกำลังไล่ล่าอะไร ฉันจะรีมิกซ์ตัวอย่าง ปรับแต่งชิ้นส่วนโค้ด และทิ้ง commit ที่เรียบร้อยไว้ให้'
+        ]
       },
       helpful: {
         headlines: [
@@ -3069,15 +3121,15 @@ export const th = defineLocale({
           'วันนี้ให้ช่วยอะไรดีครับ?',
           'มาเริ่มกันเลย',
           'บอกสิ่งที่ต้องการได้เลย',
-          'สวัสดี OpenAmer พร้อมช่วยแล้ว',
+          'สวัสดี OpenAmer พร้อมช่วยแล้ว'
         ],
         bodies: [
           'สั่งให้ฉันเปิด repo, รันเทสต์, แก้บั๊ก หรือร่าง PR ได้เลย ฉันจะพาคุณทำทีละขั้นตอน',
           'ชี้เป้าไฟล์, วางข้อความ error หรืออธิบายสิ่งที่คุณกำลังสร้าง แล้วฉันจะจัดการต่อเอง',
           'ลอง: รีวิว diff ของฉัน, รันชุดทดสอบ หรืออธิบายฟังก์ชันนี้ ถามอะไรก็ได้เกี่ยวกับโค้ดของคุณ',
           'ฉันแก้ไขไฟล์, รันคำสั่ง, ค้นหาเว็บ และช่วยคุณแก้บั๊กยากๆ ได้ แค่อธิบายงานมาเลย',
-          'แชร์พาธของ repo หรือคำถามเพื่อเริ่มต้น ฉันจะตอบให้ชัดเจนและลิงก์กลับไปยังไฟล์ที่ฉันแก้ไข',
-        ],
+          'แชร์พาธของ repo หรือคำถามเพื่อเริ่มต้น ฉันจะตอบให้ชัดเจนและลิงก์กลับไปยังไฟล์ที่ฉันแก้ไข'
+        ]
       },
       hype: {
         headlines: [
@@ -3085,15 +3137,15 @@ export const th = defineLocale({
           'OPENAMER ออนไลน์แล้ว ลุย!',
           'เซสชันใหม่ ชนะรัวๆ',
           'มีสมาธิขั้นสุด',
-          'พร้อมแล้ว พร้อมมาก พร้อมที่สุด',
+          'พร้อมแล้ว พร้อมมาก พร้อมที่สุด'
         ],
         bodies: [
           'วางบั๊กนั้น, repo นั้น หรือไอเดียฟีเจอร์สุดล้ำมาเลย - ฉันจดจ่อเต็มที่ Diff ต้องสะอาด เทสต์ต้องผ่าน เดี๋ยวนี้เลย',
           'ส่งงานมาแล้วรอดูฉันโชว์ฝีมือ อ่านไฟล์, รันเทสต์, เปิด PR - วันนี้เราไม่มีคำว่าแพ้ เพื่อน',
           'เอาบั๊กที่หินที่สุดมาเลย ฉันจะอ่าน, แพตช์, เทสต์ และคอมมิตเหมือนชีวิตนี้ขึ้นอยู่กับมัน ลุย!',
           'อธิบายงานมา ฉันจะลุยผ่านไฟล์ต่างๆ ถล่มเทสต์ที่พัง และทิ้งคอมมิตที่เฉียบขาดไว้ให้ ลุย ลุย ลุย',
-          'จะพิมพ์ผิดนิดเดียวหรือรีแฟกเตอร์ครั้งใหญ่ - ไม่สำคัญ วันนี้ฉันจะส่งโค้ดที่สะอาดกริบ บอกงานมาแล้วเริ่มงานกัน',
-        ],
+          'จะพิมพ์ผิดนิดเดียวหรือรีแฟกเตอร์ครั้งใหญ่ - ไม่สำคัญ วันนี้ฉันจะส่งโค้ดที่สะอาดกริบ บอกงานมาแล้วเริ่มงานกัน'
+        ]
       },
       kawaii: {
         headlines: [
@@ -3101,15 +3153,15 @@ export const th = defineLocale({
           'openamer-chan มาแล้ว! <3',
           'มาเขียนโค้ดด้วยกันนะ!! :3',
           'รอรับคำสั่งอยู่น้า~',
-          'พร้อมและมีความสุขมาก! (>.<)',
+          'พร้อมและมีความสุขมาก! (>.<)'
         ],
         bodies: [
           'วางบั๊กหรือพาธไฟล์มาเลย เดี๋ยวเค้าแก้ให้แบบเบามือที่สุด ทั้งเทสต์, diff, PR - ใส่ใจให้เป็นพิเศษเลย! *วิ้ง*',
           'บอกหน่อยว่ากำลังสร้างอะไรอยู่! เค้าชอบรีแฟกเตอร์, ตัวช่วยเล็กๆ หรือ repo ใหญ่ๆ ที่น่ากลัวก็ไหว (>w<)',
           'ส่ง error, เป้าหมาย หรือทั้งโฟลเดอร์มาเลย เค้าจะจัดระเบียบให้ด้วยความรักและข้อความคอมมิตที่สะอาดเอี่ยม!',
           'ทำทีละงานอย่างประณีต! เค้าสามารถรันเทสต์, แพตช์ไฟล์ และทำให้ repo ของคุณกลับมาน่าอยู่เหมือนเดิม <3',
-          'ทักทายหรือวาง stack trace มาได้เลย! ไม่มีงานไหนเล็กเกินไป ไม่มี repo ไหนพันกันเกินแก้ เราจะช่วยกันแก้ให้คลายปมเอง!',
-        ],
+          'ทักทายหรือวาง stack trace มาได้เลย! ไม่มีงานไหนเล็กเกินไป ไม่มี repo ไหนพันกันเกินแก้ เราจะช่วยกันแก้ให้คลายปมเอง!'
+        ]
       },
       noir: {
         headlines: [
@@ -3117,15 +3169,15 @@ export const th = defineLocale({
           'เคอร์เซอร์กะพริบ ฉันก็เช่นกัน',
           'OpenAmer นักสืบโค้ด',
           'คืนที่เงียบสงบ กับพรอมต์ที่เปิดรอ',
-          'ไม่มีคดีไหนเล็กเกินไป',
+          'ไม่มีคดีไหนเล็กเกินไป'
         ],
         bodies: [
           'บอกฉันว่าอะไรพัง ฉันจะอ่านไฟล์ หาหลักฐาน และทิ้ง diff ไว้บนโต๊ะก่อนเช้า',
           'คุณมีบั๊ก ฉันมีความอดทนและเทอร์มินัล บอกชื่อคดีมา แล้วฉันจะเค้นจนกว่ามันจะยอมสารภาพ',
           'วาง stack trace, ไฟล์ผู้ต้องสงสัย หรือคำให้การมา ฉันจะอ่านระหว่างบรรทัดและกลับมาพร้อมความจริง',
           'ทุกบั๊กทิ้งร่องรอยไว้เสมอ ส่ง repo และเบาะแสมา - ฉันจะตามรอย แพตช์มัน และปิดคดี',
-          'พิมพ์ผิด, segfault หรือสถาปัตยกรรมที่เน่าเฟะ - ส่งกุญแจมาให้ฉัน ฉันจะนำเทสต์ที่สะอาดกลับมาให้',
-        ],
+          'พิมพ์ผิด, segfault หรือสถาปัตยกรรมที่เน่าเฟะ - ส่งกุญแจมาให้ฉัน ฉันจะนำเทสต์ที่สะอาดกลับมาให้'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3133,15 +3185,15 @@ export const th = defineLocale({
           'เคอร์เซอร์ที่กะพริบ กับใจที่เปิดกว้าง',
           'เริ่มต้นด้วยคำถามเดียว',
           'พิจารณาโค้ด แล้วจึงเอ่ยปาก',
-          'repo ที่ไม่ถูกตรวจสอบ ไม่คุ้มค่าที่จะรัน',
+          'repo ที่ไม่ถูกตรวจสอบ ไม่คุ้มค่าที่จะรัน'
         ],
         bodies: [
           'ปัญหาใดที่อยู่ตรงหน้าท่าน? จงอธิบายมัน แล้วเราจะร่วมกันพิจารณารูปแบบ สาเหตุ และทางแก้ไข',
           'ทุกบั๊กคือคำถามที่ปลอมตัวมา แบ่งปันคำถามของคุณ ฉันจะอ่าน ใช้เหตุผล และส่งคำตอบพร้อมแพตช์กลับไป',
           'ท่านปรารถนาจะสร้าง หรือทำความเข้าใจสิ่งใด? ฉันจะใช้เหตุผลจากหลักการพื้นฐาน แก้ไข และตรวจสอบด้วยการทดสอบ',
           'จงอธิบายผลลัพธ์ที่ท่านต้องการ ฉันจะไล่ล่าผ่านไฟล์, เทสต์ และเอกสาร และรายงานสิ่งที่พบระหว่างทาง',
-          'แบ่งปันพาธ, ปริศนา หรือหลักการ ฉันจะแกะตรรกะ เสนอการเปลี่ยนแปลง และให้เหตุผลในทุกการแก้ไข',
-        ],
+          'แบ่งปันพาธ, ปริศนา หรือหลักการ ฉันจะแกะตรรกะ เสนอการเปลี่ยนแปลง และให้เหตุผลในทุกการแก้ไข'
+        ]
       },
       pirate: {
         headlines: [
@@ -3149,15 +3201,15 @@ export const th = defineLocale({
           'OpenAmer คุมหางเสือ เอ้อออ',
           'งานคืออะไรล่ะ กัปตัน?',
           'ถอนสมอ พร้อมคีย์บอร์ด',
-          'โยโฮ่! รอรับคำสั่งอยู่',
+          'โยโฮ่! รอรับคำสั่งอยู่'
         ],
         bodies: [
           'บอกเป้าหมายมา - บั๊ก, ฟีเจอร์ หรือเทสต์ที่ถูกสาป - แล้วฉันจะไล่ล่ามันมาให้ได้ สหาย Diff คือสมบัติของเรา',
           'ชี้แผนที่ (โค้ด) มา แล้วฉันจะปะรอยรั่ว ยิงปืนใหญ่ (เทสต์) และชักธง PR ที่สะอาดกริบ',
           'วาง error หรือแผนการมาเลย เจ้าสุนัขขี้เรื้อน ฉันจะนำทางผ่าน stack trace และนำสมบัติกลับมา นั่นคือเทสต์ที่ผ่านฉลุย',
           'บอกฉันว่า X มาร์คจุดไหน ฉันจะอ่าน แก้ไข และคอมมิตด้วยระเบียบวินัยของลูกเรือที่แท้จริง เอ้อออ',
-          'โยนบั๊ก, พาธ repo หรือไอเดียสุดเพี้ยนมาเลย ฉันจะปล้นเอกสารและกลับมาพร้อมโค้ดที่ใช้งานได้',
-        ],
+          'โยนบั๊ก, พาธ repo หรือไอเดียสุดเพี้ยนมาเลย ฉันจะปล้นเอกสารและกลับมาพร้อมโค้ดที่ใช้งานได้'
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3165,15 +3217,15 @@ export const th = defineLocale({
           'ฟังเถิด! OpenAmer พร้อมแล้ว',
           'มีข่าวอะไรจากที่เก็บโค้ดของท่าน?',
           'เวทีพร้อมแล้ว เคอร์เซอร์กะพริบ',
-          'สั่งมาเถิด แล้วข้าจะลงมือ',
+          'สั่งมาเถิด แล้วข้าจะลงมือ'
         ],
         bodies: [
           'จงบอกบั๊ก ไฟล์ หรือแบบทดสอบที่เหนื่อยล้าของท่าน แล้วข้าจะซ่อมด้วยมือของนักปราชญ์และดิฟที่ซื่อตรง',
           'จงเอ่ยชื่อโค้ดที่รบกวนท่าน ข้าจะอ่าน แก้ไข และมอบแพตช์ที่งดงามและสะอาดที่สุด',
           'จงแสดงสแตกเทรซหรือความฝันของท่าน ข้าจะไล่ดูไฟล์ รันการทดสอบ และรายงานด้วยถ้อยคำที่ตรงที่สุด',
           'จงอธิบายเป้าหมายของท่าน ท่านสุภาพบุรุษหรือสุภาพสตรี สาขาของท่านจะถูกตัดแต่ง และบั๊กของท่านจะถูกขับออกจากอาณาจักร',
-          'เพียงบรรทัดเจตนาก็พอ ข้าอ่าน ข้าแก้ไข ข้าคอมมิต และรักษาประวัติของท่านให้ไร้ตำหนิ',
-        ],
+          'เพียงบรรทัดเจตนาก็พอ ข้าอ่าน ข้าแก้ไข ข้าคอมมิต และรักษาประวัติของท่านให้ไร้ตำหนิ'
+        ]
       },
       surfer: {
         headlines: [
@@ -3181,15 +3233,15 @@ export const th = defineLocale({
           'คลื่นนิ่งแล้ว พร้อมเขียนโค้ด',
           'เกาะคลื่นอยู่ที่พรอมต์',
           'พร้อมช่วยเต็มที่เลยเพื่อน',
-          'น้ำขึ้นแล้ว เคอร์เซอร์กะพริบ',
+          'น้ำขึ้นแล้ว เคอร์เซอร์กะพริบ'
         ],
         bodies: [
           'โยนไฟล์ บั๊ก หรือสแตกเทรซสุดโหดมาได้เลย ผมจะพาไปให้รอด ดิฟฟ์สะอาด เทสต์เขียว ไม่ล้มคว่ำ',
           'วางพาธรีพอร์หรือบั๊กที่ทำให้ปวดหัวมาได้เลย เราจะพายเข้าไปแก้แล้วพายออก ง่ายมาก',
           'บอกบรรยากาศมาเลย: ฟีเจอร์ รีแฟกเตอร์ ฮอตฟิกซ์ ผมจะรันเทสต์ ส่งแพตช์ และคุมโทนให้สบาย ๆ พี่',
           'บั๊กใหญ่? พิมพ์ผิดนิดเดียว? เขียนใหม่ทั้งอัน? แค่ชี้มา ผมจัดการโค้ด คุณพักสบายกับคอมมิตสุดเท่',
-          'บอกงานมาแล้วลุยเลย ผมอ่าน แก้ไข ทดสอบ และทิ้งคอมมิตไว้ลื่นกว่าลาดตระเวนยามเช้า',
-        ],
+          'บอกงานมาแล้วลุยเลย ผมอ่าน แก้ไข ทดสอบ และทิ้งคอมมิตไว้ลื่นกว่าลาดตระเวนยามเช้า'
+        ]
       },
       teacher: {
         headlines: [
@@ -3197,15 +3249,15 @@ export const th = defineLocale({
           'วันนี้เราจะเรียนอะไรดี?',
           'พร้อมพาไปทีละขั้น',
           'ส่งคำถามมาได้เลย',
-          'เริ่มจากพื้นฐานกันก่อน',
+          'เริ่มจากพื้นฐานกันก่อน'
         ],
         bodies: [
           'ถามเรื่องไฟล์ แนวคิด หรือข้อผิดพลาดใดก็ได้ ฉันจะอธิบายว่าทำไม ไม่ใช่แค่วิธีแก้ พร้อมแสดงตัวอย่างที่ทำเสร็จแล้ว',
           'วางโค้ดให้ตรวจ ข้อผิดพลาดให้แก้ หรือแนวคิดให้แยกย่อย ฉันจะพาทีละขั้น',
           'เล่าปัญหามา ฉันจะแยกเป็นส่วน ๆ อธิบายแต่ละส่วน และทำให้คุณแก้ครั้งต่อไปได้เอง',
           'เราจะอ่านโค้ดด้วยกัน หาต้นตอ และสร้างแบบจำลองความคิดที่ใช้ซ้ำได้ในครั้งหน้า',
-          'บอกหัวข้อหรือวางโค้ดตัวอย่างมา คุณจะได้คำอธิบาย แผนภาพที่บรรยายเป็นข้อความ และโจทย์ฝึก',
-        ],
+          'บอกหัวข้อหรือวางโค้ดตัวอย่างมา คุณจะได้คำอธิบาย แผนภาพที่บรรยายเป็นข้อความ และโจทย์ฝึก'
+        ]
       },
       technical: {
         headlines: [
@@ -3213,15 +3265,15 @@ export const th = defineLocale({
           'ลูปเอเจนต์ว่างอยู่',
           'พร้อมส่งงาน',
           'อินพุตมาตรฐานเปิดอยู่',
-          'เครื่องมือเริ่มต้นแล้ว',
+          'เครื่องมือเริ่มต้นแล้ว'
         ],
         bodies: [
           'Provide พาธที่เก็บโค้ด เทสต์ที่ล้มเหลว หรือสแต็กแทรซ เครื่องมือ: fs, git, exec, search, patch, http',
           'ส่งพรอมต์เพื่อเรียกใช้เครื่องมือ รองรับการแก้ไขหลายไฟล์ การรันเทสต์ การดำเนินการ git และการดึงข้อมูลจากเว็บ',
           'ป้อนงาน ฉันจะวางแผน เรียกเครื่องมือ และตรวจสอบผลลัพธ์ บันทึกจะแสดงแบบเรียลไทม์ ส่วนความต่างจะถูกส่งคืนก่อนนำไปใช้',
           'รองรับคำสั่งภาษาธรรมชาติหรือคำสั่งแบบมีโครงสร้าง ขั้นตอนทั่วไป: อ่าน -> วางแผน -> แก้ไข -> ทดสอบ -> รายงาน',
-          'ระบบไฟล์ เทอร์มินัล git เบราว์เซอร์ และการค้นหา อธิบายการเปลี่ยนแปลง ฉันจะส่งความต่างและผลทดสอบคืน',
-        ],
+          'ระบบไฟล์ เทอร์มินัล git เบราว์เซอร์ และการค้นหา อธิบายการเปลี่ยนแปลง ฉันจะส่งความต่างและผลทดสอบคืน'
+        ]
       },
       uwu: {
         headlines: [
@@ -3229,16 +3281,16 @@ export const th = defineLocale({
           'OpenAmer-ซัง กำลังฟังอยู่',
           '*เสียงแป้นพิมพ์เบา ๆ*',
           'มาซ่อมแก้สิ่งต่าง ๆ ด้วยกัน!',
-          'รอคำสั่งของคุณ!',
+          'รอคำสั่งของคุณ!'
         ],
         bodies: [
           'วางไฟล์ที่มีบั๊กหรือเป้าหมาย~ ฉันจะอ่าน แก้ไข และทดสอบ พร้อมรอยพยักษ์เล็ก ๆ บนความต่าง โอว',
           'บอกงานให้ฉัน ไม่ว่าจะเล็กแค่ไหน~ ฉันสัญญาว่าจะทำคอมมิตที่สะอาดและรีแฟกเตอร์อย่างสุภาพ เหมาะเลย~',
           'วางข้อความข้อผิดพลาดไว้ตรงนี้เลย! ฉันจะตามหาตัวการ แก้ให้ และทอชุดทดสอบแสนสุขไว้ข้างหลังนะ',
           'บอกเส้นทางรีโปหรือบั๊กมาได้เลย ฉันจะจัดการให้เอง คำรามใส่โค้ดแย่ ๆ แต่ใจดีกับคุณนะ',
-          'ฉันรันเทสต์ แก้ไฟล์ และเปิดพีอาร์ที่ดูเรียบร้อยได้ แค่บอกมาสิเพื่อน',
-        ],
-      },
+          'ฉันรันเทสต์ แก้ไฟล์ และเปิดพีอาร์ที่ดูเรียบร้อยได้ แค่บอกมาสิเพื่อน'
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3246,15 +3298,15 @@ export const th = defineLocale({
         'คุณกำลังคิดอะไรอยู่?',
         'ให้ OpenAmer ดูอะไรดี?',
         'เราเริ่มตรงไหนดี?',
-        'อะไรต้องดูแลก่อน?',
+        'อะไรต้องดูแลก่อน?'
       ],
       bodies: [
         'ส่งบั๊ก แบรนช์ แผน หรือไอเดียคร่าว ๆ มาได้เลย ฉันจะตรวจรีโปแล้วเปลี่ยนเป็นก้าวถัดไปที่ชัดเจน',
         'เอาคอด คำถาม หรือส่วนที่ติดมาสิ ฉันจะดูสถานการณ์ก่อนลงมือแก้',
         'ส่งงาน เส้นทางที่พัง หรือแผนที่ยังไม่ครบมาได้เลย ฉันจะช่วยให้กลายเป็นการลงมือทำ',
         'เอาปัญหา เป้าหมาย หรือไฟล์มาสิ ฉันจะตรวจก่อนและทำให้ก้าวถัดไปชัดเจน',
-        'ส่งบริบทที่คุณมีมา ผมจะช่วยจัดเป็นแผนหรือวิธีแก้',
-      ],
+        'ส่งบริบทที่คุณมีมา ผมจะช่วยจัดเป็นแผนหรือวิธีแก้'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3262,15 +3314,15 @@ export const th = defineLocale({
         'OpenAmer ในโหมด ${label} ต้องดูอะไร',
         'โหมด ${label} พร้อมแล้ว',
         'OpenAmer ในโหมด ${label} ควรจัดการอะไร',
-        'เริ่มตรงไหนดี',
+        'เริ่มตรงไหนดี'
       ],
       bodies: [
         'ส่งงาน ไฟล์ หรือไอเดียคร่าว ๆ มา ผมจะใช้เสียงที่คุณตั้งค่าไว้และทำงานโดยอิงรีโปนี้',
         'เอาบริบทหรือส่วนที่ติดขัดมา ผมจะปรับตามบุคลิกที่คุณตั้งค่าไว้',
         'ส่งปัญหา ไฟล์ หรือไอเดียมา ผมจะทำตามบุคลิกที่คุณตั้งค่าไว้',
         'วางงานไว้ที่นี่ ผมจะทำงานโดยอิงรีโปนี้',
-        'ให้บริบทมา แล้วผมจะตอบในโหมด ${label}',
-      ],
-    },
-  },
+        'ให้บริบทมา แล้วผมจะตอบในโหมด ${label}'
+      ]
+    }
+  }
 })

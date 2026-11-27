@@ -11,49 +11,49 @@ export const ff = defineLocale({
       system: 'Sistem',
       usage: 'Jumde',
       maintenance: 'Toppitagol',
-      sessions: 'Sesiŋuuji',
+      sessions: 'Sesiŋuuji'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostik, backup, curator e data memori',
       sessions: 'Jokkondirde e njiyde sesyon',
       system: 'Status, logs e jokkondirde sistem',
-      usage: 'Token, kosto e aktivite skill e wuro',
+      usage: 'Token, kosto e aktivite skill e wuro'
     },
     nav: {
       newChat: {
         title: 'Sesyon fof',
-        detail: 'Hollu sesyon fof',
+        detail: 'Hollu sesyon fof'
       },
       settings: {
         title: 'Jokkol',
-        detail: 'Jokkondirde OpenAmer desktop',
+        detail: 'Jokkondirde OpenAmer desktop'
       },
       skills: {
         title: 'Kawtal',
-        detail: 'Skill, tool e MCP server',
+        detail: 'Skill, tool e MCP server'
       },
       messaging: {
         title: 'Jokkondirde',
-        detail: 'Jokkondirde Telegram, Slack, Discord e ko honde',
+        detail: 'Jokkondirde Telegram, Slack, Discord e ko honde'
       },
       artifacts: {
         title: 'Artefakt',
-        detail: 'Jokkondirde output ngol',
-      },
+        detail: 'Jokkondirde output ngol'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel sesyon',
-        detail: 'Jokkondirde, pin e njiyde sesyon',
+        detail: 'Jokkondirde, pin e njiyde sesyon'
       },
       system: {
         title: 'Panel sistem',
-        detail: 'Status gateway, logs, restart/update',
+        detail: 'Status gateway, logs, restart/update'
       },
       usage: {
         title: 'Panel kuutorgol',
-        detail: 'Tokkanuuji, njeenaari e golle baɗe',
-      },
+        detail: 'Tokkanuuji, njeenaari e golle baɗe'
+      }
     },
     close: 'Uddit nokku yamiruuji',
     paletteTitle: 'Palet yamiruuji',
@@ -81,7 +81,7 @@ export const ff = defineLocale({
       generatedTag: 'Sosaa',
       adoptFailed: 'Waawaano jaɓde ndee daaba.',
       toggleFailed: 'Waawaano waylude ndee daaba.',
-      noneAvailable: 'Alaa daabaaji — suɓo gootal les ngam fiɓde.',
+      noneAvailable: 'Alaa daabaaji — suɓo gootal les ngam fiɓde.'
     },
     generatePet: {
       title: 'Soso daaba',
@@ -110,7 +110,7 @@ export const ff = defineLocale({
       referenceImageInvalid: 'Waawaano janngude ngal natal ceŋtungal. Etu PNG, JPG, WebP, walla GIF.',
       adopt: 'Jaɓ',
       startOver: 'Fuɗɗito kadi',
-      hatchRow: (_state, done, total) => `Nataal lefol ${done} e ${total}…`,
+      hatchRow: (_state, done, total) => `Nataal lefol ${done} e ${total}…`
     },
     installTheme: {
       title: 'Fiɓ tema…',
@@ -122,7 +122,7 @@ export const ff = defineLocale({
       install: 'Sos',
       installing: 'Ina sosde...',
       installed: 'Sosiima',
-      installs: count => `Aafɗe ${count}`,
+      installs: count => `Aafɗe ${count}`
     },
     settingsFields: 'Geɗe teelte',
     mcpServers: 'Serbaaji MCP',
@@ -194,7 +194,7 @@ export const ff = defineLocale({
       resetConfirm: target => `Momtu ${target}? Ɗum waawaa artireede.`,
       resetDone: files => `${files} momtaama.`,
       actionStarted: name => `${name} fuɗɗi — ina rewinda e doggol binndanɗe...`,
-      actionFailed: name => `${name} horiima fuɗɗaade`,
+      actionFailed: name => `${name} horiima fuɗɗaade`
     },
     startInBranch: branch => `Yeewtere hesere e ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Naatɗe kuutorteeɗe ${count}`,
@@ -215,7 +215,7 @@ export const ff = defineLocale({
     actions: count => `Baɗe ${count}`,
     logFile: 'Fiilde log',
     logLevel: 'Tolno',
-    logSearchPlaceholder: 'Yeɓɓu layiije log...',
+    logSearchPlaceholder: 'Yeɓɓu layiije log...'
   },
   boot: {
     failure: {
@@ -225,24 +225,27 @@ export const ff = defineLocale({
       signInToRemoteGateway: 'ɗemude ɗe gateway taaw',
       identityProvider: 'mboɗɗo idenntiɗe ɗe',
       title: 'OpenAmer a foti mibbi.',
-      description: 'Gateway ɗin ɓeɓe a yah\'i toɗɗe mibbi. Yah\'i ɓeɓe ɗin ɓeɓeɗol ɗin kaɗɗe. Mɓaɗɗe ɗin kaɗɗe a yah\'i mɓaɗɗe ɗumɗeɗol ɗe ɗumɗeɗol.',
+      description:
+        "Gateway ɗin ɓeɓe a yah'i toɗɗe mibbi. Yah'i ɓeɓe ɗin ɓeɓeɗol ɗin kaɗɗe. Mɓaɗɗe ɗin kaɗɗe a yah'i mɓaɗɗe ɗumɗeɗol ɗe ɗumɗeɗol.",
       remoteTitle: 'Golti ɗin gateway ɗumɗe midofi',
-      remoteDescription: 'Session ɗin gateway ɗumɗe a yah\'i ɗumɗe. Golti ɗumɗe ɗin kunduɗol. Mɓaɗɗe ɗin kaɗɗe a yah\'i mɓaɗɗe ɗumɗeɗol ɗe ɗumɗeɗol.',
-      retry: 'Yah\'i ɗum',
+      remoteDescription:
+        "Session ɗin gateway ɗumɗe a yah'i ɗumɗe. Golti ɗumɗe ɗin kunduɗol. Mɓaɗɗe ɗin kaɗɗe a yah'i mɓaɗɗe ɗumɗeɗol ɗe ɗumɗeɗol.",
+      retry: "Yah'i ɗum",
       repairInstall: 'Install ɗin ɓeɓeɗol',
       useLocalGateway: 'Ɗum gateway ɗin ɗum',
       gatewaySettings: 'ɗumɗeɗol ɗin gateway',
       back: 'Yaw',
       openLogs: 'Logs ɗin ɓeɓeɗol',
-      repairHint: 'Repair a yah\'i installer ɗumɗe ɗe a yah\'i takki ɗumɗeɗol ɗin ɗumɗeɗol ɗin ɗumɗeɗol.',
+      repairHint: "Repair a yah'i installer ɗumɗe ɗe a yah'i takki ɗumɗeɗol ɗin ɗumɗeɗol ɗin ɗumɗeɗol.",
       signOutAndSignIn: 'Golti ɗumɗe & golti',
       remoteFailureHint: 'ɗum URL ɗin gateway & golti ɗin ɗumɗeɗol ɗin gateway, o ɗum ɗin gateway ɗin ɗum.',
       hideRecentLogs: 'Logs ɗin ɓeɓe ɗin ɗumɗe',
       showRecentLogs: 'Logs ɗin ɓeɓe ɗin ɓeɓeɗol',
       signedInTitle: 'Golti ɗumɗe',
       signedInMessage: 'Kunduɗol ɗumɗe ɗin gateway ɗumɗe…',
-      remoteSignInHint: signInLabel => `Yaltata e naatal wanngorde woɗɗunde danndaande, caggal mum uddita ${signInLabel}. Huutoro damal nokkuure ngam waylude fayde e carwol caggal ngol waɗdaa heen.`,
-      signInWithProvider: provider => `Naatir ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Yaltata e naatal wanngorde woɗɗunde danndaande, caggal mum uddita ${signInLabel}. Huutoro damal nokkuure ngam waylude fayde e carwol caggal ngol waɗdaa heen.`,
+      signInWithProvider: provider => `Naatir ${provider}`
     },
     errors: {
       gatewayConnectionLost: 'Kunduɗol nooti ɗin gateway',
@@ -251,7 +254,7 @@ export const ff = defineLocale({
       backgroundExited: 'Golle ɓaawo OpenAmer yalti.',
       backgroundExitedDuringStartup: 'Golle ɓaawo OpenAmer yalti e fuɗɗoode.',
       backendStopped: 'Backend darii',
-      desktopBootFailed: 'Fuɗɗoode desktop yani',
+      desktopBootFailed: 'Fuɗɗoode desktop yani'
     },
     ready: 'OpenAmer Desktop sellaama',
     steps: {
@@ -259,9 +262,9 @@ export const ff = defineLocale({
       loadingSettings: 'Ena loowa settaaɗe OpenAmer',
       loadingSessions: 'Ena loowa seɗɗaaji sakkooji',
       startingDesktopConnection: 'Ena fuɗɗoo seŋorde desktop',
-      startingOpenAmerDesktop: 'Ena fuɗɗoo OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ena fuɗɗoo OpenAmer Desktop…'
     },
-    desktopBootFailedWithMessage: message => `Hurmitugol biro woorii: ${message}`,
+    desktopBootFailedWithMessage: message => `Hurmitugol biro woorii: ${message}`
   },
   notifications: {
     region: 'ɗemalɗe',
@@ -273,7 +276,8 @@ export const ff = defineLocale({
     copyDetail: 'Koppi ɗemal',
     copyDetailFailed: 'A yahɗe koppi ɗemal ɗemal.',
     backendOutOfDateTitle: 'Backend taawla',
-    backendOutOfDateMessage: 'OpenAmer backend ɗe mboɗɗo ɗe desktop build ɗinay, a yahɗe wonndu ɗemal. Yimɗe ɗe yimɗe ɗon.',
+    backendOutOfDateMessage:
+      'OpenAmer backend ɗe mboɗɗo ɗe desktop build ɗinay, a yahɗe wonndu ɗemal. Yimɗe ɗe yimɗe ɗon.',
     installMethodUnsupportedTitle: 'Method install a yahɗe wonndu',
     updateOpenAmer: 'Yimɗe OpenAmer',
     updateReadyTitle: 'Yimɗe wonndu',
@@ -282,11 +286,12 @@ export const ff = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT ɗemal ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs API-ɗe no wona (401).',
       gatewayAuthFailed: 'Gateway-ɗe no wona — Ɗemal API_SERVER_KEY-ɗe.',
-      methodNotAllowed: 'Backend desktop-ɗe no wona wanchiki ɗo (405 Method-ɗe ɗum wona). Yahaɗu ɗemal OpenAmer Desktop ɗum.',
+      methodNotAllowed:
+        'Backend desktop-ɗe no wona wanchiki ɗo (405 Method-ɗe ɗum wona). Yahaɗu ɗemal OpenAmer Desktop ɗum.',
       microphonePermission: 'Leɓɗe microphone-ɗe.',
       openaiRejectedApiKey: 'OpenAI API-ɗe no wona.',
       openaiTtsNeedsKey: 'OpenAI TTS mɓaɗɗe VOICE_TOOLS_OPENAI_KEY am OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI riiwii coktirgal API (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI riiwii coktirgal API (${status} invalid_api_key).`
     },
     voice: {
       transcriptionUnavailable: 'Lamɗol ɓeɗɗe wonaa ɗum.',
@@ -305,7 +310,7 @@ export const ff = defineLocale({
       noSpeechDetected: 'A yahɗe ɗemal speech.',
       playbackFailed: 'Playback voice-ɗe no wona.',
       recordingFailed: 'Recording voice-ɗe no wona.',
-      transcriptionFailed: 'Transcription voice-ɗe no wona.',
+      transcriptionFailed: 'Transcription voice-ɗe no wona.'
     },
     native: {
       approvalTitle: 'Mboɗɗe wonaa.',
@@ -318,10 +323,10 @@ export const ff = defineLocale({
       turnErrorTitle: 'Hokki wonaa.',
       backgroundDoneTitle: 'Mballu ɗum tawi.',
       backgroundFailedTitle: 'Mballu ɗum wonaa.',
-      creditsTitle: 'Krediti.',
+      creditsTitle: 'Krediti.'
     },
     more: count => `${count} goɗɗe ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} baylugol kesol${count === 1 ? '' : 's'} woodi.`,
+    updateReadyMessage: count => `${count} baylugol kesol${count === 1 ? '' : 's'} woodi.`
   },
   billingBlock: {
     titleOpenamer: 'Krediti OpenAmer wonaa.',
@@ -329,7 +334,7 @@ export const ff = defineLocale({
     openBilling: 'Biling yimɗe.',
     addCredits: 'Yimɗe krediti.',
     dismiss: 'Hodi.',
-    titleProvider: provider => `Kereediijo gasi — ${provider}`,
+    titleProvider: provider => `Kereediijo gasi — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Saɗibar wonaa.',
@@ -346,7 +351,7 @@ export const ff = defineLocale({
     openStarmap: 'Walla mboɗum graph',
     openKeybinds: 'ɓeɗgol nder keyboard',
     layoutEditor: 'Wonndi layout',
-    layoutEditorTitle: 'Editeur layout — ⌘-click artirta layout',
+    layoutEditorTitle: 'Editeur layout — ⌘-click artirta layout'
   },
   keybinds: {
     title: 'ɓeɗgol nder keyboard',
@@ -432,7 +437,7 @@ export const ff = defineLocale({
       'composer.slash': 'Palet yamiroore slash',
       'composer.help': 'Ballal jaawngal',
       'composer.history': 'Waylu popover / daartol',
-      'composer.cancel': 'Uddu popover · haaytu golla',
+      'composer.cancel': 'Uddu popover · haaytu golla'
     },
     set: 'wadda',
     categories: {
@@ -440,10 +445,10 @@ export const ff = defineLocale({
       profiles: 'Laamɗoɓe',
       session: 'Ɗum',
       navigation: 'Wallaɗe',
-      view: 'Ŋal',
+      view: 'Ŋal'
     },
     subtitle: open => `Dobo e codorɗo ngam waylude ɗum · ${open} udditata ngal alluwal kadi.`,
-    conflictWith: label => `Jokkaama kadi e “${label}”`,
+    conflictWith: label => `Jokkaama kadi e “${label}”`
   },
   settings: {
     plugins: {
@@ -451,17 +456,18 @@ export const ff = defineLocale({
       kinds: {
         bundled: 'o yahde',
         disk: 'leydi disk',
-        runtime: 'leydi runtime',
+        runtime: 'leydi runtime'
       },
       title: 'Ɓeyditte desktop',
-      blurb: 'Ɓeyditte UI ɗe njolnaa e app oo — ɗe njaltinaa e build, walla ɗe keɓaa e dosiyee desktop-plugins (ina heen ɗe OpenAmer winndata). Ñifde ndee itta plugin gollotoongo e nder yonki, nde duumata kadi caggal restart.',
+      blurb:
+        'Ɓeyditte UI ɗe njolnaa e app oo — ɗe njaltinaa e build, walla ɗe keɓaa e dosiyee desktop-plugins (ina heen ɗe OpenAmer winndata). Ñifde ndee itta plugin gollotoongo e nder yonki, nde duumata kadi caggal restart.',
       openFolder: 'Uddit dosiyee plugins',
       rescan: 'Yiylo kadi',
       reveal: 'Hollu e maneejaar filde',
       enable: 'Huɓɓu',
       disable: 'Ñifu',
       failed: 'rentii',
-      count: n => `${n} aafaama`,
+      count: n => `${n} aafaama`
     },
     notifications: {
       title: 'Notifikasyonn',
@@ -472,28 +478,28 @@ export const ff = defineLocale({
       kinds: {
         approval: {
           label: 'Approbation o yahde.',
-          description: 'Komande o ɗumde o approve ɗemal reject ɗemal.',
+          description: 'Komande o ɗumde o approve ɗemal reject ɗemal.'
         },
         input: {
           label: 'Input o yahde.',
-          description: 'OpenAmer o yahde ɓeɓɓe ɗemal o yahde password ɗemal secret.',
+          description: 'OpenAmer o yahde ɓeɓɓe ɗemal o yahde password ɗemal secret.'
         },
         turnDone: {
           label: 'Response o yahde.',
-          description: 'Turn o taaɗe OpenAmer o leydi background.',
+          description: 'Turn o taaɗe OpenAmer o leydi background.'
         },
         turnError: {
           label: 'Turn o wona.',
-          description: 'Turn o taaɗe error.',
+          description: 'Turn o taaɗe error.'
         },
         backgroundDone: {
           label: 'Task background o taaɗe.',
-          description: 'Komande terminal background o taaɗe.',
+          description: 'Komande terminal background o taaɗe.'
         },
         credits: {
           label: 'Alerts credit.',
-          description: 'Kujeri naɗɗe ɗum no wonaɗe ko tawi.',
-        },
+          description: 'Kujeri naɗɗe ɗum no wonaɗe ko tawi.'
+        }
       },
       test: 'Wonndi notifikeesyon kono.',
       testTitle: 'OpenAmer',
@@ -502,7 +508,7 @@ export const ff = defineLocale({
       testUnsupported: 'Leydi no wonndi notifikeesyon ɗum.',
       completionSoundTitle: 'Leydi ɗum',
       completionSoundDesc: 'O wonaɗe ka agent turn no wonaɗe. Yidi preset ko wonndi heɗe.',
-      completionSoundPreview: 'Wonndi',
+      completionSoundPreview: 'Wonndi'
     },
     sections: {
       model: 'Modelu',
@@ -512,7 +518,7 @@ export const ff = defineLocale({
       safety: 'Amnadi',
       memory: 'Memory & leydi',
       voice: 'ɓeɓɓe',
-      advanced: 'leydi',
+      advanced: 'leydi'
     },
     searchPlaceholder: {
       config: 'Yahndi leydi...',
@@ -520,7 +526,7 @@ export const ff = defineLocale({
       gateway: 'Jokkondiral damal...',
       keys: 'Yiylo maɓalli API...',
       mcp: 'Yiylo serworaaji MCP...',
-      sessions: 'Yiylo seppooji mooftaaɗi...',
+      sessions: 'Yiylo seppooji mooftaaɗi...'
     },
     nav: {
       providerApiKeys: 'Maɓalli API',
@@ -537,25 +543,26 @@ export const ff = defineLocale({
       plugins: 'Ɓeyditte',
       providers: 'Jaɓɓooɓe',
       providerAccounts: 'Kontaaji',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     modeOptions: {
       light: {
         label: 'Yaynde',
-        description: 'Dowlaaji desktop jalɓuɗi',
+        description: 'Dowlaaji desktop jalɓuɗi'
       },
       dark: {
         label: 'Niɓre',
-        description: 'Nokku gollorde ɓuuɓɗo',
+        description: 'Nokku gollorde ɓuuɓɗo'
       },
       system: {
         label: 'Sistem',
-        description: 'Jokku mbaydi OS',
-      },
+        description: 'Jokku mbaydi OS'
+      }
     },
     appearance: {
       title: 'Mbaydi',
-      intro: 'Ɗee ko cuɓe hollirde desktop tan. Mbaydi ina toppitoo jalɓondiral; tiim ina toppitoo palette noone e mbaydi dow yeewtere.',
+      intro:
+        'Ɗee ko cuɓe hollirde desktop tan. Mbaydi ina toppitoo jalɓondiral; tiim ina toppitoo palette noone e mbaydi dow yeewtere.',
       colorMode: 'Mbaydi noone',
       colorModeDesc: 'Suɓo mbaydi feewnde walla accu OpenAmer jokku teelte sistem maa.',
       toolViewTitle: 'Kollirgol noddaango kuutol',
@@ -566,7 +573,8 @@ export const ff = defineLocale({
       backdropTitle: 'Ɓaawo yeewtere',
       backdropDesc: 'Natal sanamu ɓuuɗo caggal yeewtere nden.',
       embedsTitle: 'Naatnaaɗe nder layi',
-      embedsDesc: 'Ƴeewndooji jogiiɗi ina loowa e lowe goɗɗe (YouTube, X, …). Naamnu ina holli nokkuure haa a yamiri kala; Tuma fow ina loowa ɗi jaajɗe; Ñiftaa ina reena jokkorɗe laaɓɗe.',
+      embedsDesc:
+        'Ƴeewndooji jogiiɗi ina loowa e lowe goɗɗe (YouTube, X, …). Naamnu ina holli nokkuure haa a yamiri kala; Tuma fow ina loowa ɗi jaajɗe; Ñiftaa ina reena jokkorɗe laaɓɗe.',
       embedsAsk: 'Naamnu',
       embedsAlways: 'Tuma fow',
       embedsOff: 'Ñiftaa',
@@ -577,7 +585,8 @@ export const ff = defineLocale({
       themeTitle: 'Mbaadi',
       themeDesc: 'Palet desktop tan. Mbaadi suɓaaɗo nden ina ɓeydee e dow.',
       installTitle: 'Ɗaɓɓito e VS Code',
-      installDesc: 'Naatnu id extension Marketplace (yeru: dracula-theme.theme-dracula) ngam waylude mbaadi color mum wonde palet desktop.',
+      installDesc:
+        'Naatnu id extension Marketplace (yeru: dracula-theme.theme-dracula) ngam waylude mbaadi color mum wonde palet desktop.',
       installButton: 'Ɗaɓɓito',
       installing: 'Ina ɗaɓɓitoo…',
       installError: 'Waawaani ɗaɓɓitde ndee mbaadi.',
@@ -585,8 +594,10 @@ export const ff = defineLocale({
       importedBadge: 'Naatnaaɗo',
       pet: {
         title: 'Ndiwri',
-        intro: 'Naatnu mascot petdex ɓamtaaɗo ɓuuɓi dow app o, ina jaabawi e ko OpenAmer gollata — ina doga tuma kuutorɗe gollotoo, ina weltora e moƴƴere, ina suna e bonɗe.',
-        restartHint: 'Ndiwri ina sokli fuɗɗitgol law — app nda gollata fuɗɗii ado ɓeydaade ndee feature. Yaltu e uddit OpenAmer kadi, refti artu ɗoo.',
+        intro:
+          'Naatnu mascot petdex ɓamtaaɗo ɓuuɓi dow app o, ina jaabawi e ko OpenAmer gollata — ina doga tuma kuutorɗe gollotoo, ina weltora e moƴƴere, ina suna e bonɗe.',
+        restartHint:
+          'Ndiwri ina sokli fuɗɗitgol law — app nda gollata fuɗɗii ado ɓeydaade ndee feature. Yaltu e uddit OpenAmer kadi, refti artu ɗoo.',
         on: 'Golloo',
         off: 'Ñiftaa',
         scaleTitle: 'Njaajeendi',
@@ -618,13 +629,14 @@ export const ff = defineLocale({
         adoptFailed: slug => `Waawaa jaɓɓude ${slug}`,
         uninstallFailed: slug => `Waawaa ittude ${slug}`,
         renameFailed: slug => `Waawaa innitde ${slug}`,
-        exportFailed: slug => `Waawaa jaltinde ${slug}`,
+        exportFailed: slug => `Waawaa jaltinde ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Ɓeyda walla ustu binndi e kuutorɗe e jaaɓnirgal ngal fof. Cmd/Ctrl e +, - e 0 ina golla kadi. Jooni: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ɓeyda walla ustu binndi e kuutorɗe e jaaɓnirgal ngal fof. Cmd/Ctrl e +, - e 0 ina golla kadi. Jooni: ${percent}%.`,
       embedsReset: (count: number) => `Artir ${count} yamiraa ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Danndaama e heftinirde ${profile} — kala heftinirde ina jogii mbaadi mum.`,
       installPlaceholder: 'bayyinoowo.jokkel',
-      installed: name => `“${name}” aafaama.`,
+      installed: name => `“${name}” aafaama.`
     },
     closeSettings: 'Uddu teelte',
     exportConfig: 'Yaltin konfig',
@@ -648,7 +660,8 @@ export const ff = defineLocale({
       tapCheck: 'Dobo "Ƴeewndo jooni" ngam yiytude hesɗitinde.',
       justNowSuffix: '· jooni jooni',
       automaticUpdates: 'Hesɗitinde jaajotoonde',
-      automaticUpdatesDesc: 'OpenAmer ina ƴeewndoo hesɗitinde jaajotoonde e nder ɓaawo, kadi ina humpita ma so goɗnde heɓii.',
+      automaticUpdatesDesc:
+        'OpenAmer ina ƴeewndoo hesɗitinde jaajotoonde e nder ɓaawo, kadi ina humpita ma so goɗnde heɓii.',
       never: 'haa abada',
       justNow: 'jooni jooni',
       heading: 'OpenAmer Tabalde',
@@ -658,7 +671,7 @@ export const ff = defineLocale({
       branchCommit: (branch, commit) => `Calal ${branch} · Danndugol ${commit}`,
       minAgo: count => `${count} hojomaaji ɓenni`,
       hoursAgo: count => `${count} waktuuji ɓenni`,
-      daysAgo: count => `${count} balɗe ɓenni`,
+      daysAgo: count => `${count} balɗe ɓenni`
     },
     config: {
       none: 'Alaa',
@@ -674,7 +687,7 @@ export const ff = defineLocale({
       imported: 'Konfig naaƴaama',
       invalidJson: 'Konfig JSON mo moƴƴaani',
       keepAwakeTitle: 'Haɗu ordinateer ɗaanaade',
-      keepAwakeDesc: 'Haɗu ndee masiin ɗaanaade ngam golle juutɗe walla jamma jokku. Ekraan ina waawi ɓuuɓde.',
+      keepAwakeDesc: 'Haɗu ndee masiin ɗaanaade ngam golle juutɗe walla jamma jokku. Ekraan ina waawi ɓuuɓde.'
     },
     credentials: {
       pasteKey: 'Ɗaɓɓitir sokkel',
@@ -684,7 +697,7 @@ export const ff = defineLocale({
       remove: 'Ittu',
       getKey: 'Heɓo kiy',
       saving: 'Danndugol',
-      pasteLabelKey: label => `Ɗakku caabi ${label}`,
+      pasteLabelKey: label => `Ɗakku caabi ${label}`
     },
     envActions: {
       credentialActions: 'Golle seedantaare',
@@ -695,7 +708,7 @@ export const ff = defineLocale({
       replace: 'Waylu',
       set: 'Waɗ',
       clear: 'Momtu',
-      actionsFor: label => `Baɗe ngam ${label}`,
+      actionsFor: label => `Baɗe ngam ${label}`
     },
     gateway: {
       loading: 'No loowa teelte damal...',
@@ -703,12 +716,14 @@ export const ff = defineLocale({
       unavailableDesc: 'Ponto IPC deskop ngo hollataa teelte damal.',
       title: 'Jokkondiral damal',
       envOverride: 'Wayloore env',
-      intro: 'OpenAmer Deskop fuɗɗinoo damal mum nokkuure e defo. Huutoro damal woɗɗungal so a yiɗi ndee app toppita backend OpenAmer gollotooɗo tawo e masiŋ goɗɗo walla caggal proxy hoolnaaɗo. Suɓo profil les ɗoo ngam waɗde nde jogii host woɗɗungol mum.',
+      intro:
+        'OpenAmer Deskop fuɗɗinoo damal mum nokkuure e defo. Huutoro damal woɗɗungal so a yiɗi ndee app toppita backend OpenAmer gollotooɗo tawo e masiŋ goɗɗo walla caggal proxy hoolnaaɗo. Suɓo profil les ɗoo ngam waɗde nde jogii host woɗɗungol mum.',
       appliesTo: 'Huutortoo e',
       allProfiles: 'Profilji fof',
       defaultConnection: 'Jokkondiral defo wonande profil kala ɗo alaa wayloore mum.',
       envOverrideTitle: 'Waylooji environ no toppitoo ndee seɗɗa deskop.',
-      envOverrideDesc: 'Momtu OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN ngam huutoraade teelte danndaaɗe les ɗoo.',
+      envOverrideDesc:
+        'Momtu OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN ngam huutoraade teelte danndaaɗe les ɗoo.',
       modeTitle: 'Mbaadi jokkondiral',
       localTitle: 'Damal nokkuure',
       localDesc: 'Fuɗɗin backend OpenAmer keeriɗo e localhost. Oo ko defo tee no golla e offline.',
@@ -716,7 +731,8 @@ export const ff = defineLocale({
       inheritDesc: 'Ittu wayloore profil oo huutora jokkondiral defo.',
       remoteTitle: 'Damal woɗɗungal',
       remoteDesc: 'Jokku ndee shell deskop e backend OpenAmer woɗɗungal.',
-      remoteAuthHint: 'Damale jaɓɓaaɗe huutortoo OAuth walla innde kuutoro e finnde; ɗe jaɓɓaaɗe e maɓɓe ina mbaawi huutoraade token seɗɗa.',
+      remoteAuthHint:
+        'Damale jaɓɓaaɗe huutortoo OAuth walla innde kuutoro e finnde; ɗe jaɓɓaaɗe e maɓɓe ina mbaawi huutoraade token seɗɗa.',
       cloudDesc: 'Naatnu e OpenAmer Cloud gootal tee suɓo e agentji konte maa — alaa URL nde ɓeydata.',
       cloudSignIn: 'Naatnu e OpenAmer Cloud',
       cloudSignedIn: 'A naatii e OpenAmer Cloud',
@@ -730,7 +746,7 @@ export const ff = defineLocale({
       cloudNoAgents: {
         before: 'Alaa wakillooji ɗi tawaama e ndee konte. Sos gootol e nder',
         linkText: 'Portal OpenAmer',
-        after: ', refti hesɗitin.',
+        after: ', refti hesɗitin.'
       },
       cloudRefresh: 'Hesɗitin',
       cloudConnect: 'Jokkondir',
@@ -755,7 +771,8 @@ export const ff = defineLocale({
       authSignedInOauth: 'Ndee gateway huutortoo OAuth. A naatii; seesiyoŋ o hesɗitoo e hoore mum.',
       authNeedsPassword: 'Ndee gateway huutortoo innde kuutoro e finnde. Naatu ngam jaɓde ndee app desktop.',
       tokenTitle: 'Token seesiyoŋ',
-      tokenDesc: 'Token seesiyoŋ dashboard huutorteego ngam naatgol REST e WebSocket. Accu ɗum wooɗi ngam danndude token danndaaɗo.',
+      tokenDesc:
+        'Token seesiyoŋ dashboard huutorteego ngam naatgol REST e WebSocket. Accu ɗum wooɗi ngam danndude token danndaaɗo.',
       savedToken: 'danndaaɗo',
       pasteSessionToken: 'Ɗemngo token seesiyoŋ',
       testRemote: 'Jarrib woɗɗere',
@@ -767,10 +784,14 @@ export const ff = defineLocale({
       incompleteTitle: 'Gateway woɗɗere timmaani',
       incompleteSignIn: 'Naatnu URL woɗɗungel e naatu ado waylude e woɗɗere.',
       sshErrUnreachable: 'A heɓaani host oo e SSH. Ƴeew host, port, e laylaytol maa.',
-      sshErrAuth: 'Jaɓgol SSH rewii. Loow key maa nder ssh-agent (ssh-add) walla waɗ IdentityFile nder ~/.ssh/config — OpenAmer ina doga ssh tawa wonaa hakkunde.',
-      sshErrHostKey: 'Key host oo WAYLII gila nde sosɗaa sakkitii. Tagngo ɗum ko eɗa teeŋti, refti dogu ssh-keygen -R <host> ndeen sos kadi.',
-      sshErrNotInstalled: 'OpenAmer heɓɓaani e host remote oo. Ɗoɓnu ɗum ton (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) walla waɗ laawol OpenAmer.',
-      sshErrPlatform: 'Platform remote oo wallaaka. Mode OpenAmer Desktop SSH ina walla host remote Linux, macOS, e Windows.',
+      sshErrAuth:
+        'Jaɓgol SSH rewii. Loow key maa nder ssh-agent (ssh-add) walla waɗ IdentityFile nder ~/.ssh/config — OpenAmer ina doga ssh tawa wonaa hakkunde.',
+      sshErrHostKey:
+        'Key host oo WAYLII gila nde sosɗaa sakkitii. Tagngo ɗum ko eɗa teeŋti, refti dogu ssh-keygen -R <host> ndeen sos kadi.',
+      sshErrNotInstalled:
+        'OpenAmer heɓɓaani e host remote oo. Ɗoɓnu ɗum ton (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) walla waɗ laawol OpenAmer.',
+      sshErrPlatform:
+        'Platform remote oo wallaaka. Mode OpenAmer Desktop SSH ina walla host remote Linux, macOS, e Windows.',
       sshErrTimeout: 'Jokkondiral SSH timmii waktu. Host oo waawi wonde haaɓetaake walla ina ɗaanii.',
       sshErrUpdateRequired: 'Hesɓin OpenAmer e host remote oo ado jokkondirde e Desktop SSH.',
       sshErrUnknown: 'Jokkondiral SSH rewii.',
@@ -792,7 +813,8 @@ export const ff = defineLocale({
       applyFailed: 'Waawaani huutoraade teelte Gateway',
       saveFailed: 'Waawaani danndude teelte Gateway',
       sshTitle: 'Jokku e SSH',
-      sshDesc: 'OpenAmer ina fuɗɗinee e remote rewrude e SSH, ina tunnela e ndee app — alaa ko pot-ɗaa fuɗɗude walla feeñninde hoore-maa. Ina sokli naatgol SSH e key gollooɗo to host.',
+      sshDesc:
+        'OpenAmer ina fuɗɗinee e remote rewrude e SSH, ina tunnela e ndee app — alaa ko pot-ɗaa fuɗɗude walla feeñninde hoore-maa. Ina sokli naatgol SSH e key gollooɗo to host.',
       sshTrustHint: 'Key host araniyo feeñninaaɗo ina hoolaama, ina pinnaama; waylooji garooji ina udda.',
       sshHostDesc: 'user@host, walla alias Host iwde e ~/.ssh/config.',
       sshHostPick: 'Suɓo host…',
@@ -810,26 +832,28 @@ export const ff = defineLocale({
       sshConnect: 'Jokku',
       sshButtonsHint: 'Danndude ina golloo e fuɗɗitagol garowol. Jokku ina jokku jooni.',
       sshIncompleteHost: 'Naatnu host SSH ado jokkude.',
-      profileConnection: profile => `Ceŋagol ngol huutortee tan so « ${profile} » woni sifforde hurmunde. Suɓo Huutoro damal woowaangal ngam momtude baylital mum.`,
+      profileConnection: profile =>
+        `Ceŋagol ngol huutortee tan so « ${profile} » woni sifforde hurmunde. Suɓo Huutoro damal woowaangal ngam momtude baylital mum.`,
       cloudTitle: 'OpenAmer Duule',
       cloudSignInTitle: 'OpenAmer Duule',
       cloudOrgRole: role => `Darnde: ${role}`,
       cloudConnectedTo: name => `Seŋii e ${name}.`,
       cloudStatusLabel: status => `Ngonka: ${status}`,
       signInWith: provider => `Seŋo e ${provider}`,
-      authNeedsOauth: provider => `Damal ngal huutortoo OAuth. Seŋo e ${provider} ngam yamirde ngal jaɓɓirgal ordinaateer.`,
+      authNeedsOauth: provider =>
+        `Damal ngal huutortoo OAuth. Seŋo e ${provider} ngam yamirde ngal jaɓɓirgal ordinaateer.`,
       existingToken: value => `Seede goodɗo ${value}`,
       connectedTo: (baseUrl, version) => `Seŋii e ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshHostTitle: 'Jaɓɓoowo',
       sshHostPickTitle: 'Jaɓɓoowo',
       sshPortTitle: 'Damal',
       sshOpenAmerPathPlaceholder: 'Heɓtinde hoore mum',
-      sshReachable: (host, platform) => `Heɓotoo: ${host} (${platform}) — OpenAmer yiytaama`,
+      sshReachable: (host, platform) => `Heɓotoo: ${host} (${platform}) — OpenAmer yiytaama`
     },
     keys: {
       loading: 'Ina loowa API keys e credentials...',
       failedLoad: 'Loowgol API keys rewii',
-      empty: 'Alaa ko teelnaa e ndee cate tawo.',
+      empty: 'Alaa ko teelnaa e ndee cate tawo.'
     },
     mcp: {
       loading: 'Ina loowa MCP servers...',
@@ -881,7 +905,8 @@ export const ff = defineLocale({
       catalogInstallFailed: name => `Aafgol ${name} woorii`,
       catalogEnvPrompt: name => `${name} ena sokli humpito ceŋagol`,
       catalogEnvRequired: 'Naatnu totteeji sokli ɗii ado fiɓɓde.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} hurminaama`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} hurminaama`,
       statusConnecting: 'Ina jokkondira...',
       statusNeedsAuth: 'Ina sokli seedantaare',
       statusError: 'Juumre',
@@ -894,7 +919,7 @@ export const ff = defineLocale({
       unsavedConnect: 'Danndaaka — danndu mcp.json ngam jokkondirde.',
       enableTool: tool => `Hurmin ${tool}`,
       disableTool: tool => `Dartin ${tool}`,
-      noOutput: 'Alaa ko yalti tawo.',
+      noOutput: 'Alaa ko yalti tawo.'
     },
     model: {
       resetAllToMain: 'Rutta fof e mawɗo',
@@ -908,40 +933,41 @@ export const ff = defineLocale({
       notInCatalog: 'wonaa e doggol model jaɓoowo oo — noddaali ina mbaawi faawde e deggere.',
       tasks: {
         vision: {
-          label: 'Yi\'e',
-          hint: 'Ƴeewndo natal',
+          label: "Yi'e",
+          hint: 'Ƴeewndo natal'
         },
         web_extract: {
           label: 'Yaltinde web',
-          hint: 'Uttugol hello',
+          hint: 'Uttugol hello'
         },
         compression: {
           label: 'Ɗippugol',
-          hint: 'Ɗippugol kontekst',
+          hint: 'Ɗippugol kontekst'
         },
         skills_hub: {
           label: 'Sentral baɗe',
-          hint: 'Yiylo baɗe',
+          hint: 'Yiylo baɗe'
         },
         approval: {
           label: 'Jaɓgol',
-          hint: 'Jaɓgol jaajinoo e hakilo',
+          hint: 'Jaɓgol jaajinoo e hakilo'
         },
         mcp: {
           hint: 'Ruttingol kuutorgal MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Sosgol tiitoonde',
-          hint: 'Tiitooɗe seeson',
+          hint: 'Tiitooɗe seeson'
         },
         curator: {
           label: 'Toppitiiɗo',
-          hint: 'Ƴeewndo kuutoragol baɗe',
-        },
+          hint: 'Ƴeewndo kuutoragol baɗe'
+        }
       },
       loading: 'Ina loowa teelte modeel...',
-      appliesDesc: 'Ina nafoo e seɓe kesi. Huutora cuɓorde modeel wonnde e winndorde ngam waylude yeewtere gollotoonde law.',
+      appliesDesc:
+        'Ina nafoo e seɓe kesi. Huutora cuɓorde modeel wonnde e winndorde ngam waylude yeewtere gollotoonde law.',
       provider: 'Jaɓoowo',
       model: 'Modeel',
       applying: 'Ina huutora...',
@@ -949,7 +975,7 @@ export const ff = defineLocale({
       reasoning: 'Hakkil',
       reasoningOff: 'Ñifii',
       defaultsFailed: 'Waɗaani danndude killooji modeel',
-      auxiliaryTitle: 'Modeeli ballitooji',
+      auxiliaryTitle: 'Modeeli ballitooji'
     },
     providers: {
       connectAccount: 'Jokkondir e konte',
@@ -967,16 +993,17 @@ export const ff = defineLocale({
       noKeysMatch: 'Alaa jaɓoowo nanndi e yiylo maa.',
       localEndpoint: {
         title: 'Boɗɗe nokku / keeriiɗo',
-        description: 'Hollu OpenAmer e boɗɗe kala jaɓɗe OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ekn).',
+        description: 'Hollu OpenAmer e boɗɗe kala jaɓɗe OpenAI (Zyphra, vLLM, llama.cpp, Ollama, ekn).'
       },
       loading: 'Ina loowa dokkooɓe...',
       removeConfirm: provider => `Momtu ${provider}?`,
       removeExternalGeneric: provider => `${provider} toppitaa ko e CLI mum — momtu ɗum toon.`,
       removeKeyManaged: provider => `${provider} teeltaa ko e helmere API. Momtu ɗum e Culle API.`,
-      removeTerminalConfirm: (provider, command) => `Taƴ seŋol ${provider}? Ɗum hurminat "${command}" e alluwal yamirooje ngam momtude humpito seŋorgo.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Taƴ seŋol ${provider}? Ɗum hurminat "${command}" e alluwal yamirooje ngam momtude humpito seŋorgo.`,
       removeTerminalRunning: provider => `Nana taƴa seŋol ${provider} e alluwal yamirooje…`,
       removedMessage: provider => `${provider} momtaama.`,
-      failedRemove: provider => `Horiima momtude ${provider}`,
+      failedRemove: provider => `Horiima momtude ${provider}`
     },
     toolsets: {
       openamerAuthSignIn: 'Naat',
@@ -1013,8 +1040,9 @@ export const ff = defineLocale({
         inUse: 'Ina huutoree',
         selectedTitle: 'Backend suɓaama',
         needsSetupHint: 'A waawi suɓde backend oo jooni — yamirɗe ɗee mbaawaa gollaade haa setup timma.',
-        selectedMessage: backend => `Yamirooje ginorde yamirooje ena doga jooni rewrude e ${backend}. Ɗum kuutortee e naate kese.`,
-        failedSelect: backend => `Horiima suɓaade ${backend}`,
+        selectedMessage: backend =>
+          `Yamirooje ginorde yamirooje ena doga jooni rewrude e ${backend}. Ɗum kuutortee e naate kese.`,
+        failedSelect: backend => `Horiima suɓaade ${backend}`
       },
       loadingConfig: 'Ina loowa konfiguraasiyoŋ',
       savedTitle: 'Seedantaagal danndaama',
@@ -1038,8 +1066,10 @@ export const ff = defineLocale({
       removeConfirm: key => `Momtu ${key} e .env?`,
       selectedMessage: provider => `${provider} woni ko huutorteeɗo jooni.`,
       failedSelect: provider => `Suɓaade ${provider} woorii`,
-      openamerAuthNeededMessage: provider => `${provider} danndaama kono waawaa hurmindeede haa naat-ɗaa e Dammbugal OpenAmer.`,
-      postSetupHint: step => `Carwe caggal ɗee ena sokli aafgol gootol (${step}). Ena doga e ndee masiŋ — ena waawi juutde hojomaaji seeɗa.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} danndaama kono waawaa hurmindeede haa naat-ɗaa e Dammbugal OpenAmer.`,
+      postSetupHint: step =>
+        `Carwe caggal ɗee ena sokli aafgol gootol (${step}). Ena doga e ndee masiŋ — ena waawi juutde hojomaaji seeɗa.`,
       postSetupCompleteMessage: step => `${step} aafaama.`,
       postSetupErrorMessage: step => `Ƴeewto jaaynde ${step}.`,
       postSetupFailed: step => `Waawaa hurminde teeltol ${step}`,
@@ -1049,24 +1079,27 @@ export const ff = defineLocale({
       failedSelectCapability: provider => `Waawaa teeltaade ${provider}`,
       modelCount: count => `Misaal ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} kuutortee e naate kese.`,
-      failedSelectModel: model => `Waawaa suɓaade ${model}`,
+      failedSelectModel: model => `Waawaa suɓaade ${model}`
     },
     sessions: {
       loading: 'Ina loowa waɗte danndaama…',
       archivedTitle: 'Waɗte danndaama',
-      archivedIntro: 'Yeewtee danndaama ina suuɗi e ɓalndu, kono ina jogii xibaaruuji mum fof. Ctrl/⌘-click yeewtere e ɓalndu ngam danndude nde.',
+      archivedIntro:
+        'Yeewtee danndaama ina suuɗi e ɓalndu, kono ina jogii xibaaruuji mum fof. Ctrl/⌘-click yeewtere e ɓalndu ngam danndude nde.',
       emptyArchivedTitle: 'Alaa ko danndaama',
       emptyArchivedDesc: 'Danndu yeewtere ngam suuɗde nde ɗoo.',
       unarchive: 'Yaltin e danndorde',
       deletePermanently: 'Momtu haa abada',
       restored: 'Ruttitaama',
       autoArchiveTitle: 'Danndu jaajde yeewtee ɓooyɗe',
-      autoArchiveDesc: 'Danndu jaajde yeewtee ɗe memɗaa seeɗa. Yeewtee piinaaɗe danndaaka abada, hay huunde momtaaka — yeewtee danndaaɗe ɗoo tan njahi.',
+      autoArchiveDesc:
+        'Danndu jaajde yeewtee ɗe memɗaa seeɗa. Yeewtee piinaaɗe danndaaka abada, hay huunde momtaaka — yeewtee danndaaɗe ɗoo tan njahi.',
       autoArchiveDaysLabel: 'Danndu ɓaawo',
       autoArchiveDaysUnit: 'balɗe ɗe huunde waɗaaka',
       autoArchiveFailed: 'Kesɗitinde danndu jaajde waawaani',
       defaultDirTitle: 'Direktori eɓɓoore tuugii',
-      defaultDirDesc: 'Waɗte kesi puɗɗotoo e dosol ngol so a suɓaani goɗɗum. Accu ɗum ko settaaka ngam huutoraade direktori galle maa.',
+      defaultDirDesc:
+        'Waɗte kesi puɗɗotoo e dosol ngol so a suɓaani goɗɗum. Accu ɗum ko settaaka ngam huutoraade direktori galle maa.',
       defaultDirUpdated: 'Direktori eɓɓoore tuugii kesɗitaama — puɗɗo yeewtere kesere (Ctrl/⌘+N) ngam ɗum golloo.',
       change: 'Waylu',
       choose: 'Suɓo',
@@ -1079,10 +1112,10 @@ export const ff = defineLocale({
       clearDirFailed: 'Momtude direktori tuugii waawaani',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Momtu "${title}" haa abada? Ɗum waawaa firteede.`,
-      defaultsTo: label => `Goowaaɗo mum ko ${label}.`,
+      defaultsTo: label => `Goowaaɗo mum ko ${label}.`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   fileMenu: {
     revealFileManager: 'Uddit folda jogiinde',
@@ -1097,7 +1130,7 @@ export const ff = defineLocale({
     pathCopied: 'Laawol nattaama',
     revealFinder: 'Hollu nder Finder',
     revealExplorer: 'Hollu nder File Explorer',
-    deleteTitle: name => `Momtu ${name}?`,
+    deleteTitle: name => `Momtu ${name}?`
   },
   language: {
     label: 'Ɗemngal',
@@ -1106,7 +1139,7 @@ export const ff = defineLocale({
     saveError: 'Hesɗitinde ɗemngal yani',
     switchTo: 'Waylu ɗemngal',
     searchPlaceholder: 'Yiylo ɗemɗe…',
-    noResults: 'Alaa ɗemɗe heɓaaɗe',
+    noResults: 'Alaa ɗemɗe heɓaaɗe'
   },
   common: {
     apply: 'Huutora',
@@ -1147,7 +1180,7 @@ export const ff = defineLocale({
     update: 'Hesɓitu',
     on: 'Udditii',
     off: 'Daaƴii',
-    tryHint: term => `Ƴeewndo “${term}”`,
+    tryHint: term => `Ƴeewndo “${term}”`
   },
   modelPicker: {
     search: 'Seɗɗita jaɓɓotooɓe e modele...',
@@ -1163,13 +1196,13 @@ export const ff = defineLocale({
     title: 'Waylu model',
     current: 'jooni:',
     unknown: '(anndaaka)',
-    pro: 'Karallaagal',
+    pro: 'Karallaagal'
   },
   modelVisibility: {
     title: 'Modele',
     search: 'Yiylo modele',
     noAuthenticatedProviders: 'Alaa jaɓɓotooɓe seedinaaɓe.',
-    addProvider: 'Ɓeydu jaɓɓotoowo…',
+    addProvider: 'Ɓeydu jaɓɓotoowo…'
   },
   shell: {
     windowControls: 'Kontorol windo',
@@ -1180,7 +1213,7 @@ export const ff = defineLocale({
       noModels: 'Alaa modele heɓaaɗe',
       editModels: 'Waylu Modele…',
       refreshModels: 'Hesɗitina Modele',
-      fast: 'Yaɓɓu',
+      fast: 'Yaɓɓu'
     },
     modelOptions: {
       noOptions: 'Alaa cuɓe e ndee modele',
@@ -1196,7 +1229,7 @@ export const ff = defineLocale({
       max: 'Ɓurɗo',
       updateFailed: 'Hesɗitinde cuɓe modele yanii',
       fastFailed: 'Hesɗitinde mbaydi yaɓɓu yanii',
-      ultra: 'Ɓurɗum',
+      ultra: 'Ɓurɗum'
     },
     gatewayMenu: {
       gateway: 'Laawol',
@@ -1211,7 +1244,7 @@ export const ff = defineLocale({
       connection: label => `Verbindung: ${label}`,
       recentActivity: 'Golle ɓennuɗe',
       viewAllLogs: 'Ndaar loguuji fof →',
-      messagingPlatforms: 'Pulpit nelaaɗi',
+      messagingPlatforms: 'Pulpit nelaaɗi'
     },
     statusbar: {
       openStarmap: 'Uddit graf memori',
@@ -1227,13 +1260,13 @@ export const ff = defineLocale({
           subagent_definitions: 'Firooji soojaaɓe',
           system_prompt: 'Sakkitol siistem',
           tool_definitions: 'Firooji kuutorɗe',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Alaa keɓe konteks haa jooni',
         loading: 'Ina loowa seerndugol…',
         title: 'Kuutoragol konteks',
         percentFull: percent => `${percent}% Heewi`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokenuuji`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokenuuji`
       },
       openContextUsage: 'Uddit seerndugol kuutoragol konteks',
       session: 'Sesa',
@@ -1286,7 +1319,7 @@ export const ff = defineLocale({
       openWebhooks: 'Uddit kewuuji web',
       starmap: 'Natal siftorde',
       modelTitle: (provider, model) => `Modila · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     approvalMode: {
       title: 'Mbaadi jaɓgol',
@@ -1294,10 +1327,10 @@ export const ff = defineLocale({
       manual: 'Juuɗe',
       manualDescription: 'Naamnu ado golle ɗe sokli jaɓgol',
       smart: 'Gannduɗo',
-      smartDescription: 'E hoore mum yi\'ita golle, naamnu so ina sokli',
+      smartDescription: "E hoore mum yi'ita golle, naamnu so ina sokli",
       off: 'Ñifaa',
-      offDescription: 'Dog alaa naamnal jaɓgol',
-    },
+      offDescription: 'Dog alaa naamnal jaɓgol'
+    }
   },
   rightSidebar: {
     aria: 'Palal ñaamo',
@@ -1333,7 +1366,7 @@ export const ff = defineLocale({
     terminalNew: 'Terminal keso',
     terminalCloseOthers: 'Uddu goɗɗi',
     terminalCloseAll: 'Uddu fof',
-    addToChat: 'Ɓeydu e yeewtere',
+    addToChat: 'Ɓeydu e yeewtere'
   },
   profiles: {
     allProfiles: 'Profilji fof',
@@ -1411,7 +1444,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     failedLoadSoul: 'Waawaa loowde SOUL.md',
     failedSaveSoul: 'Waawaa danndude SOUL.md',
     failedCreate: 'Waawaa sosde profil',
-    failedRename: 'Waawaa waylude innde profil',
+    failedRename: 'Waawaa waylude innde profil'
   },
   cron: {
     deleteDescPrefix: 'Ɗum ittay',
@@ -1453,7 +1486,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     createAction: 'Sos cron',
     tabs: {
       jobs: 'Golle',
-      blueprints: 'Pilanuuji',
+      blueprints: 'Pilanuuji'
     },
     blueprints: {
       tab: 'Pilanuuji',
@@ -1467,7 +1500,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       loading: 'Loowgol peeje...',
       failedLoad: 'Loowde peeje jaɓaani',
       emptyTitle: 'Alaa peeje',
-      emptyDesc: 'Alaa peewe otomaasiyoŋ e ndee ɓaawo.',
+      emptyDesc: 'Alaa peewe otomaasiyoŋ e ndee ɓaawo.'
     },
     close: 'Uddu cron',
     title: 'Golle ɗe mbaɗata e sahaa',
@@ -1481,14 +1514,14 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       paused: 'dartinaama',
       disabled: 'ina ñifaa',
       error: 'Juumre',
-      completed: 'Timmii',
+      completed: 'Timmii'
     },
     deliveryLabels: {
       local: 'Deskop oo',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Iimeel',
+      email: 'Iimeel'
     },
     scheduleLabels: {
       daily: 'Ñalnde kala',
@@ -1497,7 +1530,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       monthly: 'Lewru kala',
       hourly: 'Waktu kala',
       'every-15-minutes': 'Kala minit 15',
-      custom: 'Feere',
+      custom: 'Feere'
     },
     scheduleHints: {
       daily: 'Ñalnde kala e 9:00 subaka',
@@ -1506,7 +1539,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       monthly: 'Ñalawma gadano lewru kala e 9:00 subaka',
       hourly: 'E hoore waktu kala',
       'every-15-minutes': 'Kala minit 15',
-      custom: 'Sintaksis Cron walla ɗemngal tago',
+      custom: 'Sintaksis Cron walla ɗemngal tago'
     },
     days: {
       '0': 'Ahati',
@@ -1516,7 +1549,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       '4': 'Alhamisa',
       '5': 'Jumaa',
       '6': 'Asibti',
-      '7': 'Ahati',
+      '7': 'Ahati'
     },
     dayFallback: value => `ñalawma ${value}`,
     everyDayAt: time => `Kala ñalawma e ${time}`,
@@ -1545,7 +1578,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     pauseTitle: 'Dartinde',
     triggerNow: 'Fuɗɗin jooni',
     edit: 'Waylu cron',
-    deleteTitle: 'Momtu gol cron?',
+    deleteTitle: 'Momtu gol cron?'
   },
   composer: {
     urlPlaceholder: 'https://example.com/post',
@@ -1587,19 +1620,20 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     snippets: {
       codeReview: {
         label: 'Ƴeewndo koode',
-        description: 'Ƴeewndo wayloore jooni ngam caɗeele jokkondirɗe, haalaaji keeriiɗi ɗi cifaa, e jarribooji ŋakkuɗi.',
-        text: 'Tiiɗno ƴeew ndee ngam bongooji, caɗeele jokkondirɗe, e jarribooji ŋakkuɗi.',
+        description:
+          'Ƴeewndo wayloore jooni ngam caɗeele jokkondirɗe, haalaaji keeriiɗi ɗi cifaa, e jarribooji ŋakkuɗi.',
+        text: 'Tiiɗno ƴeew ndee ngam bongooji, caɗeele jokkondirɗe, e jarribooji ŋakkuɗi.'
       },
       implementationPlan: {
         label: 'Feere gollal',
         description: 'Waɗ laawol ado memde code ngam diff heddii e fokkus.',
-        text: 'Tiiɗno waɗ feere gollal juutnde ado waylude code.',
+        text: 'Tiiɗno waɗ feere gollal juutnde ado waylude code.'
       },
       explainThis: {
         label: 'Famnu ɗum',
         description: 'Famnu no code suɓaaɗo gollirta, jokkondir e filee teeŋtuɗe ɗee.',
-        text: 'Tiiɗno famnu no ɗum gollirta, hollu lam filee teeŋtuɗe ɗee.',
-      },
+        text: 'Tiiɗno famnu no ɗum gollirta, hollu lam filee teeŋtuɗe ɗee.'
+      }
     },
     message: 'Nelal',
     wakingProfile: profile => `${profile} wird aufgeweckt…`,
@@ -1609,20 +1643,20 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     newSessionPlaceholders: [
       'Was bauen wir?',
       'Gib OpenAmer eine Aufgabe',
-      "Was beschäftigt dich?",
+      'Was beschäftigt dich?',
       'Beschreibe, was du benötigst',
       'Was sollen wir angehen?',
       'Frage alles',
-      'Beginne mit einem Ziel',
+      'Beginne mit einem Ziel'
     ],
     followUpPlaceholders: [
       'Folgefrage senden',
       'Mehr Kontext hinzufügen',
       'Anfrage verfeinern',
-      "Wie geht es weiter?",
+      'Wie geht es weiter?',
       'Mach weiter',
       'Gehe einen Schritt weiter',
-      'Anpassen oder fortfahren',
+      'Anpassen oder fortfahren'
     ],
     startVoice: 'Fuɗɗu yeewtere daande',
     queueMessage: 'Neldu e doggol',
@@ -1658,7 +1692,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       '/resume': 'jokku seɓu ɓennungu',
       '/details': 'toppit tanngu tinndi binndol',
       '/copy': 'natto cuɓtagol walla nulal balloowo sakkiiɗo',
-      '/quit': 'yaltu openamer',
+      '/quit': 'yaltu openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'tuugnorgal piilaaɗi, dosiyeeji, urls, git',
@@ -1668,7 +1702,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       'composer.sendQueued': 'neldu laawol garngol e doggol',
       'keybinds.openPanel': 'laabi kiɓɓe fof',
       'composer.cancel': 'udd popover · haaytu doggol',
-      'composer.history': 'tiindoo popover / daartol',
+      'composer.history': 'tiindoo popover / daartol'
     },
     attachUrlTitle: 'Ɗaɓɓit URL',
     attachUrlDesc: 'OpenAmer maa wujju hello ngoo o naatna ɗum wonde jokkondiral ngam ndee laawol.',
@@ -1678,7 +1712,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     previewLabel: label => `Yiytindo ${label}`,
     couldNotPreview: label => `Vorschau für ${label} konnte nicht geladen werden`,
     removeAttachment: label => `${label} entfernen`,
-    url: 'URL…',
+    url: 'URL…'
   },
   onboarding: {
     haveApiKey: 'Mi jogii sapoo API',
@@ -1691,28 +1725,29 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model direct',
-        description: 'Keɓgol direct e modeluuji ɗi Fireworks AI jaɓɓotoo.',
+        description: 'Keɓgol direct e modeluuji ɗi Fireworks AI jaɓɓotoo.'
       },
       openrouter: {
         short: 'sapoo gootol, modeluuji ɗuuɗɗi',
-        description: 'Ina jaɓɓoo teemedere modeluuji ɓaawo sapoo gootol. Cuɓol tabiiɗol ngam naatgol kesol.',
+        description: 'Ina jaɓɓoo teemedere modeluuji ɓaawo sapoo gootol. Cuɓol tabiiɗol ngam naatgol kesol.'
       },
       openai: {
         short: 'Modeluuji darnde GPT',
-        description: 'Keɓgol direct e modeluuji OpenAI.',
+        description: 'Keɓgol direct e modeluuji OpenAI.'
       },
       gemini: {
         short: 'Modeluuji Gemini',
-        description: 'Keɓgol direct e modeluuji Google Gemini.',
+        description: 'Keɓgol direct e modeluuji Google Gemini.'
       },
       xai: {
         short: 'Modeluuji Grok',
-        description: 'Keɓgol direct e modeluuji xAI Grok.',
+        description: 'Keɓgol direct e modeluuji xAI Grok.'
       },
       local: {
         short: 'Jaɓɓiiɗo hoore mum',
-        description: 'Feññin OpenAmer e endpoint local walla jaɓɓiiɗo hoore mum jahdiiɗo e OpenAI (vLLM, llama.cpp, Ollama, ekn).',
-      },
+        description:
+          'Feññin OpenAmer e endpoint local walla jaɓɓiiɗo hoore mum jahdiiɗo e OpenAI (vLLM, llama.cpp, Ollama, ekn).'
+      }
     },
     backToSignIn: 'Rutto e naatgol',
     getKey: 'Heɓ sapoo',
@@ -1725,7 +1760,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     flowSubtitles: {
       pkce: 'Udditay browser maa ngam naatde, rewi heɓo ɗoo',
       device_code: 'Udditay hello seeditagol e browser maa — OpenAmer ina jokkondira e hoore mum',
-      external: 'Naatde gootol e terminal maa, rewi rutto e yeewtere',
+      external: 'Naatde gootol e terminal maa, rewi rutto e yeewtere'
     },
     signInFailed: 'Naatgol yanii. Eto kadi.',
     pickDifferentProvider: 'Suɓo dokkoowo goɗɗo',
@@ -1737,7 +1772,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     waitingAuthorize: 'Ina eɗɗii yo a yamir...',
     signedIn: 'Mi naatii',
     reopenVerification: 'Uddit kadi hello seeditagol',
-    headerTitle: "Haa min heblira ma e OpenAmer Agent",
+    headerTitle: 'Haa min heblira ma e OpenAmer Agent',
     headerDesc: 'Soɓɓu jaɓɓoowo model ngam fuɗɗaade yeewtere. Ko ɓuri heewde e cuɓe ina ɗaɓɓi dobo gootol.',
     preparingInstall: 'OpenAmer ina timmina jogoragol. Ɗum ɓuri waɗde e les minit wootere e doggol adanngol.',
     starting: 'Fuɗɗagol OpenAmer...',
@@ -1750,8 +1785,10 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     connectedPicking: provider => `${provider} seŋiima. Nana suɓoo jooporgal woowaangal...`,
     signInWith: provider => `Mit ${provider} anmelden`,
     openedBrowser: provider => `Wir haben ${provider} in deinem Browser geöffnet.`,
-    autoBrowser: provider => `Wir haben ${provider} in deinem Browser geöffnet. Autorisiere OpenAmer dort, und du wirst automatisch verbunden – es muss nichts kopiert oder eingefügt werden.`,
-    externalPending: provider => `${provider} ina seŋora CLI mum. Hurmin ndee yamiroore e konsol, caggal ɗuum artu suɓo "Mi seŋiima":`,
+    autoBrowser: provider =>
+      `Wir haben ${provider} in deinem Browser geöffnet. Autorisiere OpenAmer dort, und du wirst automatisch verbunden – es muss nichts kopiert oder eingefügt werden.`,
+    externalPending: provider =>
+      `${provider} ina seŋora CLI mum. Hurmin ndee yamiroore e konsol, caggal ɗuum artu suɓo "Mi seŋiima":`,
     deviceCodeOpened: provider => `Wir haben ${provider} in deinem Browser geöffnet. Gib dort diesen Code ein:`,
     copy: 'Natto',
     defaultModel: 'Model deftaangal',
@@ -1761,7 +1798,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     price: (input, output) => `${input} naatɗe / ${output} jaltɗe e Mtok`,
     change: 'Waylu',
     startChatting: 'Fuɗɗu',
-    docs: provider => `${provider} dokumentaaji`,
+    docs: provider => `${provider} dokumentaaji`
   },
   preview: {
     web: {
@@ -1777,9 +1814,11 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       reloadingNow: 'E loowtinde yiytorde jooni.',
       restartFailedTitle: 'Fuɗɗitinde yiytorde waɗaani',
       restartFailedMessage: 'OpenAmer waawaa fuɗɗitinde sarwiise.',
-      stillWorking: 'OpenAmer ina golla haa jooni, kono njeñtudi fuɗɗitinde ari hende. Yamiroore sarwiise ina waawi dogde e yeeso.',
+      stillWorking:
+        'OpenAmer ina golla haa jooni, kono njeñtudi fuɗɗitinde ari hende. Yamiroore sarwiise ina waawi dogde e yeeso.',
       workspaceReloading: 'Nokku gollorde wayliima, e loowtinde yiytorde',
-      moduleMimeDescription: 'Scripte module ina newnee e MIME type nde moƴƴaani. Ɗum firti ko sarwiise fiilde statik ina newna app Vite/React, wonaa sarwiise dev project.',
+      moduleMimeDescription:
+        'Scripte module ina newnee e MIME type nde moƴƴaani. Ɗum firti ko sarwiise fiilde statik ina newna app Vite/React, wonaa sarwiise dev project.',
       unreachableDescription: 'Hello yiytorde waawaano heɓeede.',
       fallbackTitle: 'Yiytorde',
       appFailedToBoot: 'App yiyngo waawaano fuɗɗaade',
@@ -1790,13 +1829,14 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       askRestart: 'Mbola OpenAmer yo fuɗɗit serveer o',
       lookingRestart: taskId => `OpenAmer sucht nach einem Vorschau-Server zum Neustarten (${taskId})`,
       startRestartFailed: message => `Horiima fuɗɗude hurmitagol sarworde: ${message}`,
-      finishedRestarting: message => `OpenAmer gasnii hurmitinde sarworde yiytorde adan${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer gasnii hurmitinde sarworde yiytorde adan${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Hurmitagol sarworde woorii: ${message}`,
       fileChanged: url => `Fiilde wayliima, yiytorde adan ina loowtee kadi: ${url}`,
       filesChanged: (count, url) => `Bayle piille ${count}, yiytorde adan ina loowtee kadi: ${url}`,
       watchFailed: message => `Horiima reende fiilde yiytorde adan: ${message}`,
       loadFailedConsole: (code, message) => `Loowgol woorii${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Uddit ${url}`,
+      openTarget: url => `Uddit ${url}`
     },
     tab: 'Ndaaral',
     closeTab: label => `${label} schließen`,
@@ -1816,7 +1856,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     renderedPreview: 'YIYGO',
     diff: 'SEERNDI',
     unknownSize: 'Njaajeendi anndaaka',
-    binaryTitle: 'Ɗum wa\'i wa fiylor binari',
+    binaryTitle: "Ɗum wa'i wa fiylor binari",
     binaryBody: label => `Die Vorschau von ${label} kann unlesbaren Text enthalten.`,
     largeTitle: 'Fiylor oo mawni',
     largeBody: (label, size) => `${label} ko ${size}. OpenAmer maa hollu tan KB 512 gadanooji.`,
@@ -1829,7 +1869,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     unsavedChanges: 'Wayle ɗe danndaaka',
     saveFailed: message => `Speichern nicht möglich: ${message}`,
     diskChangedTitle: 'Fiil wayliima e disk',
-    diskChangedBody: 'Fiil oo wayliima gila nde uddituɗaa ɗum. Mbinndito ɗum e mbaydi maa, walla woppu wayle maa ndeen loowto?',
+    diskChangedBody:
+      'Fiil oo wayliima gila nde uddituɗaa ɗum. Mbinndito ɗum e mbaydi maa, walla woppu wayle maa ndeen loowto?',
     overwrite: 'Mbinndito',
     discardReload: 'Woppu & loowto',
     console: {
@@ -1850,8 +1891,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       empty: 'Alaa neldaaɗi konsol tawo.',
       promptHeader: 'Konsol yiyngo:',
       sentTitle: 'Neldaama e yeewtere',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
-    },
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
+    }
   },
   zones: {
     showHeader: 'Hollu hoore',
@@ -1859,7 +1900,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     minimize: 'Seldu',
     restore: 'Rutti',
     closeRunningTitle: 'Uddu tab gollotoo?',
-    closeRunningBody: 'Yeewtere ndee ina golla haa jooni (woɓɓe ina ɗaminaa e naatgol maa). Uddugo tab suuɗii nde — seɓre ndee ina jogii yahrugol yeeso mayre, ina waawi udditeede kadi gila e bannge.',
+    closeRunningBody:
+      'Yeewtere ndee ina golla haa jooni (woɓɓe ina ɗaminaa e naatgol maa). Uddugo tab suuɗii nde — seɓre ndee ina jogii yahrugol yeeso mayre, ina waawi udditeede kadi gila e bannge.',
     closeRunningConfirm: 'Uddu tab',
     closeOthers: 'Uddu goɗɗi',
     closeToRight: 'Uddu e ñaamo',
@@ -1869,7 +1911,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     dirDown: 'Les',
     dirLeft: 'Nano',
     dirRight: 'Ñaamo',
-    pluginDisabledBody: 'Hollu nde kadi e Teeltol → Plugin\'en ngam artirde pane ndee.',
+    pluginDisabledBody: "Hollu nde kadi e Teeltol → Plugin'en ngam artirde pane ndee.",
     editTitle: 'Njaajeendi',
     editHint: 'Suɓo njaajeendi, walla sooɗ paneeji hakkunde nokkuuji. Klik ñaamo e nokku ngam seerndude.',
     reset: 'Ruttindir',
@@ -1896,7 +1938,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     layoutNamePlaceholder: fallback => `Innde lelnannde (${fallback})`,
     saveApply: 'Danndu & huutin',
     notExpressible: 'ndee njaatinde ina hawtiri (pinwheel) — waawaa seedtaade hono seɓɓi nder nder tawo',
-    zoneCount: count => `Nokkuuji ${count}`,
+    zoneCount: count => `Nokkuuji ${count}`
   },
   skills: {
     tabSkills: 'Gannde',
@@ -1916,7 +1958,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     noDescription: 'Alaa sifaa.',
     configured: 'Keɓtinaa',
     needsKeys: 'Ina sokli cokkule',
-    visionModelHint: 'Yiyngo ina huutora teelte modul ballitooji maa — modul baawɗo natal ina suɓee ton, wonaa e kala dokkoowo ɗoo.',
+    visionModelHint:
+      'Yiyngo ina huutora teelte modul ballitooji maa — modul baawɗo natal ina suɓee ton, wonaa e kala dokkoowo ɗoo.',
     visionModelLink: 'Suɓo modul yiyngo e Teelte → Modul',
     toolsetsEnabled: (enabled, total) => `Deente kuutorɗe ${enabled}/${total} kurminaaɗe`,
     configureToolset: label => `Teeltu ${label}`,
@@ -1942,7 +1985,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     provenance: {
       agent: 'Janngaama',
       bundled: 'Naatiiɗo',
-      hub: 'Hakkunde',
+      hub: 'Hakkunde'
     },
     emptyNoneFound: noun => `Alaa ${noun} yiytaa`,
     emptyNothingMatches: query => `Alaa ko nanndi e “${query}”.`,
@@ -1980,7 +2023,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       trust: {
         builtin: 'Nder',
         trusted: 'Hoolnaaɗo',
-        community: 'Renndo',
+        community: 'Renndo'
       },
       verdictSafe: 'Jam',
       verdictCaution: 'Hakkille',
@@ -1998,8 +2041,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       loadFailed: 'Hub baɗe fiyi loowde',
       previewFailed: 'Ndaarɗo baɗal fiyi',
       scanFailed: 'Ƴeewndo kisal fiyi',
-      searchFailed: 'Yiylo hub fiyi',
-    },
+      searchFailed: 'Yiylo hub fiyi'
+    }
   },
   starmap: {
     viewGraph: 'Natal',
@@ -2008,7 +2051,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     emptyTitle: 'Alaa ko janngaama tawo',
     emptyDesc: 'Nde OpenAmer wona e mahde baŋŋe e siftorde ngam golle maa, ɗe feeñii ɗoo.',
     share: 'Lollir natal',
-    shareHint: 'Natto koodu ngam lollirde natal ngal, walla ɓoɗ goɗɗum ngam loowde. Ina waɗi tan peeñgol, wonaa siftorde walla binndi hunar maa.',
+    shareHint:
+      'Natto koodu ngam lollirde natal ngal, walla ɓoɗ goɗɗum ngam loowde. Ina waɗi tan peeñgol, wonaa siftorde walla binndi hunar maa.',
     shareTitle: 'Naddir / yaltin natal',
     sharePlaceholder: 'Ɓoɗ koodu natal…',
     copy: 'Natto koodu natal',
@@ -2026,7 +2070,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     filterAll: 'Fof',
     filterUsed: 'Huutoraaɗo',
     filterLearned: 'Janngaaɗo',
-    importSuccess: nodes => `Kaartal baɗngal ${nodes} ${nodes === 1 ? 'node' : 'nodes'} loowtaama.`,
+    importSuccess: nodes => `Kaartal baɗngal ${nodes} ${nodes === 1 ? 'node' : 'nodes'} loowtaama.`
   },
   agents: {
     close: 'Uddit agenteeji',
@@ -2056,7 +2100,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     ageDays: days => `balɗe ${days} ko adii`,
     durationSeconds: seconds => `sekonduuji ${seconds}`,
     durationMinutes: (minutes, seconds) => `${minutes} hoj ${seconds} saa`,
-    tokens: value => `${value} taƴe`,
+    tokens: value => `${value} taƴe`
   },
   messaging: {
     search: 'Yiylo meseeji...',
@@ -2071,7 +2115,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       not_configured: 'Ina sokli teelte',
       pending_restart: 'Ina sokli fuɗɗitgol',
       retrying: 'Ina etoo kadi',
-      startup_failed: 'Fuɗɗitgol yeddaani',
+      startup_failed: 'Fuɗɗitgol yeddaani'
     },
     unknown: 'Anndaaka',
     hintPendingRestart: 'Fuɗɗit damal ngal e doggol darnde ngam huutoraade mbayliigu nguu.',
@@ -2110,127 +2154,126 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Maande bot',
         help: 'Sosaa bot e @BotFather, caggal ɗum ɗaɓɓito token o rokki ma.',
-        placeholder: 'Ɗaɓɓito token bot Telegram',
+        placeholder: 'Ɗaɓɓito token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDji kuutoroo Telegram jaɓaaɗi',
-        help: 'Wasiyaa. IDji limooje ceɗtiiɗe e komma ummoraa @userinfobot. So wonaa ɗum, kala waawi neldee DM e bot maa.',
+        help: 'Wasiyaa. IDji limooje ceɗtiiɗe e komma ummoraa @userinfobot. So wonaa ɗum, kala waawi neldee DM e bot maa.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Ina haani tan e laylayti ɗo Telegram daaƴaa.',
+        help: 'Ina haani tan e laylayti ɗo Telegram daaƴaa.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Sosaa application e nder Discord Developer Portal, ɓeyduu bot, caggal ɗum ɗaɓɓito token mum.',
+        help: 'Sosaa application e nder Discord Developer Portal, ɓeyduu bot, caggal ɗum ɗaɓɓito token mum.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDji kuutoroo Discord jaɓaaɗi',
-        help: 'Wasiyaa. IDji kuutoroo Discord ceɗtiiɗe e komma.',
+        help: 'Wasiyaa. IDji kuutoroo Discord ceɗtiiɗe e komma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Mbaadi jaabawol',
-        help: 'arande, fow, maa off.',
+        help: 'arande, fow, maa off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Jaɓ kala kuutoroo Discord',
-        help: 'Tan ngam ƴellitaare. So goonga, kala waawi neldee DM e bot nde wonaa doggol jaɓgol.',
+        help: 'Tan ngam ƴellitaare. So goonga, kala waawi neldee DM e bot nde wonaa doggol jaɓgol.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID channel galle',
-        help: 'Channel ɗo bot neldataaɗi konngol yeeso (cron output, teemol).',
+        help: 'Channel ɗo bot neldataaɗi konngol yeeso (cron output, teemol).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Innde channel galle',
-        help: 'Innde hollirnde ngam channel galle e nder logs e output status.',
+        help: 'Innde hollirnde ngam channel galle e nder logs e output status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Jaɓ kala kuutoroo iMessage',
-        help: 'So goonga, diwt doggol jaɓgol BlueBubbles.',
+        help: 'So goonga, diwt doggol jaɓgol BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Jaɓ kuutorɓe Mattermost fof',
+        label: 'Jaɓ kuutorɓe Mattermost fof'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kanal galle',
+        label: 'Kanal galle'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Jaɓ kuutorɓe QQ fof',
+        label: 'Jaɓ kuutorɓe QQ fof'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kanal galle QQ',
-        help: 'Kanal walla fedde default ngam neldugol cron.',
+        help: 'Kanal walla fedde default ngam neldugol cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Innde kanal galle QQ',
+        label: 'Innde kanal galle QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Huutoro token bot immorde e OAuth & Permissions caggal nde a installi app Slack maa.',
-        placeholder: 'Ɗaɓɓu token bot Slack',
+        placeholder: 'Ɗaɓɓu token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token app Slack',
         help: 'Huutoro token app-level ko ɗaɓɓi ngam Socket Mode.',
-        placeholder: 'Ɗaɓɓu token app Slack',
+        placeholder: 'Ɗaɓɓu token app Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID kuutorɓe Slack jaɓaaɗi',
-        help: 'Wasiyaa. ID kuutorɓe Slack ceɗɗondirɗi e komaa.',
+        help: 'Wasiyaa. ID kuutorɓe Slack ceɗɗondirɗi e komaa.'
       },
       MATTERMOST_URL: {
         label: 'URL server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID kuutorɓe jaɓaaɗi',
-        help: 'Wasiyaa. ID kuutorɓe Mattermost ceɗɗondirɗi e komaa.',
+        help: 'Wasiyaa. ID kuutorɓe Mattermost ceɗɗondirɗi e komaa.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token naatgol',
+        label: 'Token naatgol'
       },
       MATRIX_USER_ID: {
         label: 'ID kuutorto Bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID kuutorooɓe Matrix jaɓaaɓe',
-        help: 'Wasiyaaɗum. ID kuutorooɓe pecciraaɗi e komma e mbaadi @user:server.',
+        help: 'Wasiyaaɗum. ID kuutorooɓe pecciraaɗi e komma e mbaadi @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL pont Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL pont REST signal-cli gollotoongal.',
+        help: 'URL pont REST signal-cli gollotoongal.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Limoore telefon',
-        help: 'Limoore winndaande e pont signal-cli maa.',
+        help: 'Limoore winndaande e pont signal-cli maa.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Kuutorooɓe Signal jaɓaaɓe',
-        help: 'Wasiyaaɗum. Identifikaatoruuji Signal pecciraaɗi e komma.',
+        help: 'Wasiyaaɗum. Identifikaatoruuji Signal pecciraaɗi e komma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Gollin pont WhatsApp',
-        help: 'Teelte ɗe les ɗoo eɗe waɗa ɗum jaajde. Woto memnu ɗum si a anndaa wonnde a sokli ɗum.',
+        help: 'Teelte ɗe les ɗoo eɗe waɗa ɗum jaajde. Woto memnu ɗum si a anndaa wonnde a sokli ɗum.'
       },
       WHATSAPP_MODE: {
-        label: 'Mbaadi pont',
+        label: 'Mbaadi pont'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Kuutorooɓe WhatsApp jaɓaaɓe',
-        help: 'Wasiyaaɗum. Limooje telefon walla ID WhatsApp pecciraaɗi e komma.',
-      },
+        help: 'Wasiyaaɗum. Limooje telefon walla ID WhatsApp pecciraaɗi e komma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     restartNeeded: 'Webhooks ena golla, kono gateway ina haani fuɗɗitde kadi ado jaɓoowo waawi heɓde e internet.',
@@ -2267,7 +2310,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       github_comment: 'Haala GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Yiylo webhooks...',
     loading: 'E loowde webhooks...',
@@ -2276,7 +2319,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     hint: 'Waylooji abonnemaaji loowoto jaajde so jaɓoowo o golliima. Abonnemaaji ñifaaɗi ɗi njaɓaa kewuuji ɗi ngari.',
     empty: 'Alaa abonnemaaji webhook haa jooni.',
     disabledTitle: 'Jaɓoowo webhook ñifaama',
-    disabledBody: 'Webhooks ko platform gateway mum en. Huɗɗu ɗe ɗoo ngam jaɓɓaade kewuuji HTTP naatɗi; kanaluuji chat ina ngiɗaa tan so abonma waɗii neldugol to Telegram, Discord, Slack, walla kanal goɗngal.',
+    disabledBody:
+      'Webhooks ko platform gateway mum en. Huɗɗu ɗe ɗoo ngam jaɓɓaade kewuuji HTTP naatɗi; kanaluuji chat ina ngiɗaa tan so abonma waɗii neldugol to Telegram, Discord, Slack, walla kanal goɗngal.',
     enable: 'Huɗɗu webhooks',
     enabling: 'Huɗɗagol...',
     enabled: (name: string) => `Hurminaama: "${name}"`,
@@ -2294,10 +2338,11 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     newSubscription: 'Abonma keso',
     restarting: 'Gateway ina fuɗɗita...',
     restartFailed: (detail: string) => `Waawaa hurmitinde dambugal${detail}`,
-    createFailed: (detail: string) => `Waawaa sosde: ${detail}`,
+    createFailed: (detail: string) => `Waawaa sosde: ${detail}`
   },
   remoteDisplayBanner: {
-    message: reason => `Jaytingol huutoraade topirde ina hurmi — jaytirgal woɗɗungol yiytaama (${reason}). Yaawningol GPU daaƴaama ngam haɗde jalbugol.`,
+    message: reason =>
+      `Jaytingol huutoraade topirde ina hurmi — jaytirgal woɗɗungol yiytaama (${reason}). Yaawningol GPU daaƴaama ngam haɗde jalbugol.`
   },
   artifacts: {
     search: 'Yiylo geɗe...',
@@ -2331,14 +2376,14 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     kindLink: 'jokkorde',
     chat: 'Yeewtere',
     copyUrl: 'Natto URL',
-    copyPath: 'Natto laawol',
+    copyPath: 'Natto laawol'
   },
   sidebar: {
     nav: {
       'new-session': 'Sesi keso',
       skills: 'Baawɗe',
       messaging: 'Neldugol',
-      artifacts: 'Artiifaaji',
+      artifacts: 'Artiifaaji'
     },
     searchAria: 'Yiylo sesiiji',
     searchPlaceholder: 'Yiylo sesiiji...',
@@ -2370,7 +2415,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       namePlaceholder: 'yeru: Skunkworks',
       foldersLabel: 'Dosiyeeji',
       ideaLabel: 'Miijo',
-      ideaPlaceholder: "Ko woni e dow ndee proje? (ina danndee e IDEA.md)",
+      ideaPlaceholder: 'Ko woni e dow ndee proje? (ina danndee e IDEA.md)',
       ideaGenerate: 'Sos miijo',
       ideaGenerating: 'Ina sosde...',
       ideaShuffle: 'Looto modele',
@@ -2390,7 +2435,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       copyPath: 'Natto laawol',
       removeFromSidebar: 'Suuɗ e bannge',
       createFailed: 'Waawaa sosde eɓɓo',
-      staleBackend: 'Kesɗitinde OpenAmer backend ngam sosde eɓɓooji — backend maa ɓuri ɓooyde e ndee app desktop (Teelte → Kesɗitine → Backend).',
+      staleBackend:
+        'Kesɗitinde OpenAmer backend ngam sosde eɓɓooji — backend maa ɓuri ɓooyde e ndee app desktop (Teelte → Kesɗitine → Backend).',
       deleteConfirm: 'Ɗum itta eɓɓo danndaaɗo e OpenAmer. Fiilde, git repos, e worktrees njaftaake.',
       startWork: 'Worktree keso',
       newWorktreeTitle: 'Worktree keso',
@@ -2412,13 +2458,15 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       noBranches: 'Alaa cawle',
       removeWorktree: 'Ittu lekki golle',
       removeWorktreeFailed: 'Waawaa ittude lekki golle (waylooji nde neldaaka?)',
-      removeWorktreeConfirm: 'Ittu ɗum e git (momta doggol lekki golle; cawel heddii), walla suuɓu tan laawol e jeegel, ndeen accu lekki golle e diski.',
-      removeWorktreeDirty: 'Lekki golle ɗii naɗi waylooji nde neldaaka. Ittu ɗum doole (momta ɗii waylooji), walla suuɓu tan laawol ndi ndeen accu ɗum e diski.',
+      removeWorktreeConfirm:
+        'Ittu ɗum e git (momta doggol lekki golle; cawel heddii), walla suuɓu tan laawol e jeegel, ndeen accu lekki golle e diski.',
+      removeWorktreeDirty:
+        'Lekki golle ɗii naɗi waylooji nde neldaaka. Ittu ɗum doole (momta ɗii waylooji), walla suuɓu tan laawol ndi ndeen accu ɗum e diski.',
       forceRemove: 'Ittu doole',
       enter: label => `Uddit ${label}`,
       reorder: label => `Taƴto deggondiral ${label}`,
       toggle: label => `Soplu naate ${label}`,
-      back: 'Golle fof',
+      back: 'Golle fof'
     },
     newSessionIn: label => `Naatal kesal e ${label}`,
     showMoreIn: (count, label) => `${count} weitere in ${label} anzeigen`,
@@ -2456,15 +2504,15 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       ageNow: 'jooni',
       ageDay: 'ñ',
       ageHour: 'w',
-      ageMin: 'hoj',
+      ageMin: 'hoj'
     },
     dateDivider: {
       today: 'Hannde ɓooyi',
       yesterday: 'Haŋki',
       thisWeek: 'Yontere nde ɓooyi',
       lastWeek: 'Yontere ɓennunde',
-      thisMonth: 'Lewru ndu ɓooyi',
-    },
+      thisMonth: 'Lewru ndu ɓooyi'
+    }
   },
   statusStack: {
     agents: 'Wakiliiɓe',
@@ -2512,13 +2560,14 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       openPr: 'Uddit PR',
       ghMissing: 'Aaf GitHub CLI (gh) e naat ngam udditde PRs',
       agentShip: 'Ɗaɓɓi OpenAmer ngam udditde PR',
-      agentShipPrompt: 'Ƴeew mbayliigu jooni, winndito ɗi e nelaaɗo winndito ɓannguɗo e nanondiral, neldu cate, e uddit ɗaɓɓitagol.',
+      agentShipPrompt:
+        'Ƴeew mbayliigu jooni, winndito ɗi e nelaaɗo winndito ɓannguɗo e nanondiral, neldu cate, e uddit ɗaɓɓitagol.',
       newBranch: 'Cate keso',
       branchOffFrom: base => `Neuer Branch von ${base}`,
       switchTo: branch => `Wechsle zu ${branch}`,
       switchFailed: branch => `Wechsel zu ${branch} nicht möglich`,
-      worktrees: 'Lekki golle',
-    },
+      worktrees: 'Lekki golle'
+    }
   },
   updates: {
     stages: {
@@ -2533,7 +2582,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       done: 'Hesɗitinal timmii',
       manual: 'Hesɗitinde ummoraade e terminal maa',
       guiSkew: 'Hesɗitinde app ordinateer',
-      error: 'Hesɗitinal darnaama',
+      error: 'Hesɗitinal darnaama'
     },
     checking: 'E yiylugol hesɗitine...',
     checkFailedTitle: 'Waawaani ƴeewde hesɗitine',
@@ -2553,15 +2602,19 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     maybeLater: 'Caggal ɗoo',
     moreChanges: count => `+ ${count} bayle${count === 1 ? '' : 's'} goɗɗe naatnaama.`,
     manualTitle: 'Kesɗitin gila e terminal maa',
-    manualBody: 'A naatnii OpenAmer gila e laawol yamiroore, ɗum waɗi kesɗitinal ngal no doga ton kadi. Naatnu ɗum nder terminal maa:',
+    manualBody:
+      'A naatnii OpenAmer gila e laawol yamiroore, ɗum waɗi kesɗitinal ngal no doga ton kadi. Naatnu ɗum nder terminal maa:',
     manualPickedUp: 'OpenAmer heɓan yamre kese ndee tuma nde a fuɗɗata nde.',
     guiSkewTitle: 'Kesɗitin aplikaasiyoŋ desktop',
-    guiSkewBody: 'Sistem caggal kesɗitinaama, kono paake aplikaasiyoŋ desktop oo waylaaka. Kesɗitin walla naatnu kadi aplikaasiyoŋ desktop OpenAmer (AppImage / .deb / .rpm maa) ngam heɓtude.',
+    guiSkewBody:
+      'Sistem caggal kesɗitinaama, kono paake aplikaasiyoŋ desktop oo waylaaka. Kesɗitin walla naatnu kadi aplikaasiyoŋ desktop OpenAmer (AppImage / .deb / .rpm maa) ngam heɓtude.',
     copy: 'Kopi',
     copied: 'Kopii',
     done: 'Timminii',
-    applyingBody: 'Kesɗitinoowo OpenAmer ƴettan laamu e windo mum, o udditan OpenAmer e hoore mum nde o timmii. Tiiɗno wata a uddit OpenAmer hoore maa tuma nde o hesɗitina.',
-    applyingBodyBackend: 'Sistem caggal to woɗɗi no waɗa kesɗitinal ngal, o fuɗɗitoto. OpenAmer no seŋorta e hoore mum nde o wartii.',
+    applyingBody:
+      'Kesɗitinoowo OpenAmer ƴettan laamu e windo mum, o udditan OpenAmer e hoore mum nde o timmii. Tiiɗno wata a uddit OpenAmer hoore maa tuma nde o hesɗitina.',
+    applyingBodyBackend:
+      'Sistem caggal to woɗɗi no waɗa kesɗitinal ngal, o fuɗɗitoto. OpenAmer no seŋorta e hoore mum nde o wartii.',
     applyingClose: 'Windo ngoo maa udde tuma nde kesɗitinal ngal dogata, ndeen OpenAmer udditotoo hoore mum.',
     errorTitle: 'Kesɗitinal ngal timmaani',
     errorBody: 'Wata a ɗiɗa — hay huunde majjaani. A waawi etde kadi jooni.',
@@ -2572,12 +2625,13 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       restarting: 'Sistem caggal no fuɗɗitoo ngam loowde kesɗitinal ngal...',
       notAvailable: 'Kesɗitinal ngal alaa wonande ndee sistem caggal.',
       failed: 'Kesɗitinal backend falii.',
-      noReturn: 'Backend wartaaki e online. Kesɗitinal waawi wonnde gasaani — ƴeew jaɓɓoowo backend.',
+      noReturn: 'Backend wartaaki e online. Kesɗitinal waawi wonnde gasaani — ƴeew jaɓɓoowo backend.'
     },
     appErrors: {
-      updateLocked: 'Kesɗitinal dartinaama: windo OpenAmer goɗɗo walla terminal e dogde openamer ina ɗowa ndee install. Uddit ɗum, ndaartu.',
-      updateFailed: 'Kesɗitinal gasaani. Wata a hulu — hay huunde majjaani. A waawi ndaartude jooni.',
-    },
+      updateLocked:
+        'Kesɗitinal dartinaama: windo OpenAmer goɗɗo walla terminal e dogde openamer ina ɗowa ndee install. Uddit ɗum, ndaartu.',
+      updateFailed: 'Kesɗitinal gasaani. Wata a hulu — hay huunde majjaani. A waawi ndaartude jooni.'
+    }
   },
   install: {
     stageStates: {
@@ -2585,17 +2639,19 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       running: 'E naatnude',
       succeeded: 'Timmi',
       skipped: 'Ɗiwaama',
-      failed: 'Falii',
+      failed: 'Falii'
     },
     oneTimeTitle: 'OpenAmer ina sokli install gootol',
-    unsupportedDesc: platform => `Die automatisierte Installation beim ersten Start ist auf ${platform} noch nicht verfügbar. Öffne das Terminal, führe den untenstehenden Befehl aus und starte diese App neu. Bei folgenden Starts wird dieser Schritt übersprungen.`,
+    unsupportedDesc: platform =>
+      `Die automatisierte Installation beim ersten Start ist auf ${platform} noch nicht verfügbar. Öffne das Terminal, führe den untenstehenden Befehl aus und starte diese App neu. Bei folgenden Starts wird dieser Schritt übersprungen.`,
     installCommand: 'Yamre install',
     copyCommand: 'Natto yamre',
     viewDocs: 'Yiy ɗerewol install',
     installTo: 'Ma naatnu to',
     retryAfterRun: 'Mi dogii ɗum -- ndaartu',
     setupChoiceTitle: 'Teddin OpenAmer Desktop',
-    setupChoiceDesc: 'Seŋtu ndee app e gateway OpenAmer nde a dogata jooni, walla naatnu OpenAmer e nder ndee ordinateer.',
+    setupChoiceDesc:
+      'Seŋtu ndee app e gateway OpenAmer nde a dogata jooni, walla naatnu OpenAmer e nder ndee ordinateer.',
     connectExistingTitle: 'Seŋtu e OpenAmer wonɗo',
     connectExistingShort: 'Seŋtu wonɗo',
     connectExistingDesc: 'Huutora backend woɗɗo e token session walla seŋta browser. Install nokkuure fuɗɗataa.',
@@ -2630,8 +2686,10 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     failedTitle: 'Aafgol yani',
     settingUpTitle: 'Sosgol OpenAmer Agent',
     finishingTitle: 'Timminde',
-    failedDesc: 'Goɗɗum e daawe aafgol yani. E Windows, ɗum waawi wonde so OpenAmer CLI walla desktop goɗɗo ina golla. Dartu OpenAmer ɓe ngollata fof, caggal ɗuum etito. Ƴeew humpito les ɗoo walla log desktop ngam winndannde timmunde.',
-    activeDesc: 'Ngol ko sosgol laawol gootol. Aafgol OpenAmer ina awiina keɓe baɗɗe, ina feewna masiin maa. Udditgol garoowol diwtoto ndee daawe.',
+    failedDesc:
+      'Goɗɗum e daawe aafgol yani. E Windows, ɗum waawi wonde so OpenAmer CLI walla desktop goɗɗo ina golla. Dartu OpenAmer ɓe ngollata fof, caggal ɗuum etito. Ƴeew humpito les ɗoo walla log desktop ngam winndannde timmunde.',
+    activeDesc:
+      'Ngol ko sosgol laawol gootol. Aafgol OpenAmer ina awiina keɓe baɗɗe, ina feewna masiin maa. Udditgol garoowol diwtoto ndee daawe.',
     progress: (completed, total) => `${completed} e daawalji ${total} timmii`,
     currentStage: stage => ` -- jetzt: ${stage}`,
     fetchingManifest: 'E awiinde manifest aafgol...',
@@ -2645,7 +2703,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     transcriptSaved: 'Winndannde timmunde danndaa e',
     copiedOutput: 'Nattooma!',
     copyOutput: 'Natto yaltugol',
-    reloadRetry: 'Loowto ndeen etito',
+    reloadRetry: 'Loowto ndeen etito'
   },
   assistant: {
     thread: {
@@ -2681,7 +2739,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       restoreNext: 'Ruttito toɓɓere garoore',
       goForward: 'Yaahu yeeso',
       sendEdited: 'Neldu nelal ngal waylaa',
-      attachingFile: 'Ina soomtoo...',
+      attachingFile: 'Ina soomtoo...'
     },
     approval: {
       gatewayDisconnected: 'Damal OpenAmer seŋtaaka',
@@ -2694,8 +2752,9 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       jumpToApproval: 'Ina sokli jaɓgol',
       reject: 'Sala',
       alwaysTitle: 'Jaɓ ndee yamru sahaa kala?',
-      alwaysDescription: pattern => `Ɗum ɓeydata tiitoonde “${pattern}” e doggol yamiroore maa duumingol (~/.openamer/config.yaml). OpenAmer naamnoytaa kadi ngam yamirooje hono ɗee — e ndee naatal walla e naatal garowal.`,
-      alwaysAllow: 'Jaɓ sahaa kala',
+      alwaysDescription: pattern =>
+        `Ɗum ɓeydata tiitoonde “${pattern}” e doggol yamiroore maa duumingol (~/.openamer/config.yaml). OpenAmer naamnoytaa kadi ngam yamirooje hono ɗee — e ndee naatal walla e naatal garowal.`,
+      alwaysAllow: 'Jaɓ sahaa kala'
     },
     clarify: {
       notReady: 'Ɗaɓɓere laɓɓinde heftaani tawo',
@@ -2709,7 +2768,7 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       continueLabel: 'Jokku',
       lateAnswer: (question, choice) => `Baɗte: "${question}" — jaabawol am: ${choice}`,
       lateAnswerTip: 'Winndu ndee jaabawol hono mesaas jokkuɗo',
-      lateAnswerHint: 'Ndee naamnal ɗaɓɓitaani jooni. Suɓo cuɓal ngam winndude nde hono mesaas jokkuɗo.',
+      lateAnswerHint: 'Ndee naamnal ɗaɓɓitaani jooni. Suɓo cuɓal ngam winndude nde hono mesaas jokkuɗo.'
     },
     tool: {
       code: 'Kood',
@@ -2745,11 +2804,11 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
         ran: 'Doggii',
         running: 'Doggude',
         ranCode: 'Doggii koode',
-        runningCode: 'Binndol',
+        runningCode: 'Binndol'
       },
       prefixes: {
         browser: 'Wanngorde',
-        web: 'Geese',
+        web: 'Geese'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2757,132 +2816,133 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ina hurmina ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ina hurmina ${action.toLowerCase()}`,
+        runningTool: action => `Ina hurmina ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Tappi geɗal hello',
           pending: 'Tappaade geɗal hello',
-          pendingAction: 'Tappaade',
+          pendingAction: 'Tappaade'
         },
         browser_fill: {
           done: 'Nokku fomu hebbinaaɗo',
           pending: 'Hebbinagol nokku fomu',
-          pendingAction: 'Hebbinagol',
+          pendingAction: 'Hebbinagol'
         },
         browser_navigate: {
           done: 'Wewtere udditaama',
           pending: 'Udditagol wewtere',
-          pendingAction: 'Udditagol',
+          pendingAction: 'Udditagol'
         },
         browser_snapshot: {
           done: 'Natal wewtere nanngaama',
           pending: 'Nanngugol natal wewtere',
-          pendingAction: 'Nanngugol',
+          pendingAction: 'Nanngugol'
         },
         browser_take_screenshot: {
           done: 'Natal ekran nanngaama',
           pending: 'Nanngugol natal ekran',
-          pendingAction: 'Nanngugol',
+          pendingAction: 'Nanngugol'
         },
         browser_type: {
           done: 'Taypaama e wewtere',
           pending: 'Taypugol e wewtere',
-          pendingAction: 'Taypugol',
+          pendingAction: 'Taypugol'
         },
         clarify: {
           done: 'Naamndii naamnal',
           pending: 'Naamndugol naamnal',
-          pendingAction: 'Naamndugol',
+          pendingAction: 'Naamndugol'
         },
         cronjob: {
           done: 'Golle cron',
           pending: 'Eɓɓugol golle cron',
-          pendingAction: 'Toɓɓingol',
+          pendingAction: 'Toɓɓingol'
         },
         edit_file: {
           done: 'Fiil feewnaaɗo',
           pending: 'Feewnude fiil',
-          pendingAction: 'Feewnugol',
+          pendingAction: 'Feewnugol'
         },
         execute_code: {
           done: 'Kod doginaama',
           pending: 'Winndugol skript',
-          pendingAction: 'Winndugol skript',
+          pendingAction: 'Winndugol skript'
         },
         image_generate: {
           done: 'Nataral sosaa',
           pending: 'Sosde nataral',
-          pendingAction: 'Sosgol',
+          pendingAction: 'Sosgol'
         },
         list_files: {
           done: 'Fiiluuji limtaaɗi',
           pending: 'Limtude fiiluuji',
-          pendingAction: 'Limtugol',
+          pendingAction: 'Limtugol'
         },
         patch: {
           done: 'Fiil patcaaɗo',
           pending: 'Patcude fiil',
-          pendingAction: 'Patcugol',
+          pendingAction: 'Patcugol'
         },
         read_file: {
           done: 'Janngu fiil',
           pending: 'Janngude fiil',
-          pendingAction: 'Janngugol',
+          pendingAction: 'Janngugol'
         },
         search_files: {
           done: 'Fiiluuji wiɗtaaɗi',
           pending: 'Yiylude fiiluuji',
-          pendingAction: 'Yiylude',
+          pendingAction: 'Yiylude'
         },
         session_search_recall: {
           done: 'Yiylii taariika sesi',
           pending: 'Yiylude taariika sesi',
-          pendingAction: 'Yiylude',
+          pendingAction: 'Yiylude'
         },
         terminal: {
           done: 'Gollii yamiroore',
           pending: 'Gollude yamiroore',
-          pendingAction: 'Gollude',
+          pendingAction: 'Gollude'
         },
         todo: {
           done: 'Hesɗitini golle',
           pending: 'Hesɗitinde golle',
-          pendingAction: 'Hesɗitinde',
+          pendingAction: 'Hesɗitinde'
         },
         vision_analyze: {
           done: 'Ƴeewtii natal',
           pending: 'Ƴeewtude natal',
-          pendingAction: 'Ƴeewtude',
+          pendingAction: 'Ƴeewtude'
         },
         web_extract: {
           done: 'Tarii hello web',
           pending: 'Tarude hello web',
-          pendingAction: 'Tarude',
+          pendingAction: 'Tarude'
         },
         web_search: {
           done: 'Yiylii web',
           pending: 'Yiylude web',
-          pendingAction: 'Yiylude',
+          pendingAction: 'Yiylude'
         },
         write_file: {
           done: 'Fiil baylaaɗo',
           pending: 'Baylugol fiil',
-          pendingAction: 'Baylugol',
-        },
-      },
-    },
+          pendingAction: 'Baylugol'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Damal OpenAmer jokkondaaka',
     sudoSendFailed: 'Waawaani neldugo paaswor sudo',
     secretSendFailed: 'Waawaani neldugo sirlu',
     sudoTitle: 'Paaswor jaɓɓoowo',
-    sudoDesc: 'OpenAmer ina sokli paaswor maa sudo ngam doginde yamiroore keeriinde. Ina neldee tan e wakiiliyaa maa nokkuure.',
+    sudoDesc:
+      'OpenAmer ina sokli paaswor maa sudo ngam doginde yamiroore keeriinde. Ina neldee tan e wakiiliyaa maa nokkuure.',
     sudoPlaceholder: 'paaswor sudo',
     secretTitle: 'Sirlu ina sokli',
     secretDesc: 'OpenAmer ina sokli seedantaagal ngam jokkude.',
-    secretPlaceholder: 'njaatigi sirlu',
+    secretPlaceholder: 'njaatigi sirlu'
   },
   desktop: {
     audioReadFailed: 'Waawaani jannde heɗto binndaango',
@@ -2899,7 +2959,8 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} e ndee naatal`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Waawaa waylude YOLO',
-    profileStatus: current => `Heftinirde: ${current}. Huutoro /profile <name> walla suɓorde "Naatal kesal" ngam fuɗɗaade yeewtere e heftinirde woɗnde.`,
+    profileStatus: current =>
+      `Heftinirde: ${current}. Huutoro /profile <name> walla suɓorde "Naatal kesal" ngam fuɗɗaade yeewtere e heftinirde woɗnde.`,
     unknownProfile: 'Profil anndaaka',
     noProfileNamed: (target, available) => `Alaa heftinirde wiɗɗiinde "${target}". Ko woodi: ${available}`,
     newChatsProfile: name => `Yeewte kese kuutortoo heftinirde ${name}.`,
@@ -2909,8 +2970,9 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
     regenerateFailed: 'Fuɗɗitinde waawaa',
     editFailed: 'Waylugol waawaa',
     resumeFailed: 'Jokkude waawaa',
-    resumeStrandedTitle: "Waawaa loowde ndee seesal",
-    resumeStrandedBody: 'Jokkondiral e ndee seesal waawaa, ettooje otomaatik acci. Ƴeewto wonde damal ina gollaa, refti etto kadi.',
+    resumeStrandedTitle: 'Waawaa loowde ndee seesal',
+    resumeStrandedBody:
+      'Jokkondiral e ndee seesal waawaa, ettooje otomaatik acci. Ƴeewto wonde damal ina gollaa, refti etto kadi.',
     resumeRetry: 'Etto kadi',
     nothingToBranch: 'Alaa huunde ngam cawgol',
     branchNeedsChat: 'Fuɗɗo walla jokku yeewtere ado cawgol.',
@@ -2950,31 +3012,31 @@ Accu ɗum meho ngam reende goowaaɗo ${mode}.`,
       success: platform => `Ɓenninaama to ${platform}. Jokku ɗoo sahaa kala.`,
       systemNote: platform => `↻ Ɓenninaama to ${platform} — jokku ɗoo sahaa kala.`,
       failed: error => `Ɓenninal woorii: ${error}`,
-      timedOut: 'Sahaa ɓennii e fadugol damal. E `openamer gateway` gollotoo?',
-    },
+      timedOut: 'Sahaa ɓennii e fadugol damal. E `openamer gateway` gollotoo?'
+    }
   },
   errors: {
     genericFailure: 'Won huunde bonnde',
     boundaryTitle: 'Won huunde bonnii e nder gollordu',
     boundaryDesc: 'Ndaare ndee heɓi juumre nde tawo tammbaaka. Yeewle maa e teelte maa ina ngoodi cella.',
     reloadWindow: 'Loowtito windo',
-    openLogs: 'Uddit loguuji',
+    openLogs: 'Uddit loguuji'
   },
   ui: {
     search: {
-      clear: 'Momtu yiylo',
+      clear: 'Momtu yiylo'
     },
     pagination: {
       label: 'Feccere hello',
       previous: 'Ɓennu',
       previousAria: 'Yah to hello ɓennungo',
       next: 'Jokku',
-      nextAria: 'Yah to hello jokkungo',
+      nextAria: 'Yah to hello jokkungo'
     },
     sidebar: {
       title: 'Bannge',
       description: 'Hollir bannge mobil.',
-      toggle: 'Waylu bannge',
-    },
-  },
+      toggle: 'Waylu bannge'
+    }
+  }
 })

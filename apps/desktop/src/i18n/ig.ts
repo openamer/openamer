@@ -20,7 +20,7 @@ export const ig = defineLocale({
     confirm: 'Kwenye',
     connect: 'Jikọọ',
     connecting: 'Na-ejikọ',
-    continue: 'Gaa n\'ihu',
+    continue: "Gaa n'ihu",
     copied: 'Edetuola',
     copy: 'Detuo',
     copyFailed: 'Detuo dara',
@@ -31,7 +31,7 @@ export const ig = defineLocale({
     expand: 'Gbasaa',
     failed: 'Dara',
     formatJson: 'Hazie JSON',
-    free: 'N\'efu',
+    free: "N'efu",
     loading: 'Na-ebu…',
     notSet: 'Edebeghị',
     refresh: 'Megharịa',
@@ -45,7 +45,7 @@ export const ig = defineLocale({
     update: 'Melite',
     on: 'Gbanyere',
     off: 'Gbanyụrụ',
-    tryHint: term => `Nnwale “${term}”`,
+    tryHint: term => `Nnwale “${term}”`
   },
   fileMenu: {
     revealFinder: 'Gosi na Finder',
@@ -60,7 +60,7 @@ export const ig = defineLocale({
     renameLabel: 'Aha ọhụrụ',
     deleteBody: 'A ga-ebuga ya na Trash — ị nwere ike weghachite ya ebe ahụ.',
     pathCopied: 'E detuola ụzọ',
-    deleteTitle: name => `Kpochaa ${name}?`,
+    deleteTitle: name => `Kpochaa ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop adịla njikere',
@@ -69,7 +69,7 @@ export const ig = defineLocale({
       loadingSettings: 'Na-ebu ntọala OpenAmer',
       loadingSessions: 'Na-ebu nnọkọ ndị na-adịbeghị anya',
       startingDesktopConnection: 'Na-amalite njikọ desktop',
-      startingOpenAmerDesktop: 'Na-amalite OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Na-amalite OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Usoro ndabere OpenAmer kwụsịrị.',
@@ -78,13 +78,15 @@ export const ig = defineLocale({
       desktopBootFailed: 'Mmalite desktop dara',
       gatewayConnectionLost: 'Efunahụla njikọ na gateway',
       gatewaySignInRequired: 'Achọrọ ịbanye na gateway',
-      ipcBridgeUnavailable: 'Àkwà mmiri IPC desktọpụ adịghị.',
+      ipcBridgeUnavailable: 'Àkwà mmiri IPC desktọpụ adịghị.'
     },
     failure: {
       title: 'OpenAmer enweghị ike ịmalite',
-      description: 'Gateway ndabere amaliteghị. Nwaa otu n\'ime usoro mgbake dị n\'okpuru. Ọnweghị ihe ebe a na-ehichapụ mkparịta ụka ma ọ bụ ntọala gị.',
+      description:
+        "Gateway ndabere amaliteghị. Nwaa otu n'ime usoro mgbake dị n'okpuru. Ọnweghị ihe ebe a na-ehichapụ mkparịta ụka ma ọ bụ ntọala gị.",
       remoteTitle: 'Achọrọ ịbanye na gateway dịpụrụ adịpụ',
-      remoteDescription: 'Oge nnọkọ gateway dịpụrụ adịpụ gị agwụla. Banye ọzọ iji jikọọ ọzọ. Ọnweghị ihe ebe a na-ehichapụ mkparịta ụka ma ọ bụ ntọala gị.',
+      remoteDescription:
+        'Oge nnọkọ gateway dịpụrụ adịpụ gị agwụla. Banye ọzọ iji jikọọ ọzọ. Ọnweghị ihe ebe a na-ehichapụ mkparịta ụka ma ọ bụ ntọala gị.',
       retry: 'Nwaa ọzọ',
       repairInstall: 'Rụkwaa nwụnye',
       useLocalGateway: 'Jiri gateway mpaghara',
@@ -93,7 +95,8 @@ export const ig = defineLocale({
       openLogs: 'Mepee ndekọ',
       repairHint: 'Rụkwaa na-emegharị ihe nwụnye ma nwee ike were nkeji ole na ole na igwe ọhụrụ.',
       signOutAndSignIn: 'Pụọ & banye',
-      remoteFailureHint: 'Lelee URL gateway na ịbanye n\'okpuru Ntọala gateway, ma ọ bụ gbanwee gaa na gateway mpaghara.',
+      remoteFailureHint:
+        "Lelee URL gateway na ịbanye n'okpuru Ntọala gateway, ma ọ bụ gbanwee gaa na gateway mpaghara.",
       hideRecentLogs: 'Zoo ndekọ ndị na-adịbeghị anya',
       showRecentLogs: 'Gosi ndekọ ndị na-adịbeghị anya',
       signedInTitle: 'Abanyela',
@@ -103,10 +106,11 @@ export const ig = defineLocale({
       signInFailed: 'Mbanye dara',
       signInToRemoteGateway: 'Banye na gateway dị anya',
       identityProvider: 'onye na-enye njirimara gị',
-      remoteSignInHint: signInLabel => `Na-apụ n'ime remote browser session achekwara, wee meghaa ${signInLabel}. Jiri local gateway gbanwee gaa na bundled backend.`,
-      signInWithProvider: provider => `Banye na ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Na-apụ n'ime remote browser session achekwara, wee meghaa ${signInLabel}. Jiri local gateway gbanwee gaa na bundled backend.`,
+      signInWithProvider: provider => `Banye na ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Mmega desktop efu: ${message}`,
+    desktopBootFailedWithMessage: message => `Mmega desktop efu: ${message}`
   },
   notifications: {
     region: 'Ọkwa',
@@ -118,7 +122,8 @@ export const ig = defineLocale({
     copyDetail: 'Detuo nkọwa',
     copyDetailFailed: 'Enweghị ike detuo nkọwa ọkwa',
     backendOutOfDateTitle: 'Backend agwụla oge',
-    backendOutOfDateMessage: 'Backend OpenAmer gị dị ochie karịa ụdị desktop a, o nwere ike ọ gaghị arụ ọrụ nke ọma. Melite ya ka ha kwekọọ.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer gị dị ochie karịa ụdị desktop a, o nwere ike ọ gaghị arụ ọrụ nke ọma. Melite ya ka ha kwekọọ.',
     installMethodUnsupportedTitle: 'Usoro nwụnye akwadoghị',
     updateOpenAmer: 'Melite OpenAmer',
     updateReadyTitle: 'Mmelite dị njikere',
@@ -131,7 +136,7 @@ export const ig = defineLocale({
       microphonePermission: 'Agọnarị ikike igwe okwu.',
       openaiRejectedApiKey: 'OpenAI jụrụ igodo API.',
       openaiTtsNeedsKey: 'OpenAI TTS chọrọ VOICE_TOOLS_OPENAI_KEY ma ọ bụ OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI ajụrụ API key ahụ (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI ajụrụ API key ahụ (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Hazie ntụgharị okwu-ga-ederede ka ọ jiri ụdị olu.',
@@ -150,7 +155,7 @@ export const ig = defineLocale({
       transcriptionFailed: 'Ntụgharị olu dara',
       transcriptionUnavailable: 'Ntụgharị olu adịghị ugbu a.',
       tryRecordingAgain: 'Nwaa idekọ ọzọ.',
-      unavailable: 'Olu adịghị.',
+      unavailable: 'Olu adịghị.'
     },
     native: {
       approvalTitle: 'Achọrọ nkwado.',
@@ -163,25 +168,25 @@ export const ig = defineLocale({
       turnErrorTitle: 'Ntụgharị dara.',
       backgroundDoneTitle: 'Ọrụ ndabere agwụla.',
       backgroundFailedTitle: 'Ọrụ ndabere dara.',
-      creditsTitle: 'Kredit',
+      creditsTitle: 'Kredit'
     },
     more: count => `${count} ọzọ ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} mgbanwe ọhụrụ${count === 1 ? '' : 's'} dị.`,
+    updateReadyMessage: count => `${count} mgbanwe ọhụrụ${count === 1 ? '' : 's'} dị.`
   },
   billingBlock: {
     titleOpenamer: 'Kredit OpenAmer agwụla.',
-    fallbackMessage: 'Akaụntụ gị agwụla kredit. Tinye kredit ka ịga n\'ihu.',
+    fallbackMessage: "Akaụntụ gị agwụla kredit. Tinye kredit ka ịga n'ihu.",
     openBilling: 'Mepee ụgwọ',
     addCredits: 'Tinye kredit',
     dismiss: 'Hapụ',
-    titleProvider: provider => `Credit agwụla — ${provider}`,
+    titleProvider: provider => `Credit agwụla — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Zoo ogwe akụkụ',
     showSidebar: 'Gosi akụkụ',
     search: 'Chọọ',
     searchTitle: 'Chọọ nnọkọ, nlele, na omume',
-    swapSidebarSides: 'Gbanwee akụkụ gaa n\'akụkụ ọzọ',
+    swapSidebarSides: "Gbanwee akụkụ gaa n'akụkụ ọzọ",
     swapSidebarSidesTitle: 'Gbanwee akụkụ nnọkọ na ihe nchọgharị faịlụ',
     hideRightSidebar: 'Zoo akụkụ aka nri',
     showRightSidebar: 'Gosi akụkụ aka nri',
@@ -191,7 +196,7 @@ export const ig = defineLocale({
     openStarmap: 'Mepee eserese ncheta',
     openKeybinds: 'Mkpirisi mkpịsị ahụ',
     layoutEditor: 'Onye ndezi nhazi',
-    layoutEditorTitle: 'Onye ndezi nhazi — ⌘-click na-eweghachi nhazi ahụ',
+    layoutEditorTitle: 'Onye ndezi nhazi — ⌘-click na-eweghachi nhazi ahụ'
   },
   keybinds: {
     title: 'Mkpirisi mkpịsị ahụ',
@@ -206,7 +211,7 @@ export const ig = defineLocale({
       profiles: 'Profaịlụ',
       session: 'Seshọọn',
       navigation: 'Nchọgharị',
-      view: 'Nlele',
+      view: 'Nlele'
     },
     actions: {
       'keybinds.openPanel': 'Mepee ụzọ mkpirisi ahụigodo',
@@ -279,16 +284,16 @@ export const ig = defineLocale({
       'composer.send': 'Zipu ozi',
       'composer.newline': 'Fanye ahịrị ọhụrụ',
       'composer.steer': 'Duzie ntụgharị na-agba',
-      'composer.queue': 'Tinye ozi n\'ahịrị',
-      'composer.sendQueued': 'Zipu ntụgharị ọzọ n\'ahịrị',
+      'composer.queue': "Tinye ozi n'ahịrị",
+      'composer.sendQueued': "Zipu ntụgharị ọzọ n'ahịrị",
       'composer.mention': 'Rụtụ aka na faịlụ, folda, URL',
       'composer.slash': 'Palet iwu slash',
       'composer.help': 'Enyemaka ngwa ngwa',
       'composer.history': 'Gbanwee obere windo / akụkọ ihe mere eme',
-      'composer.cancel': 'Mechie obere windo · kagbuo mmezu',
+      'composer.cancel': 'Mechie obere windo · kagbuo mmezu'
     },
     subtitle: open => `Plica shortcut iji mee ka ọ rụọ ọrụ ọhụrụ · ${open} na-emeghe panel a ọzọ.`,
-    conflictWith: label => `A kotiwakwa ya na “${label}”`,
+    conflictWith: label => `A kotiwakwa ya na “${label}”`
   },
   language: {
     label: 'Asụsụ',
@@ -297,7 +302,7 @@ export const ig = defineLocale({
     saveError: 'Mmelite asụsụ dara',
     switchTo: 'Gbanwee asụsụ',
     searchPlaceholder: 'Chọọ asụsụ…',
-    noResults: 'Ahụghị asụsụ ọ bụla',
+    noResults: 'Ahụghị asụsụ ọ bụla'
   },
   settings: {
     closeSettings: 'Mechie ntọala',
@@ -322,65 +327,68 @@ export const ig = defineLocale({
       billing: 'Ụgwọ',
       notifications: 'Ọkwa',
       plugins: 'Ngwa mgbakwunye',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Enwebeghị ngwa mgbakwunye desktọpụ arụnyere.',
       kinds: {
         bundled: 'gụnyere',
         disk: 'na diski',
-        runtime: 'oge ọrụ',
+        runtime: 'oge ọrụ'
       },
       title: 'Ngwa mgbakwunye desktọpụ',
-      blurb: 'Mgbakwunye UI etinyere n\'ime ngwa a — jikọtara ya na build, ma ọ bụ tinye ya na folda desktop-plugins (gụnyere ndị OpenAmer dere). Ịgbanyụọ na-ewepụ plugin ozugbo ma na-adịgide mgbe mmalite ọzọ.',
+      blurb:
+        "Mgbakwunye UI etinyere n'ime ngwa a — jikọtara ya na build, ma ọ bụ tinye ya na folda desktop-plugins (gụnyere ndị OpenAmer dere). Ịgbanyụọ na-ewepụ plugin ozugbo ma na-adịgide mgbe mmalite ọzọ.",
       openFolder: 'Mepee folda ngwa mgbakwunye',
       rescan: 'Nyochaa ọzọ',
       reveal: 'Gosi na njikwa faịlụ',
       enable: 'Gbanye',
       disable: 'Gbanyụọ',
       failed: 'dara ada',
-      count: n => `Awụnyela ${n}`,
+      count: n => `Awụnyela ${n}`
     },
     notifications: {
       title: 'Ọkwa',
-      intro: 'Ọkwa desktọpụ ọdịnala, dị iche na toast dị n\'ime ngwa. Ndị a bụ nke ngwaọrụ — kọmputa ọ bụla na-ejide ntọala nke ya.',
+      intro:
+        "Ọkwa desktọpụ ọdịnala, dị iche na toast dị n'ime ngwa. Ndị a bụ nke ngwaọrụ — kọmputa ọ bụla na-ejide ntọala nke ya.",
       enableAll: 'Gbanye ọkwa',
-      enableAllDesc: 'Isi ngbanwe. Gbanyụọ nke a iji mechie ọkwa niile dị n\'okpuru.',
+      enableAllDesc: "Isi ngbanwe. Gbanyụọ nke a iji mechie ọkwa niile dị n'okpuru.",
       focusedHint: 'Ọkwa mmecha na-eme naanị mgbe OpenAmer nọ na ndabere.',
       kinds: {
         approval: {
           label: 'Achọrọ nkwado',
-          description: 'Otu iwu na-eche ka ị kwado ya ma ọ bụ jụ ya.',
+          description: 'Otu iwu na-eche ka ị kwado ya ma ọ bụ jụ ya.'
         },
         input: {
           label: 'Achọrọ ntinye',
-          description: 'OpenAmer jụrụ ajụjụ ma ọ bụ chọọ paswọọdụ ma ọ bụ ihe nzuzo.',
+          description: 'OpenAmer jụrụ ajụjụ ma ọ bụ chọọ paswọọdụ ma ọ bụ ihe nzuzo.'
         },
         turnDone: {
           label: 'Nzaghachi dị njikere',
-          description: 'Otu ntụgharị mechara mgbe OpenAmer nọ na ndabere.',
+          description: 'Otu ntụgharị mechara mgbe OpenAmer nọ na ndabere.'
         },
         turnError: {
           label: 'Ntụgharị dara',
-          description: 'Ntụgharị kwụsịrị na njehie.',
+          description: 'Ntụgharị kwụsịrị na njehie.'
         },
         backgroundDone: {
           label: 'Ọrụ ndabere mechara',
-          description: 'Iwu terminal e mere na ndabere mechara.',
+          description: 'Iwu terminal e mere na ndabere mechara.'
         },
         credits: {
           label: 'Ọkwa kredit',
-          description: 'Ohere kredit akwụsịtụrụ ma ọ bụ eweghachiri.',
-        },
+          description: 'Ohere kredit akwụsịtụrụ ma ọ bụ eweghachiri.'
+        }
       },
       test: 'Ziga ọkwa nnwale',
       testTitle: 'OpenAmer',
       testBody: 'Ọkwa na-arụ ọrụ.',
-      testSent: 'Ezitere nnwale. Ọ bụrụ na ọ nweghị ihe pụtara, lelee ikike ọkwa OS gị yana Nlekwasị anya/Adịghị akpaghasị.',
+      testSent:
+        'Ezitere nnwale. Ọ bụrụ na ọ nweghị ihe pụtara, lelee ikike ọkwa OS gị yana Nlekwasị anya/Adịghị akpaghasị.',
       testUnsupported: 'Sistemụ a anaghị akwado ọkwa ọdịnala.',
       completionSoundTitle: 'Ụda Mmecha',
       completionSoundDesc: 'Na-akụ mgbe ntụgharị onye nnọchite anya gwụchara. Họrọ nhazi mbụ ma lelee ya ebe a.',
-      completionSoundPreview: 'Nlele',
+      completionSoundPreview: 'Nlele'
     },
     sections: {
       model: 'Ụdị',
@@ -390,7 +398,7 @@ export const ig = defineLocale({
       safety: 'Nchekwa',
       memory: 'Ncheta & Gburugburu',
       voice: 'Olu',
-      advanced: 'Nke dị elu',
+      advanced: 'Nke dị elu'
     },
     searchPlaceholder: {
       about: 'Banyere OpenAmer Desktop',
@@ -398,25 +406,26 @@ export const ig = defineLocale({
       gateway: 'Njikọ ọnụ ụzọ...',
       keys: 'Chọọ igodo API...',
       mcp: 'Chọọ sava MCP...',
-      sessions: 'Chọọ nnọkọ echekwara...',
+      sessions: 'Chọọ nnọkọ echekwara...'
     },
     modeOptions: {
       light: {
         label: 'Ìhè',
-        description: 'Elu desktọpụ na-egbuke egbuke',
+        description: 'Elu desktọpụ na-egbuke egbuke'
       },
       dark: {
         label: 'Ọchịchịrị',
-        description: 'Ebe ọrụ nwere obere ìhè',
+        description: 'Ebe ọrụ nwere obere ìhè'
       },
       system: {
         label: 'Sistemụ',
-        description: 'Soro ọdịdị OS',
-      },
+        description: 'Soro ọdịdị OS'
+      }
     },
     appearance: {
       title: 'Ọdịdị',
-      intro: 'Nke a bụ mmasị ngosi desktọpụ naanị. Ụdị na-achịkwa ìhè; isiokwu na-achịkwa palette agba na ụdị elu mkparịta ụka.',
+      intro:
+        'Nke a bụ mmasị ngosi desktọpụ naanị. Ụdị na-achịkwa ìhè; isiokwu na-achịkwa palette agba na ụdị elu mkparịta ụka.',
       colorMode: 'Ụdị Agba',
       colorModeDesc: 'Họrọ ụdị a kapịrị ọnụ ma ọ bụ kwe ka OpenAmer soro ntọala sistemụ gị.',
       toolViewTitle: 'Ngosi Oku Ngwaọrụ',
@@ -425,16 +434,18 @@ export const ig = defineLocale({
       translucencyTitle: 'Ịhụ site na Window',
       translucencyDesc: 'Hụ desktọpụ gị site na window niile. Naanị macOS na Windows.',
       backdropTitle: 'Ndabere Mkparịta Ụka',
-      backdropDesc: 'Foto akpụrụ akpụ na-adịghị ahụ nke ọma n\'azụ mkparịta ụka.',
+      backdropDesc: "Foto akpụrụ akpụ na-adịghị ahụ nke ọma n'azụ mkparịta ụka.",
       pet: {
-        intro: 'Nabata ihe nnọchianya petdex na-emegharị ahụ nke na-ese n\'elu ngwa ahụ ma na-emeghachi omume n\'ihe OpenAmer na-eme — na-agba ọsọ mgbe ngwa ọrụ na-arụ ọrụ, na-enwe ọṅụ mgbe ihe gara nke ọma, na-ewe iwe mgbe enwere njehie.',
-        restartHint: 'Anụ ụlọ chọrọ mmalite ọzọ ngwa ngwa — ngwa na-agba ọsọ malitere tupu agbakwunye atụmatụ a. Hapụ ma mepee OpenAmer ọzọ, wee laghachite ebe a.',
+        intro:
+          "Nabata ihe nnọchianya petdex na-emegharị ahụ nke na-ese n'elu ngwa ahụ ma na-emeghachi omume n'ihe OpenAmer na-eme — na-agba ọsọ mgbe ngwa ọrụ na-arụ ọrụ, na-enwe ọṅụ mgbe ihe gara nke ọma, na-ewe iwe mgbe enwere njehie.",
+        restartHint:
+          'Anụ ụlọ chọrọ mmalite ọzọ ngwa ngwa — ngwa na-agba ọsọ malitere tupu agbakwunye atụmatụ a. Hapụ ma mepee OpenAmer ọzọ, wee laghachite ebe a.',
         on: 'Gbanye',
         off: 'Gbanyụọ',
         scaleTitle: 'Nha',
-        scaleDesc: 'Gbanwee nha ihe nnọchianya na-ese n\'elu. Ọ na-emetụta ebe niile ozugbo.',
+        scaleDesc: "Gbanwee nha ihe nnọchianya na-ese n'elu. Ọ na-emetụta ebe niile ozugbo.",
         roamTitle: 'Gagharịa',
-        roamDesc: 'Kwe ka anụ ụlọ na-agagharị na windo n\'onwe ya mgbe ọ nọghị arụ ọrụ.',
+        roamDesc: "Kwe ka anụ ụlọ na-agagharị na windo n'onwe ya mgbe ọ nọghị arụ ọrụ.",
         chooseTitle: 'Họrọ anụ ụlọ',
         chooseDesc: 'Ịhọrọ otu na-awụnye ya (ọ bụrụ na ọ dị mkpa) ma mee ka ọ rụọ ọrụ.',
         searchPlaceholder: 'Chọọ anụ ụlọ…',
@@ -461,10 +472,11 @@ export const ig = defineLocale({
         adoptFailed: slug => `Enweghị ike ịnabata ${slug}`,
         uninstallFailed: slug => `Enweghị ike iwepụ ${slug}`,
         renameFailed: slug => `Enweghị ike ịgbanwe aha ${slug}`,
-        exportFailed: slug => `Enweghị ike imepụta ${slug}`,
+        exportFailed: slug => `Enweghị ike imepụta ${slug}`
       },
-      embedsTitle: 'Mgbakwunye n\'ahịrị',
-      embedsDesc: 'Nlele ọgaranya na-esi na saịtị ndị ọzọ (YouTube, X, …) buba. Jụọ na-egosi ihe nnọchi ruo mgbe ị kwenyere nke ọ bụla; Mgbe niile na-ebu ha na-akpaghị aka; Gbanyụọ na-edebe njikọ nkịtị.',
+      embedsTitle: "Mgbakwunye n'ahịrị",
+      embedsDesc:
+        'Nlele ọgaranya na-esi na saịtị ndị ọzọ (YouTube, X, …) buba. Jụọ na-egosi ihe nnọchi ruo mgbe ị kwenyere nke ọ bụla; Mgbe niile na-ebu ha na-akpaghị aka; Gbanyụọ na-edebe njikọ nkịtị.',
       embedsAsk: 'Jụọ',
       embedsAlways: 'Mgbe niile',
       embedsOff: 'Gbanyụọ',
@@ -473,19 +485,21 @@ export const ig = defineLocale({
       technical: 'Teknụzụ',
       technicalDesc: 'Gụnye arụmụka/nsonaazụ ngwá ọrụ mbụ na nkọwa ọkwa ala.',
       themeTitle: 'Isiokwu',
-      themeDesc: 'Palette desktọpụ naanị. A na-etinye ọnọdụ ahọpụtara n\'elu.',
+      themeDesc: "Palette desktọpụ naanị. A na-etinye ọnọdụ ahọpụtara n'elu.",
       installTitle: 'Wụnye site na VS Code',
-      installDesc: 'Mado id mgbakwunye Marketplace (dịka dracula-theme.theme-dracula) iji gbanwee isiokwu agba ya ka ọ bụrụ palette desktọpụ.',
+      installDesc:
+        'Mado id mgbakwunye Marketplace (dịka dracula-theme.theme-dracula) iji gbanwee isiokwu agba ya ka ọ bụrụ palette desktọpụ.',
       installButton: 'Wụnye',
       installing: 'Na-awụnye…',
       installError: 'Enweghị ike ịwụnye isiokwu ahụ.',
       removeTheme: 'Wepụ isiokwu',
       importedBadge: 'Ebubatara',
       installPlaceholder: 'onye mbipụta.ndọtị',
-      uiScaleDesc: (percent: number) => `Na-agbanwe size nke ederede na controls n'ime app niile. Cmd/Ctrl na +, - na 0 na-arụkwa ọrụ. Ugbu a: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Na-agbanwe size nke ederede na controls n'ime app niile. Cmd/Ctrl na +, - na 0 na-arụkwa ọrụ. Ugbu a: ${percent}%.`,
       embedsReset: (count: number) => `Tọgharịa ${count} ekwenyere ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Achekwara ya maka profile ${profile} — profile ọ bụla nwere theme ya.`,
-      installed: name => `Enyere “${name}”.`,
+      installed: name => `Enyere “${name}”.`
     },
     about: {
       heading: 'OpenAmer Desktọpụ',
@@ -498,12 +512,12 @@ export const ig = defineLocale({
       releaseNotes: 'Ndetu ntọhapụ',
       onLatest: 'Ị nọ na ụdị kachasị ọhụrụ.',
       installing: 'A na-etinye mmelite ugbu a.',
-      cantUpdate: 'Nhazi a enweghị ike imelite onwe ya n\'ime ngwa.',
+      cantUpdate: "Nhazi a enweghị ike imelite onwe ya n'ime ngwa.",
       cantReach: 'Anyị enweghị ike iru sava mmelite.',
       tapCheck: 'Pịa "Lelee ugbu a" iji chọọ mmelite.',
       justNowSuffix: '· ugbu a',
       automaticUpdates: 'Mmelite akpaka',
-      automaticUpdatesDesc: 'OpenAmer na-enyocha mmelite na-akpaka n\'azụ ma na-agwa gị mgbe otu dị njikere.',
+      automaticUpdatesDesc: "OpenAmer na-enyocha mmelite na-akpaka n'azụ ma na-agwa gị mgbe otu dị njikere.",
       never: 'ọ dịghị mgbe',
       justNow: 'ugbu a',
       version: value => `Ụdị ${value}`,
@@ -512,7 +526,7 @@ export const ig = defineLocale({
       branchCommit: (branch, commit) => `Akara ${branch} · Nzuzo ${commit}`,
       minAgo: count => `Nkeji ${count} gara aga`,
       hoursAgo: count => `Awa ${count} gara aga`,
-      daysAgo: count => `Ụbọchị ${count} gara aga`,
+      daysAgo: count => `Ụbọchị ${count} gara aga`
     },
     config: {
       none: 'Ọnweghị',
@@ -528,7 +542,8 @@ export const ig = defineLocale({
       imported: 'Ewebatara nhazi',
       invalidJson: 'JSON nhazi adịghị mma',
       keepAwakeTitle: 'Debe kọmputa na-eteta',
-      keepAwakeDesc: 'Gbochie igwe a ịrahụ ụra ka ọ na-aga ogologo oge ma ọ bụ na-agba abalị dum. Ihuenyo ka nwere ike ịda.',
+      keepAwakeDesc:
+        'Gbochie igwe a ịrahụ ụra ka ọ na-aga ogologo oge ma ọ bụ na-agba abalị dum. Ihuenyo ka nwere ike ịda.'
     },
     credentials: {
       pasteKey: 'Tinye igodo',
@@ -538,7 +553,7 @@ export const ig = defineLocale({
       remove: 'Wepu',
       getKey: 'Nweta igodo',
       saving: 'Na-echekwa',
-      pasteLabelKey: label => `Tinye ${label} key`,
+      pasteLabelKey: label => `Tinye ${label} key`
     },
     envActions: {
       credentialActions: 'Omume njirimara',
@@ -549,7 +564,7 @@ export const ig = defineLocale({
       replace: 'Dochie',
       set: 'Tọọ',
       clear: 'Hichapụ',
-      actionsFor: label => `Omume maka ${label}`,
+      actionsFor: label => `Omume maka ${label}`
     },
     gateway: {
       loading: 'Na-ebu ntọala ọnụ ụzọ...',
@@ -557,16 +572,18 @@ export const ig = defineLocale({
       unavailableDesc: 'Àkwà mmiri IPC desktọpụ anaghị ekpughe ntọala ọnụ ụzọ.',
       title: 'Njikọ ọnụ ụzọ',
       envOverride: 'ndochi env',
-      intro: 'OpenAmer Desktop na-amalite ọnụ ụzọ mpaghara nke ya na ndabara. Jiri ọnụ ụzọ dịpụrụ adịpụ mgbe ị chọrọ ka ngwa a jikwaa backend OpenAmer na-agba ọsọ na igwe ọzọ ma ọ bụ n\'azụ proxy a tụkwasịrị obi. Họrọ profaịlụ dị n\'okpuru ka inye ya host dịpụrụ adịpụ nke ya.',
+      intro:
+        "OpenAmer Desktop na-amalite ọnụ ụzọ mpaghara nke ya na ndabara. Jiri ọnụ ụzọ dịpụrụ adịpụ mgbe ị chọrọ ka ngwa a jikwaa backend OpenAmer na-agba ọsọ na igwe ọzọ ma ọ bụ n'azụ proxy a tụkwasịrị obi. Họrọ profaịlụ dị n'okpuru ka inye ya host dịpụrụ adịpụ nke ya.",
       appliesTo: 'Na-emetụta',
       allProfiles: 'Profaịlụ niile',
       defaultConnection: 'Njikọ ndabara maka profaịlụ ọ bụla na-enweghị ndochi nke ya.',
       envOverrideTitle: 'Mgbanwe gburugburu ebe obibi na-achịkwa nnọkọ desktọpụ a.',
-      envOverrideDesc: 'Wepụ OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN ka i jiri ntọala echekwara n\'okpuru.',
+      envOverrideDesc:
+        "Wepụ OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN ka i jiri ntọala echekwara n'okpuru.",
       cloudNoAgents: {
         before: 'Ahụghị agent ọ bụla na akaụntụ a. Mepụta otu na',
         linkText: 'Portal OpenAmer',
-        after: ', wee megharịa.',
+        after: ', wee megharịa.'
       },
       cloudRefresh: 'Megharịa',
       cloudConnect: 'Jikọọ',
@@ -587,7 +604,8 @@ export const ig = defineLocale({
       signIn: 'Banye',
       signOut: 'Pụọ',
       authTitle: 'Nyocha njirimara',
-      authSignedInPassword: 'Ọnụ ụzọ a na-eji aha njirimara na paswọọdụ. I banyela; nnọkọ na-emegharị onwe ya na-akpaghị aka.',
+      authSignedInPassword:
+        'Ọnụ ụzọ a na-eji aha njirimara na paswọọdụ. I banyela; nnọkọ na-emegharị onwe ya na-akpaghị aka.',
       authSignedInOauth: 'Ọnụ ụzọ a na-eji OAuth. I banyela; nnọkọ na-emegharị onwe ya na-akpaghị aka.',
       authNeedsPassword: 'Ọnụ ụzọ a na-eji aha njirimara na paswọọdụ. Banye ka i nye ikike ngwa desktọpụ a.',
       tokenTitle: 'Token nnọkọ',
@@ -623,26 +641,33 @@ export const ig = defineLocale({
       sshButtonsHint: 'Chekwa na-arụ ọrụ na mmalite ọzọ. Jikọọ na-ejikọghachi ugbu a.',
       sshIncompleteHost: 'Tinye Onye nbata SSH tupu ijikọ.',
       sshErrUnreachable: 'Enweghị ike iru Onye nbata ahụ site na SSH. Lelee Onye nbata, pọtụ, na netwọk gị.',
-      sshErrAuth: 'Nyocha SSH dara. Tinye igodo gị na ssh-agent (ssh-add) ma ọ bụ tọọ IdentityFile na ~/.ssh/config — OpenAmer na-agba ssh na-enweghị mmekọrịta.',
-      sshErrHostKey: 'Igodo Onye nbata AGBANWELA kemgbe ijikọrọ ikpeazụ. Nyochaa na nke a bụ ihe a tụrụ anya, wee gbaa ssh-keygen -R <host> ma jikọọ ọzọ.',
-      sshErrNotInstalled: 'Etinyeghị OpenAmer na host dịpụrụ adịpụ. Wụnye ya ebe ahụ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ma ọ bụ tọọ ụzọ OpenAmer.',
-      sshErrPlatform: 'Platform dịpụrụ adịpụ akwadoghị. Ụdị Desktop SSH nke OpenAmer na-akwado host Linux, macOS, na Windows dịpụrụ adịpụ.',
+      sshErrAuth:
+        'Nyocha SSH dara. Tinye igodo gị na ssh-agent (ssh-add) ma ọ bụ tọọ IdentityFile na ~/.ssh/config — OpenAmer na-agba ssh na-enweghị mmekọrịta.',
+      sshErrHostKey:
+        'Igodo Onye nbata AGBANWELA kemgbe ijikọrọ ikpeazụ. Nyochaa na nke a bụ ihe a tụrụ anya, wee gbaa ssh-keygen -R <host> ma jikọọ ọzọ.',
+      sshErrNotInstalled:
+        'Etinyeghị OpenAmer na host dịpụrụ adịpụ. Wụnye ya ebe ahụ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ma ọ bụ tọọ ụzọ OpenAmer.',
+      sshErrPlatform:
+        'Platform dịpụrụ adịpụ akwadoghị. Ụdị Desktop SSH nke OpenAmer na-akwado host Linux, macOS, na Windows dịpụrụ adịpụ.',
       sshErrTimeout: 'Njikọ SSH agwụla oge. Enwere ike ghara iru host ahụ ma ọ bụ ọ na-ehi ụra.',
       sshErrUpdateRequired: 'Melite OpenAmer na host dịpụrụ adịpụ tupu ijikọ na Desktop SSH.',
       sshErrUnknown: 'Njikọ SSH dara.',
       modeTitle: 'Ụdị njikọ',
       localTitle: 'Ọnụ ụzọ mpaghara',
-      localDesc: 'Malite sistemu azụ OpenAmer nke onwe na localhost. Nke a bụ ndabara ma na-arụ ọrụ na-enweghị ịntanetị.',
+      localDesc:
+        'Malite sistemu azụ OpenAmer nke onwe na localhost. Nke a bụ ndabara ma na-arụ ọrụ na-enweghị ịntanetị.',
       inheritTitle: 'Jiri ọnụ ụzọ ndabara',
       inheritDesc: 'Wepụ ndochi profaịlụ a ma jiri njikọ ndabara.',
       remoteTitle: 'Ọnụ ụzọ dị anya',
       remoteDesc: 'Jikọọ shei desktọpụ a na sistemu azụ OpenAmer dị anya.',
-      remoteAuthHint: 'Ọnụ ụzọ ndị a na-akwado na-eji OAuth ma ọ bụ aha njirimara na paswọọdụ; ndị a na-akwado n\'onwe ha nwere ike iji token nnọkọ.',
-      cloudDesc: 'Banye otu ugboro na OpenAmer Cloud ma họrọ site na ndị nnọchite anya na akaụntụ gị — enweghị URL ịpịnye.',
+      remoteAuthHint:
+        "Ọnụ ụzọ ndị a na-akwado na-eji OAuth ma ọ bụ aha njirimara na paswọọdụ; ndị a na-akwado n'onwe ha nwere ike iji token nnọkọ.",
+      cloudDesc:
+        'Banye otu ugboro na OpenAmer Cloud ma họrọ site na ndị nnọchite anya na akaụntụ gị — enweghị URL ịpịnye.',
       cloudSignIn: 'Banye na OpenAmer Cloud',
       cloudSignedIn: 'Abanyela na OpenAmer Cloud',
       cloudNeedsSignIn: 'Banye na OpenAmer Cloud iji chọpụta ndị nnọchite anya na akaụntụ gị.',
-      cloudSignedInDesc: 'Ịbanyela. Họrọ onye nnọchite anya n\'okpuru; nnọkọ na-emegharị onwe ya.',
+      cloudSignedInDesc: "Ịbanyela. Họrọ onye nnọchite anya n'okpuru; nnọkọ na-emegharị onwe ya.",
       cloudAgentsTitle: 'Ndị nnọchite anya gị',
       cloudOrgPickerTitle: 'Họrọ otu nzukọ',
       cloudOrgSelect: 'Họrọ',
@@ -663,14 +688,16 @@ export const ig = defineLocale({
       applyFailed: 'Enweghị ike itinye ntọala ọnụ ụzọ ntanetị',
       saveFailed: 'Enweghị ike ichekwa ntọala ọnụ ụzọ ntanetị',
       sshTitle: 'Jikọọ site na SSH',
-      sshDesc: 'A na-amalite OpenAmer na ebe dị anya site na SSH ma na-ebugharị ya gaa na ngwa a — ọ dịghị ihe ị ga-amalite ma ọ bụ gosipụta onwe gị. Ọ chọrọ ohere SSH na-arụ ọrụ site na igodo gaa na host.',
+      sshDesc:
+        'A na-amalite OpenAmer na ebe dị anya site na SSH ma na-ebugharị ya gaa na ngwa a — ọ dịghị ihe ị ga-amalite ma ọ bụ gosipụta onwe gị. Ọ chọrọ ohere SSH na-arụ ọrụ site na igodo gaa na host.',
       sshTrustHint: 'A tụkwasịrị obi ma kpọgide igodo host mbụ e gosipụtara; mgbanwe ndị ọzọ na-ada mechiri.',
       sshHostTitle: 'Onye nnabata',
       sshHostDesc: 'user@host, ma ọ bụ aha ọzọ Host si na ~/.ssh/config.',
       sshHostPick: 'Họrọ onye nnabata…',
       cloudTitle: 'OpenAmer Igwe Ojii',
       cloudSignInTitle: 'OpenAmer Igwe Ojii',
-      profileConnection: profile => `A na-eji connection a naanị mgbe “${profile}” bụ profile na-arụ ọrụ. Họrọ 'Use default gateway' iji wepụ ya.`,
+      profileConnection: profile =>
+        `A na-eji connection a naanị mgbe “${profile}” bụ profile na-arụ ọrụ. Họrọ 'Use default gateway' iji wepụ ya.`,
       cloudOrgRole: role => `Ọrụ: ${role}`,
       cloudConnectedTo: name => `Ejikọrọ na ${name}.`,
       cloudStatusLabel: status => `Ọnọdụ: ${status}`,
@@ -678,12 +705,12 @@ export const ig = defineLocale({
       authNeedsOauth: provider => `Gateway a na-eji OAuth. Banye na ${provider} iji nye ikike desktop app a.`,
       existingToken: value => `Token dịla ${value}`,
       connectedTo: (baseUrl, version) => `Ejikọrọ na ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `A hụrụ ya: ${host} (${platform}) — a hụrụ OpenAmer`,
+      sshReachable: (host, platform) => `A hụrụ ya: ${host} (${platform}) — a hụrụ OpenAmer`
     },
     keys: {
       loading: 'Na-ebu igodo API na ihe akaebe...',
       failedLoad: 'Nbudata igodo API dara.',
-      empty: 'Onwebeghị ihe ahaziri n\'ụdị a.',
+      empty: "Onwebeghị ihe ahaziri n'ụdị a."
     },
     mcp: {
       loading: 'Na-ebu sava MCP...',
@@ -745,14 +772,16 @@ export const ig = defineLocale({
       catalogInstallStarted: name => `Na-etinye ${name}... ọ ga-arụ ọrụ na sessions ọhụrụ mgbe ọ gachara.`,
       catalogInstallFailed: name => `Enweghị ike itinye ${name}`,
       catalogEnvPrompt: name => `${name} chọrọ njirimara nbanye`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} gbanyere`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} gbanyere`,
       authenticatedMessage: (server, count) => `${server}: ${count} ngwaọrụ`,
       enableTool: tool => `Mepee ${tool}`,
-      disableTool: tool => `Mechie ${tool}`,
+      disableTool: tool => `Mechie ${tool}`
     },
     model: {
       loading: 'Na-ebu nhazi model...',
-      appliesDesc: 'Na-emetụta nnọkọ ọhụrụ. Jiri ihe nhọrọ model dị na composer gbanwee mkparịta ụka na-arụ ọrụ ozugbo.',
+      appliesDesc:
+        'Na-emetụta nnọkọ ọhụrụ. Jiri ihe nhọrọ model dị na composer gbanwee mkparịta ụka na-arụ ọrụ ozugbo.',
       provider: 'Onye na-enye',
       model: 'Modụl',
       applying: 'Na-etinye...',
@@ -773,37 +802,37 @@ export const ig = defineLocale({
       tasks: {
         vision: {
           label: 'Ọhụụ',
-          hint: 'Nyocha onyonyo',
+          hint: 'Nyocha onyonyo'
         },
         web_extract: {
           label: 'Mwepụta web',
-          hint: 'Nchịkọta ibe',
+          hint: 'Nchịkọta ibe'
         },
         compression: {
           label: 'Mkpakọ',
-          hint: 'Mkpakọ ọnọdụ',
+          hint: 'Mkpakọ ọnọdụ'
         },
         skills_hub: {
           label: 'Ebe nka',
-          hint: 'Chọọ nka',
+          hint: 'Chọọ nka'
         },
         approval: {
           label: 'Nkwado',
-          hint: 'Nkwado akpaaka amamihe',
+          hint: 'Nkwado akpaaka amamihe'
         },
         mcp: {
           hint: 'Nhazi ụzọ ngwa MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Mepụta aha',
-          hint: 'Aha nnọkọ',
+          hint: 'Aha nnọkọ'
         },
         curator: {
           label: 'Onye nhazi',
-          hint: 'Nyocha ojiji nka',
-        },
-      },
+          hint: 'Nyocha ojiji nka'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Kwụpụ njikọ (na-agba iwu iwepụ na terminal)',
@@ -813,12 +842,13 @@ export const ig = defineLocale({
       noKeysMatch: 'Ọnweghị onye na-enye ọrụ dabara nchọọ gị.',
       localEndpoint: {
         title: 'Ebe njedebe mpaghara / ahaziri iche',
-        description: 'Duzi OpenAmer gaa na ebe njedebe ọ bụla dakọtara OpenAI (Zyphra, vLLM, llama.cpp, Ollama, wdg).',
+        description: 'Duzi OpenAmer gaa na ebe njedebe ọ bụla dakọtara OpenAI (Zyphra, vLLM, llama.cpp, Ollama, wdg).'
       },
       loading: 'Na-ebu ndị na-enye ọrụ...',
       connectAccount: 'Jikọọ akaụntụ',
       haveApiKey: 'Ị nwere igodo API kama?',
-      intro: 'Banye site na ndenye aha — enweghị igodo API ị detuo. OpenAmer na-eme nbanye ihe nchọgharị maka gị, ebe a na ngwa.',
+      intro:
+        'Banye site na ndenye aha — enweghị igodo API ị detuo. OpenAmer na-eme nbanye ihe nchọgharị maka gị, ebe a na ngwa.',
       connected: 'Ejikọtara',
       collapse: 'Mechie',
       connectAnother: 'Jikọọ onye na-eweta ọzọ',
@@ -827,10 +857,11 @@ export const ig = defineLocale({
       removeConfirm: provider => `Wepụ ${provider}?`,
       removeExternalGeneric: provider => `${provider} na-achịkwa site na CLI nke ya — wepụ ya ebe ahụ.`,
       removeKeyManaged: provider => `A na-ahazi ${provider} site na igodo API. Wepụ ya na Igodo API.`,
-      removeTerminalConfirm: (provider, command) => `Kpochaa njikọ ${provider}? Nke a na-agba "${command}" na terminal iji epụ credential ahụ.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Kpochaa njikọ ${provider}? Nke a na-agba "${command}" na terminal iji epụ credential ahụ.`,
       removeTerminalRunning: provider => `Na-agba ${provider} disconnect na terminal…`,
       removedMessage: provider => `E wepụrụ ${provider}.`,
-      failedRemove: provider => `Enweghị ike iwepụ ${provider}`,
+      failedRemove: provider => `Enweghị ike iwepụ ${provider}`
     },
     sessions: {
       loading: 'Na-ebu nnọkọ ndị echekwara…',
@@ -841,12 +872,14 @@ export const ig = defineLocale({
       deletePermanently: 'Hichapụ kpamkpam',
       restored: 'Eweghachiri',
       autoArchiveTitle: 'Chekwaa mkparịta ụka ochie akpaghị aka',
-      autoArchiveDesc: 'Chekwaa mkparịta ụka akpaghị aka nke ịmetụghị aka n\'oge na-adịbeghị anya. A naghị echekwa mkparịta ụka ndị agbakwunyere kpamkpam, ọ nweghịkwa ihe a na-ehichapụ — mkparịta ụka echekwara na-akwaga ebe a.',
+      autoArchiveDesc:
+        "Chekwaa mkparịta ụka akpaghị aka nke ịmetụghị aka n'oge na-adịbeghị anya. A naghị echekwa mkparịta ụka ndị agbakwunyere kpamkpam, ọ nweghịkwa ihe a na-ehichapụ — mkparịta ụka echekwara na-akwaga ebe a.",
       autoArchiveDaysLabel: 'Chekwaa mgbe',
       autoArchiveDaysUnit: 'ụbọchị enweghị ọrụ',
       autoArchiveFailed: 'Enweghị ike imelite nchekwa akpaaka',
       defaultDirTitle: 'Folda ndabere nke ọrụ',
-      defaultDirDesc: 'Seshọn ọhụrụ na-amalite na folda a ma ọ bụrụ na ị họrọ nke ọzọ. Hapụ ya enweghị ntọala iji jiri folda ụlọ gị.',
+      defaultDirDesc:
+        'Seshọn ọhụrụ na-amalite na folda a ma ọ bụrụ na ị họrọ nke ọzọ. Hapụ ya enweghị ntọala iji jiri folda ụlọ gị.',
       change: 'Gbanwee',
       choose: 'Họrọ',
       clear: 'Hichapụ',
@@ -856,11 +889,12 @@ export const ig = defineLocale({
       deleteFailed: 'Nhichapụ dara',
       updateDirFailed: 'Enweghị ike imelite folda ndabere',
       clearDirFailed: 'Enweghị ike ihichapụ folda ndabere',
-      archivedIntro: 'A na-ezochi mkparịta ụka echekwara na ogwe akụkụ mana ha na-edebe ozi ha niile. Ctrl/⌘-click mkparịta ụka na ogwe akụkụ iji chekwaa ya.',
+      archivedIntro:
+        'A na-ezochi mkparịta ụka echekwara na ogwe akụkụ mana ha na-edebe ozi ha niile. Ctrl/⌘-click mkparịta ụka na ogwe akụkụ iji chekwaa ya.',
       defaultDirUpdated: 'Emelitere ndekọ ọrụ ndabara — malite mkparịta ụka ọhụrụ (Ctrl/⌘+N) ka ọ nwee mmetụta',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Kpochaa "${title}" ozugbo? Enweghị ike ime nke a ọzọ.`,
-      defaultsTo: label => `Default bụ ${label}.`,
+      defaultsTo: label => `Default bụ ${label}.`
     },
     toolsets: {
       loadingConfig: 'Na-ebu nhazi',
@@ -912,7 +946,7 @@ export const ig = defineLocale({
         selectedTitle: 'Ahọpụtara azụ',
         needsSetupHint: 'Ị nwere ike họrọ azụ a ugbu a — iwu ga-ada ruo mgbe nhazi gwụchara.',
         selectedMessage: backend => `Iwu terminal na-agba ugbu a site na ${backend}. Ọ na-emetụta ọhụrụ session.`,
-        failedSelect: backend => `O nweghị ike ịhọrọ ${backend}`,
+        failedSelect: backend => `O nweghị ike ịhọrọ ${backend}`
       },
       savedMessage: key => `Emelitere ${key}.`,
       removedMessage: key => `Ewepụrụ ${key}.`,
@@ -922,8 +956,10 @@ export const ig = defineLocale({
       removeConfirm: key => `Wepụ ${key} site na .env?`,
       selectedMessage: provider => `${provider} na-arụ ọrụ ugbu a.`,
       failedSelect: provider => `Enweghị ike ịhọrọ ${provider}`,
-      openamerAuthNeededMessage: provider => `Echekwara ${provider} mana ọ gaghị arụ ọrụ ruo mgbe ị banyere na OpenAmer Portal.`,
-      postSetupHint: step => `Backend a chọrọ installation otu ugboro (${step}). Ọ na-arụ ọrụ na machine a — ọ nwere ike itwe nkeji ole na ole.`,
+      openamerAuthNeededMessage: provider =>
+        `Echekwara ${provider} mana ọ gaghị arụ ọrụ ruo mgbe ị banyere na OpenAmer Portal.`,
+      postSetupHint: step =>
+        `Backend a chọrọ installation otu ugboro (${step}). Ọ na-arụ ọrụ na machine a — ọ nwere ike itwe nkeji ole na ole.`,
       postSetupCompleteMessage: step => `Awụnyere ${step}.`,
       postSetupErrorMessage: step => `Lee log ${step}.`,
       postSetupFailed: step => `Enweghị ike ịgba ${step} setup`,
@@ -933,22 +969,23 @@ export const ig = defineLocale({
       failedSelectCapability: provider => `O nweghị ike iji ${provider} mee ihe`,
       modelCount: count => `${count} ụdị${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} na-emetụta nnọkọ ọhụrụ.`,
-      failedSelectModel: model => `O nweghị ike ịhọrọ ${model}`,
+      failedSelectModel: model => `O nweghị ike ịhọrọ ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Echekwara nkà',
     skillArchivedMessage: 'Enwere ike iweghachi ya site na openamer curator restore.',
     hub: {
-      searchPlaceholder: 'Chọọ n\'ọdụ nkà',
+      searchPlaceholder: "Chọọ n'ọdụ nkà",
       search: 'Chọọ',
       searching: 'Na-achọ...',
       connectingHubs: 'Na-ejikọ na ọdụ nkà...',
       connectedHubs: 'Ọdụ ejikọrọ:',
       featured: 'Nkà ahọpụtara',
-      landingHint: 'Chọọ n\'ọdụ ahụ iji nyochaa nkà enwere ike ịwụnye site na ndeksi gọọmenti, GitHub, na isi mmalite obodo.',
+      landingHint:
+        "Chọọ n'ọdụ ahụ iji nyochaa nkà enwere ike ịwụnye site na ndeksi gọọmenti, GitHub, na isi mmalite obodo.",
       noResults: 'Ahụghị nkà dabara na ọdụ.',
       installed: 'Ewụnyere',
       install: 'Wụnye',
@@ -966,7 +1003,7 @@ export const ig = defineLocale({
       trust: {
         builtin: 'arụnyere',
         trusted: 'ntụkwasị obi',
-        community: 'obodo',
+        community: 'obodo'
       },
       verdictSafe: 'Nchebe',
       verdictCaution: 'Kpachara anya',
@@ -986,7 +1023,7 @@ export const ig = defineLocale({
       timedOut: sources => `Oge gwụrụ: ${sources}`,
       findings: count => `${count} nchọpụta${count === 1 ? '' : 's'}`,
       installStarted: name => `Na-etinye ${name}...`,
-      uninstallStarted: name => `Na-ewepụ ${name}...`,
+      uninstallStarted: name => `Na-ewepụ ${name}...`
     },
     tabSkills: 'Nkà',
     tabToolsets: 'Ngwa ọrụ',
@@ -1004,7 +1041,8 @@ export const ig = defineLocale({
     noDescription: 'Enweghị nkọwa.',
     configured: 'Ahaziri',
     needsKeys: 'Chọrọ igodo',
-    visionModelHint: 'Vision na-eji nhazi ụdị enyemaka gị — a na-ahọrọ ụdị nwere ike onyonyo ebe ahụ, ọ bụghị site n\'onye na-eweta nke ọ bụla ebe a.',
+    visionModelHint:
+      "Vision na-eji nhazi ụdị enyemaka gị — a na-ahọrọ ụdị nwere ike onyonyo ebe ahụ, ọ bụghị site n'onye na-eweta nke ọ bụla ebe a.",
     visionModelLink: 'Họrọ ụdị ọhụụ na Ntọala → Ụdị',
     skillsLoadFailed: 'Ọdịda ibufe nkà',
     toolsetsRefreshFailed: 'Ndị ngwaọrụ emeliteghị',
@@ -1021,8 +1059,8 @@ export const ig = defineLocale({
     bulkNoChange: 'Ọnweghị ihe ga-agbanwe',
     provenance: {
       agent: 'Amụtara',
-      bundled: 'Dị n\'ime',
-      hub: 'Ebe njikọ',
+      bundled: "Dị n'ime",
+      hub: 'Ebe njikọ'
     },
     changesApplyNewSessions: 'Mgbanwe metụtara nnọkọ ọhụrụ.',
     skillUpdated: 'Emelitere nkà',
@@ -1039,7 +1077,7 @@ export const ig = defineLocale({
     usageCount: count => `e jiri ${count}×`,
     emptyNoneFound: noun => `A hụghị ${noun}`,
     emptyNothingMatches: query => `Ọ dịghị ihe dabara na “${query}”.`,
-    emptyNoneAvailable: noun => `Ọ dịghị ${noun} dị available ugbu a.`,
+    emptyNoneAvailable: noun => `Ọ dịghị ${noun} dị available ugbu a.`
   },
   starmap: {
     title: 'Eserese Ncheta',
@@ -1055,7 +1093,8 @@ export const ig = defineLocale({
     emptyTitle: 'Ọnweghị ihe amụtara',
     emptyDesc: 'Ka OpenAmer na-ewulite nkà na ncheta maka ọrụ gị, ha na-apụta ebe a.',
     share: 'Kesaa maapụ',
-    shareHint: 'Detuo koodu iji kesaa maapụ a, ma ọ bụ tapawa otu iji buo ya. Ọ na-agụnye naanị nhazi ahụ, ọ bụghị ncheta gị ma ọ bụ ederede nkà.',
+    shareHint:
+      'Detuo koodu iji kesaa maapụ a, ma ọ bụ tapawa otu iji buo ya. Ọ na-agụnye naanị nhazi ahụ, ọ bụghị ncheta gị ma ọ bụ ederede nkà.',
     shareTitle: 'Bubata / Bupụ maapụ',
     sharePlaceholder: 'Tapawa koodu maapụ…',
     copy: 'Detuo koodu maapụ',
@@ -1066,7 +1105,7 @@ export const ig = defineLocale({
     importedBadge: 'maapụ ebubatara',
     resetToMine: 'Laghachi na maapụ m',
     subtitle: (nodes, clusters) => `${nodes} nka n'ime ${clusters} ụdị`,
-    importSuccess: nodes => `E debere map nwere ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `E debere map nwere ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Mechie ndị nnọchi anya',
@@ -1096,7 +1135,7 @@ export const ig = defineLocale({
     ageDays: days => `${days} ụbọchị gara aga`,
     durationSeconds: seconds => `${seconds} sekọnd`,
     durationMinutes: (minutes, seconds) => `${minutes}n ${seconds}s`,
-    tokens: value => `${value} akara`,
+    tokens: value => `${value} akara`
   },
   commandCenter: {
     close: 'Mechie ebe iwu',
@@ -1125,7 +1164,7 @@ export const ig = defineLocale({
       generatedTag: 'Emepụtara',
       adoptFailed: 'Enweghị ike ịnabata anụ ụlọ ahụ.',
       toggleFailed: 'Enweghị ike ịgbanwe anụ ụlọ ahụ.',
-      noneAvailable: 'Ọnweghị anụ ụlọ dị — họrọ otu n\'okpuru iji rụnye.',
+      noneAvailable: "Ọnweghị anụ ụlọ dị — họrọ otu n'okpuru iji rụnye."
     },
     generatePet: {
       title: 'Mepụta anụ ụlọ',
@@ -1148,13 +1187,14 @@ export const ig = defineLocale({
       slowProviderHint: 'Nke a nwere ike were ọtụtụ nkeji',
       remix: 'Megharịa',
       remixConfirmTitle: 'Megharịa ọdịdị a?',
-      remixConfirmBody: 'Nke a na-emepụta ndepụta edemede ọhụrụ na-eji nke a dị ka mmalite. Ọ nwere ike were ọtụtụ nkeji.',
+      remixConfirmBody:
+        'Nke a na-emepụta ndepụta edemede ọhụrụ na-eji nke a dị ka mmalite. Ọ nwere ike were ọtụtụ nkeji.',
       genericError: 'Mmepụta dara — nwaa ọzọ ma ọ bụ họrọ aro.',
       referenceImageTooLarge: 'Onyonyo ntụaka buru oke ibu. Jiri nke na-erughị 16 MB.',
       referenceImageInvalid: 'Enweghị ike ịgụ onyonyo ntụaka ahụ. Nwaa PNG, JPG, WebP, ma ọ bụ GIF.',
       adopt: 'Nabata',
       startOver: 'Malite ọzọ',
-      hatchRow: (_state, done, total) => `Na-agba sketch frame ${done} n'ime ${total}…`,
+      hatchRow: (_state, done, total) => `Na-agba sketch frame ${done} n'ime ${total}…`
     },
     installTheme: {
       title: 'Wụnye isiokwu…',
@@ -1166,7 +1206,7 @@ export const ig = defineLocale({
       install: 'Wụnye',
       installing: 'Na-wụnye...',
       installed: 'Awụnyela',
-      installs: count => `${count} ntụhapụ`,
+      installs: count => `${count} ntụhapụ`
     },
     settingsFields: 'Ubi ntọala',
     mcpServers: 'Sava MCP',
@@ -1175,49 +1215,49 @@ export const ig = defineLocale({
       maintenance: 'Mmezi',
       sessions: 'Seshọn',
       system: 'Sistemu',
-      usage: 'Ojiji',
+      usage: 'Ojiji'
     },
     sectionDescriptions: {
       maintenance: 'Nyocha nsogbu, ndabere, onye nlekọta, na data ncheta',
       sessions: 'Chọọ ma jikwaa nnọkọ',
       system: 'Ọnọdụ, ndekọ, na omume sistemu',
-      usage: 'Token, ụgwọ, na ọrụ nka ka oge na-aga',
+      usage: 'Token, ụgwọ, na ọrụ nka ka oge na-aga'
     },
     nav: {
       newChat: {
         title: 'Nnọkọ ọhụrụ',
-        detail: 'Malite nnọkọ ọhụrụ',
+        detail: 'Malite nnọkọ ọhụrụ'
       },
       settings: {
         title: 'Ntọala',
-        detail: 'Hazie desktọpụ OpenAmer',
+        detail: 'Hazie desktọpụ OpenAmer'
       },
       skills: {
         title: 'Ikike',
-        detail: 'Nka, ngwa ọrụ, na sava MCP',
+        detail: 'Nka, ngwa ọrụ, na sava MCP'
       },
       messaging: {
         title: 'Nzipu ozi',
-        detail: 'Hazie Telegram, Slack, Discord, na ndị ọzọ',
+        detail: 'Hazie Telegram, Slack, Discord, na ndị ọzọ'
       },
       artifacts: {
         title: 'Ihe arụpụtara',
-        detail: 'Chọgharịa ihe arụpụtara',
-      },
+        detail: 'Chọgharịa ihe arụpụtara'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel nnọkọ',
-        detail: 'Chọọ, tụnye, ma jikwaa nnọkọ',
+        detail: 'Chọọ, tụnye, ma jikwaa nnọkọ'
       },
       system: {
         title: 'Panel sistemu',
-        detail: 'Ọnọdụ Gateway, ndekọ, malite ọzọ/melite',
+        detail: 'Ọnọdụ Gateway, ndekọ, malite ọzọ/melite'
       },
       usage: {
         title: 'Panel ojiji',
-        detail: 'Token, ụgwọ, na mmemme nka',
-      },
+        detail: 'Token, ụgwọ, na mmemme nka'
+      }
     },
     providerNavigate: 'Gaa',
     providerSessions: 'Seshọn',
@@ -1267,7 +1307,7 @@ export const ig = defineLocale({
       backup: 'Mepụta ndabere',
       backupDesc: 'Zipu nhazi, ncheta, nkà na nnọkọ',
       debugShare: 'Kesaa ndozi nsogbu',
-      debugShareDesc: 'Bulite akụkọ e wepụrụ ihe nzuzo + ndekọ, nweta njikọ ikekọ (na-ehichapụ onwe ya n\'ime awa 6)',
+      debugShareDesc: "Bulite akụkọ e wepụrụ ihe nzuzo + ndekọ, nweta njikọ ikekọ (na-ehichapụ onwe ya n'ime awa 6)",
       debugShareRunning: 'Na-ebugo akụkọ ndozi nsogbu...',
       debugShareLinks: 'Njikọ ikekọ',
       debugShareFailed: 'Kesaa ndozi nsogbu dara',
@@ -1280,7 +1320,7 @@ export const ig = defineLocale({
       curatorDisabled: 'Agbanyụrụ',
       curatorNeverRan: 'Ọ gbabeghị',
       pause: 'Kwụsịtụ',
-      resume: 'Gaa n\'ihu',
+      resume: "Gaa n'ihu",
       runNow: 'Gbaa ugbu a',
       memoryData: 'Data nchekwa',
       memoryDataDesc: 'Faịlụ nchekwa arụnyere na-abanye na nnọkọ ọ bụla',
@@ -1300,14 +1340,14 @@ export const ig = defineLocale({
       resetConfirm: target => `Kpughee ${target}? Enweghị ike icheghị nke a.`,
       resetDone: files => `E kpughee ${files}.`,
       actionStarted: name => `${name} malitere — na-eso ndekọ...`,
-      actionFailed: name => `${name} enweghị ike ịmalite`,
+      actionFailed: name => `${name} enweghị ike ịmalite`
     },
     startInBranch: branch => `Nkwa okwu ọhụrụ na ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Oge ndị dị ndụ ${count}`,
     days: count => `${count}ụb`,
     actualCost: cost => `ezie ${cost}`,
     noUsage: period => `Ọ dịghị iji ya mee ihe n'ime ụbọchị ${period} gara aga.`,
-    actions: count => `${count} omume`,
+    actions: count => `${count} omume`
   },
   messaging: {
     search: 'Chọọ ozi...',
@@ -1322,7 +1362,7 @@ export const ig = defineLocale({
       not_configured: 'Chọrọ nhazi',
       pending_restart: 'Achọrọ ịmalite ọzọ',
       retrying: 'Na-anwale ọzọ',
-      startup_failed: 'Mmalite dara',
+      startup_failed: 'Mmalite dara'
     },
     unknown: 'Amaghị',
     hintPendingRestart: 'Malite ọnụ ụzọ ọzọ site na ogwe ọkwa iji tinye mgbanwe a.',
@@ -1334,7 +1374,7 @@ export const ig = defineLocale({
     openSetupGuide: 'Mepee ntuziaka nhazi',
     required: 'Achọrọ',
     recommended: 'Atụrụ aro',
-    noTokenNeeded: 'Ikpo okwu a achọghị token ebe a. Jiri ntuziaka nhazi dị n\'elu, wee gbanye ya n\'okpuru.',
+    noTokenNeeded: "Ikpo okwu a achọghị token ebe a. Jiri ntuziaka nhazi dị n'elu, wee gbanye ya n'okpuru.",
     enabled: 'Gbanyere',
     disabled: 'Agbanyụrụ',
     unsavedChanges: 'Mgbanwe ndị na-echekwabeghị',
@@ -1349,124 +1389,124 @@ export const ig = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bot',
         help: 'Mepụta bot na @BotFather, wee fanye token ọ na-enye gị.',
-        placeholder: 'Fanye token bot Telegram',
+        placeholder: 'Fanye token bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID ndị ọrụ Telegram akwadoro',
-        help: 'Akwadoro. ID ọnụọgụgụ ndị kewapụrụ site na rikoma sitere na @userinfobot. Na-enweghị nke a, onye ọ bụla nwere ike izipu bot gị ozi.',
+        help: 'Akwadoro. ID ọnụọgụgụ ndị kewapụrụ site na rikoma sitere na @userinfobot. Na-enweghị nke a, onye ọ bụla nwere ike izipu bot gị ozi.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Achọrọ ya naanị na netwọk ebe egbochiri Telegram.',
+        help: 'Achọrọ ya naanị na netwọk ebe egbochiri Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bot',
-        help: 'Mepụta ngwa na Discord Developer Portal, tinye bot, wee fanye token ya.',
+        help: 'Mepụta ngwa na Discord Developer Portal, tinye bot, wee fanye token ya.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID ndị ọrụ Discord akwadoro',
-        help: 'Akwadoro. ID ndị ọrụ Discord kewapụrụ site na rikoma.',
+        help: 'Akwadoro. ID ndị ọrụ Discord kewapụrụ site na rikoma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Ụdị nzaghachi',
-        help: 'mbụ, niile, ma ọ bụ gbanyụọ.',
+        help: 'mbụ, niile, ma ọ bụ gbanyụọ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Kwe ka ndị ọrụ Discord niile',
-        help: 'Naanị mmepe. Mgbe ọ bụ eziokwu, onye ọ bụla nwere ike iziga bot ozi nzuzo na-enweghị ndepụta nkwenye.',
+        help: 'Naanị mmepe. Mgbe ọ bụ eziokwu, onye ọ bụla nwere ike iziga bot ozi nzuzo na-enweghị ndepụta nkwenye.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ọwa ụlọ',
-        help: 'Ọwa ebe bot na-eziga ozi n\'onwe ya (mmepụta cron, ihe ncheta).',
+        help: "Ọwa ebe bot na-eziga ozi n'onwe ya (mmepụta cron, ihe ncheta)."
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Aha ọwa ụlọ',
-        help: 'Aha ngosi maka ọwa ụlọ na ndekọ na mmepụta ọkwa.',
+        help: 'Aha ngosi maka ọwa ụlọ na ndekọ na mmepụta ọkwa.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Kwe ka ndị ọrụ iMessage niile',
-        help: 'Mgbe ọ bụ eziokwu, wụfee ndepụta nkwenye BlueBubbles.',
+        help: 'Mgbe ọ bụ eziokwu, wụfee ndepụta nkwenye BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Kwe ka ndị ọrụ Mattermost niile',
+        label: 'Kwe ka ndị ọrụ Mattermost niile'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Ọwa ụlọ',
+        label: 'Ọwa ụlọ'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Kwe ka ndị ọrụ QQ niile',
+        label: 'Kwe ka ndị ọrụ QQ niile'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Ọwa ụlọ QQ',
-        help: 'Ọwa ma ọ bụ otu ndabere maka nnyefe cron.',
+        help: 'Ọwa ma ọ bụ otu ndabere maka nnyefe cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Aha ọwa ụlọ QQ',
+        label: 'Aha ọwa ụlọ QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Jiri token bot si OAuth & Permissions mgbe wụnyechara ngwa Slack gị.',
-        placeholder: 'Mado token bot Slack',
+        placeholder: 'Mado token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ngwa Slack',
         help: 'Jiri token ọkwa ngwa dị mkpa maka Socket Mode.',
-        placeholder: 'Tapịa token ngwa Slack',
+        placeholder: 'Tapịa token ngwa Slack'
       },
       SIGNAL_ACCOUNT: {
         help: 'Nọmba edebanyere na àkwà mmiri signal-cli gị.',
-        label: 'Nọmba ekwentị',
+        label: 'Nọmba ekwentị'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Ndị ọrụ Signal ekwenyere',
-        help: 'A tụrụ aro. Njirimara Signal kewara site na kọma.',
+        help: 'A tụrụ aro. Njirimara Signal kewara site na kọma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Gbanye àkwà mmiri WhatsApp',
-        help: 'A na-edozi ya na-akpaghị aka site na toggle dị n\'okpuru. Hapụ ya ọ gwụla ma ị ma na ị chọrọ ya.',
+        help: "A na-edozi ya na-akpaghị aka site na toggle dị n'okpuru. Hapụ ya ọ gwụla ma ị ma na ị chọrọ ya."
       },
       WHATSAPP_MODE: {
-        label: 'Ụdị àkwà mmiri',
+        label: 'Ụdị àkwà mmiri'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Ndị ọrụ WhatsApp ekwenyere',
-        help: 'A tụrụ aro. Nọmba ekwentị ma ọ bụ ID WhatsApp kewara site na kọma.',
+        help: 'A tụrụ aro. Nọmba ekwentị ma ọ bụ ID WhatsApp kewara site na kọma.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID ndị ọrụ Slack ekwenyere',
-        help: 'Akwadoro. ID ndị ọrụ Slack kewapụrụ na kọma.',
+        help: 'Akwadoro. ID ndị ọrụ Slack kewapụrụ na kọma.'
       },
       MATTERMOST_URL: {
         label: 'URL sava',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID ndị ọrụ ekwenyere',
-        help: 'Akwadoro. ID ndị ọrụ Mattermost kewapụrụ na kọma.',
+        help: 'Akwadoro. ID ndị ọrụ Mattermost kewapụrụ na kọma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token nnweta',
+        label: 'Token nnweta'
       },
       MATRIX_USER_ID: {
         label: 'ID onye ọrụ bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID ndị ọrụ Matrix ekwenyere',
-        help: 'Akwadoro. ID ndị ọrụ kewapụrụ na kọma n\'ụdị @user:server.',
+        help: "Akwadoro. ID ndị ọrụ kewapụrụ na kọma n'ụdị @user:server."
       },
       SIGNAL_HTTP_URL: {
         label: 'URL bridge Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL nke bridge REST signal-cli na-arụ ọrụ.',
-      },
+        help: 'URL nke bridge REST signal-cli na-arụ ọrụ.'
+      }
     },
     advanced: count => `Nke dị elu (${count})`,
     clearField: key => `Hapụ ${key} dị ọcha`,
@@ -1480,8 +1520,7 @@ export const ig = defineLocale({
     failedUpdate: name => `O nweghị ike imezu ${name}`,
     failedSave: name => `O nweghị ike ibede ${name}`,
     failedClear: key => `O nweghị ike ịhọrọ ${key} dị ọcha`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Chọọ webhooks...',
@@ -1490,7 +1529,8 @@ export const ig = defineLocale({
     hint: 'Mgbanwe ndenye aha na-ebugharị ozugbo onye nnata na-arụ ọrụ. Ndenye aha agbanyụrụ na-ajụ ihe omume na-abata.',
     empty: 'Enweghị ndenye aha webhook ọ bụla.',
     disabledTitle: 'Agbanyụrụ onye nnata webhook',
-    disabledBody: 'Webhooks bụ ikpo okwu ọnụ ụzọ nke ha. Gbanye ha ebe a iji nabata ihe omume HTTP na-abata; a chọrọ ọwa mkparịta ụka naanị mgbe ndenye aha na-ebuga na Telegram, Discord, Slack, ma ọ bụ ọwa ọzọ.',
+    disabledBody:
+      'Webhooks bụ ikpo okwu ọnụ ụzọ nke ha. Gbanye ha ebe a iji nabata ihe omume HTTP na-abata; a chọrọ ọwa mkparịta ụka naanị mgbe ndenye aha na-ebuga na Telegram, Discord, Slack, ma ọ bụ ọwa ọzọ.',
     enable: 'Gbanye webhooks',
     enabling: 'Na-agbanye...',
     enableRow: 'Gbanye',
@@ -1503,7 +1543,7 @@ export const ig = defineLocale({
     deleteDescSuffix: '. Enweghị ike ịlaghachi azụ.',
     newSubscription: 'Ndenye aha ọhụrụ',
     restarting: 'Gateway na-amalitegharị...',
-    restartNeeded: 'Agbanyere webhooks, mana gateway ka chọrọ ịmalitegharị tupu onye nnata abanye n\'ịntanetị.',
+    restartNeeded: "Agbanyere webhooks, mana gateway ka chọrọ ịmalitegharị tupu onye nnata abanye n'ịntanetị.",
     restartGateway: 'Malitegharịa gateway',
     restartingGateway: 'Na-amalitegharị...',
     enabledRestarting: 'Agbanyere webhooks; gateway na-amalitegharị...',
@@ -1537,7 +1577,7 @@ export const ig = defineLocale({
       github_comment: 'Nkọwa GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     subscriptions: (count: number) => `Ndebanye aha (${count})`,
     enabled: (name: string) => `Agbanyere: "${name}"`,
@@ -1545,7 +1585,7 @@ export const ig = defineLocale({
     deleteFailed: (name: string) => `O nweghị ike ikpughee "${name}"`,
     toggleFailed: (name: string) => `O nweghị ike imezu "${name}"`,
     restartFailed: (detail: string) => `Nmalite gateway efu${detail}`,
-    createFailed: (detail: string) => `O nweghị ike imepụta: ${detail}`,
+    createFailed: (detail: string) => `O nweghị ike imepụta: ${detail}`
   },
   profiles: {
     renameMenu: 'Nyegharịa aha…',
@@ -1623,7 +1663,7 @@ export const ig = defineLocale({
     env: 'gburugburu',
     soulPlaceholder: mode => `System prompt / persona maka profile a.
 Kpeghee ya ka ọ nọrọ na ${mode} default.`,
-    invalidName: hint => `Aha anaghị ekwe. ${hint}`,
+    invalidName: hint => `Aha anaghị ekwe. ${hint}`
   },
   cron: {
     close: 'Mechie cron',
@@ -1637,14 +1677,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       paused: 'Akwụsịtụrụ',
       disabled: 'Agbanyụrụ',
       error: 'Njehie',
-      completed: 'Emechara',
+      completed: 'Emechara'
     },
     deliveryLabels: {
       local: 'Desktọpụ a',
       email: 'Ozi-elektronik',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     resume: 'Malite cron ọzọ',
     pause: 'Kwụsịtụ cron',
@@ -1674,11 +1714,11 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       '4': 'Tọzde',
       '5': 'Fraịde',
       '6': 'Satọde',
-      '7': 'Sọnde',
+      '7': 'Sọnde'
     },
-    topOfHour: 'N\'isi awa ọ bụla',
+    topOfHour: "N'isi awa ọ bụla",
     newCron: 'Cron ọhụrụ',
-    emptyDescNew: 'Hazie ntụziaka ka ọ gbaa na okwu cron. OpenAmer ga-agba ya ma nyefee nsonaazụ n\'ebe ị họrọ.',
+    emptyDescNew: "Hazie ntụziaka ka ọ gbaa na okwu cron. OpenAmer ga-agba ya ma nyefee nsonaazụ n'ebe ị họrọ.",
     emptyDescSearch: 'Nwaa okwu ọchụchọ sara mbara karị.',
     emptyTitleNew: 'Enwebeghị ọrụ akwadoro',
     emptyTitleSearch: 'Enweghị ihe dabara',
@@ -1705,7 +1745,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     modelLabel: 'Ụdị',
     modelDefault: 'Ndabere (ụdị zuru ụwa ọnụ)',
     customScheduleLabel: 'Usoro oge ahaziri iche',
-    customPlaceholder: '0 9 * * * ma ọ bụ ụbọchị izu n\'elekere 9 nke ụtụtụ',
+    customPlaceholder: "0 9 * * * ma ọ bụ ụbọchị izu n'elekere 9 nke ụtụtụ",
     customHint: 'Okwu cron, ma ọ bụ ahịrịokwu dị ka "kwa awa" ma ọ bụ "ụbọchị izu n\'elekere 9 nke ụtụtụ".',
     optional: 'Nhọrọ',
     promptRequired: 'Arịrịọ dị mkpa.',
@@ -1716,7 +1756,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     createAction: 'Mepụta cron',
     tabs: {
       jobs: 'Ọrụ',
-      blueprints: 'Atụmatụ',
+      blueprints: 'Atụmatụ'
     },
     blueprints: {
       tab: 'Atụmatụ',
@@ -1730,7 +1770,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       loading: 'Na-ebu atụmatụ...',
       failedLoad: 'Ibu atụmatụ dara',
       emptyTitle: 'Ọnweghị atụmatụ dị',
-      emptyDesc: 'Ọnweghị atụmatụ automation dị na backend a.',
+      emptyDesc: 'Ọnweghị atụmatụ automation dị na backend a.'
     },
     scheduleLabels: {
       daily: 'Kwa ụbọchị',
@@ -1739,16 +1779,16 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       monthly: 'Kwa ọnwa',
       hourly: 'Kwa awa',
       'every-15-minutes': 'Kwa nkeji 15',
-      custom: 'Ahaziri ahazi',
+      custom: 'Ahaziri ahazi'
     },
     scheduleHints: {
-      daily: 'Kwa ụbọchị n\'elekere 9:00 nke ụtụtụ',
-      weekdays: 'Mọnde ruo Fraịdee n\'elekere 9:00 nke ụtụtụ',
-      weekly: 'Kwa Mọnde n\'elekere 9:00 nke ụtụtụ',
-      monthly: 'Ụbọchị mbụ nke ọnwa ọ bụla n\'elekere 9:00 nke ụtụtụ',
-      hourly: 'N\'isi awa ọ bụla',
+      daily: "Kwa ụbọchị n'elekere 9:00 nke ụtụtụ",
+      weekdays: "Mọnde ruo Fraịdee n'elekere 9:00 nke ụtụtụ",
+      weekly: "Kwa Mọnde n'elekere 9:00 nke ụtụtụ",
+      monthly: "Ụbọchị mbụ nke ọnwa ọ bụla n'elekere 9:00 nke ụtụtụ",
+      hourly: "N'isi awa ọ bụla",
       'every-15-minutes': 'Kwa nkeji 15',
-      custom: 'Cron syntax ma ọ bụ asụsụ nkịtị',
+      custom: 'Cron syntax ma ọ bụ asụsụ nkịtị'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `ụbọchị ${value}`,
@@ -1757,7 +1797,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     everyDayOfWeekAt: (day, time) => `K’asa ${day} na ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Ọnwa na ụbọchị ${dayOfMonth} na ${time}`,
     everyHourAt: minute => `K’asa awa na :${minute}`,
-    actionsFor: title => `Omume maka ${title}`,
+    actionsFor: title => `Omume maka ${title}`
   },
   artifacts: {
     search: 'Chọọ ihe arụpụtara...',
@@ -1791,14 +1831,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     colLocationLink: 'URL',
     colLocationFile: 'Ụzọ',
     rangeOf: (start, end, total) => `${start}-${end} n'ime ${total}`,
-    goToPage: (itemLabel, page) => `Gaa na ${itemLabel} peeji ${page}`,
+    goToPage: (itemLabel, page) => `Gaa na ${itemLabel} peeji ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Nnọkọ ọhụrụ',
       skills: 'Ikike',
       messaging: 'Ozi',
-      artifacts: 'Ihe arụpụtara',
+      artifacts: 'Ihe arụpụtara'
     },
     searchAria: 'Chọọ nnọkọ',
     searchPlaceholder: 'Chọọ nnọkọ…',
@@ -1807,7 +1847,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     pinned: 'Akpọnyere',
     sessions: 'Nnọkọ',
     cronJobs: 'Ọrụ Cron',
-    groupAriaGrouped: 'Gosi nnọkọ n\'otu ndepụta',
+    groupAriaGrouped: "Gosi nnọkọ n'otu ndepụta",
     groupAriaUngrouped: 'Chịkọta nnọkọ site na oghere ọrụ',
     showProjects: 'Gosi ọrụ',
     showSessions: 'Gosi nnọkọ',
@@ -1849,7 +1889,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       copyPath: 'Detuo ụzọ',
       removeFromSidebar: 'Zoo na ogwe akụkụ',
       createFailed: 'Enweghị ike ịmepụta ọrụ',
-      staleBackend: 'Melite backend OpenAmer iji mepụta ọrụ — backend gị ochie karịa ngwa desktọpụ a (Ntọala → Mmelite → Backend).',
+      staleBackend:
+        'Melite backend OpenAmer iji mepụta ọrụ — backend gị ochie karịa ngwa desktọpụ a (Ntọala → Mmelite → Backend).',
       deleteConfirm: 'Nke a na-ewepụ ọrụ echekwara na OpenAmer. Faịlụ, git repos, na worktrees agaghị emetụ aka.',
       startWork: 'Worktree ọhụrụ',
       newWorktreeTitle: 'Worktree ọhụrụ',
@@ -1870,14 +1911,16 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       noBranches: 'Ahụghị alaka ọ bụla',
       removeWorktree: 'Wepụ worktree',
       removeWorktreeFailed: 'Enweghị ike iwepụ worktree (mgbanwe a na-emebeghị commit?)',
-      removeWorktreeConfirm: 'Wepụ ya na git (na-ehichapụ ndekọ worktree; alaka ahụ ga-anọgide), ma ọ bụ zoo lane ahụ na sidebar ma hapụ worktree na diski.',
-      removeWorktreeDirty: 'Worktree a nwere mgbanwe a na-emebeghị commit. Wepụ ya n\'ike (na-atụfu mgbanwe ndị ahụ), ma ọ bụ zoo lane ma debe ya na diski.',
-      forceRemove: 'Wepụ n\'ike',
+      removeWorktreeConfirm:
+        'Wepụ ya na git (na-ehichapụ ndekọ worktree; alaka ahụ ga-anọgide), ma ọ bụ zoo lane ahụ na sidebar ma hapụ worktree na diski.',
+      removeWorktreeDirty:
+        "Worktree a nwere mgbanwe a na-emebeghị commit. Wepụ ya n'ike (na-atụfu mgbanwe ndị ahụ), ma ọ bụ zoo lane ma debe ya na diski.",
+      forceRemove: "Wepụ n'ike",
       back: 'Ọrụ niile',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Mepee ${label}`,
       reorder: label => `Hapụ ${label} n'usoro`,
-      toggle: label => `Gbanwee sessions ${label}`,
+      toggle: label => `Gbanwee sessions ${label}`
     },
     loading: 'Na-ebu…',
     loadMore: 'Bụkwuo ihe',
@@ -1912,19 +1955,19 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       actionsFor: title => `Omume maka ${title}`,
       handoffOrigin: platform => `Enyefere site na ${platform}`,
       ownedByProfile: profile => `Profaịl: ${profile}`,
-      untitledChat: id => `Mkparịta ụka ${id}`,
+      untitledChat: id => `Mkparịta ụka ${id}`
     },
     dateDivider: {
-      today: 'N\'isi ụbọchị taa',
+      today: "N'isi ụbọchị taa",
       yesterday: 'Ụnyaahụ',
-      thisWeek: 'N\'isi izu a',
+      thisWeek: "N'isi izu a",
       lastWeek: 'Izu gara aga',
-      thisMonth: 'N\'isi ọnwa a',
+      thisMonth: "N'isi ọnwa a"
     },
     noMatch: query => `Ọ dịghị session dabara na “${query}”.`,
     newSessionIn: label => `Session ọhụrụ na ${label}`,
     showMoreIn: (count, label) => `Gosi ${count} ndị ọzọ na ${label}`,
-    loadCount: step => `Bunye ${step} ọzọ`,
+    loadCount: step => `Bunye ${step} ọzọ`
   },
   composer: {
     message: 'Ozi',
@@ -1932,7 +1975,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     placeholderReconnecting: 'Na-ejikọghachi na OpenAmer…',
     placeholderFollowUp: 'Zipu ozi nsochi',
     startVoice: 'Malite mkparịta ụka olu',
-    queueMessage: 'Tinye ozi n\'ahịrị',
+    queueMessage: "Tinye ozi n'ahịrị",
     steer: 'Duzie ọsọ dị ugbu a',
     stop: 'Kwụsị',
     send: 'Zipu',
@@ -1950,13 +1993,13 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     stopDictation: 'Kwụsị ndetu okwu',
     hotkeyDescs: {
       'composer.sendNewline': 'ziga · Shift+Enter maka ahịrị ọhụrụ',
-      'composer.sendQueued': 'ziga ntụgharị ọzọ dị n\'ahịrị',
+      'composer.sendQueued': "ziga ntụgharị ọzọ dị n'ahịrị",
       'keybinds.openPanel': 'ụzọ mkpirisi ahụigodo niile',
       'composer.cancel': 'mechie popover · kagbuo ọsọ',
       'composer.history': 'tụgharịa popover / akụkọ ihe mere eme',
       'composer.mention': 'rụtụ aka na faịlụ, folda, urls, git',
       'composer.slash': 'palette iwu slash',
-      'composer.help': 'enyemaka ngwa ngwa a (delete iji mechie)',
+      'composer.help': 'enyemaka ngwa ngwa a (delete iji mechie)'
     },
     attachUrlTitle: 'Tinye URL',
     attachUrlDesc: 'OpenAmer ga-eweta ibe ahụ ma tinye ya dị ka ihe ndabere maka ntụgharị a.',
@@ -1966,17 +2009,17 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     attachmentOnly: 'Ntụgharị naanị mgbakwunye',
     emptyTurn: 'Ntụgharị tọgbọrọ chakoo',
     editingInComposer: 'Na-edezi na composer',
-    editingQueuedInComposer: 'Na-edezi ntụgharị dị n\'ahịrị na composer',
+    editingQueuedInComposer: "Na-edezi ntụgharị dị n'ahịrị na composer",
     queueEdit: 'Dezie',
     queueSendNext: 'Ọzọ',
     queueSend: 'Ziga',
     queueDelete: 'Hichapụ',
     queueResume: 'Maliteghachi',
-    queueResumeTip: 'Akwụsịrị site na Stop — maliteghachi iziga ntụgharị ndị dị n\'ahịrị',
+    queueResumeTip: "Akwụsịrị site na Stop — maliteghachi iziga ntụgharị ndị dị n'ahịrị",
     transcribingDictation: 'Na-edekọ okwu a na-ekwu',
-    voiceDictation: 'Ndekọ okwu n\'olu',
-    speakReplies: 'Gụọ azịza n\'olu',
-    stopSpeakingReplies: 'Kwụsị ịgụ azịza n\'olu',
+    voiceDictation: "Ndekọ okwu n'olu",
+    speakReplies: "Gụọ azịza n'olu",
+    stopSpeakingReplies: "Kwụsị ịgụ azịza n'olu",
     lookupLoading: 'Na-achọ…',
     lookupNoMatches: 'Enweghị ihe dabara.',
     lookupTry: 'Nwaa',
@@ -1987,39 +2030,39 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     commandDescs: {
       '/help': 'ndepụta zuru ezu nke iwu + igodo mkpirisi',
       '/clear': 'malite nnọkọ ọhụrụ',
-      '/resume': 'gaa n\'ihu nnọkọ gara aga',
+      '/resume': "gaa n'ihu nnọkọ gara aga",
       '/details': 'jikwaa ọkwa nkọwa ndekọ okwu',
       '/copy': 'detuo nhọrọ ma ọ bụ ozi onye enyemaka ikpeazụ',
-      '/quit': 'pụọ na openamer',
+      '/quit': 'pụọ na openamer'
     },
     snippetsTitle: 'Iberibe nkwalite',
-    snippetsDesc: 'Họrọ nkwalite mmalite iji tụba n\'ime igbe ederede.',
+    snippetsDesc: "Họrọ nkwalite mmalite iji tụba n'ime igbe ederede.",
     dropFiles: 'Tụba faịlụ iji tinye',
     dropSession: 'Tụba iji jikọọ mkparịta ụka a',
     snippets: {
       codeReview: {
         label: 'Nyocha koodu',
         description: 'Nyochaa mgbanwe dị ugbu a maka nlọghachi azụ, ọnọdụ nsọtụ echefuru, na ule na-efu.',
-        text: 'Biko nyochaa nke a maka mmejọ, nlọghachi azụ, na ule na-efu.',
+        text: 'Biko nyochaa nke a maka mmejọ, nlọghachi azụ, na ule na-efu.'
       },
       implementationPlan: {
         label: 'Atụmatụ mmejuputa',
         description: 'Tụpụta ụzọ tupu imetụ koodu aka ka ndịiche ahụ lekwasị anya.',
-        text: 'Biko mepụta atụmatụ mmejuputa dị nkenke tupu ịgbanwe koodu.',
+        text: 'Biko mepụta atụmatụ mmejuputa dị nkenke tupu ịgbanwe koodu.'
       },
       explainThis: {
         label: 'Kọwaa nke a',
         description: 'Kọwaa otú koodu ahọpụtara si arụ ọrụ ma jikọọ na faịlụ ndị isi.',
-        text: 'Biko kọwaa otú nke a si arụ ọrụ ma rụtụ aka na faịlụ ndị isi.',
-      },
+        text: 'Biko kọwaa otú nke a si arụ ọrụ ma rụtụ aka na faịlụ ndị isi.'
+      }
     },
-    queueStuckTitle: 'Ozi dị n\'ahịrị ezipụghị',
-    queueStuckBody: 'Ntụgharị dị n\'ahịrị nọgidere na-ada n\'izipu. Ọ ka dị n\'ahịrị — nwaa izipu ya ọzọ.',
+    queueStuckTitle: "Ozi dị n'ahịrị ezipụghị",
+    queueStuckBody: "Ntụgharị dị n'ahịrị nọgidere na-ada n'izipu. Ọ ka dị n'ahịrị — nwaa izipu ya ọzọ.",
     previewUnavailable: 'Nlele mbụ adịghị',
-    dictating: 'Na-ede n\'olu',
+    dictating: "Na-ede n'olu",
     preparingAudio: 'Na-akwado ọdịyo',
     speakingResponse: 'Na-ekwu nzaghachi',
-    readingAloud: 'Na-agụ n\'olu',
+    readingAloud: "Na-agụ n'olu",
     themeSuggestions: 'Aro isiokwu desktọpụ',
     noMatchingThemes: 'Enweghị isiokwu dabara.',
     themeTryPre: 'Nwaa',
@@ -2031,7 +2074,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     pasteImage: 'Mado onyonyo',
     promptSnippets: 'Iberibe okwu nkwalite…',
     tipPre: 'Ndụmọdụ: pịnye',
-    tipPost: 'iji zoo aka na faịlụ n\'ahịrị.',
+    tipPost: "iji zoo aka na faịlụ n'ahịrị.",
     url: 'URL…',
     wakingProfile: profile => `Na-eteta ${profile}…`,
     newSessionPlaceholders: [
@@ -2041,23 +2084,23 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       'Kọwaa ihe ị chọrọ',
       'Gịnị ka anyị ga-edozi?',
       'Jụọ ihe ọ bụla',
-      'Malite na ebumnobi',
+      'Malite na ebumnobi'
     ],
     followUpPlaceholders: [
       'Ziga nkwughachi',
       'Tinye ihe ndị ọzọ gbara ya gburugburu',
       'Mezie arịrịọ ahụ',
-      "Gịnị na-esote?",
-      'Gaa n\'ihu',
-      'Kwalite ya n\'ihu',
-      'Mezie ma ọ bụ gaa n\'ihu',
+      'Gịnị na-esote?',
+      "Gaa n'ihu",
+      "Kwalite ya n'ihu",
+      "Mezie ma ọ bụ gaa n'ihu"
     ],
     queued: count => `${count} Na-eche`,
     queuedPaused: count => `${count} Na-eche — kwụsịtụrụ`,
     attachments: count => `${count} mgbakwunye${count === 1 ? '' : 's'}`,
     previewLabel: label => `Nlele ${label}`,
     couldNotPreview: label => `Enweghị ike ịlele ${label}`,
-    removeAttachment: label => `Wepu ${label}`,
+    removeAttachment: label => `Wepu ${label}`
   },
   statusStack: {
     agents: 'Ndị ọrụ',
@@ -2080,8 +2123,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       viewAsList: 'Lelee dị ka ndepụta',
       revert: 'Weghachite',
       revertAll: 'Weghachite niile',
-      revertConfirm: 'Tụfuo mgbanwe na faịlụ a ma weghachite ya n\'ọnọdụ e debanyere? Enweghị ike iweghachi nke a.',
-      revertAllConfirm: 'Tụfuo mgbanwe ọ bụla ma weghachite faịlụ n\'ọnọdụ e debanyere? Enweghị ike iweghachi nke a.',
+      revertConfirm: "Tụfuo mgbanwe na faịlụ a ma weghachite ya n'ọnọdụ e debanyere? Enweghị ike iweghachi nke a.",
+      revertAllConfirm: "Tụfuo mgbanwe ọ bụla ma weghachite faịlụ n'ọnọdụ e debanyere? Enweghị ike iweghachi nke a.",
       staged: 'Edebere',
       noChanges: 'Enweghị mgbanwe',
       notRepo: 'Ọ bụghị ebe nchekwa git',
@@ -2097,7 +2140,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       openPr: 'Meghee PR',
       ghMissing: 'Wụnye GitHub CLI (gh) wee banye iji meghee PR',
       agentShip: 'Gwa OpenAmer ka o meghee PR',
-      agentShipPrompt: 'Nyochaa mgbanwe ndị dị ugbu a, kọmiti ha na ozi kọmiti ọkọlọtọ doro anya, kwalite alaka ahụ, ma meghee arịrịọ nbanye.',
+      agentShipPrompt:
+        'Nyochaa mgbanwe ndị dị ugbu a, kọmiti ha na ozi kọmiti ọkọlọtọ doro anya, kwalite alaka ahụ, ma meghee arịrịọ nbanye.',
       newBranch: 'Alaka ọhụrụ',
       worktrees: 'Osisi ọrụ',
       commitPlaceholder: 'Ozi (⌘↵ iji kwado)',
@@ -2106,12 +2150,12 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       behind: count => `${count} n'azụ`,
       branchOffFrom: base => `Alaka ọhụrụ site na ${base}`,
       switchTo: branch => `Gbanwee gaa na ${branch}`,
-      switchFailed: branch => `Enweghị ike ịgbanwe gaa na ${branch}`,
+      switchFailed: branch => `Enweghị ike ịgbanwe gaa na ${branch}`
     },
     background: count => `${count} Ndabere`,
     subagents: count => `${count} Onye enyemaka${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Ọrụ ${done}/${total}`,
-    exit: code => `pụọ ${code}`,
+    exit: code => `pụọ ${code}`
   },
   updates: {
     stages: {
@@ -2126,13 +2170,13 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       done: 'Mmelite agwụla',
       manual: 'Melite site na terminal gị',
       guiSkew: 'Melite ngwa desktọpụ',
-      error: 'Mmelite kwụsịrị nwa oge',
+      error: 'Mmelite kwụsịrị nwa oge'
     },
     checking: 'Na-achọ mmelite…',
     checkFailedTitle: 'Enweghị ike ịlele mmelite',
     tryAgain: 'Nwaa ọzọ',
     notAvailableTitle: 'Mmelite adịghị',
-    unsupportedMessage: 'Ụdị OpenAmer a enweghị ike imelite onwe ya n\'ime ngwa ahụ.',
+    unsupportedMessage: "Ụdị OpenAmer a enweghị ike imelite onwe ya n'ime ngwa ahụ.",
     connectionRetry: 'Lelee njikọ gị ma nwaa ọzọ.',
     latestBody: 'Ị na-eji ụdị kachasị ọhụrụ.',
     latestBodyBackend: 'Backend na-eji ụdị kachasị ọhụrụ.',
@@ -2145,16 +2189,19 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     updateNow: 'Melite ugbu a',
     maybeLater: 'Ikekwe mgbe e mesịrị',
     manualTitle: 'Melite site na teminal gị',
-    manualBody: 'I tinyere OpenAmer site n\'ahịrị iwu, yabụ mmelite na-agbakwa ebe ahụ. Mado nke a n\'ime teminal gị:',
+    manualBody: "I tinyere OpenAmer site n'ahịrị iwu, yabụ mmelite na-agbakwa ebe ahụ. Mado nke a n'ime teminal gị:",
     manualPickedUp: 'OpenAmer ga-ewere ụdị ọhụrụ ahụ oge ọzọ ị malitere ya.',
     guiSkewTitle: 'Melite ngwa desktọpụ',
-    guiSkewBody: 'Emelitere azụ azụ, ma ngwugwu ngwa desktọpụ a agbanweghị. Melite ma ọ bụ tinyegharịa ngwa desktọpụ OpenAmer (AppImage / .deb / .rpm gị) ka ọ kwekọọ.',
+    guiSkewBody:
+      'Emelitere azụ azụ, ma ngwugwu ngwa desktọpụ a agbanweghị. Melite ma ọ bụ tinyegharịa ngwa desktọpụ OpenAmer (AppImage / .deb / .rpm gị) ka ọ kwekọọ.',
     copy: 'Detuo',
     copied: 'Edeturu',
     done: 'Emechara',
-    applyingBody: 'Onye mmelite OpenAmer na-eweghara na windo nke ya ma mepee OpenAmer ọzọ na-akpaghị aka mgbe ọ mechara. Biko emepegharịla OpenAmer n\'onwe gị mgbe ọ na-emelite.',
-    applyingBodyBackend: 'Azụ azụ dịpụrụ adịpụ na-etinye mmelite ahụ ma ga-amalitegharị. OpenAmer na-ejikọghachi na-akpaghị aka mgbe ọ laghachiri.',
-    applyingClose: 'Windo a ga-emechi ka mmelite na-aga, ma OpenAmer ga-emepeghachi n\'onwe ya.',
+    applyingBody:
+      "Onye mmelite OpenAmer na-eweghara na windo nke ya ma mepee OpenAmer ọzọ na-akpaghị aka mgbe ọ mechara. Biko emepegharịla OpenAmer n'onwe gị mgbe ọ na-emelite.",
+    applyingBodyBackend:
+      'Azụ azụ dịpụrụ adịpụ na-etinye mmelite ahụ ma ga-amalitegharị. OpenAmer na-ejikọghachi na-akpaghị aka mgbe ọ laghachiri.',
+    applyingClose: "Windo a ga-emechi ka mmelite na-aga, ma OpenAmer ga-emepeghachi n'onwe ya.",
     errorTitle: 'Mmelite agwụghị',
     errorBody: 'Enweghị nsogbu — ọ nweghị ihe furu efu. Ị nwere ike ịnwale ọzọ ugbu a.',
     notNow: 'Ọ bụghị ugbu a',
@@ -2164,13 +2211,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       restarting: 'Azụ azụ na-amalitegharị iji buo mmelite…',
       notAvailable: 'Mmelite adịghị maka azụ azụ a.',
       failed: 'Mmelite azụ azụ dara.',
-      noReturn: 'Backend alọghachighị n\'ịntanetị. Mmelite ahụ nwere ike ọ gaghị emecha — lelee host backend.',
+      noReturn: "Backend alọghachighị n'ịntanetị. Mmelite ahụ nwere ike ọ gaghị emecha — lelee host backend."
     },
     appErrors: {
-      updateLocked: 'Akagburu mmelite: windo OpenAmer ọzọ ma ọ bụ terminal na-agba openamer na-egbochi nwụnye a imechi. Mechie ya ma nwaa ọzọ.',
-      updateFailed: 'Mmelite ahụ emechaghị. Echegbula — ọ nweghị ihe furu efu. Ị nwere ike nwaa ọzọ ugbu a.',
+      updateLocked:
+        'Akagburu mmelite: windo OpenAmer ọzọ ma ọ bụ terminal na-agba openamer na-egbochi nwụnye a imechi. Mechie ya ma nwaa ọzọ.',
+      updateFailed: 'Mmelite ahụ emechaghị. Echegbula — ọ nweghị ihe furu efu. Ị nwere ike nwaa ọzọ ugbu a.'
     },
-    moreChanges: count => `+ Agụnyere ${count} mgbanwe ọzọ${count === 1 ? '' : 's'}.`,
+    moreChanges: count => `+ Agụnyere ${count} mgbanwe ọzọ${count === 1 ? '' : 's'}.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2226,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       running: 'Na-awụnye',
       succeeded: 'Emechara',
       skipped: 'Ehapụrụ',
-      failed: 'Dara ada',
+      failed: 'Dara ada'
     },
     oneTimeTitle: 'OpenAmer chọrọ nwụnye otu oge',
     installCommand: 'Iwu nwụnye',
@@ -2190,14 +2238,16 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     setupChoiceDesc: 'Jikọọ ngwa a na gateway OpenAmer ị na-agba ugbu a, ma ọ bụ wụnye OpenAmer na kọmputa a.',
     connectExistingTitle: 'Jikọọ na OpenAmer dị adị',
     connectExistingShort: 'Jikọọ nke dị adị',
-    connectExistingDesc: 'Jiri backend dị anya nwere token nnọkọ ma ọ bụ banye site na browser. Ọ nweghị nwụnye mpaghara ga-amalite.',
+    connectExistingDesc:
+      'Jiri backend dị anya nwere token nnọkọ ma ọ bụ banye site na browser. Ọ nweghị nwụnye mpaghara ga-amalite.',
     installLocalTitle: 'Wụnye OpenAmer na kọmputa a',
     installLocalDesc: 'Budata OpenAmer, mepụta gburugburu Python ya, ma gbaa backend na kọmputa a.',
     localStartUnavailable: 'Nwụnye mpaghara enweghị ike ịmalite. Malitegharịa OpenAmer Desktop ma nwaa ọzọ.',
     remoteSetupTitle: 'Jikọọ na OpenAmer dị adị',
-    remoteSetupDesc: 'Tinye URL ọnụ ụzọ gị. OpenAmer Desktop ga-achọpụta ma ọ chọrọ token ma ọ bụ nbanye na ihe nchọgharị.',
+    remoteSetupDesc:
+      'Tinye URL ọnụ ụzọ gị. OpenAmer Desktop ga-achọpụta ma ọ chọrọ token ma ọ bụ nbanye na ihe nchọgharị.',
     remoteUrlTitle: 'URL ọnụ ụzọ',
-    remoteUrlDesc: 'Jiri URL ntọala nke ọnụ ụzọ OpenAmer, gụnyere https:// mgbe ọ dị n\'ebe dị anya.',
+    remoteUrlDesc: "Jiri URL ntọala nke ọnụ ụzọ OpenAmer, gụnyere https:// mgbe ọ dị n'ebe dị anya.",
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Na-achọpụta nkwenye ọnụ ụzọ...',
     probeError: 'Enweghị ike iru ọnụ ụzọ OpenAmer ahụ.',
@@ -2209,7 +2259,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     enterUrlFirst: 'Tinye URL ọnụ ụzọ na mbụ.',
     signInIncomplete: 'Windọ nbanye mechiri tupu nyocha njirimara emechaa.',
     tokenTitle: 'Token nnọkọ',
-    tokenDesc: 'Mado token nnọkọ site na faịlụ .env nke ọnụ ụzọ dị n\'ebe dị anya.',
+    tokenDesc: "Mado token nnọkọ site na faịlụ .env nke ọnụ ụzọ dị n'ebe dị anya.",
     pasteSessionToken: 'Mado token nnọkọ',
     incompleteSignInTest: 'Banye tupu ịnwale ọnụ ụzọ a nke OAuth na-eche.',
     incompleteTokenTest: 'Tinye token nnọkọ tupu ịnwale ọnụ ụzọ a.',
@@ -2219,8 +2269,10 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     failedTitle: 'Nwụnye dara',
     settingUpTitle: 'Na-edozi OpenAmer Agent',
     finishingTitle: 'Na-emecha',
-    failedDesc: 'Otu n\'ime usoro nwụnye dara. Na Windows, nke a nwere ike ime ma ọ bụrụ na OpenAmer CLI ọzọ ma ọ bụ ihe omume desktọpụ na-agba. Kwụsị ihe omume OpenAmer ọ bụla na-agba, wee nwaa ọzọ. Lelee nkọwa dị n\'okpuru ma ọ bụ ndekọ desktọpụ maka ederede zuru ezu.',
-    activeDesc: 'Nke a bụ nhazi otu oge. Ihe nwụnye OpenAmer na-ebudata ihe ndị ọ chọrọ ma na-ahazi igwe gị. Mmalite ndị ọzọ ga-amafe usoro a.',
+    failedDesc:
+      "Otu n'ime usoro nwụnye dara. Na Windows, nke a nwere ike ime ma ọ bụrụ na OpenAmer CLI ọzọ ma ọ bụ ihe omume desktọpụ na-agba. Kwụsị ihe omume OpenAmer ọ bụla na-agba, wee nwaa ọzọ. Lelee nkọwa dị n'okpuru ma ọ bụ ndekọ desktọpụ maka ederede zuru ezu.",
+    activeDesc:
+      'Nke a bụ nhazi otu oge. Ihe nwụnye OpenAmer na-ebudata ihe ndị ọ chọrọ ma na-ahazi igwe gị. Mmalite ndị ọzọ ga-amafe usoro a.',
     fetchingManifest: 'Na-eweta manifest nke ihe nwụnye...',
     error: 'Njehie',
     hideOutput: 'Zoo mpụta ihe nwụnye',
@@ -2232,13 +2284,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     copiedOutput: 'Eṅomiri!',
     copyOutput: 'ṅomiri mpụta',
     reloadRetry: 'Megharịa ma nwaa ọzọ',
-    unsupportedDesc: platform => `Nwụnye akpaaka na mmalite mbụ adịghị na ${platform} ugbu a. Mepee Ogwe Iwu ma gbaa iwu dị n'okpuru, wee malitegharịa ngwa a. Mmalite ndị ọzọ ga-ahapụ nzọụkwụ a.`,
+    unsupportedDesc: platform =>
+      `Nwụnye akpaaka na mmalite mbụ adịghị na ${platform} ugbu a. Mepee Ogwe Iwu ma gbaa iwu dị n'okpuru, wee malitegharịa ngwa a. Mmalite ndị ọzọ ga-ahapụ nzọụkwụ a.`,
     authNeedsOauth: provider => `Banye na ${provider} tupu ịnwale ọnụ ụzọ a.`,
     signInWith: provider => `Banye na ${provider}`,
     testSucceeded: (baseUrl, version) => `Ejikọrọ na ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `Emechara ${completed} n'ime ${total} nzọụkwụ`,
     currentStage: stage => ` -- ugbu a: ${stage}`,
-    lines: count => `${count} ahịrị${count === 1 ? '' : 's'}`,
+    lines: count => `${count} ahịrị${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Ka anyị hazie gị na OpenAmer Agent',
@@ -2258,28 +2311,29 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API model kpọmkwem',
-        description: 'Ohere kpọmkwem nye ụdị model ndị Fireworks AI na-elekọta.',
+        description: 'Ohere kpọmkwem nye ụdị model ndị Fireworks AI na-elekọta.'
       },
       openrouter: {
         short: 'otu igodo, ọtụtụ ụdị model',
-        description: 'Na-elekọta narị ụdị model n\'azụ otu igodo. Nhọrọ ndabere ọma maka nwụnye ọhụrụ.',
+        description: "Na-elekọta narị ụdị model n'azụ otu igodo. Nhọrọ ndabere ọma maka nwụnye ọhụrụ."
       },
       openai: {
         short: 'ụdị model klaasị GPT',
-        description: 'Ohere kpọmkwem nye ụdị model OpenAI.',
+        description: 'Ohere kpọmkwem nye ụdị model OpenAI.'
       },
       gemini: {
         short: 'Ụdị Gemini',
-        description: 'Nweta ụdị Gemini Google ozugbo.',
+        description: 'Nweta ụdị Gemini Google ozugbo.'
       },
       xai: {
         short: 'Ụdị Grok',
-        description: 'Nweta ụdị Grok xAI ozugbo.',
+        description: 'Nweta ụdị Grok xAI ozugbo.'
       },
       local: {
-        short: 'Nke a na-ejikwa n\'onwe',
-        description: 'Dụọ OpenAmer na ebe njedebe dakọtara OpenAI nke mpaghara ma ọ bụ nke a na-ejikwa n\'onwe (vLLM, llama.cpp, Ollama, w.d).',
-      },
+        short: "Nke a na-ejikwa n'onwe",
+        description:
+          "Dụọ OpenAmer na ebe njedebe dakọtara OpenAI nke mpaghara ma ọ bụ nke a na-ejikwa n'onwe (vLLM, llama.cpp, Ollama, w.d)."
+      }
     },
     backToSignIn: 'Laghachi na nbanye',
     getKey: 'Nweta igodo',
@@ -2290,14 +2344,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     connecting: 'Na-ejikọ',
     update: 'Melite',
     flowSubtitles: {
-      pkce: 'Na-emepe ihe nchọgharị gị ka ị banye, wee gaa n\'ihu ebe a',
+      pkce: "Na-emepe ihe nchọgharị gị ka ị banye, wee gaa n'ihu ebe a",
       device_code: 'Na-emepe ibe nkwenye na ihe nchọgharị gị — OpenAmer na-ejikọ na-akpaghị aka',
-      external: 'Banye otu ugboro na terminal gị, wee laghachi na mkparịta ụka',
+      external: 'Banye otu ugboro na terminal gị, wee laghachi na mkparịta ụka'
     },
     signInFailed: 'Nbanye dara. Nwaa ọzọ.',
     pickDifferentProvider: 'Họrọ onye na-enye ọrụ ọzọ',
     authorizeThere: 'Nye OpenAmer ikike ebe ahụ.',
-    copyAuthCode: 'Detuo koodu ikike ahụ ma mado ya n\'okpuru.',
+    copyAuthCode: "Detuo koodu ikike ahụ ma mado ya n'okpuru.",
     pasteAuthCode: 'Mado koodu ikike',
     reopenAuthPage: 'Mepee ibe ikike ọzọ',
     reopenSignInPage: 'Mepee ibe nbanye ọzọ',
@@ -2306,8 +2360,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     reopenVerification: 'Mepee ibe nkwenye ọzọ',
     copy: 'Detuo',
     defaultModel: 'Model ndabara',
-    freeTier: 'Ọkwa n\'efu',
-    free: 'N\'efu',
+    freeTier: "Ọkwa n'efu",
+    free: "N'efu",
     change: 'Gbanwee',
     startChatting: 'Bido',
     pro: 'Ọkachamara',
@@ -2317,11 +2371,13 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     connectedPicking: provider => `${provider} ejikọrọ. Na-ahọrọ model ndabere...`,
     signInWith: provider => `Jiri ${provider} banye`,
     openedBrowser: provider => `Anyị mepere ${provider} na ihe nchọgharị gị.`,
-    autoBrowser: provider => `Anyị mepere ${provider} na ihe nchọgharị gị. Nye OpenAmer ikike ebe ahụ, a ga-ejikọ gị na-akpaghị aka — ọ dịghị ihe ị ga-edetuo ma ọ bụ mado.`,
-    externalPending: provider => `${provider} na-abanye site na CLI nke ya. Gbaa iwu a na ọdụ iwu, wee laghachi ma họrọ "Abanyela m":`,
+    autoBrowser: provider =>
+      `Anyị mepere ${provider} na ihe nchọgharị gị. Nye OpenAmer ikike ebe ahụ, a ga-ejikọ gị na-akpaghị aka — ọ dịghị ihe ị ga-edetuo ma ọ bụ mado.`,
+    externalPending: provider =>
+      `${provider} na-abanye site na CLI nke ya. Gbaa iwu a na ọdụ iwu, wee laghachi ma họrọ "Abanyela m":`,
     deviceCodeOpened: provider => `Anyị mepere ${provider} na ihe nchọgharị gị. Tinye koodu a ebe ahụ:`,
     price: (input, output) => `${input} banye / ${output} pụta kwa Mtok`,
-    docs: provider => `${provider} akwụkwọ`,
+    docs: provider => `${provider} akwụkwọ`
   },
   shell: {
     modelOptions: {
@@ -2338,13 +2394,13 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       max: 'Kacha',
       ultra: 'Kacha elu',
       updateFailed: 'Mmelite nhọrọ ụdị dara mba',
-      fastFailed: 'Mmelite ọnọdụ ngwa ngwa dara mba',
+      fastFailed: 'Mmelite ọnọdụ ngwa ngwa dara mba'
     },
     gatewayMenu: {
       gateway: 'Ọnụ ụzọ',
       connected: 'Ejikọtara',
       connecting: 'Na-ejikọta',
-      offline: 'Na-anọghị n\'ịntanetị',
+      offline: "Na-anọghị n'ịntanetị",
       inferenceReady: 'Nwepụta dị njikere',
       inferenceNotReady: 'Nwepụta adịghị njikere',
       checkingInference: 'Na-enyocha nkwubi okwu',
@@ -2353,7 +2409,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       recentActivity: 'Omume na-adịbeghị anya',
       viewAllLogs: 'Lelee ndekọ niile →',
       messagingPlatforms: 'Ebe ozi',
-      connection: label => `Njikọ: ${label}`,
+      connection: label => `Njikọ: ${label}`
     },
     approvalMode: {
       title: 'Ụdị nkwado',
@@ -2363,13 +2419,13 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       smartDescription: 'Tụlee omume na-akpaghị aka ma jụọ mgbe ọ dị mkpa',
       off: 'Gbanyụọ',
       offDescription: 'Gbaa na-enweghị ajụjụ nkwado',
-      ariaLabel: mode => `Ụdị nkwenye: ${mode}`,
+      ariaLabel: mode => `Ụdị nkwenye: ${mode}`
     },
     statusbar: {
       unknown: 'amaghị',
       restart: 'malitegharịa',
       update: 'melite',
-      updateInProgress: 'Mmelite na-aga n\'ihu',
+      updateInProgress: "Mmelite na-aga n'ihu",
       closeCommandCenter: 'Mechie Ebe Nchịkwa',
       openCommandCenter: 'Mepee Ebe Nchịkwa',
       showTerminal: 'Gosi terminal',
@@ -2401,19 +2457,20 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
           subagent_definitions: 'Nkọwapụta ndị nnọchite',
           system_prompt: 'Nkpalite sistem',
           tool_definitions: 'Nkọwapụta ngwaọrụ',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Enweghị data ọnọdụ ugbu a',
         loading: 'Na-ebu nkewa…',
         title: 'Ojiji Ọnọdụ',
         percentFull: percent => `${percent}% Jupụtara`,
-        tokenSummary: (used, max) => `${used} / ${max} Akara`,
+        tokenSummary: (used, max) => `${used} / ${max} Akara`
       },
       openContextUsage: 'Mepee nkewa ojiji ọnọdụ',
       session: 'Nnọkọ',
       runtimeSessionElapsed: 'Oge nnọkọ arụ ọrụ agafeela',
-      yoloOn: 'YOLO gbanyere — na-akwado iwu dị ize ndụ na-akpaghị aka. Pịa iji gbanyụọ. Shift+click na-agbanwe ya n\'ụwa niile.',
-      yoloOff: 'YOLO gbanyụrụ — pịa iji kwado iwu dị ize ndụ na-akpaghị aka. Shift+click na-agbanwe ya n\'ụwa niile.',
+      yoloOn:
+        "YOLO gbanyere — na-akwado iwu dị ize ndụ na-akpaghị aka. Pịa iji gbanyụọ. Shift+click na-agbanwe ya n'ụwa niile.",
+      yoloOff: "YOLO gbanyụrụ — pịa iji kwado iwu dị ize ndụ na-akpaghị aka. Shift+click na-agbanwe ya n'ụwa niile.",
       modelNone: 'ọ dịghị',
       noModel: 'enweghị model',
       switchModel: 'Gbanwee model',
@@ -2438,7 +2495,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       running: count => `${count} na-agba`,
       cron: 'Usoro oge',
       modelTitle: (provider, model) => `Ụdị · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
     },
     windowControls: 'Njikwa windo',
     paneControls: 'Njikwa pane',
@@ -2448,8 +2505,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       noModels: 'Ahụghị model ọ bụla',
       editModels: 'Dezie Model…',
       refreshModels: 'Megharịa Model',
-      fast: 'Ngwa ngwa',
-    },
+      fast: 'Ngwa ngwa'
+    }
   },
   rightSidebar: {
     emptyTitle: 'Efu',
@@ -2485,12 +2542,12 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     terminal: 'Ọdụ',
     folderTip: cwd => `${cwd} — pịa iji gbanwee folda`,
     couldNotPreview: path => `Enweghị ike ịhụ ${path} n'ihu`,
-    unreadableBody: error => `Enweghị ike ịgụ folda a (${error}).`,
+    unreadableBody: error => `Enweghị ike ịgụ folda a (${error}).`
   },
   preview: {
     tab: 'Nlele',
     closeOthers: 'Mechie ndị ọzọ',
-    closeToRight: 'Mechie ndị dị n\'aka nri',
+    closeToRight: "Mechie ndị dị n'aka nri",
     closeAll: 'Mechie niile',
     closePane: 'Mechie paịn nlele',
     loading: 'Na-ebu nlele',
@@ -2513,7 +2570,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     editing: 'Na-edezi',
     unsavedChanges: 'Mgbanwe echekwaghị',
     diskChangedTitle: 'Faịlụ gbanwere na diski',
-    diskChangedBody: 'Faịlụ a gbanwere kemgbe i mepere ya. Jiri ụdị gị dochie ya, ma ọ bụ tụfuo ndezigharị gị wee bugharịa?',
+    diskChangedBody:
+      'Faịlụ a gbanwere kemgbe i mepere ya. Jiri ụdị gị dochie ya, ma ọ bụ tụfuo ndezigharị gị wee bugharịa?',
     overwrite: 'Degharịa',
     discardReload: 'Tụfuo & bugharịa',
     console: {
@@ -2534,7 +2592,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       sentTitle: 'Ezigara na nkata',
       messages: count => `Ozi kọnsọlụ ${count}`,
       selected: count => `Ahọpụtara ${count}`,
-      sentMessage: count => `Etinyere ${count} ndenye ndekọ${count === 1 ? 'y' : 'ies'} na igbe edemede.`,
+      sentMessage: count => `Etinyere ${count} ndenye ndekọ${count === 1 ? 'y' : 'ies'} na igbe edemede.`
     },
     web: {
       appFailedToBoot: 'Ngwa nhụchalụ enweghị ike ịmalite',
@@ -2544,7 +2602,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       restarting: 'OpenAmer na-amalitegharị...',
       askRestart: 'Gwa OpenAmer ka ọ malitegharịa sava ahụ',
       restartingTitle: 'Na-amalitegharịa sava nlele',
-      restartingMessage: 'OpenAmer na-arụ ọrụ n\'azụ. Lelee console nlele maka ọganihu.',
+      restartingMessage: "OpenAmer na-arụ ọrụ n'azụ. Lelee console nlele maka ọganihu.",
       restartFailed: 'Mmalitegharị sava ahụ dara',
       hideConsole: 'Zoo console nlele',
       showConsole: 'Gosi console nlele',
@@ -2555,9 +2613,11 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       reloadingNow: 'Na-ebugharị nlele ugbu a.',
       restartFailedTitle: 'Mmalitegharị nlele dara',
       restartFailedMessage: 'OpenAmer enweghị ike ịmalitegharị sava ahụ.',
-      stillWorking: 'OpenAmer ka na-arụ ọrụ, mana ọ nwebeghị nsonaazụ mmalitegharị. Iwu sava ahụ nwere ike na-agba n\'ihu.',
+      stillWorking:
+        "OpenAmer ka na-arụ ọrụ, mana ọ nwebeghị nsonaazụ mmalitegharị. Iwu sava ahụ nwere ike na-agba n'ihu.",
       workspaceReloading: 'Oghere ọrụ gbanwere, na-ebugharị nlele',
-      moduleMimeDescription: 'A na-enye scripts modul na ụdị MIME na-ezighi ezi. Nke a na-abụkarị ihe ọ pụtara na sava faịlụ static na-enye ngwa Vite/React kama sava dev nke ọrụ ahụ.',
+      moduleMimeDescription:
+        'A na-enye scripts modul na ụdị MIME na-ezighi ezi. Nke a na-abụkarị ihe ọ pụtara na sava faịlụ static na-enye ngwa Vite/React kama sava dev nke ọrụ ahụ.',
       unreachableDescription: 'Enweghị ike iru ibe nlele.',
       fallbackTitle: 'Nlele',
       lookingRestart: taskId => `OpenAmer na-achọ server nlele iji malite ọzọ (${taskId})`,
@@ -2568,14 +2628,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       filesChanged: (count, url) => `${count} mgbanwe faịlụ, na-ebugharị nlele: ${url}`,
       watchFailed: message => `Enweghị ike ilele faịlụ nlele: ${message}`,
       loadFailedConsole: (code, message) => `Ịload efu${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Mepee ${url}`,
+      openTarget: url => `Mepee ${url}`
     },
     linkHint: '⌘/Ctrl-click maka mpaghara nlele',
     closeTab: label => `Mechie ${label}`,
     binaryBody: label => `Ịhụ ${label} n'ihu nwere ike igosi ederede a na-agaghị agụ`,
     largeBody: (label, size) => `${label} bụ ${size}. OpenAmer ga-egosi naanị 512 KB mbụ.`,
     noInlineBody: mimeType => `A ka nwere ike itinye ${mimeType || 'This file type'} dị ka ihe ndabere.`,
-    saveFailed: message => `Enweghị ike ibeche: ${message}`,
+    saveFailed: message => `Enweghị ike ibeche: ${message}`
   },
   zones: {
     showHeader: 'Gosi isi',
@@ -2583,10 +2643,11 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     minimize: 'Belata',
     restore: 'Weghachi',
     closeRunningTitle: 'Mechie taabụ na-arụ ọrụ?',
-    closeRunningBody: 'Nkata a ka na-arụ ọrụ (ma ọ bụ na-eche ntinye gị). Imechi taabụ ga-ezobe ya — nnọkọ ahụ na-echekwa ọganihu ya, enwere ike ịmeghe ya ọzọ site na mpaghara akụkụ.',
+    closeRunningBody:
+      'Nkata a ka na-arụ ọrụ (ma ọ bụ na-eche ntinye gị). Imechi taabụ ga-ezobe ya — nnọkọ ahụ na-echekwa ọganihu ya, enwere ike ịmeghe ya ọzọ site na mpaghara akụkụ.',
     closeRunningConfirm: 'Mechie taabụ',
     closeOthers: 'Mechie ndị ọzọ',
-    closeToRight: 'Mechie ndị dị n\'aka nri',
+    closeToRight: "Mechie ndị dị n'aka nri",
     closeAll: 'Mechie niile',
     newSessionTab: 'Taabụ nnọkọ ọhụrụ',
     dirUp: 'elu',
@@ -2595,7 +2656,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     dirRight: 'aka nri',
     pluginDisabledBody: 'Gbanwuo ya ọzọ na Ntọala → Ngwa mgbakwunye ka iweghachi mpaghara ahụ.',
     editTitle: 'Nhazi',
-    editHint: 'Họrọ nhazi, ma ọ bụ dọrọ pane n\'etiti mpaghara. Pịa aka nri na mpaghara iji kewaa.',
+    editHint: "Họrọ nhazi, ma ọ bụ dọrọ pane n'etiti mpaghara. Pịa aka nri na mpaghara iji kewaa.",
     reset: 'Tọgharịa',
     templates: 'Ndị nlereanya',
     custom: 'Ahaziri iche',
@@ -2609,8 +2670,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     templateRows: 'Ahịrị',
     templateGrid: 'Okporo',
     templatePriority: 'Mkpa',
-    saveApply: 'Chekwaa & tinye n\'ọrụ',
-    notExpressible: 'nhazi a na-ejikọ ọnụ (pinwheel) — enweghị ike ịkọwa ya dị ka nkewa ndị dị n\'ime ugbu a',
+    saveApply: "Chekwaa & tinye n'ọrụ",
+    notExpressible: "nhazi a na-ejikọ ọnụ (pinwheel) — enweghị ike ịkọwa ya dị ka nkewa ndị dị n'ime ugbu a",
     split: dir => `Kekaa ${dir}`,
     move: dir => `S chụpụ ${dir}`,
     pluginDisabled: pluginId => `Emebiri Plugin "${pluginId}"`,
@@ -2620,16 +2681,16 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     mergeZones: count => `Jikọọ ${count} zones`,
     customZoneName: count => `Mpaghara ${count} ahaziri iche`,
     layoutNamePlaceholder: fallback => `Aha layout (${fallback})`,
-    zoneCount: count => `Mpaghara ${count}`,
+    zoneCount: count => `Mpaghara ${count}`
   },
   assistant: {
     thread: {
       branchNewChat: 'Kewaa na mkparịta ụka ọhụrụ',
       dismissError: 'Hapụ njehie',
-      readAloudFailed: 'Ịgụ n\'olu dara',
+      readAloudFailed: "Ịgụ n'olu dara",
       preparingAudio: 'Na-akwadebe ọdịyo...',
       stopReading: 'Kwụsị ịgụ',
-      readAloud: 'Gụọ n\'olu',
+      readAloud: "Gụọ n'olu",
       editMessage: 'Dezie ozi',
       expandMessage: 'Gbasaa ozi',
       scrollToBottom: 'Pịrịkaa ruo ala',
@@ -2641,7 +2702,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       restoreBody: 'A na-ewepụ ihe niile dị mgbe okwu a gachara na mkparịta ụka, okwu a ga-agbakwa ọzọ site ebe a.',
       restoreConfirm: 'Weghachite & megharịa',
       restoreNext: 'Weghachite ebe nchekwa na-esote',
-      goForward: 'Gaa n\'ihu',
+      goForward: "Gaa n'ihu",
       sendEdited: 'Zipu ozi edeziri',
       attachingFile: 'Na-etinye…',
       loadingSession: 'Na-ebu nnọkọ',
@@ -2656,7 +2717,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Taa, ${time}`,
-      yesterday: time => `Nnyahụ, ${time}`,
+      yesterday: time => `Nnyahụ, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Ejikọghị ọnụ ụzọ OpenAmer',
@@ -2670,7 +2731,8 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       reject: 'Jụ',
       alwaysTitle: 'Kwenye iwu a mgbe niile?',
       alwaysAllow: 'Kwenye mgbe niile',
-      alwaysDescription: pattern => `Nke a na-etinye ụdị “${pattern}” na listi kwadobeasị gị (~/.openamer/config.yaml). OpenAmer agaghị ajụjụ ọzọ maka iwu dịka nke a — na session a ma ọ bụ nke ọla ochie.`,
+      alwaysDescription: pattern =>
+        `Nke a na-etinye ụdị “${pattern}” na listi kwadobeasị gị (~/.openamer/config.yaml). OpenAmer agaghị ajụjụ ọzọ maka iwu dịka nke a — na session a ma ọ bụ nke ọla ochie.`
     },
     clarify: {
       notReady: 'Arịrịọ nkọwa adịbeghị njikere',
@@ -2681,10 +2743,10 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       placeholder: 'Pịnye azịza gị…',
       skip: 'Mafee',
       skipped: 'Emafere',
-      continueLabel: 'Gaa n\'ihu',
+      continueLabel: "Gaa n'ihu",
       lateAnswerTip: 'Depụta azịza a dị ka ozi nsochi',
       lateAnswerHint: 'Ajụjụ a anaghịzi eche. Họrọ nhọrọ iji depụta ya dị ka ozi nsochi.',
-      lateAnswer: (question, choice) => `Re: "${question}" — azịza m: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — azịza m: ${choice}`
     },
     tool: {
       code: 'Koodu',
@@ -2718,123 +2780,123 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
         ran: 'Gbara',
         running: 'Na-agba',
         ranCode: 'Gbara koodu',
-        runningCode: 'Na-edekọ edemede',
+        runningCode: 'Na-edekọ edemede'
       },
       prefixes: {
         browser: 'Ihe nchọgharị',
-        web: 'Webụ',
+        web: 'Webụ'
       },
       titles: {
         browser_click: {
           done: 'Pịrị ihe dị na ibe',
           pending: 'Na-apị ihe dị na ibe',
-          pendingAction: 'Na-apị',
+          pendingAction: 'Na-apị'
         },
         browser_fill: {
           done: 'Jupụtara ubi fọm',
           pending: 'Na-ejupụta ubi fọm',
-          pendingAction: 'Ijupụta',
+          pendingAction: 'Ijupụta'
         },
         browser_navigate: {
           done: 'Peeji emeghere',
           pending: 'Na-emepe peeji',
-          pendingAction: 'Imeghe',
+          pendingAction: 'Imeghe'
         },
         browser_snapshot: {
           done: 'Ewereela nseta peeji',
           pending: 'Na-ewere nseta peeji',
-          pendingAction: 'Na-ewere',
+          pendingAction: 'Na-ewere'
         },
         browser_take_screenshot: {
           done: 'Ewereela nseta ihuenyo',
           pending: 'Na-ewere nseta ihuenyo',
-          pendingAction: 'Na-ewere',
+          pendingAction: 'Na-ewere'
         },
         browser_type: {
           done: 'Pịnyeere na peeji',
           pending: 'Na-apịnye na peeji',
-          pendingAction: 'Na-apịnye',
+          pendingAction: 'Na-apịnye'
         },
         clarify: {
           done: 'Jụrụ ajụjụ',
           pending: 'Na-ajụ ajụjụ',
-          pendingAction: 'Na-ajụ',
+          pendingAction: 'Na-ajụ'
         },
         cronjob: {
           done: 'Ọrụ Cron',
           pending: 'Na-ahazi ọrụ Cron',
-          pendingAction: 'Na-ahazi',
+          pendingAction: 'Na-ahazi'
         },
         edit_file: {
           done: 'Edeziri faịlụ',
           pending: 'Na-edezi faịlụ',
-          pendingAction: 'Ndezi',
+          pendingAction: 'Ndezi'
         },
         execute_code: {
           done: 'Gbara koodu',
           pending: 'Ide skripti',
-          pendingAction: 'Ide skripti',
+          pendingAction: 'Ide skripti'
         },
         image_generate: {
           done: 'Emepụtara onyonyo',
           pending: 'Na-emepụta onyonyo',
-          pendingAction: 'Na-emepụta',
+          pendingAction: 'Na-emepụta'
         },
         list_files: {
           done: 'Depụtara faịlụ',
           pending: 'Na-edepụta faịlụ',
-          pendingAction: 'Na-edepụta',
+          pendingAction: 'Na-edepụta'
         },
         patch: {
           done: 'Emeziri faịlụ',
           pending: 'Na-emezi faịlụ',
-          pendingAction: 'Na-emezi',
+          pendingAction: 'Na-emezi'
         },
         read_file: {
           done: 'Gụọ faịlụ',
           pending: 'Na-agụ faịlụ',
-          pendingAction: 'Na-agụ',
+          pendingAction: 'Na-agụ'
         },
         search_files: {
           done: 'Chọrọ faịlụ',
           pending: 'Na-achọ faịlụ',
-          pendingAction: 'Na-achọ',
+          pendingAction: 'Na-achọ'
         },
         session_search_recall: {
           done: 'Achọtara akụkọ nnọkọ',
           pending: 'Na-achọ akụkọ nnọkọ',
-          pendingAction: 'Na-achọ',
+          pendingAction: 'Na-achọ'
         },
         terminal: {
           done: 'Agbara iwu',
           pending: 'Na-agba iwu',
-          pendingAction: 'Na-agba',
+          pendingAction: 'Na-agba'
         },
         todo: {
           done: 'Emelitere ihe ndị a ga-eme',
           pending: 'Na-emelite ihe ndị a ga-eme',
-          pendingAction: 'Na-emelite',
+          pendingAction: 'Na-emelite'
         },
         vision_analyze: {
           done: 'Nyochara onyonyo',
           pending: 'Na-enyocha onyonyo',
-          pendingAction: 'Na-enyocha',
+          pendingAction: 'Na-enyocha'
         },
         web_extract: {
           done: 'Gụrụ ibe weebụ',
           pending: 'Na-agụ ibe weebụ',
-          pendingAction: 'Na-agụ',
+          pendingAction: 'Na-agụ'
         },
         web_search: {
           done: 'Achọtara weebụ',
           pending: 'Na-achọ weebụ',
-          pendingAction: 'Na-achọ',
+          pendingAction: 'Na-achọ'
         },
         write_file: {
           done: 'Deziri faịlụ',
           pending: 'Na-edezi faịlụ',
-          pendingAction: 'Ndezi',
-        },
+          pendingAction: 'Ndezi'
+        }
       },
       recoveredMany: count => `Enyere n'aka mgbe ${count} nzọ ụzọ efu`,
       failedMany: count => `Usoro ${count} dara`,
@@ -2844,9 +2906,9 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Na-agba ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Na-agba ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Na-agba ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'Enweghị ike ịgbanwee YOLO',
@@ -2856,13 +2918,14 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     stopFailed: 'Ịkwụsị dara',
     regenerateFailed: 'Ịmepụta ọzọ dara',
     editFailed: 'Ndezigharị dara',
-    resumeFailed: 'Ịga n\'ihu dara',
+    resumeFailed: "Ịga n'ihu dara",
     resumeStrandedTitle: 'Enweghị ike ibudata nnọkọ a',
-    resumeStrandedBody: 'Njikọ na nnọkọ a dara, nnwale akpaaka akwụsịrị. Lelee na ọnụ ụzọ ámá na-arụ ọrụ, wee nwaa ọzọ.',
+    resumeStrandedBody:
+      'Njikọ na nnọkọ a dara, nnwale akpaaka akwụsịrị. Lelee na ọnụ ụzọ ámá na-arụ ọrụ, wee nwaa ọzọ.',
     resumeRetry: 'Nwaa ọzọ',
     nothingToBranch: 'Ọnweghị ihe ịgbakọ alaka',
-    branchNeedsChat: 'Malite ma ọ bụ gaa n\'ihu na mkparịta ụka tupu ịgbakọ alaka.',
-    sessionBusy: 'Nnọkọ nọ n\'ọrụ',
+    branchNeedsChat: "Malite ma ọ bụ gaa n'ihu na mkparịta ụka tupu ịgbakọ alaka.",
+    sessionBusy: "Nnọkọ nọ n'ọrụ",
     branchStopCurrent: 'Kwụsị oge ugbu a tupu ịgbakọ alaka na mkparịta ụka a.',
     branchNoText: 'Ozi a enweghị ederede ịgbakọ alaka na ya.',
     branchFailed: 'Ịgbakọ alaka dara',
@@ -2897,7 +2960,7 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
       timedOut: 'Oge agwụla na-eche ọnụ ụzọ ámá. `openamer gateway` ọ na-arụ ọrụ?',
       success: platform => `Enyere ${platform} aka. Malite ọzọ ebe a oge ọ bụla.`,
       systemNote: platform => `↻ Enyere ${platform} aka — malite ọzọ ebe a oge ọ bụla.`,
-      failed: error => `Nnyefe efu: ${error}`,
+      failed: error => `Nnyefe efu: ${error}`
     },
     audioReadFailed: 'Enweghị ike ịgụ ọdịyo e dekọrọ',
     sessionUnavailable: 'Nnọkọ adịghị',
@@ -2912,41 +2975,42 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     warningLine: message => `dọba: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} maka nnọkọ a`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Jiri /profile <aha> ma ọ bụ "New session" picker iji malite chat na profile ọzọ.`,
+    profileStatus: current =>
+      `Profile: ${current}. Jiri /profile <aha> ma ọ bụ "New session" picker iji malite chat na profile ọzọ.`,
     noProfileNamed: (target, available) => `Enweghị profile aha "${target}". Ndị dị: ${available}`,
     newChatsProfile: name => `Chat ọhụrụ ga-eji profile ${name}.`,
-    branchTitle: n => `Ndepụta: Alaka #${n}`,
+    branchTitle: n => `Ndepụta: Alaka #${n}`
   },
   errors: {
     genericFailure: 'Ọ nwere nsogbu',
     boundaryTitle: 'Ihe mebiri na ihu ngwa',
     boundaryDesc: 'Nlele ahụ zutere njehie a na-atụghị anya ya. Mkparịta ụka na ntọala gị dị nchebe.',
     reloadWindow: 'Megharịa windo',
-    openLogs: 'Mepee ndekọ',
+    openLogs: 'Mepee ndekọ'
   },
   ui: {
     search: {
-      clear: 'Kpochapụ ọchụchọ',
+      clear: 'Kpochapụ ọchụchọ'
     },
     pagination: {
       label: 'Nhazi ibe',
       previous: 'Azụ',
       previousAria: 'Gaa na ibe gara aga',
       next: 'Ọzọ',
-      nextAria: 'Gaa na ibe ọzọ',
+      nextAria: 'Gaa na ibe ọzọ'
     },
     sidebar: {
       title: 'Ogwe akụkụ',
       description: 'Na-egosi ogwe akụkụ ekwentị.',
-      toggle: 'Gbanwee ogwe akụkụ',
-    },
+      toggle: 'Gbanwee ogwe akụkụ'
+    }
   },
   modelPicker: {
     loadFailed: 'Enweghị ike ibudata model',
     noAuthenticatedProviders: 'Enweghị ndị na-enye ọrụ akwadoro.',
     proNeedsSubscription: 'Model Pro chọrọ ndenye aha OpenAmer akwụrụ ụgwọ.',
-    free: 'N\'efu',
-    freeTier: 'Ọkwa n\'efu',
+    free: "N'efu",
+    freeTier: "Ọkwa n'efu",
     priceTitle: 'Ọnụ ahịa ntinye / mmepụta kwa nde token',
     wasPrice: 'bụ',
     title: 'Gbanwee model',
@@ -2955,26 +3019,28 @@ Kpeghee ya ka ọ nọrọ na ${mode} default.`,
     search: 'Nyochaa ndị na-enye na model...',
     noModels: 'Ahụghị model ọ bụla.',
     addProvider: 'Tinye onye na-enye',
-    pro: 'Ọkachamara',
+    pro: 'Ọkachamara'
   },
   modelVisibility: {
     title: 'Model',
     search: 'Chọọ model',
     noAuthenticatedProviders: 'Enweghị ndị na-enye ọrụ akwadoro.',
-    addProvider: 'Tinye onye na-enye ọrụ…',
+    addProvider: 'Tinye onye na-enye ọrụ…'
   },
   prompts: {
     gatewayDisconnected: 'Ejikọghị ọnụ ụzọ OpenAmer',
     sudoSendFailed: 'Enweghị ike izipu paswọọdụ sudo',
     secretSendFailed: 'Enweghị ike izipu ihe nzuzo',
     sudoTitle: 'Paswọọdụ onye nchịkwa',
-    sudoDesc: 'OpenAmer chọrọ paswọọdụ sudo gị iji mee iwu nwere ikike. A na-eziga ya naanị na onye nnọchiteanya mpaghara gị.',
+    sudoDesc:
+      'OpenAmer chọrọ paswọọdụ sudo gị iji mee iwu nwere ikike. A na-eziga ya naanị na onye nnọchiteanya mpaghara gị.',
     sudoPlaceholder: 'paswọọdụ sudo',
     secretTitle: 'A chọrọ ihe nzuzo',
-    secretDesc: 'OpenAmer chọrọ njirimara iji gaa n\'ihu.',
-    secretPlaceholder: 'uru ihe nzuzo',
+    secretDesc: "OpenAmer chọrọ njirimara iji gaa n'ihu.",
+    secretPlaceholder: 'uru ihe nzuzo'
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering na-arụ ọrụ — a hụrụ remote display (${reason}). A kwụsịrị GPU acceleration iji gbochie itigbe.`,
-  },
+    message: reason =>
+      `Software rendering na-arụ ọrụ — a hụrụ remote display (${reason}). A kwụsịrị GPU acceleration iji gbochie itigbe.`
+  }
 })

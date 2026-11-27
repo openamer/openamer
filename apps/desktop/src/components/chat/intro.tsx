@@ -73,14 +73,10 @@ export function Intro({ personality, seed }: IntroProps) {
   // A translated block for this personality, else the neutral block, else the
   // translated fallback lines. The persona-mode templates keep an unknown
   // personality name visible instead of silently dropping it.
-  const copies = isPersona(neutralKey, intro.personas)
-    ? toCopies(intro.personas[neutralKey])
-    : toCopies(intro.fallback)
+  const copies = isPersona(neutralKey, intro.personas) ? toCopies(intro.personas[neutralKey]) : toCopies(intro.fallback)
 
   const resolved =
-    copies.length > 0
-      ? copies
-      : personaModeCopies(intro.personaMode, titleize(neutralKey) || titleize('default'))
+    copies.length > 0 ? copies : personaModeCopies(intro.personaMode, titleize(neutralKey) || titleize('default'))
 
   const copy = pickCopy(resolved, mountSeed + (seed ?? 0)) ?? {
     headline: WORDMARK,

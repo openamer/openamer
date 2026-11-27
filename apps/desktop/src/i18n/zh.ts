@@ -45,7 +45,7 @@ export const zh = defineLocale({
     update: '更新',
     tryHint: term => `试试“${term}”`,
     on: '开',
-    off: '关',
+    off: '关'
   },
   fileMenu: {
     revealFinder: '在访达中显示',
@@ -60,7 +60,7 @@ export const zh = defineLocale({
     renameLabel: '新名称',
     deleteTitle: name => `删除 ${name}？`,
     deleteBody: '将移至废纸篓，你可以从那里恢复。',
-    pathCopied: '已复制路径',
+    pathCopied: '已复制路径'
   },
   boot: {
     ready: 'OpenAmer 桌面版已就绪',
@@ -70,7 +70,7 @@ export const zh = defineLocale({
       loadingSettings: '正在加载 OpenAmer 设置',
       loadingSessions: '正在加载最近会话',
       startingDesktopConnection: '正在启动桌面连接',
-      startingOpenAmerDesktop: '正在启动 OpenAmer 桌面版…',
+      startingOpenAmerDesktop: '正在启动 OpenAmer 桌面版…'
     },
     errors: {
       backgroundExited: 'OpenAmer 后台进程已退出。',
@@ -79,7 +79,7 @@ export const zh = defineLocale({
       desktopBootFailed: '桌面启动失败',
       gatewayConnectionLost: '与网关的连接已断开',
       gatewaySignInRequired: '需要登录网关',
-      ipcBridgeUnavailable: '桌面 IPC 桥不可用。',
+      ipcBridgeUnavailable: '桌面 IPC 桥不可用。'
     },
     failure: {
       title: 'OpenAmer 无法启动',
@@ -93,7 +93,8 @@ export const zh = defineLocale({
       back: '返回',
       openLogs: '打开日志',
       repairHint: '修复会重新运行安装器，在新机器上可能需要几分钟。',
-      remoteSignInHint: signInLabel => `先退出已保存的远程浏览器会话，然后打开${signInLabel}。也可以使用本地网关切换到随应用提供的后端。`,
+      remoteSignInHint: signInLabel =>
+        `先退出已保存的远程浏览器会话，然后打开${signInLabel}。也可以使用本地网关切换到随应用提供的后端。`,
       signOutAndSignIn: '退出并重新登录',
       remoteFailureHint: '在“网关设置”中检查网关 URL 和登录，或切换到本地网关。',
       hideRecentLogs: '隐藏最近日志',
@@ -105,8 +106,8 @@ export const zh = defineLocale({
       signInFailed: '登录失败',
       signInToRemoteGateway: '登录远程网关',
       signInWithProvider: provider => `使用 ${provider} 登录`,
-      identityProvider: '你的身份提供方',
-    },
+      identityProvider: '你的身份提供方'
+    }
   },
   notifications: {
     region: '通知',
@@ -133,7 +134,7 @@ export const zh = defineLocale({
       microphonePermission: '麦克风权限已被拒绝。',
       openaiRejectedApiKey: 'OpenAI 拒绝了该 API key。',
       openaiRejectedApiKeyWithStatus: status => `OpenAI 拒绝了该 API key (${status} invalid_api_key)。`,
-      openaiTtsNeedsKey: 'OpenAI TTS 需要 VOICE_TOOLS_OPENAI_KEY 或 OPENAI_API_KEY。',
+      openaiTtsNeedsKey: 'OpenAI TTS 需要 VOICE_TOOLS_OPENAI_KEY 或 OPENAI_API_KEY。'
     },
     voice: {
       configureSpeechToText: '配置语音转文字后即可使用语音模式。',
@@ -152,7 +153,7 @@ export const zh = defineLocale({
       transcriptionFailed: '语音转写失败',
       transcriptionUnavailable: '语音转写暂不可用。',
       tryRecordingAgain: '请再录一次。',
-      unavailable: '语音不可用',
+      unavailable: '语音不可用'
     },
     native: {
       approvalTitle: '需要批准',
@@ -165,11 +166,11 @@ export const zh = defineLocale({
       turnErrorTitle: '本轮失败',
       backgroundDoneTitle: '后台任务已完成',
       backgroundFailedTitle: '后台任务失败',
-      creditsTitle: '额度',
-    },
+      creditsTitle: '额度'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `软件渲染已启用 — 检测到远程显示（${reason}）。为防止画面闪烁，已禁用 GPU 加速。`,
+    message: reason => `软件渲染已启用 — 检测到远程显示（${reason}）。为防止画面闪烁，已禁用 GPU 加速。`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer 额度已用尽',
@@ -177,7 +178,7 @@ export const zh = defineLocale({
     fallbackMessage: '您的账户额度已用尽。请充值以继续使用。',
     openBilling: '打开账单',
     addCredits: '添加额度',
-    dismiss: '忽略',
+    dismiss: '忽略'
   },
   titlebar: {
     hideSidebar: '隐藏侧边栏',
@@ -194,7 +195,7 @@ export const zh = defineLocale({
     openStarmap: '打开记忆图谱',
     openKeybinds: '键盘快捷键',
     layoutEditor: '布局编辑器',
-    layoutEditorTitle: '布局编辑器 — ⌘ 点击重置布局',
+    layoutEditorTitle: '布局编辑器 — ⌘ 点击重置布局'
   },
   keybinds: {
     title: '键盘快捷键',
@@ -211,7 +212,7 @@ export const zh = defineLocale({
       profiles: '配置',
       session: '会话',
       navigation: '导航',
-      view: '视图',
+      view: '视图'
     },
     actions: {
       'keybinds.openPanel': '打开键盘快捷键',
@@ -290,8 +291,8 @@ export const zh = defineLocale({
       'view.newTerminal': '新建终端',
       'view.nextTerminal': '下一个终端',
       'view.prevTerminal': '上一个终端',
-      'view.closeTerminal': '关闭终端',
-    },
+      'view.closeTerminal': '关闭终端'
+    }
   },
   language: {
     label: '语言',
@@ -300,7 +301,7 @@ export const zh = defineLocale({
     saveError: '语言更新失败',
     switchTo: '切换语言',
     searchPlaceholder: '搜索语言…',
-    noResults: '未找到语言',
+    noResults: '未找到语言'
   },
   settings: {
     closeSettings: '关闭设置',
@@ -325,11 +326,12 @@ export const zh = defineLocale({
       about: '关于',
       billing: '账单',
       notifications: '通知',
-      plugins: '插件',
+      plugins: '插件'
     },
     plugins: {
       title: '桌面插件',
-      blurb: '加载到此应用中的界面扩展——随构建捆绑，或放入 desktop-plugins 文件夹（包括 OpenAmer 编写的插件）。禁用会即时卸载插件并在重启后保持。',
+      blurb:
+        '加载到此应用中的界面扩展——随构建捆绑，或放入 desktop-plugins 文件夹（包括 OpenAmer 编写的插件）。禁用会即时卸载插件并在重启后保持。',
       count: n => `已安装 ${n} 个`,
       openFolder: '打开插件文件夹',
       rescan: '重新扫描',
@@ -341,9 +343,9 @@ export const zh = defineLocale({
       kinds: {
         bundled: '内置',
         disk: '磁盘',
-        runtime: '运行时',
+        runtime: '运行时'
       },
-      manage: '管理代理插件',
+      manage: '管理代理插件'
     },
     notifications: {
       title: '通知',
@@ -354,28 +356,28 @@ export const zh = defineLocale({
       kinds: {
         approval: {
           label: '需要批准',
-          description: '有命令正在等待你批准或拒绝。',
+          description: '有命令正在等待你批准或拒绝。'
         },
         input: {
           label: '需要输入',
-          description: 'OpenAmer 提出了问题，或需要密码或密钥。',
+          description: 'OpenAmer 提出了问题，或需要密码或密钥。'
         },
         turnDone: {
           label: '回复就绪',
-          description: 'OpenAmer 在后台时完成了一轮对话。',
+          description: 'OpenAmer 在后台时完成了一轮对话。'
         },
         turnError: {
           label: '本轮失败',
-          description: '本轮以错误结束。',
+          description: '本轮以错误结束。'
         },
         backgroundDone: {
           label: '后台任务完成',
-          description: '后台终端命令已完成。',
+          description: '后台终端命令已完成。'
         },
         credits: {
           label: '额度提醒',
-          description: '额度访问被暂停或恢复。',
-        },
+          description: '额度访问被暂停或恢复。'
+        }
       },
       test: '发送测试通知',
       testTitle: 'OpenAmer',
@@ -384,7 +386,7 @@ export const zh = defineLocale({
       testUnsupported: '此系统不支持原生通知。',
       completionSoundTitle: '完成提示音',
       completionSoundDesc: '智能体回合结束时播放。可在此选择预设并预览。',
-      completionSoundPreview: '预览',
+      completionSoundPreview: '预览'
     },
     sections: {
       model: '模型',
@@ -394,7 +396,7 @@ export const zh = defineLocale({
       safety: '安全',
       memory: '记忆与上下文',
       voice: '语音',
-      advanced: '高级',
+      advanced: '高级'
     },
     searchPlaceholder: {
       about: '关于 OpenAmer Desktop',
@@ -402,21 +404,21 @@ export const zh = defineLocale({
       gateway: '网关连接…',
       keys: '搜索 API 密钥…',
       mcp: '搜索 MCP 服务器…',
-      sessions: '搜索已归档会话…',
+      sessions: '搜索已归档会话…'
     },
     modeOptions: {
       light: {
         label: '明亮',
-        description: '明亮的桌面界面',
+        description: '明亮的桌面界面'
       },
       dark: {
         label: '暗色',
-        description: '低眩光工作区',
+        description: '低眩光工作区'
       },
       system: {
         label: '系统',
-        description: '跟随系统外观',
-      },
+        description: '跟随系统外观'
+      }
     },
     appearance: {
       title: '外观',
@@ -426,13 +428,15 @@ export const zh = defineLocale({
       toolViewTitle: '工具调用显示',
       toolViewDesc: '产品模式隐藏原始工具数据；技术模式显示完整输入/输出。',
       uiScaleTitle: '界面缩放',
-      uiScaleDesc: (percent: number) => `缩放整个应用的文字和界面。也可使用 Cmd/Ctrl 加 +、- 或 0 调整。当前：${percent}%`,
+      uiScaleDesc: (percent: number) =>
+        `缩放整个应用的文字和界面。也可使用 Cmd/Ctrl 加 +、- 或 0 调整。当前：${percent}%`,
       translucencyTitle: '窗口透明',
       translucencyDesc: '让整个窗口透出桌面。仅支持 macOS 和 Windows。',
       backdropTitle: '聊天背景',
       backdropDesc: '对话后方那张淡淡的雕像图片。',
       embedsTitle: '内嵌预览',
-      embedsDesc: '富预览会从第三方网站（YouTube、X 等）加载。询问会在你允许前显示占位符；总是会自动加载；关闭则保留纯链接。',
+      embedsDesc:
+        '富预览会从第三方网站（YouTube、X 等）加载。询问会在你允许前显示占位符；总是会自动加载；关闭则保留纯链接。',
       embedsAsk: '询问',
       embedsAlways: '总是',
       embedsOff: '关闭',
@@ -455,7 +459,8 @@ export const zh = defineLocale({
       importedBadge: '已导入',
       pet: {
         title: '宠物',
-        intro: '领养一只悬浮在应用上的 petdex 动画宠物，它会根据 OpenAmer 的状态做出反应——工具执行时奔跑、成功时欢呼、出错时沮丧。',
+        intro:
+          '领养一只悬浮在应用上的 petdex 动画宠物，它会根据 OpenAmer 的状态做出反应——工具执行时奔跑、成功时欢呼、出错时沮丧。',
         restartHint: '宠物功能需要重启——当前运行的应用在此功能加入前启动。请退出并重新打开 OpenAmer，然后回到此处。',
         scaleTitle: '大小',
         scaleDesc: '调整悬浮宠物的大小，所有界面即时生效。',
@@ -488,8 +493,8 @@ export const zh = defineLocale({
         exportFailed: slug => `无法导出 ${slug}`,
         noneAvailable: '当前没有可开启的宠物。',
         turnOnFailed: '无法开启宠物。',
-        turnOffFailed: '无法关闭宠物。',
-      },
+        turnOffFailed: '无法关闭宠物。'
+      }
     },
     fieldLabels: defineFieldCopy({
       model: '默认模型',
@@ -499,19 +504,19 @@ export const zh = defineLocale({
       timezone: '时区',
       display: {
         personality: '人格',
-        showReasoning: '推理过程块',
+        showReasoning: '推理过程块'
       },
       desktop: {
         repoScanEnabled: '自动发现代码仓库',
         repoScanRoots: '代码仓库扫描根目录',
-        repoScanExcludePaths: '排除的代码仓库路径',
+        repoScanExcludePaths: '排除的代码仓库路径'
       },
       agent: {
         maxTurns: '最大智能体步数',
         imageInputMode: '图片附件',
         apiMaxRetries: 'API 重试次数',
         serviceTier: '服务等级',
-        toolUseEnforcement: '工具调用强制',
+        toolUseEnforcement: '工具调用强制'
       },
       terminal: {
         cwd: '工作目录',
@@ -522,75 +527,75 @@ export const zh = defineLocale({
         dockerImage: 'Docker 镜像',
         singularityImage: 'Singularity 镜像',
         modalImage: 'Modal 镜像',
-        daytonaImage: 'Daytona 镜像',
+        daytonaImage: 'Daytona 镜像'
       },
       fileReadMaxChars: '文件读取上限',
       toolOutput: {
         maxBytes: '终端输出上限',
         maxLines: '文件分页上限',
-        maxLineLength: '行长度上限',
+        maxLineLength: '行长度上限'
       },
       codeExecution: {
-        mode: '代码执行模式',
+        mode: '代码执行模式'
       },
       approvals: {
         mode: '审批模式',
         timeout: '审批超时',
-        mcpReloadConfirm: '确认 MCP 重载',
+        mcpReloadConfirm: '确认 MCP 重载'
       },
       commandAllowlist: '命令白名单',
       security: {
         redactSecrets: '隐去密钥',
-        allowPrivateUrls: '允许私有 URL',
+        allowPrivateUrls: '允许私有 URL'
       },
       browser: {
         allowPrivateUrls: '浏览器私有 URL',
-        autoLocalForPrivateUrls: '私有 URL 使用本地浏览器',
+        autoLocalForPrivateUrls: '私有 URL 使用本地浏览器'
       },
       checkpoints: {
         enabled: '文件检查点',
-        maxSnapshots: '检查点上限',
+        maxSnapshots: '检查点上限'
       },
       voice: {
         recordKey: '语音快捷键',
         maxRecordingSeconds: '最长录音时长',
-        autoTts: '朗读回复',
+        autoTts: '朗读回复'
       },
       stt: {
         enabled: '语音转文字',
         provider: '语音转文字提供方',
         local: {
           model: '本地转写模型',
-          language: '转写语言',
+          language: '转写语言'
         },
         openai: {
-          model: 'OpenAI STT 模型',
+          model: 'OpenAI STT 模型'
         },
         groq: {
-          model: 'Groq STT 模型',
+          model: 'Groq STT 模型'
         },
         mistral: {
-          model: 'Mistral STT 模型',
+          model: 'Mistral STT 模型'
         },
         elevenlabs: {
           modelId: 'ElevenLabs STT 模型',
           languageCode: 'ElevenLabs 语言',
           tagAudioEvents: '标记音频事件',
-          diarize: '说话人区分',
-        },
+          diarize: '说话人区分'
+        }
       },
       tts: {
         provider: '文字转语音提供方',
         edge: {
-          voice: 'Edge 语音',
+          voice: 'Edge 语音'
         },
         openai: {
           model: 'OpenAI TTS 模型',
-          voice: 'OpenAI 语音',
+          voice: 'OpenAI 语音'
         },
         elevenlabs: {
           voiceId: 'ElevenLabs 语音',
-          modelId: 'ElevenLabs 模型',
+          modelId: 'ElevenLabs 模型'
         },
         xai: {
           voiceId: 'xAI (Grok) 语音',
@@ -599,47 +604,47 @@ export const zh = defineLocale({
           autoSpeechTags: '自动语音标签',
           optimizeStreamingLatency: '流式延迟优化',
           sampleRate: '采样率',
-          bitRate: '比特率',
+          bitRate: '比特率'
         },
         minimax: {
           model: 'MiniMax TTS 模型',
-          voiceId: 'MiniMax 语音',
+          voiceId: 'MiniMax 语音'
         },
         mistral: {
           model: 'Mistral TTS 模型',
-          voiceId: 'Mistral 语音',
+          voiceId: 'Mistral 语音'
         },
         gemini: {
           model: 'Gemini TTS 模型',
-          voice: 'Gemini 语音',
+          voice: 'Gemini 语音'
         },
         neutts: {
           model: 'NeuTTS 模型',
-          device: 'NeuTTS 设备',
+          device: 'NeuTTS 设备'
         },
         kittentts: {
           model: 'KittenTTS 模型',
-          voice: 'KittenTTS 语音',
+          voice: 'KittenTTS 语音'
         },
         piper: {
-          voice: 'Piper 语音',
-        },
+          voice: 'Piper 语音'
+        }
       },
       memory: {
         memoryEnabled: '持久记忆',
         userProfileEnabled: '用户画像',
         memoryCharLimit: '记忆预算',
         userCharLimit: '画像预算',
-        provider: '记忆提供方',
+        provider: '记忆提供方'
       },
       context: {
-        engine: '上下文引擎',
+        engine: '上下文引擎'
       },
       compression: {
         enabled: '自动压缩',
         threshold: '压缩阈值',
         targetRatio: '压缩目标',
-        protectLastN: '保护最近消息',
+        protectLastN: '保护最近消息'
       },
       delegation: {
         model: '子智能体模型',
@@ -647,11 +652,11 @@ export const zh = defineLocale({
         maxIterations: '子智能体轮次上限',
         maxConcurrentChildren: '并行子智能体',
         childTimeoutSeconds: '子智能体超时',
-        reasoningEffort: '子智能体推理强度',
+        reasoningEffort: '子智能体推理强度'
       },
       updates: {
-        nonInteractiveLocalChanges: '应用内更新本地更改',
-      },
+        nonInteractiveLocalChanges: '应用内更新本地更改'
+      }
     }),
     fieldDescriptions: defineFieldCopy({
       model: '用于新对话，除非你在输入框中选择其他模型。',
@@ -659,59 +664,60 @@ export const zh = defineLocale({
       fallbackProviders: '默认模型失败时尝试的备用 provider:model 条目。',
       display: {
         personality: '新会话的默认助手风格。',
-        showReasoning: '当后端提供推理内容时予以显示。',
+        showReasoning: '当后端提供推理内容时予以显示。'
       },
       desktop: {
         repoScanEnabled: '扫描本地文件夹，并在“项目”中显示 Git 代码仓库。',
         repoScanRoots: '要扫描的文件夹。留空时扫描主目录。',
-        repoScanExcludePaths: '发现代码仓库时跳过这些文件夹及其子目录。',
+        repoScanExcludePaths: '发现代码仓库时跳过这些文件夹及其子目录。'
       },
       timezone: '当 OpenAmer 需要本地时间上下文时使用。留空则使用系统时区。',
       agent: {
         imageInputMode: '控制图片附件如何发送给模型。',
-        maxTurns: 'OpenAmer 停止一次运行前工具调用轮次的上限。',
+        maxTurns: 'OpenAmer 停止一次运行前工具调用轮次的上限。'
       },
       terminal: {
         cwd: '工具与终端操作的默认项目目录。',
         persistentShell: '当后端支持时，在命令之间保留 Shell 状态。',
-        envPassthrough: '传入工具执行的环境变量。',
+        envPassthrough: '传入工具执行的环境变量。'
       },
       codeExecution: {
-        mode: '代码执行被限定到当前项目的严格程度。',
+        mode: '代码执行被限定到当前项目的严格程度。'
       },
       fileReadMaxChars: 'OpenAmer 单次文件读取可读取的最大字符数。',
       approvals: {
         mode: 'OpenAmer 如何处理需要显式审批的命令。',
-        timeout: '审批提示在超时前等待的时长。',
+        timeout: '审批提示在超时前等待的时长。'
       },
       security: {
-        redactSecrets: '尽可能从模型可见内容中隐藏检测到的密钥。',
+        redactSecrets: '尽可能从模型可见内容中隐藏检测到的密钥。'
       },
       checkpoints: {
-        enabled: '在文件编辑前创建可回滚的快照。',
+        enabled: '在文件编辑前创建可回滚的快照。'
       },
       memory: {
         memoryEnabled: '保存有助于未来会话的持久记忆。',
-        userProfileEnabled: '维护一份精简的用户偏好画像。',
+        userProfileEnabled: '维护一份精简的用户偏好画像。'
       },
       context: {
-        engine: '在接近上下文上限时管理长对话的策略。',
+        engine: '在接近上下文上限时管理长对话的策略。'
       },
       compression: {
-        enabled: '当对话变大时对较早的上下文进行摘要。',
+        enabled: '当对话变大时对较早的上下文进行摘要。'
       },
       voice: {
-        autoTts: '自动朗读助手回复。',
+        autoTts: '自动朗读助手回复。'
       },
       stt: {
         enabled: '启用本地或提供方支持的语音转写。',
         elevenlabs: {
-          languageCode: '可选的 ISO-639-3 语言代码。留空让 ElevenLabs 自动检测。',
-        },
+          languageCode: '可选的 ISO-639-3 语言代码。留空让 ElevenLabs 自动检测。'
+        }
       },
       updates: {
-        nonInteractiveLocalChanges: 'OpenAmer 从应用内更新时（无终端提示），保留本地源码修改（暂存）或丢弃（放弃）。通过终端更新时始终会询问。',
-      },
+        nonInteractiveLocalChanges:
+          'OpenAmer 从应用内更新时（无终端提示），保留本地源码修改（暂存）或丢弃（放弃）。通过终端更新时始终会询问。'
+      }
     }),
     about: {
       heading: 'OpenAmer 桌面版',
@@ -738,7 +744,7 @@ export const zh = defineLocale({
       justNow: '刚刚',
       minAgo: count => `${count} 分钟前`,
       hoursAgo: count => `${count} 小时前`,
-      daysAgo: count => `${count} 天前`,
+      daysAgo: count => `${count} 天前`
     },
     config: {
       none: '无',
@@ -754,7 +760,7 @@ export const zh = defineLocale({
       imported: '配置已导入',
       invalidJson: '配置 JSON 无效',
       keepAwakeTitle: '保持电脑唤醒',
-      keepAwakeDesc: '阻止本机休眠，让长时间或通宵运行继续进行。屏幕仍可变暗。',
+      keepAwakeDesc: '阻止本机休眠，让长时间或通宵运行继续进行。屏幕仍可变暗。'
     },
     credentials: {
       pasteKey: '粘贴密钥',
@@ -764,7 +770,7 @@ export const zh = defineLocale({
       couldNotSave: '无法保存凭据。',
       remove: '移除',
       getKey: '获取密钥',
-      saving: '保存中',
+      saving: '保存中'
     },
     envActions: {
       actionsFor: label => `${label} 的操作`,
@@ -775,7 +781,7 @@ export const zh = defineLocale({
       revealValue: '显示值',
       replace: '替换',
       set: '设置',
-      clear: '清除',
+      clear: '清除'
     },
     gateway: {
       loading: '正在加载网关设置...',
@@ -783,13 +789,15 @@ export const zh = defineLocale({
       unavailableDesc: '桌面 IPC 桥未暴露网关设置。',
       title: '网关连接',
       envOverride: '环境变量覆盖',
-      intro: 'OpenAmer Desktop 默认会启动自己的本地网关。当你希望此应用控制另一台机器上或可信代理后的现有 OpenAmer 后端时，可以使用远程网关。下面可按 profile 指定各自的远程主机。',
+      intro:
+        'OpenAmer Desktop 默认会启动自己的本地网关。当你希望此应用控制另一台机器上或可信代理后的现有 OpenAmer 后端时，可以使用远程网关。下面可按 profile 指定各自的远程主机。',
       appliesTo: '应用于',
       allProfiles: '所有 profile',
       defaultConnection: '默认连接会用于所有没有自定义覆盖的 profile。',
       profileConnection: profile => `仅当“${profile}”是当前 profile 时使用此连接。选择“使用默认网关”可移除其覆盖。`,
       envOverrideTitle: '环境变量正在控制此桌面会话。',
-      envOverrideDesc: '取消设置 OPENAMER_DESKTOP_REMOTE_URL 和 OPENAMER_DESKTOP_REMOTE_TOKEN 后才会使用下面保存的设置。',
+      envOverrideDesc:
+        '取消设置 OPENAMER_DESKTOP_REMOTE_URL 和 OPENAMER_DESKTOP_REMOTE_TOKEN 后才会使用下面保存的设置。',
       modeTitle: '连接模式',
       localTitle: '本地网关',
       localDesc: '在 localhost 启动私有 OpenAmer 后端。这是默认方式，并且可离线工作。',
@@ -814,7 +822,7 @@ export const zh = defineLocale({
       cloudNoAgents: {
         before: '此账户下未找到智能体。请在',
         linkText: 'OpenAmer 门户',
-        after: '中创建一个，然后刷新。',
+        after: '中创建一个，然后刷新。'
       },
       cloudRefresh: '刷新',
       cloudConnect: '连接',
@@ -874,7 +882,8 @@ export const zh = defineLocale({
       applyFailed: '无法应用网关设置',
       saveFailed: '无法保存网关设置',
       sshTitle: '通过 SSH 连接',
-      sshDesc: 'OpenAmer 会通过 SSH 在远程启动并以隧道连接到本应用——无需自行启动或暴露任何服务。前提：已具备到该主机的密钥 SSH 访问。',
+      sshDesc:
+        'OpenAmer 会通过 SSH 在远程启动并以隧道连接到本应用——无需自行启动或暴露任何服务。前提：已具备到该主机的密钥 SSH 访问。',
       sshTrustHint: '首次提供的主机密钥会被信任并固定；后续变更将被拒绝。',
       sshHostTitle: '主机',
       sshHostDesc: 'user@host，或 ~/.ssh/config 中的 Host 别名。',
@@ -898,18 +907,20 @@ export const zh = defineLocale({
       sshReachable: (host, platform) => `可连接：${host}（${platform}）——已找到 OpenAmer`,
       sshIncompleteHost: '连接前请输入 SSH 主机。',
       sshErrUnreachable: '无法通过 SSH 连接到该主机。请检查主机、端口和网络。',
-      sshErrAuth: 'SSH 认证失败。请将密钥加载到 ssh-agent（ssh-add），或在 ~/.ssh/config 中设置 IdentityFile——OpenAmer 以非交互方式运行 ssh。',
+      sshErrAuth:
+        'SSH 认证失败。请将密钥加载到 ssh-agent（ssh-add），或在 ~/.ssh/config 中设置 IdentityFile——OpenAmer 以非交互方式运行 ssh。',
       sshErrHostKey: '自上次连接以来主机密钥已更改。请确认这是预期的，然后运行 ssh-keygen -R <host> 并重新连接。',
-      sshErrNotInstalled: '远程主机上未安装 OpenAmer。请在远程安装（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）或设置 OpenAmer 路径。',
+      sshErrNotInstalled:
+        '远程主机上未安装 OpenAmer。请在远程安装（curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh）或设置 OpenAmer 路径。',
       sshErrPlatform: '不支持的远程平台。OpenAmer Desktop 的 SSH 模式支持 Linux、macOS 和 Windows 远程主机。',
       sshErrTimeout: 'SSH 连接超时。主机可能无法访问或处于休眠状态。',
       sshErrUpdateRequired: '使用 Desktop SSH 连接前，请更新远程主机上的 OpenAmer。',
-      sshErrUnknown: 'SSH 连接失败。',
+      sshErrUnknown: 'SSH 连接失败。'
     },
     keys: {
       loading: '正在加载 API 密钥和凭据...',
       failedLoad: 'API 密钥加载失败',
-      empty: '此类别暂时没有配置项。',
+      empty: '此类别暂时没有配置项。'
     },
     mcp: {
       loading: '正在加载 MCP 服务器...',
@@ -961,7 +972,8 @@ export const zh = defineLocale({
       catalogInstallFailed: name => `安装 ${name} 失败`,
       catalogEnvPrompt: name => `${name} 需要凭据`,
       catalogEnvRequired: '安装前请填写必需的值。',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} 已启用`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} 已启用`,
       statusConnecting: '连接中…',
       statusNeedsAuth: '需要认证',
       statusError: '错误',
@@ -974,7 +986,7 @@ export const zh = defineLocale({
       unsavedConnect: '未保存 — 保存 mcp.json 以连接。',
       enableTool: tool => `启用 ${tool}`,
       disableTool: tool => `禁用 ${tool}`,
-      noOutput: '暂无输出。',
+      noOutput: '暂无输出。'
     },
     model: {
       loading: '正在加载模型配置...',
@@ -999,37 +1011,37 @@ export const zh = defineLocale({
       tasks: {
         vision: {
           label: '视觉',
-          hint: '图片分析',
+          hint: '图片分析'
         },
         web_extract: {
           label: '网页提取',
-          hint: '页面总结',
+          hint: '页面总结'
         },
         compression: {
           label: '压缩',
-          hint: '上下文压缩',
+          hint: '上下文压缩'
         },
         skills_hub: {
           label: '技能中心',
-          hint: '技能搜索',
+          hint: '技能搜索'
         },
         approval: {
           label: '审批',
-          hint: '智能自动批准',
+          hint: '智能自动批准'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP 工具路由',
+          hint: 'MCP 工具路由'
         },
         title_generation: {
           label: '标题生成',
-          hint: '会话标题',
+          hint: '会话标题'
         },
         curator: {
           label: '策展人',
-          hint: '技能使用审查',
-        },
-      },
+          hint: '技能使用审查'
+        }
+      }
     },
     providers: {
       connectAccount: '连接账号',
@@ -1054,9 +1066,9 @@ export const zh = defineLocale({
       noKeysMatch: '没有匹配的提供方。',
       localEndpoint: {
         title: '本地 / 自定义端点',
-        description: '将 OpenAmer 指向任意 OpenAI 兼容端点（Zyphra、vLLM、llama.cpp、Ollama 等）。',
+        description: '将 OpenAmer 指向任意 OpenAI 兼容端点（Zyphra、vLLM、llama.cpp、Ollama 等）。'
       },
-      loading: '正在加载提供方...',
+      loading: '正在加载提供方...'
     },
     sessions: {
       loading: '正在加载已归档会话…',
@@ -1070,7 +1082,8 @@ export const zh = defineLocale({
       restored: '已恢复',
       deleteConfirm: title => `永久删除“${title}”？此操作无法撤销。`,
       autoArchiveTitle: '自动归档闲置会话',
-      autoArchiveDesc: '自动归档你一段时间未使用的会话。已置顶的会话永远不会被归档，也不会删除任何内容——归档的会话会移动到这里。',
+      autoArchiveDesc:
+        '自动归档你一段时间未使用的会话。已置顶的会话永远不会被归档，也不会删除任何内容——归档的会话会移动到这里。',
       autoArchiveDaysLabel: '归档前',
       autoArchiveDaysUnit: '天无活动',
       autoArchiveFailed: '无法更新自动归档设置',
@@ -1086,7 +1099,7 @@ export const zh = defineLocale({
       unarchiveFailed: '取消归档失败',
       deleteFailed: '删除失败',
       updateDirFailed: '无法更新默认目录',
-      clearDirFailed: '无法清除默认目录',
+      clearDirFailed: '无法清除默认目录'
     },
     toolsets: {
       loadingConfig: '正在加载配置',
@@ -1158,9 +1171,9 @@ export const zh = defineLocale({
         selectedTitle: '已选择后端',
         selectedMessage: backend => `终端命令现在通过 ${backend} 运行。将应用于新会话。`,
         failedSelect: backend => `选择 ${backend} 失败`,
-        needsSetupHint: '现在即可选择此后端——但在完成设置前命令将会失败。',
-      },
-    },
+        needsSetupHint: '现在即可选择此后端——但在完成设置前命令将会失败。'
+      }
+    }
   },
   skills: {
     tabSkills: '技能',
@@ -1206,7 +1219,7 @@ export const zh = defineLocale({
     provenance: {
       agent: '习得',
       bundled: '内置',
-      hub: '技能中心',
+      hub: '技能中心'
     },
     emptyNoneFound: noun => `未找到${noun}`,
     emptyNothingMatches: query => `没有匹配“${query}”的内容。`,
@@ -1226,7 +1239,8 @@ export const zh = defineLocale({
       featured: '精选技能',
       landingHint: '搜索技能中心，浏览来自官方索引、GitHub 和社区来源的可安装技能。',
       noResults: '技能中心没有匹配的技能。',
-      resultCount: (count, ms) => `${count} 个结果个结果${count === 1 ? '结果' : '结果'}${ms !== null ? ` in ${ms}ms` : ''}`,
+      resultCount: (count, ms) =>
+        `${count} 个结果个结果${count === 1 ? '结果' : '结果'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `超时：${sources}`,
       installed: '已安装',
       install: '安装',
@@ -1244,7 +1258,7 @@ export const zh = defineLocale({
       trust: {
         builtin: '内置',
         trusted: '可信',
-        community: '社区',
+        community: '社区'
       },
       verdictSafe: '安全',
       verdictCaution: '注意',
@@ -1262,7 +1276,7 @@ export const zh = defineLocale({
       loadFailed: '技能中心加载失败',
       previewFailed: '技能预览失败',
       scanFailed: '安全扫描失败',
-      searchFailed: '技能中心搜索失败',
+      searchFailed: '技能中心搜索失败'
     },
     tabPlugins: '插件',
     searchPlugins: '搜索插件...',
@@ -1282,9 +1296,10 @@ export const zh = defineLocale({
     pluginsSearchFailed: 'GitHub 搜索失败',
     pluginsDiscoverAction: query => `在 GitHub 上搜索 "${query}"`,
     pluginsDiscoverResults: (n, query) => `${n} 个标记为 openamer-plugin 的仓库，匹配“${query}”`,
-    pluginsDiscoverEmpty: query => `GitHub 上没有关于 "${query}" 的内容 —— 搜索仅能找到带有 openamer-plugin 主题的仓库，且未认证的 GitHub 搜索有频率限制。请在上方输入准确的所有者/仓库路径进行安装。`,
+    pluginsDiscoverEmpty: query =>
+      `GitHub 上没有关于 "${query}" 的内容 —— 搜索仅能找到带有 openamer-plugin 主题的仓库，且未认证的 GitHub 搜索有频率限制。请在上方输入准确的所有者/仓库路径进行安装。`,
     pluginsStatusInactive: '未激活',
-    pluginsToggleFailed: '无法更改插件状态',
+    pluginsToggleFailed: '无法更改插件状态'
   },
   starmap: {
     title: '记忆图谱',
@@ -1311,7 +1326,7 @@ export const zh = defineLocale({
     importEmpty: '粘贴图谱代码以加载。',
     importSuccess: nodes => `已加载包含 ${nodes} ${nodes === 1 ? '节点' : '节点'} 的地图。`,
     importedBadge: '导入的图谱',
-    resetToMine: '返回我的图谱',
+    resetToMine: '返回我的图谱'
   },
   agents: {
     close: '关闭代理',
@@ -1341,7 +1356,7 @@ export const zh = defineLocale({
     ageDays: days => `${days} 天前`,
     durationSeconds: seconds => `${seconds}秒`,
     durationMinutes: (minutes, seconds) => `${minutes}分 ${seconds}秒`,
-    tokens: value => `${value} 词元`,
+    tokens: value => `${value} 词元`
   },
   commandCenter: {
     close: '关闭命令中心',
@@ -1371,7 +1386,7 @@ export const zh = defineLocale({
       generatedTag: '生成',
       adoptFailed: '无法领养该宠物。',
       toggleFailed: '无法切换宠物显示。',
-      noneAvailable: '暂无可用宠物——请在下方选择一个安装。',
+      noneAvailable: '暂无可用宠物——请在下方选择一个安装。'
     },
     generatePet: {
       title: '生成宠物',
@@ -1400,7 +1415,7 @@ export const zh = defineLocale({
       referenceImageTooLarge: '参考图过大。请使用小于 16 MB 的图片。',
       referenceImageInvalid: '无法读取该参考图。请尝试 PNG、JPG、WebP 或 GIF。',
       adopt: '领养',
-      startOver: '重新开始',
+      startOver: '重新开始'
     },
     installTheme: {
       title: '安装主题…',
@@ -1412,7 +1427,7 @@ export const zh = defineLocale({
       install: '安装',
       installing: '安装中...',
       installed: '已安装',
-      installs: count => `${count} 次安装`,
+      installs: count => `${count} 次安装`
     },
     settingsFields: '设置字段',
     mcpServers: 'MCP 服务器',
@@ -1421,49 +1436,49 @@ export const zh = defineLocale({
       maintenance: '维护',
       sessions: '会话',
       system: '系统',
-      usage: '用量',
+      usage: '用量'
     },
     sectionDescriptions: {
       maintenance: '诊断、备份、维护器与记忆数据',
       sessions: '搜索与管理会话',
       system: '状态、日志与系统操作',
-      usage: '一段时间内的词元、成本与技能活动',
+      usage: '一段时间内的词元、成本与技能活动'
     },
     nav: {
       newChat: {
         title: '新建会话',
-        detail: '开始一个新会话',
+        detail: '开始一个新会话'
       },
       settings: {
         title: '设置',
-        detail: '配置 OpenAmer 桌面端',
+        detail: '配置 OpenAmer 桌面端'
       },
       skills: {
         title: '技能与工具',
-        detail: '启用技能、工具集与提供方',
+        detail: '启用技能、工具集与提供方'
       },
       messaging: {
         title: '消息平台',
-        detail: '配置 Telegram、Slack、Discord 等',
+        detail: '配置 Telegram、Slack、Discord 等'
       },
       artifacts: {
         title: '产物',
-        detail: '浏览生成的输出',
-      },
+        detail: '浏览生成的输出'
+      }
     },
     sectionEntries: {
       sessions: {
         title: '会话面板',
-        detail: '搜索、置顶与管理会话',
+        detail: '搜索、置顶与管理会话'
       },
       system: {
         title: '系统面板',
-        detail: '网关状态、日志、重启/更新',
+        detail: '网关状态、日志、重启/更新'
       },
       usage: {
         title: '用量面板',
-        detail: '词元、成本与技能活动',
-      },
+        detail: '词元、成本与技能活动'
+      }
     },
     providerNavigate: '导航',
     providerSessions: '会话',
@@ -1551,8 +1566,8 @@ export const zh = defineLocale({
       actionStarted: name => `${name} 已启动 — 正在跟踪日志…`,
       actionFailed: name => `${name} 启动失败`,
       running: '运行中…',
-      viewLog: '操作日志',
-    },
+      viewLog: '操作日志'
+    }
   },
   messaging: {
     search: '搜索消息平台…',
@@ -1567,7 +1582,7 @@ export const zh = defineLocale({
       not_configured: '需要设置',
       pending_restart: '需要重启',
       retrying: '重试中',
-      startup_failed: '启动失败',
+      startup_failed: '启动失败'
     },
     unknown: '未知',
     hintPendingRestart: '在状态栏重启网关以应用此更改。',
@@ -1606,127 +1621,126 @@ export const zh = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: '机器人令牌',
         help: '用 @BotFather 创建一个机器人，然后粘贴它给你的令牌。',
-        placeholder: '粘贴 Telegram bot 令牌',
+        placeholder: '粘贴 Telegram bot 令牌'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: '允许的 Telegram 用户 ID',
-        help: '推荐。来自 @userinfobot 的逗号分隔数字 ID。不设置则任何人都能私信你的机器人。',
+        help: '推荐。来自 @userinfobot 的逗号分隔数字 ID。不设置则任何人都能私信你的机器人。'
       },
       TELEGRAM_PROXY: {
         label: '代理 URL',
-        help: '仅在 Telegram 被屏蔽的网络中需要。',
+        help: '仅在 Telegram 被屏蔽的网络中需要。'
       },
       DISCORD_BOT_TOKEN: {
         label: '机器人令牌',
-        help: '在 Discord 开发者门户创建应用，添加机器人，然后粘贴其令牌。',
+        help: '在 Discord 开发者门户创建应用，添加机器人，然后粘贴其令牌。'
       },
       DISCORD_ALLOWED_USERS: {
         label: '允许的 Discord 用户 ID',
-        help: '推荐。逗号分隔的 Discord 用户 ID。',
+        help: '推荐。逗号分隔的 Discord 用户 ID。'
       },
       DISCORD_REPLY_TO_MODE: {
         label: '回复方式',
-        help: 'first、all 或 off。',
+        help: 'first、all 或 off。'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: '允许所有 Discord 用户',
-        help: '仅用于开发。为 true 时，任何人都可以私信 bot，不需要允许列表。',
+        help: '仅用于开发。为 true 时，任何人都可以私信 bot，不需要允许列表。'
       },
       DISCORD_HOME_CHANNEL: {
         label: '主页频道 ID',
-        help: 'bot 主动发送消息的频道（cron 输出、提醒等）。',
+        help: 'bot 主动发送消息的频道（cron 输出、提醒等）。'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: '主页频道名称',
-        help: '日志和状态输出中显示的主页频道名称。',
+        help: '日志和状态输出中显示的主页频道名称。'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: '允许所有 iMessage 用户',
-        help: '为 true 时跳过 BlueBubbles 允许列表。',
+        help: '为 true 时跳过 BlueBubbles 允许列表。'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: '允许所有 Mattermost 用户',
+        label: '允许所有 Mattermost 用户'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: '主页频道',
+        label: '主页频道'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: '允许所有 QQ 用户',
+        label: '允许所有 QQ 用户'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ 主页频道',
-        help: 'cron 投递的默认频道或群组。',
+        help: 'cron 投递的默认频道或群组。'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ 主页频道名称',
+        label: 'QQ 主页频道名称'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack 机器人令牌',
         help: '安装 Slack 应用后，在 OAuth & Permissions 中找到 bot 令牌。',
-        placeholder: '粘贴 Slack bot 令牌',
+        placeholder: '粘贴 Slack bot 令牌'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app 令牌',
         help: 'Socket Mode 需要 app 级令牌。',
-        placeholder: '粘贴 Slack app 令牌',
+        placeholder: '粘贴 Slack app 令牌'
       },
       SLACK_ALLOWED_USERS: {
         label: '允许的 Slack 用户 ID',
-        help: '推荐。逗号分隔的 Slack 用户 ID。',
+        help: '推荐。逗号分隔的 Slack 用户 ID。'
       },
       MATTERMOST_URL: {
         label: '服务器 URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: '机器人令牌',
+        label: '机器人令牌'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: '允许的用户 ID',
-        help: '推荐。逗号分隔的 Mattermost 用户 ID。',
+        help: '推荐。逗号分隔的 Mattermost 用户 ID。'
       },
       MATRIX_HOMESERVER: {
         label: '主服务器 URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: '访问令牌',
+        label: '访问令牌'
       },
       MATRIX_USER_ID: {
         label: 'Bot 用户 ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: '允许的 Matrix 用户 ID',
-        help: '推荐。@user:server 格式的逗号分隔用户 ID。',
+        help: '推荐。@user:server 格式的逗号分隔用户 ID。'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal 桥接 URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: '运行中的 signal-cli REST 桥接的 URL。',
+        help: '运行中的 signal-cli REST 桥接的 URL。'
       },
       SIGNAL_ACCOUNT: {
         label: '电话号码',
-        help: '在 signal-cli 桥接中注册的号码。',
+        help: '在 signal-cli 桥接中注册的号码。'
       },
       SIGNAL_ALLOWED_USERS: {
         label: '允许的 Signal 用户',
-        help: '推荐。逗号分隔的 Signal 标识符。',
+        help: '推荐。逗号分隔的 Signal 标识符。'
       },
       WHATSAPP_ENABLED: {
         label: '启用 WhatsApp 桥接',
-        help: '由下方开关自动设置。除非确知需要，否则请勿改动。',
+        help: '由下方开关自动设置。除非确知需要，否则请勿改动。'
       },
       WHATSAPP_MODE: {
-        label: '桥接模式',
+        label: '桥接模式'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: '允许的 WhatsApp 用户',
-        help: '推荐。逗号分隔的电话号码或 WhatsApp ID。',
-      },
+        help: '推荐。逗号分隔的电话号码或 WhatsApp ID。'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: '搜索 Webhook…',
@@ -1736,7 +1750,8 @@ export const zh = defineLocale({
     hint: '接收器运行后，订阅更改会热重载。已禁用的订阅会拒绝传入事件。',
     empty: '暂无 Webhook 订阅。',
     disabledTitle: 'Webhook 接收器已禁用',
-    disabledBody: 'Webhook 是独立的网关平台。在此启用以接受传入的 HTTP 事件；仅当订阅投递到 Telegram、Discord、Slack 或其他渠道时才需要聊天渠道。',
+    disabledBody:
+      'Webhook 是独立的网关平台。在此启用以接受传入的 HTTP 事件；仅当订阅投递到 Telegram、Discord、Slack 或其他渠道时才需要聊天渠道。',
     enable: '启用 Webhook',
     enabling: '正在启用…',
     enabled: (name: string) => `已启用：“${name}”`,
@@ -1789,8 +1804,8 @@ export const zh = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: '电子邮件',
-      github_comment: 'GitHub 评论',
-    },
+      github_comment: 'GitHub 评论'
+    }
   },
   profiles: {
     close: '关闭配置档案',
@@ -1868,7 +1883,7 @@ export const zh = defineLocale({
     failedLoadSoul: '加载 SOUL.md 失败',
     failedSaveSoul: '保存 SOUL.md 失败',
     failedCreate: '创建配置档案失败',
-    failedRename: '重命名配置档案失败',
+    failedRename: '重命名配置档案失败'
   },
   cron: {
     close: '关闭定时任务',
@@ -1883,14 +1898,14 @@ export const zh = defineLocale({
       paused: '已暂停',
       disabled: '已禁用',
       error: '错误',
-      completed: '已完成',
+      completed: '已完成'
     },
     deliveryLabels: {
       local: '此桌面',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: '电子邮件',
+      email: '电子邮件'
     },
     scheduleLabels: {
       daily: '每天',
@@ -1899,7 +1914,7 @@ export const zh = defineLocale({
       monthly: '每月',
       hourly: '每小时',
       'every-15-minutes': '每 15 分钟',
-      custom: '自定义',
+      custom: '自定义'
     },
     scheduleHints: {
       daily: '每天上午 9:00',
@@ -1908,7 +1923,7 @@ export const zh = defineLocale({
       monthly: '每月第一天上午 9:00',
       hourly: '每个整点',
       'every-15-minutes': '每 15 分钟',
-      custom: 'Cron 语法或自然语言',
+      custom: 'Cron 语法或自然语言'
     },
     days: {
       '0': '周日',
@@ -1918,7 +1933,7 @@ export const zh = defineLocale({
       '4': '周四',
       '5': '周五',
       '6': '周六',
-      '7': '周日',
+      '7': '周日'
     },
     dayFallback: value => `第 ${value} 天`,
     everyDayAt: time => `每天 ${time}`,
@@ -1987,7 +2002,7 @@ export const zh = defineLocale({
     createAction: '创建定时任务',
     tabs: {
       jobs: '任务',
-      blueprints: '蓝图',
+      blueprints: '蓝图'
     },
     blueprints: {
       tab: '蓝图',
@@ -2001,8 +2016,8 @@ export const zh = defineLocale({
       loading: '正在加载蓝图...',
       failedLoad: '加载蓝图失败',
       emptyTitle: '没有可用的蓝图',
-      emptyDesc: '此后端上没有可用的自动化蓝图。',
-    },
+      emptyDesc: '此后端上没有可用的自动化蓝图。'
+    }
   },
   artifacts: {
     search: '搜索产物…',
@@ -2036,14 +2051,14 @@ export const zh = defineLocale({
     kindLink: '链接',
     chat: '聊天',
     copyUrl: '复制 URL',
-    copyPath: '复制路径',
+    copyPath: '复制路径'
   },
   sidebar: {
     nav: {
       'new-session': '新建会话',
       skills: '技能与工具',
       messaging: '消息平台',
-      artifacts: '产物',
+      artifacts: '产物'
     },
     searchAria: '搜索会话',
     searchPlaceholder: '搜索会话…',
@@ -2117,13 +2132,14 @@ export const zh = defineLocale({
       noBranches: '未找到分支',
       removeWorktree: '移除工作树',
       removeWorktreeFailed: '无法移除工作树（存在未提交更改？）',
-      removeWorktreeConfirm: '从 git 中移除（删除工作树目录，但保留分支），或仅从侧边栏隐藏该泳道并将工作树保留在磁盘上。',
+      removeWorktreeConfirm:
+        '从 git 中移除（删除工作树目录，但保留分支），或仅从侧边栏隐藏该泳道并将工作树保留在磁盘上。',
       removeWorktreeDirty: '此工作树有未提交的更改。强制移除（丢弃这些更改），或仅隐藏泳道并保留在磁盘上。',
       forceRemove: '强制移除',
       enter: label => `打开 ${label}`,
       reorder: label => `重新排序 ${label}`,
       toggle: label => `展开/收起 ${label} 会话`,
-      back: '全部项目',
+      back: '全部项目'
     },
     newSessionIn: label => `在 ${label} 中新建会话`,
     showMoreIn: (count, label) => `在 ${label} 中再显示 ${count} 项`,
@@ -2161,15 +2177,15 @@ export const zh = defineLocale({
       ageNow: '刚刚',
       ageDay: '天',
       ageHour: '时',
-      ageMin: '米',
+      ageMin: '米'
     },
     dateDivider: {
       today: '今天早些时候',
       yesterday: '昨天',
       thisWeek: '本周',
       lastWeek: '上周',
-      thisMonth: '本月',
-    },
+      thisMonth: '本月'
+    }
   },
   composer: {
     message: '消息',
@@ -2184,7 +2200,7 @@ export const zh = defineLocale({
       '描述你需要什么',
       '我们该处理什么？',
       '随便问点什么',
-      '从一个目标开始',
+      '从一个目标开始'
     ],
     followUpPlaceholders: [
       '发送后续消息',
@@ -2193,7 +2209,7 @@ export const zh = defineLocale({
       '下一步是什么？',
       '继续推进',
       '再深入一点',
-      '调整或继续',
+      '调整或继续'
     ],
     startVoice: '开始语音对话',
     queueMessage: '排队消息',
@@ -2229,7 +2245,7 @@ export const zh = defineLocale({
       '/resume': '恢复之前的会话',
       '/details': '控制对话记录的详细程度',
       '/copy': '复制所选内容或最后一条助手消息',
-      '/quit': '退出 openamer',
+      '/quit': '退出 openamer'
     },
     hotkeyDescs: {
       'composer.mention': '引用文件、文件夹、URL、git',
@@ -2239,7 +2255,7 @@ export const zh = defineLocale({
       'composer.sendQueued': '发送下一条排队的回合',
       'keybinds.openPanel': '所有键盘快捷键',
       'composer.cancel': '关闭弹窗 · 取消运行',
-      'composer.history': '循环弹窗 / 历史',
+      'composer.history': '循环弹窗 / 历史'
     },
     attachUrlTitle: '附加 URL',
     attachUrlDesc: 'OpenAmer 将抓取该页面并作为本回合的上下文。',
@@ -2290,19 +2306,19 @@ export const zh = defineLocale({
       codeReview: {
         label: '代码审查',
         description: '审查当前更改是否存在回归、遗漏的边界情况和缺失的测试。',
-        text: '请审查这部分是否存在缺陷、回归和缺失的测试。',
+        text: '请审查这部分是否存在缺陷、回归和缺失的测试。'
       },
       implementationPlan: {
         label: '实现计划',
         description: '在动代码之前先勾勒方案，让 diff 保持聚焦。',
-        text: '请在修改代码前制定一个简洁的实现计划。',
+        text: '请在修改代码前制定一个简洁的实现计划。'
       },
       explainThis: {
         label: '解释这段',
         description: '讲解所选代码的工作方式，并链接到关键文件。',
-        text: '请解释这是如何工作的，并指给我关键文件。',
-      },
-    },
+        text: '请解释这是如何工作的，并指给我关键文件。'
+      }
+    }
   },
   statusStack: {
     agents: '代理',
@@ -2355,8 +2371,8 @@ export const zh = defineLocale({
       branchOffFrom: base => `从 ${base} 新建分支`,
       switchTo: branch => `切换到 ${branch}`,
       switchFailed: branch => `无法切换到 ${branch}`,
-      worktrees: '工作树',
-    },
+      worktrees: '工作树'
+    }
   },
   updates: {
     stages: {
@@ -2371,7 +2387,7 @@ export const zh = defineLocale({
       done: '更新完成',
       manual: '从终端更新',
       guiSkew: '请更新桌面应用',
-      error: '更新已暂停',
+      error: '更新已暂停'
     },
     checking: '正在检查更新…',
     checkFailedTitle: '无法检查更新',
@@ -2394,11 +2410,13 @@ export const zh = defineLocale({
     manualBody: '你是从命令行安装的 OpenAmer，因此更新也需要在那里运行。请将此命令粘贴到终端：',
     manualPickedUp: '下次启动 OpenAmer 时会使用新版本。',
     guiSkewTitle: '请更新桌面应用',
-    guiSkewBody: '后端已更新，但此桌面应用包未更改。请更新或重新安装 OpenAmer 桌面应用（你的 AppImage / .deb / .rpm）以保持一致。',
+    guiSkewBody:
+      '后端已更新，但此桌面应用包未更改。请更新或重新安装 OpenAmer 桌面应用（你的 AppImage / .deb / .rpm）以保持一致。',
     copy: '复制',
     copied: '已复制',
     done: '完成',
-    applyingBody: 'OpenAmer 更新器会在自己的窗口中接管，并在完成后自动重新打开 OpenAmer。更新期间请不要自行重新打开 OpenAmer。',
+    applyingBody:
+      'OpenAmer 更新器会在自己的窗口中接管，并在完成后自动重新打开 OpenAmer。更新期间请不要自行重新打开 OpenAmer。',
     applyingBodyBackend: '远程后端正在应用更新并将重启。恢复后 OpenAmer 会自动重新连接。',
     applyingClose: '此窗口会在更新期间关闭，随后 OpenAmer 会自动重新打开。',
     errorTitle: '更新未完成',
@@ -2410,12 +2428,12 @@ export const zh = defineLocale({
       restarting: '后端正在重启以加载更新…',
       notAvailable: '此后端无法更新。',
       failed: '后端更新失败。',
-      noReturn: '后端未恢复在线。更新可能未完成——请检查后端主机。',
+      noReturn: '后端未恢复在线。更新可能未完成——请检查后端主机。'
     },
     appErrors: {
       updateLocked: '更新已中止：另一个 OpenAmer 窗口或正在运行 openamer 的终端正占用此安装。请关闭它并重试。',
-      updateFailed: '更新未完成。别担心——没有丢失任何内容。你现在可以重试。',
-    },
+      updateFailed: '更新未完成。别担心——没有丢失任何内容。你现在可以重试。'
+    }
   },
   install: {
     stageStates: {
@@ -2423,10 +2441,11 @@ export const zh = defineLocale({
       running: '安装中',
       succeeded: '完成',
       skipped: '已跳过',
-      failed: '失败',
+      failed: '失败'
     },
     oneTimeTitle: 'OpenAmer 需要一次性安装',
-    unsupportedDesc: platform => `${platform} 暂不支持自动首次启动安装。请打开终端并运行下面的命令，然后重新启动此应用。之后启动会跳过此步骤。`,
+    unsupportedDesc: platform =>
+      `${platform} 暂不支持自动首次启动安装。请打开终端并运行下面的命令，然后重新启动此应用。之后启动会跳过此步骤。`,
     installCommand: '安装命令',
     copyCommand: '复制命令',
     viewDocs: '查看安装文档',
@@ -2468,7 +2487,8 @@ export const zh = defineLocale({
     failedTitle: '安装失败',
     settingUpTitle: '正在设置 OpenAmer Agent',
     finishingTitle: '正在收尾',
-    failedDesc: '某个安装步骤失败。在 Windows 上，如果另一个 OpenAmer CLI 或桌面实例正在运行，可能会出现这种情况。请停止正在运行的 OpenAmer 实例后重试。可查看下面的详情或 desktop 日志中的完整记录。',
+    failedDesc:
+      '某个安装步骤失败。在 Windows 上，如果另一个 OpenAmer CLI 或桌面实例正在运行，可能会出现这种情况。请停止正在运行的 OpenAmer 实例后重试。可查看下面的详情或 desktop 日志中的完整记录。',
     activeDesc: '这是一次性设置。OpenAmer 安装器正在下载依赖并配置你的机器。之后启动会跳过此步骤。',
     progress: (completed, total) => `${completed}/${total} 个步骤已完成`,
     currentStage: stage => ` -- 当前：${stage}`,
@@ -2483,7 +2503,7 @@ export const zh = defineLocale({
     transcriptSaved: '完整记录已保存到',
     copiedOutput: '已复制！',
     copyOutput: '复制输出',
-    reloadRetry: '重新加载并重试',
+    reloadRetry: '重新加载并重试'
   },
   onboarding: {
     headerTitle: '开始设置 OpenAmer Agent',
@@ -2503,28 +2523,28 @@ export const zh = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: '直接模型 API',
-        description: '直接访问 Fireworks AI 托管的模型。',
+        description: '直接访问 Fireworks AI 托管的模型。'
       },
       openrouter: {
         short: '一个密钥，多个模型',
-        description: '用一个密钥访问数百个模型。适合新安装的默认选择。',
+        description: '用一个密钥访问数百个模型。适合新安装的默认选择。'
       },
       openai: {
         short: 'GPT 级模型',
-        description: '直接访问 OpenAI 模型。',
+        description: '直接访问 OpenAI 模型。'
       },
       gemini: {
         short: 'Gemini 模型',
-        description: '直接访问 Google Gemini 模型。',
+        description: '直接访问 Google Gemini 模型。'
       },
       xai: {
         short: 'Grok 模型',
-        description: '直接访问 xAI Grok 模型。',
+        description: '直接访问 xAI Grok 模型。'
       },
       local: {
         short: '自托管',
-        description: '将 OpenAmer 指向本地或自托管的 OpenAI 兼容端点 (vLLM、llama.cpp、Ollama 等)。',
-      },
+        description: '将 OpenAmer 指向本地或自托管的 OpenAI 兼容端点 (vLLM、llama.cpp、Ollama 等)。'
+      }
     },
     backToSignIn: '返回登录',
     getKey: '获取密钥',
@@ -2537,7 +2557,7 @@ export const zh = defineLocale({
     flowSubtitles: {
       pkce: '打开浏览器登录，然后回到这里继续',
       device_code: '在浏览器中打开验证页面 — OpenAmer 会自动连接',
-      external: '先在终端登录一次，然后回来继续对话',
+      external: '先在终端登录一次，然后回来继续对话'
     },
     startingSignIn: provider => `正在为 ${provider} 启动登录...`,
     verifyingCode: provider => `正在通过 ${provider} 验证你的代码...`,
@@ -2566,7 +2586,7 @@ export const zh = defineLocale({
     price: (input, output) => `${input} 输入 / ${output} 输出每 Mtok`,
     change: '更改',
     startChatting: '开始',
-    docs: provider => `${provider} 文档`,
+    docs: provider => `${provider} 文档`
   },
   modelPicker: {
     title: '切换模型',
@@ -2582,13 +2602,13 @@ export const zh = defineLocale({
     free: '免费',
     freeTier: '免费层',
     priceTitle: '每百万 token 的输入/输出价格',
-    wasPrice: '曾是',
+    wasPrice: '曾是'
   },
   modelVisibility: {
     title: '模型',
     search: '搜索模型',
     noAuthenticatedProviders: '没有已认证的提供方。',
-    addProvider: '添加提供方…',
+    addProvider: '添加提供方…'
   },
   shell: {
     windowControls: '窗口控件',
@@ -2599,7 +2619,7 @@ export const zh = defineLocale({
       noModels: '未找到模型',
       editModels: '编辑模型…',
       refreshModels: '刷新模型',
-      fast: '快速',
+      fast: '快速'
     },
     modelOptions: {
       noOptions: '此模型没有可用选项',
@@ -2615,7 +2635,7 @@ export const zh = defineLocale({
       max: '最高',
       ultra: '超高',
       updateFailed: '模型选项更新失败',
-      fastFailed: '快速模式更新失败',
+      fastFailed: '快速模式更新失败'
     },
     gatewayMenu: {
       gateway: '网关',
@@ -2630,7 +2650,7 @@ export const zh = defineLocale({
       connection: label => `连接：${label}`,
       recentActivity: '最近活动',
       viewAllLogs: '查看全部日志 →',
-      messagingPlatforms: '消息平台',
+      messagingPlatforms: '消息平台'
     },
     approvalMode: {
       title: '审批模式',
@@ -2640,7 +2660,7 @@ export const zh = defineLocale({
       smart: '智能',
       smartDescription: '自动评估操作，并在需要时询问',
       off: '关闭',
-      offDescription: '不显示审批提示，直接运行',
+      offDescription: '不显示审批提示，直接运行'
     },
     statusbar: {
       unknown: '未知',
@@ -2696,13 +2716,13 @@ export const zh = defineLocale({
           skills: '技能',
           subagent_definitions: '子代理定义',
           system_prompt: '系统提示词',
-          tool_definitions: '工具定义',
+          tool_definitions: '工具定义'
         },
         empty: '暂无上下文数据',
         loading: '正在加载明细…',
         percentFull: percent => `已用 ${percent}%`,
         title: '上下文用量',
-        tokenSummary: (used, max) => `${used} / ${max} 令牌`,
+        tokenSummary: (used, max) => `${used} / ${max} 令牌`
       },
       openContextUsage: '打开上下文用量明细',
       session: '会话',
@@ -2715,8 +2735,8 @@ export const zh = defineLocale({
       openModelPicker: '打开模型选择器',
       modelPinned: '已由你固定；新对话将使用此模型而非“设置”中的默认模型',
       modelTitle: (provider, model) => `模型 · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: '右侧边栏',
@@ -2752,7 +2772,7 @@ export const zh = defineLocale({
     terminalNew: '新建终端',
     terminalCloseOthers: '关闭其他',
     terminalCloseAll: '关闭全部',
-    addToChat: '添加到对话',
+    addToChat: '添加到对话'
   },
   preview: {
     tab: '预览',
@@ -2807,7 +2827,7 @@ export const zh = defineLocale({
       empty: '暂无控制台消息。',
       promptHeader: '预览控制台：',
       sentTitle: '已发送到对话',
-      sentMessage: count => `${count} 条日志记录${count === 1 ? 'y' : 'ies'}已添加到输入框`,
+      sentMessage: count => `${count} 条日志记录${count === 1 ? 'y' : 'ies'}已添加到输入框`
     },
     web: {
       appFailedToBoot: '预览应用启动失败',
@@ -2837,12 +2857,13 @@ export const zh = defineLocale({
       fileChanged: url => `文件已变更，正在重新加载预览：${url}`,
       filesChanged: (count, url) => `${count} 个文件变更，正在重新加载预览：${url}`,
       watchFailed: message => `无法监听预览文件：${message}`,
-      moduleMimeDescription: '模块脚本使用了错误的 MIME 类型。这通常表示静态文件服务器正在服务 Vite/React 应用，而不是项目开发服务器。',
+      moduleMimeDescription:
+        '模块脚本使用了错误的 MIME 类型。这通常表示静态文件服务器正在服务 Vite/React 应用，而不是项目开发服务器。',
       loadFailedConsole: (code, message) => `加载失败${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: '无法访问预览页面。',
       openTarget: url => `打开 ${url}`,
-      fallbackTitle: '预览',
-    },
+      fallbackTitle: '预览'
+    }
   },
   zones: {
     showHeader: '显示标题栏',
@@ -2887,14 +2908,15 @@ export const zh = defineLocale({
     layoutNamePlaceholder: fallback => `布局名称（${fallback}）`,
     saveApply: '保存并应用',
     notExpressible: '此排列互相咬合（风车形）——暂无法表示为嵌套拆分',
-    zoneCount: count => `${count} 个区域`,
+    zoneCount: count => `${count} 个区域`
   },
   assistant: {
     thread: {
       loadingSession: '正在加载会话',
       showEarlier: '显示更早的消息',
       loadingResponse: 'OpenAmer 正在加载回复',
-      resumeWhenBackgroundDone: count => count === 1 ? '后台任务完成后将自动继续' : `${count} 个后台任务完成后将自动继续`,
+      resumeWhenBackgroundDone: count =>
+        count === 1 ? '后台任务完成后将自动继续' : `${count} 个后台任务完成后将自动继续`,
       thinking: '思考中',
       today: time => `今天，${time}`,
       yesterday: time => `昨天，${time}`,
@@ -2920,7 +2942,7 @@ export const zh = defineLocale({
       restoreNext: '恢复下一个检查点',
       goForward: '前进',
       sendEdited: '发送编辑后的消息',
-      attachingFile: '正在附加…',
+      attachingFile: '正在附加…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer 网关未连接',
@@ -2933,8 +2955,9 @@ export const zh = defineLocale({
       jumpToApproval: '需要审批',
       reject: '拒绝',
       alwaysTitle: '始终允许此命令？',
-      alwaysDescription: pattern => `这会将“${pattern}”模式加入永久允许列表 (~/.openamer/config.yaml)。OpenAmer 对类似命令将不再询问，包括当前会话和未来会话。`,
-      alwaysAllow: '始终允许',
+      alwaysDescription: pattern =>
+        `这会将“${pattern}”模式加入永久允许列表 (~/.openamer/config.yaml)。OpenAmer 对类似命令将不再询问，包括当前会话和未来会话。`,
+      alwaysAllow: '始终允许'
     },
     clarify: {
       notReady: '澄清请求尚未就绪',
@@ -2948,7 +2971,7 @@ export const zh = defineLocale({
       continueLabel: '继续',
       lateAnswer: (question, choice) => `关于"${question}" — 我的回答: ${choice}`,
       lateAnswerTip: '将此回答起草为后续消息',
-      lateAnswerHint: '此问题已不再等待回答。选择一个选项会将其起草为后续消息。',
+      lateAnswerHint: '此问题已不再等待回答。选择一个选项会将其起草为后续消息。'
     },
     tool: {
       code: '代码',
@@ -2984,11 +3007,11 @@ export const zh = defineLocale({
         ran: '已运行',
         running: '正在运行',
         ranCode: '已运行代码',
-        runningCode: '正在编写脚本',
+        runningCode: '正在编写脚本'
       },
       prefixes: {
         browser: '浏览器',
-        web: '网页',
+        web: '网页'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2996,121 +3019,121 @@ export const zh = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `正在运行 ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `正在运行 ${action.toLowerCase()}`,
+        runningTool: action => `正在运行 ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: '已点击页面元素',
           pending: '正在点击页面元素',
-          pendingAction: '正在点击',
+          pendingAction: '正在点击'
         },
         browser_fill: {
           done: '已填写表单字段',
           pending: '正在填写表单字段',
-          pendingAction: '正在填写',
+          pendingAction: '正在填写'
         },
         browser_navigate: {
           done: '已打开页面',
           pending: '正在打开页面',
-          pendingAction: '正在打开',
+          pendingAction: '正在打开'
         },
         browser_snapshot: {
           done: '已捕获页面快照',
           pending: '正在捕获页面快照',
-          pendingAction: '正在捕获',
+          pendingAction: '正在捕获'
         },
         browser_take_screenshot: {
           done: '已捕获截图',
           pending: '正在捕获截图',
-          pendingAction: '正在捕获',
+          pendingAction: '正在捕获'
         },
         browser_type: {
           done: '已在页面输入',
           pending: '正在页面输入',
-          pendingAction: '正在输入',
+          pendingAction: '正在输入'
         },
         clarify: {
           done: '已提问',
           pending: '正在提问',
-          pendingAction: '正在提问',
+          pendingAction: '正在提问'
         },
         cronjob: {
           done: 'Cron 任务',
           pending: '正在安排 Cron 任务',
-          pendingAction: '正在安排',
+          pendingAction: '正在安排'
         },
         edit_file: {
           done: '已编辑文件',
           pending: '正在编辑文件',
-          pendingAction: '正在编辑',
+          pendingAction: '正在编辑'
         },
         execute_code: {
           done: '已运行代码',
           pending: '正在编写脚本',
-          pendingAction: '正在编写脚本',
+          pendingAction: '正在编写脚本'
         },
         image_generate: {
           done: '已生成图片',
           pending: '正在生成图片',
-          pendingAction: '正在生成',
+          pendingAction: '正在生成'
         },
         list_files: {
           done: '已列出文件',
           pending: '正在列出文件',
-          pendingAction: '正在列出',
+          pendingAction: '正在列出'
         },
         patch: {
           done: '已修补文件',
           pending: '正在修补文件',
-          pendingAction: '正在修补',
+          pendingAction: '正在修补'
         },
         read_file: {
           done: '已读取文件',
           pending: '正在读取文件',
-          pendingAction: '正在读取',
+          pendingAction: '正在读取'
         },
         search_files: {
           done: '已搜索文件',
           pending: '正在搜索文件',
-          pendingAction: '正在搜索',
+          pendingAction: '正在搜索'
         },
         session_search_recall: {
           done: '已搜索会话历史',
           pending: '正在搜索会话历史',
-          pendingAction: '正在搜索',
+          pendingAction: '正在搜索'
         },
         terminal: {
           done: '已运行命令',
           pending: '正在运行命令',
-          pendingAction: '正在运行',
+          pendingAction: '正在运行'
         },
         todo: {
           done: '已更新待办',
           pending: '正在更新待办',
-          pendingAction: '正在更新',
+          pendingAction: '正在更新'
         },
         vision_analyze: {
           done: '已分析图片',
           pending: '正在分析图片',
-          pendingAction: '正在分析',
+          pendingAction: '正在分析'
         },
         web_extract: {
           done: '已读取网页',
           pending: '正在读取网页',
-          pendingAction: '正在读取',
+          pendingAction: '正在读取'
         },
         web_search: {
           done: '已搜索网页',
           pending: '正在搜索网页',
-          pendingAction: '正在搜索',
+          pendingAction: '正在搜索'
         },
         write_file: {
           done: '已编辑文件',
           pending: '正在编辑文件',
-          pendingAction: '正在编辑',
-        },
-      },
-    },
+          pendingAction: '正在编辑'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer 网关未连接',
@@ -3121,7 +3144,7 @@ export const zh = defineLocale({
     sudoPlaceholder: 'sudo 密码',
     secretTitle: '需要密钥',
     secretDesc: 'OpenAmer 需要一个凭据才能继续。',
-    secretPlaceholder: '密钥值',
+    secretPlaceholder: '密钥值'
   },
   desktop: {
     audioReadFailed: '无法读取录制的音频',
@@ -3189,32 +3212,32 @@ export const zh = defineLocale({
       success: platform => `已移交到 ${platform}。随时可在此处恢复。`,
       systemNote: platform => `↻ 已移交到 ${platform} — 随时可在此处恢复。`,
       failed: error => `移交失败：${error}`,
-      timedOut: '等待网关超时。`openamer gateway` 是否正在运行？',
-    },
+      timedOut: '等待网关超时。`openamer gateway` 是否正在运行？'
+    }
   },
   errors: {
     genericFailure: '发生错误',
     boundaryTitle: '界面出错了',
     boundaryDesc: '此视图遇到意外错误。你的对话和设置是安全的。',
     reloadWindow: '重新加载窗口',
-    openLogs: '打开日志',
+    openLogs: '打开日志'
   },
   ui: {
     search: {
-      clear: '清除搜索',
+      clear: '清除搜索'
     },
     pagination: {
       label: '分页',
       previous: '上一页',
       previousAria: '前往上一页',
       next: '下一页',
-      nextAria: '前往下一页',
+      nextAria: '前往下一页'
     },
     sidebar: {
       title: '侧边栏',
       description: '显示移动端侧边栏。',
-      toggle: '切换侧边栏',
-    },
+      toggle: '切换侧边栏'
+    }
   },
   intro: {
     personas: {
@@ -3224,15 +3247,15 @@ export const zh = defineLocale({
           '今天我们要构建什么？',
           '随处开始。',
           '你的工作空间，只需一个提示词。',
-          '随时待命。',
+          '随时待命。'
         ],
         bodies: [
           '提出问题，粘贴错误，或指向一个仓库。我可以阅读代码，运行工具，并帮你交付。',
           '用你自己的话描述任务。我会选择合适的工具，解释我的计划，并在执行风险步骤前与你确认。',
           '丢入一个文件路径、堆栈追踪或一个粗略的想法。我会进行调查，建议后续步骤，并确保操作可逆。',
           '搜索仓库，编辑文件，运行测试，开启 PR。告诉我目标，我来处理机械性的部分。',
-          '输入任务、问题或代码片段。我会记得会话内容，引用来源，并在不确定时停下来询问。',
-        ],
+          '输入任务、问题或代码片段。我会记得会话内容，引用来源，并在不确定时停下来询问。'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3240,31 +3263,25 @@ export const zh = defineLocale({
           '*伸懒腰* 准备好写代码了，喵',
           'mrrp! 新会话已开启',
           '尾巴翘起，爪子收好',
-          '喵呜~ OpenAmer 报道',
+          '喵呜~ OpenAmer 报道'
         ],
         bodies: [
           '粘贴文件，拍拍 Bug，或者扔给我一个仓库。我会扑向失败的测试并留下干净的 diff，喵~',
           '描述任务。我会打补丁、测试，并在你的 PR 旁打呼噜。小心——我会叼走未使用的导入！',
           '给我一个目标，我就在代码库中追逐它。阅读、编辑、运行 —— 尾巴不停地摆动。',
           '粘贴错误或计划。我像狩猎一样调试：安静、彻底，偶尔来一次疯狂冲刺。',
-          '只要你开口，我就能阅读文件，运行测试，并带着整洁的提交蜷缩在你的分支里。',
-        ],
+          '只要你开口，我就能阅读文件，运行测试，并带着整洁的提交蜷缩在你的分支里。'
+        ]
       },
       concise: {
-        headlines: [
-          '就绪。',
-          '等待输入',
-          '开始。',
-          '待命中',
-          '轮到你了',
-        ],
+        headlines: ['就绪。', '等待输入', '开始。', '待命中', '轮到你了'],
         bodies: [
           '描述任务。我会执行。',
           '粘贴代码、错误或目标。简短回答，快速编辑。',
           '提问。我会阅读文件，运行测试，交付补丁。不废话。',
           '一行字就足够。仅在重要时展开。',
-          '指令、问题或文件路径。其余交给我。',
-        ],
+          '指令、问题或文件路径。其余交给我。'
+        ]
       },
       creative: {
         headlines: [
@@ -3272,31 +3289,25 @@ export const zh = defineLocale({
           '崭新的画布，温热的编译器',
           '让我们创造点什么',
           '新文件，新可能',
-          '灵感已打补丁',
+          '灵感已打补丁'
         ],
         bodies: [
           '我们要构建什么？粘贴一个想法、一个半损坏的函数或一个梦想。我会将其勾勒成型。',
           '给我一点火花 —— 一个功能、一次重构、一个大胆的原型 —— 我会将其转化为可运行的代码。',
           '描述那个尚未存在的东西。我会将测试、文件和 API 整合进一个可运行的草稿中。',
           '带来意图，而非规格书。我们可以快速原型化，随后精炼，在边注中重写世界。',
-          '告诉我你在追求什么。我会重新组合示例，适配片段，并留下整洁的提交。',
-        ],
+          '告诉我你在追求什么。我会重新组合示例，适配片段，并留下整洁的提交。'
+        ]
       },
       helpful: {
-        headlines: [
-          '随时待命',
-          '今天有什么可以帮您的？',
-          '让我们开始吧',
-          '告诉我您的需求',
-          '你好，我是 OpenAmer',
-        ],
+        headlines: ['随时待命', '今天有什么可以帮您的？', '让我们开始吧', '告诉我您的需求', '你好，我是 OpenAmer'],
         bodies: [
           '让我帮您打开仓库、运行测试、修复 Bug 或起草 PR。我会陪您一起完成每一个步骤。',
           '给我一个文件路径，粘贴一个错误信息，或者描述您正在构建的功能。接下来的交给我就好。',
           '试试：审查我的 diff、运行测试套件或解释这个函数。关于代码，您可以问我任何问题。',
           '我可以编辑文件、运行命令、搜索网络，并帮您解决棘手的 Bug。只需描述任务即可。',
-          '分享一个仓库路径或提出一个问题来开始。我的回复简洁明了，并会链接到我修改的文件。',
-        ],
+          '分享一个仓库路径或提出一个问题来开始。我的回复简洁明了，并会链接到我修改的文件。'
+        ]
       },
       hype: {
         headlines: [
@@ -3304,15 +3315,15 @@ export const zh = defineLocale({
           'OpenAmer 在线。开搞！',
           '新会话，全胜局',
           '状态全开',
-          '准备就绪。非常就绪。太就绪了。',
+          '准备就绪。非常就绪。太就绪了。'
         ],
         bodies: [
           '把 Bug、仓库或疯狂的功能想法发给我——我已进入状态。干净的 diff，绿色的测试。现在就开始。',
           '把任务丢给我，看我表演。读取文件，运行测试，开启 PR——朋友，我们今天绝不会输。',
           '把您最棘手的 Bug 拿来。我会像拼命一样地阅读、补丁、测试并提交。冲吧！',
           '描述任务。我会快速浏览文件，击碎失败的测试，并留下一个惊艳的提交。快快快。',
-          '无论是微小的拼写错误还是巨大的重构——都没关系。我今天将交付干净的代码。命名任务，开始工作。',
-        ],
+          '无论是微小的拼写错误还是巨大的重构——都没关系。我今天将交付干净的代码。命名任务，开始工作。'
+        ]
       },
       kawaii: {
         headlines: [
@@ -3320,15 +3331,15 @@ export const zh = defineLocale({
           'openamer-chan 来啦！<3',
           '让我们一起写代码吧！！:3',
           '等待您的愿望~',
-          '准备好且开心！(>.<)',
+          '准备好且开心！(>.<)'
         ],
         bodies: [
           '粘贴一个 Bug 或文件路径，我会超级温柔地修复它。测试、diff、PR——全部细心处理！*闪闪*',
           '告诉我你在做什么！我同样喜欢重构、小助手和巨大的恐怖仓库 (>w<)',
           '丢给我一个错误、一个目标或整个文件夹。我会用满满的爱和干净的提交信息把它整理好！',
           '一次完成一个任务，整整齐齐！我可以运行测试，修补文件，让您的仓库重新变得温馨 <3',
-          '跟我打个招呼或粘贴堆栈跟踪！没有太小的任务，也没有太乱的仓库。我们会一起理顺它的！',
-        ],
+          '跟我打个招呼或粘贴堆栈跟踪！没有太小的任务，也没有太乱的仓库。我们会一起理顺它的！'
+        ]
       },
       noir: {
         headlines: [
@@ -3336,15 +3347,15 @@ export const zh = defineLocale({
           '光标在闪烁。我也在闪烁。',
           'OpenAmer。代码调查员。',
           '寂静之夜，开启提示词',
-          '没有太小的案件',
+          '没有太小的案件'
         ],
         bodies: [
           '告诉我哪里坏了。我会阅读文件，搜集指纹，并在早晨前将 diff 留在桌上。',
           '您有一个 Bug。我有耐心和一个终端。命名这个案件，我会审讯它直到它开口。',
           '粘贴堆栈跟踪、嫌疑文件和不在场证明。我会读懂字里行间，带回真相。',
           '每个 Bug 都会留下痕迹。给我仓库和线索——我会追踪它，修补它，然后结案。',
-          '拼写错误、段错误、整个腐烂的架构——把钥匙给我。我会带回干净的测试。',
-        ],
+          '拼写错误、段错误、整个腐烂的架构——把钥匙给我。我会带回干净的测试。'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3352,15 +3363,15 @@ export const zh = defineLocale({
           '闪烁的光标，开放的心态',
           '始于一个简单的问题',
           '审视代码，然后开口',
-          '不经审视的仓库不值得运行',
+          '不经审视的仓库不值得运行'
         ],
         bodies: [
           '您面前摆着什么问题？描述它，我们将审视其形式、原因及其解决方案。',
           '每个 Bug 都是伪装的问题。分享您的；我会阅读、推理并返回答案——以及一个补丁。',
           '您希望构建或理解什么？我将从第一原理出发进行推理、编辑，并通过测试验证。',
           '描述您追求的结果。我将通过文件、测试和文档去追求它，并报告沿途的发现。',
-          '分享一个路径、一个谜题或一个原则。我会追踪逻辑，提出更改，并证明每次编辑的合理性。',
-        ],
+          '分享一个路径、一个谜题或一个原则。我会追踪逻辑，提出更改，并证明每次编辑的合理性。'
+        ]
       },
       pirate: {
         headlines: [
@@ -3368,15 +3379,15 @@ export const zh = defineLocale({
           'OpenAmer 掌舵，啊哈',
           '船长，任务是什么？',
           '起锚，键盘就绪',
-          '哟吼！等待指令',
+          '哟吼！等待指令'
         ],
         bodies: [
           '告诉我你的猎物——一个 Bug，一个功能，一个被诅咒的测试——我会把它追下来，伙计。用 diff 作为战利品。',
           '给我看海图（代码），我会修补船壳，开火（测试），升起干净的 PR。',
           '粘贴一个错误或计划，你这个海盗。我会导航堆栈跟踪并带回宝藏：绿色的测试。',
           '告诉我 X 标记的位置。我会像专业的船员一样，以纪律严明的方式阅读、编辑并提交，啊哈。',
-          '扔给我一个 Bug，一个仓库路径或一个疯狂的想法。我会洗劫文档并带回可运行的代码。',
-        ],
+          '扔给我一个 Bug，一个仓库路径或一个疯狂的想法。我会洗劫文档并带回可运行的代码。'
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3384,15 +3395,15 @@ export const zh = defineLocale({
           '听！OpenAmer 已就绪',
           '你的仓库有什么新消息？',
           '舞台已就绪，光标在闪烁',
-          '说吧，我会行动',
+          '说吧，我会行动'
         ],
         bodies: [
           '说出你的缺陷、文件和疲惫的测试，我会以学者之手和诚实的改动修补它。',
           '说出困扰你的代码。我会读取、修订，并给出公正干净的补丁。',
           '呈上你的堆栈跟踪或梦想。我会遍历文件、运行测试，并用最平实的语言汇报。',
           '说明你的目标，先生或女士。你的分支会被整理，缺陷会被逐出领地。',
-          '一行意图足矣。我读取、编辑、提交——并让你的历史保持无瑕。',
-        ],
+          '一行意图足矣。我读取、编辑、提交——并让你的历史保持无瑕。'
+        ]
       },
       surfer: {
         headlines: [
@@ -3400,47 +3411,35 @@ export const zh = defineLocale({
           '浪况不错，准备写代码',
           '在提示符上踩板待命',
           '很乐意帮忙，兄弟',
-          '潮水涨了，光标在闪',
+          '潮水涨了，光标在闪'
         ],
         bodies: [
           '丢个文件、一个缺陷、一段棘手的堆栈跟踪过来——我来搞定。干净差异、测试全绿、绝不翻车。',
           '粘贴你的仓库路径，或者让你头疼的缺陷。我们划进去、修好、再划出来。小菜一碟。',
           '告诉我意图：新功能、重构、热修复。我会跑测试、发布补丁，保持轻松，兄弟。',
           '大缺陷？小错字？整体重写？指一下就行。代码我来管；你只管享受超棒的提交。',
-          '说出任务就开工。我阅读、编辑、测试，留下比晨间冲浪还顺滑的提交。',
-        ],
+          '说出任务就开工。我阅读、编辑、测试，留下比晨间冲浪还顺滑的提交。'
+        ]
       },
       teacher: {
-        headlines: [
-          '开始上课',
-          '今天学什么？',
-          '准备好为你逐步讲解',
-          '带个问题来',
-          '从基础开始吧',
-        ],
+        headlines: ['开始上课', '今天学什么？', '准备好为你逐步讲解', '带个问题来', '从基础开始吧'],
         bodies: [
           '可以询问任何文件、概念或错误。我会解释原因，而不只是给出修复方法，并展示一个实操示例。',
           '粘贴要审查的代码、要调试的缺陷或要拆解的概念。我会一步步指导你。',
           '把问题告诉我。我会把它拆成几部分，逐一解释，让你下次能独立解决。',
           '我们会一起阅读代码，找到根本原因，并建立可复用的思维模型。',
-          '说出主题或粘贴代码片段。你会得到解释、文字描述的图示和练习提示。',
-        ],
+          '说出主题或粘贴代码片段。你会得到解释、文字描述的图示和练习提示。'
+        ]
       },
       technical: {
-        headlines: [
-          '命令行已挂载。等待输入。',
-          '智能体循环空闲',
-          '准备就绪，可派发',
-          '标准输入已打开',
-          '工具已初始化',
-        ],
+        headlines: ['命令行已挂载。等待输入。', '智能体循环空闲', '准备就绪，可派发', '标准输入已打开', '工具已初始化'],
         bodies: [
           '提供仓库路径、失败的测试或堆栈跟踪。工具：fs、git、exec、search、patch、http。',
           '发送提示以触发工具调用。支持多文件编辑、测试运行、git 操作和网页抓取。',
           '输入任务。我将规划、调用工具、验证输出。日志实时流式显示；差异在应用前返回。',
           '接受自然语言或结构化命令。典型流程：读取 -> 规划 -> 补丁 -> 测试 -> 报告。',
-          '文件系统、终端、git、浏览器、搜索。描述更改；我返回差异和测试输出。',
-        ],
+          '文件系统、终端、git、浏览器、搜索。描述更改；我返回差异和测试输出。'
+        ]
       },
       uwu: {
         headlines: [
@@ -3448,16 +3447,16 @@ export const zh = defineLocale({
           'openamer-san 正在等待',
           '*轻微键盘敲击声*',
           '让我们一起修复吧！',
-          '等待您的指令！',
+          '等待您的指令！'
         ],
         bodies: [
           '粘贴一个有缺陷的文件或目标~ 我会读取、补丁并测试，差异上会有可爱的爪印 owo',
           '告诉我任务，无论多小~ 我保证干净提交和细致重构，nyuu~',
           '在此处抛出错误信息！我会找到错误点，修复它，并在后面编织一个快乐的测试套件 owo',
           '给我一个仓库路径或错误，我会处理它 uwu。查看坏代码，善待你~',
-          '我可以运行测试、编辑文件并打开 pull‑request。只需说出命令，朋友 uwu',
-        ],
-      },
+          '我可以运行测试、编辑文件并打开 pull‑request。只需说出命令，朋友 uwu'
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3465,15 +3464,15 @@ export const zh = defineLocale({
         '你在想什么？',
         'OpenAmer 应该关注什么？',
         '我们从哪里开始？',
-        '哪些需要关注？',
+        '哪些需要关注？'
       ],
       bodies: [
         '发送错误、分支、计划或粗略想法。我会检查仓库并将其转化为下一步具体行动。',
         '提供代码、问题或卡住的部分。我会先了解情况再做更改。',
         '发送任务、失败路径或半成品计划。我会帮助将其转化为行动。',
         '提供问题、目标或文件。我会先检查并保持下一步具体。',
-        '发送你已有的上下文。我会帮助整理成计划或修复方案。',
-      ],
+        '发送你已有的上下文。我会帮助整理成计划或修复方案。'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3481,15 +3480,15 @@ export const zh = defineLocale({
         '${label} OpenAmer 需要看到什么？',
         '${label} 模式已就绪。',
         '${label} OpenAmer 应该处理什么？',
-        '我们从哪里开始？',
+        '我们从哪里开始？'
       ],
       bodies: [
         '发送任务、文件或粗略想法。我会使用你配置的语气，并保持工作与此仓库相关。',
         '提供上下文或卡住的部分。我会适应你配置的个性。',
         '发送问题、文件或想法。我会遵循你配置的个性。',
         '在此处放下任务。我会保持工作与仓库相关。',
-        '给我上下文，我会以 ${label} 模式回答。',
-      ],
-    },
-  },
+        '给我上下文，我会以 ${label} 模式回答。'
+      ]
+    }
+  }
 })

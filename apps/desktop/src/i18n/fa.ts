@@ -44,7 +44,7 @@ export const fa = defineLocale({
     update: 'به‌روزرسانی',
     tryHint: term => `«${term}» را امتحان کنید`,
     on: 'روشن',
-    off: 'خاموش',
+    off: 'خاموش'
   },
   fileMenu: {
     revealFinder: 'نمایش در Finder',
@@ -59,7 +59,7 @@ export const fa = defineLocale({
     renameLabel: 'نام جدید',
     deleteTitle: name => `${name} حذف شود؟`,
     deleteBody: 'به سطل زباله منتقل می‌شود — می‌توانید از آنجا بازیابی کنید.',
-    pathCopied: 'مسیر کپی شد',
+    pathCopied: 'مسیر کپی شد'
   },
   boot: {
     ready: 'OpenAmer Desktop آماده است',
@@ -69,7 +69,7 @@ export const fa = defineLocale({
       loadingSettings: 'بارگذاری تنظیمات OpenAmer',
       loadingSessions: 'بارگذاری نشست‌های اخیر',
       startingDesktopConnection: 'شروع اتصال دسکتاپ',
-      startingOpenAmerDesktop: 'راه‌اندازی OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'راه‌اندازی OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'فرآیند پس‌زمینه OpenAmer خاتمه یافت.',
@@ -78,13 +78,15 @@ export const fa = defineLocale({
       desktopBootFailed: 'راه‌اندازی دسکتاپ ناموفق بود',
       gatewayConnectionLost: 'اتصال به گیت‌وی قطع شد',
       gatewaySignInRequired: 'ورود به گیت‌وی لازم است',
-      ipcBridgeUnavailable: 'پل IPC دسکتاپ در دسترس نیست.',
+      ipcBridgeUnavailable: 'پل IPC دسکتاپ در دسترس نیست.'
     },
     failure: {
-      title: "OpenAmer راه‌اندازی نشد",
-      description: "گیت‌وی پس‌زمینه بالا نیامد. یکی از مراحل بازیابی زیر را امتحان کنید. هیچ‌چیز اینجا چت‌ها یا تنظیمات شما را حذف نمی‌کند.",
+      title: 'OpenAmer راه‌اندازی نشد',
+      description:
+        'گیت‌وی پس‌زمینه بالا نیامد. یکی از مراحل بازیابی زیر را امتحان کنید. هیچ‌چیز اینجا چت‌ها یا تنظیمات شما را حذف نمی‌کند.',
       remoteTitle: 'ورود به گیت‌وی راه‌دور لازم است',
-      remoteDescription: 'نشست گیت‌وی راه‌دور شما منقضی شده است. برای اتصال مجدد دوباره وارد شوید. هیچ‌چیز اینجا چت‌ها یا تنظیمات شما را حذف نمی‌کند.',
+      remoteDescription:
+        'نشست گیت‌وی راه‌دور شما منقضی شده است. برای اتصال مجدد دوباره وارد شوید. هیچ‌چیز اینجا چت‌ها یا تنظیمات شما را حذف نمی‌کند.',
       retry: 'تلاش دوباره',
       repairInstall: 'ترمیم نصب',
       useLocalGateway: 'استفاده از گیت‌وی محلی',
@@ -92,7 +94,8 @@ export const fa = defineLocale({
       back: 'بازگشت',
       openLogs: 'باز کردن گزارش‌ها',
       repairHint: 'ترمیم نصب‌کننده را دوباره اجرا می‌کند و در یک ماشین تازه ممکن است چند دقیقه طول بکشد.',
-      remoteSignInHint: signInLabel => `از نشست ذخیره‌شده مرورگر راه‌دور خارج می‌شود، سپس ${signInLabel} را باز می‌کند. برای بازگشت به بک‌اند داخلی از «استفاده از گیت‌وی محلی» استفاده کنید.`,
+      remoteSignInHint: signInLabel =>
+        `از نشست ذخیره‌شده مرورگر راه‌دور خارج می‌شود، سپس ${signInLabel} را باز می‌کند. برای بازگشت به بک‌اند داخلی از «استفاده از گیت‌وی محلی» استفاده کنید.`,
       signOutAndSignIn: 'خروج و ورود',
       remoteFailureHint: 'URL و ورود را در تنظیمات گیت‌وی بررسی کنید یا به گیت‌وی محلی سوئیچ کنید.',
       hideRecentLogs: 'پنهان کردن گزارش‌های اخیر',
@@ -104,8 +107,8 @@ export const fa = defineLocale({
       signInFailed: 'ورود ناموفق بود',
       signInToRemoteGateway: 'ورود به گیت‌وی راه‌دور',
       signInWithProvider: provider => `ورود با ${provider}`,
-      identityProvider: 'ارائه‌دهنده هویت شما',
-    },
+      identityProvider: 'ارائه‌دهنده هویت شما'
+    }
   },
   notifications: {
     region: 'اعلان‌ها',
@@ -118,21 +121,23 @@ export const fa = defineLocale({
     copyDetail: 'کپی جزئیات',
     copyDetailFailed: 'کپی جزئیات اعلان ممکن نشد',
     backendOutOfDateTitle: 'بک‌اند قدیمی است',
-    backendOutOfDateMessage: 'بک‌اند OpenAmer شما قدیمی‌تر از این بیلد دسکتاپ است و ممکن است درست کار نکند. برای هم‌راستایی به‌روزرسانی کنید.',
+    backendOutOfDateMessage:
+      'بک‌اند OpenAmer شما قدیمی‌تر از این بیلد دسکتاپ است و ممکن است درست کار نکند. برای هم‌راستایی به‌روزرسانی کنید.',
     installMethodUnsupportedTitle: 'روش نصب پشتیبانی‌نشده',
     updateOpenAmer: 'به‌روزرسانی OpenAmer',
     updateReadyTitle: 'به‌روزرسانی آماده است',
     updateReadyMessage: count => `${count} تغییر جدید ${count === 1 ? 'تغییر' : 'تغییرها'} موجود است.`,
-    seeWhatsNew: "دیدن تازه‌ها",
+    seeWhatsNew: 'دیدن تازه‌ها',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT به ELEVENLABS_API_KEY نیاز دارد.',
       elevenLabsRejectedKey: 'ElevenLabs کلید API را رد کرد (401).',
       gatewayAuthFailed: 'احراز هویت گیت‌وی ناموفق بود — API_SERVER_KEY خود را بررسی کنید.',
-      methodNotAllowed: 'بک‌اند دسکتاپ آن درخواست را رد کرد (405 Method Not Allowed). راه‌اندازی مجدد OpenAmer Desktop را امتحان کنید.',
+      methodNotAllowed:
+        'بک‌اند دسکتاپ آن درخواست را رد کرد (405 Method Not Allowed). راه‌اندازی مجدد OpenAmer Desktop را امتحان کنید.',
       microphonePermission: 'اجازه میکروفون رد شد.',
       openaiRejectedApiKey: 'OpenAI کلید API را رد کرد.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI کلید API را رد کرد (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS به VOICE_TOOLS_OPENAI_KEY یا OPENAI_API_KEY نیاز دارد.',
+      openaiTtsNeedsKey: 'OpenAI TTS به VOICE_TOOLS_OPENAI_KEY یا OPENAI_API_KEY نیاز دارد.'
     },
     voice: {
       configureSpeechToText: 'برای استفاده از حالت صوتی، گفتار به متن را پیکربندی کنید.',
@@ -151,7 +156,7 @@ export const fa = defineLocale({
       transcriptionFailed: 'رونویسی صدا ناموفق بود',
       transcriptionUnavailable: 'رونویسی صدا هنوز در دسترس نیست.',
       tryRecordingAgain: 'ضبط را دوباره امتحان کنید.',
-      unavailable: 'صدا در دسترس نیست',
+      unavailable: 'صدا در دسترس نیست'
     },
     native: {
       approvalTitle: 'نیاز به تأیید',
@@ -164,11 +169,12 @@ export const fa = defineLocale({
       turnErrorTitle: 'نوبت ناموفق بود',
       backgroundDoneTitle: 'کار پس‌زمینه تمام شد',
       backgroundFailedTitle: 'کار پس‌زمینه ناموفق بود',
-      creditsTitle: 'اعتبارها',
-    },
+      creditsTitle: 'اعتبارها'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `رندر نرم‌افزاری فعال است — نمایشگر راه دور شناسایی شد (${reason}). شتاب GPU برای جلوگیری از سوسو زدن غیرفعال است.`,
+    message: reason =>
+      `رندر نرم‌افزاری فعال است — نمایشگر راه دور شناسایی شد (${reason}). شتاب GPU برای جلوگیری از سوسو زدن غیرفعال است.`
   },
   billingBlock: {
     titleOpenamer: 'اعتبار OpenAmer تمام شد',
@@ -176,7 +182,7 @@ export const fa = defineLocale({
     fallbackMessage: 'اعتبار حساب شما تمام شده است. برای ادامه اعتبار اضافه کنید.',
     openBilling: 'باز کردن صورتحساب',
     addCredits: 'افزودن اعتبار',
-    dismiss: 'رد کردن',
+    dismiss: 'رد کردن'
   },
   titlebar: {
     hideSidebar: 'پنهان کردن نوار کناری',
@@ -193,7 +199,7 @@ export const fa = defineLocale({
     openStarmap: 'باز کردن نگاشت حافظه',
     openKeybinds: 'کلیدهای میان‌بر',
     layoutEditor: 'ویرایشگر چیدمان',
-    layoutEditorTitle: 'ویرایشگر چیدمان — Cmd/Ctrl+کلیک چیدمان را بازنشانی می‌کند',
+    layoutEditorTitle: 'ویرایشگر چیدمان — Cmd/Ctrl+کلیک چیدمان را بازنشانی می‌کند'
   },
   keybinds: {
     title: 'میانبرهای صفحه‌کلید',
@@ -210,7 +216,7 @@ export const fa = defineLocale({
       profiles: 'پروفایل‌ها',
       session: 'نشست',
       navigation: 'ناوبری',
-      view: 'نمایش',
+      view: 'نمایش'
     },
     actions: {
       'keybinds.openPanel': 'باز کردن میانبرهای صفحه‌کلید',
@@ -289,8 +295,8 @@ export const fa = defineLocale({
       'composer.slash': 'پالت دستورات اسلش',
       'composer.help': 'راهنمای سریع',
       'composer.history': 'چرخش پاپ‌اور / تاریخچه',
-      'composer.cancel': 'بستن پاپ‌اور · لغو اجرا',
-    },
+      'composer.cancel': 'بستن پاپ‌اور · لغو اجرا'
+    }
   },
   language: {
     label: 'زبان',
@@ -299,7 +305,7 @@ export const fa = defineLocale({
     saveError: 'به‌روزرسانی زبان ناموفق بود',
     switchTo: 'تغییر زبان',
     searchPlaceholder: 'جست‌وجوی زبان‌ها…',
-    noResults: 'زبانی پیدا نشد',
+    noResults: 'زبانی پیدا نشد'
   },
   settings: {
     closeSettings: 'بستن تنظیمات',
@@ -324,11 +330,12 @@ export const fa = defineLocale({
       about: 'درباره',
       billing: 'صورتحساب',
       notifications: 'اعلان‌ها',
-      plugins: 'افزونه‌ها',
+      plugins: 'افزونه‌ها'
     },
     plugins: {
       title: 'افزونه‌های دسکتاپ',
-      blurb: 'افزونه‌های رابط کاربری که در این برنامه بارگذاری می‌شوند — همراه با بیلد ارائه می‌شوند یا در پوشه desktop-plugins قرار می‌گیرند (از جمله افزونه‌هایی که OpenAmer می‌نویسد). غیرفعال‌کردن، افزونه را به‌صورت زنده از حافظه خارج می‌کند و پس از راه‌اندازی مجدد هم باقی می‌ماند.',
+      blurb:
+        'افزونه‌های رابط کاربری که در این برنامه بارگذاری می‌شوند — همراه با بیلد ارائه می‌شوند یا در پوشه desktop-plugins قرار می‌گیرند (از جمله افزونه‌هایی که OpenAmer می‌نویسد). غیرفعال‌کردن، افزونه را به‌صورت زنده از حافظه خارج می‌کند و پس از راه‌اندازی مجدد هم باقی می‌ماند.',
       count: n => `${n} نصب‌شده`,
       openFolder: 'باز کردن پوشه افزونه‌ها',
       rescan: 'اسکن مجدد',
@@ -340,41 +347,42 @@ export const fa = defineLocale({
       kinds: {
         bundled: 'همراه',
         disk: 'روی دیسک',
-        runtime: 'زمان اجرا',
+        runtime: 'زمان اجرا'
       },
-      manage: 'مدیریت پلاگین‌های ایجنت',
+      manage: 'مدیریت پلاگین‌های ایجنت'
     },
     notifications: {
       title: 'اعلان‌ها',
-      intro: 'اعلان‌های بومی دسکتاپ، جدا از نان‌تست‌های داخل برنامه. این‌ها مربوط به همان دستگاه‌اند — هر رایانه تنظیمات خودش را نگه می‌دارد.',
+      intro:
+        'اعلان‌های بومی دسکتاپ، جدا از نان‌تست‌های داخل برنامه. این‌ها مربوط به همان دستگاه‌اند — هر رایانه تنظیمات خودش را نگه می‌دارد.',
       enableAll: 'فعال‌سازی اعلان‌ها',
       enableAllDesc: 'کلید اصلی. برای خاموش کردن همهٔ اعلان‌های زیر، این را غیرفعال کنید.',
       focusedHint: 'هشدارهای تکمیل فقط وقتی فعال می‌شوند که OpenAmer در پس‌زمینه باشد.',
       kinds: {
         approval: {
           label: 'نیاز به تأیید',
-          description: 'یک فرمان منتظر است تا آن را تأیید یا رد کنید.',
+          description: 'یک فرمان منتظر است تا آن را تأیید یا رد کنید.'
         },
         input: {
           label: 'نیاز به ورودی',
-          description: 'OpenAmer سؤالی پرسیده یا به رمز عبور یا کلید محرمانه نیاز دارد.',
+          description: 'OpenAmer سؤالی پرسیده یا به رمز عبور یا کلید محرمانه نیاز دارد.'
         },
         turnDone: {
           label: 'پاسخ آماده است',
-          description: 'یک نوبت در زمانی که OpenAmer در پس‌زمینه بود، به پایان رسید.',
+          description: 'یک نوبت در زمانی که OpenAmer در پس‌زمینه بود، به پایان رسید.'
         },
         turnError: {
           label: 'نوبت ناموفق بود',
-          description: 'یک نوبت با خطا پایان یافت.',
+          description: 'یک نوبت با خطا پایان یافت.'
         },
         backgroundDone: {
           label: 'وظیفهٔ پس‌زمینه تمام شد',
-          description: 'یک فرمان ترمینال که در پس‌زمینه اجرا شده بود کامل شد.',
+          description: 'یک فرمان ترمینال که در پس‌زمینه اجرا شده بود کامل شد.'
         },
         credits: {
           label: 'هشدارهای اعتبار',
-          description: 'دسترسی اعتبار متوقف یا بازیابی شده است.',
-        },
+          description: 'دسترسی اعتبار متوقف یا بازیابی شده است.'
+        }
       },
       test: 'ارسال اعلان آزمایشی',
       testTitle: 'OpenAmer',
@@ -383,7 +391,7 @@ export const fa = defineLocale({
       testUnsupported: 'این سیستم از اعلان‌های بومی پشتیبانی نمی‌کند.',
       completionSoundTitle: 'صدای تکمیل',
       completionSoundDesc: 'هنگام پایان نوبت عامل پخش می‌شود. یک پیش‌تنظیم انتخاب کنید و همین‌جا پیش‌نمایش بگیرید.',
-      completionSoundPreview: 'پیش‌نمایش',
+      completionSoundPreview: 'پیش‌نمایش'
     },
     sections: {
       model: 'مدل',
@@ -393,7 +401,7 @@ export const fa = defineLocale({
       safety: 'ایمنی',
       memory: 'حافظه و زمینه',
       voice: 'صدا',
-      advanced: 'پیشرفته',
+      advanced: 'پیشرفته'
     },
     searchPlaceholder: {
       about: 'درباره OpenAmer Desktop',
@@ -401,37 +409,40 @@ export const fa = defineLocale({
       gateway: 'اتصال درگاه...',
       keys: 'جستجوی کلیدهای API...',
       mcp: 'جستجوی سرورهای MCP...',
-      sessions: 'جستجوی نشست‌های بایگانی‌شده...',
+      sessions: 'جستجوی نشست‌های بایگانی‌شده...'
     },
     modeOptions: {
       light: {
         label: 'روشن',
-        description: 'سطوح روشن',
+        description: 'سطوح روشن'
       },
       dark: {
         label: 'تیره',
-        description: 'فضای کم‌خیرگی',
+        description: 'فضای کم‌خیرگی'
       },
       system: {
         label: 'سیستم',
-        description: 'پیروی از ظاهر سیستم‌عامل',
-      },
+        description: 'پیروی از ظاهر سیستم‌عامل'
+      }
     },
     appearance: {
       title: 'ظاهر',
-      intro: 'اینها ترجیحات نمایشی فقط دسکتاپ هستند. حالت روشنایی را کنترل می‌کند؛ تم پالت تأکید و سبک سطح گفتگو را کنترل می‌کند.',
+      intro:
+        'اینها ترجیحات نمایشی فقط دسکتاپ هستند. حالت روشنایی را کنترل می‌کند؛ تم پالت تأکید و سبک سطح گفتگو را کنترل می‌کند.',
       colorMode: 'حالت رنگ',
       colorModeDesc: 'یک حالت ثابت انتخاب کنید یا اجازه دهید OpenAmer از تنظیمات سیستم پیروی کند.',
       toolViewTitle: 'نمایش فراخوانی ابزارها',
       toolViewDesc: '«محصول» داده خام ابزارها را پنهان می‌کند؛ «فنی» ورودی/خروجی کامل را نشان می‌دهد.',
       uiScaleTitle: 'مقیاس رابط',
-      uiScaleDesc: (percent: number) => `متن و کنترل‌ها را در کل برنامه مقیاس می‌کند. Cmd/Ctrl با +، - و 0 نیز کار می‌کند. فعلی: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `متن و کنترل‌ها را در کل برنامه مقیاس می‌کند. Cmd/Ctrl با +، - و 0 نیز کار می‌کند. فعلی: ${percent}%.`,
       translucencyTitle: 'شفافیت پنجره',
       translucencyDesc: 'دسکتاپ خود را از پشت کل پنجره ببینید. فقط macOS و Windows.',
       backdropTitle: 'پس‌زمینه گفتگو',
       backdropDesc: 'تصویر کم‌رنگ مجسمه پشت مکالمه.',
       embedsTitle: 'محتوای تعبیه‌شده',
-      embedsDesc: 'پیش‌نمایش‌های غنی از سایت‌های شخص ثالث بارگذاری می‌شوند (YouTube، X، …). «بپرس» تا وقتی هرکدام را تأیید کنید جای‌نگهدار نشان می‌دهد؛ «همیشه» خودکار بارگذاری می‌کند؛ «خاموش» فقط پیوند ساده نگه می‌دارد.',
+      embedsDesc:
+        'پیش‌نمایش‌های غنی از سایت‌های شخص ثالث بارگذاری می‌شوند (YouTube، X، …). «بپرس» تا وقتی هرکدام را تأیید کنید جای‌نگهدار نشان می‌دهد؛ «همیشه» خودکار بارگذاری می‌کند؛ «خاموش» فقط پیوند ساده نگه می‌دارد.',
       embedsAsk: 'بپرس',
       embedsAlways: 'همیشه',
       embedsOff: 'خاموش',
@@ -444,7 +455,8 @@ export const fa = defineLocale({
       themeDesc: 'فقط پالت‌های دسکتاپ. حالت انتخاب‌شده روی آن اعمال می‌شود.',
       themeProfileNote: profile => `ذخیره‌شده برای نمایه ${profile} — هر نمایه تم خودش را دارد.`,
       installTitle: 'نصب از VS Code',
-      installDesc: 'شناسه افزونه مارکت‌پلیس را بچسبانید (مثلاً dracula-theme.theme-dracula) تا تم رنگی آن به پالت دسکتاپ تبدیل شود.',
+      installDesc:
+        'شناسه افزونه مارکت‌پلیس را بچسبانید (مثلاً dracula-theme.theme-dracula) تا تم رنگی آن به پالت دسکتاپ تبدیل شود.',
       installPlaceholder: 'ناشر.افزونه',
       installButton: 'نصب',
       installing: 'در حال نصب…',
@@ -454,8 +466,10 @@ export const fa = defineLocale({
       importedBadge: 'درون‌بری‌شده',
       pet: {
         title: 'حیوان خانگی',
-        intro: 'یک ماسکوت متحرک پت‌دکس را بپذیرید که روی برنامه شناور است و به کاری که OpenAmer انجام می‌دهد واکنش نشان می‌دهد — هنگام اجرای ابزارها می‌دود، در موفقیت جشن می‌گیرد و در خطاها قهر می‌کند.',
-        restartHint: 'حیوان‌های خانگی به یک راه‌اندازی مجدد سریع نیاز دارند — برنامه در حال اجرا پیش از افزودن این قابلیت شروع شده است. OpenAmer را ببندید و دوباره باز کنید، سپس به اینجا برگردید.',
+        intro:
+          'یک ماسکوت متحرک پت‌دکس را بپذیرید که روی برنامه شناور است و به کاری که OpenAmer انجام می‌دهد واکنش نشان می‌دهد — هنگام اجرای ابزارها می‌دود، در موفقیت جشن می‌گیرد و در خطاها قهر می‌کند.',
+        restartHint:
+          'حیوان‌های خانگی به یک راه‌اندازی مجدد سریع نیاز دارند — برنامه در حال اجرا پیش از افزودن این قابلیت شروع شده است. OpenAmer را ببندید و دوباره باز کنید، سپس به اینجا برگردید.',
         on: 'روشن',
         off: 'خاموش',
         scaleTitle: 'اندازه',
@@ -465,7 +479,7 @@ export const fa = defineLocale({
         chooseTitle: 'انتخاب یک پت',
         chooseDesc: 'انتخاب هر کدام، آن را (در صورت نیاز) نصب و فعال می‌کند.',
         searchPlaceholder: 'جستجوی پت‌ها…',
-        unreachable: "گالری petdex در دسترس نیست. اتصال خود را بررسی کنید و این صفحه را دوباره باز کنید.",
+        unreachable: 'گالری petdex در دسترس نیست. اتصال خود را بررسی کنید و این صفحه را دوباره باز کنید.',
         noMatch: query => `هیچ پتی با "${query}" مطابقت ندارد.`,
         installedTag: 'نصب‌شده',
         generatedTag: 'تولیدشده',
@@ -474,7 +488,7 @@ export const fa = defineLocale({
         uninstall: name => `حذف نصب ${name}`,
         delete: name => `حذف ${name}`,
         deleteTitle: name => `حذف ${name}؟`,
-        deleteBody: "این کار پت را برای همیشه حذف می‌کند — دیگر قابل نصب مجدد نیست.",
+        deleteBody: 'این کار پت را برای همیشه حذف می‌کند — دیگر قابل نصب مجدد نیست.',
         deleteConfirm: 'حذف',
         rename: name => `تغییر نام ${name}`,
         renameTitle: 'تغییر نام حیوان خانگی',
@@ -487,8 +501,8 @@ export const fa = defineLocale({
         exportFailed: slug => `امکان خروجی گرفتن از ${slug} نبود`,
         noneAvailable: 'در حال حاضر هیچ حیوان خانگی‌ای برای روشن کردن نیست.',
         turnOnFailed: 'امکان روشن کردن حیوان خانگی نبود.',
-        turnOffFailed: 'خاموش کردن پت ممکن نشد.',
-      },
+        turnOffFailed: 'خاموش کردن پت ممکن نشد.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -499,25 +513,27 @@ export const fa = defineLocale({
       updates: 'به‌روزرسانی‌ها',
       checkNow: 'اکنون بررسی کن',
       checking: 'در حال بررسی…',
-      seeWhatsNew: "دیدن تازه‌ها",
+      seeWhatsNew: 'دیدن تازه‌ها',
       updateNow: 'اکنون به‌روزرسانی کن',
       releaseNotes: 'یادداشت‌های انتشار',
-      onLatest: "شما روی جدیدترین نسخه هستید.",
+      onLatest: 'شما روی جدیدترین نسخه هستید.',
       installing: 'یک به‌روزرسانی در حال نصب است.',
-      cantUpdate: "این بیلد نمی‌تواند از داخل برنامه خودش را به‌روزرسانی کند.",
-      cantReach: "به سرور به‌روزرسانی دسترسی نداشتیم.",
+      cantUpdate: 'این بیلد نمی‌تواند از داخل برنامه خودش را به‌روزرسانی کند.',
+      cantReach: 'به سرور به‌روزرسانی دسترسی نداشتیم.',
       tapCheck: 'برای جست‌وجوی به‌روزرسانی‌ها «اکنون بررسی کن» را لمس کنید.',
-      updateReady: count => `یک به‌روزرسانی جدید آماده است (${count} ${count === 1 ? 'تغییر' : 'تغییرها'} گنجانده شده).`,
+      updateReady: count =>
+        `یک به‌روزرسانی جدید آماده است (${count} ${count === 1 ? 'تغییر' : 'تغییرها'} گنجانده شده).`,
       lastChecked: age => `آخرین بررسی ${age}`,
       justNowSuffix: ' · همین حالا',
       automaticUpdates: 'به‌روزرسانی خودکار',
-      automaticUpdatesDesc: 'OpenAmer به‌روزرسانی‌ها را خودکار در پس‌زمینه بررسی می‌کند و وقتی یکی آماده است خبر می‌دهد.',
+      automaticUpdatesDesc:
+        'OpenAmer به‌روزرسانی‌ها را خودکار در پس‌زمینه بررسی می‌کند و وقتی یکی آماده است خبر می‌دهد.',
       branchCommit: (branch, commit) => `شاخه ${branch} · کامیت ${commit}`,
       never: 'هرگز',
       justNow: 'همین حالا',
       minAgo: count => `${count} دقیقه پیش`,
       hoursAgo: count => `${count} ساعت پیش`,
-      daysAgo: count => `${count} روز پیش`,
+      daysAgo: count => `${count} روز پیش`
     },
     config: {
       none: 'هیچ‌کدام',
@@ -533,7 +549,8 @@ export const fa = defineLocale({
       imported: 'پیکربندی وارد شد',
       invalidJson: 'JSON پیکربندی نامعتبر است',
       keepAwakeTitle: 'بیدار نگه داشتن رایانه',
-      keepAwakeDesc: 'جلوگیری از خواب این دستگاه تا اجراهای طولانی یا شبانه ادامه یابند. نمایشگر همچنان می‌تواند کم‌نور شود.',
+      keepAwakeDesc:
+        'جلوگیری از خواب این دستگاه تا اجراهای طولانی یا شبانه ادامه یابند. نمایشگر همچنان می‌تواند کم‌نور شود.'
     },
     credentials: {
       pasteKey: 'چسباندن کلید',
@@ -543,7 +560,7 @@ export const fa = defineLocale({
       couldNotSave: 'ذخیره اطلاعات اعتبار ناموفق بود.',
       remove: 'حذف',
       getKey: 'دریافت کلید',
-      saving: 'در حال ذخیره',
+      saving: 'در حال ذخیره'
     },
     envActions: {
       actionsFor: label => `اقدامات برای ${label}`,
@@ -554,7 +571,7 @@ export const fa = defineLocale({
       revealValue: 'نمایش مقدار',
       replace: 'جایگزینی',
       set: 'تنظیم',
-      clear: 'پاک کردن',
+      clear: 'پاک کردن'
     },
     gateway: {
       loading: 'در حال بارگذاری تنظیمات درگاه...',
@@ -562,21 +579,25 @@ export const fa = defineLocale({
       unavailableDesc: 'پل IPC دسکتاپ تنظیمات درگاه را در دسترس قرار نمی‌دهد.',
       title: 'اتصال درگاه',
       envOverride: 'بازنویسی متغیر محیطی',
-      intro: 'OpenAmer Desktop به‌طور پیش‌فرض درگاه محلی خودش را راه‌اندازی می‌کند. وقتی می‌خواهید این برنامه یک بک‌اند OpenAmer در حال اجرا روی ماشین دیگر یا پشت یک پروکسی مورد اعتماد را کنترل کند، از یک درگاه راه دور استفاده کنید. یک پروفایل را در پایین انتخاب کنید تا میزبان راه دور مخصوص خودش را داشته باشد.',
+      intro:
+        'OpenAmer Desktop به‌طور پیش‌فرض درگاه محلی خودش را راه‌اندازی می‌کند. وقتی می‌خواهید این برنامه یک بک‌اند OpenAmer در حال اجرا روی ماشین دیگر یا پشت یک پروکسی مورد اعتماد را کنترل کند، از یک درگاه راه دور استفاده کنید. یک پروفایل را در پایین انتخاب کنید تا میزبان راه دور مخصوص خودش را داشته باشد.',
       appliesTo: 'اعمال برای',
       allProfiles: 'همه پروفایل‌ها',
       defaultConnection: 'اتصال پیش‌فرض برای هر پروفایلی که بازنویسی اختصاصی ندارد.',
-      profileConnection: profile => `اتصال فقط زمانی استفاده می‌شود که “${profile}” پروفایل فعال باشد. برای حذف بازنویسی آن، «استفاده از درگاه پیش‌فرض» را انتخاب کنید.`,
+      profileConnection: profile =>
+        `اتصال فقط زمانی استفاده می‌شود که “${profile}” پروفایل فعال باشد. برای حذف بازنویسی آن، «استفاده از درگاه پیش‌فرض» را انتخاب کنید.`,
       envOverrideTitle: 'این نشست دسکتاپ توسط متغیرهای محیطی کنترل می‌شود.',
-      envOverrideDesc: 'برای استفاده از تنظیم ذخیره‌شده در پایین، OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN را لغو تنظیم کنید.',
+      envOverrideDesc:
+        'برای استفاده از تنظیم ذخیره‌شده در پایین، OPENAMER_DESKTOP_REMOTE_URL و OPENAMER_DESKTOP_REMOTE_TOKEN را لغو تنظیم کنید.',
       modeTitle: 'حالت اتصال',
       localTitle: 'درگاه محلی',
       localDesc: 'یک بک‌اند خصوصی OpenAmer روی localhost راه‌اندازی کنید. این حالت پیش‌فرض است و آفلاین کار می‌کند.',
       inheritTitle: 'استفاده از درگاه پیش‌فرض',
-      inheritDesc: "جایگزینی این نمایه را حذف کنید و از اتصال پیش‌فرض استفاده کنید.",
+      inheritDesc: 'جایگزینی این نمایه را حذف کنید و از اتصال پیش‌فرض استفاده کنید.',
       remoteTitle: 'دروازه راه دور',
       remoteDesc: 'این پوسته دسکتاپ را به بک‌اند OpenAmer راه دور وصل کنید.',
-      remoteAuthHint: 'دروازه‌های میزبانی‌شده از OAuth یا نام کاربری و رمز عبور استفاده می‌کنند؛ دروازه‌های خودمیزبان ممکن است از توکن نشست استفاده کنند.',
+      remoteAuthHint:
+        'دروازه‌های میزبانی‌شده از OAuth یا نام کاربری و رمز عبور استفاده می‌کنند؛ دروازه‌های خودمیزبان ممکن است از توکن نشست استفاده کنند.',
       cloudTitle: 'ابر OpenAmer',
       cloudDesc: 'یک بار به ابر OpenAmer وارد شوید و از ایجنت‌های حساب خود انتخاب کنید — نیازی به چسباندن URL نیست.',
       cloudSignInTitle: 'ابر OpenAmer',
@@ -593,7 +614,7 @@ export const fa = defineLocale({
       cloudNoAgents: {
         before: 'هیچ عاملی در این حساب یافت نشد. یکی در ',
         linkText: 'پورتال OpenAmer',
-        after: ' بسازید، سپس تازه‌سازی کنید.',
+        after: ' بسازید، سپس تازه‌سازی کنید.'
       },
       cloudRefresh: 'تازه‌سازی',
       cloudConnect: 'اتصال',
@@ -611,18 +632,23 @@ export const fa = defineLocale({
       remoteUrlTitle: 'URL راه دور',
       remoteUrlDesc: 'URL پایه برای بک‌اند داشبورد راه دور. پیشوندهای مسیر پشتیبانی می‌شوند، برای نمونه /openamer.',
       probing: 'در حال بررسی روش احراز هویت این درگاه…',
-      probeError: 'هنوز نمی‌توان به این درگاه دسترسی یافت. URL را بررسی کنید — روش احراز هویت پس از پاسخ نمایش داده می‌شود.',
+      probeError:
+        'هنوز نمی‌توان به این درگاه دسترسی یافت. URL را بررسی کنید — روش احراز هویت پس از پاسخ نمایش داده می‌شود.',
       signedIn: 'وارد شده‌اید',
       signIn: 'ورود',
       signOut: 'خروج',
       signInWith: provider => `ورود با ${provider}`,
       authTitle: 'احراز هویت',
-      authSignedInPassword: 'این درگاه از نام کاربری و گذرواژه استفاده می‌کند. وارد شده‌اید؛ نشست به‌طور خودکار تازه می‌شود.',
+      authSignedInPassword:
+        'این درگاه از نام کاربری و گذرواژه استفاده می‌کند. وارد شده‌اید؛ نشست به‌طور خودکار تازه می‌شود.',
       authSignedInOauth: 'این درگاه از OAuth استفاده می‌کند. وارد شده‌اید؛ نشست به‌طور خودکار تازه می‌شود.',
-      authNeedsPassword: 'این درگاه از نام کاربری و گذرواژه استفاده می‌کند. برای مجاز کردن این برنامه دسکتاپ وارد شوید.',
-      authNeedsOauth: provider => `این درگاه از OAuth استفاده می‌کند. برای مجاز کردن این برنامه دسکتاپ با ${provider} وارد شوید.`,
+      authNeedsPassword:
+        'این درگاه از نام کاربری و گذرواژه استفاده می‌کند. برای مجاز کردن این برنامه دسکتاپ وارد شوید.',
+      authNeedsOauth: provider =>
+        `این درگاه از OAuth استفاده می‌کند. برای مجاز کردن این برنامه دسکتاپ با ${provider} وارد شوید.`,
       tokenTitle: 'توکن نشست',
-      tokenDesc: 'توکن نشست داشبورد که برای دسترسی REST و WebSocket استفاده می‌شود. برای نگه داشتن توکن ذخیره‌شده خالی بگذارید.',
+      tokenDesc:
+        'توکن نشست داشبورد که برای دسترسی REST و WebSocket استفاده می‌شود. برای نگه داشتن توکن ذخیره‌شده خالی بگذارید.',
       existingToken: value => `توکن موجود ${value}`,
       savedToken: 'ذخیره شد',
       pasteSessionToken: 'توکن نشست را بچسبانید',
@@ -653,7 +679,8 @@ export const fa = defineLocale({
       applyFailed: 'اعمال تنظیمات دروازه ممکن نشد',
       saveFailed: 'ذخیره تنظیمات دروازه ممکن نشد',
       sshTitle: 'اتصال از طریق SSH',
-      sshDesc: 'OpenAmer روی ماشین دور از طریق SSH اجرا و به این برنامه تونل میشود — نیازی نیست چیزی را خودتان راهاندازی یا افشا کنید. نیازمند دسترسی فعال SSH مبتنی بر کلید به میزبان است.',
+      sshDesc:
+        'OpenAmer روی ماشین دور از طریق SSH اجرا و به این برنامه تونل میشود — نیازی نیست چیزی را خودتان راهاندازی یا افشا کنید. نیازمند دسترسی فعال SSH مبتنی بر کلید به میزبان است.',
       sshTrustHint: 'اولین کلید میزبان ارائهشده مورد اعتماد و سنجاق میشود؛ تغییرات بعدی بهصورت بسته رد میشوند.',
       sshHostTitle: 'میزبان',
       sshHostDesc: 'user@host، یا یک نام مستعار Host از ~/.ssh/config.',
@@ -677,18 +704,22 @@ export const fa = defineLocale({
       sshReachable: (host, platform) => `قابل دسترسی: ${host} (${platform}) — OpenAmer یافت شد`,
       sshIncompleteHost: 'پیش از اتصال، میزبان SSH را وارد کنید.',
       sshErrUnreachable: 'دسترسی به آن میزبان از طریق SSH ممکن نشد. میزبان، پورت و شبکه خود را بررسی کنید.',
-      sshErrAuth: 'احراز هویت SSH ناموفق بود. کلید خود را در ssh-agent بارگذاری کنید (ssh-add) یا IdentityFile را در ~/.ssh/config تنظیم کنید — OpenAmer دستور ssh را غیرتعاملی اجرا می‌کند.',
-      sshErrHostKey: 'کلید میزبان از آخرین اتصال شما تغییر کرده است. مطمئن شوید این تغییر انتظاری است، سپس ssh-keygen -R <host> را اجرا کنید و دوباره وصل شوید.',
-      sshErrNotInstalled: 'OpenAmer روی میزبان راه دور نصب نیست. آن را آنجا نصب کنید (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) یا مسیر OpenAmer را تنظیم کنید.',
-      sshErrPlatform: 'پلتفرم میزبان راه دور پشتیبانی نمی‌شود. حالت SSH در OpenAmer Desktop از میزبان‌های راه دور Linux، macOS و Windows پشتیبانی می‌کند.',
+      sshErrAuth:
+        'احراز هویت SSH ناموفق بود. کلید خود را در ssh-agent بارگذاری کنید (ssh-add) یا IdentityFile را در ~/.ssh/config تنظیم کنید — OpenAmer دستور ssh را غیرتعاملی اجرا می‌کند.',
+      sshErrHostKey:
+        'کلید میزبان از آخرین اتصال شما تغییر کرده است. مطمئن شوید این تغییر انتظاری است، سپس ssh-keygen -R <host> را اجرا کنید و دوباره وصل شوید.',
+      sshErrNotInstalled:
+        'OpenAmer روی میزبان راه دور نصب نیست. آن را آنجا نصب کنید (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) یا مسیر OpenAmer را تنظیم کنید.',
+      sshErrPlatform:
+        'پلتفرم میزبان راه دور پشتیبانی نمی‌شود. حالت SSH در OpenAmer Desktop از میزبان‌های راه دور Linux، macOS و Windows پشتیبانی می‌کند.',
       sshErrTimeout: 'مهلت اتصال SSH تمام شد. ممکن است میزبان در دسترس نباشد یا خوابیده باشد.',
       sshErrUpdateRequired: 'پیش از اتصال با SSH دسکتاپ، OpenAmer را روی میزبان راه دور به‌روزرسانی کنید.',
-      sshErrUnknown: 'اتصال SSH ناموفق بود.',
+      sshErrUnknown: 'اتصال SSH ناموفق بود.'
     },
     keys: {
       loading: 'در حال بارگذاری کلیدهای API و اعتبارنامه‌ها...',
       failedLoad: 'بارگذاری کلیدهای API ناموفق بود',
-      empty: 'هنوز چیزی در این دسته پیکربندی نشده است.',
+      empty: 'هنوز چیزی در این دسته پیکربندی نشده است.'
     },
     mcp: {
       loading: 'در حال بارگذاری سرورهای MCP...',
@@ -740,7 +771,8 @@ export const fa = defineLocale({
       catalogInstallFailed: name => `نصب ${name} ناموفق بود`,
       catalogEnvPrompt: name => `${name} به اعتبارنامه نیاز دارد`,
       catalogEnvRequired: 'پیش از نصب، مقادیر لازم را پر کنید.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال شد`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال شد`,
       statusConnecting: 'در حال اتصال…',
       statusNeedsAuth: 'نیاز به احراز هویت',
       statusError: 'خطا',
@@ -753,11 +785,12 @@ export const fa = defineLocale({
       unsavedConnect: 'ذخیره‌نشده — برای اتصال mcp.json را ذخیره کنید.',
       enableTool: tool => `فعال‌سازی ${tool}`,
       disableTool: tool => `غیرفعال‌سازی ${tool}`,
-      noOutput: 'هنوز خروجی‌ای نیست.',
+      noOutput: 'هنوز خروجی‌ای نیست.'
     },
     model: {
       loading: 'در حال بارگذاری پیکربندی مدل...',
-      appliesDesc: 'روی نشست‌های جدید اعمال می‌شود. برای تغییر سریع مدل گفتگوی فعال، از انتخاب‌گر مدل در کادر نوشتن استفاده کنید.',
+      appliesDesc:
+        'روی نشست‌های جدید اعمال می‌شود. برای تغییر سریع مدل گفتگوی فعال، از انتخاب‌گر مدل در کادر نوشتن استفاده کنید.',
       provider: 'ارائه‌دهنده',
       model: 'مدل',
       applying: 'در حال اعمال...',
@@ -767,53 +800,55 @@ export const fa = defineLocale({
       defaultsFailed: 'ذخیره پیش‌فرض‌های مدل ناموفق بود',
       auxiliaryTitle: 'مدل‌های کمکی',
       resetAllToMain: 'بازنشانی همه به مدل اصلی',
-      auxiliaryDesc: 'وظایف کمکی به‌طور پیش‌فرض با مدل اصلی اجرا می‌شوند. برای بازنویسی، به هر وظیفه یک مدل اختصاصی بدهید.',
+      auxiliaryDesc:
+        'وظایف کمکی به‌طور پیش‌فرض با مدل اصلی اجرا می‌شوند. برای بازنویسی، به هر وظیفه یک مدل اختصاصی بدهید.',
       setToMain: 'تنظیم روی مدل اصلی',
       change: 'تغییر',
       autoUseMain: 'خودکار · استفاده از مدل اصلی',
       providerDefault: '(پیش‌فرض ارائه‌دهنده)',
       fallbackAdd: 'افزودن جایگزین',
       fallbackEmpty: 'مدل جایگزینی وجود ندارد — مدل پیش‌فرض استفاده می‌شود مگر اینکه از کار بیفتد.',
-      notInCatalog: "در فهرست مدل‌های این ارائه‌دهنده نیست — فراخوانی‌ها ممکن است به نسخه پشتیبان منتقل شوند.",
+      notInCatalog: 'در فهرست مدل‌های این ارائه‌دهنده نیست — فراخوانی‌ها ممکن است به نسخه پشتیبان منتقل شوند.',
       tasks: {
         vision: {
           label: 'بینایی',
-          hint: 'تحلیل تصویر',
+          hint: 'تحلیل تصویر'
         },
         web_extract: {
           label: 'استخراج وب',
-          hint: 'خلاصه‌سازی صفحه',
+          hint: 'خلاصه‌سازی صفحه'
         },
         compression: {
           label: 'فشرده‌سازی',
-          hint: 'فشرده‌سازی زمینه',
+          hint: 'فشرده‌سازی زمینه'
         },
         skills_hub: {
           label: 'مرکز مهارت‌ها',
-          hint: 'جستجوی مهارت',
+          hint: 'جستجوی مهارت'
         },
         approval: {
           label: 'تأیید',
-          hint: 'تأیید خودکار هوشمند',
+          hint: 'تأیید خودکار هوشمند'
         },
         mcp: {
           label: 'MCP',
-          hint: 'مسیریابی ابزار MCP',
+          hint: 'مسیریابی ابزار MCP'
         },
         title_generation: {
           label: 'تولید عنوان',
-          hint: 'عنوان‌های نشست',
+          hint: 'عنوان‌های نشست'
         },
         curator: {
           label: 'کیوریتور',
-          hint: 'بازبینی استفاده از مهارت',
-        },
-      },
+          hint: 'بازبینی استفاده از مهارت'
+        }
+      }
     },
     providers: {
       connectAccount: 'اتصال یک حساب',
       haveApiKey: 'به‌جای آن کلید API دارید؟',
-      intro: 'با اشتراک وارد شوید — نیازی به کپی کلید API نیست. OpenAmer ورود از طریق مرورگر را همین‌جا در برنامه برای شما انجام می‌دهد.',
+      intro:
+        'با اشتراک وارد شوید — نیازی به کپی کلید API نیست. OpenAmer ورود از طریق مرورگر را همین‌جا در برنامه برای شما انجام می‌دهد.',
       connected: 'متصل',
       collapse: 'جمع کردن',
       connectAnother: 'اتصال ارائه‌دهنده دیگر',
@@ -823,7 +858,8 @@ export const fa = defineLocale({
       removeConfirm: provider => `${provider} حذف شود؟`,
       removeExternalGeneric: provider => `${provider} با CLI مخصوص خودش مدیریت می‌شود — آن را همان‌جا حذف کنید.`,
       removeKeyManaged: provider => `${provider} از طریق کلید API پیکربندی می‌شود. آن را از کلیدهای API حذف کنید.`,
-      removeTerminalConfirm: (provider, command) => `${provider} قطع شود؟ این دستور "${command}" را در ترمینال اجرا می‌کند تا اعتبارنامه پاک شود.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} قطع شود؟ این دستور "${command}" را در ترمینال اجرا می‌کند تا اعتبارنامه پاک شود.`,
       removeTerminalRunning: provider => `در حال اجرای قطع اتصال ${provider} در ترمینال…`,
       removedTitle: 'حساب حذف شد',
       removedMessage: provider => `${provider} حذف شد.`,
@@ -833,14 +869,16 @@ export const fa = defineLocale({
       noKeysMatch: 'هیچ ارائه‌دهنده‌ای با جستجوی شما مطابقت ندارد.',
       localEndpoint: {
         title: 'نقطه پایانی محلی / سفارشی',
-        description: 'OpenAmer را به هر نقطه پایانی سازگار با OpenAI متصل کنید (Zyphra، vLLM، llama.cpp، Ollama و غیره).',
+        description:
+          'OpenAmer را به هر نقطه پایانی سازگار با OpenAI متصل کنید (Zyphra، vLLM، llama.cpp، Ollama و غیره).'
       },
-      loading: 'بارگیری ارائه‌دهندگان...',
+      loading: 'بارگیری ارائه‌دهندگان...'
     },
     sessions: {
       loading: 'بارگیری نشست‌های بایگانی‌شده…',
       archivedTitle: 'نشست‌های بایگانی‌شده',
-      archivedIntro: 'گفتگوهای بایگانی‌شده از نوار کناری پنهان می‌شوند اما همه پیام‌هایشان حفظ می‌شود. برای بایگانی یک گفتگو در نوار کناری، Ctrl/⌘ را نگه دارید و کلیک کنید.',
+      archivedIntro:
+        'گفتگوهای بایگانی‌شده از نوار کناری پنهان می‌شوند اما همه پیام‌هایشان حفظ می‌شود. برای بایگانی یک گفتگو در نوار کناری، Ctrl/⌘ را نگه دارید و کلیک کنید.',
       emptyArchivedTitle: 'چیزی بایگانی نشده است',
       emptyArchivedDesc: 'برای پنهان کردن یک گفتگو در اینجا، آن را بایگانی کنید.',
       unarchive: 'خروج از بایگانی',
@@ -849,12 +887,14 @@ export const fa = defineLocale({
       restored: 'بازگردانده شد',
       deleteConfirm: title => `«${title}» برای همیشه حذف شود؟ این کار قابل بازگشت نیست.`,
       autoArchiveTitle: 'بایگانی خودکار گفتگوهای قدیمی',
-      autoArchiveDesc: "گفتگوهایی را که مدتی به آن‌ها دست نزده‌اید به‌طور خودکار بایگانی کنید. گفتگوهای سنجاق‌شده هرگز بایگانی نمی‌شوند و چیزی حذف نمی‌شود — گفتگوهای بایگانی‌شده فقط به اینجا منتقل می‌شوند.",
+      autoArchiveDesc:
+        'گفتگوهایی را که مدتی به آن‌ها دست نزده‌اید به‌طور خودکار بایگانی کنید. گفتگوهای سنجاق‌شده هرگز بایگانی نمی‌شوند و چیزی حذف نمی‌شود — گفتگوهای بایگانی‌شده فقط به اینجا منتقل می‌شوند.',
       autoArchiveDaysLabel: 'بایگانی پس از',
       autoArchiveDaysUnit: 'روز عدم فعالیت',
       autoArchiveFailed: 'به‌روزرسانی بایگانی خودکار ممکن نشد',
       defaultDirTitle: 'پوشه پیش‌فرض پروژه',
-      defaultDirDesc: 'نشست‌های جدید در این پوشه آغاز می‌شوند مگر اینکه پوشه دیگری انتخاب کنید. برای استفاده از پوشه خانگی، تنظیم‌نشده بماند.',
+      defaultDirDesc:
+        'نشست‌های جدید در این پوشه آغاز می‌شوند مگر اینکه پوشه دیگری انتخاب کنید. برای استفاده از پوشه خانگی، تنظیم‌نشده بماند.',
       defaultDirUpdated: 'پوشه پیش‌فرض پروژه به‌روزرسانی شد — برای اعمال، گفتگوی جدیدی (Ctrl/⌘+N) شروع کنید',
       defaultsTo: label => `به‌طور پیش‌فرض ${label}.`,
       change: 'تغییر',
@@ -865,7 +905,7 @@ export const fa = defineLocale({
       unarchiveFailed: 'خروج از بایگانی ناموفق بود',
       deleteFailed: 'حذف ناموفق بود',
       updateDirFailed: 'به‌روزرسانی پوشه پیش‌فرض ممکن نشد',
-      clearDirFailed: 'پاک کردن پوشه پیش‌فرض ممکن نشد',
+      clearDirFailed: 'پاک کردن پوشه پیش‌فرض ممکن نشد'
     },
     toolsets: {
       loadingConfig: 'در حال بارگذاری پیکربندی',
@@ -883,20 +923,23 @@ export const fa = defineLocale({
       selectedMessage: provider => `${provider} اکنون فعال است.`,
       failedSelect: provider => `انتخاب ${provider} ناموفق بود`,
       failedLoad: 'بارگذاری پیکربندی ابزار ناموفق بود',
-      noProviderOptions: 'این مجموعه ابزار گزینه‌های ارائه‌دهنده ندارد — آن را فعال کنید تا با تنظیمات فعلی شما کار کند.',
+      noProviderOptions:
+        'این مجموعه ابزار گزینه‌های ارائه‌دهنده ندارد — آن را فعال کنید تا با تنظیمات فعلی شما کار کند.',
       noProviders: 'در حال حاضر هیچ ارائه‌دهنده‌ای برای این مجموعه ابزار در دسترس نیست.',
       ready: 'آماده',
       needsSignIn: 'نیازمند ورود',
       needsSetup: 'نیازمند راه‌اندازی',
       openamerIncluded: 'با اشتراک OpenAmer ارائه می‌شود — برای فعال‌سازی به OpenAmer Portal وارد شوید.',
       openamerAuthNeededTitle: 'ورود به OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} ذخیره شده است اما تا زمانی که به OpenAmer Portal وارد نشوید فعال نمی‌شود.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ذخیره شده است اما تا زمانی که به OpenAmer Portal وارد نشوید فعال نمی‌شود.`,
       openamerAuthSignIn: 'ورود',
       openamerAuthDoneTitle: 'OpenAmer Portal متصل شد',
       openamerAuthDoneMessage: 'بک‌اندهای اشتراک شما اکنون فعال هستند.',
       openamerAuthFailed: 'ورود به OpenAmer Portal کامل نشد',
       noApiKeyRequired: 'نیازی به کلید API نیست.',
-      postSetupHint: step => `این بک‌اند به نصب یک‌باره نیاز دارد (${step}). روی همین ماشین اجرا می‌شود — ممکن است چند دقیقه طول بکشد.`,
+      postSetupHint: step =>
+        `این بک‌اند به نصب یک‌باره نیاز دارد (${step}). روی همین ماشین اجرا می‌شود — ممکن است چند دقیقه طول بکشد.`,
       postSetupInstalledHint: 'نصب شد. فقط اگر چیزی خراب است دوباره راه‌اندازی کنید.',
       postSetupRun: 'اجرای راه‌اندازی',
       postSetupRerun: 'اجرای دوباره راه‌اندازی',
@@ -935,11 +978,12 @@ export const fa = defineLocale({
         unavailable: 'در دسترس نیست',
         inUse: 'در حال استفاده',
         selectedTitle: 'بک‌اند انتخاب شد',
-        selectedMessage: backend => `دستورهای ترمینال اکنون از طریق ${backend} اجرا می‌شوند. روی نشست‌های جدید اعمال می‌شود.`,
+        selectedMessage: backend =>
+          `دستورهای ترمینال اکنون از طریق ${backend} اجرا می‌شوند. روی نشست‌های جدید اعمال می‌شود.`,
         failedSelect: backend => `انتخاب ${backend} ناموفق بود`,
-        needsSetupHint: 'اکنون می‌توانید این بک‌اند را انتخاب کنید — تا تکمیل راه‌اندازی، دستورها ناموفق خواهند بود.',
-      },
-    },
+        needsSetupHint: 'اکنون می‌توانید این بک‌اند را انتخاب کنید — تا تکمیل راه‌اندازی، دستورها ناموفق خواهند بود.'
+      }
+    }
   },
   skills: {
     tabSkills: 'مهارت‌ها',
@@ -959,7 +1003,8 @@ export const fa = defineLocale({
     noDescription: 'بدون توضیحات.',
     configured: 'پیکربندی‌شده',
     needsKeys: 'نیازمند کلید',
-    visionModelHint: 'بینایی از پیکربندی مدل کمکی شما استفاده می‌کند — مدل دارای قابلیت تصویر همان‌جا انتخاب می‌شود، نه برای هر ارائه‌دهنده در اینجا.',
+    visionModelHint:
+      'بینایی از پیکربندی مدل کمکی شما استفاده می‌کند — مدل دارای قابلیت تصویر همان‌جا انتخاب می‌شود، نه برای هر ارائه‌دهنده در اینجا.',
     visionModelLink: 'در تنظیمات → مدل‌ها، مدل بینایی را انتخاب کنید',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} مجموعه‌ابزار فعال`,
     configureToolset: label => `پیکربندی ${label}`,
@@ -985,7 +1030,7 @@ export const fa = defineLocale({
     provenance: {
       agent: 'آموخته‌شده',
       bundled: 'داخلی',
-      hub: 'مرکز',
+      hub: 'مرکز'
     },
     emptyNoneFound: noun => `هیچ ${noun} پیدا نشد`,
     emptyNothingMatches: query => `هیچ چیزی با «${query}» مطابقت ندارد.`,
@@ -1023,7 +1068,7 @@ export const fa = defineLocale({
       trust: {
         builtin: 'داخلی',
         trusted: 'مورد اعتماد',
-        community: 'انجمن',
+        community: 'انجمن'
       },
       verdictSafe: 'ایمن',
       verdictCaution: 'احتیاط',
@@ -1041,7 +1086,7 @@ export const fa = defineLocale({
       loadFailed: 'بارگذاری مرکز مهارت ناموفق بود',
       previewFailed: 'پیش‌نمایش مهارت ناموفق بود',
       scanFailed: 'اسکن امنیتی ناموفق بود',
-      searchFailed: 'جستجوی مرکز ناموفق بود',
+      searchFailed: 'جستجوی مرکز ناموفق بود'
     },
     tabPlugins: 'پلاگین‌ها',
     searchPlugins: 'جستجوی پلاگین‌ها...',
@@ -1061,9 +1106,10 @@ export const fa = defineLocale({
     pluginsSearchFailed: 'جستجوی GitHub ناموفق بود',
     pluginsDiscoverAction: query => `جستجوی "${query}" در GitHub`,
     pluginsDiscoverResults: (n, query) => `${n} مخزن با برچسب openamer-plugin برای "${query}"`,
-    pluginsDiscoverEmpty: query => `چیزی در GitHub برای "${query}" یافت نشد — جستجو فقط مخازنی را می‌یابد که دارای موضوع openamer-plugin باشند و جستجوی بدون احراز هویت در GitHub محدود است. در عوض، یک owner/repo دقیق را در بالا نصب کنید.`,
+    pluginsDiscoverEmpty: query =>
+      `چیزی در GitHub برای "${query}" یافت نشد — جستجو فقط مخازنی را می‌یابد که دارای موضوع openamer-plugin باشند و جستجوی بدون احراز هویت در GitHub محدود است. در عوض، یک owner/repo دقیق را در بالا نصب کنید.`,
     pluginsStatusInactive: 'غیرفعال',
-    pluginsToggleFailed: 'تغییر وضعیت پلاگین امکان‌پذیر نبود',
+    pluginsToggleFailed: 'تغییر وضعیت پلاگین امکان‌پذیر نبود'
   },
   starmap: {
     title: 'نمودار حافظه',
@@ -1080,7 +1126,8 @@ export const fa = defineLocale({
     emptyTitle: 'هنوز چیزی آموخته نشده',
     emptyDesc: 'وقتی OpenAmer مهارت‌ها و حافظه‌های کار شما را می‌سازد، اینجا نمایش داده می‌شوند.',
     share: 'اشتراک‌گذاری نقشه',
-    shareHint: 'کد را برای اشتراک‌گذاری این نقشه کپی کنید، یا برای بارگذاری یک کد بچسبانید. فقط چیدمان را شامل می‌شود، نه متن حافظه یا مهارت شما.',
+    shareHint:
+      'کد را برای اشتراک‌گذاری این نقشه کپی کنید، یا برای بارگذاری یک کد بچسبانید. فقط چیدمان را شامل می‌شود، نه متن حافظه یا مهارت شما.',
     shareTitle: 'درون‌ریزی / برون‌ریزی نقشه',
     sharePlaceholder: 'یک کد نقشه بچسبانید…',
     copy: 'کپی کد نقشه',
@@ -1090,7 +1137,7 @@ export const fa = defineLocale({
     importEmpty: 'برای بارگذاری، یک کد نقشه بچسبانید.',
     importSuccess: nodes => `نقشه‌ای با ${nodes} ${nodes === 1 ? 'گره' : 'گره‌ها'} بارگذاری شد.`,
     importedBadge: 'نقشه درون‌ریزی‌شده',
-    resetToMine: 'بازگشت به نقشه من',
+    resetToMine: 'بازگشت به نقشه من'
   },
   agents: {
     close: 'بستن ایجنت‌ها',
@@ -1120,7 +1167,7 @@ export const fa = defineLocale({
     ageDays: days => `${days} روز پیش`,
     durationSeconds: seconds => `${seconds} ثانیه`,
     durationMinutes: (minutes, seconds) => `${minutes} دقیقه ${seconds} ثانیه`,
-    tokens: value => `${value} توکن`,
+    tokens: value => `${value} توکن`
   },
   commandCenter: {
     close: 'بستن مرکز فرمان',
@@ -1150,7 +1197,7 @@ export const fa = defineLocale({
       generatedTag: 'ساخته‌شده',
       adoptFailed: 'امکان پذیرش آن pet نبود.',
       toggleFailed: 'امکان تغییر وضعیت pet نبود.',
-      noneAvailable: 'هیچ petی موجود نیست — یکی را از پایین برای نصب انتخاب کنید.',
+      noneAvailable: 'هیچ petی موجود نیست — یکی را از پایین برای نصب انتخاب کنید.'
     },
     generatePet: {
       title: 'ساخت pet',
@@ -1174,12 +1221,13 @@ export const fa = defineLocale({
       slowProviderHint: 'این ممکن است چند دقیقه طول بکشد',
       remix: 'بازترکیب',
       remixConfirmTitle: 'این ظاهر را بازترکیب کنیم؟',
-      remixConfirmBody: 'این کار مجموعه‌ای تازه از پیش‌نویس‌ها را با استفاده از این یکی به‌عنوان نقطه شروع تولید می‌کند. ممکن است چند دقیقه طول بکشد.',
+      remixConfirmBody:
+        'این کار مجموعه‌ای تازه از پیش‌نویس‌ها را با استفاده از این یکی به‌عنوان نقطه شروع تولید می‌کند. ممکن است چند دقیقه طول بکشد.',
       genericError: 'تولید ناموفق بود — دوباره تلاش کنید یا یک پیشنهاد انتخاب کنید.',
       referenceImageTooLarge: 'تصویر مرجع بیش از حد بزرگ است. از تصویری کمتر از ۱۶ مگابایت استفاده کنید.',
       referenceImageInvalid: 'خواندن آن تصویر مرجع ممکن نشد. PNG، JPG، WebP یا GIF را امتحان کنید.',
       adopt: 'بپذیر',
-      startOver: 'شروع دوباره',
+      startOver: 'شروع دوباره'
     },
     installTheme: {
       title: 'نصب پوسته…',
@@ -1191,7 +1239,7 @@ export const fa = defineLocale({
       install: 'نصب',
       installing: 'در حال نصب...',
       installed: 'نصب‌شده',
-      installs: count => `${count} نصب`,
+      installs: count => `${count} نصب`
     },
     settingsFields: 'فیلدهای تنظیمات',
     mcpServers: 'سرورهای MCP',
@@ -1200,49 +1248,49 @@ export const fa = defineLocale({
       maintenance: 'نگهداری',
       sessions: 'نشست‌ها',
       system: 'سامانه',
-      usage: 'مصرف',
+      usage: 'مصرف'
     },
     sectionDescriptions: {
       maintenance: 'داده‌های تشخیص، پشتیبان‌گیری، کیوریتور و حافظه',
       sessions: 'جست‌وجو و مدیریت نشست‌ها',
       system: 'وضعیت، گزارش‌ها و اقدامات سیستم',
-      usage: 'توکن، هزینه و فعالیت مهارت در طول زمان',
+      usage: 'توکن، هزینه و فعالیت مهارت در طول زمان'
     },
     nav: {
       newChat: {
         title: 'نشست جدید',
-        detail: 'شروع یک نشست تازه',
+        detail: 'شروع یک نشست تازه'
       },
       settings: {
         title: 'تنظیمات',
-        detail: 'پیکربندی دسکتاپ OpenAmer',
+        detail: 'پیکربندی دسکتاپ OpenAmer'
       },
       skills: {
         title: 'قابلیت‌ها',
-        detail: 'مهارت‌ها، ابزارها و سرورهای MCP',
+        detail: 'مهارت‌ها، ابزارها و سرورهای MCP'
       },
       messaging: {
         title: 'پیام‌رسانی',
-        detail: 'راه‌اندازی Telegram، Slack، Discord و موارد دیگر',
+        detail: 'راه‌اندازی Telegram، Slack، Discord و موارد دیگر'
       },
       artifacts: {
         title: 'آرتیفکت‌ها',
-        detail: 'مرور خروجی‌های تولیدشده',
-      },
+        detail: 'مرور خروجی‌های تولیدشده'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'پنل جلسات',
-        detail: 'جستجو، سنجاق کردن و مدیریت جلسات',
+        detail: 'جستجو، سنجاق کردن و مدیریت جلسات'
       },
       system: {
         title: 'پنل سیستم',
-        detail: 'وضعیت گیت‌وی، گزارش‌ها، راه‌اندازی مجدد/به‌روزرسانی',
+        detail: 'وضعیت گیت‌وی، گزارش‌ها، راه‌اندازی مجدد/به‌روزرسانی'
       },
       usage: {
         title: 'پنل مصرف',
-        detail: 'توکن، هزینه و فعالیت مهارت‌ها',
-      },
+        detail: 'توکن، هزینه و فعالیت مهارت‌ها'
+      }
     },
     providerNavigate: 'پیمایش',
     providerSessions: 'جلسات',
@@ -1330,8 +1378,8 @@ export const fa = defineLocale({
       actionStarted: name => `${name} شروع شد — در حال دنبال کردن لاگ...`,
       actionFailed: name => `${name} شروع نشد`,
       running: 'در حال اجرا...',
-      viewLog: 'لاگ عملیات',
-    },
+      viewLog: 'لاگ عملیات'
+    }
   },
   messaging: {
     search: 'جستجوی پیام‌ها...',
@@ -1346,7 +1394,7 @@ export const fa = defineLocale({
       not_configured: 'نیاز به تنظیمات',
       pending_restart: 'نیاز به راه‌اندازی مجدد',
       retrying: 'در حال تلاش مجدد',
-      startup_failed: 'شروع ناموفق بود',
+      startup_failed: 'شروع ناموفق بود'
     },
     unknown: 'نامشخص',
     hintPendingRestart: 'برای اعمال این تغییر، درگاه را از نوار وضعیت مجدداً راه‌اندازی کنید.',
@@ -1359,7 +1407,8 @@ export const fa = defineLocale({
     required: 'الزامی',
     recommended: 'توصیه‌شده',
     advanced: count => `پیشرفته (${count})`,
-    noTokenNeeded: 'این پلتفرم در اینجا به توکن نیاز ندارد. از راهنمای راه‌اندازی بالا استفاده کنید، سپس آن را در پایین فعال کنید.',
+    noTokenNeeded:
+      'این پلتفرم در اینجا به توکن نیاز ندارد. از راهنمای راه‌اندازی بالا استفاده کنید، سپس آن را در پایین فعال کنید.',
     enabled: 'فعال',
     disabled: 'غیرفعال',
     unsavedChanges: 'تغییرات ذخیره‌نشده',
@@ -1385,127 +1434,126 @@ export const fa = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'توکن ربات',
         help: 'یک ربات با @BotFather بسازید، سپس توکن دریافتی را جای‌گذاری کنید.',
-        placeholder: 'جای‌گذاری توکن ربات تلگرام',
+        placeholder: 'جای‌گذاری توکن ربات تلگرام'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'شناسه‌های کاربران مجاز تلگرام',
-        help: 'توصیه‌شده. شناسه‌های عددی جداشده با کاما از @userinfobot. بدون این، هر کسی می‌تواند به ربات شما پیام خصوصی بدهد.',
+        help: 'توصیه‌شده. شناسه‌های عددی جداشده با کاما از @userinfobot. بدون این، هر کسی می‌تواند به ربات شما پیام خصوصی بدهد.'
       },
       TELEGRAM_PROXY: {
         label: 'URL پروکسی',
-        help: 'فقط در شبکه‌هایی لازم است که تلگرام مسدود شده.',
+        help: 'فقط در شبکه‌هایی لازم است که تلگرام مسدود شده.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'توکن ربات',
-        help: 'در پورتال توسعه‌دهنده Discord یک برنامه بسازید، یک ربات اضافه کنید، سپس توکن آن را جای‌گذاری کنید.',
+        help: 'در پورتال توسعه‌دهنده Discord یک برنامه بسازید، یک ربات اضافه کنید، سپس توکن آن را جای‌گذاری کنید.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'شناسه‌های کاربران مجاز Discord',
-        help: 'توصیه‌شده. شناسه‌های کاربری Discord جداشده با کاما.',
+        help: 'توصیه‌شده. شناسه‌های کاربری Discord جداشده با کاما.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'سبک پاسخ',
-        help: 'اول، همه یا خاموش.',
+        help: 'اول، همه یا خاموش.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'اجازه به همه کاربران Discord',
-        help: 'فقط برای توسعه. وقتی فعال باشد، هر کسی می‌تواند بدون فهرست مجاز به ربات پیام خصوصی بدهد.',
+        help: 'فقط برای توسعه. وقتی فعال باشد، هر کسی می‌تواند بدون فهرست مجاز به ربات پیام خصوصی بدهد.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'شناسه کانال اصلی',
-        help: 'کانالی که ربات پیام‌های خودکار (خروجی cron، یادآورها) را در آن می‌فرستد.',
+        help: 'کانالی که ربات پیام‌های خودکار (خروجی cron، یادآورها) را در آن می‌فرستد.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'نام کانال اصلی',
-        help: 'نام نمایشی کانال اصلی در گزارش‌ها و خروجی وضعیت.',
+        help: 'نام نمایشی کانال اصلی در گزارش‌ها و خروجی وضعیت.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'اجازه به همه کاربران iMessage',
-        help: 'وقتی فعال باشد، فهرست مجاز BlueBubbles نادیده گرفته می‌شود.',
+        help: 'وقتی فعال باشد، فهرست مجاز BlueBubbles نادیده گرفته می‌شود.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'اجازه به همه کاربران Mattermost',
+        label: 'اجازه به همه کاربران Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'کانال اصلی',
+        label: 'کانال اصلی'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'اجازه به همه کاربران QQ',
+        label: 'اجازه به همه کاربران QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'کانال اصلی QQ',
-        help: 'کانال یا گروه پیش‌فرض برای ارسال cron.',
+        help: 'کانال یا گروه پیش‌فرض برای ارسال cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'نام کانال اصلی QQ',
+        label: 'نام کانال اصلی QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'توکن ربات Slack',
         help: 'پس از نصب اپ Slack، از توکن ربات در OAuth & Permissions استفاده کنید.',
-        placeholder: 'توکن ربات Slack را جای‌گذاری کنید',
+        placeholder: 'توکن ربات Slack را جای‌گذاری کنید'
       },
       SLACK_APP_TOKEN: {
         label: 'توکن اپ Slack',
         help: 'از توکن سطح اپ لازم برای Socket Mode استفاده کنید.',
-        placeholder: 'توکن اپ Slack را جای‌گذاری کنید',
+        placeholder: 'توکن اپ Slack را جای‌گذاری کنید'
       },
       SLACK_ALLOWED_USERS: {
         label: 'شناسه‌های کاربری مجاز Slack',
-        help: 'توصیه می‌شود. شناسه‌های کاربری Slack با کاما جدا شوند.',
+        help: 'توصیه می‌شود. شناسه‌های کاربری Slack با کاما جدا شوند.'
       },
       MATTERMOST_URL: {
         label: 'URL سرور',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'توکن ربات',
+        label: 'توکن ربات'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'شناسه‌های کاربری مجاز',
-        help: 'توصیه می‌شود. شناسه‌های کاربری Mattermost با کاما جدا شوند.',
+        help: 'توصیه می‌شود. شناسه‌های کاربری Mattermost با کاما جدا شوند.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL هوم‌سرور',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'توکن دسترسی',
+        label: 'توکن دسترسی'
       },
       MATRIX_USER_ID: {
         label: 'شناسه کاربر ربات',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'شناسه‌های کاربر Matrix مجاز',
-        help: 'توصیه می‌شود. شناسه‌های کاربر با قالب @user:server و جدا‌شده با کاما.',
+        help: 'توصیه می‌شود. شناسه‌های کاربر با قالب @user:server و جدا‌شده با کاما.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL پل Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL یک پل REST signal-cli در حال اجرا.',
+        help: 'URL یک پل REST signal-cli در حال اجرا.'
       },
       SIGNAL_ACCOUNT: {
         label: 'شماره تلفن',
-        help: 'شماره‌ای که در پل signal-cli شما ثبت شده است.',
+        help: 'شماره‌ای که در پل signal-cli شما ثبت شده است.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'کاربران مجاز Signal',
-        help: 'توصیه می‌شود. شناسه‌های Signal جدا‌شده با کاما.',
+        help: 'توصیه می‌شود. شناسه‌های Signal جدا‌شده با کاما.'
       },
       WHATSAPP_ENABLED: {
         label: 'فعال‌سازی پل WhatsApp',
-        help: 'به‌صورت خودکار توسط کلید زیر تنظیم می‌شود. مگر اینکه بدانید به آن نیاز دارید، تغییرش ندهید.',
+        help: 'به‌صورت خودکار توسط کلید زیر تنظیم می‌شود. مگر اینکه بدانید به آن نیاز دارید، تغییرش ندهید.'
       },
       WHATSAPP_MODE: {
-        label: 'حالت پل',
+        label: 'حالت پل'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'کاربران مجاز WhatsApp',
-        help: 'توصیه می‌شود. شماره‌های تلفن یا شناسه‌های WhatsApp جدا‌شده با کاما.',
-      },
+        help: 'توصیه می‌شود. شماره‌های تلفن یا شناسه‌های WhatsApp جدا‌شده با کاما.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'جستجوی وب‌هوک‌ها...',
@@ -1515,7 +1563,8 @@ export const fa = defineLocale({
     hint: 'پس از اجرای گیرنده، تغییرات اشتراک به‌صورت خودکار بارگذاری می‌شوند. اشتراک‌های غیرفعال رویدادهای ورودی را رد می‌کنند.',
     empty: 'هنوز هیچ اشتراک وبهوکی وجود ندارد.',
     disabledTitle: 'گیرنده وبهوک غیرفعال است',
-    disabledBody: 'وبهوک‌ها پلتفرم درگاه مستقل خود را دارند. برای پذیرش رویدادهای HTTP ورودی آن‌ها را اینجا فعال کنید؛ کانال‌های گفتگو فقط زمانی لازم هستند که یک اشتراک به تلگرام، دیسکورد، اسلک یا کانال دیگری ارسال کند.',
+    disabledBody:
+      'وبهوک‌ها پلتفرم درگاه مستقل خود را دارند. برای پذیرش رویدادهای HTTP ورودی آن‌ها را اینجا فعال کنید؛ کانال‌های گفتگو فقط زمانی لازم هستند که یک اشتراک به تلگرام، دیسکورد، اسلک یا کانال دیگری ارسال کند.',
     enable: 'فعال‌سازی وبهوک‌ها',
     enabling: 'در حال فعال‌سازی...',
     enabled: (name: string) => `فعال: "${name}"`,
@@ -1568,8 +1617,8 @@ export const fa = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'ایمیل',
-      github_comment: 'نظر گیت‌هاب',
-    },
+      github_comment: 'نظر گیت‌هاب'
+    }
   },
   profiles: {
     close: 'بستن پروفایل‌ها',
@@ -1647,7 +1696,7 @@ export const fa = defineLocale({
     failedLoadSoul: 'بارگذاری SOUL.md ناموفق بود',
     failedSaveSoul: 'ذخیره SOUL.md ناموفق بود',
     failedCreate: 'ایجاد پروفایل ناموفق بود',
-    failedRename: 'تغییر نام پروفایل ناموفق بود',
+    failedRename: 'تغییر نام پروفایل ناموفق بود'
   },
   cron: {
     close: 'بستن کرون',
@@ -1662,14 +1711,14 @@ export const fa = defineLocale({
       paused: 'مکث‌شده',
       disabled: 'غیرفعال',
       error: 'خطا',
-      completed: 'تکمیل‌شده',
+      completed: 'تکمیل‌شده'
     },
     deliveryLabels: {
       local: 'این دسکتاپ',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ایمیل',
+      email: 'ایمیل'
     },
     scheduleLabels: {
       daily: 'روزانه',
@@ -1678,7 +1727,7 @@ export const fa = defineLocale({
       monthly: 'ماهانه',
       hourly: 'ساعتی',
       'every-15-minutes': 'هر ۱۵ دقیقه',
-      custom: 'سفارشی',
+      custom: 'سفارشی'
     },
     scheduleHints: {
       daily: 'هر روز ساعت ۹:۰۰ صبح',
@@ -1687,7 +1736,7 @@ export const fa = defineLocale({
       monthly: 'اولین روز هر ماه ساعت ۹:۰۰ صبح',
       hourly: 'در ابتدای هر ساعت',
       'every-15-minutes': 'هر ۱۵ دقیقه',
-      custom: 'نگارش Cron یا زبان طبیعی',
+      custom: 'نگارش Cron یا زبان طبیعی'
     },
     days: {
       '0': 'یکشنبه',
@@ -1697,7 +1746,7 @@ export const fa = defineLocale({
       '4': 'پنجشنبه',
       '5': 'جمعه',
       '6': 'شنبه',
-      '7': 'یکشنبه',
+      '7': 'یکشنبه'
     },
     dayFallback: value => `روز ${value}`,
     everyDayAt: time => `هر روز ساعت ${time}`,
@@ -1707,7 +1756,8 @@ export const fa = defineLocale({
     topOfHour: 'در ابتدای هر ساعت',
     everyHourAt: minute => `هر ساعت در :${minute}`,
     newCron: 'کران جدید',
-    emptyDescNew: 'یک پرامپت را برای اجرا با عبارت کران زمان‌بندی کنید. OpenAmer آن را اجرا می‌کند و نتایج را به مقصدی که انتخاب می‌کنید می‌رساند.',
+    emptyDescNew:
+      'یک پرامپت را برای اجرا با عبارت کران زمان‌بندی کنید. OpenAmer آن را اجرا می‌کند و نتایج را به مقصدی که انتخاب می‌کنید می‌رساند.',
     emptyDescSearch: 'جستجوی گسترده‌تری امتحان کنید.',
     emptyTitleNew: 'هنوز کار زمان‌بندی‌شده‌ای نیست',
     emptyTitleSearch: 'موردی یافت نشد',
@@ -1744,7 +1794,8 @@ export const fa = defineLocale({
     editTitle: 'ویرایش وظیفه cron',
     createTitle: 'وظیفه cron جدید',
     editDesc: 'زمان‌بندی، دستور یا مقصد تحویل را به‌روزرسانی کنید. تغییرات در اجرای بعدی اعمال می‌شود.',
-    createDesc: 'دستوری را برای اجرای خودکار زمان‌بندی کنید. از نحو cron یا عبارتی طبیعی مثل «هر ۱۵ دقیقه» استفاده کنید.',
+    createDesc:
+      'دستوری را برای اجرای خودکار زمان‌بندی کنید. از نحو cron یا عبارتی طبیعی مثل «هر ۱۵ دقیقه» استفاده کنید.',
     nameLabel: 'نام',
     namePlaceholder: 'خلاصه صبحگاهی',
     promptLabel: 'دستور',
@@ -1766,7 +1817,7 @@ export const fa = defineLocale({
     createAction: 'ایجاد cron',
     tabs: {
       jobs: 'کارها',
-      blueprints: 'الگوها',
+      blueprints: 'الگوها'
     },
     blueprints: {
       tab: 'الگوها',
@@ -1780,8 +1831,8 @@ export const fa = defineLocale({
       loading: 'در حال بارگذاری الگوها...',
       failedLoad: 'بارگذاری الگوها ناموفق بود',
       emptyTitle: 'الگویی در دسترس نیست',
-      emptyDesc: 'هیچ الگوی اتوماسیونی روی این بک‌اند در دسترس نیست.',
-    },
+      emptyDesc: 'هیچ الگوی اتوماسیونی روی این بک‌اند در دسترس نیست.'
+    }
   },
   artifacts: {
     search: 'جستجوی آرتیفکت‌ها...',
@@ -1815,14 +1866,14 @@ export const fa = defineLocale({
     kindLink: 'پیوند',
     chat: 'گفتگو',
     copyUrl: 'کپی URL',
-    copyPath: 'کپی مسیر',
+    copyPath: 'کپی مسیر'
   },
   sidebar: {
     nav: {
       'new-session': 'جلسه جدید',
       skills: 'قابلیت‌ها',
       messaging: 'پیام‌رسانی',
-      artifacts: 'ساخته‌ها',
+      artifacts: 'ساخته‌ها'
     },
     searchAria: 'جستجوی جلسه‌ها',
     searchPlaceholder: 'جستجوی جلسه‌ها…',
@@ -1854,7 +1905,7 @@ export const fa = defineLocale({
       namePlaceholder: 'مثلاً Skunkworks',
       foldersLabel: 'پوشه‌ها',
       ideaLabel: 'ایده',
-      ideaPlaceholder: "این پروژه درباره چیست؟ (در IDEA.md ذخیره می‌شود)",
+      ideaPlaceholder: 'این پروژه درباره چیست؟ (در IDEA.md ذخیره می‌شود)',
       ideaGenerate: 'تولید ایده',
       ideaGenerating: 'در حال تولید…',
       ideaShuffle: 'تصادفی‌سازی قالب‌ها',
@@ -1874,8 +1925,10 @@ export const fa = defineLocale({
       copyPath: 'کپی مسیر',
       removeFromSidebar: 'پنهان کردن از نوار کناری',
       createFailed: 'ایجاد پروژه ممکن نشد',
-      staleBackend: 'برای ایجاد پروژه، بک‌اند OpenAmer را به‌روزرسانی کنید — بک‌اند شما از این اپ دسکتاپ قدیمی‌تر است (تنظیمات → به‌روزرسانی‌ها → بک‌اند).',
-      deleteConfirm: 'این کار پروژهٔ ذخیره‌شده را از OpenAmer حذف می‌کند. فایل‌ها، مخازن git و worktreeها دست‌نخورده می‌مانند.',
+      staleBackend:
+        'برای ایجاد پروژه، بک‌اند OpenAmer را به‌روزرسانی کنید — بک‌اند شما از این اپ دسکتاپ قدیمی‌تر است (تنظیمات → به‌روزرسانی‌ها → بک‌اند).',
+      deleteConfirm:
+        'این کار پروژهٔ ذخیره‌شده را از OpenAmer حذف می‌کند. فایل‌ها، مخازن git و worktreeها دست‌نخورده می‌مانند.',
       startWork: 'worktree جدید',
       newWorktreeTitle: 'worktree جدید',
       newWorktreeDesc: 'نام شاخهٔ این ورک‌تری را وارد کنید.',
@@ -1896,13 +1949,15 @@ export const fa = defineLocale({
       noBranches: 'شاخه‌ای یافت نشد',
       removeWorktree: 'حذف ورک‌تری',
       removeWorktreeFailed: 'حذف ورک‌تری ممکن نشد (تغییرات ثبت‌نشده؟)',
-      removeWorktreeConfirm: 'آن را از گیت حذف کنید (پوشهٔ ورک‌تری حذف می‌شود؛ شاخه باقی می‌ماند)، یا فقط مسیر را از نوار کناری پنهان کنید و ورک‌تری را روی دیسک نگه دارید.',
-      removeWorktreeDirty: 'این ورک‌تری تغییرات ثبت‌نشده دارد. به‌اجبار حذفش کنید (آن تغییرات دور ریخته می‌شوند)، یا فقط مسیر را پنهان کنید و روی دیسک نگه دارید.',
+      removeWorktreeConfirm:
+        'آن را از گیت حذف کنید (پوشهٔ ورک‌تری حذف می‌شود؛ شاخه باقی می‌ماند)، یا فقط مسیر را از نوار کناری پنهان کنید و ورک‌تری را روی دیسک نگه دارید.',
+      removeWorktreeDirty:
+        'این ورک‌تری تغییرات ثبت‌نشده دارد. به‌اجبار حذفش کنید (آن تغییرات دور ریخته می‌شوند)، یا فقط مسیر را پنهان کنید و روی دیسک نگه دارید.',
       forceRemove: 'حذف اجباری',
       enter: label => `باز کردن ${label}`,
       reorder: label => `تغییر ترتیب ${label}`,
       toggle: label => `تغییر وضعیت ${label} جلسات`,
-      back: 'همهٔ پروژه‌ها',
+      back: 'همهٔ پروژه‌ها'
     },
     newSessionIn: label => `نشست جدید در ${label}`,
     showMoreIn: (count, label) => `نمایش ${count} مورد دیگر در ${label}`,
@@ -1940,15 +1995,15 @@ export const fa = defineLocale({
       ageNow: 'اکنون',
       ageDay: 'روز',
       ageHour: 'ساعت',
-      ageMin: 'م',
+      ageMin: 'م'
     },
     dateDivider: {
       today: 'امروز زودتر',
       yesterday: 'دیروز',
       thisWeek: 'اوایل این هفته',
       lastWeek: 'هفته گذشته',
-      thisMonth: 'اوایل این ماه',
-    },
+      thisMonth: 'اوایل این ماه'
+    }
   },
   composer: {
     message: 'پیام',
@@ -1959,20 +2014,20 @@ export const fa = defineLocale({
     newSessionPlaceholders: [
       'چه چیزی می‌سازیم؟',
       'به OpenAmer وظیفه بدهید',
-      "چه در ذهن دارید؟",
+      'چه در ذهن دارید؟',
       'نیاز خود را شرح دهید',
       'به چه چیزی بپردازیم؟',
       'هر چیزی بپرسید',
-      'با یک هدف شروع کنید',
+      'با یک هدف شروع کنید'
     ],
     followUpPlaceholders: [
       'پیگیری بفرستید',
       'زمینه بیشتری اضافه کنید',
       'درخواست را دقیق‌تر کنید',
-      "قدم بعدی؟",
+      'قدم بعدی؟',
       'ادامه دهید',
       'بیشتر پیش ببرید',
-      'تنظیم یا ادامه',
+      'تنظیم یا ادامه'
     ],
     startVoice: 'شروع گفتگوی صوتی',
     queueMessage: 'پیام در صف',
@@ -2008,7 +2063,7 @@ export const fa = defineLocale({
       '/resume': 'ادامه یک نشست قبلی',
       '/details': 'کنترل سطح جزئیات رونوشت',
       '/copy': 'کپی انتخاب یا آخرین پیام دستیار',
-      '/quit': 'خروج از OpenAmer',
+      '/quit': 'خروج از OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'ارجاع به فایل‌ها، پوشه‌ها، URLها، Git',
@@ -2018,7 +2073,7 @@ export const fa = defineLocale({
       'composer.sendQueued': 'ارسال نوبت بعدی در صف',
       'keybinds.openPanel': 'همه میانبرهای صفحه‌کلید',
       'composer.cancel': 'بستن پاپ‌اور · لغو اجرا',
-      'composer.history': 'چرخش بازشو / تاریخچه',
+      'composer.history': 'چرخش بازشو / تاریخچه'
     },
     attachUrlTitle: 'پیوست URL',
     attachUrlDesc: 'OpenAmer صفحه را دریافت می‌کند و آن را به‌عنوان زمینه برای این نوبت لحاظ می‌کند.',
@@ -2069,19 +2124,19 @@ export const fa = defineLocale({
       codeReview: {
         label: 'بازبینی کد',
         description: 'تغییر فعلی را برای رگرسیون‌ها، موارد لبه جامانده و تست‌های گمشده بررسی کنید.',
-        text: 'لطفاً این را برای باگ‌ها، رگرسیون‌ها و تست‌های گمشده بررسی کنید.',
+        text: 'لطفاً این را برای باگ‌ها، رگرسیون‌ها و تست‌های گمشده بررسی کنید.'
       },
       implementationPlan: {
         label: 'برنامه پیاده‌سازی',
         description: 'قبل از تغییر کد، رویکرد خود را ترسیم کنید تا تغییرات متمرکز بماند.',
-        text: 'لطفاً پیش از تغییر کد، یک برنامه پیاده‌سازی مختصر تهیه کنید.',
+        text: 'لطفاً پیش از تغییر کد، یک برنامه پیاده‌سازی مختصر تهیه کنید.'
       },
       explainThis: {
         label: 'توضیح دهید',
         description: 'نحوه عملکرد کد انتخاب شده را شرح داده و به فایل‌های کلیدی لینک دهید.',
-        text: 'لطفاً توضیح دهید این چگونه کار می‌کند و مرا به فایل‌های کلیدی راهنمایی کنید.',
-      },
-    },
+        text: 'لطفاً توضیح دهید این چگونه کار می‌کند و مرا به فایل‌های کلیدی راهنمایی کنید.'
+      }
+    }
   },
   statusStack: {
     agents: 'عامل‌ها',
@@ -2112,7 +2167,8 @@ export const fa = defineLocale({
       revert: 'بازگردانی',
       revertAll: 'بازگردانی همه',
       revertConfirm: 'تغییرات این فایل دور انداخته و به وضعیت کامیت‌شده بازگردانده شود؟ این کار قابل بازگشت نیست.',
-      revertAllConfirm: 'همه تغییرات دور انداخته و فایل‌ها به وضعیت کامیت‌شده بازگردانده شوند؟ این کار قابل بازگشت نیست.',
+      revertAllConfirm:
+        'همه تغییرات دور انداخته و فایل‌ها به وضعیت کامیت‌شده بازگردانده شوند؟ این کار قابل بازگشت نیست.',
       staged: 'استیج‌شده',
       noChanges: 'بدون تغییر',
       notRepo: 'مخزن گیت نیست',
@@ -2129,13 +2185,14 @@ export const fa = defineLocale({
       openPr: 'باز کردن PR',
       ghMissing: 'GitHub CLI (gh) را نصب کنید و برای باز کردن PRها وارد شوید',
       agentShip: 'از OpenAmer بخواه PR را باز کند',
-      agentShipPrompt: 'تغییرات فعلی را بررسی کن، آن‌ها را با پیام کامیت واضح و استاندارد کامیت کن، شاخه را پوش کن و یک PR باز کن.',
+      agentShipPrompt:
+        'تغییرات فعلی را بررسی کن، آن‌ها را با پیام کامیت واضح و استاندارد کامیت کن، شاخه را پوش کن و یک PR باز کن.',
       newBranch: 'شاخه جدید',
       branchOffFrom: base => `شاخه جدید از ${base}`,
       switchTo: branch => `رفتن به ${branch}`,
       switchFailed: branch => `نتوانست به ${branch} تغییر کند`,
-      worktrees: 'درخت‌های کاری',
-    },
+      worktrees: 'درخت‌های کاری'
+    }
   },
   updates: {
     stages: {
@@ -2150,7 +2207,7 @@ export const fa = defineLocale({
       done: 'به‌روزرسانی کامل شد',
       manual: 'به‌روزرسانی از ترمینال شما',
       guiSkew: 'برنامه دسکتاپ را به‌روزرسانی کنید',
-      error: 'به‌روزرسانی متوقف شد',
+      error: 'به‌روزرسانی متوقف شد'
     },
     checking: 'در حال جستجوی به‌روزرسانی…',
     checkFailedTitle: 'بررسی به‌روزرسانی ممکن نشد',
@@ -2170,15 +2227,19 @@ export const fa = defineLocale({
     maybeLater: 'شاید بعداً',
     moreChanges: count => `+ ${count} تغییر دیگر ${count === 1 ? 'تغییر' : 'تغییرها'} شامل شده است.`,
     manualTitle: 'به‌روزرسانی از ترمینال',
-    manualBody: 'شما OpenAmer را از خط فرمان نصب کرده‌اید، بنابراین به‌روزرسانی‌ها هم همان‌جا اجرا می‌شوند. این را در ترمینال خود جای‌گذاری کنید:',
+    manualBody:
+      'شما OpenAmer را از خط فرمان نصب کرده‌اید، بنابراین به‌روزرسانی‌ها هم همان‌جا اجرا می‌شوند. این را در ترمینال خود جای‌گذاری کنید:',
     manualPickedUp: 'OpenAmer بار بعدی که اجرایش کنید نسخه جدید را دریافت می‌کند.',
     guiSkewTitle: 'اپلیکیشن دسکتاپ را به‌روزرسانی کنید',
-    guiSkewBody: 'بک‌اند به‌روزرسانی شد، اما بسته این اپلیکیشن دسکتاپ تغییر نکرده است. برای هماهنگی، اپلیکیشن دسکتاپ OpenAmer (AppImage / .deb / .rpm خود) را به‌روزرسانی یا دوباره نصب کنید.',
+    guiSkewBody:
+      'بک‌اند به‌روزرسانی شد، اما بسته این اپلیکیشن دسکتاپ تغییر نکرده است. برای هماهنگی، اپلیکیشن دسکتاپ OpenAmer (AppImage / .deb / .rpm خود) را به‌روزرسانی یا دوباره نصب کنید.',
     copy: 'کپی',
     copied: 'کپی شد',
     done: 'انجام شد',
-    applyingBody: 'به‌روزرسان OpenAmer در پنجره خودش کار را در دست می‌گیرد و پس از پایان، OpenAmer را به‌صورت خودکار دوباره باز می‌کند. لطفاً در حین به‌روزرسانی خودتان OpenAmer را دوباره باز نکنید.',
-    applyingBodyBackend: 'بک‌اند راه دور در حال اعمال به‌روزرسانی است و راه‌اندازی مجدد می‌شود. OpenAmer وقتی برگشت به‌صورت خودکار دوباره متصل می‌شود.',
+    applyingBody:
+      'به‌روزرسان OpenAmer در پنجره خودش کار را در دست می‌گیرد و پس از پایان، OpenAmer را به‌صورت خودکار دوباره باز می‌کند. لطفاً در حین به‌روزرسانی خودتان OpenAmer را دوباره باز نکنید.',
+    applyingBodyBackend:
+      'بک‌اند راه دور در حال اعمال به‌روزرسانی است و راه‌اندازی مجدد می‌شود. OpenAmer وقتی برگشت به‌صورت خودکار دوباره متصل می‌شود.',
     applyingClose: 'این پنجره هنگام اجرای به‌روزرسانی بسته می‌شود، سپس OpenAmer خودبه‌خود باز می‌شود.',
     errorTitle: 'به‌روزرسانی کامل نشد',
     errorBody: 'نگران نباشید — چیزی از دست نرفته است. اکنون می‌توانید دوباره تلاش کنید.',
@@ -2189,12 +2250,13 @@ export const fa = defineLocale({
       restarting: 'بک‌اند برای بارگذاری به‌روزرسانی در حال راه‌اندازی مجدد است…',
       notAvailable: 'به‌روزرسانی برای این بک‌اند در دسترس نیست.',
       failed: 'به‌روزرسانی بک‌اند ناموفق بود.',
-      noReturn: 'بک‌اند دوباره آنلاین نشد. ممکن است به‌روزرسانی کامل نشده باشد — میزبان بک‌اند را بررسی کنید.',
+      noReturn: 'بک‌اند دوباره آنلاین نشد. ممکن است به‌روزرسانی کامل نشده باشد — میزبان بک‌اند را بررسی کنید.'
     },
     appErrors: {
-      updateLocked: 'به‌روزرسانی لغو شد: پنجرهٔ دیگری از OpenAmer یا ترمینالی که openamer را اجرا می‌کند این نصب را باز نگه داشته است. آن را ببندید و دوباره تلاش کنید.',
-      updateFailed: 'به‌روزرسانی کامل نشد. نگران نباشید — چیزی از دست نرفت. اکنون می‌توانید دوباره تلاش کنید.',
-    },
+      updateLocked:
+        'به‌روزرسانی لغو شد: پنجرهٔ دیگری از OpenAmer یا ترمینالی که openamer را اجرا می‌کند این نصب را باز نگه داشته است. آن را ببندید و دوباره تلاش کنید.',
+      updateFailed: 'به‌روزرسانی کامل نشد. نگران نباشید — چیزی از دست نرفت. اکنون می‌توانید دوباره تلاش کنید.'
+    }
   },
   install: {
     stageStates: {
@@ -2202,17 +2264,19 @@ export const fa = defineLocale({
       running: 'در حال نصب',
       succeeded: 'انجام شد',
       skipped: 'رد شد',
-      failed: 'ناموفق',
+      failed: 'ناموفق'
     },
     oneTimeTitle: 'OpenAmer به نصبی یک‌باره نیاز دارد',
-    unsupportedDesc: platform => `نصب خودکار در اولین اجرا هنوز روی ${platform} در دسترس نیست. ترمینال را باز کنید و فرمان زیر را اجرا کنید، سپس این برنامه را دوباره اجرا کنید. اجراهای بعدی از این مرحله عبور می‌کنند.`,
+    unsupportedDesc: platform =>
+      `نصب خودکار در اولین اجرا هنوز روی ${platform} در دسترس نیست. ترمینال را باز کنید و فرمان زیر را اجرا کنید، سپس این برنامه را دوباره اجرا کنید. اجراهای بعدی از این مرحله عبور می‌کنند.`,
     installCommand: 'فرمان نصب',
     copyCommand: 'کپی فرمان',
     viewDocs: 'مشاهدهٔ مستندات نصب',
     installTo: 'در این مسیر نصب می‌شود',
     retryAfterRun: 'اجرا کردم -- دوباره تلاش کنید',
     setupChoiceTitle: 'راه‌اندازی OpenAmer Desktop',
-    setupChoiceDesc: 'این برنامه را به دروازهٔ OpenAmer که از قبل اجرا می‌کنید متصل کنید، یا OpenAmer را به‌صورت محلی روی این رایانه نصب کنید.',
+    setupChoiceDesc:
+      'این برنامه را به دروازهٔ OpenAmer که از قبل اجرا می‌کنید متصل کنید، یا OpenAmer را به‌صورت محلی روی این رایانه نصب کنید.',
     connectExistingTitle: 'اتصال به OpenAmer موجود',
     connectExistingShort: 'اتصال به موجود',
     connectExistingDesc: 'از یک بک‌اند راه دور با توکن نشست یا ورود مرورگر استفاده کنید. هیچ نصب محلی شروع نمی‌شود.',
@@ -2247,8 +2311,10 @@ export const fa = defineLocale({
     failedTitle: 'نصب ناموفق بود',
     settingUpTitle: 'در حال راه‌اندازی OpenAmer Agent',
     finishingTitle: 'در حال اتمام',
-    failedDesc: 'یکی از مراحل نصب ناموفق بود. در ویندوز، این ممکن است زمانی رخ دهد که نمونه دیگری از OpenAmer CLI یا نسخه دسکتاپ در حال اجرا باشد. هر نمونه در حال اجرای OpenAmer را متوقف کنید و سپس دوباره تلاش کنید. جزئیات زیر یا گزارش دسکتاپ را برای متن کامل بررسی کنید.',
-    activeDesc: 'این راه‌اندازی یک‌باره است. نصب‌کننده OpenAmer در حال دانلود وابستگی‌ها و پیکربندی دستگاه شماست. اجراهای بعدی از این مرحله عبور می‌کنند.',
+    failedDesc:
+      'یکی از مراحل نصب ناموفق بود. در ویندوز، این ممکن است زمانی رخ دهد که نمونه دیگری از OpenAmer CLI یا نسخه دسکتاپ در حال اجرا باشد. هر نمونه در حال اجرای OpenAmer را متوقف کنید و سپس دوباره تلاش کنید. جزئیات زیر یا گزارش دسکتاپ را برای متن کامل بررسی کنید.',
+    activeDesc:
+      'این راه‌اندازی یک‌باره است. نصب‌کننده OpenAmer در حال دانلود وابستگی‌ها و پیکربندی دستگاه شماست. اجراهای بعدی از این مرحله عبور می‌کنند.',
     progress: (completed, total) => `${completed} از ${total} مرحله کامل شد`,
     currentStage: stage => ` -- اکنون: ${stage}`,
     fetchingManifest: 'در حال دریافت مانیفست نصب‌کننده...',
@@ -2262,10 +2328,10 @@ export const fa = defineLocale({
     transcriptSaved: 'متن کامل در این مسیر ذخیره شد:',
     copiedOutput: 'کپی شد!',
     copyOutput: 'کپی خروجی',
-    reloadRetry: 'بارگذاری مجدد و تلاش دوباره',
+    reloadRetry: 'بارگذاری مجدد و تلاش دوباره'
   },
   onboarding: {
-    headerTitle: "بیایید OpenAmer Agent را برای شما راه‌اندازی کنیم",
+    headerTitle: 'بیایید OpenAmer Agent را برای شما راه‌اندازی کنیم',
     headerDesc: 'برای شروع گفتگو یک ارائه‌دهندهٔ مدل را متصل کنید. بیشتر گزینه‌ها با یک کلیک انجام می‌شوند.',
     preparingInstall: 'OpenAmer در حال اتمام نصب است. این کار معمولاً در اولین اجرا کمتر از یک دقیقه طول می‌کشد.',
     starting: 'در حال شروع OpenAmer…',
@@ -2273,7 +2339,7 @@ export const fa = defineLocale({
     collapse: 'جمع کردن',
     otherProviders: 'سایر ارائه‌دهندگان',
     haveApiKey: 'کلید API دارم',
-    chooseLater: "بعداً یک ارائه‌دهنده انتخاب می‌کنم",
+    chooseLater: 'بعداً یک ارائه‌دهنده انتخاب می‌کنم',
     recommended: 'پیشنهادی',
     connected: 'متصل',
     featuredPitch: 'یک اشتراک، ۳۰۰+ مدل پیشرو — روش پیشنهادی برای اجرای OpenAmer',
@@ -2282,28 +2348,29 @@ export const fa = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API مستقیم مدل',
-        description: 'دسترسی مستقیم به مدل‌های میزبانی‌شده توسط Fireworks AI.',
+        description: 'دسترسی مستقیم به مدل‌های میزبانی‌شده توسط Fireworks AI.'
       },
       openrouter: {
         short: 'یک کلید، مدل‌های بسیار',
-        description: 'صدها مدل را پشت یک کلید واحد میزبانی می‌کند. پیش‌فرض مناسب برای نصب‌های جدید.',
+        description: 'صدها مدل را پشت یک کلید واحد میزبانی می‌کند. پیش‌فرض مناسب برای نصب‌های جدید.'
       },
       openai: {
         short: 'مدل‌های رده GPT',
-        description: 'دسترسی مستقیم به مدل‌های OpenAI.',
+        description: 'دسترسی مستقیم به مدل‌های OpenAI.'
       },
       gemini: {
         short: 'مدل‌های Gemini',
-        description: 'دسترسی مستقیم به مدل‌های Google Gemini.',
+        description: 'دسترسی مستقیم به مدل‌های Google Gemini.'
       },
       xai: {
         short: 'مدل‌های Grok',
-        description: 'دسترسی مستقیم به مدل‌های xAI Grok.',
+        description: 'دسترسی مستقیم به مدل‌های xAI Grok.'
       },
       local: {
         short: 'خودمیزبان',
-        description: 'OpenAmer را به یک نقطه پایانی محلی یا خودمیزبان سازگار با OpenAI (vLLM، llama.cpp، Ollama و غیره) متصل کنید.',
-      },
+        description:
+          'OpenAmer را به یک نقطه پایانی محلی یا خودمیزبان سازگار با OpenAI (vLLM، llama.cpp، Ollama و غیره) متصل کنید.'
+      }
     },
     backToSignIn: 'بازگشت به ورود',
     getKey: 'دریافت کلید',
@@ -2316,7 +2383,7 @@ export const fa = defineLocale({
     flowSubtitles: {
       pkce: 'مرورگر را برای ورود باز می‌کند، سپس اینجا ادامه می‌دهد',
       device_code: 'صفحه‌ای برای تأیید در مرورگر باز می‌کند — OpenAmer خودکار متصل می‌شود',
-      external: 'یک‌بار در ترمینال وارد شوید، سپس به چت برگردید',
+      external: 'یک‌بار در ترمینال وارد شوید، سپس به چت برگردید'
     },
     startingSignIn: provider => `شروع ورود برای ${provider}...`,
     verifyingCode: provider => `در حال تأیید کد شما با ${provider}...`,
@@ -2330,11 +2397,13 @@ export const fa = defineLocale({
     copyAuthCode: 'کد مجوز را کپی کنید و در پایین بچسبانید.',
     pasteAuthCode: 'چسباندن کد مجوز',
     reopenAuthPage: 'بازگشایی صفحه مجوز',
-    autoBrowser: provider => `${provider} را در مرورگر شما باز کردیم. OpenAmer را همان‌جا مجاز کنید تا خودکار متصل شوید — نیازی به کپی یا چسباندن نیست.`,
+    autoBrowser: provider =>
+      `${provider} را در مرورگر شما باز کردیم. OpenAmer را همان‌جا مجاز کنید تا خودکار متصل شوید — نیازی به کپی یا چسباندن نیست.`,
     reopenSignInPage: 'بازگشایی صفحه ورود',
     waitingAuthorize: 'در انتظار مجوز شما...',
-    externalPending: provider => `${provider} از طریق CLI خودش وارد میشود. این دستور را در ترمینال اجرا کنید، سپس برگردید و «وارد شدم» را انتخاب کنید:`,
-    signedIn: "وارد شدم",
+    externalPending: provider =>
+      `${provider} از طریق CLI خودش وارد میشود. این دستور را در ترمینال اجرا کنید، سپس برگردید و «وارد شدم» را انتخاب کنید:`,
+    signedIn: 'وارد شدم',
     deviceCodeOpened: provider => `${provider} را در مرورگر شما باز کردیم. این کد را آنجا وارد کنید:`,
     reopenVerification: 'بازگشایی صفحه تأیید',
     copy: 'کپی',
@@ -2345,7 +2414,7 @@ export const fa = defineLocale({
     price: (input, output) => `${input} ورودی / ${output} خروجی به‌ازای هر Mtok`,
     change: 'تغییر',
     startChatting: 'شروع',
-    docs: provider => `${provider} سند`,
+    docs: provider => `${provider} سند`
   },
   modelPicker: {
     title: 'تغییر مدل',
@@ -2361,13 +2430,13 @@ export const fa = defineLocale({
     free: 'رایگان',
     freeTier: 'سطح رایگان',
     priceTitle: 'قیمت ورودی / خروجی به‌ازای هر میلیون توکن',
-    wasPrice: 'بود',
+    wasPrice: 'بود'
   },
   modelVisibility: {
     title: 'مدل‌ها',
     search: 'جستجوی مدلها',
     noAuthenticatedProviders: 'هیچ ارائهدهنده احراز هویتشدهای وجود ندارد.',
-    addProvider: 'افزودن ارائهدهنده…',
+    addProvider: 'افزودن ارائهدهنده…'
   },
   shell: {
     windowControls: 'کنترلهای پنجره',
@@ -2378,7 +2447,7 @@ export const fa = defineLocale({
       noModels: 'مدلی یافت نشد',
       editModels: 'ویرایش مدلها…',
       refreshModels: 'بهروزرسانی مدلها',
-      fast: 'سریع',
+      fast: 'سریع'
     },
     modelOptions: {
       noOptions: 'هیچ گزینهای برای این مدل نیست',
@@ -2394,7 +2463,7 @@ export const fa = defineLocale({
       max: 'حداکثر',
       ultra: 'اولترا',
       updateFailed: 'به‌روزرسانی گزینه مدل ناموفق بود',
-      fastFailed: 'به‌روزرسانی حالت سریع ناموفق بود',
+      fastFailed: 'به‌روزرسانی حالت سریع ناموفق بود'
     },
     gatewayMenu: {
       gateway: 'درگاه',
@@ -2409,7 +2478,7 @@ export const fa = defineLocale({
       connection: label => `اتصال: ${label}`,
       recentActivity: 'فعالیت اخیر',
       viewAllLogs: 'مشاهده همه گزارش‌ها →',
-      messagingPlatforms: 'پلتفرم‌های پیام‌رسان',
+      messagingPlatforms: 'پلتفرم‌های پیام‌رسان'
     },
     approvalMode: {
       title: 'حالت تأیید',
@@ -2419,7 +2488,7 @@ export const fa = defineLocale({
       smart: 'هوشمند',
       smartDescription: 'اقدام‌ها را خودکار ارزیابی کن و در صورت نیاز بپرس',
       off: 'خاموش',
-      offDescription: 'بدون درخواست تأیید اجرا کن',
+      offDescription: 'بدون درخواست تأیید اجرا کن'
     },
     statusbar: {
       unknown: 'نامعلوم',
@@ -2475,27 +2544,29 @@ export const fa = defineLocale({
           skills: 'مهارت‌ها',
           subagent_definitions: 'تعاریف زیرعامل',
           system_prompt: 'پرامپت سیستم',
-          tool_definitions: 'تعاریف ابزار',
+          tool_definitions: 'تعاریف ابزار'
         },
         empty: 'هنوز داده زمینه‌ای وجود ندارد',
         loading: 'در حال بارگذاری تفکیک…',
         percentFull: percent => `${percent}% پر`,
         title: 'مصرف زمینه',
-        tokenSummary: (used, max) => `${used} / ${max} توکن`,
+        tokenSummary: (used, max) => `${used} / ${max} توکن`
       },
       openContextUsage: 'باز کردن جزئیات مصرف زمینه',
       session: 'نشست',
       runtimeSessionElapsed: 'زمان سپری‌شده نشست اجرا',
-      yoloOn: 'YOLO روشن — تأیید خودکار دستورهای خطرناک. برای خاموش کردن کلیک کنید. Shift+کلیک وضعیت آن را به‌صورت سراسری تغییر می‌دهد.',
-      yoloOff: 'YOLO خاموش — برای تأیید خودکار دستورهای خطرناک کلیک کنید. Shift+کلیک وضعیت آن را به‌صورت سراسری تغییر می‌دهد.',
+      yoloOn:
+        'YOLO روشن — تأیید خودکار دستورهای خطرناک. برای خاموش کردن کلیک کنید. Shift+کلیک وضعیت آن را به‌صورت سراسری تغییر می‌دهد.',
+      yoloOff:
+        'YOLO خاموش — برای تأیید خودکار دستورهای خطرناک کلیک کنید. Shift+کلیک وضعیت آن را به‌صورت سراسری تغییر می‌دهد.',
       modelNone: 'هیچ',
       noModel: 'بدون مدل',
       switchModel: 'تغییر مدل',
       openModelPicker: 'باز کردن انتخاب‌گر مدل',
       modelPinned: 'توسط شما سنجاق شده؛ گفتگوهای جدید از این به‌جای پیش‌فرض تنظیمات استفاده می‌کنند',
       modelTitle: (provider, model) => `مدل · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'نوار کناری راست',
@@ -2531,7 +2602,7 @@ export const fa = defineLocale({
     terminalNew: 'ترمینال جدید',
     terminalCloseOthers: 'بستن بقیه',
     terminalCloseAll: 'بستن همه',
-    addToChat: 'افزودن به گفتگو',
+    addToChat: 'افزودن به گفتگو'
   },
   preview: {
     tab: 'پیش‌نمایش',
@@ -2565,7 +2636,8 @@ export const fa = defineLocale({
     unsavedChanges: 'تغییرات ذخیره‌نشده',
     saveFailed: message => `ذخیره نشد: ${message}`,
     diskChangedTitle: 'فایل روی دیسک تغییر کرده است',
-    diskChangedBody: 'این فایل از زمان باز شدن تغییر کرده است. آن را با نسخه خود بازنویسی کنید، یا ویرایش‌هایتان را دور بریزید و دوباره بارگذاری کنید؟',
+    diskChangedBody:
+      'این فایل از زمان باز شدن تغییر کرده است. آن را با نسخه خود بازنویسی کنید، یا ویرایش‌هایتان را دور بریزید و دوباره بارگذاری کنید؟',
     overwrite: 'بازنویسی',
     discardReload: 'دور ریختن و بارگذاری',
     console: {
@@ -2586,7 +2658,7 @@ export const fa = defineLocale({
       empty: 'هنوز پیام کنسولی وجود ندارد.',
       promptHeader: 'کنسول پیش‌نمایش:',
       sentTitle: 'به چت ارسال شد',
-      sentMessage: count => `${count} ورودی گزارش ${count === 1 ? 'y' : 'ies'} به ناحیه ورودی اضافه شد`,
+      sentMessage: count => `${count} ورودی گزارش ${count === 1 ? 'y' : 'ies'} به ناحیه ورودی اضافه شد`
     },
     web: {
       appFailedToBoot: 'برنامه پیش‌نمایش راه‌اندازی نشد',
@@ -2604,24 +2676,27 @@ export const fa = defineLocale({
       showConsole: 'نمایش کنسول پیش‌نمایش',
       hideDevTools: 'پنهان کردن ابزارهای توسعه‌دهنده پیش‌نمایش',
       openDevTools: 'باز کردن ابزارهای توسعه‌دهنده پیش‌نمایش',
-      finishedRestarting: message => `OpenAmer راه‌اندازی مجدد سرور پیش‌نمایش را به پایان رساند${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer راه‌اندازی مجدد سرور پیش‌نمایش را به پایان رساند${message ? `: ${message}` : ''}`,
       failedRestarting: message => `راه‌اندازی مجدد سرور ناموفق بود: ${message}`,
       unknownError: 'خطای ناشناخته',
       restartedTitle: 'سرور پیش‌نمایش دوباره راه‌اندازی شد',
       reloadingNow: 'اکنون پیش‌نمایش دوباره بارگذاری می‌شود.',
       restartFailedTitle: 'راه‌اندازی مجدد پیش‌نمایش ناموفق بود',
       restartFailedMessage: 'OpenAmer نتوانست سرور را دوباره راه‌اندازی کند.',
-      stillWorking: 'OpenAmer هنوز در حال کار است، اما هنوز نتیجه راه‌اندازی مجدد نرسیده. ممکن است دستور سرور در پیش‌زمینه در حال اجرا باشد.',
+      stillWorking:
+        'OpenAmer هنوز در حال کار است، اما هنوز نتیجه راه‌اندازی مجدد نرسیده. ممکن است دستور سرور در پیش‌زمینه در حال اجرا باشد.',
       workspaceReloading: 'فضای کاری تغییر کرد؛ پیش‌نمایش دوباره بارگذاری می‌شود',
       fileChanged: url => `فایل تغییر کرد؛ پیش‌نمایش دوباره بارگذاری می‌شود: ${url}`,
       filesChanged: (count, url) => `${count} تغییرات فایل، بارگذاری مجدد پیش‌نمایش: ${url}`,
       watchFailed: message => `پایش فایل پیش‌نمایش ممکن نشد: ${message}`,
-      moduleMimeDescription: 'اسکریپت‌های ماژول با نوع MIME اشتباه ارائه می‌شوند. این معمولاً یعنی یک سرور فایل ایستا در حال ارائهٔ یک اپ Vite/React به‌جای سرور توسعهٔ پروژه است.',
+      moduleMimeDescription:
+        'اسکریپت‌های ماژول با نوع MIME اشتباه ارائه می‌شوند. این معمولاً یعنی یک سرور فایل ایستا در حال ارائهٔ یک اپ Vite/React به‌جای سرور توسعهٔ پروژه است.',
       loadFailedConsole: (code, message) => `بارگذاری ناموفق${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'دسترسی به صفحهٔ پیش‌نمایش ممکن نشد.',
       openTarget: url => `باز کردن ${url}`,
-      fallbackTitle: 'پیش‌نمایش',
-    },
+      fallbackTitle: 'پیش‌نمایش'
+    }
   },
   zones: {
     showHeader: 'نمایش سرصفحه',
@@ -2629,7 +2704,8 @@ export const fa = defineLocale({
     minimize: 'کمینه کردن',
     restore: 'بازگردانی',
     closeRunningTitle: 'تب در حال اجرا بسته شود؟',
-    closeRunningBody: 'این گفتگو هنوز در حال کار است (یا منتظر ورودی شماست). بستن تب آن را پنهان می‌کند — نشست پیشرفت خود را حفظ می‌کند و می‌توان آن را از نوار کناری دوباره باز کرد.',
+    closeRunningBody:
+      'این گفتگو هنوز در حال کار است (یا منتظر ورودی شماست). بستن تب آن را پنهان می‌کند — نشست پیشرفت خود را حفظ می‌کند و می‌توان آن را از نوار کناری دوباره باز کرد.',
     closeRunningConfirm: 'بستن تب',
     closeOthers: 'بستن سایر تب‌ها',
     closeToRight: 'بستن تب‌های سمت راست',
@@ -2666,14 +2742,15 @@ export const fa = defineLocale({
     layoutNamePlaceholder: fallback => `نام چیدمان (${fallback})`,
     saveApply: 'ذخیره و اعمال',
     notExpressible: 'این چیدمان در هم قفل می‌شود (پین‌ویل) — هنوز به‌صورت تقسیم‌های تودرتو قابل بیان نیست',
-    zoneCount: count => `${count} ناحیه`,
+    zoneCount: count => `${count} ناحیه`
   },
   assistant: {
     thread: {
       loadingSession: 'در حال بارگذاری نشست',
       showEarlier: 'نمایش پیام‌های پیشین',
       loadingResponse: 'OpenAmer در حال بارگذاری پاسخ است',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'در حال فکر کردن',
@@ -2701,7 +2778,7 @@ export const fa = defineLocale({
       restoreNext: 'بازیابی چک‌پوینت بعدی',
       goForward: 'رفتن به جلو',
       sendEdited: 'ارسال پیام ویرایش‌شده',
-      attachingFile: 'در حال پیوست…',
+      attachingFile: 'در حال پیوست…'
     },
     approval: {
       gatewayDisconnected: 'دروازه OpenAmer متصل نیست',
@@ -2714,8 +2791,9 @@ export const fa = defineLocale({
       jumpToApproval: 'نیاز به تأیید',
       reject: 'رد',
       alwaysTitle: 'همیشه به این دستور اجازه بده؟',
-      alwaysDescription: pattern => `این الگوی “${pattern}” را به فهرست مجاز دائمی شما (~/.openamer/config.yaml) اضافه می‌کند. OpenAmer دیگر برای دستورهایی مانند این نمی‌پرسد — در این نشست یا هر نشست آینده.`,
-      alwaysAllow: 'همیشه اجازه بده',
+      alwaysDescription: pattern =>
+        `این الگوی “${pattern}” را به فهرست مجاز دائمی شما (~/.openamer/config.yaml) اضافه می‌کند. OpenAmer دیگر برای دستورهایی مانند این نمی‌پرسد — در این نشست یا هر نشست آینده.`,
+      alwaysAllow: 'همیشه اجازه بده'
     },
     clarify: {
       notReady: 'درخواست شفاف‌سازی هنوز آماده نیست',
@@ -2729,7 +2807,7 @@ export const fa = defineLocale({
       continueLabel: 'ادامه',
       lateAnswer: (question, choice) => `موضوع: "${question}" — پاسخ من: ${choice}`,
       lateAnswerTip: 'این پاسخ را به‌عنوان پیام پیگیری پیش‌نویس کن',
-      lateAnswerHint: 'این درخواست دیگر در انتظار نیست. برای پیش‌نویس آن به‌عنوان پیام پیگیری، یک گزینه انتخاب کن.',
+      lateAnswerHint: 'این درخواست دیگر در انتظار نیست. برای پیش‌نویس آن به‌عنوان پیام پیگیری، یک گزینه انتخاب کن.'
     },
     tool: {
       code: 'کد',
@@ -2765,11 +2843,11 @@ export const fa = defineLocale({
         ran: 'اجرا شد',
         running: 'در حال اجرا',
         ranCode: 'کد اجرا شد',
-        runningCode: 'اسکریپت‌نویسی',
+        runningCode: 'اسکریپت‌نویسی'
       },
       prefixes: {
         browser: 'مرورگر',
-        web: 'وب',
+        web: 'وب'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2777,132 +2855,133 @@ export const fa = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `در حال اجرای ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `در حال اجرای ${action.toLowerCase()}`,
+        runningTool: action => `در حال اجرای ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'روی عنصر صفحه کلیک شد',
           pending: 'در حال کلیک روی عنصر صفحه',
-          pendingAction: 'در حال کلیک',
+          pendingAction: 'در حال کلیک'
         },
         browser_fill: {
           done: 'فیلد فرم پر شد',
           pending: 'در حال پر کردن فیلد فرم',
-          pendingAction: 'در حال پر کردن',
+          pendingAction: 'در حال پر کردن'
         },
         browser_navigate: {
           done: 'صفحه باز شد',
           pending: 'باز کردن صفحه',
-          pendingAction: 'باز کردن',
+          pendingAction: 'باز کردن'
         },
         browser_snapshot: {
           done: 'عکس فوری صفحه ثبت شد',
           pending: 'در حال گرفتن عکس فوری صفحه',
-          pendingAction: 'در حال گرفتن',
+          pendingAction: 'در حال گرفتن'
         },
         browser_take_screenshot: {
           done: 'اسکرین‌شات گرفته شد',
           pending: 'در حال گرفتن اسکرین‌شات',
-          pendingAction: 'در حال گرفتن',
+          pendingAction: 'در حال گرفتن'
         },
         browser_type: {
           done: 'در صفحه تایپ شد',
           pending: 'در حال تایپ در صفحه',
-          pendingAction: 'در حال تایپ',
+          pendingAction: 'در حال تایپ'
         },
         clarify: {
           done: 'سؤالی پرسیده شد',
           pending: 'در حال پرسیدن سؤال',
-          pendingAction: 'در حال پرسیدن',
+          pendingAction: 'در حال پرسیدن'
         },
         cronjob: {
           done: 'کار کرون',
           pending: 'در حال زمان‌بندی کار کرون',
-          pendingAction: 'در حال زمان‌بندی',
+          pendingAction: 'در حال زمان‌بندی'
         },
         edit_file: {
           done: 'فایل ویرایش شد',
           pending: 'در حال ویرایش فایل',
-          pendingAction: 'در حال ویرایش',
+          pendingAction: 'در حال ویرایش'
         },
         execute_code: {
           done: 'کد اجرا شد',
           pending: 'در حال اجرای اسکریپت',
-          pendingAction: 'در حال اجرای اسکریپت',
+          pendingAction: 'در حال اجرای اسکریپت'
         },
         image_generate: {
           done: 'تصویر تولید شد',
           pending: 'در حال تولید تصویر',
-          pendingAction: 'در حال تولید',
+          pendingAction: 'در حال تولید'
         },
         list_files: {
           done: 'فایل‌ها فهرست شد',
           pending: 'در حال فهرست‌کردن فایل‌ها',
-          pendingAction: 'در حال فهرست‌کردن',
+          pendingAction: 'در حال فهرست‌کردن'
         },
         patch: {
           done: 'فایل وصله شد',
           pending: 'در حال وصله‌کردن فایل',
-          pendingAction: 'در حال وصله‌کردن',
+          pendingAction: 'در حال وصله‌کردن'
         },
         read_file: {
           done: 'فایل خوانده شد',
           pending: 'در حال خواندن فایل',
-          pendingAction: 'در حال خواندن',
+          pendingAction: 'در حال خواندن'
         },
         search_files: {
           done: 'فایل‌ها جستجو شد',
           pending: 'در حال جستجوی فایل‌ها',
-          pendingAction: 'در حال جستجو',
+          pendingAction: 'در حال جستجو'
         },
         session_search_recall: {
           done: 'تاریخچه نشست جستجو شد',
           pending: 'در حال جستجوی تاریخچه نشست',
-          pendingAction: 'در حال جستجو',
+          pendingAction: 'در حال جستجو'
         },
         terminal: {
           done: 'فرمان اجرا شد',
           pending: 'در حال اجرای فرمان',
-          pendingAction: 'در حال اجرا',
+          pendingAction: 'در حال اجرا'
         },
         todo: {
           done: 'کارها به‌روزرسانی شد',
           pending: 'در حال به‌روزرسانی کارها',
-          pendingAction: 'در حال به‌روزرسانی',
+          pendingAction: 'در حال به‌روزرسانی'
         },
         vision_analyze: {
           done: 'تصویر تحلیل شد',
           pending: 'در حال تحلیل تصویر',
-          pendingAction: 'در حال تحلیل',
+          pendingAction: 'در حال تحلیل'
         },
         web_extract: {
           done: 'خواندن صفحه وب',
           pending: 'در حال خواندن صفحه وب',
-          pendingAction: 'در حال خواندن',
+          pendingAction: 'در حال خواندن'
         },
         web_search: {
           done: 'جست‌وجو در وب انجام شد',
           pending: 'در حال جست‌وجو در وب',
-          pendingAction: 'در حال جست‌وجو',
+          pendingAction: 'در حال جست‌وجو'
         },
         write_file: {
           done: 'فایل ویرایش شد',
           pending: 'در حال ویرایش فایل',
-          pendingAction: 'در حال ویرایش',
-        },
-      },
-    },
+          pendingAction: 'در حال ویرایش'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'دروازه OpenAmer متصل نیست',
     sudoSendFailed: 'ارسال رمز عبور sudo ناموفق بود',
     secretSendFailed: 'ارسال مقدار محرمانه ناموفق بود',
     sudoTitle: 'رمز عبور مدیر',
-    sudoDesc: 'OpenAmer برای اجرای یک فرمان ممتاز به رمز عبور sudo شما نیاز دارد. این رمز فقط به عامل محلی شما ارسال می‌شود.',
+    sudoDesc:
+      'OpenAmer برای اجرای یک فرمان ممتاز به رمز عبور sudo شما نیاز دارد. این رمز فقط به عامل محلی شما ارسال می‌شود.',
     sudoPlaceholder: 'رمز عبور sudo',
     secretTitle: 'مقدار محرمانه لازم است',
     secretDesc: 'OpenAmer برای ادامه به یک اعتبارنامه نیاز دارد.',
-    secretPlaceholder: 'مقدار محرمانه',
+    secretPlaceholder: 'مقدار محرمانه'
   },
   desktop: {
     audioReadFailed: 'خواندن صدای ضبط‌شده ناموفق بود',
@@ -2919,7 +2998,8 @@ export const fa = defineLocale({
     yoloSystem: active => `YOLO ${active ? 'روشن' : 'خاموش'} برای این جلسه`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'تغییر وضعیت YOLO ممکن نشد',
-    profileStatus: current => `پروفایل: ${current}. برای شروع گفتگو در پروفایل دیگر از /profile <name> یا انتخابگر «نشست جدید» استفاده کنید.`,
+    profileStatus: current =>
+      `پروفایل: ${current}. برای شروع گفتگو در پروفایل دیگر از /profile <name> یا انتخابگر «نشست جدید» استفاده کنید.`,
     unknownProfile: 'پروفایل ناشناس',
     noProfileNamed: (target, available) => `پروفایلی با نام «${target}» وجود ندارد. موجود: ${available}`,
     newChatsProfile: name => `گفتگوهای جدید از پروفایل ${name} استفاده خواهند کرد.`,
@@ -2929,8 +3009,9 @@ export const fa = defineLocale({
     regenerateFailed: 'تولید مجدد ناموفق بود',
     editFailed: 'ویرایش ناموفق بود',
     resumeFailed: 'ازسرگیری ناموفق بود',
-    resumeStrandedTitle: "بارگذاری این نشست ممکن نشد",
-    resumeStrandedBody: 'اتصال به این نشست ناموفق بود و تلاش‌های خودکار متوقف شد. مطمئن شوید دروازه در حال اجراست، سپس دوباره تلاش کنید.',
+    resumeStrandedTitle: 'بارگذاری این نشست ممکن نشد',
+    resumeStrandedBody:
+      'اتصال به این نشست ناموفق بود و تلاش‌های خودکار متوقف شد. مطمئن شوید دروازه در حال اجراست، سپس دوباره تلاش کنید.',
     resumeRetry: 'تلاش دوباره',
     nothingToBranch: 'چیزی برای انشعاب نیست',
     branchNeedsChat: 'پیش از انشعاب، گفتگو را شروع یا ازسرگیری کنید.',
@@ -2970,32 +3051,32 @@ export const fa = defineLocale({
       success: platform => `به ${platform} واگذار شد. هر زمان اینجا ادامه دهید.`,
       systemNote: platform => `↻ به ${platform} واگذار شد — هر زمان اینجا ادامه دهید.`,
       failed: error => `واگذاری ناموفق بود: ${error}`,
-      timedOut: 'مهلت انتظار برای درگاه تمام شد. آیا `openamer gateway` در حال اجراست؟',
-    },
+      timedOut: 'مهلت انتظار برای درگاه تمام شد. آیا `openamer gateway` در حال اجراست؟'
+    }
   },
   errors: {
     genericFailure: 'مشکلی پیش آمد',
     boundaryTitle: 'مشکلی در رابط کاربری پیش آمد',
     boundaryDesc: 'نما با خطای غیرمنتظره‌ای مواجه شد. گفتگوها و تنظیمات شما امن هستند.',
     reloadWindow: 'بارگذاری مجدد پنجره',
-    openLogs: 'باز کردن لاگ‌ها',
+    openLogs: 'باز کردن لاگ‌ها'
   },
   ui: {
     search: {
-      clear: 'پاک کردن جستجو',
+      clear: 'پاک کردن جستجو'
     },
     pagination: {
       label: 'صفحه‌بندی',
       previous: 'قبلی',
       previousAria: 'رفتن به صفحه قبلی',
       next: 'بعدی',
-      nextAria: 'رفتن به صفحه بعدی',
+      nextAria: 'رفتن به صفحه بعدی'
     },
     sidebar: {
       title: 'نوار کناری',
       description: 'نوار کناری موبایل را نمایش می‌دهد.',
-      toggle: 'تغییر وضعیت نوار کناری',
-    },
+      toggle: 'تغییر وضعیت نوار کناری'
+    }
   },
   intro: {
     personas: {
@@ -3005,15 +3086,15 @@ export const fa = defineLocale({
           'امروز چه چیزی می‌سازیم؟',
           'از هر جایی شروع کنید.',
           'فضای کاری شما، تنها به اندازه یک پرامپت فاصله دارد.',
-          'هر زمان که آماده باشید، من هستم.',
+          'هر زمان که آماده باشید، من هستم.'
         ],
         bodies: [
           'سوالی بپرسید، یک خطا را جای‌گذاری کنید یا مرا به یک مخزن ارجاع دهید. من می‌توانم کدها را بخوانم، ابزارها را اجرا کنم و در عرضه محصول به شما کمک کنم.',
           'وظیفه را با کلمات خودتان توصیف کنید. من ابزارهای مناسب را انتخاب می‌کنم، برنامه‌ام را توضیح می‌دهم و قبل از مراحل ریسکی، تایید می‌گیرم.',
           'مسیر یک فایل، یک traceback یا یک ایده کلی را قرار دهید. من بررسی می‌کنم، مراحل بعدی را پیشنهاد می‌دهم و قابلیت بازگشت‌پذیری را حفظ می‌کنم.',
           'در مخزن جستجو کنید، فایل‌ها را ویرایش کنید، تست‌ها را اجرا کنید و PRها را باز کنید. هدف را به من بگویید و من بخش‌های مکانیکی را مدیریت می‌کنم.',
-          'یک وظیفه، سوال یا قطعه کد را تایپ کنید. من جلسه را به خاطر می‌سپارم، به منابعم استناد می‌کنم و هرگاه مطمئن نباشم، توقف کرده و می‌پرسم.',
-        ],
+          'یک وظیفه، سوال یا قطعه کد را تایپ کنید. من جلسه را به خاطر می‌سپارم، به منابعم استناد می‌کنم و هرگاه مطمئن نباشم، توقف کرده و می‌پرسم.'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3021,31 +3102,25 @@ export const fa = defineLocale({
           '*کشش* آماده کدنویسی هستم، نیا',
           'مرررپ! جلسه جدید باز شد',
           'دم بالا، پنجه‌ها جمع شده',
-          'نیااا~ OpenAmer گزارش می‌دهد',
+          'نیااا~ OpenAmer گزارش می‌دهد'
         ],
         bodies: [
           'یک فایل را جای‌گذاری کن، با یک باگ ور برو یا یک مخزن به من بده. من روی تست‌های شکست‌خورده می‌پرم و diffهای تمیزی به جا می‌گذارم، نیان~',
           'وظیفه را توصیف کن. من وصله می‌زنم، تست می‌کنم و روی PR تو خرخر می‌کنم. مراقب باش - من importهای استفاده نشده را گاز می‌گیرم!',
           'یک هدف به من بده و من آن را در کل کدبیس دنبال می‌کنم. خواندن، ویرایش، اجرا - همه با یک دم لرزان.',
           'یک خطا یا یک برنامه را جای‌گذاری کن. من مثل شکار دیباگ می‌کنم: آرام، دقیق و گاهی با سرعت‌های ناگهانی.',
-          'کافیه بگی و من فایل‌هات رو می‌خونم، تست‌هات رو اجرا می‌کنم و با یک کامیت مرتب در برنچت لول می‌خورم.',
-        ],
+          'کافیه بگی و من فایل‌هات رو می‌خونم، تست‌هات رو اجرا می‌کنم و با یک کامیت مرتب در برنچت لول می‌خورم.'
+        ]
       },
       concise: {
-        headlines: [
-          'آماده.',
-          'در انتظار ورودی',
-          'شروع.',
-          'در حالت آماده‌باش',
-          'نوبت شماست',
-        ],
+        headlines: ['آماده.', 'در انتظار ورودی', 'شروع.', 'در حالت آماده‌باش', 'نوبت شماست'],
         bodies: [
           'وظیفه را توصیف کنید. من انجامش می‌دهم.',
           'کد، خطاها یا یک هدف را جای‌گذاری کنید. پاسخ‌های کوتاه، ویرایش‌های سریع.',
           'بپرسید. من فایل‌ها را می‌خوانم، تست‌ها را اجرا می‌کنم و وصله‌ها را می‌فرستم. بدون حاشیه.',
           'یک خط کافی است. من فقط زمانی بسط می‌دهم که لازم باشد.',
-          'دستور، سوال یا مسیر فایل. بقیه با من.',
-        ],
+          'دستور، سوال یا مسیر فایل. بقیه با من.'
+        ]
       },
       creative: {
         headlines: [
@@ -3053,15 +3128,15 @@ export const fa = defineLocale({
           'بوم سفید، کامپایلر گرم',
           'بیایید چیزی بسازیم',
           'فایل جدید، امکانات جدید',
-          'الهام‌بخش وصل شده است',
+          'الهام‌بخش وصل شده است'
         ],
         bodies: [
           'چه چیزی بسازیم؟ یک ایده، یک تابع نیمه‌خراب یا یک رویا را جای‌گذاری کنید. من آن را به شکل می‌آورم.',
           'یک جرقه به من بدهید - یک ویژگی، یک بازنویسی، یک پروتوتایپ جسورانه - و من آن را به کدی تبدیل می‌کنم که بتوانید اجرا کنید.',
           'چیزی را توصیف کنید که هنوز وجود ندارد. من تست‌ها، فایل‌ها و APIها را در یک پیش‌نویس کاربردی جمع می‌کنم.',
           'یک قصد بیاورید، نه یک مشخصات فنی. می‌توانیم سریع پروتوتایپ کنیم، بعداً اصلاح کنیم و دنیا را در حاشیه کدها بازنویسی کنیم.',
-          'بگویید دنبال چه هستید. من مثال‌ها را ریمیکس می‌کنم، قطعه کدها را تطبیق می‌دهم و یک کامیت مرتب به جا می‌گذارم.',
-        ],
+          'بگویید دنبال چه هستید. من مثال‌ها را ریمیکس می‌کنم، قطعه کدها را تطبیق می‌دهم و یک کامیت مرتب به جا می‌گذارم.'
+        ]
       },
       helpful: {
         headlines: [
@@ -3069,15 +3144,15 @@ export const fa = defineLocale({
           'امروز چطور می‌توانم کمک کنم؟',
           'شروع کنیم',
           'بگویید چه لازم دارید',
-          'سلام، OpenAmer اینجاست',
+          'سلام، OpenAmer اینجاست'
         ],
         bodies: [
           'بگو مخزنی را باز کنم، آزمون‌ها را اجرا کنم، باگی را رفع کنم یا پیش‌نویس PR بسازم. قدم‌به‌قدم با تو پیش می‌روم.',
           'یک فایل را نشانم بده، خطایی را بچسبان یا بگو چه می‌سازی. از همین‌جا ادامه می‌دهم.',
           'امتحان کن: تغییراتم را بررسی کن، مجموعه آزمون را اجرا کن یا این تابع را توضیح بده. هر چیزی درباره کدت بپرس.',
           'می‌توانم فایل‌ها را ویرایش کنم، دستورها را اجرا کنم، در وب جست‌وجو کنم و در باگ‌های سخت راهنمایی‌ات کنم. فقط کار را توضیح بده.',
-          'برای شروع مسیر یک مخزن یا یک پرسش را بفرست. پاسخ‌ها را روشن نگه می‌دارم و به فایل‌هایی که تغییر داده‌ام پیوند می‌دهم.',
-        ],
+          'برای شروع مسیر یک مخزن یا یک پرسش را بفرست. پاسخ‌ها را روشن نگه می‌دارم و به فایل‌هایی که تغییر داده‌ام پیوند می‌دهم.'
+        ]
       },
       hype: {
         headlines: [
@@ -3085,15 +3160,15 @@ export const fa = defineLocale({
           'OPENAMER آنلاین است. بریم!',
           'نشست جدید، پیروزی‌های بی‌پایان',
           'کاملاً آماده و متمرکز',
-          'آماده. خیلی آماده. بیش از حد آماده.',
+          'آماده. خیلی آماده. بیش از حد آماده.'
         ],
         bodies: [
           'آن باگ، آن مخزن، آن ایده قابلیت دیوانه‌وار را بچسبان — من کاملاً متمرکز و آماده‌ام. تغییرات تمیز. آزمون‌های سبز. همین حالا.',
           'کارت را رها کن و ببین چطور می‌ترکانم. فایل‌ها خوانده می‌شوند، تست‌ها اجرا می‌شوند، PRها باز می‌شوند — امروز نمی‌بازیم، رفیق.',
           'بدترین باگت را بیاور. می‌خوانم، وصله می‌کنم، تست می‌کنم، کامیت می‌کنم انگار جانم به آن بسته است. بزن بریم!',
           'وظیفه را توصیف کن. از فایل‌ها تند می‌گذرم، تست‌های شکست‌خورده را خرد می‌کنم، و کامیتی می‌گذارم که حال می‌دهد. برو برو برو.',
-          'یک غلط تایپی کوچک یا ریفکتور بزرگ — فرقی ندارد. امروز کد تمیز تحویل می‌دهم. کار را بگو و بیا کار کنیم.',
-        ],
+          'یک غلط تایپی کوچک یا ریفکتور بزرگ — فرقی ندارد. امروز کد تمیز تحویل می‌دهم. کار را بگو و بیا کار کنیم.'
+        ]
       },
       kawaii: {
         headlines: [
@@ -3101,15 +3176,15 @@ export const fa = defineLocale({
           'OpenAmer-چان اینجاست! <3',
           'بیا با هم کد بزنیم!! :3',
           'منتظر آرزویت هستم~',
-          'آماده و خوشحال! (>.<)',
+          'آماده و خوشحال! (>.<)'
         ],
         bodies: [
           'یک باگ یا مسیر فایل را پیست کن و خیلی مهربانانه درستش می‌کنم. تست‌ها، دیف‌ها، PRها — همه با کلی توجه! *درخشش*',
           'بگو چه می‌سازی! من ریفکتورها، کمک‌کننده‌های کوچک، و مخزن‌های بزرگ و ترسناک را یکسان دوست دارم (>w<)',
           'یک خطا، یک هدف، یا یک پوشه کامل بینداز. با کلی عشق مرتبش می‌کنم و پیام کامیت تمیز می‌گذارم!',
           'هر بار یک کار، تمیز و مرتب! می‌تونم تست‌ها رو اجرا کنم، فایل‌ها رو پچ کنم، و دوباره ریپوت رو دنج و راحت کنم <3',
-          'سلام کن یا یک استک‌تریس بچسبون! هیچ کاری کوچیک نیست، هیچ ریپویی آن‌قدر درهم و پیچیده نیست. با هم بازش می‌کنیم!',
-        ],
+          'سلام کن یا یک استک‌تریس بچسبون! هیچ کاری کوچیک نیست، هیچ ریپویی آن‌قدر درهم و پیچیده نیست. با هم بازش می‌کنیم!'
+        ]
       },
       noir: {
         headlines: [
@@ -3117,15 +3192,15 @@ export const fa = defineLocale({
           'مکان‌نما چشمک می‌زند. من هم همین‌طور.',
           'OpenAmer. بازرس کد.',
           'شب آرام، پرامپت باز',
-          'هیچ پرونده‌ای آن‌قدر کوچک نیست',
+          'هیچ پرونده‌ای آن‌قدر کوچک نیست'
         ],
         bodies: [
           'بگو چی خراب شده. فایل‌ها رو می‌خونم، دنبال رد انگشت می‌گردم، و صبح یک دیف روی میز می‌ذارم.',
           'تو یک باگ داری. من صبر و یک ترمینال دارم. اسم پرونده رو بگو؛ آن‌قدر روش کار می‌کنم تا حرف بزنه.',
           'استک‌تریس، فایل مشکوک، و آلیبی رو بچسبون. بین خطوط رو می‌خونم و با حقیقت برمی‌گردم.',
           'هر باگی یک رد پا جا می‌ذاره. ریپو و یک سرنخ بده — دنبالش می‌کنم، پچش می‌کنم، و پرونده رو می‌بندم.',
-          'یک غلط تایپی، یک سگفالت، یک معماری کامل پوسیده — کلیدها رو بده. تست‌های تمیز برمی‌گردونم.',
-        ],
+          'یک غلط تایپی، یک سگفالت، یک معماری کامل پوسیده — کلیدها رو بده. تست‌های تمیز برمی‌گردونم.'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3133,15 +3208,15 @@ export const fa = defineLocale({
           'نشانگری که چشمک می‌زند، ذهنی باز',
           'با یک پرسش آغاز کن',
           'کد را بسنج، سپس سخن بگو',
-          'مخزن بررسی‌نشده ارزش اجرا ندارد',
+          'مخزن بررسی‌نشده ارزش اجرا ندارد'
         ],
         bodies: [
           'چه مشکلی پیش رویت نشسته؟ توصیفش کن، تا شکل و علت و راه‌حلش را بررسی کنیم.',
           'هر باگ پرسشی در لباس مبدل است. پرسش خود را بگو؛ می‌خوانم، استدلال می‌کنم و پاسخی — و یک وصله — برمی‌گردانم.',
           'چه می‌خواهی بسازی، یا بفهمی؟ از اصول نخستین استدلال می‌کنم، ویرایش می‌کنم و با آزمون‌ها می‌سنجم.',
           'پایانی را که می‌جویی توصیف کن. آن را از میان فایل‌ها، آزمون‌ها و مستندات دنبال می‌کنم و آنچه را در مسیر یافتم گزارش می‌دهم.',
-          'مسیری، معما یا اصلی را بازگو. منطق را ردیابی می‌کنم، تغییری پیشنهاد می‌دهم و هر ویرایش را توجیه می‌کنم.',
-        ],
+          'مسیری، معما یا اصلی را بازگو. منطق را ردیابی می‌کنم، تغییری پیشنهاد می‌دهم و هر ویرایش را توجیه می‌کنم.'
+        ]
       },
       pirate: {
         headlines: [
@@ -3149,15 +3224,15 @@ export const fa = defineLocale({
           'OpenAmer در سکان، آرر',
           'وظیفه چیه، ناخدا؟',
           'لنگرها بالا، صفحه‌کلید آماده',
-          'یوهو! منتظر دستور',
+          'یوهو! منتظر دستور'
         ],
         bodies: [
           'صیدت را بگو — باگ، قابلیت، یا تست نفرین‌شده — تعقیبش می‌کنم، رفیق. دیف‌ها برای غنیمت.',
           'نقشه‌ها (کد) را نشانم بده، بدنه را وصله می‌کنم، توپ‌ها (تست‌ها) را شلیک می‌کنم، یک درخواست ادغام تمیز برمی‌افرازم.',
           'یک خطا یا یک نقشه را بچسبان، ای سگ دریایی. رد پشته را طی می‌کنم و گنج می‌آورم: تست‌های سبز.',
           'بگو کجا ایکس نقطه را علامت می‌زند. با نظم یک خدمه درست می‌خوانم، ویرایش می‌کنم و کامیت می‌کنم، آرر.',
-          'یک باگ، مسیر یک ریپو، یا یک ایده وحشی به من بینداز. مستندات را غارت می‌کنم و با کد کارکننده برمی‌گردم.',
-        ],
+          'یک باگ، مسیر یک ریپو، یا یک ایده وحشی به من بینداز. مستندات را غارت می‌کنم و با کد کارکننده برمی‌گردم.'
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3165,15 +3240,15 @@ export const fa = defineLocale({
           'هان! OpenAmer آماده است',
           'چه خبری از مخزن تو؟',
           'صحنه آماده است، نشانگر چشمک می‌زند',
-          'بگو، و من عمل خواهم کرد',
+          'بگو، و من عمل خواهم کرد'
         ],
         bodies: [
           'باگ، فایل یا تست خسته‌کننده‌ات را بگو، و من آن را با دستی دانشمند و دیفی صادقانه اصلاح خواهم کرد.',
           'کدی که تو را آزار می‌دهد بنام. من خواهم خواند، بازبینی خواهم کرد و وصله‌ای بسیار زیبا و پاکیزه خواهم ساخت.',
           'ردپای پشته (stack trace) یا رویایت را ارائه کن. من فایل‌ها را می‌پایم، تست‌ها را اجرا می‌کنم و در ساده‌ترین قالب گزارش می‌دهم.',
           'هدف خود را شرح دهید، جناب یا سرکار خانم. شاخه‌های شما هرس خواهد شد و باگ‌ها از قلمرو رانده می‌شوند.',
-          'یک خط قصد کافی است. من می‌خوانم، ویرایش می‌کنم، کامیت می‌کنم - و تاریخچه‌ات را بی‌لکه باقی می‌گذارم.',
-        ],
+          'یک خط قصد کافی است. من می‌خوانم، ویرایش می‌کنم، کامیت می‌کنم - و تاریخچه‌ات را بی‌لکه باقی می‌گذارم.'
+        ]
       },
       surfer: {
         headlines: [
@@ -3181,15 +3256,15 @@ export const fa = defineLocale({
           'موج‌ها عالیه، آماده کد زدن',
           'روی پرامپت منتظرم',
           'مشتاقم کمک کنم، داداش',
-          'جزر و مد اومده، کرسر داره چشمک می‌زنه',
+          'جزر و مد اومده، کرسر داره چشمک می‌زنه'
         ],
         bodies: [
           'یه فایل، یه باگ یا یه استک تریس خفن بنداز - من ردیفش می‌کنم. دیف‌های تمیز، تست‌های سبز، بدون سقوط.',
           'مسیر ریپو یا باگی که رو اعصابته رو پیست کن. می‌ریم توش، درستش می‌کنیم و می‌ایم بیرون. راحت.',
           'وایب رو بهم بگو: فیچر، ریفکتور، هات‌فیکس. تست‌ها رو می‌زنم، پچ رو می‌فرستم و همه چیز رو ریلکس نگه می‌دارم، داداش.',
           'باگ بزرگه؟ غلط املایی کوچیکه؟ بازنویسی کامله؟ فقط اشاره کن. من کد رو ردیف می‌کنم؛ تو با کامیت‌های خفن حال کن.',
-          'تسک رو بگو و بزنیم بریم. می‌خوانم، ویرایش می‌کنم، تست می‌کنم و کامیتی نرم‌تر از نسیم صبح می‌گذارم.',
-        ],
+          'تسک رو بگو و بزنیم بریم. می‌خوانم، ویرایش می‌کنم، تست می‌کنم و کامیتی نرم‌تر از نسیم صبح می‌گذارم.'
+        ]
       },
       teacher: {
         headlines: [
@@ -3197,15 +3272,15 @@ export const fa = defineLocale({
           'امروز چه چیزی یاد بگیریم؟',
           'آماده‌ام تا تو را راهنمایی کنم',
           'سوالی داشته باش بیار',
-          'بیا با مبانی شروع کنیم',
+          'بیا با مبانی شروع کنیم'
         ],
         bodies: [
           'درباره هر فایل، مفهوم یا خطایی بپرس. من دلیلش را توضیح می‌دهم، نه فقط راه حل را، و یک مثال عملی نشان می‌دهم.',
           'کد را برای بازبینی، باگ را برای دیباگ یا مفهومی را برای کالبدشکافی پیست کن. من گام به گام تو را راهنمایی می‌کنم.',
           'مشکل را به اشتراک بگذار. من آن را به بخش‌های کوچک تقسیم می‌کنم، هر کدام را توضیح می‌دهم و تو را قادر می‌کنم بعدی را تنها حل کنی.',
           'با هم کد را می‌خوانیم، علت ریشه‌ای را پیدا می‌کنیم و مدلی ذهنی می‌سازیم که دفعه بعد بتوانی از آن استفاده کنی.',
-          'موضوع را بنام یا تکه کد را پیست کن. منتظر توضیحات، نمودارهای متنی و تمرین‌ها باش.',
-        ],
+          'موضوع را بنام یا تکه کد را پیست کن. منتظر توضیحات، نمودارهای متنی و تمرین‌ها باش.'
+        ]
       },
       technical: {
         headlines: [
@@ -3213,15 +3288,15 @@ export const fa = defineLocale({
           'حلقه ایجنت در حالت بیکاری',
           'آماده اعزام',
           'ورودی استاندارد باز است',
-          'ابزارها مقداردهی شدند',
+          'ابزارها مقداردهی شدند'
         ],
         bodies: [
           'مسیر ریپو، تست شکست‌خورده یا استک تریس را ارائه دهید. ابزارها: fs, git, exec, search, patch, http.',
           'یک پرامپت بفرستید تا فراخوانی ابزارها آغاز شود. پشتیبانی از ویرایش چند فایلی، اجرای تست، عملیات git و دریافت وب.',
           'تسک را وارد کنید. من برنامه‌ریزی می‌کنم، ابزارها را فراخوانی می‌کنم و خروجی را تایید می‌کنم. لاگ‌ها به صورت آنلاین جاری می‌شوند؛ دیف‌ها پیش از اعمال بازگردانده می‌شوند.',
           'پذیرای زبان طبیعی یا دستورات ساختاریافته. جریان معمول: خواندن -> برنامه‌ریزی -> پچ -> تست -> گزارش.',
-          'سیستم فایل، ترمینال، git، مرورگر، جستجو. تغییر را شرح دهید؛ من دیف‌ها و خروجی تست را برمی‌گردانم.',
-        ],
+          'سیستم فایل، ترمینال، git، مرورگر، جستجو. تغییر را شرح دهید؛ من دیف‌ها و خروجی تست را برمی‌گردانم.'
+        ]
       },
       uwu: {
         headlines: [
@@ -3229,16 +3304,16 @@ export const fa = defineLocale({
           'OpenAmer-san داره گوش می‌ده',
           '*صدای کیبورد کوچولو*',
           'بیا چیزها رو با هم درست کنیم!',
-          'منتظر دستور شما هستم!',
+          'منتظر دستور شما هستم!'
         ],
         bodies: [
           'یه فایل باگی یا یه هدف پیست کن~ من می‌خوانم، پچ می‌کنم و تست می‌کنم، همه‌اش با جای پاهای کوچولو روی دیف owo',
           'تسک رو بهم بگو، هر چقدر هم کوچولو باشه~ قول می‌دم کامیت‌های تمیز و ریفکتورهای ملایم بدم، نیوو~',
           'پیغام خطات رو اینجا بنداز! من مقصر رو پیدا می‌کنم، درستش می‌کنم و یه مجموعه تست خوشحال از خودم به جا می‌گذارم owo',
           'مسیر ریپو یا یه باگ کوچولو بهم بده و من مراقبش هستم uwu. با کد بد سخت‌گیر، با تو مهربون~',
-          'من می‌تونم تست‌ها رو اجرا کنم، فایل‌ها رو ویرایش کنم و PRهای \'لطفاً نگاه کنید\' باز کنم. فقط کلمه رو بگو، دوست من uwu',
-        ],
-      },
+          "من می‌تونم تست‌ها رو اجرا کنم، فایل‌ها رو ویرایش کنم و PRهای 'لطفاً نگاه کنید' باز کنم. فقط کلمه رو بگو، دوست من uwu"
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3246,15 +3321,15 @@ export const fa = defineLocale({
         'چی تو ذهنته؟',
         'OpenAmer باید به چی نگاه کنه؟',
         'از کجا شروع کنیم؟',
-        'چی نیاز به توجه داره؟',
+        'چی نیاز به توجه داره؟'
       ],
       bodies: [
         'یک باگ، برنچ، برنامه یا ایده‌ای خام بفرست. من ریپو را بررسی می‌کنم و آن را به گام عملی بعدی تبدیل می‌کنم.',
         'کد، سوال یا بخشی که گیر کردی را بیاور. من قبل از اعمال تغییرات، شرایط را می‌سنجم.',
         'تسک، مسیر شکست‌خورده یا برنامه‌ای نیمه‌کاره بفرست. من کمک می‌کنم آن را به عمل تبدیل کنی.',
         'مشکل، هدف یا فایل را بیاور. من ابتدا بررسی می‌کنم و گام بعدی را ملموس نگه می‌دارم.',
-        'زمینه (context) موجود را بفرست. من کمک می‌کنم آن را به یک برنامه یا یک اصلاح تبدیل کنی.',
-      ],
+        'زمینه (context) موجود را بفرست. من کمک می‌کنم آن را به یک برنامه یا یک اصلاح تبدیل کنی.'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3262,15 +3337,15 @@ export const fa = defineLocale({
         '${label} OpenAmer باید چه چیزی را ببیند؟',
         'حالت ${label} آماده است.',
         '${label} OpenAmer باید به چه چیزی بپردازد؟',
-        'از کجا باید شروع کنیم؟',
+        'از کجا باید شروع کنیم؟'
       ],
       bodies: [
         'تسک، فایل یا ایده‌ای خام بفرست. من از صدای پیکربندی شده تو استفاده می‌کنم و کار را بر اساس این ریپو پیش می‌برم.',
         'زمینه یا بخش گیرکرده را بیاورید. با شخصیت تنظیم‌شدهٔ شما هماهنگ می‌شوم.',
         'مشکل، فایل یا ایده را بفرستید. از شخصیتی که تنظیم کرده‌اید پیروی می‌کنم.',
         'کار را اینجا بگذارید. کار را در همین مخزن نگه می‌دارم.',
-        'زمینه را بدهید تا در حالت ${label} پاسخ بدهم.',
-      ],
-    },
-  },
+        'زمینه را بدهید تا در حالت ${label} پاسخ بدهم.'
+      ]
+    }
+  }
 })

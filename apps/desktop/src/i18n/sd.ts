@@ -13,7 +13,7 @@ export const sd = defineLocale({
       profiles: 'پروفائلز',
       session: 'سيشن',
       navigation: 'نيگريشن',
-      view: 'ڏس',
+      view: 'ڏس'
     },
     actions: {
       'keybinds.openPanel': 'ڪي بورڊ شارٽ ڪٽس کوليو',
@@ -92,7 +92,7 @@ export const sd = defineLocale({
       'composer.slash': 'سليش ڪمانڊ پيليٽ',
       'composer.help': 'جلدي مدد',
       'composer.history': 'پاپ ايور / تاريخ چڙهاو',
-      'composer.cancel': 'پاپ ايور بند ڪريو · چلائو منسوخ ڪريو',
+      'composer.cancel': 'پاپ ايور بند ڪريو · چلائو منسوخ ڪريو'
     },
     title: 'ڪي بورڊ شارٽ ڪٽس',
     search: 'شارٽ ڪٽ ڳوليو…',
@@ -101,7 +101,7 @@ export const sd = defineLocale({
     resetAll: 'سڀ ري سيٽ ڪريو',
     pressKey: 'ڪي دبائن…',
     subtitle: open => `شارٽڪٽ تي ڪلڪ ڪريو تاڪو اھو واپس بينڊ ٿو · ${open} اهو پينل واپس ڪيندو آهي.`,
-    conflictWith: label => `بينڊ آهي “${label}” سان`,
+    conflictWith: label => `بينڊ آهي “${label}” سان`
   },
   common: {
     apply: 'لاڳيو',
@@ -142,7 +142,7 @@ export const sd = defineLocale({
     update: 'اپڊيٽ ڪريو',
     on: 'آن',
     off: 'آف',
-    tryHint: term => `آزمائو “${term}”`,
+    tryHint: term => `آزمائو “${term}”`
   },
   fileMenu: {
     revealFinder: 'Finder ۾ ظاهر ڪريو',
@@ -157,7 +157,7 @@ export const sd = defineLocale({
     renameLabel: 'نئون نام',
     deleteTitle: name => `${name} مٽايو؟`,
     deleteBody: 'اهو ڪچري ۾ منتقل ڏيندو — توهان اهن کي ٿي واپس حاصل ڪري سگهو ٿا.',
-    pathCopied: 'مسار ڪاپي ٿي',
+    pathCopied: 'مسار ڪاپي ٿي'
   },
   starmap: {
     title: 'میموری گراف',
@@ -173,7 +173,8 @@ export const sd = defineLocale({
     emptyTitle: 'اڃا تائين ڪجهه به نه سيکيو',
     emptyDesc: 'جيئن OpenAmer توهان جي ڪم لاءِ مهر excellence ۽ ميموري تيار ڪندو، وڃي هتي ظاهر ٿيندو.',
     share: 'نقشو شئير ڪريو',
-    shareHint: 'هن نقشي کي شئير ڪرڻ لاءِ ڪوڊ ڪاپي ڪريو، يا لوڊ ڪرڻ لاءِ پيٽ ڪريو. اهو صرف ترتيب شامل آهي، توهان جي ميمورِ يا مهر متن شامل نه آهي.',
+    shareHint:
+      'هن نقشي کي شئير ڪرڻ لاءِ ڪوڊ ڪاپي ڪريو، يا لوڊ ڪرڻ لاءِ پيٽ ڪريو. اهو صرف ترتيب شامل آهي، توهان جي ميمورِ يا مهر متن شامل نه آهي.',
     shareTitle: 'نقشو درآو / برآمد ڪريو',
     sharePlaceholder: 'نقشي جو ڪوڊ پيٽ ڪريو…',
     copy: 'نقشي جو ڪوڊ ڪاپي ڪريو',
@@ -184,7 +185,7 @@ export const sd = defineLocale({
     importedBadge: 'درآمد ٿيل نقشو',
     resetToMine: 'پنهنجي نقشي واپس وڃو',
     subtitle: (nodes, clusters) => `${nodes} سڪل ${clusters} زمرن مان`,
-    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} سان نقشو لوڊيو.`,
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} سان نقشو لوڊيو.`
   },
   agents: {
     close: 'ايجنٽ بند ڪريو',
@@ -214,7 +215,7 @@ export const sd = defineLocale({
     ageDays: days => `${days}d پهرين`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}m ${seconds}s`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   commandCenter: {
     close: 'ڪمانڊ سينٽر بند ڪريو',
@@ -250,7 +251,7 @@ export const sd = defineLocale({
       backgroundHint: 'توهان اھو بند ڪري سگهو ٿو — OpenAmer توهان کي مطلع ڪري چڪي جي وقت ڪم پوري ٿيندو.',
       slowProviderHint: 'اھو چند منٽ لئي سگھي ٿو',
       remix: 'ريمڪس',
-      remixConfirmTitle: 'اھو نظر ريمڪس ڪريو؟',
+      remixConfirmTitle: 'اھو نظر ريمڪس ڪريو؟'
     },
     installTheme: {
       title: 'ٿيم انسٽال ڪريو…',
@@ -262,7 +263,7 @@ export const sd = defineLocale({
       install: 'انسٽال ڪريو',
       installing: 'انسٽال ٿي رهيو آهي…',
       installed: 'انسٽال ٿي ويو',
-      installs: count => `${count} انسٽال`,
+      installs: count => `${count} انسٽال`
     },
     settingsFields: 'سيٽنگز فيلڊز',
     mcpServers: 'MCP سرورز',
@@ -271,49 +272,49 @@ export const sd = defineLocale({
       maintenance: 'مينٽيننس',
       sessions: 'سيشنز',
       system: 'نظام',
-      usage: 'استعمال',
+      usage: 'استعمال'
     },
     sectionDescriptions: {
       maintenance: 'ڊائگنوسٽڪس، بيٽ اپ، نگہبان ۽ ميموري ڊيٽا',
       sessions: 'سيشنز ڳوليو ۽ منظم ڪريو',
       system: 'اسٽيٽس، لاگز ۽ نظامي عمل',
-      usage: 'وقت سان ٽوڪن، قيمت ۽ سڪل سرگامي',
+      usage: 'وقت سان ٽوڪن، قيمت ۽ سڪل سرگامي'
     },
     nav: {
       newChat: {
         title: 'نئو سيشن',
-        detail: 'نئو سيشن شروع ڪريو',
+        detail: 'نئو سيشن شروع ڪريو'
       },
       settings: {
         title: 'سيٽنگز',
-        detail: 'OpenAmer ڊيسڪ ٽاپ ترتيب ڏيو',
+        detail: 'OpenAmer ڊيسڪ ٽاپ ترتيب ڏيو'
       },
       skills: {
         title: 'خاصيتون',
-        detail: 'سڪلز، اوزار ۽ MCP سرورز',
+        detail: 'سڪلز، اوزار ۽ MCP سرورز'
       },
       messaging: {
         title: 'پيغامن',
-        detail: 'Telegram، Slack، Discord ۽ ٻيون ترتيب ڏيو',
+        detail: 'Telegram، Slack، Discord ۽ ٻيون ترتيب ڏيو'
       },
       artifacts: {
         title: 'آرٽي فاڪٽس',
-        detail: 'ٺاهيل پيٺن ڏسو',
-      },
+        detail: 'ٺاهيل پيٺن ڏسو'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'سيشنز پينل',
-        detail: 'سيشنز ڳوليو، پن ۽ منظم ڪريو',
+        detail: 'سيشنز ڳوليو، پن ۽ منظم ڪريو'
       },
       system: {
         title: 'نظام پينل',
-        detail: 'گيٽ وي اسٽيٽس، لاگز، ريزارٽ/اپڊيٽ',
+        detail: 'گيٽ وي اسٽيٽس، لاگز، ريزارٽ/اپڊيٽ'
       },
       usage: {
         title: 'استعمال پينل',
-        detail: 'ٽوڪن، قيمت ۽ مهرارت سرگرمي',
-      },
+        detail: 'ٽوڪن، قيمت ۽ مهرارت سرگرمي'
+      }
     },
     logSearchPlaceholder: 'لاگ لائنز فلٽر ڪريو...',
     maintenance: {
@@ -358,7 +359,7 @@ export const sd = defineLocale({
       resetConfirm: target => `${target} کي حذف ڪريو؟ اھو واپس نه آئي سگھي.`,
       resetDone: files => `${files} حذف ڪيو ويو.`,
       actionStarted: name => `${name} شروع ٿيو — لاگ فالو ڪيو ويو...`,
-      actionFailed: name => `${name} شروع نه ٿيو سڪيو`,
+      actionFailed: name => `${name} شروع نه ٿيو سڪيو`
     },
     providerNavigate: 'سنڀيو',
     providerSessions: 'سيشنز',
@@ -419,13 +420,13 @@ export const sd = defineLocale({
       generatedTag: 'جنريٽ ٿي',
       adoptFailed: 'هو پيٽ اپنائ نه سگهو.',
       toggleFailed: 'پيٽ کي ٽاگل نه ڪري سگهو.',
-      noneAvailable: 'ڪو پيٽس دستياب نه — ئيٿي کان هڪ ڪٽي انٽال ڪريو.',
+      noneAvailable: 'ڪو پيٽس دستياب نه — ئيٿي کان هڪ ڪٽي انٽال ڪريو.'
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · فعال سيشن ${count}`,
     days: count => `${count}ڏ`,
     actualCost: cost => `حقيقي ${cost}`,
     noUsage: period => `پچھيل ${period} ڏينهن ۾ ڪو استعمال نه.`,
-    actions: count => `${count} اقدام`,
+    actions: count => `${count} اقدام`
   },
   messaging: {
     search: 'پيغام رسائي لاءِ ڳوليو...',
@@ -440,7 +441,7 @@ export const sd = defineLocale({
       not_configured: 'ترتيب لازم آهي',
       pending_restart: 'ٻيهر ٿورو لازم آهي',
       retrying: 'ٻيهر ڪوشش ڪري رهيا آهن',
-      startup_failed: 'شروعات ناڪام رهي',
+      startup_failed: 'شروعات ناڪام رهي'
     },
     unknown: 'نامعلوم',
     hintPendingRestart: 'هي بدل لاگو ڪرڻ لاءِ اسٽيٽس بار مان سنڌر کي ٻيهر ٿورو.',
@@ -467,124 +468,124 @@ export const sd = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'بوٽ ٽوڪن',
         help: '@BotFather سان بوٽ ٺاهيو، پوءِ ٽوڪن پیسٽ ڪريو.',
-        placeholder: 'Telegram بوٽ ٽوڪن پیسٽ ڪريو',
+        placeholder: 'Telegram بوٽ ٽوڪن پیسٽ ڪريو'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'اجازت ٿيل Telegram صارف IDs',
-        help: 'ڀيٰ. @userinfobot مان ڪاما سان جڏيل نمبري IDs. انWithout ڪريو ڪوبه به توهان جي بوٽ کي DM ڪري سگهي ٿا.',
+        help: 'ڀيٰ. @userinfobot مان ڪاما سان جڏيل نمبري IDs. انWithout ڪريو ڪوبه به توهان جي بوٽ کي DM ڪري سگهي ٿا.'
       },
       TELEGRAM_PROXY: {
         label: 'پروڪسي URL',
-        help: 'صرف ان نٽورڪس تي ضرورت آهي جن ۾ Telegram بلاڪ آهي.',
+        help: 'صرف ان نٽورڪس تي ضرورت آهي جن ۾ Telegram بلاڪ آهي.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'بوٽ ٽوڪن',
-        help: 'Discord ڊولپر پورٽل ۾ اپليڪيشن ٺاهيو، بوٽ شامل ڪريو، پوءِ ٽوڪن پیسٽ ڪريو.',
+        help: 'Discord ڊولپر پورٽل ۾ اپليڪيشن ٺاهيو، بوٽ شامل ڪريو، پوءِ ٽوڪن پیسٽ ڪريو.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'اجازت ٿيل Discord صارف IDs',
-        help: 'ڀيٰ. ڪاما سان جڏيل Discord صارف IDs.',
+        help: 'ڀيٰ. ڪاما سان جڏيل Discord صارف IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'جواب جي اسلوب',
-        help: 'پهرين، تمام، يا بند.',
+        help: 'پهرين، تمام، يا بند.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'تمام Discord صارفين کي اجازت ڏيو',
-        help: 'تنهي ترقي لاءِ. جيڪر سچو، تو ڪوڇي شخص بغير الوليسٽ جي بوٽ کي DM ڪري سگھي ٿو.',
+        help: 'تنهي ترقي لاءِ. جيڪر سچو، تو ڪوڇي شخص بغير الوليسٽ جي بوٽ کي DM ڪري سگھي ٿو.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'گهر جي چينل آئي ڊي',
-        help: 'چينل جithe بوٽ نشيط پيغام ويندڻي ٿو (cron آؤٽ پٽ، يادڏاني).',
+        help: 'چينل جithe بوٽ نشيط پيغام ويندڻي ٿو (cron آؤٽ پٽ، يادڏاني).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'گهر جي چينل جو نالو',
-        help: 'Ngaran tampilan pikeun saluran utama dina log jeung kaluaran status.',
+        help: 'Ngaran tampilan pikeun saluran utama dina log jeung kaluaran status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Idinan sadaya pamaké iMessage',
-        help: 'Lamun diaktipkeun, liwati daptar idin BlueBubbles.',
+        help: 'Lamun diaktipkeun, liwati daptar idin BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Idinan sadaya pamaké Mattermost',
+        label: 'Idinan sadaya pamaké Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Saluran utama',
+        label: 'Saluran utama'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Idinan sadaya pamaké QQ',
+        label: 'Idinan sadaya pamaké QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Saluran utama QQ',
-        help: 'Saluran atawa grup standar pikeun pangiriman cron.',
+        help: 'Saluran atawa grup standar pikeun pangiriman cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Ngaran saluran utama QQ',
+        label: 'Ngaran saluran utama QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Anggo token bot ti OAuth & Permissions saatos masang aplikasi Slack anjeun.',
-        placeholder: 'Tempel token bot Slack',
+        placeholder: 'Tempel token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token aplikasi Slack',
         help: 'Anggo token tingkat aplikasi anu diperyogikeun pikeun Socket Mode.',
-        placeholder: 'Tempel token aplikasi Slack',
+        placeholder: 'Tempel token aplikasi Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID pamaké Slack anu diidinan',
-        help: 'Disarankeun. ID pamaké Slack dipisah ku koma.',
+        help: 'Disarankeun. ID pamaké Slack dipisah ku koma.'
       },
       MATTERMOST_URL: {
         label: 'URL server',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID pamaké anu diidinan',
-        help: 'Disarankeun. ID pamaké Mattermost dipisah ku koma.',
+        help: 'Disarankeun. ID pamaké Mattermost dipisah ku koma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token aksés',
+        label: 'Token aksés'
       },
       MATRIX_USER_ID: {
         label: 'ID pamaké bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID pamaké Matrix anu diidinan',
-        help: 'Disarankeun. ID pamaké dipisah ku koma dina format @user:server.',
+        help: 'Disarankeun. ID pamaké dipisah ku koma dina format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL bridge Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL bridge REST signal-cli anu jalan.',
+        help: 'URL bridge REST signal-cli anu jalan.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nomer telepon',
-        help: 'Nomer anu didaptarkeun dina bridge signal-cli anjeun.',
+        help: 'Nomer anu didaptarkeun dina bridge signal-cli anjeun.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Pamaké Signal anu diidinan',
-        help: 'Disarankeun. Identifier Signal dipisah ku koma.',
+        help: 'Disarankeun. Identifier Signal dipisah ku koma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Aktipkeun bridge WhatsApp',
-        help: 'Diatur otomatis ku toggle di handap. Ulah dirobah iwal anjeun terang anjeun peryogi.',
+        help: 'Diatur otomatis ku toggle di handap. Ulah dirobah iwal anjeun terang anjeun peryogi.'
       },
       WHATSAPP_MODE: {
-        label: 'Mode bridge',
+        label: 'Mode bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Pamaké WhatsApp anu diidinan',
-        help: 'پيشنھاد. ڪاما سان جدا ڪيل فون نمبر يا WhatsApp آئٽي.',
-      },
+        help: 'پيشنھاد. ڪاما سان جدا ڪيل فون نمبر يا WhatsApp آئٽي.'
+      }
     },
     advanced: count => `پيشرفتا (${count})`,
     clearField: key => `${key} کي صاف ڪريو`,
@@ -598,8 +599,7 @@ export const sd = defineLocale({
     failedUpdate: name => `${name} کي اپڊيٽ ڪرڻ ۾ ناکام`,
     failedSave: name => `${name} کي محفوظ ڪرڻ ۾ ناکام`,
     failedClear: key => `${key} کي صاف ڪرڻ ۾ ناکام`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   profiles: {
     soulSaved: '`SOUL.md` محفوظ ڪيو ويو',
@@ -677,7 +677,7 @@ Leave blank to keep the ${mode} default.`,
     created: 'Profile created',
     renamed: 'Profile renamed',
     deleted: 'Profile deleted',
-    setupCopied: 'Setup command copied',
+    setupCopied: 'Setup command copied'
   },
   cron: {
     close: 'ڪرون بند ڪريو',
@@ -691,14 +691,14 @@ Leave blank to keep the ${mode} default.`,
       paused: 'ٽيوقف',
       disabled: 'غیر فعال',
       error: 'خ_SYNC',
-      completed: 'مڪمل',
+      completed: 'مڪمل'
     },
     deliveryLabels: {
       local: 'هي ڊيسڪ ٽاپ',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'ايميل',
+      email: 'ايميل'
     },
     scheduleLabels: {
       daily: 'روزانه',
@@ -707,7 +707,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'مهلاتي',
       hourly: 'گهريٽي',
       'every-15-minutes': 'هر 15 منٽ',
-      custom: 'ناختي',
+      custom: 'ناختي'
     },
     scheduleHints: {
       daily: 'هر روز صبح 9:00',
@@ -716,7 +716,7 @@ Leave blank to keep the ${mode} default.`,
       monthly: 'هر مهين جي پهلي ڏينهن صبح 9:00',
       hourly: 'هر گهريٽ جي شروعات ۾',
       'every-15-minutes': 'هر 15 منٽ',
-      custom: 'ڪرون نحو يا قدرتي ٻولي',
+      custom: 'ڪرون نحو يا قدرتي ٻولي'
     },
     days: {
       '0': 'اتوار',
@@ -726,7 +726,7 @@ Leave blank to keep the ${mode} default.`,
       '4': 'Thursday',
       '5': 'Friday',
       '6': 'Saturday',
-      '7': 'Sunday',
+      '7': 'Sunday'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `day ${value}`,
@@ -737,7 +737,8 @@ Leave blank to keep the ${mode} default.`,
     topOfHour: 'At the top of every hour',
     everyHourAt: minute => `Every hour at :${minute}`,
     newCron: 'New cron',
-    emptyDescNew: 'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
+    emptyDescNew:
+      'Schedule a prompt to run on a cron expression. OpenAmer will run it and deliver results to the destination you pick.',
     emptyDescSearch: 'Try a broader search query.',
     emptyTitleNew: 'No scheduled jobs yet',
     emptyTitleSearch: 'No matches',
@@ -796,7 +797,7 @@ Leave blank to keep the ${mode} default.`,
     createAction: 'Create cron',
     tabs: {
       jobs: 'Jobs',
-      blueprints: 'Blueprints',
+      blueprints: 'Blueprints'
     },
     blueprints: {
       tab: 'Blueprints',
@@ -810,8 +811,8 @@ Leave blank to keep the ${mode} default.`,
       loading: 'Loading blueprints...',
       failedLoad: 'Failed to load blueprints',
       emptyTitle: 'No blueprints available',
-      emptyDesc: 'No automation blueprints are available on this backend.',
-    },
+      emptyDesc: 'No automation blueprints are available on this backend.'
+    }
   },
   artifacts: {
     refreshing: 'آرٽي فاڪٽس تازه ڪرڻ',
@@ -845,14 +846,14 @@ Leave blank to keep the ${mode} default.`,
     search: 'Search artifacts...',
     refresh: 'Refresh artifacts',
     rangeOf: (start, end, total) => `${start}-${end} of ${total}`,
-    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`,
+    goToPage: (itemLabel, page) => `Go to ${itemLabel} page ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'نئون سيشن',
       skills: 'صلاحيتون',
       messaging: 'پيغام رساني',
-      artifacts: 'آرٽي فاڪٽس',
+      artifacts: 'آرٽي فاڪٽس'
     },
     searchAria: 'سيشنز ڀوليو',
     searchPlaceholder: 'سيشنز ڀوليو…',
@@ -904,7 +905,8 @@ Leave blank to keep the ${mode} default.`,
       copyPath: 'Copy path',
       removeFromSidebar: 'Hide from sidebar',
       createFailed: 'Could not create project',
-      staleBackend: 'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
+      staleBackend:
+        'Update the OpenAmer backend to create projects — your backend is older than this desktop app (Settings → Updates → Backend).',
       deleteConfirm: 'This removes the saved project from OpenAmer. Files, git repos, and worktrees stay untouched.',
       startWork: 'New worktree',
       newWorktreeTitle: 'New worktree',
@@ -926,13 +928,15 @@ Leave blank to keep the ${mode} default.`,
       noBranches: 'No branches found',
       removeWorktree: 'Remove worktree',
       removeWorktreeFailed: 'Could not remove worktree (uncommitted changes?)',
-      removeWorktreeConfirm: 'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
-      removeWorktreeDirty: 'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
+      removeWorktreeConfirm:
+        'Remove it from git (deletes the worktree directory; the branch stays), or just hide the lane from the sidebar and leave the worktree on disk.',
+      removeWorktreeDirty:
+        'This worktree has uncommitted changes. Force-remove it (discards those changes), or just hide the lane and keep it on disk.',
       forceRemove: 'Force remove',
       enter: label => `Open ${label}`,
       reorder: label => `Reorder ${label}`,
       toggle: label => `Toggle ${label} sessions`,
-      back: 'All projects',
+      back: 'All projects'
     },
     newSessionIn: label => `New session in ${label}`,
     showMoreIn: (count, label) => `Show ${count} more in ${label}`,
@@ -970,19 +974,20 @@ Leave blank to keep the ${mode} default.`,
       ageNow: 'now',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'm',
+      ageMin: 'm'
     },
     dateDivider: {
       today: 'Earlier today',
       yesterday: 'Yesterday',
       thisWeek: 'Earlier this week',
       lastWeek: 'Last week',
-      thisMonth: 'Earlier this month',
-    },
+      thisMonth: 'Earlier this month'
+    }
   },
   composer: {
     queueStuckTitle: 'ٽيور ٿيل پيغام نه وي پهچو',
-    queueStuckBody: 'هڪ ٽيور ٿيل پيغام ٻيهر ڏيکارڻ کان پهچو نه وي پهچو. اهاStill queue ۾ آهي — ٻيهر ڏيکارڻ جي ڪوشش ڪريو.',
+    queueStuckBody:
+      'هڪ ٽيور ٿيل پيغام ٻيهر ڏيکارڻ کان پهچو نه وي پهچو. اهاStill queue ۾ آهي — ٻيهر ڏيکارڻ جي ڪوشش ڪريو.',
     previewUnavailable: 'Preview دستياب نه آهي',
     dictating: 'Dictation ٿي رهيو آهي',
     preparingAudio: 'آڊيو تيار ٿي رهيو آهي',
@@ -1006,18 +1011,18 @@ Leave blank to keep the ${mode} default.`,
       codeReview: {
         label: 'ڪوڊ review',
         description: 'موجوده تبديلين کي regressions، ڇاپيل edge cases ۽ miss ٿيل tests لاءِ audit ڪريو.',
-        text: 'اهو bugs، regressions ۽ miss ٿيل tests لاءِ review ڪريو.',
+        text: 'اهو bugs، regressions ۽ miss ٿيل tests لاءِ review ڪريو.'
       },
       implementationPlan: {
         description: 'ڪوڊ ٿيڏ کان په� اپنايو رٿيو ٺاهي جيڪي diff focused رهجي.',
         text: 'ڪوڊ بدلن کان په� مختصر implementation plan ٺاهيو.',
-        label: 'Implementation plan',
+        label: 'Implementation plan'
       },
       explainThis: {
         label: 'هي توضيح ڪريو',
         description: 'چونڊيل ڪوڊ ڪيئن ڪم ڪري اهو سمجهيو ۽ اهم فائلن طرف ڊirected ڪريو.',
-        text: 'هي ڪيئن ڪم ڪري اهو سمجهيو ۽ اهم فائلن طرف ڊirected ڪريو.',
-      },
+        text: 'هي ڪيئن ڪم ڪري اهو سمجهيو ۽ اهم فائلن طرف ڊirected ڪريو.'
+      }
     },
     transcribingDictation: 'ڊڪٽيشن لکيو پيو وڃي',
     voiceDictation: 'آوازي ڊڪٽيشن',
@@ -1036,7 +1041,7 @@ Leave blank to keep the ${mode} default.`,
       '/resume': 'اڳوڻو سيشن جاري ڪريو',
       '/details': 'ٽرانسڪرپٽ تفصيل جي سطح ڪنٽرول ڪريو',
       '/copy': 'چونڊ يا آخري اسسٽنٽ پيغام ڪاپي ڪريو',
-      '/quit': 'openamer مان ٻاهر نڪرو',
+      '/quit': 'openamer مان ٻاهر نڪرو'
     },
     hotkeyDescs: {
       'composer.mention': 'فائلون، فولڊر، urls، git جو حوالو ڏيو',
@@ -1046,7 +1051,7 @@ Leave blank to keep the ${mode} default.`,
       'composer.sendQueued': 'اڳيون قطار ۾ رکيل ٽرن موڪليو',
       'keybinds.openPanel': 'سڀ ڪي بورڊ شارٽ ڪٽ',
       'composer.cancel': 'پاپ اوور بند ڪريو · رن منسوخ ڪريو',
-      'composer.history': 'پاپ اوور / تاريخچي کي چڪر ڏيو',
+      'composer.history': 'پاپ اوور / تاريخچي کي چڪر ڏيو'
     },
     attachUrlTitle: 'URL منسلڪ ڪريو',
     attachUrlDesc: 'OpenAmer صفحو آڻيندو ۽ ان کي هن ٽرن جي حوالي طور شامل ڪندو.',
@@ -1075,7 +1080,7 @@ Leave blank to keep the ${mode} default.`,
       'Describe what you need',
       'What should we tackle?',
       'Ask anything',
-      'Start with a goal',
+      'Start with a goal'
     ],
     followUpPlaceholders: [
       'Send a follow-up',
@@ -1084,7 +1089,7 @@ Leave blank to keep the ${mode} default.`,
       "What's next?",
       'Keep it going',
       'Push it further',
-      'Adjust or continue',
+      'Adjust or continue'
     ],
     startVoice: 'Start voice conversation',
     queueMessage: 'Queue message',
@@ -1111,7 +1116,7 @@ Leave blank to keep the ${mode} default.`,
     removeAttachment: label => `Remove ${label}`,
     url: 'URL…',
     promptSnippets: 'Prompt snippets…',
-    snippetsTitle: 'Prompt snippets',
+    snippetsTitle: 'Prompt snippets'
   },
   statusStack: {
     stop: 'روڪو',
@@ -1153,19 +1158,20 @@ Leave blank to keep the ${mode} default.`,
       openPr: 'Open PR',
       ghMissing: 'Install the GitHub CLI (gh) and sign in to open PRs',
       agentShip: 'Ask OpenAmer to open PR',
-      agentShipPrompt: 'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
+      agentShipPrompt:
+        'Review the current changes, commit them with a clear conventional-commit message, push the branch, and open a pull request.',
       newBranch: 'New branch',
       branchOffFrom: base => `New branch from ${base}`,
       switchTo: branch => `Switch to ${branch}`,
       switchFailed: branch => `Could not switch to ${branch}`,
-      worktrees: 'Worktrees',
+      worktrees: 'Worktrees'
     },
     agents: 'Agents',
     background: count => `${count} Background`,
     subagents: count => `${count} Subagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Tasks ${done}/${total}`,
     running: 'Running',
-    exit: code => `exit ${code}`,
+    exit: code => `exit ${code}`
   },
   modelPicker: {
     loadFailed: 'ماڊلز لوڊ نه ٿو سگهي',
@@ -1181,13 +1187,13 @@ Leave blank to keep the ${mode} default.`,
     unknown: '(unknown)',
     search: 'Filter providers and models...',
     noModels: 'No models found.',
-    addProvider: 'Add provider',
+    addProvider: 'Add provider'
   },
   modelVisibility: {
     title: 'ماڊلز',
     search: 'ماڊلز ڳوليو',
     noAuthenticatedProviders: 'ڪو به تصديق شدہ پروائیڊر ناهي.',
-    addProvider: 'پروائیڊر شامل ڪريو…',
+    addProvider: 'پروائیڊر شامل ڪريو…'
   },
   shell: {
     windowControls: 'ونڊو ڪنٽرولز',
@@ -1198,7 +1204,7 @@ Leave blank to keep the ${mode} default.`,
       noModels: 'ڪو به ماڊل ناهي مليو',
       editModels: 'ماڊلز ایڊٽ ڪريو…',
       refreshModels: 'ماڊلز ٻيڊش ڪريو',
-      fast: 'speedy',
+      fast: 'speedy'
     },
     modelOptions: {
       noOptions: 'هن ماڊل لاءِ ڪو به آپشن ناهي',
@@ -1214,7 +1220,7 @@ Leave blank to keep the ${mode} default.`,
       max: 'MAX',
       ultra: 'ULTRA',
       updateFailed: 'ماڊل آپشن اپڊيٽ ناڪام',
-      fastFailed: 'speedy موڊ اپڊيٽ ناڪام',
+      fastFailed: 'speedy موڊ اپڊيٽ ناڪام'
     },
     gatewayMenu: {
       gateway: 'گيٽ وے',
@@ -1229,7 +1235,7 @@ Leave blank to keep the ${mode} default.`,
       recentActivity: 'تازيون سرگرمون',
       viewAllLogs: 'سڀ لاگ ڏيکو →',
       messagingPlatforms: 'پيغام رسائي پليٽفارم',
-      connection: label => `Connection: ${label}`,
+      connection: label => `Connection: ${label}`
     },
     approvalMode: {
       title: 'منظوري جو موڊ',
@@ -1239,7 +1245,7 @@ Leave blank to keep the ${mode} default.`,
       smartDescription: 'اڳالن جو خودकार طور تي جائزو ٿيڪر ضرورت کيڀي پوڇيو',
       off: 'بند',
       offDescription: 'منظوري جي پوڇ کان بي کلائي هلائو',
-      ariaLabel: mode => `Approval mode: ${mode}`,
+      ariaLabel: mode => `Approval mode: ${mode}`
     },
     statusbar: {
       unknown: 'اڻاڻيو',
@@ -1279,19 +1285,21 @@ Leave blank to keep the ${mode} default.`,
           subagent_definitions: 'سب ايجنٽ تعريفات',
           system_prompt: 'سسٽم پرامپٽ',
           tool_definitions: 'ٽول تعريفات',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'اڃا تائين ڪانٽيڪٽ جو ڊيٽا ناهي',
         loading: 'ڪانٽيڪٽ جو تفصيل لوڊ ٿي رهيا آهن…',
         title: 'ڪانٽيڪٽ جو استعمال',
         percentFull: percent => `${percent}% Full`,
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'ڪانٽيڪٽ جو استعمال تفصيل کي کولڻ',
       session: 'سيشن',
       runtimeSessionElapsed: 'رن ٽائم سيشن گذشت',
-      yoloOn: 'YOLO آن — خطرناڪ ڪمانڊز خودکار طور تي منظور ٿي رهيا آهن. بند ڪرڻ لاءِ ڪلڪ ڪريو. Shift+click ان کي سراسري طور تي بدلڻو ڪري ٿو.',
-      yoloOff: 'YOLO بند — خطرناڪ ڪمانڊز خودکار طور تي منظور ڪرڻ لاءِ ڪلڪ ڪريو. Shift+click ان کي سراسري طور تي بدلڻو ڪري ٿو.',
+      yoloOn:
+        'YOLO آن — خطرناڪ ڪمانڊز خودکار طور تي منظور ٿي رهيا آهن. بند ڪرڻ لاءِ ڪلڪ ڪريو. Shift+click ان کي سراسري طور تي بدلڻو ڪري ٿو.',
+      yoloOff:
+        'YOLO بند — خطرناڪ ڪمانڊز خودکار طور تي منظور ڪرڻ لاءِ ڪلڪ ڪريو. Shift+click ان کي سراسري طور تي بدلڻو ڪري ٿو.',
       modelNone: 'ڪجهه ناهي',
       noModel: 'ڪوئي ماڊل ناهي',
       switchModel: 'ماڊل تبديل ڪريو',
@@ -1314,8 +1322,8 @@ Leave blank to keep the ${mode} default.`,
       failed: count => `${count} failed`,
       running: count => `${count} running`,
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     emptyTitle: 'خالي',
@@ -1351,7 +1359,7 @@ Leave blank to keep the ${mode} default.`,
     unreadableTitle: 'پڙهه نه ٿي سگهي',
     folderTip: cwd => `${cwd} — click to change folder`,
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'پيش نظريو',
@@ -1380,7 +1388,8 @@ Leave blank to keep the ${mode} default.`,
     editing: 'سنوار ٿي رهي آهي',
     unsavedChanges: 'غير محفوظ تغييرات',
     diskChangedTitle: 'فائل ڊسڪ تي تبديل ٿي آهي',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'اڳو تيار ڪريو',
     discardReload: 'ڇڙي ڪريلا ٻيهر لوڊ ڪريو',
     console: {
@@ -1401,7 +1410,7 @@ Leave blank to keep the ${mode} default.`,
       sentTitle: 'چيٽ ڏهرل',
       messages: count => `${count} console messages`,
       selected: count => `${count} selected`,
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'پري ويو شروع ٿيڻ جي ناڪامي',
@@ -1422,9 +1431,11 @@ Leave blank to keep the ${mode} default.`,
       reloadingNow: 'پري ويو هاڻي ٻيهر لوڊ ٿي رهيو آهي.',
       restartFailedTitle: 'پري ويو ٻيهر شروع ٿيڻ جي ناڪامي',
       restartFailedMessage: 'OpenAmer سرور ٻيهر شروع نه ڪري سگهيو.',
-      stillWorking: 'OpenAmer اڃا تائين کم ڪري رهيو آهي، پر ٻيهر شروع ٿيڻ جو نتيجو هنوز نه مليو آهي. سرور ڪمانڊ اڳواڻي چلڻ جي امکان آهي.',
+      stillWorking:
+        'OpenAmer اڃا تائين کم ڪري رهيو آهي، پر ٻيهر شروع ٿيڻ جو نتيجو هنوز نه مليو آهي. سرور ڪمانڊ اڳواڻي چلڻ جي امکان آهي.',
       workspaceReloading: 'ورڪ اسپيس بدلج، پري ويو ٻيهر لوڊ ٿي رهيو آهي',
-      moduleMimeDescription: 'ماڊيول اسڪرپٽس غلط MIME ٽائپ سان فراهم ڪي رهيا آهن. هي عام طور پر ماني ڊي سرور جي بجاءِ اسٽيٽڪ فائل سرور په Vite/React اپ ڏي رهيو آهي.',
+      moduleMimeDescription:
+        'ماڊيول اسڪرپٽس غلط MIME ٽائپ سان فراهم ڪي رهيا آهن. هي عام طور پر ماني ڊي سرور جي بجاءِ اسٽيٽڪ فائل سرور په Vite/React اپ ڏي رهيو آهي.',
       unreachableDescription: 'پري ويو پيج تائين نه پهچي سگهيو.',
       fallbackTitle: 'پري ويو',
       lookingRestart: taskId => `OpenAmer is looking for a preview server to restart (${taskId})`,
@@ -1435,13 +1446,13 @@ Leave blank to keep the ${mode} default.`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Open ${url}`,
+      openTarget: url => `Open ${url}`
     },
     closeTab: label => `Close ${label}`,
     binaryBody: label => `Previewing ${label} may show unreadable text.`,
     largeBody: (label, size) => `${label} is ${size}. OpenAmer will only show the first 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} can still be attached as context.`,
-    saveFailed: message => `Couldn't save: ${message}`,
+    saveFailed: message => `Couldn't save: ${message}`
   },
   zones: {
     showHeader: 'ھیڊر ڏيکاري',
@@ -1449,7 +1460,8 @@ Leave blank to keep the ${mode} default.`,
     minimize: 'گهٽيو',
     restore: 'بحال ڪريو',
     closeRunningTitle: 'چلتا ٽيب بند ڪرڻ آهي؟',
-    closeRunningBody: 'هي چيٽ اڃايو بهل رهيو آهي (يا توهان جي ڄواب جو انتظار ہے). ٽيب بند ڪرڻ تي اها لڪي ويندو — سیشن کي پيشه رکي ۽ سائڊ بار مان ٻيهر کولي سگهجي ٿو.',
+    closeRunningBody:
+      'هي چيٽ اڃايو بهل رهيو آهي (يا توهان جي ڄواب جو انتظار ہے). ٽيب بند ڪرڻ تي اها لڪي ويندو — سیشن کي پيشه رکي ۽ سائڊ بار مان ٻيهر کولي سگهجي ٿو.',
     closeRunningConfirm: 'ٽيب بند ڪريو',
     closeOthers: 'ٻيون بند ڪريو',
     closeToRight: 'ساڄي طرف بند ڪريو',
@@ -1486,7 +1498,7 @@ Leave blank to keep the ${mode} default.`,
     mergeZones: count => `Merge ${count} zones`,
     customZoneName: count => `Custom ${count}-zone`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   assistant: {
     thread: {
@@ -1522,7 +1534,7 @@ Leave blank to keep the ${mode} default.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Today, ${time}`,
-      yesterday: time => `Yesterday, ${time}`,
+      yesterday: time => `Yesterday, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer گيٽ وي سان لنڪ ناهي',
@@ -1536,7 +1548,8 @@ Leave blank to keep the ${mode} default.`,
       reject: 'رد ڪريو',
       alwaysTitle: 'هن ڪمانڊ کي هميشه اجازت ڏيو؟',
       alwaysAllow: 'هميشه اجازت ڏيو',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`
     },
     clarify: {
       notReady: 'وضاحت جو طلب اڃا تيار نه آهي',
@@ -1550,7 +1563,7 @@ Leave blank to keep the ${mode} default.`,
       continueLabel: 'جاري رکو',
       lateAnswerTip: 'هن پيغام کي جهل ٻي پيغام طور تي ڊرافٽ ڪريو',
       lateAnswerHint: 'هي پيغام اڳتي ڪٿي نه ٿي رهيو آهي. جهل ٻي پيغام طور تي ڊرافٽ ڪرڻ لاءِ ڪجهه چونڊيو.',
-      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`
     },
     tool: {
       code: 'ڪوڊ',
@@ -1584,123 +1597,123 @@ Leave blank to keep the ${mode} default.`,
         ran: 'چلايو',
         running: 'هل ٻي رهيو آهي',
         ranCode: 'ڪوڊ چلايو',
-        runningCode: 'اسڪرپٽ لکي رهيو آهي',
+        runningCode: 'اسڪرپٽ لکي رهيو آهي'
       },
       prefixes: {
         browser: 'برائوزر',
-        web: 'ويب',
+        web: 'ويب'
       },
       titles: {
         browser_click: {
           done: 'پيج جو عنصر ڪلڪيو',
           pending: 'پيج جو عنصر ڪلڪي رهيو آهي',
-          pendingAction: 'ڪلڪي رهيو آهي',
+          pendingAction: 'ڪلڪي رهيو آهي'
         },
         browser_fill: {
           done: 'فارم فيلڊ ڀريو',
           pending: 'فارم فيلڊ ڀري رهيو آهي',
-          pendingAction: 'پُر ڪرڻ',
+          pendingAction: 'پُر ڪرڻ'
         },
         browser_navigate: {
           done: 'صفحه کليلو',
           pending: 'صفحه کلڻ',
-          pendingAction: 'کلڻ',
+          pendingAction: 'کلڻ'
         },
         browser_snapshot: {
           done: 'صفحو اسنيپ شاٽ وٺيو',
           pending: 'صفحو اسنيپ شاٽ وٺڻ',
-          pendingAction: 'شاٽ وٺڻ',
+          pendingAction: 'شاٽ وٺڻ'
         },
         browser_take_screenshot: {
           done: 'اسڪرين شاٽ وٺيو',
           pending: 'اسڪرين شاٽ وٺڻ',
-          pendingAction: 'شاٽ وٺڻ',
+          pendingAction: 'شاٽ وٺڻ'
         },
         browser_type: {
           done: 'صفحه تي ٽائپ ڪيو',
           pending: 'صفحه تي ٽائپ ڪرڻ',
-          pendingAction: 'ٽائپ ڪرڻ',
+          pendingAction: 'ٽائپ ڪرڻ'
         },
         clarify: {
           done: 'سوال پوچيو',
           pending: 'سوال پوچڻ',
-          pendingAction: 'پوچڻ',
+          pendingAction: 'پوچڻ'
         },
         cronjob: {
           done: 'ڪرون نو',
           pending: 'ڪرون نو شڊيول ڪرڻ',
-          pendingAction: 'شڊيول ڪرڻ',
+          pendingAction: 'شڊيول ڪرڻ'
         },
         edit_file: {
           done: 'فائل ایڊٽ ڪيو',
           pending: 'فائل ایڊٽ ڪرڻ',
-          pendingAction: 'ایڊٽ ڪرڻ',
+          pendingAction: 'ایڊٽ ڪرڻ'
         },
         execute_code: {
           done: 'ڪوڊ چلايو',
           pending: 'اسڪريپٽنگ',
-          pendingAction: 'اسڪريپٽنگ',
+          pendingAction: 'اسڪريپٽنگ'
         },
         image_generate: {
           done: 'تصوير جنرائي',
           pending: 'تصوير جنرائي ڪرڻ',
-          pendingAction: 'جنرائي ڪرڻ',
+          pendingAction: 'جنرائي ڪرڻ'
         },
         list_files: {
           done: 'فائلون لسٽ ڪيون',
           pending: 'فائلون لسٽ ڪرڻ',
-          pendingAction: 'لسٽ ڪرڻ',
+          pendingAction: 'لسٽ ڪرڻ'
         },
         patch: {
           done: 'فائل ے پيچ ڪيو',
           pending: 'فائل ے پيچ ڪرڻ',
-          pendingAction: 'پيچ ڪرڻ',
+          pendingAction: 'پيچ ڪرڻ'
         },
         read_file: {
           done: 'فائل پڙهيو',
           pending: 'فائل پڙهڻ',
-          pendingAction: 'پڙهڻ',
+          pendingAction: 'پڙهڻ'
         },
         search_files: {
           done: 'فائلون ڳوليو',
           pending: 'فائلون ڳولڻ',
-          pendingAction: 'ڳولڻ',
+          pendingAction: 'ڳولڻ'
         },
         session_search_recall: {
           done: 'سيشن جي تاريخ ڳوليو',
           pending: 'سيشن جي تاريخ ڳولي رهيو آهي',
-          pendingAction: 'ڳولي رهيو آهي',
+          pendingAction: 'ڳولي رهيو آهي'
         },
         terminal: {
           done: 'ڪمانڊ چلايو',
           pending: 'ڪمانڊ چلايو رهيو آهي',
-          pendingAction: 'جاري آهي',
+          pendingAction: 'جاري آهي'
         },
         todo: {
           done: 'TODO اپڊيٽ ڪيو',
           pending: 'TODO اپڊيٽ ڪري رهيو آهي',
-          pendingAction: 'اپڊيٽ ڪري رهيو آهي',
+          pendingAction: 'اپڊيٽ ڪري رهيو آهي'
         },
         vision_analyze: {
           done: 'تصور جو تجزيو ڪيو',
           pending: 'تصور جو تجزيو ڪري رهيو آهي',
-          pendingAction: 'تجزيو ڪري رهيو آهي',
+          pendingAction: 'تجزيو ڪري رهيو آهي'
         },
         web_extract: {
           done: 'ويب پيج پڙهو',
           pending: 'ويب پيج پڙهي رهيو آهي',
-          pendingAction: 'پڙهي رهيو آهي',
+          pendingAction: 'پڙهي رهيو آهي'
         },
         web_search: {
           done: 'ويب ڳوليو',
           pending: 'ويب ڳولي رهيو آهي',
-          pendingAction: 'ڳولي رهيو آهي',
+          pendingAction: 'ڳولي رهيو آهي'
         },
         write_file: {
           done: 'فائل ايڊٽ ڪيو',
           pending: 'فائل ايڊٽ ڪري رهيو آهي',
-          pendingAction: 'ايڊٽ ڪري رهيو آهي',
-        },
+          pendingAction: 'ايڊٽ ڪري رهيو آهي'
+        }
       },
       recoveredMany: count => `Recovered after ${count} failed steps`,
       failedMany: count => `${count} steps failed`,
@@ -1710,20 +1723,21 @@ Leave blank to keep the ${mode} default.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer گيٽ وي نه ويڪاريل آهي',
     sudoSendFailed: 'sudo پاس ورڊ نه ڏيڪري سگهي',
     secretSendFailed: 'راز نه ڏيڪري سگهي',
     sudoTitle: 'منتظم جو پاس ورڊ',
-    sudoDesc: 'OpenAmer کو خاص ڪمانڊ چلانے لاء توهان جو sudo پاس ورڊ ضرور آهي. اهو صرف توهان جي مقامي ايجنٽ کي ڏيڻو ويڪري ٿو.',
+    sudoDesc:
+      'OpenAmer کو خاص ڪمانڊ چلانے لاء توهان جو sudo پاس ورڊ ضرور آهي. اهو صرف توهان جي مقامي ايجنٽ کي ڏيڻو ويڪري ٿو.',
     sudoPlaceholder: 'sudo پاس ورڊ',
     secretTitle: 'راز ضروري آهي',
     secretDesc: 'OpenAmer کي جاري رکڻ لاء ڪريڊينشل ضرور آهي.',
-    secretPlaceholder: 'راز جي قدر',
+    secretPlaceholder: 'راز جي قدر'
   },
   desktop: {
     audioReadFailed: 'recording ڊي آڊيو نه پڙهي سگهي',
@@ -1743,7 +1757,7 @@ Leave blank to keep the ${mode} default.`,
       timedOut: 'گيٽ وي کي انتظار ٿيو، ٽائيم آٽ ٿيو. `openamer gateway` چل رهيو آهي؟',
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
-      failed: error => `Handoff failed: ${error}`,
+      failed: error => `Handoff failed: ${error}`
     },
     yoloToggleFailed: 'YOLO تبديل نه ڪري سگهو',
     unknownProfile: 'نامعلوم پروفائل',
@@ -1754,7 +1768,8 @@ Leave blank to keep the ${mode} default.`,
     editFailed: 'ایڊٽ ناڪام',
     resumeFailed: 'دوبارو جاري نه ڪري سگهو',
     resumeStrandedTitle: 'هي سيشن لوڊ نه ڪري سگهو',
-    resumeStrandedBody: 'هن سيشن سان ڪنيڪشن ناڪام ٿيو ۽ خودکار ٻيهر ڪوششون بند ٿي ڪن._gateway چيڪ ڪري، پوءِ ٻيهر ڪوشش ڪريو.',
+    resumeStrandedBody:
+      'هن سيشن سان ڪنيڪشن ناڪام ٿيو ۽ خودکار ٻيهر ڪوششون بند ٿي ڪن._gateway چيڪ ڪري، پوءِ ٻيهر ڪوشش ڪريو.',
     resumeRetry: 'ٻيهر ڪوشش',
     nothingToBranch: 'ڪ shading لاءِ ڪجهه ناهي',
     branchNeedsChat: 'شاخ ڪرڻ کان په� چيٽ شروع ڪريو يا جاري ڪريو.',
@@ -1789,34 +1804,35 @@ Leave blank to keep the ${mode} default.`,
     warningLine: message => `warning: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
-    branchTitle: n => `Draft: Branch #${n}`,
+    branchTitle: n => `Draft: Branch #${n}`
   },
   errors: {
     genericFailure: 'ڪجهه غلط ٿيو',
     boundaryTitle: 'انٽرفيس ۾ ڪجهه ٽوٽ پيو',
     boundaryDesc: 'ڏيکار تي غلطي آئي. توهان جي چيٽس ۽ سيٽنگز محفوظ آهن.',
     reloadWindow: 'ونڊو ٻيٺ لوڊ ڪريو',
-    openLogs: 'لاگز کولو',
+    openLogs: 'لاگز کولو'
   },
   ui: {
     search: {
-      clear: 'ڳوڻورو صاف ڪريو',
+      clear: 'ڳوڻورو صاف ڪريو'
     },
     pagination: {
       label: 'صفحه بندي',
       previous: 'پ.previous',
       previousAria: 'پ.previous صفحو ڏيک',
       next: 'اڳتي',
-      nextAria: 'اڳتي صفحو ڏيک',
+      nextAria: 'اڳتي صفحو ڏيک'
     },
     sidebar: {
       title: 'سائائڊ بار',
       description: 'موبائل سائائڊ بار ڏيکاري ٿو.',
-      toggle: 'سائائڊ بار ٽوگل ڪريو',
-    },
+      toggle: 'سائائڊ بار ٽوگل ڪريو'
+    }
   },
   notifications: {
     voice: {
@@ -1836,7 +1852,7 @@ Leave blank to keep the ${mode} default.`,
       noSpeechDetected: 'ڪو بولي پڇاڻ نه ٿي',
       playbackFailed: 'آواز پلي بيك ناکام',
       recordingFailed: 'آواز رڪارڊنگ ناکام',
-      transcriptionFailed: 'آواز ترانسڪرپشن ناکام',
+      transcriptionFailed: 'آواز ترانسڪرپشن ناکام'
     },
     native: {
       approvalTitle: 'منظوري ضروري',
@@ -1849,7 +1865,7 @@ Leave blank to keep the ${mode} default.`,
       turnErrorTitle: 'ٽرن ناڪام',
       backgroundDoneTitle: 'پٺاڻ ڪم مڪمل ٿيو',
       backgroundFailedTitle: 'پٺاڻ ڪم ناڪام',
-      creditsTitle: 'ائٽس',
+      creditsTitle: 'ائٽس'
     },
     region: 'اطلاعات',
     hide: 'ڀاپيو',
@@ -1861,22 +1877,24 @@ Leave blank to keep the ${mode} default.`,
     copyDetail: 'تفصيل ڪاپي ڪريو',
     copyDetailFailed: 'اطلاع جي تفصيل ڪاپي نه ٿي سگھي',
     backendOutOfDateTitle: 'بیک اینڊ پُرانو',
-    backendOutOfDateMessage: 'توهان جو OpenAmer بیک اینڊ هو ايڊيسڪٽپ بيلڊ کان پُرانو آهي ۽ هڪي درست طور تي ڪم نه ڪري سگھي. هڪي مطابقت ڪرڻ لاءِ اپڊيٽ ڪريو.',
+    backendOutOfDateMessage:
+      'توهان جو OpenAmer بیک اینڊ هو ايڊيسڪٽپ بيلڊ کان پُرانو آهي ۽ هڪي درست طور تي ڪم نه ڪري سگھي. هڪي مطابقت ڪرڻ لاءِ اپڊيٽ ڪريو.',
     installMethodUnsupportedTitle: 'غير مدعوم انسٽال طريقيو',
     updateOpenAmer: 'OpenAmer اپڊيٽ ڪريو',
     updateReadyTitle: 'اپڊيٽ تيار آهي',
     updateReadyMessage: count => `${count} نئون تبديلي ${count === 1 ? '' : 's'} دستيابي آهي.`,
-    seeWhatsNew: "نئون ڇا آهي ڏسو",
+    seeWhatsNew: 'نئون ڇا آهي ڏسو',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT کي ELEVENLABS_API_KEY جي ضرورت آهي.',
       elevenLabsRejectedKey: 'ElevenLabs API ڪي (401) مسترد ڪيو.',
       gatewayAuthFailed: 'جيٽ وي توثيقيت ناکام — توهان جي API_SERVER_KEY چيڪ ڪريو.',
-      methodNotAllowed: 'ڊيسڪٽپ بیک اینڊ هو طلب (405 ميثڊ اجازت نه) مسترد ڪيو. OpenAmer Desktop ڊوبارو ستارت ڪرڻ جي ڪوشش ڪريو.',
+      methodNotAllowed:
+        'ڊيسڪٽپ بیک اینڊ هو طلب (405 ميثڊ اجازت نه) مسترد ڪيو. OpenAmer Desktop ڊوبارو ستارت ڪرڻ جي ڪوشش ڪريو.',
       microphonePermission: 'مائڪرافون جي اجازت مسترد ڪيو.',
       openaiRejectedApiKey: 'OpenAI API ڪي مسترد ڪيو.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI API ڪي (${status} invalid_api_key) مسترد ڪيو.`,
-      openaiTtsNeedsKey: 'OpenAI TTS کي VOICE_TOOLS_OPENAI_KEY يا OPENAI_API_KEY جي ضرورت آهي.',
-    },
+      openaiTtsNeedsKey: 'OpenAI TTS کي VOICE_TOOLS_OPENAI_KEY يا OPENAI_API_KEY جي ضرورت آهي.'
+    }
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer اائٽس ختم',
@@ -1884,7 +1902,7 @@ Leave blank to keep the ${mode} default.`,
     openBilling: 'بلنگ کوليو',
     addCredits: 'ائٽس شامل ڪريو',
     dismiss: 'انڪار ڪريو',
-    titleProvider: provider => `ڪريڊٽن سان باہر — ${provider}`,
+    titleProvider: provider => `ڪريڊٽن سان باہر — ${provider}`
   },
   titlebar: {
     hideSidebar: 'سائڊبار لڪايو',
@@ -1901,11 +1919,12 @@ Leave blank to keep the ${mode} default.`,
     openStarmap: 'ميموري گراف کوليو',
     openKeybinds: 'ڪي بورڊ شارٽ ڪٽس',
     layoutEditor: 'لي آئوٽ ايڊيٽر',
-    layoutEditorTitle: 'لي آئوٽ ايڊيٽر — ⌘-click لي آئوٽ ري سيٽ ڪري ٿو',
+    layoutEditorTitle: 'لي آئوٽ ايڊيٽر — ⌘-click لي آئوٽ ري سيٽ ڪري ٿو'
   },
   settings: {
     toolsets: {
-      noProviderOptions: 'هن اوزار سيٽ ۾ ڪوبه پرووائيڊر آپشن ناهي — ان کي چالو ڪريو ۽ اهو توهان جي موجوده سيٽ اپ سان ڪم ڪندو.',
+      noProviderOptions:
+        'هن اوزار سيٽ ۾ ڪوبه پرووائيڊر آپشن ناهي — ان کي چالو ڪريو ۽ اهو توهان جي موجوده سيٽ اپ سان ڪم ڪندو.',
       noProviders: 'هن اوزار سيٽ لاءِ هن وقت ڪوبه پرووائيڊر موجود ناهي.',
       ready: 'تيار',
       needsSignIn: 'سائن اِن گهربل',
@@ -1947,7 +1966,7 @@ Leave blank to keep the ${mode} default.`,
         selectedTitle: 'بئڪ اينڊ چونڊيو ويو',
         needsSetupHint: 'توهان هاڻي هي بئڪ اينڊ چونڊي سگهو ٿا — سيٽ اپ مڪمل ٿيڻ تائين ڪمانڊ ناڪام ٿيندا.',
         selectedMessage: backend => `ٽرمينل هڪم هڪا ${backend} جي واسطي چلندو آهن. نئين سيشنز تي لاگو ٿيندو آهي.`,
-        failedSelect: backend => `${backend} پسند ڪرڻ ۾ ناکام`,
+        failedSelect: backend => `${backend} پسند ڪرڻ ۾ ناکام`
       },
       loadingConfig: 'ڪانفڪريشن لوڊ ڪندو',
       savedTitle: 'ڪريڊينشيل سيو ٿي',
@@ -1964,8 +1983,10 @@ Leave blank to keep the ${mode} default.`,
       selectedMessage: provider => `${provider} هڪل فعال آهي.`,
       failedSelect: provider => `${provider} چوڻڻ ناکام`,
       failedLoad: 'ٽول ڪانفڪريشن لوڊ ڪرڻ ناکام',
-      openamerAuthNeededMessage: provider => `${provider} سيو ٿيو پر انڪي فعال نه ٿيندو جڏهن تون OpenAmer Portal تي سائن ان نه ڪرو.`,
-      postSetupHint: step => `هن بیک اینڊ کي وڪھا ويڪ انسٽال (${step}) جي ضرورت آهي. هڪو مشين تي چلندو آهي — چند منٽ لڳي سگھندو آهي.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} سيو ٿيو پر انڪي فعال نه ٿيندو جڏهن تون OpenAmer Portal تي سائن ان نه ڪرو.`,
+      postSetupHint: step =>
+        `هن بیک اینڊ کي وڪھا ويڪ انسٽال (${step}) جي ضرورت آهي. هڪو مشين تي چلندو آهي — چند منٽ لڳي سگھندو آهي.`,
       postSetupCompleteMessage: step => `${step} انسٽال ٿي ويو.`,
       postSetupErrorMessage: step => `${step} لاگ چيڪ ڪريو.`,
       postSetupFailed: step => `${step} سيٽ اپ چلائڻ ۾ ناکام`,
@@ -1975,7 +1996,7 @@ Leave blank to keep the ${mode} default.`,
       failedSelectCapability: provider => `${provider} سيٽ ڪرڻ ۾ ناکام`,
       modelCount: count => `${count} ماڊل${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} نئين سيشنز تي لاگو ٿيندو آهي.`,
-      failedSelectModel: model => `${model} پسند ڪرڻ ۾ ناکام`,
+      failedSelectModel: model => `${model} پسند ڪرڻ ۾ ناکام`
     },
     closeSettings: 'سيٽنگز بند ڪريو',
     exportConfig: 'کانفگ برآمد ڪريو',
@@ -1999,11 +2020,12 @@ Leave blank to keep the ${mode} default.`,
       about: 'ڄا باري',
       billing: 'بلنگ',
       notifications: 'نوتیفیکيشن',
-      plugins: 'پلاگنز',
+      plugins: 'پلاگنز'
     },
     plugins: {
       title: 'ڊيسڪٽاپ پلاگنز',
-      blurb: 'اِس ايپ ۾ لوڊ ڪيل UI ايڪسٽينشن — بيلڊ سان بندل، يا ڊيسڪٽاپ-پلاگنز فولڊر ۾ ڏاڻل (OpenAmer جي لکيل مان شامل آھن). غير فعال ڪرڻ پلاگڻ کي لايو ان لوڊ ڪري ٿو آھي ۽ ريستارٽ sobrevivin ٿيندو آھي.',
+      blurb:
+        'اِس ايپ ۾ لوڊ ڪيل UI ايڪسٽينشن — بيلڊ سان بندل، يا ڊيسڪٽاپ-پلاگنز فولڊر ۾ ڏاڻل (OpenAmer جي لکيل مان شامل آھن). غير فعال ڪرڻ پلاگڻ کي لايو ان لوڊ ڪري ٿو آھي ۽ ريستارٽ sobrevivin ٿيندو آھي.',
       count: n => `${n} انسٽال`,
       openFolder: 'پلاگنز فولڊر کول',
       rescan: 'دوبارا اسڪين',
@@ -2015,40 +2037,41 @@ Leave blank to keep the ${mode} default.`,
       kinds: {
         bundled: 'بندل',
         disk: 'ڊيسڪ تي',
-        runtime: 'رڻٽائم',
-      },
+        runtime: 'رڻٽائم'
+      }
     },
     notifications: {
       title: 'نوتیفیکيشن',
-      intro: 'نيتيو ڊيسڪٽاپ نوتیفیکيشن، ان-ايپ ٹوسٽون کان الگ. اهو ڊوائس-مقامي آھن — هر ڪمپيوٽر اپنِي سيٽنگ رाखي ٿو آھي.',
+      intro:
+        'نيتيو ڊيسڪٽاپ نوتیفیکيشن، ان-ايپ ٹوسٽون کان الگ. اهو ڊوائس-مقامي آھن — هر ڪمپيوٽر اپنِي سيٽنگ رाखي ٿو آھي.',
       enableAll: 'نوتیفیکيشن فعال ڪر',
       enableAllDesc: 'ماسٽر سويچ. اهن کي بند ڪرڻ تي هڪو نوتیفیکيشن خاموش ٿيندي آھي.',
       focusedHint: 'مکمل اليرٽ صرف تڄ چلتي آھن جڏهن OpenAmer پيچھو ۾ آھي.',
       kinds: {
         approval: {
           label: 'منظوري درکار',
-          description: 'هڪ ڪمانڊ توھان جي منظوري يا رد لاءِ انتظار ڪري آھي.',
+          description: 'هڪ ڪمانڊ توھان جي منظوري يا رد لاءِ انتظار ڪري آھي.'
         },
         input: {
           label: 'انپٽ درکار',
-          description: 'OpenAmer asked a question or needs a password or secret.',
+          description: 'OpenAmer asked a question or needs a password or secret.'
         },
         turnDone: {
           label: 'جواب تیار',
-          description: 'هڪ ٽرن مکمل ٿيو جڏهن OpenAmer پيچھو ۾ هو.',
+          description: 'هڪ ٽرن مکمل ٿيو جڏهن OpenAmer پيچھو ۾ هو.'
         },
         turnError: {
           label: 'ٽرن ناکام',
-          description: 'هڪ ٽرن خرابي سان ختم ٿيو.',
+          description: 'هڪ ٽرن خرابي سان ختم ٿيو.'
         },
         backgroundDone: {
           label: 'پيچھو ٽاسك مکمل',
-          description: 'پيچھو ٽرمينل ڪمانڊ مکمل ٿيو.',
+          description: 'پيچھو ٽرمينل ڪمانڊ مکمل ٿيو.'
         },
         credits: {
           label: 'ڪريڊ اليرٽ',
-          description: 'ڪريڊ رسائي روڪي ويو يا بحال ڪيو ويو.',
-        },
+          description: 'ڪريڊ رسائي روڪي ويو يا بحال ڪيو ويو.'
+        }
       },
       test: 'ٽيسٽ نوتیفیکيشن سيند ڪر',
       testTitle: 'OpenAmer',
@@ -2056,8 +2079,9 @@ Leave blank to keep the ${mode} default.`,
       testSent: 'ٽيسٽ سيند ٿيو. جيڪڏهن ڪجهه ظاہر نه هجے، توھان جي OS نوتیفیکيشن پرميشن ۽ Focus/Do Not Disturb چيڪ ڪر.',
       testUnsupported: 'اهو سسٽم نيتيو نوتیفیکيشن جي حمايت نه ڪري.',
       completionSoundTitle: 'مکمل آواز',
-      completionSoundDesc: 'جڏهن ايجنٽ جو تيرن ختم ٿيندو آهي، تب يہ بجيندو آهي. ايڪ پريسيٽ انتخاب ڪريو ۽ هتي پريويو ڪريو.',
-      completionSoundPreview: 'پريويو',
+      completionSoundDesc:
+        'جڏهن ايجنٽ جو تيرن ختم ٿيندو آهي، تب يہ بجيندو آهي. ايڪ پريسيٽ انتخاب ڪريو ۽ هتي پريويو ڪريو.',
+      completionSoundPreview: 'پريويو'
     },
     sections: {
       model: 'ماڊل',
@@ -2067,7 +2091,7 @@ Leave blank to keep the ${mode} default.`,
       safety: 'حفاظت',
       memory: 'ميميوري ۽ سياق و سباق',
       voice: 'آواز',
-      advanced: 'پيشرو',
+      advanced: 'پيشرو'
     },
     searchPlaceholder: {
       about: 'OpenAmer ڊيسڪٽاپ جو بارے ۾',
@@ -2075,37 +2099,40 @@ Leave blank to keep the ${mode} default.`,
       gateway: 'جيٽوي ڪनेकشن...',
       keys: 'API ڪيڊ ڳوليو...',
       mcp: 'MCP سرور ڳوليو...',
-      sessions: 'آرڪائيو سیشنز ڳوليو...',
+      sessions: 'آرڪائيو سیشنز ڳوليو...'
     },
     modeOptions: {
       light: {
         label: 'رڏ',
-        description: 'چمڪدار ڊيسڪٽاپ سطح',
+        description: 'چمڪدار ڊيسڪٽاپ سطح'
       },
       dark: {
         label: 'ڪارو',
-        description: 'کم چمڪ ورڪسپيس',
+        description: 'کم چمڪ ورڪسپيس'
       },
       system: {
         label: 'سسٽم',
-        description: 'OS ظراهٽ تي عمل ڪريو',
-      },
+        description: 'OS ظراهٽ تي عمل ڪريو'
+      }
     },
     appearance: {
       title: 'ظراهٽ',
-      intro: 'هن ڊيسڪٽاپ-تنهائي ڊسپلي ترجيحن آهن. موڊ چمڪ ڪنٽرول ڪري آهي; ٿيم اكسينٽ پاليٽ ۽ چيٽ سطح اسٽائلنگ ڪنٽرول ڪري آهي.',
+      intro:
+        'هن ڊيسڪٽاپ-تنهائي ڊسپلي ترجيحن آهن. موڊ چمڪ ڪنٽرول ڪري آهي; ٿيم اكسينٽ پاليٽ ۽ چيٽ سطح اسٽائلنگ ڪنٽرول ڪري آهي.',
       colorMode: 'رڳ موڊ',
       colorModeDesc: 'ايڪ ثابت موڊ انتخاب ڪريو يا OpenAmer کي اپن جي سسٽم سيٽنگ تي ڪنٽرول ڏيو.',
       toolViewTitle: 'ٽول ڪال ڊسپلي',
       toolViewDesc: 'پروڊڪٽ ڪاچو ٽول پيلوڊ ڀاپي آهي; ٽيڪنيڪل پورا انپٽ/آوٽپٽ ڏکائي آهي.',
       uiScaleTitle: 'UI سڪيل',
-      uiScaleDesc: (percent: number) => `سرا ايپ تي ٽيڪسٽ ۽ ڪنٽرول کي سڪيل ڪري آهي. Cmd/Ctrl سان +, - ۽ 0 به ڪم آهي. موجودو: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `سرا ايپ تي ٽيڪسٽ ۽ ڪنٽرول کي سڪيل ڪري آهي. Cmd/Ctrl سان +, - ۽ 0 به ڪم آهي. موجودو: ${percent}%.`,
       translucencyTitle: 'ونڊو ترانسليوٽنسي',
       translucencyDesc: 'سرو ونڊو کان اپن جو ڊيسڪٽاپ وينو. ڪنهن macOS ۽ وينڊوز لاءِ.',
       backdropTitle: 'چيٽ بیک ڈراپ',
       backdropDesc: 'گپشپ جو پيچھو مدھم موٽو تصوير.',
       embedsTitle: 'ان لائن ايمبيڊز',
-      embedsDesc: 'ريچ پريويو ٿرڊ پارٽي سائٽن کان لوڊ ٿيندا آهن (YouTube, X, …). آسک پليس هولڊر ڏکائي آهي جاب تک توهان هڪ هڪ کي اجازت نه ڏيندا; اولويز آتونوماتڪلي لوڊ ڪري آهي; آف سادو لنڪ رکو آهي.',
+      embedsDesc:
+        'ريچ پريويو ٿرڊ پارٽي سائٽن کان لوڊ ٿيندا آهن (YouTube, X, …). آسک پليس هولڊر ڏکائي آهي جاب تک توهان هڪ هڪ کي اجازت نه ڏيندا; اولويز آتونوماتڪلي لوڊ ڪري آهي; آف سادو لنڪ رکو آهي.',
       embedsAsk: 'پوڇو',
       embedsAlways: 'هرदम',
       embedsOff: 'بند',
@@ -2118,7 +2145,8 @@ Leave blank to keep the ${mode} default.`,
       themeDesc: 'ڊيسڪٽ پيليٽس فقط. چڏيو موڊ اُپر لاگو ٿيندو آهي.',
       themeProfileNote: profile => `${profile} پروفائل لاءِ محفوظ — هر پروفائل اپنو ٿيم رाखي آهي.`,
       installTitle: 'VS Code سان انسٽال ڪريو',
-      installDesc: 'مارڪيٽپليس اكستينشن آئيڊي پيسٽ ڪريو (مثال: dracula-theme.theme-dracula) تاڪي اسڪي ڪالر ٿيم ڊيسڪٽ پيليٽ ۾ تبديل ٿي وي.',
+      installDesc:
+        'مارڪيٽپليس اكستينشن آئيڊي پيسٽ ڪريو (مثال: dracula-theme.theme-dracula) تاڪي اسڪي ڪالر ٿيم ڊيسڪٽ پيليٽ ۾ تبديل ٿي وي.',
       installPlaceholder: 'publisher.extension',
       installButton: 'انسٽال ڪريو',
       installing: 'انسٽال हो رهي آهي…',
@@ -2128,8 +2156,10 @@ Leave blank to keep the ${mode} default.`,
       importedBadge: 'درآمد ٿيو',
       pet: {
         title: 'پالتو جانور',
-        intro: 'انيميٽڊ پيٽڊيڪس ماسڪٽ اپنائو جيڪو ايپ تي اُڌي رهو آهي ۽ OpenAmer جو ڪم رياڪٽ ڪري آهي — ٽولز تنفيذ ڪندين دوڙندو، کاميابي تي خوشي مناؤن، خرابي تي روٹھ جان.',
-        restartHint: 'پالتو جانورون کي فوري ريستارٽ جو ضرورت آهي — چالو ايپ اِه فيچر شامل ڪرڻ اڳون شروڏ ٿيو. OpenAmer کي بند ڪري پهرين ڪولو، پهرين يتي وڃو.',
+        intro:
+          'انيميٽڊ پيٽڊيڪس ماسڪٽ اپنائو جيڪو ايپ تي اُڌي رهو آهي ۽ OpenAmer جو ڪم رياڪٽ ڪري آهي — ٽولز تنفيذ ڪندين دوڙندو، کاميابي تي خوشي مناؤن، خرابي تي روٹھ جان.',
+        restartHint:
+          'پالتو جانورون کي فوري ريستارٽ جو ضرورت آهي — چالو ايپ اِه فيچر شامل ڪرڻ اڳون شروڏ ٿيو. OpenAmer کي بند ڪري پهرين ڪولو، پهرين يتي وڃو.',
         on: 'چالو',
         off: 'بند',
         scaleTitle: 'سائيز',
@@ -2139,7 +2169,7 @@ Leave blank to keep the ${mode} default.`,
         chooseTitle: 'پالتو جانور ڇڏو',
         chooseDesc: 'هڪ ڇڏڻ انسٽال ڪري آهي (جي ضرورت ڏسي) ۽ اس کي فعال ڪري آهي.',
         searchPlaceholder: 'پالتو جانورون کي ڳوليو…',
-        unreachable: "پيٽڊيڪس گيلري تي نه پوهچي سگهو. اپنو ڪڻيڪشن چيڪ ڪري پهرين اِه صفحو ڪولو.",
+        unreachable: 'پيٽڊيڪس گيلري تي نه پوهچي سگهو. اپنو ڪڻيڪشن چيڪ ڪري پهرين اِه صفحو ڪولو.',
         noMatch: query => `ڪو پالتو جانور "${query}" جي مطابقت نه ڪري.`,
         installedTag: 'انسٽال ٿيو',
         generatedTag: 'پيدا ٿيو',
@@ -2148,7 +2178,7 @@ Leave blank to keep the ${mode} default.`,
         uninstall: name => `${name} کي ان-انسٽال ڪريو`,
         delete: name => `${name} ڊيليٽ ڪريو`,
         deleteTitle: name => `${name} ڊيليٽ ڪريو?`,
-        deleteBody: "اهو پالتو جانور کي مستقل طور تي ڊيليٽ ڪري آهي — اهو پهرين انسٽال نه ٿو سگهو.",
+        deleteBody: 'اهو پالتو جانور کي مستقل طور تي ڊيليٽ ڪري آهي — اهو پهرين انسٽال نه ٿو سگهو.',
         deleteConfirm: 'ڊيليٽ ڪريو',
         rename: name => `${name} کي نئون نالو ڏيو`,
         renameTitle: 'Pet-êna gūyā',
@@ -2161,8 +2191,8 @@ Leave blank to keep the ${mode} default.`,
         exportFailed: slug => `Export nē-kāyā ${slug}`,
         noneAvailable: 'Hali kōī pet on karnē kē liye maujūd nēhī hai.',
         turnOnFailed: 'Pet on nē-kāyā.',
-        turnOffFailed: 'Pet off nē-kāyā.',
-      },
+        turnOffFailed: 'Pet off nē-kāyā.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -2173,25 +2203,26 @@ Leave blank to keep the ${mode} default.`,
       updates: 'Updates',
       checkNow: 'Hali check karē',
       checking: 'Check ho rahā hai…',
-      seeWhatsNew: "Naya kya hai dēkhē",
+      seeWhatsNew: 'Naya kya hai dēkhē',
       updateNow: 'Hali update karē',
       releaseNotes: 'Release notes',
-      onLatest: "Tusān latest version par hō.",
+      onLatest: 'Tusān latest version par hō.',
       installing: 'Update install ho rahā hai.',
-      cantUpdate: "Ēh build app kē andar sē update nēhī ho saktā.",
-      cantReach: "Update server tak rābtā nēhī ho sakyā.",
+      cantUpdate: 'Ēh build app kē andar sē update nēhī ho saktā.',
+      cantReach: 'Update server tak rābtā nēhī ho sakyā.',
       tapCheck: 'Updates dēkhnē kē liye "Check now" dabāē.',
       updateReady: count => `Ik nayā update tayyār hai (${count} change${count === 1 ? '' : 's'} shāmil hai).`,
       lastChecked: age => `Ākhirī check ${age}`,
       justNowSuffix: ' · hali',
       automaticUpdates: 'Automatic updates',
-      automaticUpdatesDesc: 'OpenAmer background mē automatic updates check karē hai aur tayyār honē par tusānū dasē hai.',
+      automaticUpdatesDesc:
+        'OpenAmer background mē automatic updates check karē hai aur tayyār honē par tusānū dasē hai.',
       branchCommit: (branch, commit) => `Branch ${branch} · Commit ${commit}`,
       never: 'kadhī nēhī',
       justNow: 'hali',
       minAgo: count => `${count} min pēhlē`,
       hoursAgo: count => `${count} ghantē pēhlē`,
-      daysAgo: count => `${count} dīn pēhlē`,
+      daysAgo: count => `${count} dīn pēhlē`
     },
     config: {
       none: 'Kōī nēhī',
@@ -2207,7 +2238,7 @@ Leave blank to keep the ${mode} default.`,
       imported: 'ڪانفڪ درآمد ڪيو',
       invalidJson: 'غير صحيح ڪانفڪ JSON',
       keepAwakeTitle: 'ڪمپيوٽر کي جاگتي رکو',
-      keepAwakeDesc: 'اهو مشين کي لمبي رات جو سونڻو روڪو تاڪي رات جي رڻ چالئي راھن. ڊسپلي هڪڙي ڌيمٽ هو سگھي آهي.',
+      keepAwakeDesc: 'اهو مشين کي لمبي رات جو سونڻو روڪو تاڪي رات جي رڻ چالئي راھن. ڊسپلي هڪڙي ڌيمٽ هو سگھي آهي.'
     },
     credentials: {
       pasteKey: 'ڪي چسپ ڪرو',
@@ -2217,7 +2248,7 @@ Leave blank to keep the ${mode} default.`,
       couldNotSave: 'ڪريڊينشيل سيو نه ٿو سگھو.',
       remove: 'ٿوڙو',
       getKey: 'ڪي حاصل ڪرو',
-      saving: 'سيو ڪندو آهي',
+      saving: 'سيو ڪندو آهي'
     },
     envActions: {
       actionsFor: label => `${label} لاءِ اقدام`,
@@ -2228,7 +2259,7 @@ Leave blank to keep the ${mode} default.`,
       revealValue: 'قيمت ظاہر ڪرو',
       replace: 'بدلي',
       set: 'مقرر ڪرو',
-      clear: 'صاف ڪرو',
+      clear: 'صاف ڪرو'
     },
     gateway: {
       loading: 'جيٽوي سيٽنگ لوڊ हो رها آهي...',
@@ -2236,21 +2267,25 @@ Leave blank to keep the ${mode} default.`,
       unavailableDesc: 'ڊيسڪٽاپ IPC برج جيٽوي سيٽنگ ظاہر نه ڪري.',
       title: 'جيٽوي ڪڻيڪشن',
       envOverride: 'env اڻرائيڊ',
-      intro: 'OpenAmer ڊيسڪٽاپ پنهنجو لوڪل جيٽوي پيش ڏفالٽ شروڪ ڪري آهي. ريموٽ جيٽوي استعمال ڪرو جڏهن توهان اهو ايپ کي وڏي چالو OpenAmer بيك اينڊ ڪنٽرول ڪرڻ چاهيو آهي ڪجهه بريل مشين تي يا معتبر پروکسي پيچھو. نٽو پروفائل چڻو تاڪي اهو پنهنجو ريموٽ هاسٽ حاصل ڪري سگه.',
+      intro:
+        'OpenAmer ڊيسڪٽاپ پنهنجو لوڪل جيٽوي پيش ڏفالٽ شروڪ ڪري آهي. ريموٽ جيٽوي استعمال ڪرو جڏهن توهان اهو ايپ کي وڏي چالو OpenAmer بيك اينڊ ڪنٽرول ڪرڻ چاهيو آهي ڪجهه بريل مشين تي يا معتبر پروکسي پيچھو. نٽو پروفائل چڻو تاڪي اهو پنهنجو ريموٽ هاسٽ حاصل ڪري سگه.',
       appliesTo: 'لاگو ٿيندو آهي',
       allProfiles: 'سڀ پروفائل',
       defaultConnection: 'هر پروفائل لاءِ ڊفالٽ ڪڻيڪشن جيڪو پنهنجو اڻرائيڊ نه رڪي.',
-      profileConnection: profile => `ڪڻيڪشن ڪينھن “${profile}” نشيط پروفائل آهي تب استعمال ٿيندو آهي. ڊفالٽ جيٽوي استعمال ڪرڻ جو انتخاب ڪرو تاڪي اهو اڻرائيڊ ٿوڙي ويند.`,
+      profileConnection: profile =>
+        `ڪڻيڪشن ڪينھن “${profile}” نشيط پروفائل آهي تب استعمال ٿيندو آهي. ڊفالٽ جيٽوي استعمال ڪرڻ جو انتخاب ڪرو تاڪي اهو اڻرائيڊ ٿوڙي ويند.`,
       envOverrideTitle: 'محيطي متغير اهو ڊيسڪٽاپ سيشن کنٽرول ڪري رھي آهن.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL ۽ OPENAMER_DESKTOP_REMOTE_TOKEN کي انسيٽ ڪرو تاڪي نٽو محفوظ سيٽنگ استعمال ٿو.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL ۽ OPENAMER_DESKTOP_REMOTE_TOKEN کي انسيٽ ڪرو تاڪي نٽو محفوظ سيٽنگ استعمال ٿو.',
       modeTitle: 'ڪڻيڪشن موڊ',
       localTitle: 'بوابة محلية',
       localDesc: 'بدء خلفية OpenAmer خاصة على المضيف المحلي. هذا هو الوضع الافتراضي ويعمل دون اتصال.',
       inheritTitle: 'استخدام البوابة الافتراضية',
-      inheritDesc: "إزالة تجاوز هذا الملف الشخصي واستخدام الاتصال الافتراضي.",
+      inheritDesc: 'إزالة تجاوز هذا الملف الشخصي واستخدام الاتصال الافتراضي.',
       remoteTitle: 'بوابة بعيدة',
       remoteDesc: 'ربط غلاف سطح المكتب هذا بخلفية OpenAmer بعيدة.',
-      remoteAuthHint: 'تستخدم البوابات المستضافة OAuth أو اسم مستخدم وكلمة مرور؛ بينما قد تستخدم البوابات المستضافة ذاتياً رمز جلسة.',
+      remoteAuthHint:
+        'تستخدم البوابات المستضافة OAuth أو اسم مستخدم وكلمة مرور؛ بينما قد تستخدم البوابات المستضافة ذاتياً رمز جلسة.',
       cloudTitle: 'OpenAmer Cloud',
       cloudDesc: 'سجل الدخول مرة واحدة إلى OpenAmer Cloud واختر من الوكلاء في حسابك — لا حاجة لنسخ رابط.',
       cloudSignInTitle: 'OpenAmer Cloud',
@@ -2267,7 +2302,7 @@ Leave blank to keep the ${mode} default.`,
       cloudNoAgents: {
         before: 'لم يتم العثور على وكلاء في هذا الحساب. أنشئ واحداً في ',
         linkText: 'بوابة OpenAmer',
-        after: '، ثم حدّث.',
+        after: '، ثم حدّث.'
       },
       cloudRefresh: 'تحديث',
       cloudConnect: 'اتصال',
@@ -2291,10 +2326,12 @@ Leave blank to keep the ${mode} default.`,
       signOut: 'سائن آؤٽ',
       signInWith: provider => `${provider} سان سائن ان`,
       authTitle: 'توثيق',
-      authSignedInPassword: 'اهو گيٽوي يوزر نيم ۽ پاسورڊ استعمال ڪري ٿو. توهان سائن ان آهيو؛ سيشن آٽوماٽڪ طور تي ريفرش ويندو آهي.',
+      authSignedInPassword:
+        'اهو گيٽوي يوزر نيم ۽ پاسورڊ استعمال ڪري ٿو. توهان سائن ان آهيو؛ سيشن آٽوماٽڪ طور تي ريفرش ويندو آهي.',
       authSignedInOauth: 'اهو گيٽوي OAuth استعمال ڪري ٿو. توهان سائن ان آهيو؛ سيشن آٽوماٽڪ طور تي ريفرش ويندو آهي.',
       authNeedsPassword: 'اهو گيٽوي يوزر نيم ۽ پاسورڊ استعمال ڪري ٿو. اس ڊيسڪٽاپ ايپ کي اجازت ڏيڻ لاءِ سائن ان ڪريو.',
-      authNeedsOauth: provider => `اهو گيٽوي OAuth استعمال ڪري ٿو. اس ڊيسڪٽاپ ايپ کي اجازت ڏيڻ لاءِ ${provider} سان سائن ان ڪريو.`,
+      authNeedsOauth: provider =>
+        `اهو گيٽوي OAuth استعمال ڪري ٿو. اس ڊيسڪٽاپ ايپ کي اجازت ڏيڻ لاءِ ${provider} سان سائن ان ڪريو.`,
       tokenTitle: 'سيشن ٽوڪن',
       tokenDesc: 'ڊيش بورڊ سيشن ٽوڪن جو استعمال REST ۽ WebSocket رسائي لاءِ. خالي ڇوڙيو تاڪي محفوظ ٽوڪن رाखيو ويندو.',
       existingToken: value => `موجودو ٽوڪن ${value}`,
@@ -2327,7 +2364,8 @@ Leave blank to keep the ${mode} default.`,
       applyFailed: 'جيٽوي سيٽنگز لاگو نه ٿين',
       saveFailed: 'جيٽوي سيٽنگز محفوظ نه ٿين',
       sshTitle: 'SSH جي واسٽي ڪنيڪٽ ڪريو',
-      sshDesc: 'OpenAmer ريموٽ تي SSH جي واسٽي لांच ڪيو ويندو اھي ايپ تي ٽنل ڪيو ويندو آهي — شروڪ ڪرڻ يا خپري نٿو ڪرڻ جي ضرورت ناهي. هوسٽ جي لاءِ ڪي-بيسد SSH رسائي درکار آهي.',
+      sshDesc:
+        'OpenAmer ريموٽ تي SSH جي واسٽي لांच ڪيو ويندو اھي ايپ تي ٽنل ڪيو ويندو آهي — شروڪ ڪرڻ يا خپري نٿو ڪرڻ جي ضرورت ناهي. هوسٽ جي لاءِ ڪي-بيسد SSH رسائي درکار آهي.',
       sshTrustHint: 'پهرين پيش ڪيل هوسٽ ڪي اعتبار ڪيو ويندو پِن ڪيو ويندو آهي; باعد تبديلياں ناکام بند ويندياں.',
       sshHostTitle: 'هوسٽ',
       sshHostDesc: 'user@host, يا ~/.ssh/config کان هوسٽ الائيس.',
@@ -2351,18 +2389,22 @@ Leave blank to keep the ${mode} default.`,
       sshReachable: (host, platform) => `رسائي: ${host} (${platform}) — OpenAmer مليو`,
       sshIncompleteHost: 'ڪنيڪٽ ڪرڻ کان اڳ SSH هوسٽ داخل ڪريو.',
       sshErrUnreachable: 'SSH جي واسٽي اھو هوسٽ رسائي نٿي ٿو. هوسٽ، پورٽ، ۽ آهن جو نٽ ورڪ چيڪ ڪريو.',
-      sshErrAuth: 'SSH توثيق ناکام. آهن جي ڪي ssh-agent (ssh-add) ۾ لوڊ ڪريو يا ~/.ssh/config ۾ IdentityFile سيٽ ڪريو — OpenAmer ssh نن-انٽرآڪٽو چلائيندو آهي.',
-      sshErrHostKey: 'هوسٽ ڪي آهن جي آخر ڪنيڪٽ کان بادل ويندو آهي. ويڊ ڪريوڪي اھو متوقع آهي، پهر ssh-keygen -R <host> چلائو ۽ واپس ڪنيڪٽ ڪريو.',
-      sshErrNotInstalled: 'OpenAmer ريموٽ هوسٽ تي انسٽال ناهي. اھيٿ انسٽال ڪريو (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) يا OpenAmer پٺ سيٽ ڪريو.',
-      sshErrPlatform: 'غير-حمايت يافتہ ريموٽ پليٽ فارم. OpenAmer ڊيسڪٽاپ SSH موڊ Linux, macOS, ۽ Windows ريموٽ هوسٽن کي حمايت ڪري آهي.',
+      sshErrAuth:
+        'SSH توثيق ناکام. آهن جي ڪي ssh-agent (ssh-add) ۾ لوڊ ڪريو يا ~/.ssh/config ۾ IdentityFile سيٽ ڪريو — OpenAmer ssh نن-انٽرآڪٽو چلائيندو آهي.',
+      sshErrHostKey:
+        'هوسٽ ڪي آهن جي آخر ڪنيڪٽ کان بادل ويندو آهي. ويڊ ڪريوڪي اھو متوقع آهي، پهر ssh-keygen -R <host> چلائو ۽ واپس ڪنيڪٽ ڪريو.',
+      sshErrNotInstalled:
+        'OpenAmer ريموٽ هوسٽ تي انسٽال ناهي. اھيٿ انسٽال ڪريو (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) يا OpenAmer پٺ سيٽ ڪريو.',
+      sshErrPlatform:
+        'غير-حمايت يافتہ ريموٽ پليٽ فارم. OpenAmer ڊيسڪٽاپ SSH موڊ Linux, macOS, ۽ Windows ريموٽ هوسٽن کي حمايت ڪري آهي.',
       sshErrTimeout: 'SSH ڪنيڪشن ٽائم آؤٽ. هوسٽ رسائي نٿو يا سوي ويندو.',
       sshErrUpdateRequired: 'Desktop SSH سان ڪنيڪٽ ڪرڻ کان اڳ ريموٽ هوسٽ تي OpenAmer اپڊيٽ ڪريو.',
-      sshErrUnknown: 'SSH ڪنيڪشن ناکام.',
+      sshErrUnknown: 'SSH ڪنيڪشن ناکام.'
     },
     keys: {
       loading: 'API ڪي ۽ كريڊينشيلز لوڊ ڪري وينديا...',
       failedLoad: 'API ڪي لوڊ نٿي ٿين',
-      empty: 'اھو ڪيٽيگري ۾ هنٿ کيڊن ڪنفیگر ناهي.',
+      empty: 'اھو ڪيٽيگري ۾ هنٿ کيڊن ڪنفیگر ناهي.'
     },
     mcp: {
       loading: 'MCP سرور لوڊ ڪري وينديا...',
@@ -2414,7 +2456,8 @@ Leave blank to keep the ${mode} default.`,
       catalogInstallFailed: name => `${name} انسٽال ڪرڻ ۾ ناکام`,
       catalogEnvPrompt: name => `${name} requires credentials`,
       catalogEnvRequired: 'انسٽال ڪرڻ سي پهرون درکار قیمتيں پُر ڪريو.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال آهي`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال آهي`,
       statusConnecting: 'رابطو ڪندو آهي…',
       statusNeedsAuth: 'تصديق درکار آهي',
       statusError: 'خرابي',
@@ -2427,7 +2470,7 @@ Leave blank to keep the ${mode} default.`,
       unsavedConnect: 'غير محفوظ — ربط لاءِ mcp.json محفوظ ڪريو.',
       enableTool: tool => `${tool} کي فعال ڪريو`,
       disableTool: tool => `${tool} کي غير فعال ڪريو`,
-      noOutput: 'هن اڌم آوٽ پٽ نه.',
+      noOutput: 'هن اڌم آوٽ پٽ نه.'
     },
     model: {
       loading: 'ماڊل ڪانفڪريشن لوڊ ڪندو آهي...',
@@ -2441,53 +2484,55 @@ Leave blank to keep the ${mode} default.`,
       defaultsFailed: 'ماڊل پيڊيفالٽ محفوظ ڪرڻ ۾ ناکام',
       auxiliaryTitle: 'مددگار ماڊل',
       resetAllToMain: 'سڀ کي موٻن تي واپس ڪريو',
-      auxiliaryDesc: 'مددگار ٽاسڪ پيڊيفالٽ طور تي موٻن ماڊل تي چلندو آهن. ھڪ مخصوص ماڊل ھڪو ٽاسڪ کي اسائن ڪريو تاڪي اڻوٽ ڪري سگھو.',
+      auxiliaryDesc:
+        'مددگار ٽاسڪ پيڊيفالٽ طور تي موٻن ماڊل تي چلندو آهن. ھڪ مخصوص ماڊل ھڪو ٽاسڪ کي اسائن ڪريو تاڪي اڻوٽ ڪري سگھو.',
       setToMain: 'موٻن تي سيٽ ڪريو',
       change: 'تبديلي',
       autoUseMain: 'آٽو · موٻن ماڊل استعمال ڪريو',
       providerDefault: '(فراہم ڪنندو پيڊيفالٽ)',
       fallbackAdd: 'فال بیک شامل ڪريو',
       fallbackEmpty: 'ڪو فال بیک ماڊل نه — پيڊيفالٽ ماڊل استعمال ڪيو ويندو آهي جاب تيڪو هڪ ناکام نه ٿيندو.',
-      notInCatalog: "اهو اس فراہم ڪنندو جي ماڊل فہرست ۾ نه آهي — ڪال باڪ اپ تي واپس وڃ سکندو آهن.",
+      notInCatalog: 'اهو اس فراہم ڪنندو جي ماڊل فہرست ۾ نه آهي — ڪال باڪ اپ تي واپس وڃ سکندو آهن.',
       tasks: {
         vision: {
           label: 'نظر',
-          hint: 'تصوير جي تجزيو',
+          hint: 'تصوير جي تجزيو'
         },
         web_extract: {
           label: 'ويب ايڪسٽرڪٽ',
-          hint: 'صفحہ جي خلاصو',
+          hint: 'صفحہ جي خلاصو'
         },
         compression: {
           label: 'پچاءِ',
-          hint: 'سياق جي پچاءِ',
+          hint: 'سياق جي پچاءِ'
         },
         skills_hub: {
           label: 'مهارتن جو مرکز',
-          hint: 'مهارت جو ڳول',
+          hint: 'مهارت جو ڳول'
         },
         approval: {
           label: 'منظوري',
-          hint: 'ہوشيار خودکار منظوري',
+          hint: 'ہوشيار خودکار منظوري'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP ٽول روٽنگ',
+          hint: 'MCP ٽول روٽنگ'
         },
         title_generation: {
           label: 'عنوان جنريشن',
-          hint: 'سيشن عنوان',
+          hint: 'سيشن عنوان'
         },
         curator: {
           label: 'کيوريٹر',
-          hint: 'مهارت استعمال جو جائزو',
-        },
-      },
+          hint: 'مهارت استعمال جو جائزو'
+        }
+      }
     },
     providers: {
       connectAccount: 'اکاؤنٽ جوڙو',
       haveApiKey: 'بدلا ۾ API ڪي آهي؟',
-      intro: 'سبسکرپشن سان سائن ان ڪريو — API ڪي ڪاپي ڪرڻ جي ضرورت نه. OpenAmer براؤزر سائن ان توهان جي لاءِ يٺي ايپ ۾ چلائي ٿو.',
+      intro:
+        'سبسکرپشن سان سائن ان ڪريو — API ڪي ڪاپي ڪرڻ جي ضرورت نه. OpenAmer براؤزر سائن ان توهان جي لاءِ يٺي ايپ ۾ چلائي ٿو.',
       connected: 'منسلڪ',
       collapse: 'سميٽو',
       connectAnother: 'ڊسرو فراہم ڪننڊو جوڙو',
@@ -2497,7 +2542,8 @@ Leave blank to keep the ${mode} default.`,
       removeConfirm: provider => `${provider} ريمول ڪريو؟`,
       removeExternalGeneric: provider => `${provider} اپن CLI ڏنڊا مانجھو جائو آهي — اُٺي ريمول ڪريو.`,
       removeKeyManaged: provider => `${provider} API ڪي کان کنفڪر ڪيل آهي. API ڪيز کان ريمول ڪريو.`,
-      removeTerminalConfirm: (provider, command) => `${provider} الگ ڪريو؟ هي "${command}" ٽرمينل ۾ چلائي ٿو تاڪي ڪريڊينشيل کلير هوٺو.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} الگ ڪريو؟ هي "${command}" ٽرمينل ۾ چلائي ٿو تاڪي ڪريڊينشيل کلير هوٺو.`,
       removeTerminalRunning: provider => `${provider} ڈيسڪنيڪٹ ٽرمينل ۾ چلائي ويو آهي…`,
       removedTitle: 'اکاؤنٽ ريمول ڪيل',
       removedMessage: provider => `${provider} ريمول ڪيل ويو.`,
@@ -2507,14 +2553,15 @@ Leave blank to keep the ${mode} default.`,
       noKeysMatch: 'ڪو فراہم ڪننڊو توهان جي ڳول سان ميٽ نه ٿو.',
       localEndpoint: {
         title: 'مقامي / کسٽم اينڊپائينٽ',
-        description: 'OpenAmer کي ڪوڏهن OpenAI-مطابق اينڊپائينٽ تي لين (Zyphra, vLLM, llama.cpp, Ollama, اِڀ).',
+        description: 'OpenAmer کي ڪوڏهن OpenAI-مطابق اينڊپائينٽ تي لين (Zyphra, vLLM, llama.cpp, Ollama, اِڀ).'
       },
-      loading: 'فراہم ڪننڊا لوڊ ڪري ويو آهن...',
+      loading: 'فراہم ڪننڊا لوڊ ڪري ويو آهن...'
     },
     sessions: {
       loading: 'آرڪائيو سيشن لوڊ ڪري ويو آهن…',
       archivedTitle: 'آرڪائيو سيشن',
-      archivedIntro: 'آرڪائيو چيٽ سائڊبار کان لپيٽي آهن پر ان جي سभي پيغام محفوظ رهندو آهن. سائڊبار ۾ چيٽ تي Ctrl/⌘-ڪلڪ ڪريو تاڪي اھو آرڪائيو هوٺو.',
+      archivedIntro:
+        'آرڪائيو چيٽ سائڊبار کان لپيٽي آهن پر ان جي سभي پيغام محفوظ رهندو آهن. سائڊبار ۾ چيٽ تي Ctrl/⌘-ڪلڪ ڪريو تاڪي اھو آرڪائيو هوٺو.',
       emptyArchivedTitle: 'ڪجهه آرڪائيو نه',
       emptyArchivedDesc: 'چيٽ ڪريٺ کي آڪائيو ڪريو تاڪي هتي ڌنڍل ٿو.',
       unarchive: 'آڪائيو واپس ڪريو',
@@ -2523,12 +2570,14 @@ Leave blank to keep the ${mode} default.`,
       restored: 'بحال ڪيو',
       deleteConfirm: title => `ڪيا "${title}" کي مستقر طور تي ڊيليٽ ڪرڻ؟ هڪو واپس نه ٿو سگھي.`,
       autoArchiveTitle: 'پوراني چيٽون کي آٽو آڪائيو ڪريو',
-      autoArchiveDesc: "جين چيٽون کي تون کي وڌي وقت سي نه چھويا، ان کي آٽوماتڪ طور تي آڪائيو ڪريو. پِن ڪيل چيٽ کڀي آڪائيو نه ٿين، نهڪو ڊيليٽ نه هوندو — آڪائيو چيٽ sadece هتي منتقل ٿيندو.",
+      autoArchiveDesc:
+        'جين چيٽون کي تون کي وڌي وقت سي نه چھويا، ان کي آٽوماتڪ طور تي آڪائيو ڪريو. پِن ڪيل چيٽ کڀي آڪائيو نه ٿين، نهڪو ڊيليٽ نه هوندو — آڪائيو چيٽ sadece هتي منتقل ٿيندو.',
       autoArchiveDaysLabel: 'آڪائيو باڌ',
       autoArchiveDaysUnit: 'دين بلا فعاليت',
       autoArchiveFailed: 'آٽو آڪائيو اپڊيٽ نه ڪري سگهيو',
       defaultDirTitle: 'پري ڊيفالٽ پروجڪٽ ڊائरेڪٽري',
-      defaultDirDesc: 'نئون سيشن هتي فولڊر ميں شرو ٿيندڙ آهي جڏهن تون ڏوسرو نه چوڻو. ان کي انسيٽ ڪري رهو تاڪي گھر جي ڊائरेڪٽري وڃي سي.',
+      defaultDirDesc:
+        'نئون سيشن هتي فولڊر ميں شرو ٿيندڙ آهي جڏهن تون ڏوسرو نه چوڻو. ان کي انسيٽ ڪري رهو تاڪي گھر جي ڊائरेڪٽري وڃي سي.',
       defaultDirUpdated: 'پري ڊيفالٽ پروجڪٽ ڊائरेڪٽري اپڊيٽ ڪيو — نئو چيٽ شرو ڪريو (Ctrl/⌘+N) تاڪي اثر پڻو',
       defaultsTo: label => `پري طور تي ${label} تي ٿو.`,
       change: 'تبديل ڪريو',
@@ -2539,8 +2588,8 @@ Leave blank to keep the ${mode} default.`,
       unarchiveFailed: 'آڪائيو واپس ڪرڻ ناکام',
       deleteFailed: 'ڊيليٽ ناکام',
       updateDirFailed: 'پري ڊائरेڪٽري اپڊيٽ نه ڪري سگهيو',
-      clearDirFailed: 'پري ڊائरेڪٽري صاف نه ڪري سگهيو',
-    },
+      clearDirFailed: 'پري ڊائरेڪٽري صاف نه ڪري سگهيو'
+    }
   },
   boot: {
     ready: 'OpenAmer ڊيسڪٽاپ تیار آهي',
@@ -2550,7 +2599,7 @@ Leave blank to keep the ${mode} default.`,
       loadingSettings: 'OpenAmer سيٽنگز لوڊ ڪري رهيان',
       loadingSessions: 'حالي سیشنز لوڊ ڪري رهيان',
       startingDesktopConnection: 'ڊيسڪٽاپ جوڙو شروع ڪري رهيان',
-      startingOpenAmerDesktop: 'OpenAmer ڊيسڪٽاپ شروع ڪري رهيان…',
+      startingOpenAmerDesktop: 'OpenAmer ڊيسڪٽاپ شروع ڪري رهيان…'
     },
     errors: {
       backgroundExited: 'OpenAmer پس منظر پروسيس باہر نڪلي.',
@@ -2559,13 +2608,14 @@ Leave blank to keep the ${mode} default.`,
       desktopBootFailed: 'ڊيسڪٽاپ بوٽ ناکام',
       gatewayConnectionLost: 'گیٹ وي سان جوڙو گم ٿيو',
       gatewaySignInRequired: 'گیٹ وي سائن ان درکار آهي',
-      ipcBridgeUnavailable: 'ڊيسڪٽاپ آئي پي سي برج دستیاب نه آهي.',
+      ipcBridgeUnavailable: 'ڊيسڪٽاپ آئي پي سي برج دستیاب نه آهي.'
     },
     failure: {
-      title: "OpenAmer شروع نه ٿو سکو",
-      description: "پس منظر گیٹ وي نه اٿي. نٽهن وڃا ريكवरी قدم ڏسو. هتي ڪجهه توهان جي چيٽ يا سيٽنگز مٽا نه ڪري.",
+      title: 'OpenAmer شروع نه ٿو سکو',
+      description: 'پس منظر گیٹ وي نه اٿي. نٽهن وڃا ريكवरी قدم ڏسو. هتي ڪجهه توهان جي چيٽ يا سيٽنگز مٽا نه ڪري.',
       remoteTitle: 'ريموٽ گیٹ وي سائن ان درکار آهي',
-      remoteDescription: 'توهان جي ريموٽ گیٹ وي سیشن منقضي होئي آهي. واپس جوڙڻ لاءِ دوبارو سائن ان ڪريو. هتي ڪجهه توهان جي چيٽ يا سيٽنگز مٽا نه ڪري.',
+      remoteDescription:
+        'توهان جي ريموٽ گیٹ وي سیشن منقضي होئي آهي. واپس جوڙڻ لاءِ دوبارو سائن ان ڪريو. هتي ڪجهه توهان جي چيٽ يا سيٽنگز مٽا نه ڪري.',
       retry: 'دوبارو ڪوشش ڪريو',
       repairInstall: 'انسٽال ڊرست ڪريو',
       useLocalGateway: 'مقامي گیٹ وي استعمال ڪريو',
@@ -2573,7 +2623,8 @@ Leave blank to keep the ${mode} default.`,
       back: 'واپس',
       openLogs: 'لاگز کھوليو',
       repairHint: 'مرمت انسٽالر کي دوبارو چلائي ٿو آهي ۽ نئون مشين تي چند منٽ لئي سگهي ٿو.',
-      remoteSignInHint: signInLabel => `محفوظ ريموٽ براؤزر سیشن کان سائن آوٽ ڪري ٿو، پوءِ ${signInLabel} کھوليو ٿو. مقامي گیٹ وي استعمال ڪريو تاڪي بندل بیک اينڈ تي سوٽچ ڪري سگهو.`,
+      remoteSignInHint: signInLabel =>
+        `محفوظ ريموٽ براؤزر سیشن کان سائن آوٽ ڪري ٿو، پوءِ ${signInLabel} کھوليو ٿو. مقامي گیٹ وي استعمال ڪريو تاڪي بندل بیک اينڈ تي سوٽچ ڪري سگهو.`,
       signOutAndSignIn: 'سائن آوٽ ۽ سائن ان',
       remoteFailureHint: 'گیٹ وي سيٽنگز تي جي(URL) ۽ سائن ان چيڪ ڪريو، يا مقامي گیٹ وي تي سوٽچ ڪريو.',
       hideRecentLogs: 'حالی لاگز ڀاپيو',
@@ -2585,11 +2636,12 @@ Leave blank to keep the ${mode} default.`,
       signInFailed: 'داخل ڪرڻ ناکام',
       signInToRemoteGateway: 'ريموٽ گيٽ وي ۾ داخل هجو',
       signInWithProvider: provider => `${provider} سان داخل هجو`,
-      identityProvider: 'توهان جي شناخت فراہم ڪنڍو',
-    },
+      identityProvider: 'توهان جي شناخت فراہم ڪنڍو'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `سافٽويئر رينڊرنگ فعال — ريموٽ ڊسپلي پڇاڻ ڏيو (${reason}). GPU تيزی غير فعال ڏيني آهي جھڪڪرڱ روڪڻ واسطي.`,
+    message: reason =>
+      `سافٽويئر رينڊرنگ فعال — ريموٽ ڊسپلي پڇاڻ ڏيو (${reason}). GPU تيزی غير فعال ڏيني آهي جھڪڪرڱ روڪڻ واسطي.`
   },
   language: {
     label: 'زبان',
@@ -2598,7 +2650,7 @@ Leave blank to keep the ${mode} default.`,
     saveError: 'زبان اپڊيٽ ناکام',
     switchTo: 'زبان ٻدلو',
     searchPlaceholder: 'زبانن کي ڳوليو…',
-    noResults: 'ڪو زبان نه ملي',
+    noResults: 'ڪو زبان نه ملي'
   },
   skills: {
     tabSkills: 'مهارتون',
@@ -2618,7 +2670,8 @@ Leave blank to keep the ${mode} default.`,
     noDescription: 'ڪو وضاحت نه.',
     configured: 'ڪنفیگر ٿي ويو',
     needsKeys: 'ڪيڊن جي ضرورت آهي',
-    visionModelHint: 'وزن توھان جي معاون ماڊل ڪنفیگريشن استعمال ڪري آهي — تصوير سان ليڪل ماڊل اُته چونڊيو ويندو آهي، هتي ڊن پر پرووائڊر نه.',
+    visionModelHint:
+      'وزن توھان جي معاون ماڊل ڪنفیگريشن استعمال ڪري آهي — تصوير سان ليڪل ماڊل اُته چونڊيو ويندو آهي، هتي ڊن پر پرووائڊر نه.',
     visionModelLink: 'سيٽنگز → ماڊل ۾ وزني ماڊل چونڊو',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} ٽول سيٽ فعال آهن`,
     configureToolset: label => `${label} ڪنفیگر ڪريو`,
@@ -2644,7 +2697,7 @@ Leave blank to keep the ${mode} default.`,
     provenance: {
       agent: 'سيکيل',
       bundled: 'درونٽ',
-      hub: 'ہب',
+      hub: 'ہب'
     },
     emptyNoneFound: noun => `${noun} نه مليو`,
     emptyNothingMatches: query => `ڪجهه پنهنجي “${query}” سان ميٽ نه ٿو`,
@@ -2682,7 +2735,7 @@ Leave blank to keep the ${mode} default.`,
       trust: {
         builtin: 'بلٽ ان',
         trusted: 'بھروسو',
-        community: 'کميوٽي',
+        community: 'کميوٽي'
       },
       verdictSafe: 'محفوظ',
       verdictCaution: 'احتياط',
@@ -2700,8 +2753,8 @@ Leave blank to keep the ${mode} default.`,
       loadFailed: 'سڪل هب لوڊ ناهي ٿو',
       previewFailed: 'سڪل پريويو ناکام',
       scanFailed: 'سڪيورٽي سڪين ناکام',
-      searchFailed: 'هب سڀ ناکام',
-    },
+      searchFailed: 'هب سڀ ناکام'
+    }
   },
   webhooks: {
     search: 'ويب هوڪ ڳول...',
@@ -2711,7 +2764,8 @@ Leave blank to keep the ${mode} default.`,
     hint: 'سبسڪرپشن تبديلي هٽ-ريلود ٿيندو جڏهن رايسيوٽ چالندو هجے. ناڪام سبسڪرپشن وڌندو ايونٽ رڊ ڪندو.',
     empty: 'هن وٽ ويب هوڪ سبسڪرپشن نه.',
     disabledTitle: 'ويب هوڪ رايسيوٽ ناڪام',
-    disabledBody: 'ويب هوڪ اپن گيتوي پليٽ فارم هۂ. اھان ان کي چالو ڪريو جيئن هڪ HTTP ايونٽ قبول ڪري سگهن; چيٽ چينل ڏسو زروري هجڻ جڏهن سبسڪرپشن Telegram, Discord, Slack, يا ڏوسرو چينل تي ڊيلور ڪري.',
+    disabledBody:
+      'ويب هوڪ اپن گيتوي پليٽ فارم هۂ. اھان ان کي چالو ڪريو جيئن هڪ HTTP ايونٽ قبول ڪري سگهن; چيٽ چينل ڏسو زروري هجڻ جڏهن سبسڪرپشن Telegram, Discord, Slack, يا ڏوسرو چينل تي ڊيلور ڪري.',
     enable: 'ويب هوڪ چالو ڪرو',
     enabling: 'چالو ڪندو...',
     enabled: (name: string) => `چالو: "${name}"`,
@@ -2764,8 +2818,8 @@ Leave blank to keep the ${mode} default.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Email',
-      github_comment: 'GitHub comment',
-    },
+      github_comment: 'GitHub comment'
+    }
   },
   updates: {
     stages: {
@@ -2780,7 +2834,7 @@ Leave blank to keep the ${mode} default.`,
       done: 'Update complete',
       manual: 'Update from your terminal',
       guiSkew: 'Update the desktop app',
-      error: 'Update paused',
+      error: 'Update paused'
     },
     checking: 'Looking for updates…',
     checkFailedTitle: 'Couldn’t check for updates',
@@ -2800,15 +2854,19 @@ Leave blank to keep the ${mode} default.`,
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
-    guiSkewBody: 'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
+    guiSkewBody:
+      'The backend was updated, but this desktop app package wasn’t changed. Update or reinstall the OpenAmer desktop app (your AppImage / .deb / .rpm) to match.',
     copy: 'Copy',
     copied: 'Copied',
     done: 'Done',
-    applyingBody: 'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
-    applyingBodyBackend: 'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
+    applyingBody:
+      'The OpenAmer updater takes over in its own window and reopens OpenAmer automatically when it’s done. Please don’t reopen OpenAmer yourself while it’s updating.',
+    applyingBodyBackend:
+      'The remote backend is applying the update and will restart. OpenAmer reconnects automatically when it’s back.',
     applyingClose: 'This window will close while the update runs, then OpenAmer reopens on its own.',
     errorTitle: 'Update didn’t finish',
     errorBody: 'No worries — nothing was lost. You can try again now.',
@@ -2819,12 +2877,13 @@ Leave blank to keep the ${mode} default.`,
       restarting: 'Backend restarting to load the update…',
       notAvailable: 'Update not available for this backend.',
       failed: 'Backend update failed.',
-      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.',
+      noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
-      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.',
-    },
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
+    }
   },
   install: {
     stageStates: {
@@ -2832,17 +2891,19 @@ Leave blank to keep the ${mode} default.`,
       running: 'Installing',
       succeeded: 'Done',
       skipped: 'Skipped',
-      failed: 'Failed',
+      failed: 'Failed'
     },
     oneTimeTitle: 'OpenAmer needs a one-time install',
-    unsupportedDesc: platform => `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
+    unsupportedDesc: platform =>
+      `Automated first-launch install isn’t available on ${platform} yet. Open Terminal and run the command below, then relaunch this app. Subsequent launches will skip this step.`,
     installCommand: 'Install command',
     copyCommand: 'Copy command',
     viewDocs: 'View install docs',
     installTo: 'Will install to',
     retryAfterRun: 'I’ve run it -- retry',
     setupChoiceTitle: 'Set up OpenAmer Desktop',
-    setupChoiceDesc: 'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
+    setupChoiceDesc:
+      'Connect this app to a OpenAmer gateway you already run, or install OpenAmer locally on this computer.',
     connectExistingTitle: 'Connect to existing OpenAmer',
     connectExistingShort: 'Connect existing',
     connectExistingDesc: 'Use a remote backend with a session token or browser sign-in. No local install will start.',
@@ -2850,7 +2911,8 @@ Leave blank to keep the ${mode} default.`,
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2877,8 +2939,10 @@ Leave blank to keep the ${mode} default.`,
     failedTitle: 'Installation failed',
     settingUpTitle: 'Setting up OpenAmer Agent',
     finishingTitle: 'Finishing up',
-    failedDesc: 'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
-    activeDesc: 'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
+    failedDesc:
+      'One of the install steps failed. On Windows, this can happen if another OpenAmer CLI or desktop instance is running. Stop any running OpenAmer instances, then retry. Check the details below or the desktop log for the full transcript.',
+    activeDesc:
+      'This is a one-time setup. The OpenAmer installer is downloading dependencies and configuring your machine. Subsequent launches will skip this step.',
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- now: ${stage}`,
     fetchingManifest: 'Fetching installer manifest...',
@@ -2892,7 +2956,7 @@ Leave blank to keep the ${mode} default.`,
     transcriptSaved: 'Full transcript saved to',
     copiedOutput: 'Copied!',
     copyOutput: 'Copy output',
-    reloadRetry: 'Reload and retry',
+    reloadRetry: 'Reload and retry'
   },
   onboarding: {
     headerTitle: "Let's get you setup with OpenAmer Agent",
@@ -2912,28 +2976,29 @@ Leave blank to keep the ${mode} default.`,
     apiKeyOptions: {
       fireworks: {
         short: 'direct model API',
-        description: 'Direct access to models hosted by Fireworks AI.',
+        description: 'Direct access to models hosted by Fireworks AI.'
       },
       openrouter: {
         short: 'one key, many models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2946,7 +3011,7 @@ Leave blank to keep the ${mode} default.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2960,10 +3025,12 @@ Leave blank to keep the ${mode} default.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2975,6 +3042,6 @@ Leave blank to keep the ${mode} default.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
-  },
+    docs: provider => `${provider} docs`
+  }
 })

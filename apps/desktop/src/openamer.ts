@@ -1689,7 +1689,13 @@ export function installMcpCatalogEntry(
   name: string,
   env: Record<string, string> = {}
 ): Promise<{ ok: boolean; name?: string; pid?: number; action?: string; background?: boolean }> {
-  return window.openamerDesktop.api<{ ok: boolean; name?: string; pid?: number; action?: string; background?: boolean }>({
+  return window.openamerDesktop.api<{
+    ok: boolean
+    name?: string
+    pid?: number
+    action?: string
+    background?: boolean
+  }>({
     ...profileScoped(),
     path: '/api/mcp/catalog/install',
     method: 'POST',
@@ -1698,11 +1704,7 @@ export function installMcpCatalogEntry(
   })
 }
 
-export function searchMcpTools(
-  q: string,
-  server = "",
-  limit = 20
-): Promise<McpSearchToolsResponse> {
+export function searchMcpTools(q: string, server = '', limit = 20): Promise<McpSearchToolsResponse> {
   const params = new URLSearchParams({ q, server, limit: String(limit) })
 
   return window.openamerDesktop.api<McpSearchToolsResponse>({
@@ -1712,10 +1714,7 @@ export function searchMcpTools(
   })
 }
 
-export function searchCommunityMcpCatalog(
-  q: string,
-  limit = 10
-): Promise<McpCommunityResponse> {
+export function searchCommunityMcpCatalog(q: string, limit = 10): Promise<McpCommunityResponse> {
   const params = new URLSearchParams({ q, limit: String(limit) })
 
   return window.openamerDesktop.api<McpCommunityResponse>({
@@ -1724,7 +1723,6 @@ export function searchCommunityMcpCatalog(
     timeoutMs: 60_000
   })
 }
-
 
 // ---------------------------------------------------------------------------
 // Memory data + curator (parity with `openamer memory` / `openamer curator`).

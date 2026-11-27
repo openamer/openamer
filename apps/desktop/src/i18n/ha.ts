@@ -19,7 +19,7 @@ export const ha = defineLocale({
     pathCopied: 'Shekara amma',
     revealFinder: 'Nuna a Finder',
     revealExplorer: 'Nuna a File Explorer',
-    deleteTitle: name => `Goge ${name}?`,
+    deleteTitle: name => `Goge ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop yana da ruwa',
@@ -28,7 +28,7 @@ export const ha = defineLocale({
       loadingSettings: 'Aikin ruwa na OpenAmer',
       loadingSessions: 'Aikin ruwa na shekarar zuwa',
       startingDesktopConnection: 'Aikin ruwa na Desktop aka nufa',
-      startingOpenAmerDesktop: 'Aikin ruwa na OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Aikin ruwa na OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer abin ruwa ya fi ruwa',
@@ -37,10 +37,10 @@ export const ha = defineLocale({
       desktopBootFailed: 'Boot na Desktop ya fi ruwa',
       gatewayConnectionLost: 'Rashin haɗin kai zuwa gateway',
       gatewaySignInRequired: 'Wajibi ne na musayar gateway',
-      ipcBridgeUnavailable: 'IPC bridge na nan ba a samu ba.',
+      ipcBridgeUnavailable: 'IPC bridge na nan ba a samu ba.'
     },
     failure: {
-      signInIncompleteTitle: 'Ƙasar lokacin da aka ragu\'a ba',
+      signInIncompleteTitle: "Ƙasar lokacin da aka ragu'a ba",
       signInIncompleteMessage: 'Ƙaramin lokaci na fashinin ya kusa kamar yana fara da alama',
       signInFailed: 'Ƙasar lokaci yana rikice',
       signInToRemoteGateway: 'Ƙasar lokaci ga garamalin gare',
@@ -50,22 +50,26 @@ export const ha = defineLocale({
       signedInTitle: 'An shiga',
       signedInMessage: 'Da sake haɗa zuwa gidan waya na nesa…',
       title: 'OpenAmer bai iya fara ba',
-      description: 'Gateway na bakin nan bai fara ba. Gwada ɗaya daga cikin matakan da ke nuna. Abin nan ba ya share tattaunawa ko saitys.',
+      description:
+        'Gateway na bakin nan bai fara ba. Gwada ɗaya daga cikin matakan da ke nuna. Abin nan ba ya share tattaunawa ko saitys.',
       remoteTitle: 'Wajibi ne na musayar gateway na nesa',
-      remoteDescription: 'Zama ta nesa ta daina. Ka musayar ka sake don sake haɗa. Abin nan ba ya share tattaunawa ko saitys.',
+      remoteDescription:
+        'Zama ta nesa ta daina. Ka musayar ka sake don sake haɗa. Abin nan ba ya share tattaunawa ko saitys.',
       retry: 'Sake gwada',
-      repairInstall: 'Gyara na\'urar',
+      repairInstall: "Gyara na'urar",
       useLocalGateway: 'Yi amfani da gateway na gida',
       gatewaySettings: 'Saitys na gateway',
       back: 'Baya',
       openLogs: 'Buɗe jerin',
-      repairHint: 'Gyara na\'urar ta sake yin. Na iya ɗaukar wasu mintuna a sabon na\'ura.',
+      repairHint: "Gyara na'urar ta sake yin. Na iya ɗaukar wasu mintuna a sabon na'ura.",
       signOutAndSignIn: 'Fasa kai & shiga',
-      remoteFailureHint: 'Duba URL na gateway da shigar a ƙarƙashin Saitys na Gateway, ko karkatar da zuwa gateway na gida.',
-      remoteSignInHint: signInLabel => `Fita daga session din browser ta remote da aka adana, sannan bude ${signInLabel}. Yi amfani da local gateway don canzawa zuwa bundled backend maimakon haka.`,
-      signInWithProvider: provider => `Shiga da ${provider}`,
+      remoteFailureHint:
+        'Duba URL na gateway da shigar a ƙarƙashin Saitys na Gateway, ko karkatar da zuwa gateway na gida.',
+      remoteSignInHint: signInLabel =>
+        `Fita daga session din browser ta remote da aka adana, sannan bude ${signInLabel}. Yi amfani da local gateway don canzawa zuwa bundled backend maimakon haka.`,
+      signInWithProvider: provider => `Shiga da ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Booting desktop guda ya gaza: ${message}`,
+    desktopBootFailedWithMessage: message => `Booting desktop guda ya gaza: ${message}`
   },
   common: {
     apply: 'Aika',
@@ -106,7 +110,7 @@ export const ha = defineLocale({
     off: 'Ba ana',
     error: 'Kuskure',
     loading: 'Ana kori…',
-    tryHint: term => `Gwada “${term}”`,
+    tryHint: term => `Gwada “${term}”`
   },
   notifications: {
     region: 'notification',
@@ -118,7 +122,8 @@ export const ha = defineLocale({
     copyDetail: 'Amfara bayani',
     copyDetailFailed: 'Amfara bayani na notification yana rikice',
     backendOutOfDateTitle: 'Garamalin na ba aiki ba',
-    backendOutOfDateMessage: 'OpenAmer garamalin na yana sani a cewa yana da afatawaru a cikakken build na desktop. Yana da amfara tawo.',
+    backendOutOfDateMessage:
+      'OpenAmer garamalin na yana sani a cewa yana da afatawaru a cikakken build na desktop. Yana da amfara tawo.',
     installMethodUnsupportedTitle: 'Ƙirgin install na yasa',
     updateOpenAmer: 'Amfara OpenAmer',
     updateReadyTitle: 'Amfara yana ruhusa',
@@ -127,20 +132,21 @@ export const ha = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT yana da amfara ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs ta ƙi maɓallin API (401).',
       gatewayAuthFailed: 'Gwanar gidan waya ta yi ƙuntatawa. Duba API_SERVER_KEY.',
-      methodNotAllowed: 'Maƙasudin na gida ya ƙi wannan buƙatun (405 Method Not Allowed). Gwada sake fara OpenAmer Desktop.',
+      methodNotAllowed:
+        'Maƙasudin na gida ya ƙi wannan buƙatun (405 Method Not Allowed). Gwada sake fara OpenAmer Desktop.',
       microphonePermission: 'An ƙi hakkin mikrofon.',
       openaiRejectedApiKey: 'OpenAI ta ƙi maɓallin API.',
       openaiTtsNeedsKey: 'OpenAI TTS yana buƙatar VOICE_TOOLS_OPENAI_KEY ko OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI ya ki karbar API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI ya ki karbar API key (${status} invalid_api_key).`
     },
     voice: {
-      transcriptionUnavailable: 'An fa\'ida ba da alafa suna',
+      transcriptionUnavailable: "An fa'ida ba da alafa suna",
       tryRecordingAgain: 'Yi yara da alafa suna',
       unavailable: 'Alafa suna ba ta fiye',
       configureSpeechToText: 'Siffanta sakatun magana zuwa rubutu don amfani da yanayin murya.',
       couldNotStartSession: 'Ba a iya fara hira mai murya.',
       microphoneAccessDenied: 'An ƙi damar mikrofon.',
-      microphoneConstraintsUnsupported: 'Matsayin mikrofon ba a tallafawa shi da wannan na\'ura.',
+      microphoneConstraintsUnsupported: "Matsayin mikrofon ba a tallafawa shi da wannan na'ura.",
       microphoneFailed: 'Mikrofoni ta kasa.',
       microphoneInUse: 'Mikrofoni ya riga yana amfani da wata app.',
       microphonePermissionDenied: 'An ƙi hakkin mikrofon.',
@@ -150,7 +156,7 @@ export const ha = defineLocale({
       noSpeechDetected: 'Ba a gano magana',
       playbackFailed: 'Bakin baki ya kasa',
       recordingFailed: 'Bakin baki na rubutu ya kasa',
-      transcriptionFailed: 'Rubutun baki ya kasa',
+      transcriptionFailed: 'Rubutun baki ya kasa'
     },
     native: {
       approvalTitle: 'Iskin yana nema',
@@ -163,10 +169,10 @@ export const ha = defineLocale({
       turnErrorTitle: 'Turn ba ta fara',
       backgroundDoneTitle: 'Task na ƙarancin wata',
       backgroundFailedTitle: 'Task na ƙarancin ba ta fara',
-      creditsTitle: 'Sarki',
+      creditsTitle: 'Sarki'
     },
     more: count => `Ƙarin ${count} ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `Akwai sabon sauyi ${count}${count === 1 ? '' : 's'}.`,
+    updateReadyMessage: count => `Akwai sabon sauyi ${count}${count === 1 ? '' : 's'}.`
   },
   billingBlock: {
     titleOpenamer: 'Ba da sarki na OpenAmer',
@@ -174,7 +180,7 @@ export const ha = defineLocale({
     openBilling: 'Bayanin OpenAmer',
     addCredits: 'Yi sarki',
     dismiss: 'Gaba',
-    titleProvider: provider => `Kredi ya kare — ${provider}`,
+    titleProvider: provider => `Kredi ya kare — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Feku ƙarfin',
@@ -191,7 +197,7 @@ export const ha = defineLocale({
     openKeybinds: 'Shortcuts na keyboard',
     layoutEditor: 'Editor na layout',
     search: 'Bota',
-    layoutEditorTitle: 'Editor na layout — ⌘-click yana tafiya da layout',
+    layoutEditorTitle: 'Editor na layout — ⌘-click yana tafiya da layout'
   },
   keybinds: {
     title: 'Shortcuts na keyboard',
@@ -201,12 +207,12 @@ export const ha = defineLocale({
       'composer.help': 'Taimakona yau',
       'composer.history': 'Gama popover / tsarin',
       'composer.cancel': 'Gawa popover · cancera ruwa',
-      'keybinds.openPanel': 'Buɗe maɓallin na\'ura',
+      'keybinds.openPanel': "Buɗe maɓallin na'ura",
       'nav.commandPalette': 'Buɗe umarnin aiki',
       'nav.commandCenter': 'Buɗe tsakiyar umarni',
-      'nav.settings': 'Buɗe sa\'ida',
+      'nav.settings': "Buɗe sa'ida",
       'nav.profiles': 'Buɗe ƙididdigar',
-      'nav.skills': 'Buɗe sana\'o\'i',
+      'nav.skills': "Buɗe sana'o'i",
       'nav.messaging': 'Buɗe sadarwa',
       'nav.artifacts': 'Buɗe kayan warkake',
       'nav.cron': 'Buɗe ayyukan da aka tsara',
@@ -274,9 +280,9 @@ export const ha = defineLocale({
       'composer.queue': 'Tartar da saƙon',
       'composer.sendQueued': 'Aika na gaba na jere',
       'composer.mention': 'Ƙayyade fayyoyi, ƙwarya, URLs',
-      'composer.slash': 'Ƙananan umarnin Slash',
+      'composer.slash': 'Ƙananan umarnin Slash'
     },
-    search: 'Bota maɓallin na\'ura…',
+    search: "Bota maɓallin na'ura…",
     rebind: 'Madaidaici',
     pressKey: 'Dora maɓallo…',
     set: 'Ƙayyade',
@@ -285,10 +291,10 @@ export const ha = defineLocale({
       profiles: 'Ƙididdigar',
       session: 'Zama',
       navigation: 'Ƴanƙusa',
-      view: 'Ladabi',
+      view: 'Ladabi'
     },
     subtitle: open => `Danna shortcut don sake bind dinsa · ${open} yana sake bude wannan panel.`,
-    conflictWith: label => `Haka kuma an bind zuwa “${label}”`,
+    conflictWith: label => `Haka kuma an bind zuwa “${label}”`
   },
   language: {
     label: 'Bala',
@@ -297,7 +303,7 @@ export const ha = defineLocale({
     saveError: 'Bala aiki ba ta fara',
     switchTo: 'Bala yana gama',
     searchPlaceholder: 'Bala biya...',
-    noResults: 'Bala ba da aka fiya',
+    noResults: 'Bala ba da aka fiya'
   },
   settings: {
     closeSettings: 'Gawa sani',
@@ -322,34 +328,34 @@ export const ha = defineLocale({
       billing: 'Bili',
       notifications: 'Sanarwa',
       plugins: 'Ƙarin',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     notifications: {
       kinds: {
         credits: {
           description: 'Ƙirafin aka tashi ko aka yi.',
-          label: 'Garkuwan kudi',
+          label: 'Garkuwan kudi'
         },
         approval: {
           label: 'Amincewa buƙata',
-          description: 'Umarni yana jira don amincewa ko ƙi.',
+          description: 'Umarni yana jira don amincewa ko ƙi.'
         },
         input: {
           label: 'Amfani ya buƙaci',
-          description: 'OpenAmer ya yi tambaya ko yana buƙatar wata kalma ko sirri.',
+          description: 'OpenAmer ya yi tambaya ko yana buƙatar wata kalma ko sirri.'
         },
         turnDone: {
           label: 'Amsar ta shirye',
-          description: 'Wani mataka ya ƙare yayin da OpenAmer yake a ƙarƙashin.',
+          description: 'Wani mataka ya ƙare yayin da OpenAmer yake a ƙarƙashin.'
         },
         turnError: {
           label: 'Mataka ta kasa',
-          description: 'Mataka ta ƙare da kuskure.',
+          description: 'Mataka ta ƙare da kuskure.'
         },
         backgroundDone: {
           label: 'Aikin ƙaramin gida ya ƙare.',
-          description: 'Umarnin terminal da aka bar ya ƙare.',
-        },
+          description: 'Umarnin terminal da aka bar ya ƙare.'
+        }
       },
       test: 'Yi misali na kusa.',
       testTitle: 'OpenAmer',
@@ -360,28 +366,29 @@ export const ha = defineLocale({
       completionSoundDesc: 'Yana so idan yana fara. Ka yi misalina da kuma biyu haka.',
       completionSoundPreview: 'Biyu',
       title: 'Sanarwa',
-      intro: 'Sanarwa na asali na desktop, ta bambanta da toasts na aapp. Waɗannan sun shiga na gida — kowace kwamfuta tana da saitsayensa na kanta.',
+      intro:
+        'Sanarwa na asali na desktop, ta bambanta da toasts na aapp. Waɗannan sun shiga na gida — kowace kwamfuta tana da saitsayensa na kanta.',
       enableAll: 'Ƙayyade sanarwa',
       enableAllDesc: 'Kwandon shugaban. Daina wannan don dama kowane sanarwa da ke ƙasa.',
-      focusedHint: 'Alamun kariya kawai ya fito ne idan OpenAmer yana a fone.',
+      focusedHint: 'Alamun kariya kawai ya fito ne idan OpenAmer yana a fone.'
     },
     sections: {
       model: 'Modeli',
       appearance: 'Ita',
       workspace: 'Awakiya',
       safety: 'Saifi',
-      memory: 'Ƙa\'idodar da Matattali',
+      memory: "Ƙa'idodar da Matattali",
       voice: 'Runti',
       advanced: 'Udu',
-      chat: 'Tattaunawa',
+      chat: 'Tattaunawa'
     },
     searchPlaceholder: {
       about: 'Danlobi OpenAmer Desktop',
-      config: 'Ayyuka sa\'wara...',
+      config: "Ayyuka sa'wara...",
       gateway: 'Haɗin kanwa...',
       keys: 'Bunguda maɓallin API...',
       mcp: 'Bunguda masu server...',
-      sessions: 'Bunguda tattaunawa da aka tsafta...',
+      sessions: 'Bunguda tattaunawa da aka tsafta...'
     },
     config: {
       none: 'Lafiya',
@@ -397,7 +404,8 @@ export const ha = defineLocale({
       imported: 'A yi tafiya na aka fi sheyyo',
       invalidJson: 'Tafiya na aka fi sheyyo ba a daidawa',
       keepAwakeTitle: 'Kamata computer ya yi lafiya',
-      keepAwakeDesc: 'Gaba ta huda na kamata machine ya yi lafiya ko kuma runs na kawolewa na kawolewa. Display na ba a fi sheyyo.',
+      keepAwakeDesc:
+        'Gaba ta huda na kamata machine ya yi lafiya ko kuma runs na kawolewa na kawolewa. Display na ba a fi sheyyo.'
     },
     credentials: {
       pasteKey: 'Dawo da key',
@@ -407,7 +415,7 @@ export const ha = defineLocale({
       remove: 'Gaba',
       getKey: 'Yi key',
       saving: 'Mafara',
-      pasteLabelKey: label => `Manhaja ${label} key`,
+      pasteLabelKey: label => `Manhaja ${label} key`
     },
     envActions: {
       credentialActions: 'Amalai na API',
@@ -418,7 +426,7 @@ export const ha = defineLocale({
       replace: 'Rire',
       set: 'Yi',
       clear: 'Wuce',
-      actionsFor: label => `Ayyuka don ${label}`,
+      actionsFor: label => `Ayyuka don ${label}`
     },
     gateway: {
       loading: 'Mafi yau da kullum a gwajin...',
@@ -426,12 +434,14 @@ export const ha = defineLocale({
       unavailableDesc: 'Bayanin ƙasa ba ta bayyana gwajin ayyuka.',
       title: 'Gwajin Kowane',
       envOverride: 'Override na ƙasa',
-      intro: 'OpenAmer Desktop ya fara gwajin lokaci a cikin wata shari\'a. Idan tana nuna bayaniyan OpenAmer backend a ƙasa ko bayan ƙasa mai girgesha, wato gwajin ƙasa. Amaliyarwa a cewarwa a wannan gusarwa ga gwajin ƙasa na kowane.',
+      intro:
+        "OpenAmer Desktop ya fara gwajin lokaci a cikin wata shari'a. Idan tana nuna bayaniyan OpenAmer backend a ƙasa ko bayan ƙasa mai girgesha, wato gwajin ƙasa. Amaliyarwa a cewarwa a wannan gusarwa ga gwajin ƙasa na kowane.",
       appliesTo: 'Yana da',
-      allProfiles: 'Wattan wata shari\'a',
+      allProfiles: "Wattan wata shari'a",
       defaultConnection: 'Kowane bayaniya da ba aka yi override a cikinsa.',
       envOverrideTitle: 'Ƙasarwar ƙasa yana da amfaniyarwa a cikinta wannan shirin ƙasa.',
-      envOverrideDesc: 'Ƙasance OPENAMER_DESKTOP_REMOTE_URL da OPENAMER_DESKTOP_REMOTE_TOKEN biyar a wannan shirin ƙasa ga bayaniyan a cewarwa a wannan gusarwa.',
+      envOverrideDesc:
+        'Ƙasance OPENAMER_DESKTOP_REMOTE_URL da OPENAMER_DESKTOP_REMOTE_TOKEN biyar a wannan shirin ƙasa ga bayaniyan a cewarwa a wannan gusarwa.',
       modeTitle: 'Yanayin haɗin kan',
       localTitle: 'Gabatarwa ta gida',
       localDesc: 'Fara sabon OpenAmer backend a localhost. Wannan shi ne default kuma yana aiki offline.',
@@ -439,11 +449,12 @@ export const ha = defineLocale({
       inheritDesc: 'Cire mada na wannan kuma yi amfani da haɗin kan ta default.',
       remoteTitle: 'Gabatarwa ta nesa',
       remoteDesc: 'Haɗa wannan desktop shell da sabon OpenAmer backend na nesa.',
-      remoteAuthHint: 'Gateway na hosted suna amfani da OAuth ko suna da sunan mai amfani da kalmar sirri; na self-hosted na iya amfani da token na zaman.',
+      remoteAuthHint:
+        'Gateway na hosted suna amfani da OAuth ko suna da sunan mai amfani da kalmar sirri; na self-hosted na iya amfani da token na zaman.',
       cloudSignIn: 'Sanya shiga zuwa OpenAmer Cloud',
       cloudSignedIn: 'An sanya shiga zuwa OpenAmer Cloud',
-      cloudNeedsSignIn: 'Sanya shiga zuwa OpenAmer Cloud don gano \'yan sanda a cikin akauniyyarka.',
-      cloudSignedInDesc: 'Kai an shiga. Zaɓi \'yan sanda daga baya; sabunta sessan ta danya daga baya.',
+      cloudNeedsSignIn: "Sanya shiga zuwa OpenAmer Cloud don gano 'yan sanda a cikin akauniyyarka.",
+      cloudSignedInDesc: "Kai an shiga. Zaɓi 'yan sanda daga baya; sabunta sessan ta danya daga baya.",
       cloudAgentsTitle: 'Yan sanda na ku',
       cloudOrgPickerTitle: 'Zaɓi ƙungiya',
       cloudOrgSelect: 'Zaɓi',
@@ -452,7 +463,7 @@ export const ha = defineLocale({
       cloudNoAgents: {
         before: 'Babu yan sanda da aka gano a wannan akauniyya. Ƙirƙiri ɗaya a cikin',
         linkText: 'Ƙofar OpenAmer',
-        after: ', sai an sabunta.',
+        after: ', sai an sabunta.'
       },
       cloudRefresh: 'Sabunta',
       cloudConnect: 'Haɗa',
@@ -466,18 +477,22 @@ export const ha = defineLocale({
       cloudConnectedPill: 'An haɗa',
       cloudAgentProvisioning: 'Nafewa…',
       remoteUrlTitle: 'URL na waje',
-      remoteUrlDesc: 'Babban URL na backend na dashibai na waje. Prefixes na hanyoyi suna da goyon baya, misali /openamer.',
+      remoteUrlDesc:
+        'Babban URL na backend na dashibai na waje. Prefixes na hanyoyi suna da goyon baya, misali /openamer.',
       probing: 'Ana duba yadda wannan gateway yake tantancewa…',
       probeError: 'Ba a iya isa wannan gateway nan. Duba URL — hanyar tantance zai bayyana daga baya lokacin ya amsa.',
       signedIn: 'An shiga',
       signIn: 'Shiga',
       signOut: 'Cire shiga',
       authTitle: 'Tantance',
-      authSignedInPassword: 'Wannan gateway yana amfani da sunan fayyace da wataƙila. Kana shiga; sesshen na sabunta karkata.',
+      authSignedInPassword:
+        'Wannan gateway yana amfani da sunan fayyace da wataƙila. Kana shiga; sesshen na sabunta karkata.',
       authSignedInOauth: 'Wannan gateway yana amfani da OAuth. Kana shiga; sesshen na sabunta karkata.',
-      authNeedsPassword: 'Wannan gateway yana amfani da sunan fayyace da wataƙila. Shiga don amincewa da wannan app na desktop.',
+      authNeedsPassword:
+        'Wannan gateway yana amfani da sunan fayyace da wataƙila. Shiga don amincewa da wannan app na desktop.',
       tokenTitle: 'Sesshen token',
-      tokenDesc: 'Sesshen token na dashibai wanda ake amfani da shi don REST da WebSocket. Don kiyaye token ɗin da aka ajiye, bar shi.',
+      tokenDesc:
+        'Sesshen token na dashibai wanda ake amfani da shi don REST da WebSocket. Don kiyaye token ɗin da aka ajiye, bar shi.',
       savedToken: 'An ajiye',
       pasteSessionToken: 'Daure sesshen token',
       testRemote: 'Gwajin waje',
@@ -514,19 +529,25 @@ export const ha = defineLocale({
       sshButtonsHint: 'Ajiye zai aiki a nan gaba. Haɗa zai sake haɗa a yanzu.',
       sshIncompleteHost: 'Shigar da SSH host kafin haɗa.',
       sshErrUnreachable: 'Ba a iya isa da wannan host a cikin SSH. Duba host, Port, da intanetinka.',
-      sshErrAuth: 'SSH authentication ta kasa. ɗauki mabarsa ɗaya cikin ssh-agent (ssh-add) ko kuma sayar IdentityFile a ~/.ssh/config — OpenAmer yana aiwatar da ssh ba tare da juna ba.',
-      sshErrHostKey: 'Mabarin host ya canza tun da ka ƙarshe da ka haɗa. Tabbatar da cewa haka ne, sannan aiwatar da ssh-keygen -R <host> kuma ka sake haɗa.',
-      sshErrNotInstalled: 'OpenAmer ba a riga aka sa shi a remote host. Ka sa shi a wurin remote (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ko kuma sayar hanyar OpenAmer.',
-      sshErrPlatform: 'Platform remote ba a tallafawa. Modyin OpenAmer Desktop SSH na tallafawa Linux, macOS, da Windows remote hosts.',
+      sshErrAuth:
+        'SSH authentication ta kasa. ɗauki mabarsa ɗaya cikin ssh-agent (ssh-add) ko kuma sayar IdentityFile a ~/.ssh/config — OpenAmer yana aiwatar da ssh ba tare da juna ba.',
+      sshErrHostKey:
+        'Mabarin host ya canza tun da ka ƙarshe da ka haɗa. Tabbatar da cewa haka ne, sannan aiwatar da ssh-keygen -R <host> kuma ka sake haɗa.',
+      sshErrNotInstalled:
+        'OpenAmer ba a riga aka sa shi a remote host. Ka sa shi a wurin remote (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ko kuma sayar hanyar OpenAmer.',
+      sshErrPlatform:
+        'Platform remote ba a tallafawa. Modyin OpenAmer Desktop SSH na tallafawa Linux, macOS, da Windows remote hosts.',
       sshErrTimeout: 'SSH connection ta ɗauki lokaci. Host na iya kasance ba a iya isa ko zai kwana.',
       sshErrUpdateRequired: 'Sabunta OpenAmer a remote host kafin haɗa da Desktop SSH.',
-      cloudDesc: 'Shiga sau ɗaya a OpenAmer Cloud sannan zaɓi daga cikin ayyukan mai aiki a asusun ka — babu URL da za a naka.',
+      cloudDesc:
+        'Shiga sau ɗaya a OpenAmer Cloud sannan zaɓi daga cikin ayyukan mai aiki a asusun ka — babu URL da za a naka.',
       signOutFailed: 'Cire shiga ba ta yi nasara.',
       testFailed: 'Gwaji na gateway ta kai tsaye ta kasa.',
       applyFailed: 'Ba za a iya shigar da sa ido na gateway.',
       saveFailed: 'Ba za a iya ajiye sa ido na gateway.',
       sshTitle: 'Haɗa ta hanyar SSH.',
-      sshDesc: 'OpenAmer an fara a gida mai waje ta hanyar SSH kuma aka tunne zuwa wannan aplikaci — babu abin da za ka fara ko faɗi kai. Yana buƙatar damar SSH da ta dogara da maƙala.',
+      sshDesc:
+        'OpenAmer an fara a gida mai waje ta hanyar SSH kuma aka tunne zuwa wannan aplikaci — babu abin da za ka fara ko faɗi kai. Yana buƙatar damar SSH da ta dogara da maƙala.',
       sshTrustHint: 'Ɗan bita na farko na gida an amince shi kuma an daure shi; canji masu zuwa ba su bar mu shiga ba.',
       sshHostTitle: 'Gida',
       sshHostDesc: 'user@host, ko wata dabara ta Host daga `~/.ssh/config`.',
@@ -536,22 +557,25 @@ export const ha = defineLocale({
       sshHostCustom: 'Custom (sa saƙa da hannu)…',
       sshUserTitle: 'Mai amfani',
       sshOpenAmerPathPlaceholder: 'gano shi kansa',
-      profileConnection: profile => `Ana amfani da connection din ne kawai idan “${profile}” shine active profile. Zabi 'Use default gateway' don cire override dinsa.`,
+      profileConnection: profile =>
+        `Ana amfani da connection din ne kawai idan “${profile}” shine active profile. Zabi 'Use default gateway' don cire override dinsa.`,
       cloudTitle: 'OpenAmer na Girgije',
       cloudSignInTitle: 'OpenAmer na Girgije',
       cloudOrgRole: role => `Matsayi: ${role}`,
       cloudConnectedTo: name => `An hada da ${name}.`,
       cloudStatusLabel: status => `Hali: ${status}`,
       signInWith: provider => `Shiga da ${provider}`,
-      authNeedsOauth: provider => `Wannan gateway din yana amfani da OAuth. Shiga da ${provider} don ba wa wannan desktop app izini.`,
+      authNeedsOauth: provider =>
+        `Wannan gateway din yana amfani da OAuth. Shiga da ${provider} don ba wa wannan desktop app izini.`,
       existingToken: value => `Token din da yake nan ${value}`,
       connectedTo: (baseUrl, version) => `An hada da ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       sshPortTitle: 'Tasha',
-      sshReachable: (host, platform) => `Ana iya isa: ${host} (${platform}) — An gano OpenAmer`,
+      sshReachable: (host, platform) => `Ana iya isa: ${host} (${platform}) — An gano OpenAmer`
     },
     plugins: {
       title: 'Ɗakunan plugins',
-      blurb: 'Ƙarin UI da aka loda a cikin wannan aapp — an haɗa da wancan yanki, ko aka dora a cikin folder `desktop-plugins` (ya haɗa da waɗanda OpenAmer ke rubuta). Idan an daina, ana lolwatsa plugin ne a live kuma yana ci gaba da saurare.',
+      blurb:
+        'Ƙarin UI da aka loda a cikin wannan aapp — an haɗa da wancan yanki, ko aka dora a cikin folder `desktop-plugins` (ya haɗa da waɗanda OpenAmer ke rubuta). Idan an daina, ana lolwatsa plugin ne a live kuma yana ci gaba da saurare.',
       openFolder: 'Buɗe folder na plugins',
       rescan: 'Sake duba',
       reveal: 'Nuna a shiryar fayyace',
@@ -562,30 +586,31 @@ export const ha = defineLocale({
       kinds: {
         bundled: 'An haɗa da',
         disk: 'A kwaliy',
-        runtime: 'Lokacin aiki',
+        runtime: 'Lokacin aiki'
       },
-      count: n => `An girka ${n}`,
+      count: n => `An girka ${n}`
     },
     modeOptions: {
       light: {
         label: 'Haske',
-        description: 'Filayen tebur masu haske',
+        description: 'Filayen tebur masu haske'
       },
       dark: {
         label: 'Duɗi',
-        description: 'Filin aiki mai ƙarancin haske',
+        description: 'Filin aiki mai ƙarancin haske'
       },
       system: {
         label: 'Tsarin',
-        description: 'Bi fahimtar tsarin',
-      },
+        description: 'Bi fahimtar tsarin'
+      }
     },
     appearance: {
       title: 'Yanayi',
-      intro: 'Waɗannan ƙa\'idodi ne kawai na nuna. Modyar ke kula da haske; jigo ke kula da zanen launi da sassan hira na tsarin.',
+      intro:
+        "Waɗannan ƙa'idodi ne kawai na nuna. Modyar ke kula da haske; jigo ke kula da zanen launi da sassan hira na tsarin.",
       colorMode: 'Modyar launi',
       colorModeDesc: 'Zaɓi wata modya ko bar OpenAmer ya bi saitin naka.',
-      toolViewTitle: 'Bayanin ƙa\'awar kayan aiki',
+      toolViewTitle: "Bayanin ƙa'awar kayan aiki",
       toolViewDesc: 'Bera ɓace dagaɓaɓɗan kayan aiki; Ilimi nuna cikakken shigarwa da fitarwa.',
       uiScaleTitle: 'Matsayi na hannu-hannu',
       translucencyTitle: 'Saɓakar taga',
@@ -593,7 +618,8 @@ export const ha = defineLocale({
       backdropTitle: 'Muduwar hira',
       backdropDesc: 'Sawar da take ƙanƙanta a bayan tattaunawa.',
       embedsTitle: 'Ɗaure shirye-shiryen nan',
-      embedsDesc: 'Ɗaukakar masu arziki na ɗaukar daga shafukan uku-ɗaya (YouTube, X, …). Nema nuna wata alamance har sai ka yarda da kowanne; Da gaske na ɗauke su daga baya; Kwiyam bai ɗauke da su ba.',
+      embedsDesc:
+        'Ɗaukakar masu arziki na ɗaukar daga shafukan uku-ɗaya (YouTube, X, …). Nema nuna wata alamance har sai ka yarda da kowanne; Da gaske na ɗauke su daga baya; Kwiyam bai ɗauke da su ba.',
       embedsAsk: 'Nema',
       embedsAlways: 'Da gaske',
       embedsOff: 'Kwiyam',
@@ -604,7 +630,8 @@ export const ha = defineLocale({
       themeTitle: 'Jigo',
       themeDesc: 'Kawai ƙananan launuka na desktop. An ɗora zaman da aka zaɓa sama.',
       installTitle: 'Saka daga VS Code',
-      installDesc: 'Daure ƙididdigar manhajar Marketplace (misali dracula-theme.theme-dracula) don mayar da itson launin zuwa ƙananan launuka na desktop.',
+      installDesc:
+        'Daure ƙididdigar manhajar Marketplace (misali dracula-theme.theme-dracula) don mayar da itson launin zuwa ƙananan launuka na desktop.',
       installButton: 'Saka',
       installing: 'Saka…',
       installError: 'Ba a iya saka wancan jigo.',
@@ -612,8 +639,10 @@ export const ha = defineLocale({
       importedBadge: 'An shigar',
       pet: {
         title: 'Biri',
-        intro: 'Karɓi petdex mai motsi wanda ke motsa sama kan applicatiya da ya mayar da martani ga abin da OpenAmer yake yi — yana gudana yayin da injuna aiwatar, yana farin ciki a samun nasara, yana kunya a kuskure.',
-        restartHint: 'Dabbobi sun buƙaci sabon sauri — applicatiya da ke aiki ta fara da wannan siffa. Tsaya da sake buɗe OpenAmer, sannan ka komawa nan.',
+        intro:
+          'Karɓi petdex mai motsi wanda ke motsa sama kan applicatiya da ya mayar da martani ga abin da OpenAmer yake yi — yana gudana yayin da injuna aiwatar, yana farin ciki a samun nasara, yana kunya a kuskure.',
+        restartHint:
+          'Dabbobi sun buƙaci sabon sauri — applicatiya da ke aiki ta fara da wannan siffa. Tsaya da sake buɗe OpenAmer, sannan ka komawa nan.',
         on: 'Aiki',
         off: 'Ba aiki',
         scaleTitle: 'Girman',
@@ -645,13 +674,14 @@ export const ha = defineLocale({
         adoptFailed: slug => `Ba a iya karbar ${slug}`,
         uninstallFailed: slug => `Ba a iya cire ${slug}`,
         renameFailed: slug => `Ba a iya canza sunan ${slug}`,
-        exportFailed: slug => `Ba a iya export din ${slug}`,
+        exportFailed: slug => `Ba a iya export din ${slug}`
       },
       installPlaceholder: '`publisher.extension`',
-      uiScaleDesc: (percent: number) => `Yana gyara girman rubutu da controls a duk app din. Cmd/Ctrl tare da +, - da 0 ma suna aiki. Na yanzu: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Yana gyara girman rubutu da controls a duk app din. Cmd/Ctrl tare da +, - da 0 ma suna aiki. Na yanzu: ${percent}%.`,
       embedsReset: (count: number) => `An yarda da sake saita ${count} ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `An adana don profile din ${profile} — kowane profile yana da nasa theme din.`,
-      installed: name => `An sanya “${name}”.`,
+      installed: name => `An sanya “${name}”.`
     },
     about: {
       versionUnavailable: 'Ba a sami siffa',
@@ -668,7 +698,8 @@ export const ha = defineLocale({
       tapCheck: 'Danna Tabbatar da yanzu don neman sabuntawa.',
       justNowSuffix: '· a yanzu',
       automaticUpdates: 'Sabuntawa ta hannu',
-      automaticUpdatesDesc: 'OpenAmer ta duba sabuntawa ta hannu a ƙarƙashin kujera kuma ta faɗa maka lokacin da aka shirya ɗaya.',
+      automaticUpdatesDesc:
+        'OpenAmer ta duba sabuntawa ta hannu a ƙarƙashin kujera kuma ta faɗa maka lokacin da aka shirya ɗaya.',
       never: 'ba a taɓa',
       justNow: 'a yanzu',
       heading: 'OpenAmer na Kwamfuta',
@@ -678,12 +709,12 @@ export const ha = defineLocale({
       branchCommit: (branch, commit) => `Reshe ${branch} · Ajiya ${commit}`,
       minAgo: count => `Minti ${count} da suka wuce`,
       hoursAgo: count => `Sa'o'i ${count} da suka wuce`,
-      daysAgo: count => `Kwanaki ${count} da suka wuce`,
+      daysAgo: count => `Kwanaki ${count} da suka wuce`
     },
     keys: {
       loading: 'Ana jiwatar API keys da kundin bayanai...',
       failedLoad: 'API keys na ci jiwatar.',
-      empty: 'Babu wani abu da aka tsara a nan.',
+      empty: 'Babu wani abu da aka tsara a nan.'
     },
     mcp: {
       loading: 'Ana jiwatar MCP servers...',
@@ -744,71 +775,75 @@ export const ha = defineLocale({
       catalogInstallStarted: name => `Ana sanya ${name}... zai yi aiki ga sabbin sessions idan an gama.`,
       catalogInstallFailed: name => `Gaza sanya ${name}`,
       catalogEnvPrompt: name => `${name} yana buƙatar bayanan shiga`,
-      capabilitySummary: (tools, prompts, resources) => `An kunna ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')}`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `An kunna ${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')}`,
       statusOff: 'Afa',
       authenticatedMessage: (server, count) => `${server}: kayan aiki ${count}`,
       enableTool: tool => `Kunna ${tool}`,
-      disableTool: tool => `Kashe ${tool}`,
+      disableTool: tool => `Kashe ${tool}`
     },
     model: {
       tasks: {
         approval: {
           label: 'Amincewa',
-          hint: 'Auto-mamaye mai wayo',
+          hint: 'Auto-mamaye mai wayo'
         },
         mcp: {
           hint: 'Routing na kayan aiki na MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Ƙirƙira take',
-          hint: 'Take na makogwaro',
+          hint: 'Take na makogwaro'
         },
         curator: {
           label: 'Mai kulawa',
-          hint: 'Duba na amfani da ƙwarewa',
+          hint: 'Duba na amfani da ƙwarewa'
         },
         vision: {
           label: 'Gani',
-          hint: 'Nazarin hoto',
+          hint: 'Nazarin hoto'
         },
         web_extract: {
           label: 'Fitar yanar gizo',
-          hint: 'Taƙaitawa na peji',
+          hint: 'Taƙaitawa na peji'
         },
         compression: {
           label: 'Ƙanƙanta',
-          hint: 'Ƙanƙantar mahallin',
+          hint: 'Ƙanƙantar mahallin'
         },
         skills_hub: {
           label: 'Cibiyar ƙwarewa',
-          hint: 'Neman ƙwarewa',
-        },
+          hint: 'Neman ƙwarewa'
+        }
       },
       reasoningOff: 'Ba a',
       defaultsFailed: 'Sauƙaƙƙar da ajiyar maƙala',
       auxiliaryTitle: 'Maƙogayi',
       resetAllToMain: 'Sosar duka zuwa babba',
-      auxiliaryDesc: 'Ayyukan taimako ana aiwatar da su a babban maƙala. Sanya maƙara ta musamman ga wata aiki don juyewa.',
+      auxiliaryDesc:
+        'Ayyukan taimako ana aiwatar da su a babban maƙala. Sanya maƙara ta musamman ga wata aiki don juyewa.',
       setToMain: 'Sanya zuwa babba',
       change: 'Canza',
-      autoUseMain: 'na\'aina · yi amfani da babban maƙala',
+      autoUseMain: "na'aina · yi amfani da babban maƙala",
       providerDefault: '(maƙalar mai samarwa)',
       fallbackAdd: 'Ƙara maƙamala',
       fallbackEmpty: 'Babu maƙamala — ana amfani da maƙala sai ta yi kasa.',
       notInCatalog: 'Ba a cikin jerin maƙogayen wannan mai samarwa — iya iya? Ana iya amfani da matakan ragaya.',
       loading: 'Ana loading tsarin modelo...',
-      appliesDesc: 'Yana aiki ga sabbin zama. Yi amfani da mai zaɓin samfurin a cikin mai tsara don canza tattaunawar da ke aiki.',
+      appliesDesc:
+        'Yana aiki ga sabbin zama. Yi amfani da mai zaɓin samfurin a cikin mai tsara don canza tattaunawar da ke aiki.',
       provider: 'Mai ba da sabis',
       model: 'Samfurin',
       applying: 'Ana aiwatarwa...',
       defaultsLabel: 'Na asali',
-      reasoning: 'Tunani',
+      reasoning: 'Tunani'
     },
     providers: {
       connectAccount: 'Haɗa asusun',
       haveApiKey: 'Kana da API key maimakon?',
-      intro: 'Saka shiga da karɓuwa — babu API key don ake kopa. OpenAmer yana aiwatar da shiga na browser don kai a nan a cikin app.',
+      intro:
+        'Saka shiga da karɓuwa — babu API key don ake kopa. OpenAmer yana aiwatar da shiga na browser don kai a nan a cikin app.',
       connected: 'An haɗa',
       collapse: 'Rage',
       connectAnother: 'Haɗa wani provider',
@@ -821,23 +856,25 @@ export const ha = defineLocale({
       removeConfirm: provider => `Cire ${provider}?`,
       removeExternalGeneric: provider => `Ana sarrafa ${provider} ta CLI nasa — cire shi daga can.`,
       removeKeyManaged: provider => `An saita ${provider} da maɓallin API. Cire shi daga Maɓallan API.`,
-      removeTerminalConfirm: (provider, command) => `Katsa hadin ${provider}? Wannan zai gudanar da "${command}" a terminal don goge credential.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Katsa hadin ${provider}? Wannan zai gudanar da "${command}" a terminal don goge credential.`,
       removeTerminalRunning: provider => `Ana gudanar da ${provider} disconnect a terminal…`,
       removedMessage: provider => `An cire ${provider}.`,
       failedRemove: provider => `Ba a iya cire ${provider}`,
       noKeysMatch: 'Babu wani mai ba da sabis da ya dace da bincikenka.',
       localEndpoint: {
         title: 'Na gida / endpoint na musamman',
-        description: 'Nuna OpenAmer zuwa wani endpoint da ya dace da OpenAI (Zyphra, vLLM, llama.cpp, Ollama, da sauransu).',
+        description:
+          'Nuna OpenAmer zuwa wani endpoint da ya dace da OpenAI (Zyphra, vLLM, llama.cpp, Ollama, da sauransu).'
       },
-      loading: 'Ana ɗaukar masu ba da sabis...',
+      loading: 'Ana ɗaukar masu ba da sabis...'
     },
     toolsets: {
       webUsedForExtract: 'Cire dabara',
       loadingModels: 'Ana yanke katalogin modeli...',
       modelSectionTitle: 'Modeli',
       modelInUse: 'A cikin amfani',
-      modelDefault: 'Al\'ada',
+      modelDefault: "Al'ada",
       modelInactiveHint: 'Zaɓi wannan dabara a farko don canza modelinsa.',
       modelSelectedTitle: 'Model din aka zaɓa',
       terminalBackend: {
@@ -851,7 +888,7 @@ export const ha = defineLocale({
         selectedTitle: 'Dabara aka zaɓa',
         needsSetupHint: 'Zaɓi wannan dabara yanzu — umarnin zai kasa har sai shiri ya ƙare.',
         selectedMessage: backend => `Yanzu ana gudanar da umarnin tashar umarni ta ${backend}. Ya shafi sabbin zama.`,
-        failedSelect: backend => `An kasa zaɓar ${backend}`,
+        failedSelect: backend => `An kasa zaɓar ${backend}`
       },
       loadingConfig: 'Ana ɗaukar sabani',
       savedTitle: 'Alama ta ajiye',
@@ -875,13 +912,15 @@ export const ha = defineLocale({
       needsSetup: 'Ana buƙatar saiti',
       openamerIncluded: 'Yana cikin biyan kuɗin OpenAmer — shiga Tashar OpenAmer don kunnawa.',
       openamerAuthNeededTitle: 'Shiga Tashar OpenAmer',
-      openamerAuthNeededMessage: provider => `An adana ${provider} amma ba zai fara aiki ba sai ka shiga Dandalin OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `An adana ${provider} amma ba zai fara aiki ba sai ka shiga Dandalin OpenAmer.`,
       openamerAuthSignIn: 'Shiga',
       openamerAuthDoneTitle: 'An haɗa da Dandalin OpenAmer',
       openamerAuthDoneMessage: 'Sabis ɗin biyan kuɗinka suna aiki yanzu.',
       openamerAuthFailed: 'Ba a kammala shiga Dandalin OpenAmer ba',
       noApiKeyRequired: 'Ba a buƙatar maɓallin API.',
-      postSetupHint: step => `Wannan sabis yana buƙatar girkawa sau ɗaya (${step}). Yana aiki a wannan na'ura — yana iya ɗaukar mintuna kaɗan.`,
+      postSetupHint: step =>
+        `Wannan sabis yana buƙatar girkawa sau ɗaya (${step}). Yana aiki a wannan na'ura — yana iya ɗaukar mintuna kaɗan.`,
       postSetupInstalledHint: 'An girka. Sake gudanar da saitawa kawai idan wani abu ya lalace.',
       postSetupRun: 'Gudanar da saitin',
       postSetupRerun: 'Sake gudanar da saitin',
@@ -899,11 +938,12 @@ export const ha = defineLocale({
       webUseForSearch: 'Amfani don Bincike',
       webUseForExtract: 'Amfani don Cirewa',
       webUsedForSearch: 'Binciken baya',
-      webCapabilitySelectedMessage: (provider, capability) => `${provider} yanzu yana sarrafa ${capability} na yanar gizo.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `${provider} yanzu yana sarrafa ${capability} na yanar gizo.`,
       failedSelectCapability: provider => `An kasa saita ${provider}`,
       modelCount: count => `Samfurin ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} ya shafi sabbin zama.`,
-      failedSelectModel: model => `An kasa zaɓar ${model}`,
+      failedSelectModel: model => `An kasa zaɓar ${model}`
     },
     sessions: {
       change: 'Canza',
@@ -917,7 +957,8 @@ export const ha = defineLocale({
       clearDirFailed: 'Ba a iya tsige gida madaidaici',
       loading: 'Ana ɗaukar zama da aka adana…',
       archivedTitle: 'Zama da aka adana',
-      archivedIntro: 'Tattaunawar da aka adana an ɓoye su daga bar na gefe amma suna riƙe da duk saƙanninsu. Ctrl/⌘-click a kan tattaunawa a cikin bar na gefe don adana ta.',
+      archivedIntro:
+        'Tattaunawar da aka adana an ɓoye su daga bar na gefe amma suna riƙe da duk saƙanninsu. Ctrl/⌘-click a kan tattaunawa a cikin bar na gefe don adana ta.',
       emptyArchivedTitle: 'Babu abin da aka adana',
       emptyArchivedDesc: 'Adana tattaunawa don ɓoye ta a nan.',
       unarchive: 'Kawar da archive',
@@ -926,17 +967,20 @@ export const ha = defineLocale({
       restored: 'An dawo da shi',
       deleteConfirm: title => `Goge "${title}" har abada? Ba za a iya mayarwa ba.`,
       autoArchiveTitle: 'Auto-archive tsofaffin hira',
-      autoArchiveDesc: "Archive hirar da ba ka taba ba tun wani lokaci ta atomatik. Ba a taba archive din pinned chats ba, kuma ba a goge komai — archived chats kawai za su koma nan.",
+      autoArchiveDesc:
+        'Archive hirar da ba ka taba ba tun wani lokaci ta atomatik. Ba a taba archive din pinned chats ba, kuma ba a goge komai — archived chats kawai za su koma nan.',
       autoArchiveDaysLabel: 'Archive bayan',
       autoArchiveDaysUnit: 'kwanaki ba tare da aiki ba',
       autoArchiveFailed: 'Ba a iya update din auto-archive',
       defaultDirTitle: 'Babban fayil na aikin da aka saita',
-      defaultDirDesc: 'Sabbin sessions suna farawa a wannan folder din sai dai idan ka zabi wani. Bar shi ba tare da an sanya komai ba don amfani da home directory dinka.',
-      defaultDirUpdated: 'An sabunta babban fayil na aikin da aka saita — fara sabuwar tattaunawa (Ctrl/⌘+N) don saitin ya fara aiki',
-      defaultsTo: label => `Ƙimar asali ita ce ${label}.`,
+      defaultDirDesc:
+        'Sabbin sessions suna farawa a wannan folder din sai dai idan ka zabi wani. Bar shi ba tare da an sanya komai ba don amfani da home directory dinka.',
+      defaultDirUpdated:
+        'An sabunta babban fayil na aikin da aka saita — fara sabuwar tattaunawa (Ctrl/⌘+N) don saitin ya fara aiki',
+      defaultsTo: label => `Ƙimar asali ita ce ${label}.`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Ƙwarewa',
@@ -965,7 +1009,7 @@ export const ha = defineLocale({
       trust: {
         builtin: 'Na gida',
         trusted: 'Amincewa',
-        community: 'Al\'umma',
+        community: "Al'umma"
       },
       verdictSafe: 'Lafiya',
       verdictCaution: 'Kariya',
@@ -987,7 +1031,7 @@ export const ha = defineLocale({
       timedOut: sources => `Lokaci ya ƙare: ${sources}`,
       findings: count => `Abin da aka gano ${count}${count === 1 ? '' : 's'}`,
       installStarted: name => `Ana girka ${name}...`,
-      uninstallStarted: name => `Ana cire ${name}...`,
+      uninstallStarted: name => `Ana cire ${name}...`
     },
     tabMcp: 'MCP',
     all: 'Duka',
@@ -1003,7 +1047,8 @@ export const ha = defineLocale({
     noDescription: 'Babu bayani.',
     configured: 'An tsara',
     needsKeys: 'Yana buƙatar maɓallan',
-    visionModelHint: 'Vision yana amfani da saitin samfurin taimako na kai — an zaɓi samfurin da zai iya hotuna can, ba a nan ba ga kowane mai ba.',
+    visionModelHint:
+      'Vision yana amfani da saitin samfurin taimako na kai — an zaɓi samfurin da zai iya hotuna can, ba a nan ba ga kowane mai ba.',
     visionModelLink: 'Zaɓi samfurin vision a Saiti → Samfura',
     toolsetsEnabled: (enabled, total) => `An kunna rukunin kayan aiki ${enabled}/${total}`,
     configureToolset: label => `Saita ${label}`,
@@ -1029,7 +1074,7 @@ export const ha = defineLocale({
     provenance: {
       agent: 'An koya',
       bundled: 'An haɗa shi',
-      hub: 'Cibiyar',
+      hub: 'Cibiyar'
     },
     emptyNoneFound: noun => `Ba a sami ${noun} ba`,
     emptyNothingMatches: query => `Babu abin da ya dace da “${query}”.`,
@@ -1039,7 +1084,7 @@ export const ha = defineLocale({
     edit: 'Gyara',
     archive: 'Ajiye',
     skillArchivedTitle: 'An ajiye ƙwarewa',
-    skillArchivedMessage: 'Ana iya dawo da ita ta hanyar openamer curator restore.',
+    skillArchivedMessage: 'Ana iya dawo da ita ta hanyar openamer curator restore.'
   },
   starmap: {
     title: 'Jerin hali',
@@ -1056,7 +1101,8 @@ export const ha = defineLocale({
     emptyTitle: 'Har yanzu ba a koya komai ba',
     emptyDesc: 'Yayin da OpenAmer ke gina ƙwarewa da tunawa don aikinka, suna bayyana nan.',
     share: 'Rabawa taswira',
-    shareHint: 'Kwafi lambar don raba wannan taswira, ko mana ɗaya don ɗora. Yana ƙunshe da tsari kawai, ba tunawarka ko rubutun ƙwarewa ba.',
+    shareHint:
+      'Kwafi lambar don raba wannan taswira, ko mana ɗaya don ɗora. Yana ƙunshe da tsari kawai, ba tunawarka ko rubutun ƙwarewa ba.',
     shareTitle: 'Shigo da / fitar da taswira',
     sharePlaceholder: 'Manne lambar taswira…',
     copy: 'Kwafi lambar taswira',
@@ -1066,7 +1112,7 @@ export const ha = defineLocale({
     importEmpty: 'Manne lambar taswira don kwashe ta.',
     importSuccess: nodes => `An loda taswira mai ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'taswiran da aka shigo',
-    resetToMine: 'Komawa taswirata',
+    resetToMine: 'Komawa taswirata'
   },
   commandCenter: {
     generatePet: {
@@ -1086,17 +1132,18 @@ export const ha = defineLocale({
       slowProviderHint: 'Wannan na iya ɗaukar wasu mintuna.',
       remix: 'Sake haɗa',
       remixConfirmTitle: 'Sake haɗa wannan gani?',
-      remixConfirmBody: 'Wannan na ƙirƙirar sabbin rarrabuwa ta amfani da wannan a matsayin farko. Wannan na iya ɗaukar wasu mintuna.',
+      remixConfirmBody:
+        'Wannan na ƙirƙirar sabbin rarrabuwa ta amfani da wannan a matsayin farko. Wannan na iya ɗaukar wasu mintuna.',
       genericError: 'Ƙirƙira ta kasa — sake gwada ko zaɓi shawarar.',
       referenceImageTooLarge: 'Hoton nuni ya yi girma. Yi amfani da wata ƙasa da 16 MB.',
       referenceImageInvalid: 'Ba a iya karanta wannan hoton nuni. Ƙara wata PNG, JPG, WebP, ko GIF.',
-      adopt: 'Adu\'a',
+      adopt: "Adu'a",
       startOver: 'Sake fara',
       title: 'Samar da dabba',
       placeholder: 'Bayyana dabba don samarwa…',
-      promptHint: 'Rubuta bayani, sannan matsa Enter don tsara nau\'o\'i huɗu.',
-      readyHint: 'Matsa Enter don tsara nau\'o\'i huɗu daga bayaninka.',
-      hatchRow: (_state, done, total) => `Ana zana firam ${done} cikin ${total}…`,
+      promptHint: "Rubuta bayani, sannan matsa Enter don tsara nau'o'i huɗu.",
+      readyHint: "Matsa Enter don tsara nau'o'i huɗu daga bayaninka.",
+      hatchRow: (_state, done, total) => `Ana zana firam ${done} cikin ${total}…`
     },
     installTheme: {
       title: 'Sanya jigogi…',
@@ -1108,7 +1155,7 @@ export const ha = defineLocale({
       install: 'Sanya',
       installing: 'Ana sanya...',
       installed: 'An sanya',
-      installs: count => `shigarwa ${count}`,
+      installs: count => `shigarwa ${count}`
     },
     settingsFields: 'Filayen saiti',
     mcpServers: 'MCP masu aiki',
@@ -1117,13 +1164,13 @@ export const ha = defineLocale({
       maintenance: 'Gyara',
       sessions: 'Zama',
       system: 'Tsarin',
-      usage: 'Amfani',
+      usage: 'Amfani'
     },
     sectionDescriptions: {
       maintenance: 'Hasashe, bakin ajiya, tukwane, da kwarewar itace',
       sessions: 'Nazarin da kula da zama',
       system: 'Matsayi, rajistar, da ayyukan tsarin',
-      usage: 'Token, farashi, da ayyukan ƙwarewa a tsawon lokaci',
+      usage: 'Token, farashi, da ayyukan ƙwarewa a tsawon lokaci'
     },
     close: 'Rufe cibiyar umurni',
     paletteTitle: 'Zaɓin umurni',
@@ -1152,43 +1199,43 @@ export const ha = defineLocale({
       generatedTag: 'An samar',
       adoptFailed: 'Ba za a iya ɗaukar wannan dabba ba.',
       toggleFailed: 'Ba za a iya juya wannan dabba ba.',
-      noneAvailable: 'Babu dabbobi — zaɓi ɗaya a ƙasa don shigarwa.',
+      noneAvailable: 'Babu dabbobi — zaɓi ɗaya a ƙasa don shigarwa.'
     },
     nav: {
       newChat: {
         title: 'Sabon zaman',
-        detail: 'Fara zaman sabo',
+        detail: 'Fara zaman sabo'
       },
       settings: {
         title: 'Saituna',
-        detail: 'Tsara OpenAmer desktop',
+        detail: 'Tsara OpenAmer desktop'
       },
       skills: {
         title: 'Iyawa',
-        detail: 'Ƙwarewa, kayan aiki, da suna MCP',
+        detail: 'Ƙwarewa, kayan aiki, da suna MCP'
       },
       messaging: {
         title: 'Saƙo',
-        detail: 'Saita Telegram, Slack, Discord, da sauransu',
+        detail: 'Saita Telegram, Slack, Discord, da sauransu'
       },
       artifacts: {
         title: 'Abubuwa',
-        detail: 'Kalla sakamakon da aka ƙera',
-      },
+        detail: 'Kalla sakamakon da aka ƙera'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Allon zaman',
-        detail: 'Nemi, daura, da sarrafa zaman',
+        detail: 'Nemi, daura, da sarrafa zaman'
       },
       system: {
         title: 'Allon tsarin',
-        detail: 'Matakin gateway, log, sake farawa/ƙarin',
+        detail: 'Matakin gateway, log, sake farawa/ƙarin'
       },
       usage: {
         title: 'Allon amfani',
-        detail: 'Token, farashi, da aikin ƙwarewa',
-      },
+        detail: 'Token, farashi, da aikin ƙwarewa'
+      }
     },
     providerNavigate: 'Kewayawa',
     providerSessions: 'Zaman',
@@ -1276,8 +1323,8 @@ export const ha = defineLocale({
       actionStarted: name => `${name} ya fara — ana bibiyar rajista...`,
       actionFailed: name => `${name} ya kasa farawa`,
       running: 'Ana gudana...',
-      viewLog: 'Rubutun aiki',
-    },
+      viewLog: 'Rubutun aiki'
+    }
   },
   profiles: {
     default: 'tsoffa',
@@ -1355,7 +1402,7 @@ Barin fanko don adana ${mode} tsoho.`,
     failedLoadSoul: 'Ba a iya loda SOUL.md ba',
     failedSaveSoul: 'Ba a iya adana SOUL.md ba',
     failedCreate: 'Ba a iya ƙirƙira profile ba',
-    failedRename: 'Ba a iya sake suna profile ba',
+    failedRename: 'Ba a iya sake suna profile ba'
   },
   cron: {
     blueprints: {
@@ -1370,16 +1417,16 @@ Barin fanko don adana ${mode} tsoho.`,
       scheduling: 'Ana tsara...',
       scheduled: 'An tsara zane',
       loading: 'Ana ɗaukar zane-zane...',
-      failedLoad: 'An gaza ɗaukar zane-zane',
+      failedLoad: 'An gaza ɗaukar zane-zane'
     },
     scheduleHints: {
       'every-15-minutes': 'Kowane minti 15',
       custom: 'Cron syntax ko kalmomai na yawa',
       daily: 'A kowace rana da karfe 9:00 AM',
-      weekdays: 'Daga Litinin zuwa Juma\'a da karfe 9:00 AM',
+      weekdays: "Daga Litinin zuwa Juma'a da karfe 9:00 AM",
       weekly: 'A kowace Litinin da karfe 9:00 AM',
       monthly: 'A ranar farko na kowace wata da karfe 9:00 AM',
-      hourly: 'A farkon kowace awa',
+      hourly: 'A farkon kowace awa'
     },
     days: {
       '0': 'Alada',
@@ -1387,13 +1434,14 @@ Barin fanko don adana ${mode} tsoho.`,
       '2': 'Talata',
       '3': 'Alaraba',
       '4': 'Alhami',
-      '5': 'Juma\'a',
+      '5': "Juma'a",
       '6': 'Sanda',
-      '7': 'Alada',
+      '7': 'Alada'
     },
-    topOfHour: 'A kowane sa\'a na farko',
+    topOfHour: "A kowane sa'a na farko",
     newCron: 'Sabuwar cron',
-    emptyDescNew: 'Tsara prompt don ya gudare ta cron expression. OpenAmer zai gude shi ya kuma iska da sakamako zuwa wanda ka zaɓi.',
+    emptyDescNew:
+      'Tsara prompt don ya gudare ta cron expression. OpenAmer zai gude shi ya kuma iska da sakamako zuwa wanda ka zaɓi.',
     emptyDescSearch: 'Gwada wanda aka nuna.',
     emptyTitleNew: 'Babu ayyuka da aka tsara tukuna',
     emptyTitleSearch: 'Babban dawatawa',
@@ -1433,14 +1481,14 @@ Barin fanko don adana ${mode} tsoho.`,
       paused: 'an dakatar',
       disabled: 'an kashe',
       error: 'kurakurai',
-      completed: 'an kammala',
+      completed: 'an kammala'
     },
     deliveryLabels: {
       local: 'Wannan tebur',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Imel',
+      email: 'Imel'
     },
     scheduleLabels: {
       daily: 'A kowace rana',
@@ -1449,7 +1497,7 @@ Barin fanko don adana ${mode} tsoho.`,
       monthly: 'A kowace wata',
       hourly: 'A kowace awa',
       'every-15-minutes': 'Kowane mintuna 15',
-      custom: 'Na musamman',
+      custom: 'Na musamman'
     },
     dayFallback: value => `rana ${value}`,
     everyDayAt: time => `Kowane rana a ${time}`,
@@ -1466,7 +1514,8 @@ Barin fanko don adana ${mode} tsoho.`,
     editTitle: 'Gyara cron job',
     createTitle: 'Sabon cron job',
     editDesc: 'Sabunta jadawalin, shawara, ko manufar isarwa. Canje-canje suna aiki a gaba.',
-    createDesc: 'Tsara umarni don ya gudana da kansa. Amfani da syntax na cron ko magana ta halitta kamar "kowan minti 15".',
+    createDesc:
+      'Tsara umarni don ya gudana da kansa. Amfani da syntax na cron ko magana ta halitta kamar "kowan minti 15".',
     nameLabel: 'Suna',
     namePlaceholder: 'Bayanin safe',
     promptLabel: 'Umarni',
@@ -1488,8 +1537,8 @@ Barin fanko don adana ${mode} tsoho.`,
     createAction: 'Ƙirƙiri cron',
     tabs: {
       jobs: 'Ayyuka',
-      blueprints: 'Zane-zane',
-    },
+      blueprints: 'Zane-zane'
+    }
   },
   artifacts: {
     search: 'Nemo abubuwa...',
@@ -1523,14 +1572,14 @@ Barin fanko don adana ${mode} tsoho.`,
     copyUrl: 'Kwafi URL',
     copyPath: 'Kwafi hanya',
     rangeOf: (start, end, total) => `${start}-${end} cikin ${total}`,
-    goToPage: (itemLabel, page) => `Je zuwa ${itemLabel} shafi na ${page}`,
+    goToPage: (itemLabel, page) => `Je zuwa ${itemLabel} shafi na ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Sabin zamani',
       skills: 'Iyaluwa',
       messaging: 'Saƙo',
-      artifacts: 'Abubuwa',
+      artifacts: 'Abubuwa'
     },
     searchAria: 'Nemo zamani',
     searchPlaceholder: 'Nemo zamani…',
@@ -1541,8 +1590,10 @@ Barin fanko don adana ${mode} tsoho.`,
       copyPath: 'Kwafi adireshi',
       removeFromSidebar: 'ɓoye daga gefar shafi',
       createFailed: 'Ba a iya ƙirƙira aiki ba',
-      staleBackend: 'Sabunta bayanan OpenAmer don ƙirƙira ayuka — bayan gari ɗinka yana da shekaru da wannan app ɗin tebur (Saituna → Sabuntawa → Bayan gari).',
-      deleteConfirm: 'Wannu zai ɓoye aikin da aka ajiye daga OpenAmer. Fayiloli, repo na git, da binci ayuka za su kashe ba tare da canza ba.',
+      staleBackend:
+        'Sabunta bayanan OpenAmer don ƙirƙira ayuka — bayan gari ɗinka yana da shekaru da wannan app ɗin tebur (Saituna → Sabuntawa → Bayan gari).',
+      deleteConfirm:
+        'Wannu zai ɓoye aikin da aka ajiye daga OpenAmer. Fayiloli, repo na git, da binci ayuka za su kashe ba tare da canza ba.',
       startWork: 'Binci aiki sabo',
       newWorktreeTitle: 'Binci aiki sabo',
       newWorktreeDesc: 'Suna reshe don wannan binci aiki.',
@@ -1562,8 +1613,10 @@ Barin fanko don adana ${mode} tsoho.`,
       noBranches: 'Babba reshe aka same',
       removeWorktree: 'Ƙaɗe binci aiki',
       removeWorktreeFailed: 'Ba a iya ƙaɗe binci aiki ba (canje-canjen da ba a committing ba?)',
-      removeWorktreeConfirm: 'Ƙaɗe shi daga git (yana ɓoye babba fayil na binci aiki; reshe zai tsaya), ko kawai ɓoye su daga gefar shafi ka bar binci aiki a kan diski.',
-      removeWorktreeDirty: 'Wannan binci aiki yana da canje-canjen da ba a committing ba. Ka tilɣe ƙaɗe shi (yana ɓatar da canje-canjen), ko kawai ɓoye su daga gefar shafi ka bar shi a kan diski.',
+      removeWorktreeConfirm:
+        'Ƙaɗe shi daga git (yana ɓoye babba fayil na binci aiki; reshe zai tsaya), ko kawai ɓoye su daga gefar shafi ka bar binci aiki a kan diski.',
+      removeWorktreeDirty:
+        'Wannan binci aiki yana da canje-canjen da ba a committing ba. Ka tilɣe ƙaɗe shi (yana ɓatar da canje-canjen), ko kawai ɓoye su daga gefar shafi ka bar shi a kan diski.',
       forceRemove: 'Tilɣe ƙaɗe',
       back: 'Duk ayuka',
       sectionLabel: 'Ayyuka',
@@ -1574,9 +1627,9 @@ Barin fanko don adana ${mode} tsoho.`,
       addFolderTitle: 'Ƙara folder',
       namePlaceholder: 'misali Skunkworks',
       foldersLabel: 'Manyan fayiloli',
-      ideaLabel: 'Ra\'ayi',
-      ideaPlaceholder: "Wannan aiki yana da alaka da me? (an ajiye shi a IDEA.md)",
-      ideaGenerate: 'Samar da ra\'ayi',
+      ideaLabel: "Ra'ayi",
+      ideaPlaceholder: 'Wannan aiki yana da alaka da me? (an ajiye shi a IDEA.md)',
+      ideaGenerate: "Samar da ra'ayi",
       ideaGenerating: 'Ana samarwa…',
       ideaShuffle: 'Gauraya samfura',
       noFolders: 'Har yanzu ba a ƙara folder ɗaya ba.',
@@ -1594,7 +1647,7 @@ Barin fanko don adana ${mode} tsoho.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Buɗe ${label}`,
       reorder: label => `Sake jera ${label}`,
-      toggle: label => `Nuna/ɓoye zaman ${label}`,
+      toggle: label => `Nuna/ɓoye zaman ${label}`
     },
     loading: 'Ana loading…',
     loadMore: 'Ƙara ƙari',
@@ -1629,14 +1682,14 @@ Barin fanko don adana ${mode} tsoho.`,
       handoffOrigin: platform => `An miƙo daga ${platform}`,
       ownedByProfile: profile => `Bayanan martaba: ${profile}`,
       untitledChat: id => `Tattaunawa ${id}`,
-      ageMin: 'minti',
+      ageMin: 'minti'
     },
     dateDivider: {
       today: 'Yau da farko',
       yesterday: 'Yaushe',
       thisWeek: 'Tsawon wannan makamarka',
       lastWeek: 'Makamarka',
-      thisMonth: 'Tsawon wannan watan',
+      thisMonth: 'Tsawon wannan watan'
     },
     noMatch: query => `Babu zaman da ya dace da “${query}”.`,
     pinned: 'An ɗaure',
@@ -1656,7 +1709,7 @@ Barin fanko don adana ${mode} tsoho.`,
     noSessions: 'Har yanzu babu zaman',
     newSessionIn: label => `Sabon zama a ${label}`,
     showMoreIn: (count, label) => `Nuna ƙarin ${count} a ${label}`,
-    loadCount: step => `Loda ƙarin ${step}`,
+    loadCount: step => `Loda ƙarin ${step}`
   },
   composer: {
     message: 'Saƙo',
@@ -1680,20 +1733,20 @@ Barin fanko don adana ${mode} tsoho.`,
     newSessionPlaceholders: [
       'Me za mu gina?',
       'Ba OpenAmer aiki',
-      "Me ke ranka?",
+      'Me ke ranka?',
       'Bayyana abin da kake buƙata',
       'Me za mu magance?',
       'Tambayi komai',
-      'Fara da manufa',
+      'Fara da manufa'
     ],
     followUpPlaceholders: [
       'Aika ƙarin saƙo',
       'Ƙara bayani',
       'Inganta buƙatar',
-      "Me ke gaba?",
+      'Me ke gaba?',
       'Ci gaba',
       'Ƙara zurfafawa',
-      'Gyara ko ci gaba',
+      'Gyara ko ci gaba'
     ],
     stopShort: 'Daina',
     endConversation: 'Kawo ƙarshen tattaunawar murya',
@@ -1716,7 +1769,7 @@ Barin fanko don adana ${mode} tsoho.`,
       '/resume': 'sake zama da ya gabata',
       '/details': 'sarrafa matakin bayanin rubutun',
       '/copy': 'kwafi zaɓi ko saƙon mataimaki na ƙarshe',
-      '/quit': 'fita daga openamer',
+      '/quit': 'fita daga openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'nufin takardu, foldoji, urls, git',
@@ -1726,7 +1779,7 @@ Barin fanko don adana ${mode} tsoho.`,
       'composer.sendQueued': 'aika juyi na gaba a cikin jera',
       'keybinds.openPanel': 'dukan gajerun hanyoyin keyboard',
       'composer.cancel': 'rufe taga mai fitowa · soke aiwatarwa',
-      'composer.history': 'kewaya taga mai tasowa / tarihi',
+      'composer.history': 'kewaya taga mai tasowa / tarihi'
     },
     attachUrlTitle: 'Haɗa URL',
     attachUrlDesc: 'OpenAmer zai ɗauko shafin ya haɗa shi a matsayin mahalli don wannan saƙon.',
@@ -1777,19 +1830,19 @@ Barin fanko don adana ${mode} tsoho.`,
       codeReview: {
         label: 'Bitar lamba',
         description: 'Bincika canjin yanzu don komawa baya, yanayin iyaka da aka watsar, da gwaje-gwaje da suka ɓace.',
-        text: 'Da fatan duba wannan don kuskure, regressions, da gwaje-gwaje da suka ɓace.',
+        text: 'Da fatan duba wannan don kuskure, regressions, da gwaje-gwaje da suka ɓace.'
       },
       implementationPlan: {
         label: 'Shirin aiwatarwa',
         description: 'Bayyana hanya kafin canza code don diff ya kasance mai da hankali.',
-        text: 'Da fatan kira shirin aiwatarwa mai takaici kafin canza code.',
+        text: 'Da fatan kira shirin aiwatarwa mai takaici kafin canza code.'
       },
       explainThis: {
         label: 'Ka bayyana wannan',
         description: 'Ka nuna yadda code da aka zaɓa ke aiki da kuma haɗa manyan fayiloli.',
-        text: 'Da fatan ka bayyana yadda wannan ke aiki da nuna mini manyan fayiloli.',
-      },
-    },
+        text: 'Da fatan ka bayyana yadda wannan ke aiki da nuna mini manyan fayiloli.'
+      }
+    }
   },
   install: {
     tokenTitle: 'Token na zaman',
@@ -1803,8 +1856,10 @@ Barin fanko don adana ${mode} tsoho.`,
     failedTitle: 'Shigarwa ya gaza',
     settingUpTitle: 'Saitin OpenAmer Agent',
     finishingTitle: 'Ana kammawa',
-    failedDesc: 'Wani mataki na shigarwa ya gaza. A Windows, wannan na iya farawa idan wataƙoƙo OpenAmer CLI ko OpenAmer desktop tana gudana. Daga duk OpenAmer da ke gudana, sannan ka sake gwadawa. Duba bayanai ko log na desktop don transcript cikin duka.',
-    activeDesc: 'Wannan saiti na sau daɗawa ne. Installer na OpenAmer yana saukewa da dependencies kuma yana saita wayinka. Shigarwa na gaba da za saƙo wannan mataki.',
+    failedDesc:
+      'Wani mataki na shigarwa ya gaza. A Windows, wannan na iya farawa idan wataƙoƙo OpenAmer CLI ko OpenAmer desktop tana gudana. Daga duk OpenAmer da ke gudana, sannan ka sake gwadawa. Duba bayanai ko log na desktop don transcript cikin duka.',
+    activeDesc:
+      'Wannan saiti na sau daɗawa ne. Installer na OpenAmer yana saukewa da dependencies kuma yana saita wayinka. Shigarwa na gaba da za saƙo wannan mataki.',
     fetchingManifest: 'Ana karɗar da manifest na installer...',
     error: 'Kuskure',
     hideOutput: 'ƨoye fitar da installer',
@@ -1821,10 +1876,11 @@ Barin fanko don adana ${mode} tsoho.`,
       running: 'Ana shigarwa',
       succeeded: 'An gama',
       skipped: 'An watsar',
-      failed: 'Bai yi nasara ba',
+      failed: 'Bai yi nasara ba'
     },
     oneTimeTitle: 'OpenAmer yana buƙatar shigarwa ɗaya kawai',
-    unsupportedDesc: platform => `Ba a samun shigarwa ta atomatik a buɗewar farko a kan ${platform} tukuna. Buɗe Tashar umarni ka gudanar da umarnin da ke ƙasa, sannan ka sake buɗe wannan manhaja. Buɗewa na gaba za su tsallake wannan mataki.`,
+    unsupportedDesc: platform =>
+      `Ba a samun shigarwa ta atomatik a buɗewar farko a kan ${platform} tukuna. Buɗe Tashar umarni ka gudanar da umarnin da ke ƙasa, sannan ka sake buɗe wannan manhaja. Buɗewa na gaba za su tsallake wannan mataki.`,
     installCommand: 'Umarnin shigarwa',
     copyCommand: 'Kwafi umarni',
     viewDocs: 'Duba takardun shigarwa',
@@ -1836,7 +1892,8 @@ Barin fanko don adana ${mode} tsoho.`,
     connectExistingShort: 'Haɗa da ake da shi',
     connectExistingDesc: 'Amfani da backend nesa da session token ko browser sign-in. Babu shigarwa na gida zai fara.',
     installLocalTitle: 'Shigar OpenAmer a gida',
-    installLocalDesc: 'Download OpenAmer, ƙirƙiri Python environment ɗinsa, da gudanar da backend a kan wannan kwamfuta.',
+    installLocalDesc:
+      'Download OpenAmer, ƙirƙiri Python environment ɗinsa, da gudanar da backend a kan wannan kwamfuta.',
     localStartUnavailable: 'Shigarwar gida ba ta iya farawa. Sake fara OpenAmer Desktop da sake ƙoƙari.',
     remoteSetupTitle: 'Haɗa zuwa OpenAmer da ake da shi',
     remoteSetupDesc: 'Shigar URL ɗinku na ƙofa. OpenAmer Desktop zai gano ko yana buƙatar token ko browser sign-in.',
@@ -1857,7 +1914,7 @@ Barin fanko don adana ${mode} tsoho.`,
     testSucceeded: (baseUrl, version) => `An haɗa zuwa ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `An kammala matakai ${completed} cikin ${total}`,
     currentStage: stage => ` -- yanzu: ${stage}`,
-    lines: count => `Layi ${count}${count === 1 ? '' : 's'}`,
+    lines: count => `Layi ${count}${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Bari mu saita ka da OpenAmer Agent',
@@ -1877,28 +1934,30 @@ Barin fanko don adana ${mode} tsoho.`,
     apiKeyOptions: {
       fireworks: {
         short: 'Direct model API',
-        description: 'Direct access zuwa models da Fireworks AI ke gida.',
+        description: 'Direct access zuwa models da Fireworks AI ke gida.'
       },
       openrouter: {
         short: 'maɓalli ɗaya, samfuri da yawa',
-        description: 'Yana ɗauke da samfuri dari da yawa a bayan maɓalli ɗaya. Kyakkyawan zaɓi na farko don sabbin shigarwa.',
+        description:
+          'Yana ɗauke da samfuri dari da yawa a bayan maɓalli ɗaya. Kyakkyawan zaɓi na farko don sabbin shigarwa.'
       },
       openai: {
         short: 'Samfuran kamar GPT',
-        description: 'Kai tsaye zuwa samfuran OpenAI.',
+        description: 'Kai tsaye zuwa samfuran OpenAI.'
       },
       gemini: {
         short: 'Samfuran Gemini',
-        description: 'Kai tsaye zuwa samfuran Google Gemini.',
+        description: 'Kai tsaye zuwa samfuran Google Gemini.'
       },
       xai: {
         short: 'Samfuran Grok',
-        description: 'Kai tsaye zuwa samfuran xAI Grok.',
+        description: 'Kai tsaye zuwa samfuran xAI Grok.'
       },
       local: {
         short: 'mai masaukin kai',
-        description: 'Nuna OpenAmer zuwa endpoint na gida ko mai masaukin kai da ya dace da OpenAI (vLLM, llama.cpp, Ollama, da sauransu).',
-      },
+        description:
+          'Nuna OpenAmer zuwa endpoint na gida ko mai masaukin kai da ya dace da OpenAI (vLLM, llama.cpp, Ollama, da sauransu).'
+      }
     },
     backToSignIn: 'Komawa shiga',
     getKey: 'Samu maɓalli',
@@ -1911,7 +1970,7 @@ Barin fanko don adana ${mode} tsoho.`,
     flowSubtitles: {
       pkce: 'Yana bude browser-inka don sanya hannu, sannan ya ci gaba a nan',
       device_code: 'Yana bude shafin tabbatarwa a cikin browser-inka — OpenAmer yana haɗawa da kansa',
-      external: 'Sanya hannu sau ɗaya a cikin terminal-anka, sannan dawo don yin tattaunawa',
+      external: 'Sanya hannu sau ɗaya a cikin terminal-anka, sannan dawo don yin tattaunawa'
     },
     startingSignIn: provider => `Ana fara shiga da ${provider}...`,
     verifyingCode: provider => `Ana tabbatar da lambarka da ${provider}...`,
@@ -1925,11 +1984,13 @@ Barin fanko don adana ${mode} tsoho.`,
     copyAuthCode: 'Kwafi lambar izini kuma mana ta a ƙasa.',
     pasteAuthCode: 'Mana lambar izini',
     reopenAuthPage: 'Sake bude shafin izini',
-    autoBrowser: provider => `Mun buɗe ${provider} a burauzarka. Ba OpenAmer izini a can, za a haɗa ka kai tsaye — ba sai ka kwafa ko liƙa komai ba.`,
+    autoBrowser: provider =>
+      `Mun buɗe ${provider} a burauzarka. Ba OpenAmer izini a can, za a haɗa ka kai tsaye — ba sai ka kwafa ko liƙa komai ba.`,
     reopenSignInPage: 'Sake bude shafin sanya hannu',
     waitingAuthorize: 'Ana jiran ka ba da izini...',
-    externalPending: provider => `${provider} yana shiga ta CLI nasa. Gudanar da wannan umarni a tashar umarni, sannan ka dawo ka zaɓi "Na shiga":`,
-    signedIn: "Na sanya hannu",
+    externalPending: provider =>
+      `${provider} yana shiga ta CLI nasa. Gudanar da wannan umarni a tashar umarni, sannan ka dawo ka zaɓi "Na shiga":`,
+    signedIn: 'Na sanya hannu',
     deviceCodeOpened: provider => `Mun buɗe ${provider} a burauzarka. Shigar da wannan lamba a can:`,
     reopenVerification: 'Sake bude shafin tabbatarwa',
     copy: 'Kwafa',
@@ -1940,7 +2001,7 @@ Barin fanko don adana ${mode} tsoho.`,
     price: (input, output) => `${input} shigarwa / ${output} fitarwa ga kowace miliyan ta token`,
     change: 'Sauya',
     startChatting: 'Fara',
-    docs: provider => `Takardu ${provider}`,
+    docs: provider => `Takardu ${provider}`
   },
   modelPicker: {
     unknown: '(Babu sani)',
@@ -1956,13 +2017,13 @@ Barin fanko don adana ${mode} tsoho.`,
     priceTitle: 'Kyakkyawan shigar da fitar da kowane miliyan token',
     wasPrice: 'ya kashe',
     title: 'Sauya samfurin',
-    current: 'na yanzu:',
+    current: 'na yanzu:'
   },
   modelVisibility: {
     title: 'Modelya',
     search: 'Nemo modelya',
     noAuthenticatedProviders: 'Babban masu samar da da aka tabbatar da su.',
-    addProvider: 'Ƙara masu samar da…',
+    addProvider: 'Ƙara masu samar da…'
   },
   shell: {
     windowControls: 'Sarrafa taga',
@@ -1973,7 +2034,7 @@ Barin fanko don adana ${mode} tsoho.`,
       noModels: 'Ansame babu modelya',
       editModels: 'Gyara modelya…',
       refreshModels: 'Sabunta modelya',
-      fast: 'Sauri',
+      fast: 'Sauri'
     },
     modelOptions: {
       noOptions: 'Wannan model bai zaɓi ba',
@@ -1989,7 +2050,7 @@ Barin fanko don adana ${mode} tsoho.`,
       max: 'Zafafi',
       ultra: 'Mafi girma',
       updateFailed: 'Sabuntar zaɓin model ya gaza',
-      fastFailed: 'Sabuntar saƙin sauri ya gaza',
+      fastFailed: 'Sabuntar saƙin sauri ya gaza'
     },
     gatewayMenu: {
       gateway: 'Rifa',
@@ -2004,7 +2065,7 @@ Barin fanko don adana ${mode} tsoho.`,
       connection: label => `Haɗi: ${label}`,
       recentActivity: 'Ayyukan baya-bayan nan',
       viewAllLogs: 'Duba duk rajistoci →',
-      messagingPlatforms: 'Dandalin saƙonni',
+      messagingPlatforms: 'Dandalin saƙonni'
     },
     approvalMode: {
       title: 'Yanayin amincewa',
@@ -2014,7 +2075,7 @@ Barin fanko don adana ${mode} tsoho.`,
       smart: 'Hankali',
       smartDescription: 'Kima ayyuka da kansa, tambayi lokacin da ake buƙata',
       off: 'Rufe',
-      offDescription: 'Aiwatar ba tare da neman izini ba',
+      offDescription: 'Aiwatar ba tare da neman izini ba'
     },
     statusbar: {
       unknown: 'Ba a sani ba',
@@ -2066,31 +2127,33 @@ Barin fanko don adana ${mode} tsoho.`,
           conversation: 'Tattaunawa',
           mcp: 'MCP',
           memory: 'Ƙwaƙwalwa',
-          rules: 'Ka\'idoji',
+          rules: "Ka'idoji",
           skills: 'Ƙwarewa',
-          subagent_definitions: 'Ma\'anoni na ƙananan wakilai',
+          subagent_definitions: "Ma'anoni na ƙananan wakilai",
           system_prompt: 'Prompt na tsarin',
-          tool_definitions: 'Ma\'anoni na kayan aiki',
+          tool_definitions: "Ma'anoni na kayan aiki"
         },
         empty: 'Har yanzu babu bayanan context',
         loading: 'Ana ɗaukar rarraba…',
         percentFull: percent => `${percent}% Ya cika`,
         title: 'Amfani da Context',
-        tokenSummary: (used, max) => `${used} / ${max} Alamomi`,
+        tokenSummary: (used, max) => `${used} / ${max} Alamomi`
       },
       openContextUsage: 'Bude rarraba amfani da context',
       session: 'Taron',
       runtimeSessionElapsed: 'Lokacin taron da ya wuce',
-      yoloOn: 'YOLO a kan — yana amincewa da umarni masu haɗari ta atomatik. Danna don rufe shi. Shift+click yana canzawa a duniya.',
-      yoloOff: 'YOLO ya rufe — danna don amincewa da umarni masu haɗari ta atomatik. Shift+click yana canzawa a duniya.',
+      yoloOn:
+        'YOLO a kan — yana amincewa da umarni masu haɗari ta atomatik. Danna don rufe shi. Shift+click yana canzawa a duniya.',
+      yoloOff:
+        'YOLO ya rufe — danna don amincewa da umarni masu haɗari ta atomatik. Shift+click yana canzawa a duniya.',
       modelNone: 'babu',
       noModel: 'babu samfurin',
       switchModel: 'Canza samfurin',
       openModelPicker: 'Bude mai zaɓin samfurin',
       modelPinned: 'an ɗaura shi ta kai; sababbin tattaunawa suna amfani da wannan maimakon default na Settings',
       modelTitle: (provider, model) => `Samfuri · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   statusStack: {
     dismiss: 'Rufe',
@@ -2110,8 +2173,10 @@ Barin fanko don adana ${mode} tsoho.`,
       viewAsList: 'Duba a jerjer',
       revert: 'Komawa',
       revertAll: 'Komawa duka',
-      revertConfirm: 'Janye canje-canjen wannan fayil ka kuma dawo da shi zuwa halin da aka tabbatar da shi? Ba za iya janye wannan.',
-      revertAllConfirm: 'Janye kowane canza ka kuma dawo da fayilozane zuwa halin da aka tabbatar da su? Ba za iya janye wannan.',
+      revertConfirm:
+        'Janye canje-canjen wannan fayil ka kuma dawo da shi zuwa halin da aka tabbatar da shi? Ba za iya janye wannan.',
+      revertAllConfirm:
+        'Janye kowane canza ka kuma dawo da fayilozane zuwa halin da aka tabbatar da su? Ba za iya janye wannan.',
       staged: 'An matƙe',
       noChanges: 'Babu canje-canje',
       notRepo: 'Ba mu kasar wasu ba',
@@ -2128,7 +2193,8 @@ Barin fanko don adana ${mode} tsoho.`,
       openPr: 'Buɗe PR',
       ghMissing: 'Sanya GitHub CLI (gh) ka kuma shiga don buɗe PR',
       agentShip: 'Nemi OpenAmer ya buɗe PR',
-      agentShipPrompt: 'Bita canje-canjen yanzu, tabbatar da su da saƙon conventional-commit mai bayani, tura reshen, ka buɗe pull request.',
+      agentShipPrompt:
+        'Bita canje-canjen yanzu, tabbatar da su da saƙon conventional-commit mai bayani, tura reshen, ka buɗe pull request.',
       newBranch: 'Sabu reshe',
       worktrees: 'Bangan aiki',
       changed: count => `An canza ${count}`,
@@ -2136,7 +2202,7 @@ Barin fanko don adana ${mode} tsoho.`,
       behind: count => `${count} a baya`,
       branchOffFrom: base => `Sabon reshe daga ${base}`,
       switchTo: branch => `Koma zuwa ${branch}`,
-      switchFailed: branch => `An kasa komawa zuwa ${branch}`,
+      switchFailed: branch => `An kasa komawa zuwa ${branch}`
     },
     agents: 'Wakilai',
     background: count => `${count} A bango`,
@@ -2144,7 +2210,7 @@ Barin fanko don adana ${mode} tsoho.`,
     todos: (done, total) => `Ayyuka ${done}/${total}`,
     running: 'Yana gudana',
     stop: 'Daina',
-    exit: code => `fita ${code}`,
+    exit: code => `fita ${code}`
   },
   updates: {
     stages: {
@@ -2159,35 +2225,39 @@ Barin fanko don adana ${mode} tsoho.`,
       done: 'Sabuntawa ya kammala',
       manual: 'Sabunta daga terminal-anka',
       guiSkew: 'Sabunta desktop app',
-      error: 'An dakatar da sabuntawa',
+      error: 'An dakatar da sabuntawa'
     },
     checking: 'Ana neman sabuntawa…',
     checkFailedTitle: 'An kasa duba sabuntawa',
     tryAgain: 'Sake ƙoƙari',
     notAvailableTitle: 'Babu sabuntawa',
-    unsupportedMessage: 'Wannan nau\'in OpenAmer bai iya sabunta kansa daga cikin app ba.',
+    unsupportedMessage: "Wannan nau'in OpenAmer bai iya sabunta kansa daga cikin app ba.",
     connectionRetry: 'Duba haɗinku ku sake ƙoƙari.',
-    latestBody: 'Kana tafiyar da sabon nau\'i.',
-    latestBodyBackend: 'Backend yana tafiyar da sabon nau\'i.',
+    latestBody: "Kana tafiyar da sabon nau'i.",
+    latestBodyBackend: "Backend yana tafiyar da sabon nau'i.",
     allSetTitle: 'An shirye ku',
     availableTitle: 'Sabuntawa sabo ya samu',
-    availableBody: 'Sabon nau\'in OpenAmer ya shirye don shigarwa.',
+    availableBody: "Sabon nau'in OpenAmer ya shirye don shigarwa.",
     availableTitleBackend: 'Sabuntawar backend ta samu',
-    availableBodyBackend: 'Sabon nau\'in backend na OpenAmer da ke haɗe ya shirye don shigarwa.',
-    availableBodyNoChangelog: 'Sabon nau\'i ya shirye. Bayanan saki ba su samuwa don wannan nau\'in shigarwa ba.',
+    availableBodyBackend: "Sabon nau'in backend na OpenAmer da ke haɗe ya shirye don shigarwa.",
+    availableBodyNoChangelog: "Sabon nau'i ya shirye. Bayanan saki ba su samuwa don wannan nau'in shigarwa ba.",
     updateNow: 'Sabunta yanzu',
     maybeLater: 'Wataƙila daga baya',
     moreChanges: count => `+ an haɗa ƙarin sauye-sauye ${count}${count === 1 ? '' : 's'}.`,
     manualTitle: 'Sabunta daga terminal ɗinku',
-    manualBody: 'Ka shigar da OpenAmer daga layin umurni, don haka sabuntawa yana aiki can ma. Aika wannan cikin terminal ɗinka:',
-    manualPickedUp: 'OpenAmer zai ɗauki sabon nau\'i a karon da ka sake ƙaddamar da shi.',
+    manualBody:
+      'Ka shigar da OpenAmer daga layin umurni, don haka sabuntawa yana aiki can ma. Aika wannan cikin terminal ɗinka:',
+    manualPickedUp: "OpenAmer zai ɗauki sabon nau'i a karon da ka sake ƙaddamar da shi.",
     guiSkewTitle: 'Sabunta app ɗin desktop',
-    guiSkewBody: 'An sabunta backend, amma wannan app ɗin desktop bai canza ba. Sabunta ko sake shigar da app ɗin desktop na OpenAmer (AppImage / .deb / .rpm ɗinka) don dacewa.',
+    guiSkewBody:
+      'An sabunta backend, amma wannan app ɗin desktop bai canza ba. Sabunta ko sake shigar da app ɗin desktop na OpenAmer (AppImage / .deb / .rpm ɗinka) don dacewa.',
     copy: 'Kwafi',
     copied: 'An kwafa',
     done: 'An gama',
-    applyingBody: 'Mai sabuntawa na OpenAmer yana karɓar iko a cikin tagarsa kuma yana sake buɗe OpenAmer da kansa lokacin da ya ƙare. Don Allah, kada ka sake buɗe OpenAmer kanka yayin da yake sabuntawa.',
-    applyingBodyBackend: 'Backend na nesa yana amfani da sabuntawa kuma zai sake farawa. OpenAmer yana sake haɗawa da kansa lokacin da ya dawo.',
+    applyingBody:
+      'Mai sabuntawa na OpenAmer yana karɓar iko a cikin tagarsa kuma yana sake buɗe OpenAmer da kansa lokacin da ya ƙare. Don Allah, kada ka sake buɗe OpenAmer kanka yayin da yake sabuntawa.',
+    applyingBodyBackend:
+      'Backend na nesa yana amfani da sabuntawa kuma zai sake farawa. OpenAmer yana sake haɗawa da kansa lokacin da ya dawo.',
     applyingClose: 'Wannan taga za ta rufe yayin da sabuntawa ke gudana, sannan OpenAmer yana sake buɗe da kansa.',
     errorTitle: 'Sabuntawa bai ƙare ba',
     errorBody: 'Babu damuwa — babu wani abu da ya ɓace. Kana iya sake yanzu.',
@@ -2198,18 +2268,20 @@ Barin fanko don adana ${mode} tsoho.`,
       restarting: 'Backend yana sake farawa don ɗaukar sabuntawa…',
       notAvailable: 'Sabuntawa ba ya samuwa don wannan backend.',
       failed: 'Sabuntawa na backend ya gaza.',
-      noReturn: 'Backend bai dawo kan layi ba. Sabuntawa wataƙila bai ƙare ba — duba mai masaukin backend.',
+      noReturn: 'Backend bai dawo kan layi ba. Sabuntawa wataƙila bai ƙare ba — duba mai masaukin backend.'
     },
     appErrors: {
-      updateLocked: 'An dakatar da sabuntawa: wata taga ta OpenAmer ko terminal da ke gudanar da openamer yana riƙe da wannan shigarwa. Rufa shi kuma sake gwaji.',
-      updateFailed: 'Sabuntawa bai ƙare ba. Babu damuwa — babu wani abu da ya ɓace. Kana iya sake yanzu.',
-    },
+      updateLocked:
+        'An dakatar da sabuntawa: wata taga ta OpenAmer ko terminal da ke gudanar da openamer yana riƙe da wannan shigarwa. Rufa shi kuma sake gwaji.',
+      updateFailed: 'Sabuntawa bai ƙare ba. Babu damuwa — babu wani abu da ya ɓace. Kana iya sake yanzu.'
+    }
   },
   preview: {
     editing: 'Gyara',
     unsavedChanges: 'Canza marar adana',
     diskChangedTitle: 'Fayil ya canza a diski',
-    diskChangedBody: 'Wannan fayil ya canza tun da ka buɗe shi. Kaƙoƙi shi da yadda kake, ko ka yi watsi da gyaran ka ka sake loading?',
+    diskChangedBody:
+      'Wannan fayil ya canza tun da ka buɗe shi. Kaƙoƙi shi da yadda kake, ko ka yi watsi da gyaran ka ka sake loading?',
     overwrite: 'Kaƙoƙi',
     discardReload: 'Watsi da ka sake loading',
     console: {
@@ -2230,7 +2302,7 @@ Barin fanko don adana ${mode} tsoho.`,
       sentTitle: 'An aika zuwa hannawa',
       messages: count => `Saƙonnin na'urar umarni ${count}`,
       selected: count => `An zaɓi ${count}`,
-      sentMessage: count => `An ƙara bayanan rajista ${count}${count === 1 ? 'y' : 'ies'} a filin rubutu`,
+      sentMessage: count => `An ƙara bayanan rajista ${count}${count === 1 ? 'y' : 'ies'} a filin rubutu`
     },
     web: {
       appFailedToBoot: 'Manzau app na hannawa bai iya tashi ba',
@@ -2251,7 +2323,8 @@ Barin fanko don adana ${mode} tsoho.`,
       reloadingNow: 'Ana sabunta hannawa yanzu.',
       restartFailedTitle: 'Sake tashi na hannawa ya gaza',
       restartFailedMessage: 'OpenAmer bai iya sake tashi da server ba.',
-      stillWorking: 'OpenAmer yana ci gaba da aiki, amma babu sakamako na sake tishi dawo ba tukuna. Umarnin server na iya yana aiki a gabar.',
+      stillWorking:
+        'OpenAmer yana ci gaba da aiki, amma babu sakamako na sake tishi dawo ba tukuna. Umarnin server na iya yana aiki a gabar.',
       lookingRestart: taskId => `OpenAmer yana neman sabar samfoti don sake kunnawa (${taskId})`,
       startRestartFailed: message => `An kasa fara sake kunna sabar: ${message}`,
       finishedRestarting: message => `OpenAmer ya gama sake kunna sabar samfoti${message ? `: ${message}` : ''}`,
@@ -2260,11 +2333,12 @@ Barin fanko don adana ${mode} tsoho.`,
       fileChanged: url => `Fayil ya canza, ana sake loda samfoti: ${url}`,
       filesChanged: (count, url) => `Fayil ${count} ya canza, ana sake loda samfoti: ${url}`,
       watchFailed: message => `Ba a iya kallon fayil ɗin preview: ${message}`,
-      moduleMimeDescription: 'Ana ba da module scripts da nau\'in MIME mara daidai. Wannan yawanci yana nufin cewa static file server yana ba da Vite/React app maimakon project dev server.',
+      moduleMimeDescription:
+        "Ana ba da module scripts da nau'in MIME mara daidai. Wannan yawanci yana nufin cewa static file server yana ba da Vite/React app maimakon project dev server.",
       loadFailedConsole: (code, message) => `Loda bai yi nasara ba${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Ba a iya isa shafin preview ba.',
       openTarget: url => `Buɗe ${url}`,
-      fallbackTitle: 'Kallin',
+      fallbackTitle: 'Kallin'
     },
     tab: 'Kalli',
     closeTab: label => `Rufe ${label}`,
@@ -2293,7 +2367,7 @@ Barin fanko don adana ${mode} tsoho.`,
     noInlineTitle: 'Babu inline preview',
     noInlineBody: mimeType => `Har yanzu ana iya haɗa ${mimeType || 'This file type'} a matsayin mahalli.`,
     edit: 'Gyara',
-    saveFailed: message => `An kasa adanawa: ${message}`,
+    saveFailed: message => `An kasa adanawa: ${message}`
   },
   assistant: {
     clarify: {
@@ -2302,13 +2376,14 @@ Barin fanko don adana ${mode} tsoho.`,
       skipped: 'An watsi',
       continueLabel: 'Ci gaba',
       lateAnswerTip: 'Ƙirƙiri wannan amsa a matsayin saƙo mai biyo',
-      lateAnswerHint: 'Wannan fa\'akar ba ta jiran ba da yi. Zaɓi wani zaɓi don ƙirƙirƙirƙirƙi shi a matsayin saƙo mai biyo.',
+      lateAnswerHint:
+        "Wannan fa'akar ba ta jiran ba da yi. Zaɓi wani zaɓi don ƙirƙirƙirƙirƙi shi a matsayin saƙo mai biyo.",
       notReady: 'Buƙatar ƙarin bayani ba ta shirye ba har yanzu',
       gatewayDisconnected: 'Gateway na OpenAmer ba a haɗa shi ba',
       sendFailed: 'Bai iya aika amsar ƙarin bayani ba',
       loadingQuestion: 'Ana ɗora tambaya…',
       other: 'Sauran (rubuta amsarka)',
-      lateAnswer: (question, choice) => `Re: "${question}" — amsata: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — amsata: ${choice}`
     },
     tool: {
       code: 'Koodi',
@@ -2342,123 +2417,123 @@ Barin fanko don adana ${mode} tsoho.`,
         ran: 'An gudanar',
         running: 'Ana guduwa',
         ranCode: 'An gudanar koodi',
-        runningCode: 'Ana rubutun koodi',
+        runningCode: 'Ana rubutun koodi'
       },
       prefixes: {
         browser: 'Mai bude shafi',
-        web: 'Yanayin intanet',
+        web: 'Yanayin intanet'
       },
       titles: {
         browser_click: {
           done: 'An danna abin da ke shafi',
           pending: 'Ana matsa abun shafi',
-          pendingAction: 'Ana matsa',
+          pendingAction: 'Ana matsa'
         },
         browser_fill: {
           done: 'An cika filin fom',
           pending: 'Ana cika filin fom',
-          pendingAction: 'Ana cika',
+          pendingAction: 'Ana cika'
         },
         browser_navigate: {
           done: 'An bude shafi',
           pending: 'Ana buɗe shafi',
-          pendingAction: 'Ana buɗe',
+          pendingAction: 'Ana buɗe'
         },
         browser_snapshot: {
           done: 'An kama hoton shafi',
           pending: 'Ana kama hoton shafi',
-          pendingAction: 'Ana kama',
+          pendingAction: 'Ana kama'
         },
         browser_take_screenshot: {
           done: 'An kama hoton allo',
           pending: 'Ana kama hoton allo',
-          pendingAction: 'Ana kama',
+          pendingAction: 'Ana kama'
         },
         browser_type: {
           done: 'An rubuta a shafi',
           pending: 'Ana rubuta a shafi',
-          pendingAction: 'Ana rubuta',
+          pendingAction: 'Ana rubuta'
         },
         clarify: {
           done: 'An yi tambaya',
           pending: 'Ana yin tambaya',
-          pendingAction: 'Ana tambayi',
+          pendingAction: 'Ana tambayi'
         },
         cronjob: {
           done: 'Aikin cron',
           pending: 'Ana tsara aikin cron',
-          pendingAction: 'Ana tsara',
+          pendingAction: 'Ana tsara'
         },
         edit_file: {
           done: 'An gyara fayil',
           pending: 'Ana gyara fayil',
-          pendingAction: 'Ana gyara',
+          pendingAction: 'Ana gyara'
         },
         execute_code: {
           done: 'An gudanar da code',
           pending: 'Ana yin script',
-          pendingAction: 'Ana yin script',
+          pendingAction: 'Ana yin script'
         },
         image_generate: {
           done: 'An samar da hoto',
           pending: 'Ana samar da hoto',
-          pendingAction: 'Ana samar',
+          pendingAction: 'Ana samar'
         },
         list_files: {
           done: 'An jera fayiloli',
           pending: 'Ana jera fayiloli',
-          pendingAction: 'Ana jera',
+          pendingAction: 'Ana jera'
         },
         patch: {
           done: 'Fayilin da aka gyara',
           pending: 'Ana gyara fayil',
-          pendingAction: 'Ana gyara',
+          pendingAction: 'Ana gyara'
         },
         read_file: {
           done: 'Fayilin da aka karanta',
           pending: 'Ana karanta fayil',
-          pendingAction: 'Ana karanta',
+          pendingAction: 'Ana karanta'
         },
         search_files: {
           done: 'Fayilolin da aka bincika',
           pending: 'Ana bincika fayiloli',
-          pendingAction: 'Ana bincika',
+          pendingAction: 'Ana bincika'
         },
         session_search_recall: {
           done: 'Tarihin zaman da aka bincika',
           pending: 'Ana bincika tarihin zaman',
-          pendingAction: 'Ana bincika',
+          pendingAction: 'Ana bincika'
         },
         terminal: {
           done: 'Umarnin da aka gudanar',
           pending: 'Ana gudanar da umarni',
-          pendingAction: 'Ana gudana',
+          pendingAction: 'Ana gudana'
         },
         todo: {
           done: 'Ayyukan da aka sabunta',
           pending: 'Ana sabunta ayyuka',
-          pendingAction: 'Ana sabunta',
+          pendingAction: 'Ana sabunta'
         },
         vision_analyze: {
           done: 'An yi nazarin hoto',
           pending: 'Ana yin nazarin hoto',
-          pendingAction: 'Ana yin nazari',
+          pendingAction: 'Ana yin nazari'
         },
         web_extract: {
           done: 'An karanta shafin yanar gizo',
           pending: 'Ana karanta shafin yanar gizo',
-          pendingAction: 'Ana karanta',
+          pendingAction: 'Ana karanta'
         },
         web_search: {
           done: 'An bincika yanar gizo',
           pending: 'Ana bincika yanar gizo',
-          pendingAction: 'Ana bincika',
+          pendingAction: 'Ana bincika'
         },
         write_file: {
           done: 'An gyara fayil',
           pending: 'Ana gyara fayil',
-          pendingAction: 'Ana gyara',
-        },
+          pendingAction: 'Ana gyara'
+        }
       },
       recoveredMany: count => `An farfado bayan matakai ${count} da suka gaza`,
       failedMany: count => `Matakai ${count} sun gaza`,
@@ -2468,8 +2543,8 @@ Barin fanko don adana ${mode} tsoho.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ana gudanar da ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ana gudanar da ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Ana gudanar da ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Ana ɗora zaman',
@@ -2504,7 +2579,7 @@ Barin fanko don adana ${mode} tsoho.`,
       restoreNext: 'Dawo da matsayi na gaba',
       goForward: 'Ci gaba',
       sendEdited: 'Aika sakon da aka gyara',
-      attachingFile: 'Ana haɗawa…',
+      attachingFile: 'Ana haɗawa…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway ba a haɗa shi ba',
@@ -2517,12 +2592,14 @@ Barin fanko don adana ${mode} tsoho.`,
       jumpToApproval: 'Ana buƙatar amincewa',
       reject: 'Ki',
       alwaysTitle: 'Koyi ba da izini ga wannan umarni?',
-      alwaysDescription: pattern => `Wannan yana ƙara samfurin “${pattern}” zuwa jerin izininka na dindindin (~/.openamer/config.yaml). OpenAmer ba zai sake tambaya ba game da waɗannan umarnin — a wannan zamanin ko nan gaba.`,
-      alwaysAllow: 'Koyi ba da izini',
-    },
+      alwaysDescription: pattern =>
+        `Wannan yana ƙara samfurin “${pattern}” zuwa jerin izininka na dindindin (~/.openamer/config.yaml). OpenAmer ba zai sake tambaya ba game da waɗannan umarnin — a wannan zamanin ko nan gaba.`,
+      alwaysAllow: 'Koyi ba da izini'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering yana aiki — an gano remote display (${reason}). An kashe GPU acceleration don hana flickering.`,
+    message: reason =>
+      `Software rendering yana aiki — an gano remote display (${reason}). An kashe GPU acceleration don hana flickering.`
   },
   agents: {
     close: 'Rufe wakilai',
@@ -2552,7 +2629,7 @@ Barin fanko don adana ${mode} tsoho.`,
     ageDays: days => `kwanaki ${days} da suka wuce`,
     durationSeconds: seconds => `daƙiƙa ${seconds}`,
     durationMinutes: (minutes, seconds) => `minti ${minutes} da daƙiƙa ${seconds}`,
-    tokens: value => `alamomi ${value}`,
+    tokens: value => `alamomi ${value}`
   },
   messaging: {
     search: 'Nemo sako...',
@@ -2567,7 +2644,7 @@ Barin fanko don adana ${mode} tsoho.`,
       not_configured: 'Yana buƙatar saiti',
       pending_restart: 'Ana buƙatar sake farawa',
       retrying: 'Ana sake ƙoƙari',
-      startup_failed: 'Fara ya gaza',
+      startup_failed: 'Fara ya gaza'
     },
     unknown: 'Bai sani ba',
     hintPendingRestart: 'Sake fara gateway daga layin matsayi don aiwatar da wannan canji.',
@@ -2580,7 +2657,8 @@ Barin fanko don adana ${mode} tsoho.`,
     required: 'Ana buƙata',
     recommended: 'An ba da shawara',
     advanced: count => `Na ci gaba (${count})`,
-    noTokenNeeded: 'Wannan dandali ba ya buƙatar lambar shiga a nan. Bi jagorar saitawa da ke sama, sannan ka kunna shi a ƙasa.',
+    noTokenNeeded:
+      'Wannan dandali ba ya buƙatar lambar shiga a nan. Bi jagorar saitawa da ke sama, sannan ka kunna shi a ƙasa.',
     enabled: 'An kunna',
     disabled: 'An kashe',
     unsavedChanges: 'Canje-canjen da ba a adana ba',
@@ -2606,127 +2684,126 @@ Barin fanko don adana ${mode} tsoho.`,
       TELEGRAM_BOT_TOKEN: {
         label: 'Lambar sirrin bot',
         help: 'Ƙirƙiri bot da @BotFather, sannan liƙa lambar sirrin da ya ba ka.',
-        placeholder: 'Liƙa lambar sirrin bot na Telegram',
+        placeholder: 'Liƙa lambar sirrin bot na Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'ID na masu amfani da Telegram da aka yarda da su',
-        help: 'An ba da shawara. ID na lambobi daga @userinfobot, a raba su da waƙafi. Idan babu wannan, kowa zai iya aika wa bot ɗinka saƙon kai tsaye.',
+        help: 'An ba da shawara. ID na lambobi daga @userinfobot, a raba su da waƙafi. Idan babu wannan, kowa zai iya aika wa bot ɗinka saƙon kai tsaye.'
       },
       TELEGRAM_PROXY: {
         label: 'URL na wakili',
-        help: 'Ana buƙata ne kawai a hanyoyin sadarwar da aka toshe Telegram.',
+        help: 'Ana buƙata ne kawai a hanyoyin sadarwar da aka toshe Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Lambar sirrin bot',
-        help: 'Ƙirƙiri manhaja a Dandalin Masu Haɓakawa na Discord, ƙara bot, sannan liƙa lambar sirrinsa.',
+        help: 'Ƙirƙiri manhaja a Dandalin Masu Haɓakawa na Discord, ƙara bot, sannan liƙa lambar sirrinsa.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'ID na masu amfani da Discord da aka yarda da su',
-        help: 'An ba da shawara. ID na masu amfani da Discord, a raba su da waƙafi.',
+        help: 'An ba da shawara. ID na masu amfani da Discord, a raba su da waƙafi.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Salon amsa',
-        help: 'na farko, duka, ko kashe.',
+        help: 'na farko, duka, ko kashe.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Bada izinin duk masu amfani da Discord',
-        help: 'Kawai ci gaba ne. Idan gaskiya, kowa zai iya aika DM zuwa bot ba tare da jerin izini ba.',
+        help: 'Kawai ci gaba ne. Idan gaskiya, kowa zai iya aika DM zuwa bot ba tare da jerin izini ba.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID na tashar gida',
-        help: 'Tashar da bot ke aika saƙonnin proactive (fitar da cron, tunatarwa).',
+        help: 'Tashar da bot ke aika saƙonnin proactive (fitar da cron, tunatarwa).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Sunan tashar gida',
-        help: 'Sunan da za a nuna don tashar gida a cikin log da fitar da matsayin.',
+        help: 'Sunan da za a nuna don tashar gida a cikin log da fitar da matsayin.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Bada izinin duk masu amfani da iMessage',
-        help: 'Idan gaskiya, wuce jerin izinin BlueBubbles.',
+        help: 'Idan gaskiya, wuce jerin izinin BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Bada izinin duk masu amfani da Mattermost',
+        label: 'Bada izinin duk masu amfani da Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Tashar gida',
+        label: 'Tashar gida'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Bada izinin duk masu amfani da QQ',
+        label: 'Bada izinin duk masu amfani da QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Tashar gida na QQ',
-        help: 'Channel ko ƙungiya ta default don isar da cron.',
+        help: 'Channel ko ƙungiya ta default don isar da cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Sunan channel na QQ home',
+        label: 'Sunan channel na QQ home'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token na bot na Slack',
         help: 'Yi amfani da bot token daga OAuth & Permissions bayan an shigar da Slack app ɗinka.',
-        placeholder: 'Aɗa Slack bot token',
+        placeholder: 'Aɗa Slack bot token'
       },
       SLACK_APP_TOKEN: {
         label: 'Token na app na Slack',
         help: 'Yi amfani da app-level token da ake buƙata don Socket Mode.',
-        placeholder: 'Aɗa Slack app token',
+        placeholder: 'Aɗa Slack app token'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack user IDs da aka yarda',
-        help: 'An ba da shawara. Slack user IDs da ke rabe da comma.',
+        help: 'An ba da shawara. Slack user IDs da ke rabe da comma.'
       },
       MATTERMOST_URL: {
         label: 'URL na sabar',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token na bot',
+        label: 'Token na bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'User IDs da aka yarda',
-        help: 'An ba da shawara. Mattermost user IDs da ke rabe da comma.',
+        help: 'An ba da shawara. Mattermost user IDs da ke rabe da comma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL na homeserver',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token na shiga',
+        label: 'Token na shiga'
       },
       MATRIX_USER_ID: {
         label: 'ID na mai amfani bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix user IDs da aka yarda',
-        help: 'An ba da shawara. User IDs da ke rabe da comma a cikin @user:server format.',
+        help: 'An ba da shawara. User IDs da ke rabe da comma a cikin @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL na gada na Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL na signal-cli REST bridge da ke aiki.',
+        help: 'URL na signal-cli REST bridge da ke aiki.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Lambar waya',
-        help: 'Lambar da aka yi rajista da ita a signal-cli bridge na.',
+        help: 'Lambar da aka yi rajista da ita a signal-cli bridge na.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Masu amfani da Signal da aka ba da izini',
-        help: 'An ba da shawara. Masu gano Signal da aka raba da comma.',
+        help: 'An ba da shawara. Masu gano Signal da aka raba da comma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Bada WhatsApp bridge izini',
-        help: 'Ana saita shi da kansa ta toggle a ƙasa. Bari shi sai dai idan kana sanin cewa kana buƙatar shi.',
+        help: 'Ana saita shi da kansa ta toggle a ƙasa. Bari shi sai dai idan kana sanin cewa kana buƙatar shi.'
       },
       WHATSAPP_MODE: {
-        label: 'Salon bridge',
+        label: 'Salon bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Masu amfani da WhatsApp da aka ba da izini',
-        help: 'An ba da shawara. Lambobin waya ko IDs na WhatsApp da aka raba da comma.',
-      },
+        help: 'An ba da shawara. Lambobin waya ko IDs na WhatsApp da aka raba da comma.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Nemo webhooks...',
@@ -2736,7 +2813,8 @@ Barin fanko don adana ${mode} tsoho.`,
     hint: 'Canje-canjen rajista suna sake ɗora nan take lokacin da receiver ya fara aiki. Rajista da aka hana suna ƙi abubuwan da ke zuwa.',
     empty: 'Babu rajistar webhooks har yanzu.',
     disabledTitle: 'An hana receiver na webhooks',
-    disabledBody: 'Webhooks suna da dandamali na gateway na kansu. Bada su izini a nan don karɓar abubuwan HTTP da ke zuwa; tashoshin tattaunawa kawai ake buƙata lokacin da rajista yana isar da Telegram, Discord, Slack, ko wata tasha.',
+    disabledBody:
+      'Webhooks suna da dandamali na gateway na kansu. Bada su izini a nan don karɓar abubuwan HTTP da ke zuwa; tashoshin tattaunawa kawai ake buƙata lokacin da rajista yana isar da Telegram, Discord, Slack, ko wata tasha.',
     enable: 'Bada webhooks izini',
     enabling: 'Ana ba da izini...',
     enabled: (name: string) => `An kunna: "${name}"`,
@@ -2753,7 +2831,8 @@ Barin fanko don adana ${mode} tsoho.`,
     toggleFailed: (name: string) => `Ba a iya sabunta "${name}" ba`,
     newSubscription: 'Sabon saka hannu',
     restarting: 'Ana sake fara gateway...',
-    restartNeeded: 'An kunna webhooks, amma gateway har yanzu yana buƙatar sake farawa kafin mai karba ya shiga kan layi.',
+    restartNeeded:
+      'An kunna webhooks, amma gateway har yanzu yana buƙatar sake farawa kafin mai karba ya shiga kan layi.',
     restartGateway: 'Sake fara gateway',
     restartingGateway: 'Ana sake farawa...',
     restartFailed: (detail: string) => `Gwaji sake farawa na gateway ya kasa${detail}`,
@@ -2789,8 +2868,8 @@ Barin fanko don adana ${mode} tsoho.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Imel',
-      github_comment: 'Sharhin GitHub',
-    },
+      github_comment: 'Sharhin GitHub'
+    }
   },
   rightSidebar: {
     aria: 'Sidebar na dama',
@@ -2826,7 +2905,7 @@ Barin fanko don adana ${mode} tsoho.`,
     terminalNew: 'Sabon terminal',
     terminalCloseOthers: 'Rufe wasu',
     terminalCloseAll: 'Rufe duka',
-    addToChat: 'Ƙara zuwa chat',
+    addToChat: 'Ƙara zuwa chat'
   },
   zones: {
     showHeader: 'Nuna header',
@@ -2834,7 +2913,8 @@ Barin fanko don adana ${mode} tsoho.`,
     minimize: 'Ƙananta',
     restore: 'Dawo',
     closeRunningTitle: 'Rufe tab ɗin da ke aiki?',
-    closeRunningBody: 'Wannan chat yana aiki har yanzu (ko yana jiran shigar ka). Rufe tab ɗin yana ɓoye shi — session tana riƙe da ci gaban ta kuma ana iya sake buɗe ta daga sidebar.',
+    closeRunningBody:
+      'Wannan chat yana aiki har yanzu (ko yana jiran shigar ka). Rufe tab ɗin yana ɓoye shi — session tana riƙe da ci gaban ta kuma ana iya sake buɗe ta daga sidebar.',
     closeRunningConfirm: 'Rufe tab',
     closeOthers: 'Rufe wasu',
     closeToRight: 'Rufe waɗanda a dama',
@@ -2870,19 +2950,21 @@ Barin fanko don adana ${mode} tsoho.`,
     customZoneName: count => `Na zamani ${count}-zon`,
     layoutNamePlaceholder: fallback => `Sunan Layout (${fallback})`,
     saveApply: 'Ajiye & Aikace',
-    notExpressible: 'Wannan tsari yana haɗuwa (pinwheel) — ba za a iya bayyana shi a matsayin rabuwa na ciki ba har yanzu',
-    zoneCount: count => `yankuna ${count}`,
+    notExpressible:
+      'Wannan tsari yana haɗuwa (pinwheel) — ba za a iya bayyana shi a matsayin rabuwa na ciki ba har yanzu',
+    zoneCount: count => `yankuna ${count}`
   },
   prompts: {
     gatewayDisconnected: 'Ƙofar OpenAmer ba a haɗa ta ba',
     sudoSendFailed: 'An kasa aika kalmar sudo',
     secretSendFailed: 'An kasa aika asirin',
     sudoTitle: 'Kalmar sirrin mai gudanarwa',
-    sudoDesc: 'OpenAmer yana buƙatar kalmar sirrin sudo don gudanar da umurni mai daraja. Ana aika shi kawai ga wakilin ku na gida.',
+    sudoDesc:
+      'OpenAmer yana buƙatar kalmar sirrin sudo don gudanar da umurni mai daraja. Ana aika shi kawai ga wakilin ku na gida.',
     sudoPlaceholder: 'kalmar sudo',
     secretTitle: 'Ana buƙatar asiri',
     secretDesc: 'OpenAmer yana buƙatar takardar shaidar don ci gaba.',
-    secretPlaceholder: 'darajar sirri',
+    secretPlaceholder: 'darajar sirri'
   },
   desktop: {
     audioReadFailed: 'Ba a iya karanta sautin da aka ɗauka ba',
@@ -2899,7 +2981,8 @@ Barin fanko don adana ${mode} tsoho.`,
     yoloSystem: active => `YOLO ${active ? 'kunna' : 'kashe'} don wannan zamanin`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Ba a iya canza yanayin YOLO ba',
-    profileStatus: current => `Profile: ${current}. Yi amfani da /profile <suna> ko zaɓin "Sabuwar zama" don fara hira a wani profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Yi amfani da /profile <suna> ko zaɓin "Sabuwar zama" don fara hira a wani profile.`,
     unknownProfile: 'Ba a san profile ɗin ba',
     noProfileNamed: (target, available) => `Babu profile mai suna "${target}". Masu samuwa: ${available}`,
     newChatsProfile: name => `Sabbin hirari za su yi amfani da profile ${name}.`,
@@ -2909,8 +2992,9 @@ Barin fanko don adana ${mode} tsoho.`,
     regenerateFailed: 'Sake samarwa ya gaza',
     editFailed: 'Gyara ya gaza',
     resumeFailed: 'Ci gaba ya gaza',
-    resumeStrandedTitle: "Ba a iya loda wannan zamanin ba",
-    resumeStrandedBody: 'Haɗin wannan zamanin ya gaza kuma ƙoƙarin sake gwadawa ya tsaya. Tabbatar cewa gateway ɗin yana aiki, sannan sake gwadawa.',
+    resumeStrandedTitle: 'Ba a iya loda wannan zamanin ba',
+    resumeStrandedBody:
+      'Haɗin wannan zamanin ya gaza kuma ƙoƙarin sake gwadawa ya tsaya. Tabbatar cewa gateway ɗin yana aiki, sannan sake gwadawa.',
     resumeRetry: 'Sake gwaji',
     nothingToBranch: 'Babu abin raba reshe',
     branchNeedsChat: 'Fara ko ci gaba da tattaunawa kafin raba reshe.',
@@ -2950,31 +3034,31 @@ Barin fanko don adana ${mode} tsoho.`,
       success: platform => `An mika wa ${platform}. Ci gaba a nan a kowane lokaci.`,
       systemNote: platform => `↻ An mika wa ${platform} — ci gaba a nan a kowane lokaci.`,
       failed: error => `Mika wa ya gaza: ${error}`,
-      timedOut: 'Lokaci ya ƙare yayin jiran gateway. Shin `openamer gateway` yana aiki?',
-    },
+      timedOut: 'Lokaci ya ƙare yayin jiran gateway. Shin `openamer gateway` yana aiki?'
+    }
   },
   errors: {
     genericFailure: 'Wani abu ya tafi kuskure',
     boundaryTitle: 'Wani abu ya karya a interface',
     boundaryDesc: 'Kallon ya sami kuskure da ba a tsammani. Tattaunawarku da saittun suna aminci.',
     reloadWindow: 'Sake karatun taga',
-    openLogs: 'Bude logs',
+    openLogs: 'Bude logs'
   },
   ui: {
     search: {
-      clear: 'Share bincike',
+      clear: 'Share bincike'
     },
     pagination: {
       label: 'Shafuka',
       previous: 'Baya',
       previousAria: 'Je shafin da ya gabata',
       next: 'Na gaba',
-      nextAria: 'Je shafin na gaba',
+      nextAria: 'Je shafin na gaba'
     },
     sidebar: {
       title: 'Kayan gefen',
       description: 'Yana nuna kayan gefen wayar hannu',
-      toggle: 'Canza kayan gefen',
-    },
-  },
+      toggle: 'Canza kayan gefen'
+    }
+  }
 })

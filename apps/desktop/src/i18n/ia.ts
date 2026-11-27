@@ -45,7 +45,7 @@ export const ia = defineLocale({
     on: 'Active',
     off: 'Inactive',
     error: 'Error',
-    tryHint: term => `Prova “${term}”`,
+    tryHint: term => `Prova “${term}”`
   },
   fileMenu: {
     revealFinder: 'Revelar in Finder',
@@ -60,7 +60,7 @@ export const ia = defineLocale({
     renameLabel: 'Nove nomine',
     deleteBody: 'Isto essera movite al corbe — vos pote restaurar lo desde illac.',
     pathCopied: 'Cammino copiate',
-    deleteTitle: name => `Eliminare ${name}?`,
+    deleteTitle: name => `Eliminare ${name}?`
   },
   notifications: {
     voice: {
@@ -80,7 +80,7 @@ export const ia = defineLocale({
       noSpeechDetected: 'Nulle parola detegite',
       playbackFailed: 'Reproduction vocal fallite',
       recordingFailed: 'Enregistramento vocal fallite',
-      transcriptionFailed: 'Transcription vocal fallite',
+      transcriptionFailed: 'Transcription vocal fallite'
     },
     native: {
       approvalTitle: 'Approbation necessari',
@@ -93,7 +93,7 @@ export const ia = defineLocale({
       turnErrorTitle: 'Le turno ha fallite',
       backgroundDoneTitle: 'Tarea de fundo finite',
       backgroundFailedTitle: 'Tarea de fundo fallite',
-      creditsTitle: 'Creditos',
+      creditsTitle: 'Creditos'
     },
     region: 'Notificationes',
     hide: 'Celar',
@@ -104,7 +104,8 @@ export const ia = defineLocale({
     copyDetail: 'Copiar detalio',
     copyDetailFailed: 'Non poteva copiar detalio del notification',
     backendOutOfDateTitle: 'Backend non actual',
-    backendOutOfDateMessage: 'Tu backend OpenAmer es plus vetule que iste version desktop e pote non functionar correctemente. Actualisa pro alinear los.',
+    backendOutOfDateMessage:
+      'Tu backend OpenAmer es plus vetule que iste version desktop e pote non functionar correctemente. Actualisa pro alinear los.',
     installMethodUnsupportedTitle: 'Methodo de installation non supportate',
     updateOpenAmer: 'Actualisar OpenAmer',
     updateReadyTitle: 'Actualisation preste',
@@ -113,14 +114,15 @@ export const ia = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT necessita ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs rejectava le clave API (401).',
       gatewayAuthFailed: 'Authentication del gateway fallite — verifica tu API_SERVER_KEY.',
-      methodNotAllowed: 'Le backend desktop rejectava iste requesta (405 Method Not Allowed). Prova reinitiar OpenAmer Desktop.',
+      methodNotAllowed:
+        'Le backend desktop rejectava iste requesta (405 Method Not Allowed). Prova reinitiar OpenAmer Desktop.',
       microphonePermission: 'Permission de microphono denegate.',
       openaiRejectedApiKey: 'OpenAI rejectava le clave API.',
       openaiTtsNeedsKey: 'OpenAI TTS necessita VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI ha rifiutato la chiave API (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI ha rifiutato la chiave API (${status} invalid_api_key).`
     },
     more: count => `${count} altere ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} nove modification${count === 1 ? '' : 's'} disponibile.`,
+    updateReadyMessage: count => `${count} nove modification${count === 1 ? '' : 's'} disponibile.`
   },
   billingBlock: {
     titleOpenamer: 'Sin creditos OpenAmer',
@@ -128,7 +130,7 @@ export const ia = defineLocale({
     openBilling: 'Aperir facturation',
     addCredits: 'Adder creditos',
     dismiss: 'Dimitter',
-    titleProvider: provider => `Crediti esauriti — ${provider}`,
+    titleProvider: provider => `Crediti esauriti — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Celar barra lateral',
@@ -145,7 +147,7 @@ export const ia = defineLocale({
     openStarmap: 'Aperir grapho de memoria',
     openKeybinds: 'Comandos de clavier',
     layoutEditor: 'Editor de disposition',
-    layoutEditorTitle: 'Editor de disposition — clic con ⌘ resetta le disposition',
+    layoutEditorTitle: 'Editor de disposition — clic con ⌘ resetta le disposition'
   },
   keybinds: {
     title: 'Comandos de clavier',
@@ -160,7 +162,7 @@ export const ia = defineLocale({
       profiles: 'Profilos',
       view: 'Vista',
       session: 'Session',
-      navigation: 'Navigation',
+      navigation: 'Navigation'
     },
     actions: {
       'keybinds.openPanel': 'Aperir accessos de claviero',
@@ -239,10 +241,10 @@ export const ia = defineLocale({
       'composer.slash': 'Palette de commandos a barra oblique',
       'composer.help': 'Rapide adjuta',
       'composer.history': 'Cyclo popover / historia',
-      'composer.cancel': 'Cluder popover · cancelar execution',
+      'composer.cancel': 'Cluder popover · cancelar execution'
     },
     subtitle: open => `Clicca su una scorciatoia per riassegnarla · ${open} riapre questo pannello.`,
-    conflictWith: label => `Assegnato anche a “${label}”`,
+    conflictWith: label => `Assegnato anche a “${label}”`
   },
   boot: {
     ready: 'OpenAmer Desktop es preste',
@@ -251,7 +253,7 @@ export const ia = defineLocale({
       loadingSettings: 'Cargante configurationes de OpenAmer',
       loadingSessions: 'Cargante sessiones recente',
       startingDesktopConnection: 'Iniciante connexion al desktop',
-      startingOpenAmerDesktop: 'Iniciante OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Iniciante OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Le processo de fundo de OpenAmer ha finite.',
@@ -260,13 +262,15 @@ export const ia = defineLocale({
       desktopBootFailed: 'Le initio del desktop ha fallite',
       gatewayConnectionLost: 'Perdite de connexion al portal',
       gatewaySignInRequired: 'Authentication al portal requirite',
-      ipcBridgeUnavailable: 'Le ponte IPC del desktop non es disponibile.',
+      ipcBridgeUnavailable: 'Le ponte IPC del desktop non es disponibile.'
     },
     failure: {
       title: 'OpenAmer non poteva initiar',
-      description: 'Le portal de fundo non se ha initiate. Proba un del passos de recuperation ci infra. Nihil ci dele tu conversationes o configurationes.',
+      description:
+        'Le portal de fundo non se ha initiate. Proba un del passos de recuperation ci infra. Nihil ci dele tu conversationes o configurationes.',
       remoteTitle: 'Authentication al portal remote requirite',
-      remoteDescription: 'Tu session del portal remote ha expirate. Authentica te de novo pro reconnecter. Nihil ci dele tu conversationes o configurationes.',
+      remoteDescription:
+        'Tu session del portal remote ha expirate. Authentica te de novo pro reconnecter. Nihil ci dele tu conversationes o configurationes.',
       retry: 'Retentar',
       repairInstall: 'Reparar installation',
       useLocalGateway: 'Usar portal local',
@@ -275,7 +279,8 @@ export const ia = defineLocale({
       openLogs: 'Aperir registros',
       repairHint: 'Reparar re-executa le installator e pote prender alicun minutas sur un machina nove.',
       signOutAndSignIn: 'Clauder session & aperir session',
-      remoteFailureHint: 'Verifica le URL del portal e le authentication sub Configurationes del portal, o cambia al portal local.',
+      remoteFailureHint:
+        'Verifica le URL del portal e le authentication sub Configurationes del portal, o cambia al portal local.',
       hideRecentLogs: 'Celar registros recente',
       showRecentLogs: 'Monstrar registros recente',
       signedInTitle: 'Session aperte',
@@ -285,10 +290,11 @@ export const ia = defineLocale({
       signInFailed: 'Session fallite',
       signInToRemoteGateway: 'Aperir session al gateway remote',
       identityProvider: 'tu fornitor de identitate',
-      remoteSignInHint: signInLabel => `Disconnette la sessione del browser remoto salvata, quindi apre ${signInLabel}. Usa il gateway locale per passare al backend integrato.`,
-      signInWithProvider: provider => `Accedi con ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Disconnette la sessione del browser remoto salvata, quindi apre ${signInLabel}. Usa il gateway locale per passare al backend integrato.`,
+      signInWithProvider: provider => `Accedi con ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Avvio desktop fallito: ${message}`,
+    desktopBootFailedWithMessage: message => `Avvio desktop fallito: ${message}`
   },
   settings: {
     searchPlaceholder: {
@@ -297,25 +303,26 @@ export const ia = defineLocale({
       sessions: 'Cercar sessiones archivate...',
       about: 'Super OpenAmer Desktop',
       config: 'Cerca configurationes...',
-      gateway: 'Connection de gateway...',
+      gateway: 'Connection de gateway...'
     },
     modeOptions: {
       light: {
         label: 'Clar',
-        description: 'Superficies de scriptorio brillante',
+        description: 'Superficies de scriptorio brillante'
       },
       dark: {
         label: 'Obscur',
-        description: 'Spatio de labor de basse reflexion',
+        description: 'Spatio de labor de basse reflexion'
       },
       system: {
         label: 'Systema',
-        description: 'Sequer apparentia del systema operative',
-      },
+        description: 'Sequer apparentia del systema operative'
+      }
     },
     appearance: {
       title: 'Apparentia',
-      intro: 'Iste es preferentias de monstra solmente pro scriptorio. Le modo controla le brillantia; le tema controla le paletta de accentuation e le stilo del superficie de chat.',
+      intro:
+        'Iste es preferentias de monstra solmente pro scriptorio. Le modo controla le brillantia; le tema controla le paletta de accentuation e le stilo del superficie de chat.',
       colorMode: 'Modo de color',
       colorModeDesc: 'Elige un modo fixe o permitte que OpenAmer seque tu configuration del systema.',
       toolViewTitle: 'Presentation del appellos de instrumento',
@@ -326,7 +333,8 @@ export const ia = defineLocale({
       backdropTitle: 'Fundo del chat',
       backdropDesc: 'Le imagine pallide del statua detra le conversation.',
       embedsTitle: 'Incastrates in linea',
-      embedsDesc: 'Previstas ric se carga ab sitos de tertie parte (YouTube, X, …). Demandar monstra un substituente usque tu permitte cata un; Semper los carga automaticamente; Inactive conserva ligamines simple.',
+      embedsDesc:
+        'Previstas ric se carga ab sitos de tertie parte (YouTube, X, …). Demandar monstra un substituente usque tu permitte cata un; Semper los carga automaticamente; Inactive conserva ligamines simple.',
       embedsAsk: 'Demandar',
       embedsAlways: 'Semper',
       embedsOff: 'Inactive',
@@ -337,7 +345,8 @@ export const ia = defineLocale({
       themeTitle: 'Tema',
       themeDesc: 'Solmente palettas de scriptorio. Le modo seligite es applicate super.',
       installTitle: 'Installar ab VS Code',
-      installDesc: 'Colla un identificator de extension del Marketplace (p.ex. dracula-theme.theme-dracula) pro converter su tema de color in un paletta de scriptorio.',
+      installDesc:
+        'Colla un identificator de extension del Marketplace (p.ex. dracula-theme.theme-dracula) pro converter su tema de color in un paletta de scriptorio.',
       installButton: 'Installar',
       installing: 'Installante…',
       installError: 'Non poteva installar ille tema.',
@@ -345,8 +354,10 @@ export const ia = defineLocale({
       importedBadge: 'Importate',
       pet: {
         title: 'Mascota',
-        intro: 'Adopta un mascotte animate de petdex que flotta super le app e reacciona a que OpenAmer face — currente durante que instrumentos executa, celebrante super successo, melancolice super errores.',
-        restartHint: 'Mascottes besonia un rapide reinicio — le app in execution comenciava ante que iste function esseva addite. Quitta e reaperi OpenAmer, tunc reveni hic.',
+        intro:
+          'Adopta un mascotte animate de petdex que flotta super le app e reacciona a que OpenAmer face — currente durante que instrumentos executa, celebrante super successo, melancolice super errores.',
+        restartHint:
+          'Mascottes besonia un rapide reinicio — le app in execution comenciava ante que iste function esseva addite. Quitta e reaperi OpenAmer, tunc reveni hic.',
         on: 'Activato',
         off: 'Desactivato',
         scaleTitle: 'Dimension',
@@ -356,7 +367,7 @@ export const ia = defineLocale({
         chooseTitle: 'Selige un mascotte',
         chooseDesc: 'Seliger un lo installa (si necessari) e lo face active.',
         searchPlaceholder: 'Cercha mascottes…',
-        unreachable: "Non potte attinger le galleria de petdex. Verifica tu connection e reaperi iste pagina.",
+        unreachable: 'Non potte attinger le galleria de petdex. Verifica tu connection e reaperi iste pagina.',
         noMatch: query => `Nessun pet corrisponde a "${query}".`,
         installedTag: 'installate',
         generatedTag: 'Generate',
@@ -365,7 +376,7 @@ export const ia = defineLocale({
         uninstall: name => `Disinstalla ${name}`,
         delete: name => `Elimina ${name}`,
         deleteTitle: name => `Eliminare ${name}?`,
-        deleteBody: "Isto elimina permanentemente le mascotte — illo non pote esser reinstallate.",
+        deleteBody: 'Isto elimina permanentemente le mascotte — illo non pote esser reinstallate.',
         deleteConfirm: 'Elimina',
         rename: name => `Rinomina ${name}`,
         renameTitle: 'Renomina mascotte',
@@ -378,13 +389,14 @@ export const ia = defineLocale({
         exportFailed: slug => `Impossibile esportare ${slug}`,
         noneAvailable: 'Null mascottes disponibile pro activar nunc.',
         turnOnFailed: 'Non potte accender le animal domestic.',
-        turnOffFailed: 'Non potte extinguere le animal domestic.',
+        turnOffFailed: 'Non potte extinguere le animal domestic.'
       },
-      uiScaleDesc: (percent: number) => `Ridimensiona testo e controlli in tutta l'app. Funzionano anche Cmd/Ctrl con +, - e 0. Attuale: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ridimensiona testo e controlli in tutta l'app. Funzionano anche Cmd/Ctrl con +, - e 0. Attuale: ${percent}%.`,
       embedsReset: (count: number) => `Reinitialisation ${count} permittite ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Salvato per il profilo ${profile} — ogni profilo mantiene il proprio tema.`,
       installPlaceholder: 'publicator.extension',
-      installed: name => `Installato “${name}”.`,
+      installed: name => `Installato “${name}”.`
     },
     config: {
       none: 'Necun',
@@ -400,7 +412,8 @@ export const ia = defineLocale({
       imported: 'Configuration importate',
       invalidJson: 'JSON de configuration invalide',
       keepAwakeTitle: 'Mantener le computator active',
-      keepAwakeDesc: 'Impedi que iste machina se adormi, a fin que executiones de longe duration o durante le nocte continua. Le schermo pote ancora obscurar se.',
+      keepAwakeDesc:
+        'Impedi que iste machina se adormi, a fin que executiones de longe duration o durante le nocte continua. Le schermo pote ancora obscurar se.'
     },
     credentials: {
       pasteKey: 'Collar clave',
@@ -410,7 +423,7 @@ export const ia = defineLocale({
       getKey: 'Obtener un clave',
       saving: 'Salvante',
       pasteLabelKey: label => `Incolla chiave ${label}`,
-      optional: 'Opzionale',
+      optional: 'Opzionale'
     },
     envActions: {
       credentialActions: 'Actiones de credential',
@@ -421,7 +434,7 @@ export const ia = defineLocale({
       replace: 'Substituer',
       set: 'Definir',
       clear: 'Vacuar',
-      actionsFor: label => `Azioni per ${label}`,
+      actionsFor: label => `Azioni per ${label}`
     },
     gateway: {
       loading: 'Cargante parametros de gateway...',
@@ -429,21 +442,25 @@ export const ia = defineLocale({
       unavailableDesc: 'Le ponte IPC del scriptorio non expone parametros de gateway.',
       title: 'Connexion al gateway',
       envOverride: 'superscription per env',
-      intro: 'OpenAmer Desktop lancea su proprie gateway local per default. Usa un gateway remote quando tu vole que iste app controla un backend OpenAmer ja in execution sur un altere machina o detra un proxy de confidentia. Elige un profilo ci infra pro darle su proprie host remote.',
+      intro:
+        'OpenAmer Desktop lancea su proprie gateway local per default. Usa un gateway remote quando tu vole que iste app controla un backend OpenAmer ja in execution sur un altere machina o detra un proxy de confidentia. Elige un profilo ci infra pro darle su proprie host remote.',
       appliesTo: 'Se applica a',
       allProfiles: 'Tote le profilos',
       defaultConnection: 'Connexion predefinite pro cata profilo que non ha su proprie superscription.',
       envOverrideTitle: 'Variabiles de ambiente controla iste session de scriptorio.',
-      envOverrideDesc: 'Remove le definition de OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN pro usar le parametro salvate ci infra.',
-      profileConnection: profile => `Connessione utilizzata solo quando “${profile}” è il profilo attivo. Scegli 'Usa gateway predefinito' per rimuovere l'override.`,
+      envOverrideDesc:
+        'Remove le definition de OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN pro usar le parametro salvate ci infra.',
+      profileConnection: profile =>
+        `Connessione utilizzata solo quando “${profile}” è il profilo attivo. Scegli 'Usa gateway predefinito' per rimuovere l'override.`,
       modeTitle: 'Modo de connexion',
       localTitle: 'Gateway local',
       localDesc: 'Initiar un backend Openamer private sur localhost. Iste es le default e functiona offline.',
       inheritTitle: 'Usar le gateway default',
-      inheritDesc: "Remover le substitution de iste profile e usar le connexion default.",
+      inheritDesc: 'Remover le substitution de iste profile e usar le connexion default.',
       remoteTitle: 'Gateway remote',
       remoteDesc: 'Connecter iste shell de bureau a un backend Openamer remote.',
-      remoteAuthHint: 'Gateways hospitate usa OAuth o un nomine de usator e contrasigno; illos auto-hospitate pote usar un token de session.',
+      remoteAuthHint:
+        'Gateways hospitate usa OAuth o un nomine de usator e contrasigno; illos auto-hospitate pote usar un token de session.',
       cloudTitle: 'OpenAmer Nube',
       cloudDesc: 'Signar in un vice a OpenAmer Cloud e seliger inter le agentos in tu conto — null URL a pegar.',
       cloudSignInTitle: 'OpenAmer Nube',
@@ -460,7 +477,7 @@ export const ia = defineLocale({
       cloudNoAgents: {
         before: 'Nulla agentias trovate in iste conto. Crea un in le',
         linkText: 'portale OpenAmer',
-        after: ', tunc refresca.',
+        after: ', tunc refresca.'
       },
       cloudRefresh: 'Refresca',
       cloudConnect: 'Connecte',
@@ -476,20 +493,26 @@ export const ia = defineLocale({
       cloudAgentProvisioning: 'Provisionamento…',
       cloudStatusLabel: status => `Stato: ${status}`,
       remoteUrlTitle: 'URL remote',
-      remoteUrlDesc: 'URL de base pro le backend del dashboard remote. Prefixos de via es supportate, per exemplo /openamer.',
+      remoteUrlDesc:
+        'URL de base pro le backend del dashboard remote. Prefixos de via es supportate, per exemplo /openamer.',
       probing: 'Verification como iste gateway autentifica…',
-      probeError: 'Non potite attinger iste gateway ancora. Verifica le URL — le methodo de autentication appareara quando illo respondera.',
+      probeError:
+        'Non potite attinger iste gateway ancora. Verifica le URL — le methodo de autentication appareara quando illo respondera.',
       signedIn: 'Signate in',
       signIn: 'Connexion',
       signOut: 'Deconnexion',
       signInWith: provider => `Accedi con ${provider}`,
       authTitle: 'Autentification',
-      authSignedInPassword: 'Iste gateway usa un nomine de usager e un password. Vos es connectate; le session se actualisa automaticamente.',
+      authSignedInPassword:
+        'Iste gateway usa un nomine de usager e un password. Vos es connectate; le session se actualisa automaticamente.',
       authSignedInOauth: 'Iste gateway usa OAuth. Vos es connectate; le session se actualisa automaticamente.',
-      authNeedsPassword: 'Iste gateway usa un nomine de usager e un password. Connecta vos pro autorisar iste application de bureau.',
-      authNeedsOauth: provider => `Questo gateway usa OAuth. Accedi con ${provider} per autorizzare questa app desktop.`,
+      authNeedsPassword:
+        'Iste gateway usa un nomine de usager e un password. Connecta vos pro autorisar iste application de bureau.',
+      authNeedsOauth: provider =>
+        `Questo gateway usa OAuth. Accedi con ${provider} per autorizzare questa app desktop.`,
       tokenTitle: 'Token de session',
-      tokenDesc: 'Le token de session del dashboard usate pro accesso REST e WebSocket. Lassa in blanco pro conservar le token conservate.',
+      tokenDesc:
+        'Le token de session del dashboard usate pro accesso REST e WebSocket. Lassa in blanco pro conservar le token conservate.',
       existingToken: value => `Token esistente ${value}`,
       savedToken: 'conservate',
       pasteSessionToken: 'Incoller token de session',
@@ -507,7 +530,8 @@ export const ia = defineLocale({
       enterUrlFirst: 'Introduce un URL remote in primo loco.',
       restartingTitle: 'Reinicio de connexion de gateway',
       savedTitle: 'Configurationes de gateway salvate',
-      restartingMessage: 'OpenAmer Desktop se reconnectera usando le configurationes salvate — le shell remane aperite.',
+      restartingMessage:
+        'OpenAmer Desktop se reconnectera usando le configurationes salvate — le shell remane aperite.',
       savedMessage: 'Salvate pro le proxime reinicio.',
       connectedTo: (baseUrl, version) => `Connesso a ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Gateway remote accessibile',
@@ -520,7 +544,8 @@ export const ia = defineLocale({
       applyFailed: 'Non potite applicar configurationes de gateway',
       saveFailed: 'Non potite salvar configurationes de gateway',
       sshTitle: 'Connectar via SSH',
-      sshDesc: 'OpenAmer es lanciate sur le remote via SSH e tunnelate a iste app — nulla a initiar o exponer. Require accesso SSH basate sur clave functionante al host.',
+      sshDesc:
+        'OpenAmer es lanciate sur le remote via SSH e tunnelate a iste app — nulla a initiar o exponer. Require accesso SSH basate sur clave functionante al host.',
       sshTrustHint: 'Le prime clave de host presentate es fidate e fixate; subsequent modificationes fallite claudite.',
       sshHostTitle: 'Servitor',
       sshHostDesc: 'user@host, o un alias Host de ~/.ssh/config.',
@@ -544,13 +569,17 @@ export const ia = defineLocale({
       sshReachable: (host, platform) => `Raggiungibile: ${host} (${platform}) — OpenAmer trovato`,
       sshIncompleteHost: 'Insere un host SSH ante connecter.',
       sshErrUnreachable: 'Non potte attinger iste host via SSH. Verifica le host, le porto, e tu rete.',
-      sshErrAuth: 'Autentication SSH fallite. Carga tu clave in le ssh-agent (ssh-add) o configura un IdentityFile in ~/.ssh/config — OpenAmer executa ssh non-interactivemente.',
-      sshErrHostKey: 'Le clave del host HA CAMBIATE desde que tu connectava le ultime vice. Verifica que isto es expectate, tunc executa ssh-keygen -R <host> e reconnecta.',
-      sshErrNotInstalled: 'OpenAmer non es installate sur le host remote. Installa lo ibi (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o configura le via de OpenAmer.',
-      sshErrPlatform: 'Platforma remote non supportate. Le modo SSH de OpenAmer Desktop supporta hostes remote Linux, macOS, e Windows.',
+      sshErrAuth:
+        'Autentication SSH fallite. Carga tu clave in le ssh-agent (ssh-add) o configura un IdentityFile in ~/.ssh/config — OpenAmer executa ssh non-interactivemente.',
+      sshErrHostKey:
+        'Le clave del host HA CAMBIATE desde que tu connectava le ultime vice. Verifica que isto es expectate, tunc executa ssh-keygen -R <host> e reconnecta.',
+      sshErrNotInstalled:
+        'OpenAmer non es installate sur le host remote. Installa lo ibi (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o configura le via de OpenAmer.',
+      sshErrPlatform:
+        'Platforma remote non supportate. Le modo SSH de OpenAmer Desktop supporta hostes remote Linux, macOS, e Windows.',
       sshErrTimeout: 'Connection SSH expirare. Le host pote esser inacessibile o in dormita.',
       sshErrUpdateRequired: 'Actualisa OpenAmer sur le host remote ante connectar con Desktop SSH.',
-      sshErrUnknown: 'Connection SSH fallite.',
+      sshErrUnknown: 'Connection SSH fallite.'
     },
     mcp: {
       reloadFailed: 'Recarga MCP fallite',
@@ -611,15 +640,17 @@ export const ia = defineLocale({
       catalogInstallStarted: name => `Installazione di ${name}... si applicherà alle nuove sessioni al termine.`,
       catalogInstallFailed: name => `Impossibile installare ${name}`,
       catalogEnvPrompt: name => `${name} require credentiales`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activate`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} activate`,
       statusError: 'Error',
       authenticatedMessage: (server, count) => `${server}: ${count} instrumentos`,
       enableTool: tool => `Abilita ${tool}`,
-      disableTool: tool => `Disabilita ${tool}`,
+      disableTool: tool => `Disabilita ${tool}`
     },
     model: {
       loading: 'Cargante configuration del modello...',
-      appliesDesc: 'Se applica a nove sessiones. Usa le selector de modello in le compositor pro cambiar instantaneemente le chat active.',
+      appliesDesc:
+        'Se applica a nove sessiones. Usa le selector de modello in le compositor pro cambiar instantaneemente le chat active.',
       provider: 'Fornitor',
       model: 'Modello',
       applying: 'Applicante...',
@@ -629,7 +660,8 @@ export const ia = defineLocale({
       defaultsFailed: 'Non poteva salvar le predefinites del modello',
       auxiliaryTitle: 'Modellos auxiliar',
       resetAllToMain: 'Reinitiar toto al principal',
-      auxiliaryDesc: 'Le tarefas auxiliar se executa sur le modello principal per predefinition. Assigna un modello dedicate a qualcunque tarefa pro surscriber.',
+      auxiliaryDesc:
+        'Le tarefas auxiliar se executa sur le modello principal per predefinition. Assigna un modello dedicate a qualcunque tarefa pro surscriber.',
       setToMain: 'Assignar al principal',
       change: 'Cambiar',
       autoUseMain: 'auto · usar modello principal',
@@ -640,42 +672,43 @@ export const ia = defineLocale({
       tasks: {
         vision: {
           hint: 'Analyse de imagines',
-          label: 'Vision',
+          label: 'Vision'
         },
         web_extract: {
           label: 'Extraction web',
-          hint: 'Summarisation de paginas',
+          hint: 'Summarisation de paginas'
         },
         compression: {
           hint: 'Compactation del contexto',
-          label: 'Compression',
+          label: 'Compression'
         },
         skills_hub: {
           label: 'Centro de habilitates',
-          hint: 'Recerca de habilitates',
+          hint: 'Recerca de habilitates'
         },
         approval: {
           label: 'Approbation',
-          hint: 'Auto-approbation intelligente',
+          hint: 'Auto-approbation intelligente'
         },
         mcp: {
           hint: 'Routamento de instrumentos MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Gen. de titulo',
-          hint: 'Titulos de session',
+          hint: 'Titulos de session'
         },
         curator: {
           hint: 'Revision del uso de habilitates',
-          label: 'Curatore',
-        },
-      },
+          label: 'Curatore'
+        }
+      }
     },
     providers: {
       connectAccount: 'Connecter un conto',
       haveApiKey: 'Ha un clave API in vice?',
-      intro: 'Aperir session con un subscription — nulle clave API a copiar. OpenAmer executa le apertura de session del navigator pro te, hic mesmo in le application.',
+      intro:
+        'Aperir session con un subscription — nulle clave API a copiar. OpenAmer executa le apertura de session del navigator pro te, hic mesmo in le application.',
       connected: 'Connectite',
       collapse: 'Contraher',
       connectAnother: 'Connecter un altere fornitor',
@@ -688,16 +721,18 @@ export const ia = defineLocale({
       noKeysMatch: 'Nulle providor corresponde a tu recerca.',
       localEndpoint: {
         title: 'Endpoint local / personalisate',
-        description: 'Dirige OpenAmer verso qualcunque endpoint compatibile con OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description:
+          'Dirige OpenAmer verso qualcunque endpoint compatibile con OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
       loading: 'Cargante providores...',
       removeConfirm: provider => `Rimuovere ${provider}?`,
       removeExternalGeneric: provider => `${provider} es gerite per su proprie CLI — remove lo ibi.`,
       removeKeyManaged: provider => `${provider} es configurate con un clave API. Remove lo de Claves API.`,
-      removeTerminalConfirm: (provider, command) => `Disconnettere ${provider}? Questo eseguirà "${command}" nel terminale per cancellare le credenziali.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconnettere ${provider}? Questo eseguirà "${command}" nel terminale per cancellare le credenziali.`,
       removeTerminalRunning: provider => `Esecuzione disconnessione ${provider} nel terminale…`,
       removedMessage: provider => `${provider} esseva removite.`,
-      failedRemove: provider => `Impossibile rimuovere ${provider}`,
+      failedRemove: provider => `Impossibile rimuovere ${provider}`
     },
     sessions: {
       loading: 'Cargante sessiones archivates…',
@@ -708,12 +743,14 @@ export const ia = defineLocale({
       deletePermanently: 'Deler permanentemente',
       restored: 'Restaurate',
       autoArchiveTitle: 'Auto-archivar chats inactiv',
-      autoArchiveDesc: 'Archiva automaticamente chats que tu non ha toccate desde un tempore. Le chats fixate nunquam es archivite, e nihil es delite — le chats archivates simplemente se move hic.',
+      autoArchiveDesc:
+        'Archiva automaticamente chats que tu non ha toccate desde un tempore. Le chats fixate nunquam es archivite, e nihil es delite — le chats archivates simplemente se move hic.',
       autoArchiveDaysLabel: 'Archivar post',
       autoArchiveDaysUnit: 'dies de inactivitate',
       autoArchiveFailed: 'Non poteva actualisar auto-archivo',
       defaultDirTitle: 'Directorio de projecto predefinite',
-      defaultDirDesc: 'Nove sessiones comencia in iste plica a minus que tu selige un altere. Lassa lo non definite pro usar tu directorio domiciliari.',
+      defaultDirDesc:
+        'Nove sessiones comencia in iste plica a minus que tu selige un altere. Lassa lo non definite pro usar tu directorio domiciliari.',
       change: 'Cambiar',
       choose: 'Seliger',
       clear: 'Clarar',
@@ -723,11 +760,13 @@ export const ia = defineLocale({
       deleteFailed: 'Deler falleva',
       updateDirFailed: 'Non poteva actualisar directorio predefinite',
       clearDirFailed: 'Non poteva clarar directorio predefinite',
-      archivedIntro: 'Le chats archivates es celate del barra lateral ma conserva tote lor messages. Ctrl/⌘-click un chat in le barra lateral pro archivar lo.',
-      defaultDirUpdated: 'Directorio de projecto predefinite actualisate — comencia un nove chat (Ctrl/⌘+N) pro que illo entra in effecto',
+      archivedIntro:
+        'Le chats archivates es celate del barra lateral ma conserva tote lor messages. Ctrl/⌘-click un chat in le barra lateral pro archivar lo.',
+      defaultDirUpdated:
+        'Directorio de projecto predefinite actualisate — comencia un nove chat (Ctrl/⌘+N) pro que illo entra in effecto',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Eliminare definitivamente "${title}"? L'operazione è irreversibile.`,
-      defaultsTo: label => `Predefinito su ${label}.`,
+      defaultsTo: label => `Predefinito su ${label}.`
     },
     toolsets: {
       loadingConfig: 'Cargante configuration',
@@ -745,20 +784,23 @@ export const ia = defineLocale({
       removeConfirm: key => `Rimuovere ${key} da .env?`,
       selectedMessage: provider => `${provider} es ora active.`,
       failedSelect: provider => `Impossibile selezionare ${provider}`,
-      noProviderOptions: 'Iste conjunto de instrumentos non ha optiones de provider — activate lo e illo functiona con vostre configuration actual.',
+      noProviderOptions:
+        'Iste conjunto de instrumentos non ha optiones de provider — activate lo e illo functiona con vostre configuration actual.',
       noProviders: 'Nulle providers es disponibile pro iste conjunto de instrumentos nunc.',
       ready: 'Pronte',
       needsSignIn: 'Requere inscription',
       needsSetup: 'Requere configuration',
       openamerIncluded: 'Includite con un subscription OpenAmer — inscribite in OpenAmer Portal pro activar.',
       openamerAuthNeededTitle: 'Inscribite in OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} es salvate ma non se activara usque tu accede al Portal OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} es salvate ma non se activara usque tu accede al Portal OpenAmer.`,
       openamerAuthSignIn: 'Inscribite',
       openamerAuthDoneTitle: 'OpenAmer Portal connectite',
       openamerAuthDoneMessage: 'Vostre backends de subscription es nunc active.',
       openamerAuthFailed: 'Le inscription in OpenAmer Portal non esseva completate',
       noApiKeyRequired: 'Nulle clave API requirite.',
-      postSetupHint: step => `Iste backend necessita un installation unico (${step}). Esquece super iste machine — pote includer some minutos.`,
+      postSetupHint: step =>
+        `Iste backend necessita un installation unico (${step}). Esquece super iste machine — pote includer some minutos.`,
       postSetupInstalledHint: 'Installate. Re-executa configuration solmente si algo es ruptite.',
       postSetupRun: 'Executa configuration',
       postSetupRerun: 'Re-executa configuration',
@@ -799,8 +841,8 @@ export const ia = defineLocale({
         selectedTitle: 'Backend selectite',
         selectedMessage: backend => `Le commandos de terminal ora execute per ${backend}. Applica se a nove sessiones.`,
         failedSelect: backend => `Impossibile seligere ${backend}`,
-        needsSetupHint: 'Vos pote selectar iste backend nunc — commandos fallera fin que configuration es complete.',
-      },
+        needsSetupHint: 'Vos pote selectar iste backend nunc — commandos fallera fin que configuration es complete.'
+      }
     },
     closeSettings: 'Cluder optiones',
     exportConfig: 'Exportar configuration',
@@ -824,11 +866,12 @@ export const ia = defineLocale({
       about: 'Super',
       billing: 'Facturation',
       notifications: 'Notificationes',
-      plugins: 'Plugines',
+      plugins: 'Plugines'
     },
     plugins: {
       title: 'Plugines de scriptorio',
-      blurb: 'Extensiones UI cargate in iste app — incluse in le construction, o ponite in le cartella desktop-plugins (incluse illos que OpenAmer scribe). Disabilitar descarga un plugin in vivo e survive reinitiationes.',
+      blurb:
+        'Extensiones UI cargate in iste app — incluse in le construction, o ponite in le cartella desktop-plugins (incluse illos que OpenAmer scribe). Disabilitar descarga un plugin in vivo e survive reinitiationes.',
       count: n => `${n} installate`,
       openFolder: 'Aperir cartella de plugines',
       rescan: 'Reexplorar',
@@ -840,49 +883,51 @@ export const ia = defineLocale({
       kinds: {
         bundled: 'Includite',
         disk: 'Sur disco',
-        runtime: 'ambiente de execution',
-      },
+        runtime: 'ambiente de execution'
+      }
     },
     notifications: {
       title: 'Notificationes',
-      intro: 'Notificationes native de scriptorio, separate ab tostas in-app. Iste es local al dispositivo — cata computator conserva su proprie configurationes.',
+      intro:
+        'Notificationes native de scriptorio, separate ab tostas in-app. Iste es local al dispositivo — cata computator conserva su proprie configurationes.',
       enableAll: 'Activar notificationes',
       enableAllDesc: 'Interruptor principal. Disactivate isto pro silenciar omne notificationes infra.',
       focusedHint: 'Alertas de completion solmente se activa durante que OpenAmer es in background.',
       kinds: {
         approval: {
           label: 'Approbation requirite',
-          description: 'Un commanda attende que vos lo approba o rejicte.',
+          description: 'Un commanda attende que vos lo approba o rejicte.'
         },
         input: {
           label: 'Entrada requirite',
-          description: 'OpenAmer ha questionate o besonia un password o un secreto.',
+          description: 'OpenAmer ha questionate o besonia un password o un secreto.'
         },
         turnDone: {
           label: 'Response preste',
-          description: 'Un turno ha finite durante que OpenAmer esseva in background.',
+          description: 'Un turno ha finite durante que OpenAmer esseva in background.'
         },
         turnError: {
           label: 'Turno fallite',
-          description: 'Un turno ha finite con un error.',
+          description: 'Un turno ha finite con un error.'
         },
         backgroundDone: {
           label: 'Tasca in background finite',
-          description: 'Un commanda de terminal in background ha completate.',
+          description: 'Un commanda de terminal in background ha completate.'
         },
         credits: {
           label: 'Alertas de credito',
-          description: 'Acceso de credito es pausate o restaurate.',
-        },
+          description: 'Acceso de credito es pausate o restaurate.'
+        }
       },
       test: 'Invia notification de prova',
       testTitle: 'OpenAmer',
       testBody: 'Notificationes functiona.',
-      testSent: 'Prova inviate. Si nihil appare, verifica le permissiones de notification de tu OS e Focus/Non Deranger.',
+      testSent:
+        'Prova inviate. Si nihil appare, verifica le permissiones de notification de tu OS e Focus/Non Deranger.',
       testUnsupported: 'Iste systema non supporta notificationes native.',
       completionSoundTitle: 'Son de completion',
       completionSoundDesc: 'Reproduce se quando un turno de agente finisce. Selige un preset e previsualisa lo hic.',
-      completionSoundPreview: 'Previsualisation',
+      completionSoundPreview: 'Previsualisation'
     },
     sections: {
       model: 'Modello',
@@ -892,7 +937,7 @@ export const ia = defineLocale({
       safety: 'Securitate',
       memory: 'Memoria & Context',
       voice: 'Voce',
-      advanced: 'Avanciate',
+      advanced: 'Avanciate'
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -903,31 +948,32 @@ export const ia = defineLocale({
       updates: 'Actualisationes',
       checkNow: 'Verificar ora',
       checking: 'Verificando…',
-      seeWhatsNew: "Vider lo nove",
+      seeWhatsNew: 'Vider lo nove',
       updateNow: 'Actualisar ora',
       releaseNotes: 'Notas de liberation',
-      onLatest: "Vos es sur le plus recente version.",
+      onLatest: 'Vos es sur le plus recente version.',
       installing: 'Un actualisation se instala actualmente.',
-      cantUpdate: "Iste construction non se pote actualisar se mesme de intra le application.",
-      cantReach: "Nos non potte attinger le server de actualisation.",
+      cantUpdate: 'Iste construction non se pote actualisar se mesme de intra le application.',
+      cantReach: 'Nos non potte attinger le server de actualisation.',
       tapCheck: 'Tocca "Verificar ora" pro buscar actualisationes.',
       updateReady: count => `Un nuovo aggiornamento è pronto (incluse ${count} modifica${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Ultimo controllo ${age}`,
       justNowSuffix: '· justo ora',
       automaticUpdates: 'Actualisationes automatic',
-      automaticUpdatesDesc: 'OpenAmer verifica actualisationes automatic in le background e informa vos quando un es prest.',
+      automaticUpdatesDesc:
+        'OpenAmer verifica actualisationes automatic in le background e informa vos quando un es prest.',
       branchCommit: (branch, commit) => `Ramo ${branch} · Revision ${commit}`,
       never: 'jamais',
       justNow: 'justo ora',
       minAgo: count => `Ante ${count} minutas`,
       hoursAgo: count => `Ante ${count} horas`,
-      daysAgo: count => `Ante ${count} dies`,
+      daysAgo: count => `Ante ${count} dies`
     },
     keys: {
       loading: 'Cargamento de claves API e credentias...',
       failedLoad: 'Claves API fallite a cargar',
-      empty: 'Nihil configurate in iste categoria ancora.',
-    },
+      empty: 'Nihil configurate in iste categoria ancora.'
+    }
   },
   commandCenter: {
     branches: 'Brancas',
@@ -950,7 +996,7 @@ export const ia = defineLocale({
       generatedTag: 'Generate',
       adoptFailed: 'Non poteva adoptar ille animal de compania.',
       toggleFailed: 'Non poteva alternar le animal de compania.',
-      noneAvailable: 'Nulle animales de compania disponibile — elige un infra pro installar.',
+      noneAvailable: 'Nulle animales de compania disponibile — elige un infra pro installar.'
     },
     generatePet: {
       title: 'Generar un animal de compania',
@@ -974,12 +1020,13 @@ export const ia = defineLocale({
       remix: 'Remixar',
       remixConfirmTitle: 'Remixar iste aspecto?',
       hatchRow: (_state, done, total) => `Skissando frame ${done} de ${total}…`,
-      remixConfirmBody: 'Isto genera un nove serie de esquissos usando iste como puncto de partida. Pote requirer plure minutas.',
+      remixConfirmBody:
+        'Isto genera un nove serie de esquissos usando iste como puncto de partida. Pote requirer plure minutas.',
       genericError: 'Generation fallite — tentar de novo o seliger un suggestion.',
       referenceImageTooLarge: 'Imagine de reference es troppo grande. Usa un sub 16 MB.',
       referenceImageInvalid: 'Non potite leger iste imagine de reference. Tenta un PNG, JPG, WebP, o GIF.',
       adopt: 'Adoptar',
-      startOver: 'Recominciar',
+      startOver: 'Recominciar'
     },
     close: 'Clauder centro de commandos',
     paletteTitle: 'Paletta de commandos',
@@ -998,7 +1045,7 @@ export const ia = defineLocale({
       install: 'Installar',
       installing: 'Installante...',
       installed: 'Installate',
-      installs: count => `${count} installationes`,
+      installs: count => `${count} installationes`
     },
     settingsFields: 'Campi de configurationes',
     mcpServers: 'Servidores MCP',
@@ -1007,49 +1054,49 @@ export const ia = defineLocale({
       maintenance: 'Mantenentia',
       sessions: 'Sessiones',
       system: 'Systema',
-      usage: 'Uso',
+      usage: 'Uso'
     },
     sectionDescriptions: {
       maintenance: 'Diagnosticas, reservas, curator, e datas de memoria',
       sessions: 'Cercar e gerer sessiones',
       system: 'Stato, registros, e actiones de systema',
-      usage: 'Token, costo, e activitate de habilitate per tempore',
+      usage: 'Token, costo, e activitate de habilitate per tempore'
     },
     nav: {
       newChat: {
         title: 'Nove session',
-        detail: 'Comenciar un nove session',
+        detail: 'Comenciar un nove session'
       },
       settings: {
         title: 'Configurationes',
-        detail: 'Configurar OpenAmer desktop',
+        detail: 'Configurar OpenAmer desktop'
       },
       skills: {
         title: 'Capacitates',
-        detail: 'Habilitates, instrumentos, e servidores MCP',
+        detail: 'Habilitates, instrumentos, e servidores MCP'
       },
       messaging: {
         title: 'Messagiamento',
-        detail: 'Configurar Telegram, Slack, Discord, e plus',
+        detail: 'Configurar Telegram, Slack, Discord, e plus'
       },
       artifacts: {
         title: 'Artefactos',
-        detail: 'Explorar resultatos generate',
-      },
+        detail: 'Explorar resultatos generate'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Panel de sessiones',
-        detail: 'Cercar, fixar, e gerer sessiones',
+        detail: 'Cercar, fixar, e gerer sessiones'
       },
       system: {
         title: 'Panello de systema',
-        detail: 'Stato de gateway, registros, reiniciar/actualizar',
+        detail: 'Stato de gateway, registros, reiniciar/actualizar'
       },
       usage: {
         title: 'Panello de uso',
-        detail: 'Token, costo, e activitate de habilitate',
-      },
+        detail: 'Token, costo, e activitate de habilitate'
+      }
     },
     providerNavigate: 'Navigar',
     providerSessions: 'Sessiones',
@@ -1137,132 +1184,132 @@ export const ia = defineLocale({
       actionStarted: name => `${name} initiate — sequimento del registro...`,
       actionFailed: name => `${name} non poteva esser initiate`,
       running: 'In execution...',
-      viewLog: 'Registro de actiones',
-    },
+      viewLog: 'Registro de actiones'
+    }
   },
   messaging: {
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Stilo de responsa',
-        help: 'prime, tote, o inactive.',
+        help: 'prime, tote, o inactive.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Permitter tote le usatores Discord',
-        help: 'Solo disveloppamento. Quando ver, qualcunque pote inviar message directe al bot sin lista de permission.',
+        help: 'Solo disveloppamento. Quando ver, qualcunque pote inviar message directe al bot sin lista de permission.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID del canal principal',
-        help: 'Canal ubi le bot invia messages proactive (resultato de cron, rememorationes).',
+        help: 'Canal ubi le bot invia messages proactive (resultato de cron, rememorationes).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Nomine del canal principal',
-        help: 'Nomine monstrate pro le canal principal in registros e resultato de stato.',
+        help: 'Nomine monstrate pro le canal principal in registros e resultato de stato.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Permitter tote le usatores iMessage',
-        help: 'Quando ver, saltar le lista de permission de BlueBubbles.',
+        help: 'Quando ver, saltar le lista de permission de BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Permitter tote le usatores Mattermost',
+        label: 'Permitter tote le usatores Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Canal principal',
+        label: 'Canal principal'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Permitter tote le usatores QQ',
+        label: 'Permitter tote le usatores QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Canal principal QQ',
-        help: 'Canal o gruppo predefinite pro livration de cron.',
+        help: 'Canal o gruppo predefinite pro livration de cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Nomine del canal principal QQ',
+        label: 'Nomine del canal principal QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token del bot Slack',
         help: 'Usa le token del bot de OAuth & Permissions post installar tu application Slack.',
-        placeholder: 'Colla le token del bot Slack',
+        placeholder: 'Colla le token del bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token del application Slack',
         help: 'Usa le token a nivello de application requirite pro Socket Mode.',
-        placeholder: 'Colla le token del application Slack',
+        placeholder: 'Colla le token del application Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDs de usatores Slack permittite',
-        help: 'Recommendate. IDs de usatores Slack separate per commas.',
+        help: 'Recommendate. IDs de usatores Slack separate per commas.'
       },
       MATTERMOST_URL: {
         label: 'URL del servitor',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token del bot',
+        label: 'Token del bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDs de usatores permittite',
-        help: 'Recommendate. IDs de usatores Mattermost separate per commas.',
+        help: 'Recommendate. IDs de usatores Mattermost separate per commas.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL del servitor principal',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token de accesso',
+        label: 'Token de accesso'
       },
       MATRIX_USER_ID: {
         label: 'ID del usator bot',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDs de usatores Matrix permittite',
-        help: 'Recommendate. IDs de usatores separate per commas in formato @user:server.',
+        help: 'Recommendate. IDs de usatores separate per commas in formato @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL del ponte Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL de un ponte REST signal-cli in execution.',
+        help: 'URL de un ponte REST signal-cli in execution.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Numero de telephono',
-        help: 'Le numero registrate con tu ponte signal-cli.',
+        help: 'Le numero registrate con tu ponte signal-cli.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Token de bot',
         help: 'Crea un bot con @BotFather, tunc pega le token que illo te da.',
-        placeholder: 'Pega token de bot Telegram',
+        placeholder: 'Pega token de bot Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDs de usator Telegram permitite',
-        help: 'Recomendate. IDs numeric separate per virgula de @userinfobot. Sin isto, qualcunque pote DM tu bot.',
+        help: 'Recomendate. IDs numeric separate per virgula de @userinfobot. Sin isto, qualcunque pote DM tu bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL de proxy',
-        help: 'Solmente necessari in redes ubi Telegram es blocate.',
+        help: 'Solmente necessari in redes ubi Telegram es blocate.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token de bot',
-        help: 'Crear un application in le Discord Developer Portal, addir un bot, tunc collar su token.',
+        help: 'Crear un application in le Discord Developer Portal, addir un bot, tunc collar su token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDs de usator Discord permitite',
-        help: 'Recomandate. IDs de usator Discord separate per commas.',
+        help: 'Recomandate. IDs de usator Discord separate per commas.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Usatores Signal permitite',
-        help: 'Recomandate. Identificatores Signal separate per commas.',
+        help: 'Recomandate. Identificatores Signal separate per commas.'
       },
       WHATSAPP_ENABLED: {
         label: 'Activar ponte WhatsApp',
-        help: 'Configurate automaticamente per le commutator infra. Lassa lo sol a minus que tu sape que tu lo besonia.',
+        help: 'Configurate automaticamente per le commutator infra. Lassa lo sol a minus que tu sape que tu lo besonia.'
       },
       WHATSAPP_MODE: {
-        label: 'Modo de ponte',
+        label: 'Modo de ponte'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Usatores WhatsApp permitite',
-        help: 'Recomandate. Numeros de telephone o IDs WhatsApp separate per commas.',
-      },
+        help: 'Recomandate. Numeros de telephone o IDs WhatsApp separate per commas.'
+      }
     },
     search: 'Recerca de messagiamento...',
     loading: 'Cargamento de platformas de messagerie...',
@@ -1276,7 +1323,7 @@ export const ia = defineLocale({
       not_configured: 'Require configuration',
       pending_restart: 'Reinicio require',
       retrying: 'Reintentante',
-      startup_failed: 'Demarrage fallite',
+      startup_failed: 'Demarrage fallite'
     },
     unknown: 'Incognite',
     hintPendingRestart: 'Reiniciar le porta ab le barra de stato pro applicar iste change.',
@@ -1289,7 +1336,8 @@ export const ia = defineLocale({
     required: 'Require',
     recommended: 'Recomendate',
     advanced: count => `Avancate (${count})`,
-    noTokenNeeded: 'Iste platforma non require un token hic. Usa le guida de configuration supra, tunc activa lo infra.',
+    noTokenNeeded:
+      'Iste platforma non require un token hic. Usa le guida de configuration supra, tunc activa lo infra.',
     enabled: 'Activate',
     disabled: 'Desactivate',
     unsavedChanges: 'Modificationes non salvate',
@@ -1311,8 +1359,7 @@ export const ia = defineLocale({
     failedUpdate: name => `Impossibile actualisar ${name}`,
     failedSave: name => `Impossibile salveguardar ${name}`,
     failedClear: key => `Impossibile vacuar ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   profiles: {
     renameMenu: 'Renominar…',
@@ -1390,20 +1437,22 @@ Lassa vacu pro conservar le default de ${mode}.`,
     failedLoadSoul: 'Fallite cargar SOUL.md',
     failedSaveSoul: 'Fallite salvar SOUL.md',
     failedCreate: 'Fallite crear profile',
-    failedRename: 'Fallite renominar profile',
+    failedRename: 'Fallite renominar profile'
   },
   updates: {
     applyStatus: {
-      noReturn: 'Le backend non ha retornate in linea. Le actualisation pote non haber essite completate — verifica le host del backend.',
+      noReturn:
+        'Le backend non ha retornate in linea. Le actualisation pote non haber essite completate — verifica le host del backend.',
       preparing: 'Actualisante le backend…',
       pulling: 'Backend in actualisation…',
       restarting: 'Backend reiniciante pro cargar le actualisation…',
       notAvailable: 'Actualisation non disponibile pro iste backend.',
-      failed: 'Le actualisation del backend ha fallite.',
+      failed: 'Le actualisation del backend ha fallite.'
     },
     appErrors: {
-      updateLocked: 'Actualisation abortate: un altere fenestra de OpenAmer o un terminal que executa openamer ten iste installation aperte. Claude lo e retenta.',
-      updateFailed: 'Le actualisation non se completava. Sin problemas — nihil esseva perdite. Tu pote retentar ora.',
+      updateLocked:
+        'Actualisation abortate: un altere fenestra de OpenAmer o un terminal que executa openamer ten iste installation aperte. Claude lo e retenta.',
+      updateFailed: 'Le actualisation non se completava. Sin problemas — nihil esseva perdite. Tu pote retentar ora.'
     },
     stages: {
       idle: 'Preparando…',
@@ -1417,7 +1466,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       done: 'Actualisation complete',
       manual: 'Actualisar de tu terminal',
       guiSkew: 'Actualisar le application de scriptorio',
-      error: 'Actualisation pausate',
+      error: 'Actualisation pausate'
     },
     checking: 'Cerchando actualisationes…',
     checkFailedTitle: 'Non potiva verificar actualisationes',
@@ -1432,24 +1481,30 @@ Lassa vacu pro conservar le default de ${mode}.`,
     availableBody: 'Un nove version de OpenAmer es prest a installar.',
     availableTitleBackend: 'Actualisation de backend disponibile',
     availableBodyBackend: 'Un plus nove version del connectite OpenAmer backend es prest a installar.',
-    availableBodyNoChangelog: 'Un plus nove version es prest. Notas de liberation non es disponibile pro iste typo de installation.',
+    availableBodyNoChangelog:
+      'Un plus nove version es prest. Notas de liberation non es disponibile pro iste typo de installation.',
     updateNow: 'Actualisa ora',
     maybeLater: 'Fortasse plus tard',
     moreChanges: count => `+ ${count} modification${count === 1 ? '' : 's'} additional includite.`,
     manualTitle: 'Actualisa ab tu terminal',
-    manualBody: 'Tu installava OpenAmer ab le linea de commandos, donc actualisationes curre ibi anque. Pone isto in tu terminal:',
+    manualBody:
+      'Tu installava OpenAmer ab le linea de commandos, donc actualisationes curre ibi anque. Pone isto in tu terminal:',
     manualPickedUp: 'OpenAmer prendera le nove version le proxime vice que tu lo lancia.',
     guiSkewTitle: 'Actualisa le application de scriptorio',
-    guiSkewBody: 'Le backend esseva actualisate, ma iste pacchetto de application de scriptorio non esseva cambiate. Actualisa o reinstalla le application de scriptorio OpenAmer (tu AppImage / .deb / .rpm) pro concordar.',
+    guiSkewBody:
+      'Le backend esseva actualisate, ma iste pacchetto de application de scriptorio non esseva cambiate. Actualisa o reinstalla le application de scriptorio OpenAmer (tu AppImage / .deb / .rpm) pro concordar.',
     copy: 'Copiar',
     copied: 'Copiate',
     done: 'Facto',
-    applyingBody: 'Le actualisator de Openamer assume le control in su proprie fenestra e reaperte Openamer automaticamente quando illo es finite. Per favor, non reaperte Openamer vos mesme durante que illo se actualisa.',
-    applyingBodyBackend: 'Le backend remote applica le actualisation e va reiniciar. Openamer se reconecta automaticamente quando illo retorna.',
-    applyingClose: 'Iste fenestra se claudera durante que le actualisation curre, poy Openamer se reaperte de su proprio.',
+    applyingBody:
+      'Le actualisator de Openamer assume le control in su proprie fenestra e reaperte Openamer automaticamente quando illo es finite. Per favor, non reaperte Openamer vos mesme durante que illo se actualisa.',
+    applyingBodyBackend:
+      'Le backend remote applica le actualisation e va reiniciar. Openamer se reconecta automaticamente quando illo retorna.',
+    applyingClose:
+      'Iste fenestra se claudera durante que le actualisation curre, poy Openamer se reaperte de su proprio.',
     errorTitle: 'Le actualisation non ha finite',
     errorBody: 'Non preoccupa — nihil esse perdite. Vos pote tentar de novo ora.',
-    notNow: 'Non ora',
+    notNow: 'Non ora'
   },
   install: {
     stageStates: {
@@ -1457,7 +1512,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       running: 'Installante',
       succeeded: 'Facite',
       skipped: 'Saltate',
-      failed: 'Fallite',
+      failed: 'Fallite'
     },
     oneTimeTitle: 'OpenAmer require un installation a un sol vice',
     installCommand: 'Commando de installation',
@@ -1466,15 +1521,18 @@ Lassa vacu pro conservar le default de ${mode}.`,
     installTo: 'Se installara in',
     retryAfterRun: 'Io lo ha executate -- retenta',
     setupChoiceTitle: 'Configurar OpenAmer Desktop',
-    setupChoiceDesc: 'Connecte iste application a un gateway OpenAmer que tu jam executa, o installa OpenAmer localmente sur iste computator.',
+    setupChoiceDesc:
+      'Connecte iste application a un gateway OpenAmer que tu jam executa, o installa OpenAmer localmente sur iste computator.',
     connectExistingTitle: 'Connecter a OpenAmer existente',
     connectExistingShort: 'Connecter existente',
-    connectExistingDesc: 'Usa un backend remote con un token de session o authentication per navigator. Nulle installation local se initiara.',
+    connectExistingDesc:
+      'Usa un backend remote con un token de session o authentication per navigator. Nulle installation local se initiara.',
     installLocalTitle: 'Installa OpenAmer localmente',
     installLocalDesc: 'Discarga OpenAmer, crea su ambiente Python, e executa le backend sur iste computator.',
     localStartUnavailable: 'Le installation local non poteva initiar. Reinitia OpenAmer Desktop e retenta.',
     remoteSetupTitle: 'Connecter a OpenAmer existente',
-    remoteSetupDesc: 'Entra tu URL de gateway. OpenAmer Desktop detectara si illo require un token o authentication per navigator.',
+    remoteSetupDesc:
+      'Entra tu URL de gateway. OpenAmer Desktop detectara si illo require un token o authentication per navigator.',
     remoteUrlTitle: 'URL de gateway',
     remoteUrlDesc: 'Usa le URL base del gateway OpenAmer, includente https:// quando remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -1497,8 +1555,10 @@ Lassa vacu pro conservar le default de ${mode}.`,
     failedTitle: 'Installation fallite',
     settingUpTitle: 'Configurar OpenAmer Agent',
     finishingTitle: 'Finalisation',
-    failedDesc: 'Un del passos de installation ha fallite. In Windows, isto pote occurrer si un altere instancia de OpenAmer CLI o de scriptorio es in execution. Stopa omne instancias de OpenAmer in execution, pois retenta. Verifica le detalios ci infra o le registro del scriptorio pro le transcripto complete.',
-    activeDesc: 'Isto es un configuration de un sol vice. Le installator de OpenAmer discarga dependentias e configura tu machina. Lanceamentos subsequente saltara iste passo.',
+    failedDesc:
+      'Un del passos de installation ha fallite. In Windows, isto pote occurrer si un altere instancia de OpenAmer CLI o de scriptorio es in execution. Stopa omne instancias de OpenAmer in execution, pois retenta. Verifica le detalios ci infra o le registro del scriptorio pro le transcripto complete.',
+    activeDesc:
+      'Isto es un configuration de un sol vice. Le installator de OpenAmer discarga dependentias e configura tu machina. Lanceamentos subsequente saltara iste passo.',
     fetchingManifest: 'Obtinente le manifesto del installator...',
     hideOutput: 'Celar le sortita del installator',
     showOutput: 'Monstrar le sortita del installator',
@@ -1509,7 +1569,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     copiedOutput: 'Copiate!',
     copyOutput: 'Copiar sortita',
     reloadRetry: 'Recargar e retentar',
-    unsupportedDesc: platform => `Le installation automatic al prime lanceamento non es ancora disponibile sur ${platform}. Aperi le terminal e executa le commando infra, pois relancea iste application. Le lanceamentos subsequente saltara iste passo.`,
+    unsupportedDesc: platform =>
+      `Le installation automatic al prime lanceamento non es ancora disponibile sur ${platform}. Aperi le terminal e executa le commando infra, pois relancea iste application. Le lanceamentos subsequente saltara iste passo.`,
     authTitle: 'Autentication',
     authNeedsOauth: provider => `Signe intra con ${provider} ante testar iste porta.`,
     signInWith: provider => `Signe intra con ${provider}`,
@@ -1517,12 +1578,14 @@ Lassa vacu pro conservar le default de ${mode}.`,
     progress: (completed, total) => `${completed} de ${total} passos completate`,
     currentStage: stage => ` -- ora: ${stage}`,
     error: 'Error',
-    lines: count => `${count} linea${count === 1 ? '' : 's'}`,
+    lines: count => `${count} linea${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Que nos te configura con OpenAmer Agent',
-    headerDesc: 'Connecte un fornitor de modelos pro comenciar a conversar. Le majoritate del optiones require un sol clic.',
-    preparingInstall: 'OpenAmer sta finiente le installation. Isto usualmente prende minus de un minuta al prime lanceamento.',
+    headerDesc:
+      'Connecte un fornitor de modelos pro comenciar a conversar. Le majoritate del optiones require un sol clic.',
+    preparingInstall:
+      'OpenAmer sta finiente le installation. Isto usualmente prende minus de un minuta al prime lanceamento.',
     starting: 'Iniciante OpenAmer…',
     lookingUpProviders: 'Cercante fornidores...',
     collapse: 'Contraher',
@@ -1537,28 +1600,29 @@ Lassa vacu pro conservar le default de ${mode}.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API de modello directe',
-        description: 'Accesso directe a modelos hospitate per Fireworks AI.',
+        description: 'Accesso directe a modelos hospitate per Fireworks AI.'
       },
       openrouter: {
         short: 'un clave, multe modelos',
-        description: 'Hospita centos de modelos detra un sol clave. Bon option predefinite pro nove installationes.',
+        description: 'Hospita centos de modelos detra un sol clave. Bon option predefinite pro nove installationes.'
       },
       openai: {
         short: 'Modelos de classe GPT',
-        description: 'Accesso directe a modelos OpenAI.',
+        description: 'Accesso directe a modelos OpenAI.'
       },
       gemini: {
         short: 'Modelos Gemini',
-        description: 'Acceso directe a modelos Gemini de Google.',
+        description: 'Acceso directe a modelos Gemini de Google.'
       },
       xai: {
         short: 'Modelos Grok',
-        description: 'Acceso directe a modelos Grok de xAI.',
+        description: 'Acceso directe a modelos Grok de xAI.'
       },
       local: {
         short: 'auto-hospitate',
-        description: 'Dirige Openamer vers un puncto de fin local o auto-hospitate compatible con OpenAI (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Dirige Openamer vers un puncto de fin local o auto-hospitate compatible con OpenAI (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Retro al registration',
     getKey: 'Obtener un clave',
@@ -1571,7 +1635,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     flowSubtitles: {
       pkce: 'Apre tu navigator pro registrar se, tunc continua hic',
       device_code: 'Apre un pagina de verification in tu navigator — OpenAmer se connecta automaticamente',
-      external: 'Registra se un vice in tu terminal, tunc retorna al chat',
+      external: 'Registra se un vice in tu terminal, tunc retorna al chat'
     },
     startingSignIn: provider => `Initiando signation pro ${provider}...`,
     verifyingCode: provider => `Verificando tu codice con ${provider}...`,
@@ -1585,11 +1649,13 @@ Lassa vacu pro conservar le default de ${mode}.`,
     copyAuthCode: 'Copia le codigo de autorisation e pon lo infra.',
     pasteAuthCode: 'Poner le codigo de autorisation',
     reopenAuthPage: 'Reaperir le pagina de autorisation',
-    autoBrowser: provider => `Nos apertava ${provider} in tu navegador. Authoriza OpenAmer ibi e tu essera connectite automaticmente — nul cosa a copiar o colar.`,
+    autoBrowser: provider =>
+      `Nos apertava ${provider} in tu navegador. Authoriza OpenAmer ibi e tu essera connectite automaticmente — nul cosa a copiar o colar.`,
     reopenSignInPage: 'Reaperir le pagina de registration',
     waitingAuthorize: 'Attendente que tu autorisa...',
-    externalPending: provider => `${provider} aperi session per su proprie CLI. Executa iste commando in un terminal, pois retorna e selige "Io ha aperite session":`,
-    signedIn: "Io ha registrate me",
+    externalPending: provider =>
+      `${provider} aperi session per su proprie CLI. Executa iste commando in un terminal, pois retorna e selige "Io ha aperite session":`,
+    signedIn: 'Io ha registrate me',
     deviceCodeOpened: provider => `Nos apertava ${provider} in tu navegador. Introduce iste codice ibi:`,
     reopenVerification: 'Re-aperir pagina de verification',
     copy: 'Copiar',
@@ -1600,10 +1666,11 @@ Lassa vacu pro conservar le default de ${mode}.`,
     price: (input, output) => `${input} de entrata / ${output} de exita per Mtok`,
     change: 'Cambiar',
     startChatting: 'Comenciar',
-    docs: provider => `Documentation de ${provider}`,
+    docs: provider => `Documentation de ${provider}`
   },
   remoteDisplayBanner: {
-    message: reason => `Rendering software attivo — display remoto rilevato (${reason}). L'accelerazione GPU è disabilitata per prevenire sfarfallii.`,
+    message: reason =>
+      `Rendering software attivo — display remoto rilevato (${reason}). L'accelerazione GPU è disabilitata per prevenire sfarfallii.`
   },
   language: {
     label: 'Lingua',
@@ -1612,7 +1679,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     saveError: 'Actualisation de lingua fallite',
     switchTo: 'Cambiar lingua',
     searchPlaceholder: 'Cerca linguas…',
-    noResults: 'Null linguas trovate',
+    noResults: 'Null linguas trovate'
   },
   skills: {
     tabSkills: 'Habilitates',
@@ -1632,7 +1699,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     noDescription: 'Nulle description.',
     configured: 'Configurate',
     needsKeys: 'Necessita claves',
-    visionModelHint: 'Vision usa tu configuration de modelo auxiliary — le modelo capace de imagine es selectite ibi, non per provider hic.',
+    visionModelHint:
+      'Vision usa tu configuration de modelo auxiliary — le modelo capace de imagine es selectite ibi, non per provider hic.',
     visionModelLink: 'Selige modelo de vision in Configurationes → Modelos',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} insimules de instrumentos activate`,
     configureToolset: label => `Configura ${label}`,
@@ -1658,12 +1726,12 @@ Lassa vacu pro conservar le default de ${mode}.`,
     provenance: {
       agent: 'Apprendite',
       bundled: 'Incorporate',
-      hub: 'Centro',
+      hub: 'Centro'
     },
     emptyNoneFound: noun => `Nulle ${noun} trovate`,
     emptyNothingMatches: query => `Nihil coincide con “${query}”.`,
     emptyNoneAvailable: noun => `Ancora nulle ${noun} disponibile.`,
-    changesApplyNewSessions: 'Changees s\'applica a nove sessiones.',
+    changesApplyNewSessions: "Changees s'applica a nove sessiones.",
     skillUpdated: 'Habilitate actualisate',
     edit: 'Modificar',
     archive: 'Archivar',
@@ -1676,7 +1744,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       connectingHubs: 'Conectante a hubs de habilitates...',
       connectedHubs: 'Hubs connectite:',
       featured: 'Habilitates presentate',
-      landingHint: 'Cercar le hub pro navigar habilitates installabile del indice official, GitHub, e fontes communitarian.',
+      landingHint:
+        'Cercar le hub pro navigar habilitates installabile del indice official, GitHub, e fontes communitarian.',
       noResults: 'Nulle habilitates correspondente trovate in le hub.',
       resultCount: (count, ms) => `${count} resultato${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Tempore finite: ${sources}`,
@@ -1696,7 +1765,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       trust: {
         builtin: 'incorporate',
         trusted: 'de confidence',
-        community: 'communitate',
+        community: 'communitate'
       },
       verdictSafe: 'Secur',
       verdictCaution: 'Attention',
@@ -1714,8 +1783,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       loadFailed: 'Hub de habilitates non potite cargar',
       previewFailed: 'Previsualisation de habilitate fallite',
       scanFailed: 'Scansion de securitate fallite',
-      searchFailed: 'Recerca in hub fallite',
-    },
+      searchFailed: 'Recerca in hub fallite'
+    }
   },
   starmap: {
     title: 'Grapho de memoria',
@@ -1732,7 +1801,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     emptyTitle: 'Nihil apprendite ancor',
     emptyDesc: 'Durante que OpenAmer construi habilitates e memorias pro tu lavoro, illes appare hic.',
     share: 'Partir mappa',
-    shareHint: 'Copiar le code pro partir iste mappa, o inserer un pro cargar. Illo include solmente le disposition, non tu memoria o texto de habilitate.',
+    shareHint:
+      'Copiar le code pro partir iste mappa, o inserer un pro cargar. Illo include solmente le disposition, non tu memoria o texto de habilitate.',
     shareTitle: 'Importar / exportar mappa',
     sharePlaceholder: 'Inserer un code de mappa…',
     copy: 'Copiar code de mappa',
@@ -1742,7 +1812,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     importEmpty: 'Pegar un codigo de mapa pro cargar lo.',
     importSuccess: nodes => `Cargate un mappa con ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'mapa importate',
-    resetToMine: 'Retornar a mi mapa',
+    resetToMine: 'Retornar a mi mapa'
   },
   agents: {
     close: 'Clauder agentias',
@@ -1772,7 +1842,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     ageDays: days => `${days} d retro`,
     durationSeconds: seconds => `${seconds} s`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} s`,
-    tokens: value => `${value} jetones`,
+    tokens: value => `${value} jetones`
   },
   webhooks: {
     search: 'Cercar webhooks...',
@@ -1782,7 +1852,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     hint: 'Cambios de subscription recarga in calde un vice que le receptor functiona. Subscriptiones disactivate rejicte evenimentos entrante.',
     empty: 'Nulle subscriptiones de webhook ancora.',
     disabledTitle: 'Receptor de webhook disactivate',
-    disabledBody: 'Webhooks es lor proprie platforma de porta. Activa los hic pro acceptar evenimentos HTTP entrante; canales de chat es solmente necessari quando un subscription entrega a Telegram, Discord, Slack, o un altere canal.',
+    disabledBody:
+      'Webhooks es lor proprie platforma de porta. Activa los hic pro acceptar evenimentos HTTP entrante; canales de chat es solmente necessari quando un subscription entrega a Telegram, Discord, Slack, o un altere canal.',
     enable: 'Activar webhooks',
     enabling: 'Activation...',
     enabled: (name: string) => `Activate: "${name}"`,
@@ -1799,7 +1870,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     toggleFailed: (name: string) => `Impossibile actualisar “${name}”`,
     newSubscription: 'Nova subscription',
     restarting: 'Gateway reiniciando...',
-    restartNeeded: 'Webhooks es activate, ma le gateway ancora besonia un reinicio ante que le receptor pote venir online.',
+    restartNeeded:
+      'Webhooks es activate, ma le gateway ancora besonia un reinicio ante que le receptor pote venir online.',
     restartGateway: 'Reiniciar gateway',
     restartingGateway: 'Reiniciando...',
     restartFailed: (detail: string) => `Le reinicio del gateway fallis${detail}`,
@@ -1835,8 +1907,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Posta electronic',
-      github_comment: 'Commentario GitHub',
-    },
+      github_comment: 'Commentario GitHub'
+    }
   },
   cron: {
     close: 'Clauder cron',
@@ -1851,14 +1923,14 @@ Lassa vacu pro conservar le default de ${mode}.`,
       paused: 'pausate',
       disabled: 'desactivato',
       error: 'errore',
-      completed: 'completate',
+      completed: 'completate'
     },
     deliveryLabels: {
       local: 'Iste desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-mail',
+      email: 'E-mail'
     },
     scheduleLabels: {
       daily: 'Quotidie',
@@ -1867,7 +1939,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       monthly: 'Mensualmente',
       hourly: 'Horariemente',
       'every-15-minutes': 'Cada 15 minutas',
-      custom: 'Personalisate',
+      custom: 'Personalisate'
     },
     scheduleHints: {
       daily: 'Cada die a 9:00 AM',
@@ -1876,7 +1948,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       monthly: 'Le prime die de cada mense a 9:00 AM',
       hourly: 'Al comitiamento de cada hora',
       'every-15-minutes': 'Cada 15 minutas',
-      custom: 'Syntaxe cron o lingua natural',
+      custom: 'Syntaxe cron o lingua natural'
     },
     days: {
       '0': 'Dominica',
@@ -1886,7 +1958,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       '4': 'Jovedi',
       '5': 'Venerdi',
       '6': 'Sabbato',
-      '7': 'Dominica',
+      '7': 'Dominica'
     },
     dayFallback: value => `die ${value}`,
     everyDayAt: time => `Quolibdie a ${time}`,
@@ -1896,7 +1968,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     topOfHour: 'Al tosto de cata hora',
     everyHourAt: minute => `Cata hora a :${minute}`,
     newCron: 'Novo cron',
-    emptyDescNew: 'Programmate un prompt a currer super un expression cron. OpenAmer lo executara e delivera le resultatos al destination que tu selige.',
+    emptyDescNew:
+      'Programmate un prompt a currer super un expression cron. OpenAmer lo executara e delivera le resultatos al destination que tu selige.',
     emptyDescSearch: 'Proba un consulta de recerca plus ample.',
     emptyTitleNew: 'Ancora nulle travalios programmate',
     emptyTitleSearch: 'Nulle correspondentias',
@@ -1933,7 +2006,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     editTitle: 'Modificar travalio cron',
     createTitle: 'Nove travalio cron',
     editDesc: 'Actualisar le horario, le prompt, o le destination de delivery. Cambios apply al proxime execution.',
-    createDesc: 'Programmar un prompt a currer automaticamente. Usar syntax cron o un phrase natural como "cada 15 minutos".',
+    createDesc:
+      'Programmar un prompt a currer automaticamente. Usar syntax cron o un phrase natural como "cada 15 minutos".',
     nameLabel: 'Nomine',
     namePlaceholder: 'Briefing matinal',
     promptLabel: 'Instruction',
@@ -1955,7 +2029,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     createAction: 'Crear cron',
     tabs: {
       jobs: 'Trabalhos',
-      blueprints: 'Planos',
+      blueprints: 'Planos'
     },
     blueprints: {
       tab: 'Planos',
@@ -1969,8 +2043,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       loading: 'Cargamento de planos...',
       failedLoad: 'Fallite cargar planos',
       emptyTitle: 'Nulle planos disponibile',
-      emptyDesc: 'Nulle planos de automatisation es disponibile in iste backend.',
-    },
+      emptyDesc: 'Nulle planos de automatisation es disponibile in iste backend.'
+    }
   },
   artifacts: {
     search: 'Recercar artefactos...',
@@ -2004,14 +2078,14 @@ Lassa vacu pro conservar le default de ${mode}.`,
     kindLink: 'ligamine',
     chat: 'Conversation',
     copyUrl: 'Copiar URL',
-    copyPath: 'Copiar ruta',
+    copyPath: 'Copiar ruta'
   },
   sidebar: {
     nav: {
       'new-session': 'Nova session',
       skills: 'Capacitates',
       messaging: 'Messagerie',
-      artifacts: 'Artefactos',
+      artifacts: 'Artefactos'
     },
     searchAria: 'Cercar sessiones',
     searchPlaceholder: 'Cercar sessiones…',
@@ -2043,7 +2117,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       namePlaceholder: 'ex. Skunkworks',
       foldersLabel: 'Cartellas',
       ideaLabel: 'Idea',
-      ideaPlaceholder: "De que tracta iste projecto? (salvate in IDEA.md)",
+      ideaPlaceholder: 'De que tracta iste projecto? (salvate in IDEA.md)',
       ideaGenerate: 'Genera idea',
       ideaGenerating: 'Generante…',
       ideaShuffle: 'Misce templates',
@@ -2063,7 +2137,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
       copyPath: 'Copiar via',
       removeFromSidebar: 'Celer in barra lateral',
       createFailed: 'Non potebat crear projecto',
-      staleBackend: 'Actualisar le backend de Openamer pro crear projectos — vostre backend es plus vetere que iste application de scriptorio (Configurationes → Actualisationes → Backend).',
+      staleBackend:
+        'Actualisar le backend de Openamer pro crear projectos — vostre backend es plus vetere que iste application de scriptorio (Configurationes → Actualisationes → Backend).',
       deleteConfirm: 'Isto remove le projecto salvate de Openamer. Files, repos git, e worktrees remane intacte.',
       startWork: 'Nove worktree',
       newWorktreeTitle: 'Nove worktree',
@@ -2085,13 +2160,15 @@ Lassa vacu pro conservar le default de ${mode}.`,
       noBranches: 'Nulle branch trovate',
       removeWorktree: 'Remover worktree',
       removeWorktreeFailed: 'Non potiva remover worktree (cambiamentos non commitite?)',
-      removeWorktreeConfirm: 'Remover lo de git (elimina le directorio del worktree; le branch remane), o solmente celar le lane del barra lateral e lassar le worktree sur disco.',
-      removeWorktreeDirty: 'Iste worktree ha cambiamentos non commitite. Forzar su removal (elimina iste cambiamentos), o solmente celar le lane e mantener lo sur disco.',
+      removeWorktreeConfirm:
+        'Remover lo de git (elimina le directorio del worktree; le branch remane), o solmente celar le lane del barra lateral e lassar le worktree sur disco.',
+      removeWorktreeDirty:
+        'Iste worktree ha cambiamentos non commitite. Forzar su removal (elimina iste cambiamentos), o solmente celar le lane e mantener lo sur disco.',
       forceRemove: 'Forzar removal',
       enter: label => `Aperir ${label}`,
       reorder: label => `Reordinar ${label}`,
       toggle: label => `Alternar le sessiones de ${label}`,
-      back: 'Omne projectos',
+      back: 'Omne projectos'
     },
     newSessionIn: label => `Nove session in ${label}`,
     showMoreIn: (count, label) => `Monstrar ${count} de plus in ${label}`,
@@ -2129,15 +2206,15 @@ Lassa vacu pro conservar le default de ${mode}.`,
       ageNow: 'ora',
       ageDay: 'd',
       ageHour: 'h',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Ante hodie',
       yesterday: 'Her',
       thisWeek: 'Ante iste septimana',
       lastWeek: 'Le septimana passate',
-      thisMonth: 'Ante iste mense',
-    },
+      thisMonth: 'Ante iste mense'
+    }
   },
   composer: {
     message: 'Message',
@@ -2148,20 +2225,20 @@ Lassa vacu pro conservar le default de ${mode}.`,
     newSessionPlaceholders: [
       'Que construe nos?',
       'Da un carga a OpenAmer',
-      "A que pensa tu?",
+      'A que pensa tu?',
       'Describe lo que tu necessita',
       'De que debe nos occupar nos?',
       'Demanda qualcunque cosa',
-      'Comencia con un objectivo',
+      'Comencia con un objectivo'
     ],
     followUpPlaceholders: [
       'Invia un message de sequito',
       'Adde plus de contexto',
       'Raffina le requesta',
-      "Que seque?",
+      'Que seque?',
       'Continua assi',
       'Va plus longe',
-      'Adjusta o continua',
+      'Adjusta o continua'
     ],
     startVoice: 'Initiar conversation vocal',
     queueMessage: 'Poner message in cola',
@@ -2197,7 +2274,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       '/resume': 'resume un session anterior',
       '/details': 'controlla nivel de detail del transcripto',
       '/copy': 'copia selection o ultime message del assistente',
-      '/quit': 'exite openamer',
+      '/quit': 'exite openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'referentia files, cartellas, urls, git',
@@ -2207,7 +2284,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       'composer.sendQueued': 'envia proxime turno in cola',
       'keybinds.openPanel': 'tote tastos de abreviation',
       'composer.cancel': 'claude popover · cancella execution',
-      'composer.history': 'cycla popover / historia',
+      'composer.history': 'cycla popover / historia'
     },
     attachUrlTitle: 'Attachar un URL',
     attachUrlDesc: 'OpenAmer obtine le pagina e lo include como context pro iste turno.',
@@ -2228,7 +2305,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     queueResume: 'Reprender',
     queueResumeTip: 'Pausate per Stop — reprender le expedition del turnos in cola',
     queueStuckTitle: 'Message in cola non mittite',
-    queueStuckBody: 'Un turno in cola continuava fallar a mittar. Illo es ancora in le cola — essayar mittar lo de novo.',
+    queueStuckBody:
+      'Un turno in cola continuava fallar a mittar. Illo es ancora in le cola — essayar mittar lo de novo.',
     previewUnavailable: 'Previsualisation non disponibile',
     previewLabel: label => `Previsualisar ${label}`,
     couldNotPreview: label => `Impossibile previsualisar ${label}`,
@@ -2258,19 +2336,19 @@ Lassa vacu pro conservar le default de ${mode}.`,
       codeReview: {
         label: 'Revision de codigo',
         description: 'Audita le modification actual pro regressiones, casos marginal omitite, e testes mancante.',
-        text: 'Per favor revisiona isto pro bugs, regressiones, e testes mancante.',
+        text: 'Per favor revisiona isto pro bugs, regressiones, e testes mancante.'
       },
       implementationPlan: {
         label: 'Plan de implementation',
         description: 'Skissa un approccio ante modificar le codigo pro que le diff remainda focusate.',
-        text: 'Crea un plan de implementation concise ante cambiar le codigo.',
+        text: 'Crea un plan de implementation concise ante cambiar le codigo.'
       },
       explainThis: {
         label: 'Explica isto',
         description: 'Describe como le codigo selectate functiona e referi a le archivos principal.',
-        text: 'Per favore explica como isto functiona e monstra me le archivos principal.',
-      },
-    },
+        text: 'Per favore explica como isto functiona e monstra me le archivos principal.'
+      }
+    }
   },
   statusStack: {
     agents: 'Agentes',
@@ -2300,8 +2378,10 @@ Lassa vacu pro conservar le default de ${mode}.`,
       viewAsList: 'Vider como lista',
       revert: 'Reverter',
       revertAll: 'Reverter tote',
-      revertConfirm: 'Eliminar alterationes a iste archivo e restaurar lo al stato committe? Isto non pote esser annullate.',
-      revertAllConfirm: 'Eliminar omne alterationes e restaurar archivos al stato committe? Isto non pote esser annullate.',
+      revertConfirm:
+        'Eliminar alterationes a iste archivo e restaurar lo al stato committe? Isto non pote esser annullate.',
+      revertAllConfirm:
+        'Eliminar omne alterationes e restaurar archivos al stato committe? Isto non pote esser annullate.',
       staged: 'Preparate',
       noChanges: 'Null alterationes',
       notRepo: 'Non un repositorio git',
@@ -2318,13 +2398,14 @@ Lassa vacu pro conservar le default de ${mode}.`,
       openPr: 'Aperir PR',
       ghMissing: 'Installar le GitHub CLI (gh) e registrar se pro aperir PRs',
       agentShip: 'Pregar OpenAmer aperir PR',
-      agentShipPrompt: 'Revisar le modificationes actual, committer los con un message conventional-clare, pusshar le branch, e aperir un pull request.',
+      agentShipPrompt:
+        'Revisar le modificationes actual, committer los con un message conventional-clare, pusshar le branch, e aperir un pull request.',
       newBranch: 'Nove branch',
       branchOffFrom: base => `Nove branca a partir de ${base}`,
       switchTo: branch => `Passar a ${branch}`,
       switchFailed: branch => `Impossibile passar a ${branch}`,
-      worktrees: 'Arbores de labor',
-    },
+      worktrees: 'Arbores de labor'
+    }
   },
   modelPicker: {
     title: 'Cambiar modello',
@@ -2340,13 +2421,13 @@ Lassa vacu pro conservar le default de ${mode}.`,
     free: 'Gratuite',
     freeTier: 'Nivello gratuite',
     priceTitle: 'Preço de input / output per million de tokens',
-    wasPrice: 'era',
+    wasPrice: 'era'
   },
   modelVisibility: {
     title: 'Modelos',
     search: 'Cercar modelos',
     noAuthenticatedProviders: 'Nulle provider autenticate.',
-    addProvider: 'Adder provider…',
+    addProvider: 'Adder provider…'
   },
   shell: {
     windowControls: 'Controles de fenestra',
@@ -2357,7 +2438,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       noModels: 'Nulle modelos trovate',
       editModels: 'Modificar modelos…',
       refreshModels: 'Actualizar modelos',
-      fast: 'Rapide',
+      fast: 'Rapide'
     },
     modelOptions: {
       noOptions: 'Nulle optiones pro iste modelo',
@@ -2373,7 +2454,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       max: 'Maxime',
       ultra: 'Ultra',
       updateFailed: 'Actualisation de option de modelo fallite',
-      fastFailed: 'Actualisation de modo rapide fallite',
+      fastFailed: 'Actualisation de modo rapide fallite'
     },
     gatewayMenu: {
       gateway: 'Porta',
@@ -2388,7 +2469,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       connection: label => `Connexion: ${label}`,
       recentActivity: 'Activitate recente',
       viewAllLogs: 'Vider tote le logs →',
-      messagingPlatforms: 'Platformas de messagerie',
+      messagingPlatforms: 'Platformas de messagerie'
     },
     approvalMode: {
       title: 'Modo de approbation',
@@ -2398,7 +2479,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       smart: 'Intelligente',
       smartDescription: 'Evaluar automaticamente actiones e pregunta quando necessari',
       off: 'Extincte',
-      offDescription: 'Executar sin prompts de approbation',
+      offDescription: 'Executar sin prompts de approbation'
     },
     statusbar: {
       unknown: 'incognite',
@@ -2454,27 +2535,29 @@ Lassa vacu pro conservar le default de ${mode}.`,
           skills: 'Habilitates',
           subagent_definitions: 'Definitiones de subagentes',
           system_prompt: 'Prompt del systema',
-          tool_definitions: 'Definitiones de instrumentos',
+          tool_definitions: 'Definitiones de instrumentos'
         },
         empty: 'Nulle datos de context ancora',
         loading: 'Cargamento del detalio…',
         percentFull: percent => `${percent}% plen`,
         title: 'Uso del context',
-        tokenSummary: (used, max) => `${used} / ${max} jetones`,
+        tokenSummary: (used, max) => `${used} / ${max} jetones`
       },
       openContextUsage: 'Aperir detalio del uso del context',
       session: 'Session',
       runtimeSessionElapsed: 'Session de execution transcurrite',
-      yoloOn: 'YOLO activate — approbation automatic de commandos periculose. Clickar pro disactivate. Shift+click alterna lo globalmente.',
-      yoloOff: 'YOLO disactivate — clickar pro approbar automatic commandos periculose. Shift+click alterna lo globalmente.',
+      yoloOn:
+        'YOLO activate — approbation automatic de commandos periculose. Clickar pro disactivate. Shift+click alterna lo globalmente.',
+      yoloOff:
+        'YOLO disactivate — clickar pro approbar automatic commandos periculose. Shift+click alterna lo globalmente.',
       modelNone: 'ningun',
       noModel: 'null modelo',
       switchModel: 'Cambiar modelo',
       openModelPicker: 'Aperir selector de modelo',
       modelPinned: 'fixate per te; nove chats usa iste in loco del predefinite del Configurationes',
       modelTitle: (provider, model) => `Modello · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Barra lateral dextre',
@@ -2510,7 +2593,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
     terminalNew: 'Nove terminal',
     terminalCloseOthers: 'Clauder alteres',
     terminalCloseAll: 'Clauder tote',
-    addToChat: 'Adder al chat',
+    addToChat: 'Adder al chat'
   },
   preview: {
     tab: 'Previsualisation',
@@ -2544,7 +2627,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     unsavedChanges: 'Change non salvate',
     saveFailed: message => `Non possible salvar: ${message}`,
     diskChangedTitle: 'File cambiate sur disco',
-    diskChangedBody: 'Iste file ha cambiate desde que tu lo aperite. Rescribite lo con tu version, o rejicite tu modificationes e recargate?',
+    diskChangedBody:
+      'Iste file ha cambiate desde que tu lo aperite. Rescribite lo con tu version, o rejicite tu modificationes e recargate?',
     overwrite: 'Rescribir',
     discardReload: 'Rejicite & recargate',
     console: {
@@ -2565,7 +2649,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       empty: 'Nulle messages de console ancora.',
       promptHeader: 'Console de previsualisation:',
       sentTitle: 'Transmittite al chat',
-      sentMessage: count => `${count} entrata${count === 1 ? 'y' : 'ies'} del registro addite al compositor`,
+      sentMessage: count => `${count} entrata${count === 1 ? 'y' : 'ies'} del registro addite al compositor`
     },
     web: {
       appFailedToBoot: 'Le application de previsualisation ha fallite a initiar',
@@ -2583,24 +2667,27 @@ Lassa vacu pro conservar le default de ${mode}.`,
       showConsole: 'Monstrar console de previsualisation',
       hideDevTools: 'Celar DevTools de previsualisation',
       openDevTools: 'Aperir DevTools de previsualisation',
-      finishedRestarting: message => `OpenAmer fini le reinicio del servidor de previsualisation${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer fini le reinicio del servidor de previsualisation${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Le reinicio del servidor falliva: ${message}`,
       unknownError: 'error incognite',
       restartedTitle: 'Servidor de previsualisation reiniciate',
       reloadingNow: 'Recargamento del previsualisation nunc.',
       restartFailedTitle: 'Reinicio del previsualisation fallite',
       restartFailedMessage: 'OpenAmer non poterea reiniciar le servidor.',
-      stillWorking: 'OpenAmer ancora functiona, sed nulle resultato de reinicio ha arrivate ancora. Le commanda del servidor pote functionar in le foreground.',
+      stillWorking:
+        'OpenAmer ancora functiona, sed nulle resultato de reinicio ha arrivate ancora. Le commanda del servidor pote functionar in le foreground.',
       workspaceReloading: 'Spacio de travail mutate, recargamento del previsualisation',
       fileChanged: url => `File cambiate, recargando previsualisation: ${url}`,
       filesChanged: (count, url) => `${count} cambios de file, recargamento del previsualisation: ${url}`,
       watchFailed: message => `Non possible vigilar file de previsualisation: ${message}`,
-      moduleMimeDescription: 'Scriptos de modulo es servite con le typo MIME incorrecte. Isto usualmente significa que un servidor de files static serve un app Vite/React in loco del servidor de development del projecto.',
+      moduleMimeDescription:
+        'Scriptos de modulo es servite con le typo MIME incorrecte. Isto usualmente significa que un servidor de files static serve un app Vite/React in loco del servidor de development del projecto.',
       loadFailedConsole: (code, message) => `Carga falliva${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Le pagina de previsualisation non poterea esser attingite.',
       openTarget: url => `Aperir ${url}`,
-      fallbackTitle: 'Previsualisation',
-    },
+      fallbackTitle: 'Previsualisation'
+    }
   },
   zones: {
     showHeader: 'Monstrar capite',
@@ -2608,7 +2695,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     minimize: 'Minimisar',
     restore: 'Restaurar',
     closeRunningTitle: 'Clauder tabula in function?',
-    closeRunningBody: 'Iste chat ancora functiona (o attende vostre input). Clauder le tabula lo celera — le session retine su progresso e pote esser reaperite del barra lateral.',
+    closeRunningBody:
+      'Iste chat ancora functiona (o attende vostre input). Clauder le tabula lo celera — le session retine su progresso e pote esser reaperite del barra lateral.',
     closeRunningConfirm: 'Clauder tabula',
     closeOthers: 'Clauder le alteres',
     closeToRight: 'Clauder a dextra',
@@ -2644,8 +2732,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     customZoneName: count => `Zona custom ${count}`,
     layoutNamePlaceholder: fallback => `Nom del layout (${fallback})`,
     saveApply: 'Salvar e applicar',
-    notExpressible: 'iste disposition s\'interclava (pinwheel) — non exprimibile como divisiones imbricate ancora',
-    zoneCount: count => `${count} zonas`,
+    notExpressible: "iste disposition s'interclava (pinwheel) — non exprimibile como divisiones imbricate ancora",
+    zoneCount: count => `${count} zonas`
   },
   assistant: {
     thread: {
@@ -2681,7 +2769,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       restoreNext: 'Restaurar proxime checkpoint',
       goForward: 'Vader in avant',
       sendEdited: 'Mandar message editate',
-      attachingFile: 'Attachante…',
+      attachingFile: 'Attachante…'
     },
     approval: {
       gatewayDisconnected: 'Le gateway OpenAmer non es connectate',
@@ -2694,8 +2782,9 @@ Lassa vacu pro conservar le default de ${mode}.`,
       jumpToApproval: 'Approbation requirite',
       reject: 'Rejicter',
       alwaysTitle: 'Semper permitter iste commando?',
-      alwaysDescription: pattern => `Iste adde le patron "${pattern}" a tu lista de permission permanente (~/.openamer/config.yaml). OpenAmer non demandera ulteriormente pro commandos como iste — in iste session o in ulque future session.`,
-      alwaysAllow: 'Sempre permitter',
+      alwaysDescription: pattern =>
+        `Iste adde le patron "${pattern}" a tu lista de permission permanente (~/.openamer/config.yaml). OpenAmer non demandera ulteriormente pro commandos como iste — in iste session o in ulque future session.`,
+      alwaysAllow: 'Sempre permitter'
     },
     clarify: {
       notReady: 'Requesto de clarification non es presto ancora',
@@ -2709,7 +2798,7 @@ Lassa vacu pro conservar le default de ${mode}.`,
       continueLabel: 'Continuar',
       lateAnswer: (question, choice) => `Re: "${question}" — me response: ${choice}`,
       lateAnswerTip: 'Redacter iste response como un message de sequito',
-      lateAnswerHint: 'Iste prompt non attende plus. Selige un option pro redacter lo como un message de sequito.',
+      lateAnswerHint: 'Iste prompt non attende plus. Selige un option pro redacter lo como un message de sequito.'
     },
     tool: {
       code: 'Codice',
@@ -2745,11 +2834,11 @@ Lassa vacu pro conservar le default de ${mode}.`,
         ran: 'Executive',
         running: 'Functionante',
         ranCode: 'Code execute',
-        runningCode: 'Scriptation',
+        runningCode: 'Scriptation'
       },
       prefixes: {
         browser: 'Navigator',
-        web: 'Rete',
+        web: 'Rete'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2757,132 +2846,133 @@ Lassa vacu pro conservar le default de ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Executando ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Executando ${action.toLowerCase()}`,
+        runningTool: action => `Executando ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Elemento de pagina cliccate',
           pending: 'Cliccante elemento de pagina',
-          pendingAction: 'Cliccante',
+          pendingAction: 'Cliccante'
         },
         browser_fill: {
           done: 'Campo de formulario completate',
           pending: 'Completante campo de formulario',
-          pendingAction: 'Completante',
+          pendingAction: 'Completante'
         },
         browser_navigate: {
           done: 'Pagina aperite',
           pending: 'Aperiente pagina',
-          pendingAction: 'Aperiente',
+          pendingAction: 'Aperiente'
         },
         browser_snapshot: {
           done: 'Instantanea de pagina capturate',
           pending: 'Capturante instantanea de pagina',
-          pendingAction: 'Capturante',
+          pendingAction: 'Capturante'
         },
         browser_take_screenshot: {
           done: 'Captura de schermo capturate',
           pending: 'Capturante captura de schermo',
-          pendingAction: 'Capturante',
+          pendingAction: 'Capturante'
         },
         browser_type: {
           done: 'Tastate sur pagina',
           pending: 'Tastante sur pagina',
-          pendingAction: 'Tastation',
+          pendingAction: 'Tastation'
         },
         clarify: {
           done: 'Demandate un question',
           pending: 'Demandante un question',
-          pendingAction: 'Demanda',
+          pendingAction: 'Demanda'
         },
         cronjob: {
           done: 'Trabalho cron',
           pending: 'Programmante trabalho cron',
-          pendingAction: 'Programmation',
+          pendingAction: 'Programmation'
         },
         edit_file: {
           done: 'File editate',
           pending: 'Editante file',
-          pendingAction: 'Edition',
+          pendingAction: 'Edition'
         },
         execute_code: {
           done: 'Code executate',
           pending: 'Scriptation',
-          pendingAction: 'Scriptation',
+          pendingAction: 'Scriptation'
         },
         image_generate: {
           done: 'Imagine generat',
           pending: 'Generante imagine',
-          pendingAction: 'Generation',
+          pendingAction: 'Generation'
         },
         list_files: {
           done: 'Files listate',
           pending: 'Listante files',
-          pendingAction: 'Listage',
+          pendingAction: 'Listage'
         },
         patch: {
           done: 'File patchate',
           pending: 'Patchage de file',
-          pendingAction: 'Patchage',
+          pendingAction: 'Patchage'
         },
         read_file: {
           done: 'File legite',
           pending: 'Lectura de file',
-          pendingAction: 'Lectura',
+          pendingAction: 'Lectura'
         },
         search_files: {
           done: 'Files recercate',
           pending: 'Recerca de files',
-          pendingAction: 'Recerca',
+          pendingAction: 'Recerca'
         },
         session_search_recall: {
           done: 'Historic de session recercate',
           pending: 'Recerca de historic de session',
-          pendingAction: 'Recerca',
+          pendingAction: 'Recerca'
         },
         terminal: {
           done: 'Commando executite',
           pending: 'Execution de commando',
-          pendingAction: 'Execution',
+          pendingAction: 'Execution'
         },
         todo: {
           done: 'Cosas a facer actualisate',
           pending: 'Actualisation de cosas a facer',
-          pendingAction: 'Actualisation',
+          pendingAction: 'Actualisation'
         },
         vision_analyze: {
           done: 'Imagine analysate',
           pending: 'Analysar imagine',
-          pendingAction: 'Analysar',
+          pendingAction: 'Analysar'
         },
         web_extract: {
           done: 'Leger pagina web',
           pending: 'Legente pagina web',
-          pendingAction: 'Legente',
+          pendingAction: 'Legente'
         },
         web_search: {
           done: 'Recercate web',
           pending: 'Recercar web',
-          pendingAction: 'Recercar',
+          pendingAction: 'Recercar'
         },
         write_file: {
           done: 'File editate',
           pending: 'Editar file',
-          pendingAction: 'Editar',
-        },
-      },
-    },
+          pendingAction: 'Editar'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'Le gateway OpenAmer non es connectate',
     sudoSendFailed: 'Non potebat transmitter le password sudo',
     secretSendFailed: 'Non potebat transmitter le secreto',
     sudoTitle: 'Password de administrator',
-    sudoDesc: 'OpenAmer besonia tu password sudo pro exequer un commando privilegiate. Illo es transmitte solmente a tu agente local.',
+    sudoDesc:
+      'OpenAmer besonia tu password sudo pro exequer un commando privilegiate. Illo es transmitte solmente a tu agente local.',
     sudoPlaceholder: 'password sudo',
     secretTitle: 'Secreto requirite',
     secretDesc: 'OpenAmer besonia un credencial pro continuar.',
-    secretPlaceholder: 'valore de secreto',
+    secretPlaceholder: 'valore de secreto'
   },
   desktop: {
     audioReadFailed: 'Non potte leger audio registrate',
@@ -2899,7 +2989,8 @@ Lassa vacu pro conservar le default de ${mode}.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} pro iste session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Non potte commutar YOLO',
-    profileStatus: current => `Profilo: ${current}. Usa /profile <nomine> o le selector "Nove session" pro initiar un conversation in un altere profilo.`,
+    profileStatus: current =>
+      `Profilo: ${current}. Usa /profile <nomine> o le selector "Nove session" pro initiar un conversation in un altere profilo.`,
     unknownProfile: 'Profile incognite',
     noProfileNamed: (target, available) => `Nulle profilo nominate "${target}". Disponibile: ${available}`,
     newChatsProfile: name => `Nove conversationes usara le profilo ${name}.`,
@@ -2909,8 +3000,9 @@ Lassa vacu pro conservar le default de ${mode}.`,
     regenerateFailed: 'Regenerar fallite',
     editFailed: 'Modificar fallite',
     resumeFailed: 'Reprender fallite',
-    resumeStrandedTitle: "Non potte cargar iste session",
-    resumeStrandedBody: 'Le connection a iste session fallite e le tentativas automatiche cessava. Verifica que le gateway functiona, tunc tenta de novo.',
+    resumeStrandedTitle: 'Non potte cargar iste session',
+    resumeStrandedBody:
+      'Le connection a iste session fallite e le tentativas automatiche cessava. Verifica que le gateway functiona, tunc tenta de novo.',
     resumeRetry: 'Reintentar',
     nothingToBranch: 'Nihil a ramificar',
     branchNeedsChat: 'Initiar o resumar un chat ante ramificar.',
@@ -2950,31 +3042,31 @@ Lassa vacu pro conservar le default de ${mode}.`,
       success: platform => `Transferite a ${platform}. Reprende hic quando tu vole.`,
       systemNote: platform => `↻ Transferite a ${platform} — reprende hic quando tu vole.`,
       failed: error => `Transferimento fallite: ${error}`,
-      timedOut: 'Tempo exhaurite attendente le gateway. Es `openamer gateway` in functionamento?',
-    },
+      timedOut: 'Tempo exhaurite attendente le gateway. Es `openamer gateway` in functionamento?'
+    }
   },
   errors: {
     genericFailure: 'Algo ha gitate mal',
     boundaryTitle: 'Algo ha ruptite in le interface',
     boundaryDesc: 'Le vista ha incontrate un error inexpectate. Vostre chats e configurationes es secure.',
     reloadWindow: 'Recargar fenestra',
-    openLogs: 'Aperir logs',
+    openLogs: 'Aperir logs'
   },
   ui: {
     search: {
-      clear: 'Clarificar recerca',
+      clear: 'Clarificar recerca'
     },
     pagination: {
       label: 'Pagination',
       previous: 'Ante',
       previousAria: 'Vader a pagina precedente',
       next: 'Prox',
-      nextAria: 'Vader a pagina proxime',
+      nextAria: 'Vader a pagina proxime'
     },
     sidebar: {
       title: 'Barra lateral',
       description: 'Monstra le barra lateral mobile.',
-      toggle: 'Commutar barra lateral',
-    },
-  },
+      toggle: 'Commutar barra lateral'
+    }
+  }
 })

@@ -82,7 +82,7 @@ export const ps = defineLocale({
     env: 'محيط',
     soulPlaceholder: mode => `دا پروفایل لپاره سيسټم پرامپټ / شخصيت.
 خالي وگورئ تا ${mode} پیش فرض ساتل شي.`,
-    invalidName: hint => `نامعتبر نوم. ${hint}`,
+    invalidName: hint => `نامعتبر نوم. ${hint}`
   },
   cron: {
     close: 'کرون تړل',
@@ -96,14 +96,14 @@ export const ps = defineLocale({
       paused: 'وقفه شوی',
       disabled: 'غیر فعال',
       error: 'خطا',
-      completed: 'پای شوی',
+      completed: 'پای شوی'
     },
     deliveryLabels: {
       local: 'دا ډیسټاپ',
       email: 'ایمیل',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'ورځنۍ',
@@ -112,7 +112,7 @@ export const ps = defineLocale({
       monthly: 'ماهیانه',
       hourly: 'ساعتي',
       'every-15-minutes': 'هر ۱۵ دقیقې',
-      custom: 'د سمه',
+      custom: 'د سمه'
     },
     scheduleHints: {
       daily: 'هره ورځ د سهار ۹:۰۰',
@@ -121,7 +121,7 @@ export const ps = defineLocale({
       monthly: 'د هرې میاشتې لومړۍ ورځ د سهار ۹:۰۰',
       hourly: 'د هرې ساعت د سرې',
       'every-15-minutes': 'هر ۱۵ دقیقې',
-      custom: 'کرون سینتکس یا طبیعي ژبه',
+      custom: 'کرون سینتکس یا طبیعي ژبه'
     },
     days: {
       '0': 'یکشنبه',
@@ -131,7 +131,7 @@ export const ps = defineLocale({
       '4': 'پنجشنبه',
       '5': 'جمعه',
       '6': 'شنبه',
-      '7': 'یکشنبه',
+      '7': 'یکشنبه'
     },
     blueprints: {
       emptyDesc: 'د هېڅ بک‌اند لپاره اتومیشن بلیوپرټین شتون نه لري.',
@@ -145,11 +145,12 @@ export const ps = defineLocale({
       scheduled: 'بلو پرینټ شیدول شوی',
       loading: 'بلو پرینټونه لوستل...',
       failedLoad: 'بلو پرینټونه لوستل ناکام',
-      emptyTitle: 'هیچ بلو پرینټونه شتون نه لري',
+      emptyTitle: 'هیچ بلو پرینټونه شتون نه لري'
     },
     topOfHour: 'د هر ساعت په پیل کې',
     newCron: 'نوی کرون',
-    emptyDescNew: 'یو پرامپټ د کرون اظهار له مخې د چلولو لپاره مهالوېش کړئ. OpenAmer به یې چل کړي او پایلې به هغه ځای ته ورسوي چې تاسو یې غوره کوئ.',
+    emptyDescNew:
+      'یو پرامپټ د کرون اظهار له مخې د چلولو لپاره مهالوېش کړئ. OpenAmer به یې چل کړي او پایلې به هغه ځای ته ورسوي چې تاسو یې غوره کوئ.',
     emptyDescSearch: 'یوه پراخه لټون پوښتنه وآزمویئ.',
     emptyTitleNew: 'لا تر اوسه مهالوېش شوي کارونه نشته',
     emptyTitleSearch: 'هیڅ مطابقت نشته',
@@ -215,8 +216,8 @@ export const ps = defineLocale({
     createAction: 'کرون جوړ کړه',
     tabs: {
       jobs: 'کارونه',
-      blueprints: 'بلو پرینټونه',
-    },
+      blueprints: 'بلو پرینټونه'
+    }
   },
   keybinds: {
     actions: {
@@ -296,7 +297,7 @@ export const ps = defineLocale({
       'composer.queue': 'پیغام کتار ته اضافه کړئ',
       'composer.sendQueued': 'نېټه کتاری برخه وړاندې کړئ',
       'composer.mention': 'فایلونه، فولډرونه، URLs رجستر کړئ',
-      'composer.slash': 'اسلش کمانډ پېلټ',
+      'composer.slash': 'اسلش کمانډ پېلټ'
     },
     set: 'ټاکل',
     categories: {
@@ -304,7 +305,7 @@ export const ps = defineLocale({
       profiles: 'پروفایلونه',
       session: 'سېشن',
       navigation: 'نیویګیشن',
-      view: 'لید',
+      view: 'لید'
     },
     title: 'کیبورڈ لټونکي',
     subtitle: open => `کلیک یوه لټون ته وکړئ چې دا نوي ترلاسه کړي · ${open} دا پنل نوي وکړي.`,
@@ -313,7 +314,7 @@ export const ps = defineLocale({
     reset: 'پیش‌فرض ته واپس کړئ',
     resetAll: 'ټول واپس کړئ',
     pressKey: 'يو کلید دب کړئ…',
-    conflictWith: label => `هم په “${label}” ته اړونده شوی`,
+    conflictWith: label => `هم په “${label}” ته اړونده شوی`
   },
   language: {
     label: 'ژبه',
@@ -322,7 +323,7 @@ export const ps = defineLocale({
     saveError: 'د ژبې په نویولو کې ناکامۍ',
     switchTo: 'ژله بدله کړئ',
     searchPlaceholder: 'د ژبو لپاره لټون…',
-    noResults: 'هیڅ ژبه ونه موندل شوه',
+    noResults: 'هیڅ ژبه ونه موندل شوه'
   },
   settings: {
     closeSettings: 'تنظیمات بندول',
@@ -347,11 +348,12 @@ export const ps = defineLocale({
       billing: 'بلنګ',
       notifications: 'خبرتیاوې',
       plugins: 'پلگینونه',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'د ډیسکتاپ پلگینونه',
-      blurb: 'د UI پوسونکي چې په دې اپلیکیشن کې بار شوي — د بیلډ سره شامل، یا په `desktop-plugins` پوښۍ کې کېږدي (په ګرځ کې چې OpenAmer لیکي). غیرفعالول پلگین په فوری ډول له پلېته یوځي او د ریسټارټ له وروسته ډاګه ځي.',
+      blurb:
+        'د UI پوسونکي چې په دې اپلیکیشن کې بار شوي — د بیلډ سره شامل، یا په `desktop-plugins` پوښۍ کې کېږدي (په ګرځ کې چې OpenAmer لیکي). غیرفعالول پلگین په فوری ډول له پلېته یوځي او د ریسټارټ له وروسته ډاګه ځي.',
       openFolder: 'د پلگینونو پوښۍ پرانیستل',
       rescan: 'دوباره وڅیښول',
       reveal: 'په فایل مینیجر کې ښودل',
@@ -363,9 +365,9 @@ export const ps = defineLocale({
       kinds: {
         bundled: 'بندل شوی',
         disk: 'ډسک کې',
-        runtime: 'رانټایم',
+        runtime: 'رانټایم'
       },
-      manage: 'د ایجنټ پلگینونه اداره کړئ',
+      manage: 'د ایجنټ پلگینونه اداره کړئ'
     },
     config: {
       none: 'هیڅ',
@@ -381,7 +383,8 @@ export const ps = defineLocale({
       imported: 'تنظیمات وارد شول',
       invalidJson: 'ناڅاپل JSON',
       keepAwakeTitle: 'کمپیوټر بیدار پاتې کړئ',
-      keepAwakeDesc: 'دا ماشین د خوب له پاتې کېدو څخه وځپاره کړئ ترڅو اوږد یا شپې وځتونې دوام ورکړي. ښکته شکاڼه اوس هم کمېدلی شي.',
+      keepAwakeDesc:
+        'دا ماشین د خوب له پاتې کېدو څخه وځپاره کړئ ترڅو اوږد یا شپې وځتونې دوام ورکړي. ښکته شکاڼه اوس هم کمېدلی شي.'
     },
     credentials: {
       pasteKey: 'کلید پیسټ کړئ',
@@ -391,7 +394,7 @@ export const ps = defineLocale({
       remove: 'لرې کړئ',
       getKey: 'کلید ترلاسه کړئ',
       saving: 'د ذخیرې کولو په حال کې',
-      pasteLabelKey: label => `${label} کلید پیسټ کړئ`,
+      pasteLabelKey: label => `${label} کلید پیسټ کړئ`
     },
     envActions: {
       credentialActions: 'د سند عملیات',
@@ -402,7 +405,7 @@ export const ps = defineLocale({
       replace: 'بدل کړئ',
       set: 'ټاکل کړئ',
       clear: 'پاک کړئ',
-      actionsFor: label => `${label} لپاره اقدامات`,
+      actionsFor: label => `${label} لپاره اقدامات`
     },
     gateway: {
       loading: 'د ډیټا وېښې تنظیمات بارېږي...',
@@ -410,18 +413,21 @@ export const ps = defineLocale({
       unavailableDesc: 'د ډیسکټاپ IPC پل په ډیټا وېښې تنظیماتو کې دسترس نه لري.',
       title: 'د ډیټا وېښې اتصال',
       envOverride: 'د چندمحیطی له مخې بدلون',
-      intro: 'OpenAmer Desktop په 默认 کې خپله ځایي ډیټا وېښه پیلوي. وروسته OpenAmer backend د بلې ماشین یا د یوې بېورته شوی proxy له مخې کارولو لپاره ریمټ ډیټا وېښه وکاروئ. له لاندې یو پروفایل غوره کړئ ترڅو خپله ریمټ میزبان ولري.',
+      intro:
+        'OpenAmer Desktop په 默认 کې خپله ځایي ډیټا وېښه پیلوي. وروسته OpenAmer backend د بلې ماشین یا د یوې بېورته شوی proxy له مخې کارولو لپاره ریمټ ډیټا وېښه وکاروئ. له لاندې یو پروفایل غوره کړئ ترڅو خپله ریمټ میزبان ولري.',
       appliesTo: 'پلی کېږي',
       allProfiles: 'ټول پروفایلونه',
       defaultConnection: 'د هرې دې پروفایل د percept ډیفالټ اتصال چې د خپلې بدلون نه لري.',
       envOverrideTitle: 'د چندمحیطی متغیرونه دا ډیسکټاپ سیشن کنټرولوي.',
-      envOverrideDesc: 'ترڅو لاندې ذخیره شوی تنظیم وکاروئ، OPENAMER_DESKTOP_REMOTE_URL او OPENAMER_DESKTOP_REMOTE_TOKEN unset کړئ.',
-      profileConnection: profile => `کنکشن یوازې کارول کیږي کله چې “${profile}” فعال پروفایل دی. کارول پیشفول ګیټ وګورئ کله چې د یې اووررایډ حذف شي.`,
+      envOverrideDesc:
+        'ترڅو لاندې ذخیره شوی تنظیم وکاروئ، OPENAMER_DESKTOP_REMOTE_URL او OPENAMER_DESKTOP_REMOTE_TOKEN unset کړئ.',
+      profileConnection: profile =>
+        `کنکشن یوازې کارول کیږي کله چې “${profile}” فعال پروفایل دی. کارول پیشفول ګیټ وګورئ کله چې د یې اووررایډ حذف شي.`,
       modeTitle: 'انځورونې موډ',
       localTitle: 'مقامی ګیتوی',
       localDesc: 'localhost کې شخصي OpenAmer بیک اینډ راپورته کړئ. دا پیش‌فرض دی او آفلاین کار کوي.',
       inheritTitle: 'پیش‌فرض ګیتوی کارول',
-      inheritDesc: "دا پروفایل د نوي کولو حذف کړئ او پیش‌فرض انځورونه کارول.",
+      inheritDesc: 'دا پروفایل د نوي کولو حذف کړئ او پیش‌فرض انځورونه کارول.',
       remoteTitle: 'دورګی ګیتوی',
       remoteDesc: 'دا ڈیسک تاپ شل ته دورګی OpenAmer بیک اینډ وصل کړئ.',
       remoteAuthHint: 'هوسټ شوي ګیتویونه OAuth یا کارن نوم/پاسورډ کارول؛ خپل-هوسټ شويونه سیشن توکن کارولای شي.',
@@ -441,7 +447,7 @@ export const ps = defineLocale({
       cloudNoAgents: {
         before: 'په دې حساب کې هیڅ اجنټ نه موندل شو. یو جوړ کړئ په ',
         linkText: 'OpenAmer پورټال',
-        after: ', بال تازه کړئ.',
+        after: ', بال تازه کړئ.'
       },
       cloudRefresh: 'تازه کړئ',
       cloudConnect: 'انځور کړئ',
@@ -501,7 +507,8 @@ export const ps = defineLocale({
       applyFailed: 'د ګیت تنظیمات لاگو نه شول',
       saveFailed: 'ګیټ وې تنظیمات ساتل نشول',
       sshTitle: 'د SSH له لارې وصل شئ',
-      sshDesc: 'OpenAmer د SSH له لارې په ریموټ کې اجرا شوی او به تونل به دې اپلیکیشن ته ورسېږي — یه هم پیل کول یا خپله مننه کول نشته. د هوسټ ته د کلید-بنډیز SSH رسنی ته اړتیا لري.',
+      sshDesc:
+        'OpenAmer د SSH له لارې په ریموټ کې اجرا شوی او به تونل به دې اپلیکیشن ته ورسېږي — یه هم پیل کول یا خپله مننه کول نشته. د هوسټ ته د کلید-بنډیز SSH رسنی ته اړتیا لري.',
       sshTrustHint: 'لومړی وړاندیز شوی هوسټ کلید معتبر او پین شوی دی؛ وروستۍ بدلونونه بند ته ناکام کېږي.',
       sshHostTitle: 'هوسټ',
       sshHostDesc: 'user@host، یا ~/.ssh/config له لارې د هوسټ د اسلاس نوم.',
@@ -525,18 +532,24 @@ export const ps = defineLocale({
       sshReachable: (host, platform) => `رسیدلی: ${host} (${platform}) — OpenAmer موندل شوی`,
       sshIncompleteHost: 'مخکې وصل کولو د SSH هوسټ داخل کړئ.',
       sshErrUnreachable: 'د SSH له لارې دا هوسټ رسیدل نشول. هوسټ، پورټ، او ستاسو شبکه چک کړئ.',
-      sshErrAuth: 'د SSH تصدیق ناکام شوی. ستاسو کلید ته ssh-agent (ssh-add) کې بار کړئ یا IdentityFile په ~/.ssh/config کې تنظیم کړئ — OpenAmer ssh غیر-انټرایکتيو چلوي.',
-      sshErrHostKey: 'د هوسټ کلید بدل شوی دی له وروستۍ وصل له مخې. تصدیق کړئ چې دا پېښ شوی دی، بال ssh-keygen -R <host> اجرا کړئ او دوباره وصل شئ.',
-      sshErrNotInstalled: 'OpenAmer په ریموټ هوسټ کې نصب نشوی دی. دا وخته نصب کړئ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) یا د OpenAmer پاټه تنظیم کړئ.',
-      sshErrPlatform: 'غیر-پشتیبانی شوی ریموټ پلاټفارم. OpenAmer Desktop SSH موډ Linux، macOS، او Windows ریموټ هوسټونه حمایت کوي.',
+      sshErrAuth:
+        'د SSH تصدیق ناکام شوی. ستاسو کلید ته ssh-agent (ssh-add) کې بار کړئ یا IdentityFile په ~/.ssh/config کې تنظیم کړئ — OpenAmer ssh غیر-انټرایکتيو چلوي.',
+      sshErrHostKey:
+        'د هوسټ کلید بدل شوی دی له وروستۍ وصل له مخې. تصدیق کړئ چې دا پېښ شوی دی، بال ssh-keygen -R <host> اجرا کړئ او دوباره وصل شئ.',
+      sshErrNotInstalled:
+        'OpenAmer په ریموټ هوسټ کې نصب نشوی دی. دا وخته نصب کړئ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) یا د OpenAmer پاټه تنظیم کړئ.',
+      sshErrPlatform:
+        'غیر-پشتیبانی شوی ریموټ پلاټفارم. OpenAmer Desktop SSH موډ Linux، macOS، او Windows ریموټ هوسټونه حمایت کوي.',
       sshErrTimeout: 'د SSH وصل وخت وده راغلی. هوسټ ممکن رسیدلی نشه یا په خواب کې وي.',
       sshErrUpdateRequired: 'OpenAmer ته ریموټ هوسټ کې نوې کړئ مخکې چې Desktop SSH سره وصل شئ.',
-      sshErrUnknown: 'د SSH وصل ناکام شوی.',
+      sshErrUnknown: 'د SSH وصل ناکام شوی.'
     },
     appearance: {
       pet: {
-        intro: 'ځمکنه petdex ماسکاټ وکړئ چې د اپ پر فوق وږړي او د OpenAmer په کار کې عکس وښیې — د کار پر مهال وږږي، د بریالیتوب پر مهال لمانځي او د تېروتنې پر مهال خفه ږدي.',
-        restartHint: 'پېټ ته اړتیا ده چې بیا ځل پیل شي — دا ځانګړتیا مخکې له اضافه کېدو څخه مخکې روانه اپ پیل شوې وه. OpenAmer پرېږدئ او بیا پرانیزئ، څپرته بیا راشئ.',
+        intro:
+          'ځمکنه petdex ماسکاټ وکړئ چې د اپ پر فوق وږړي او د OpenAmer په کار کې عکس وښیې — د کار پر مهال وږږي، د بریالیتوب پر مهال لمانځي او د تېروتنې پر مهال خفه ږدي.',
+        restartHint:
+          'پېټ ته اړتیا ده چې بیا ځل پیل شي — دا ځانګړتیا مخکې له اضافه کېدو څخه مخکې روانه اپ پیل شوې وه. OpenAmer پرېږدئ او بیا پرانیزئ، څپرته بیا راشئ.',
         on: 'فعال',
         off: 'غیرفعال',
         scaleTitle: 'اندازه',
@@ -569,7 +582,7 @@ export const ps = defineLocale({
         adoptFailed: slug => `${slug} غونډ نه شول`,
         uninstallFailed: slug => `${slug} انانسټال نه شول`,
         renameFailed: slug => `${slug} نوی نوم ورکول نه شول`,
-        exportFailed: slug => `${slug} برآمد نه شول`,
+        exportFailed: slug => `${slug} برآمد نه شول`
       },
       title: 'ظراهیت',
       intro: 'دا یوازې ڈیسکټپ نښه ترجیحات دي. موډ چمک کنټرول کوي; ټیم اکسېنت پیلټ او چاټ سطح اسلوب کنټرول کوي.',
@@ -578,13 +591,15 @@ export const ps = defineLocale({
       toolViewTitle: 'د تول کال نښه',
       toolViewDesc: 'پراډکت خام تول پیلاډونه پټی کوي; تکنیکي کامل ورسېدلی/ورکړلی ښوي.',
       uiScaleTitle: 'UI مقیاس',
-      uiScaleDesc: (percent: number) => `مقیاس متن او کنټرولونه په ټولې اپلیکیشن کې. Cmd/Ctrl سره +، - او 0 هم کار کوي. اوسنی: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `مقیاس متن او کنټرولونه په ټولې اپلیکیشن کې. Cmd/Ctrl سره +، - او 0 هم کار کوي. اوسنی: ${percent}%.`,
       translucencyTitle: 'د پنجره شفافیت',
       translucencyDesc: 'ستاسو ڈیسکټپ په ټول پنجره کښه وگورئ. یوازې macOS او Windows.',
       backdropTitle: 'د چاټ پس منظر',
       backdropDesc: 'د خبرې پیښې پښه کمزور بت تصویر.',
       embedsTitle: 'ان لاین انبېډونه',
-      embedsDesc: 'ملاتړ پیش بینیونه له دریم طرف ويب پايلونو څخه لوستل کیږي (YouTube، X، …). پوښتن یوه جاگه نیولکی ښوي تاڅه تاسو هریک اجازه ورکړئ؛ هميشه به خودکار لوستل کوي؛ 밴ډ ساده لنکونه نگاه کوي.',
+      embedsDesc:
+        'ملاتړ پیش بینیونه له دریم طرف ويب پايلونو څخه لوستل کیږي (YouTube، X، …). پوښتن یوه جاگه نیولکی ښوي تاڅه تاسو هریک اجازه ورکړئ؛ هميشه به خودکار لوستل کوي؛ 밴ډ ساده لنکونه نگاه کوي.',
       embedsAsk: 'پوښتن',
       embedsAlways: 'هميشه',
       embedsOff: 'بند',
@@ -597,14 +612,15 @@ export const ps = defineLocale({
       themeDesc: 'تنها ڈیسک تاپ پیلټونه. انتخاب شوی موډ اوپر لاگو شوی.',
       themeProfileNote: profile => `${profile} پروفایل لپاره ساتل شوی — هر پروفایل خپله تم نگاه کوي`,
       installTitle: 'VS Code څخه انسټال کړئ',
-      installDesc: 'مارکیټ پلیس اكستنشن ID پیسټ کړئ (مثال: dracula-theme.theme-dracula) کله چې د یې رنگ تم د ډیسک تاپ پیلټه کې تبدیل شي.',
+      installDesc:
+        'مارکیټ پلیس اكستنشن ID پیسټ کړئ (مثال: dracula-theme.theme-dracula) کله چې د یې رنگ تم د ډیسک تاپ پیلټه کې تبدیل شي.',
       installPlaceholder: 'ناشر.اکستنشن',
       installButton: 'انسټال کړئ',
       installing: 'انسټال हो رها…',
       installError: 'دا تم انسټال نه شول.',
       installed: name => `“${name}” انسټال شوی.`,
       removeTheme: 'تم حذف کړئ',
-      importedBadge: 'درآمد شوی',
+      importedBadge: 'درآمد شوی'
     },
     about: {
       heading: 'د OpenAmer ډیسکتاپ',
@@ -622,7 +638,8 @@ export const ps = defineLocale({
       tapCheck: 'د اپډیټونو لپاره په «اوس وګورئ» باندې ټپ وکړئ.',
       justNowSuffix: '· اوس',
       automaticUpdates: 'اتوماتیک اپډیټونه',
-      automaticUpdatesDesc: 'OpenAmer په پس‌کې په اتوماتیک ډول د اپډیټونو لپاره لټون کوي او تاسو ته خبروی چې کله یې یو اپډیټ تیاره وي.',
+      automaticUpdatesDesc:
+        'OpenAmer په پس‌کې په اتوماتیک ډول د اپډیټونو لپاره لټون کوي او تاسو ته خبروی چې کله یې یو اپډیټ تیاره وي.',
       never: 'هیڅکله',
       justNow: 'اوس',
       version: value => `ورژن ${value}`,
@@ -631,7 +648,7 @@ export const ps = defineLocale({
       branchCommit: (branch, commit) => `برینچ ${branch} · کامټ ${commit}`,
       minAgo: count => `${count} منټ وروسته`,
       hoursAgo: count => `${count} ساعت وروسته`,
-      daysAgo: count => `${count} ورځ وروسته`,
+      daysAgo: count => `${count} ورځ وروسته`
     },
     mcp: {
       reloadFailed: 'د MCP ریلډ ناګام شو',
@@ -693,10 +710,11 @@ export const ps = defineLocale({
       catalogInstallStarted: name => `د ${name} نصب… کله چې پای ته ورسیږي نو نوې غونډې ته تطبیق کېږي.`,
       catalogInstallFailed: name => `د ${name} نصب ناکام شو`,
       catalogEnvPrompt: name => `${name} د ننوتلو معلوماتو ته اړتیا لري`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال شو`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} فعال شو`,
       authenticatedMessage: (server, count) => `${server}: ${count} وسیلې`,
       enableTool: tool => `د ${tool} فعالول`,
-      disableTool: tool => `د ${tool} غیرفعالول`,
+      disableTool: tool => `د ${tool} غیرفعالول`
     },
     model: {
       loading: 'د ماډل تنظیمات بارول...',
@@ -721,42 +739,43 @@ export const ps = defineLocale({
       tasks: {
         vision: {
           label: 'لید',
-          hint: 'د انځور تحلیل',
+          hint: 'د انځور تحلیل'
         },
         web_extract: {
           label: 'د ویب استخراج',
-          hint: 'د پاڼې خلاصه',
+          hint: 'د پاڼې خلاصه'
         },
         compression: {
           label: 'فشردول',
-          hint: 'د مرستي پوښتنې فشردول',
+          hint: 'د مرستي پوښتنې فشردول'
         },
         skills_hub: {
           label: 'د مهارتونو مرکز',
-          hint: 'د مهارتونو لټون',
+          hint: 'د مهارتونو لټون'
         },
         approval: {
           label: 'تصدیق',
-          hint: 'هوښیار خودکار تصدیق',
+          hint: 'هوښیار خودکار تصدیق'
         },
         mcp: {
           hint: 'د MCP وسایلو لارښوونه',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'د سرلیک جوړول',
-          hint: 'د سیشنونو سرلیکونه',
+          hint: 'د سیشنونو سرلیکونه'
         },
         curator: {
           label: 'نظمونکی',
-          hint: 'د مهارتونو کارولو کتنه',
-        },
-      },
+          hint: 'د مهارتونو کارولو کتنه'
+        }
+      }
     },
     providers: {
       connectAccount: 'حساب وصل کړئ',
       haveApiKey: 'بدلې API کیلي لرئ؟',
-      intro: 'په اشتراک سره ننګونئ — د کاپي کولو API کیلي نشته. OpenAmer د براوزر ننګول ستاسو لپاره دلته په خپل اپل کې ترسره کوي.',
+      intro:
+        'په اشتراک سره ننګونئ — د کاپي کولو API کیلي نشته. OpenAmer د براوزر ننګول ستاسو لپاره دلته په خپل اپل کې ترسره کوي.',
       connected: 'وصل',
       collapse: 'ټولول',
       connectAnother: 'بل پرلاور وصل کړئ',
@@ -766,7 +785,8 @@ export const ps = defineLocale({
       removeConfirm: provider => `د ${provider} لرې کول؟`,
       removeExternalGeneric: provider => `${provider} د خپل کمانډ کرښې انٹرفېس له لارې اداره کېږي — هلته یې لرې کړئ.`,
       removeKeyManaged: provider => `${provider} د API کیلي له لارې تنظیم شوی. د API کیلي ګانو له برخې یې لرې کړئ.`,
-      removeTerminalConfirm: (provider, command) => `د ${provider} جلا کول؟ دا "${command}" په ټرمینل کې چلوي ترڅو اعتبار پاک کړي.`,
+      removeTerminalConfirm: (provider, command) =>
+        `د ${provider} جلا کول؟ دا "${command}" په ټرمینل کې چلوي ترڅو اعتبار پاک کړي.`,
       removeTerminalRunning: provider => `د ${provider} جلا کول په ټرمینل کې روان دي…`,
       removedTitle: 'حساب لرې شو',
       removedMessage: provider => `${provider} لرې شو.`,
@@ -776,41 +796,42 @@ export const ps = defineLocale({
       noKeysMatch: 'هیڅ چمتوونکی ستاسو لټون سره سمون نه خوري.',
       localEndpoint: {
         title: 'ځاییز / دودیز پای ټکی',
-        description: 'OpenAmer د هر OpenAI-سازګار پای ټکی ته اشاره کړئ (Zyphra, vLLM, llama.cpp, Ollama، او نور).',
+        description: 'OpenAmer د هر OpenAI-سازګار پای ټکی ته اشاره کړئ (Zyphra, vLLM, llama.cpp, Ollama، او نور).'
       },
-      loading: 'چمتوونکي بار کېږي…',
+      loading: 'چمتوونکي بار کېږي…'
     },
     notifications: {
       title: 'اطلاعات',
-      intro: 'اصلي ڈیسکټاپ معلومات، د اندروني اپلیکیشن تاسټونو څخه جلا. دا دvice-محلي دي — هر کمپیوټر خپله تنظیمات نگاه کوي.',
+      intro:
+        'اصلي ڈیسکټاپ معلومات، د اندروني اپلیکیشن تاسټونو څخه جلا. دا دvice-محلي دي — هر کمپیوټر خپله تنظیمات نگاه کوي.',
       enableAll: 'معلومات فعال کړئ',
       enableAllDesc: 'مستر سوچ. دا بند کړئ کله چې ټول معلومات خامن وي.',
       focusedHint: 'تکمیل خبرتیاوې یوازې فایربوي کله چې OpenAmer پس منځه کې وي.',
       kinds: {
         approval: {
           label: 'تایید ته اړتیا لري',
-          description: 'يو کمانډ تاسو ته انتظار لري کله چې تاسو دا تایید یاکی رد کړئ.',
+          description: 'يو کمانډ تاسو ته انتظار لري کله چې تاسو دا تایید یاکی رد کړئ.'
         },
         input: {
           label: 'ورده ته اړتیا لري',
-          description: 'OpenAmer يو پوښتنه وپوښل یا د پاسورډ یاکی راز ته اړتیا لري.',
+          description: 'OpenAmer يو پوښتنه وپوښل یا د پاسورډ یاکی راز ته اړتیا لري.'
         },
         turnDone: {
           label: 'جواب تیار دی',
-          description: 'يو برخه تکمیل شوه کله چې OpenAmer پس منځه کې وو.',
+          description: 'يو برخه تکمیل شوه کله چې OpenAmer پس منځه کې وو.'
         },
         turnError: {
           label: 'برخه ناکام شوه',
-          description: 'يو برخه د یوه خرابی سره پای ته رسېد.',
+          description: 'يو برخه د یوه خرابی سره پای ته رسېد.'
         },
         backgroundDone: {
           label: 'پس منځه کار تکمیل شوه',
-          description: 'يو پس منځه ټرمینل کمانډ تکمیل شوه.',
+          description: 'يو پس منځه ټرمینل کمانډ تکمیل شوه.'
         },
         credits: {
           label: 'کریډیت خبرتیاوې',
-          description: 'د کریډیت رسنی منځه ته وریږل شوی یاکی بیا جوړ شوی دی.',
-        },
+          description: 'د کریډیت رسنی منځه ته وریږل شوی یاکی بیا جوړ شوی دی.'
+        }
       },
       test: 'آزمایشی خبرتیا وړاندې کړئ',
       testTitle: 'OpenAmer',
@@ -818,8 +839,9 @@ export const ps = defineLocale({
       testSent: 'آزمایش وړاندې شوه. که هیڅ شتون نه وي، ستاسو د OS د معلومات د اجازهونو او Focus/Do Not Disturb چک کړئ.',
       testUnsupported: 'دا سیستم اصلي معلومات سپورت نه کوي.',
       completionSoundTitle: 'تکمیل ساونډ',
-      completionSoundDesc: 'کله چې یوه ایجنټ توره تموم شي کیږي تا ساونډ واچین کیږي. یوه پیش تنظیم انتخاب کړئ او دلته پیش بینی کړئ.',
-      completionSoundPreview: 'پیش بینی',
+      completionSoundDesc:
+        'کله چې یوه ایجنټ توره تموم شي کیږي تا ساونډ واچین کیږي. یوه پیش تنظیم انتخاب کړئ او دلته پیش بینی کړئ.',
+      completionSoundPreview: 'پیش بینی'
     },
     sections: {
       model: 'ماډل',
@@ -829,7 +851,7 @@ export const ps = defineLocale({
       safety: 'امنیت',
       memory: 'یاداشت او سیاق',
       voice: 'غږ',
-      advanced: 'پرمخ',
+      advanced: 'پرمخ'
     },
     searchPlaceholder: {
       about: 'د OpenAmer Desktop په اړه',
@@ -837,33 +859,34 @@ export const ps = defineLocale({
       gateway: 'ګیټ وېړ...',
       keys: 'API کلیدونه لټون...',
       mcp: 'MCP سروره لټون...',
-      sessions: 'مخزنی سیشنونه لټون...',
+      sessions: 'مخزنی سیشنونه لټون...'
     },
     modeOptions: {
       light: {
         label: 'روشن',
-        description: 'روشن ڈیسکټپ سطحو',
+        description: 'روشن ڈیسکټپ سطحو'
       },
       dark: {
         label: 'تیره',
-        description: 'کم چمک کارپايل',
+        description: 'کم چمک کارپايل'
       },
       system: {
         label: 'سیستم',
-        description: 'OS ظراهیت پیروی کړئ',
-      },
+        description: 'OS ظراهیت پیروی کړئ'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
     keys: {
       loading: 'API کلیدونه او تصدیقونه بار کوي...',
       failedLoad: 'API کلیدونه بار کول ناکام شول',
-      empty: 'اوس نو یه هم په دا کټګوري کې تنظیم نشوی دی.',
+      empty: 'اوس نو یه هم په دا کټګوري کې تنظیم نشوی دی.'
     },
     sessions: {
       loading: 'محفوظ شوې غونډې بار کېږي…',
       archivedTitle: 'محفوظ شوې غونډې',
-      archivedIntro: 'ارشیف شوی چاټونه له سایبار څخه پنهول شوي دي مګر هغوی ټول پیغامونه ساتل. سایبار کې یوه چاټ Ctrl/⌘-کلیک وکړئ ترڅو هغوی ارشیف وکړئ.',
+      archivedIntro:
+        'ارشیف شوی چاټونه له سایبار څخه پنهول شوي دي مګر هغوی ټول پیغامونه ساتل. سایبار کې یوه چاټ Ctrl/⌘-کلیک وکړئ ترڅو هغوی ارشیف وکړئ.',
       emptyArchivedTitle: 'هیڅ ارشیف نه شوی',
       emptyArchivedDesc: 'یوه چاټ ارشیف وکړئ ترڅو دلته پنهول شي.',
       unarchive: 'ارشیف له خوا راوړل',
@@ -872,12 +895,14 @@ export const ps = defineLocale({
       restored: 'واپسی شوی',
       deleteConfirm: title => `"${title}" دایم حذفول؟ دا ناکارای نه شي.`,
       autoArchiveTitle: 'خودکار ارشیف کول پرانی چاټونو',
-      autoArchiveDesc: "خودکار چاټونه ارشیف وکړئ چې یه وخت لپاره نه لاس ورسې دي. پین شوی چاټونه کولای نه شي ارشیف شي، او هیڅ حذف نه شوی — ارشیف شوی چاټونه یوازې دلته تهلاړ شي.",
+      autoArchiveDesc:
+        'خودکار چاټونه ارشیف وکړئ چې یه وخت لپاره نه لاس ورسې دي. پین شوی چاټونه کولای نه شي ارشیف شي، او هیڅ حذف نه شوی — ارشیف شوی چاټونه یوازې دلته تهلاړ شي.',
       autoArchiveDaysLabel: 'ارشیف کول وروسته',
       autoArchiveDaysUnit: 'ورځې بی فعالۍ',
       autoArchiveFailed: 'خودکار ارشیف ناکارای تازه کول',
       defaultDirTitle: 'مختیار پروجیکټ ڈائریکټوری',
-      defaultDirDesc: 'نوي سیشنونه دلته فولډر کې پیل کیږي مګر تاسو بل یو غوره کړئ. دا نغوره کړئ ترڅو کورنی ڈائریکټوری کارول شي.',
+      defaultDirDesc:
+        'نوي سیشنونه دلته فولډر کې پیل کیږي مګر تاسو بل یو غوره کړئ. دا نغوره کړئ ترڅو کورنی ڈائریکټوری کارول شي.',
       defaultDirUpdated: 'مختیار پروجیکټ ڈائریکټوری تازه شوی — نوی چاټ پیل وکړئ (Ctrl/⌘+N) ترڅو دا اثر وړاندې شي',
       defaultsTo: label => `مختیار ${label} ته لري.`,
       change: 'بدلول',
@@ -888,7 +913,7 @@ export const ps = defineLocale({
       unarchiveFailed: 'ارشیف له خوا راوړل ناکام',
       deleteFailed: 'حذف ناکام',
       updateDirFailed: 'مختیار ڈائریکټوری ناکارای تازه کول',
-      clearDirFailed: 'مختیار ڈائریکټوری ناکارای پاکول',
+      clearDirFailed: 'مختیار ڈائریکټوری ناکارای پاکول'
     },
     toolsets: {
       loadingConfig: 'کانفیګوریشن لوستل',
@@ -913,7 +938,8 @@ export const ps = defineLocale({
       needsSetup: 'د سیټ اپ اړتیا لري',
       openamerIncluded: 'د OpenAmer سبسکرپشن سره شامل دی — د فعالولو لپاره OpenAmer پورټل ته داخل شئ.',
       openamerAuthNeededTitle: 'OpenAmer پورټل ته داخل شئ',
-      openamerAuthNeededMessage: provider => `${provider} شتون شوی دی مګر دا فعال نه کیږي کله چې تاسو OpenAmer پورټل ته داخل نه شئ.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} شتون شوی دی مګر دا فعال نه کیږي کله چې تاسو OpenAmer پورټل ته داخل نه شئ.`,
       openamerAuthSignIn: 'داخل شئ',
       openamerAuthDoneTitle: 'OpenAmer پورټل وصل شوی',
       openamerAuthDoneMessage: 'ستاسو سبسکرپشن بیک اینډ اوس فعال دي.',
@@ -960,9 +986,9 @@ export const ps = defineLocale({
         selectedTitle: 'بیک اینډ انتخاب شوی',
         selectedMessage: backend => `ټرمینل اوامر اوس په ${backend} واسطه چلند. نوي نشستونو ته लागو کیږي.`,
         failedSelect: backend => `${backend} انتخاب کول ناکام`,
-        needsSetupHint: 'تاسو اوس دې بیک اینډ انتخاب کولی شئ — اوامر ناکام شي تايمه چې تنظیم کامل نه شي.',
-      },
-    },
+        needsSetupHint: 'تاسو اوس دې بیک اینډ انتخاب کولی شئ — اوامر ناکام شي تايمه چې تنظیم کامل نه شي.'
+      }
+    }
   },
   skills: {
     tabSkills: 'مهارتونه',
@@ -981,7 +1007,8 @@ export const ps = defineLocale({
     noDescription: 'کوم تشریح نه دی.',
     configured: 'پیکربندی شوی',
     needsKeys: 'کلیدي ته اړتیا',
-    visionModelHint: 'استازې ستاسو اضافي ماډل پیکربندی کاروي — د تصویر ملاتړ کونکی ماډل هلته ټاکل کېږي، دلته هر جوړوونکی نه.',
+    visionModelHint:
+      'استازې ستاسو اضافي ماډل پیکربندی کاروي — د تصویر ملاتړ کونکی ماډل هلته ټاکل کېږي، دلته هر جوړوونکی نه.',
     visionModelLink: 'د Settings → Models په لپ کې استازي ماډل وټاکئ',
     skillsLoadFailed: 'مهارتونه بارولو کې ناکام شول',
     toolsetsRefreshFailed: 'ټولګې د نوې کولو په لپ کې ناکام شوې',
@@ -999,7 +1026,7 @@ export const ps = defineLocale({
     provenance: {
       agent: 'زده شوی',
       bundled: 'جوړ شوی',
-      hub: 'ہب',
+      hub: 'ہب'
     },
     changesApplyNewSessions: 'بدلونونه په نوېو غونډوو کې پلی کېږي.',
     skillUpdated: 'مهارت نوې شو',
@@ -1037,7 +1064,7 @@ export const ps = defineLocale({
       trust: {
         builtin: 'د کورنيز',
         trusted: 'قابل اعتماد',
-        community: 'مجتمع',
+        community: 'مجتمع'
       },
       verdictSafe: 'مأمون',
       verdictCaution: 'پریښه',
@@ -1050,7 +1077,7 @@ export const ps = defineLocale({
       installStarted: name => `نصب کول ${name}...`,
       uninstallStarted: name => `برچي کول ${name}...`,
       updateStarted: 'نصب شوي مهارتونه تازه کول...',
-      actionFailed: 'مهارت کارونکي ناکام شوی',
+      actionFailed: 'مهارت کارونکي ناکام شوی'
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} تولسیټ فعال شوي`,
@@ -1084,9 +1111,10 @@ export const ps = defineLocale({
     pluginsSearchFailed: 'د GitHub لټون ناکام شو',
     pluginsDiscoverAction: query => `د GitHub لپاره "${query}" لټون کړئ`,
     pluginsDiscoverResults: (n, query) => `${n} مخزنونه چې openamer-plugin ټاګ لري، د "${query}" لپاره`,
-    pluginsDiscoverEmpty: query => `د "${query}" لپاره په GitHub کې هیڅ شی نشته — لټون یوازې هغه ذخیرې پیدا کوي چې د openamer-plugin موضوع لري، او بې پروا GitHub لټون د نرخ محدودیت لري. پرځای یې پورته د دقیق مالک/ذخیره نصب کړئ.`,
+    pluginsDiscoverEmpty: query =>
+      `د "${query}" لپاره په GitHub کې هیڅ شی نشته — لټون یوازې هغه ذخیرې پیدا کوي چې د openamer-plugin موضوع لري، او بې پروا GitHub لټون د نرخ محدودیت لري. پرځای یې پورته د دقیق مالک/ذخیره نصب کړئ.`,
     pluginsStatusInactive: 'غیر فعال',
-    pluginsToggleFailed: 'د پلگین حالت نه شو بدلول',
+    pluginsToggleFailed: 'د پلگین حالت نه شو بدلول'
   },
   commandCenter: {
     generatePet: {
@@ -1116,7 +1144,7 @@ export const ps = defineLocale({
       hatchRow: (_state, done, total) => `فرېم ${done} له ${total} لکه مخکې کول…`,
       hatchComposing: 'دا سره جوړول…',
       hatchSaving: 'د نږدې ته راشه…',
-      namePlaceholder: 'ستاسو جانور نوم وکړئ',
+      namePlaceholder: 'ستاسو جانور نوم وکړئ'
     },
     installTheme: {
       title: 'theme نصب کړئ…',
@@ -1128,7 +1156,7 @@ export const ps = defineLocale({
       install: 'نصب',
       installing: 'نصب کېږي...',
       installed: 'نصب شو',
-      installs: count => `${count} تنصیبات`,
+      installs: count => `${count} تنصیبات`
     },
     settingsFields: 'د تنظیماتو برخې',
     mcpServers: 'MCP سرورونه',
@@ -1137,49 +1165,49 @@ export const ps = defineLocale({
       maintenance: 'سیلانه',
       sessions: 'جلسې',
       system: 'سیسټم',
-      usage: 'استفاده',
+      usage: 'استفاده'
     },
     sectionDescriptions: {
       maintenance: 'تشخیص، بیکاپ، curetor او د حافظې ډیتا',
       sessions: 'د جلسو پلټنه او مدیریت',
       system: 'حالت، لګونه او د سیسټم عملیات',
-      usage: 'د توکن، لګګې او مهارتونو فعالیت په وخت پیچ کې',
+      usage: 'د توکن، لګګې او مهارتونو فعالیت په وخت پیچ کې'
     },
     nav: {
       newChat: {
         title: 'نوې جلسه',
-        detail: 'نوې جلسه پیل کړئ',
+        detail: 'نوې جلسه پیل کړئ'
       },
       settings: {
         title: 'تنظیمات',
-        detail: 'OpenAmer ډیسکټاپ تنظیم کړئ',
+        detail: 'OpenAmer ډیسکټاپ تنظیم کړئ'
       },
       skills: {
         title: 'وړتیاوې',
-        detail: 'مهارتونه، وسیلې او MCP سرورونه',
+        detail: 'مهارتونه، وسیلې او MCP سرورونه'
       },
       messaging: {
         title: 'پیغامونه',
-        detail: 'Telegram، Slack، Discord او نور تنظیم کړئ',
+        detail: 'Telegram، Slack، Discord او نور تنظیم کړئ'
       },
       artifacts: {
         title: 'آثار',
-        detail: 'جوړې شوې پایلې وګورئ',
-      },
+        detail: 'جوړې شوې پایلې وګورئ'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'د جلسو پینل',
-        detail: 'جلسې پلټئ، پین کړئ او مدیریت یې وکړئ',
+        detail: 'جلسې پلټئ، پین کړئ او مدیریت یې وکړئ'
       },
       system: {
         title: 'د سیسټم پینل',
-        detail: 'Gateway حالت، لګونه، ریاستارت/اپډیټ',
+        detail: 'Gateway حالت، لګونه، ریاستارت/اپډیټ'
       },
       usage: {
         title: 'د کارونې پینل',
-        detail: 'ټوکن، لګښت او د مهارت فعالیت',
-      },
+        detail: 'ټوکن، لګښت او د مهارت فعالیت'
+      }
     },
     logSearchPlaceholder: 'د لاګ ونډې فلټر کول...',
     maintenance: {
@@ -1224,7 +1252,7 @@ export const ps = defineLocale({
       resetConfirm: target => `${target} حذف کړئ؟ دا ناکارول نه شته.`,
       resetDone: files => `${files} حذف شوه.`,
       actionStarted: name => `${name} پیل شوه — لاگ تعقیب...`,
-      actionFailed: name => `${name} پیل کول ناکام`,
+      actionFailed: name => `${name} پیل کول ناکام`
     },
     providerNavigate: 'لارښود',
     providerSessions: 'غونډې',
@@ -1291,13 +1319,13 @@ export const ps = defineLocale({
       generatedTag: 'تولید شوی',
       adoptFailed: 'نه شي دغه پالټه جانور غونډی شي.',
       toggleFailed: 'نه شي پالټه جانور بدل شي.',
-      noneAvailable: 'هیچ پالټه جانورونه شتون نشته — خپره لاندې ټاکل شئ نو نصب کړئ.',
+      noneAvailable: 'هیچ پالټه جانورونه شتون نشته — خپره لاندې ټاکل شئ نو نصب کړئ.'
     },
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · فعال جلسات ${count}`,
     days: count => `${count}د`,
     actualCost: cost => `حقیقی ${cost}`,
     noUsage: period => `په وروستی ${period} ورځو کې کارول نه شته.`,
-    actions: count => `${count} اقدامات`,
+    actions: count => `${count} اقدامات`
   },
   messaging: {
     search: 'د پیغامو لپاره لټون...',
@@ -1312,7 +1340,7 @@ export const ps = defineLocale({
       not_configured: 'تنظیم ته اړتیا لري',
       pending_restart: 'بیا رانغولې ته اړتیا لري',
       retrying: 'ځل هڅه وروسته',
-      startup_failed: 'پیل ناکام شو',
+      startup_failed: 'پیل ناکام شو'
     },
     unknown: 'نامعلوم',
     hintPendingRestart: 'دې تغییر پلی ته د ګیټوی له وضعیت بار څخه بیا رانغولئ.',
@@ -1339,124 +1367,124 @@ export const ps = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'د بوت ټوکن',
         help: 'له @BotFather سره بوت جوړ کړئ، بیا یې چې ورکوي ټوکن پیژ کړئ.',
-        placeholder: 'د Telegram بوت ټوکن پیژ کړئ',
+        placeholder: 'د Telegram بوت ټوکن پیژ کړئ'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'مجاز Telegram کاروونکي IDs',
-        help: 'سپارل شوی. له @userinfobot څخه په کاما سره جلا شوي شمېري IDs. پرته له دې، هر څوک کولای شي خپل بوت ته پیغام ولېږي.',
+        help: 'سپارل شوی. له @userinfobot څخه په کاما سره جلا شوي شمېري IDs. پرته له دې، هر څوک کولای شي خپل بوت ته پیغام ولېږي.'
       },
       TELEGRAM_PROXY: {
         label: 'د پراکسي URL',
-        help: 'یوازې د هغو شبکو لپاره اړین چې Telegram پکې بند وي.',
+        help: 'یوازې د هغو شبکو لپاره اړین چې Telegram پکې بند وي.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'د بوت ټوکن',
-        help: 'په Discord Developer Portal کې یو غوښتنه جوړ کړئ، بوت یې اضافه کړئ، بیا یې ټوکن پیژ کړئ.',
+        help: 'په Discord Developer Portal کې یو غوښتنه جوړ کړئ، بوت یې اضافه کړئ، بیا یې ټوکن پیژ کړئ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'مجاز Discord کاروونکي IDs',
-        help: 'سپارل شوی. په کاما سره جلا شوي Discord کاروونکي IDs.',
+        help: 'سپارل شوی. په کاما سره جلا شوي Discord کاروونکي IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'ځواب ډول',
-        help: 'لومړی، ټول، یا بند.',
+        help: 'لومړی، ټول، یا بند.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'ټولو Discord کاروونکو ته اجازه ورکړه',
-        help: 'تنها د پراختیا لپاره. کله چې true وي، هر څوک میټریل بدون د اجازې لیست روبوټ ته DM لېږي.',
+        help: 'تنها د پراختیا لپاره. کله چې true وي، هر څوک میټریل بدون د اجازې لیست روبوټ ته DM لېږي.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'د کور کانال ID',
-        help: 'هغه کانال چې روبوټ په خپله خوښه پیغامونه لېږي (cron پایله، یادښتونه).',
+        help: 'هغه کانال چې روبوټ په خپله خوښه پیغامونه لېږي (cron پایله، یادښتونه).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'د کور کانال نوم',
-        help: 'د کور کانال ښودل نوم په لاګونو او حالت ښودن کې.',
+        help: 'د کور کانال ښودل نوم په لاګونو او حالت ښودن کې.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'ټولو iMessage کاروونکو ته اجازه ورکړه',
-        help: 'کله چې true وي، د BlueBubbles د اجازې لیست څخه تګ شه.',
+        help: 'کله چې true وي، د BlueBubbles د اجازې لیست څخه تګ شه.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'ټولو Mattermost کاروونکو ته اجازه ورکړه',
+        label: 'ټولو Mattermost کاروونکو ته اجازه ورکړه'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'کور کانال',
+        label: 'کور کانال'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'ټولو QQ کاروونکو ته اجازه ورکړه',
+        label: 'ټولو QQ کاروونکو ته اجازه ورکړه'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'د QQ کور کانال',
-        help: 'د cron پایلو لپاره 默认 کانال یا ډله.',
+        help: 'د cron پایلو لپاره 默认 کانال یا ډله.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'د QQ کور کانال نوم',
+        label: 'د QQ کور کانال نوم'
       },
       SLACK_BOT_TOKEN: {
         label: 'د Slack روبوټ ټوکن',
         help: 'د Slack اپلیکیشن نصب کولو وروسته له OAuth & Permissions څخه د روبوټ ټوکن وکاروئ.',
-        placeholder: 'د Slack روبوټ ټوکن کاپي کړئ',
+        placeholder: 'د Slack روبوټ ټوکن کاپي کړئ'
       },
       SLACK_APP_TOKEN: {
         label: 'د Slack اپلیکیشن ټوکن',
         help: 'هغه د اپلیکیشن کچې ټوکن وکاروئ چې Socket Mode ته اړتیا لري.',
-        placeholder: 'د Slack اپلیکیشن ټوکن کاپي کړئ',
+        placeholder: 'د Slack اپلیکیشن ټوکن کاپي کړئ'
       },
       SLACK_ALLOWED_USERS: {
         label: 'اجازه شوي Slack کاروونکي IDs',
-        help: 'ښه وړاندیز. د Slack کاروونکو IDs په کاما سره جلا شوي.',
+        help: 'ښه وړاندیز. د Slack کاروونکو IDs په کاما سره جلا شوي.'
       },
       MATTERMOST_URL: {
         label: 'د سرور URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'د روبوټ ټوکن',
+        label: 'د روبوټ ټوکن'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'اجازه شوي کاروونکي IDs',
-        help: 'ښه وړاندیز. د Mattermost کاروونکو IDs په کاما سره جلا شوي.',
+        help: 'ښه وړاندیز. د Mattermost کاروونکو IDs په کاما سره جلا شوي.'
       },
       MATRIX_HOMESERVER: {
         label: 'د هوم سرور URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'د لاسرسی ټوکن',
+        label: 'د لاسرسی ټوکن'
       },
       MATRIX_USER_ID: {
         label: 'د روبوټ کاروونکي ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'اجازه شوي Matrix کاروونکي IDs',
-        help: 'ښه وړاندیز. د کاروونکو IDs په @user:server بڼه کې په کاما سره جلا شوي.',
+        help: 'ښه وړاندیز. د کاروونکو IDs په @user:server بڼه کې په کاما سره جلا شوي.'
       },
       SIGNAL_HTTP_URL: {
         label: 'د Signal پل URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'د یو فعال signal-cli REST پل URL.',
+        help: 'د یو فعال signal-cli REST پل URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'د تلیفون نمبر',
-        help: 'هغه شمېره چې ستاسو د signal-cli پل سره ثبت شوې ده.',
+        help: 'هغه شمېره چې ستاسو د signal-cli پل سره ثبت شوې ده.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'اجازه لرونکي Signal کاروونکي',
-        help: 'وړاندیز شوی. Signal پېژندنې د کامې سره جلا کړئ.',
+        help: 'وړاندیز شوی. Signal پېژندنې د کامې سره جلا کړئ.'
       },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp پل فعال کړئ',
-        help: 'د لاندې ټوګل له خوا په اتوماتیک ډول ټاکل کېږي. پرېږدئ پرته لدې چې پوه شئ ورته اړتیا لرئ.',
+        help: 'د لاندې ټوګل له خوا په اتوماتیک ډول ټاکل کېږي. پرېږدئ پرته لدې چې پوه شئ ورته اړتیا لرئ.'
       },
       WHATSAPP_MODE: {
-        label: 'د پل حالت',
+        label: 'د پل حالت'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'اجازه لرونکي WhatsApp کاروونکي',
-        help: 'وړاندیز شوی. د تلیفون شمېرې یا WhatsApp IDونه د کامې سره جلا کړئ.',
-      },
+        help: 'وړاندیز شوی. د تلیفون شمېرې یا WhatsApp IDونه د کامې سره جلا کړئ.'
+      }
     },
     advanced: count => `پیشرو (${count})`,
     clearField: key => `${key} پاک کړئ`,
@@ -1470,8 +1498,7 @@ export const ps = defineLocale({
     failedUpdate: name => `${name} نوی کول ناکام`,
     failedSave: name => `${name} ساتل ناکام`,
     failedClear: key => `${key} پاک کول ناکام`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   artifacts: {
     search: 'د آرټیفکټونو لپاره لټون...',
@@ -1505,14 +1532,14 @@ export const ps = defineLocale({
     copyUrl: 'یو آر ال کاپي کړئ',
     copyPath: 'لاره کاپي کړئ',
     rangeOf: (start, end, total) => `${start}-${end} از ${total}`,
-    goToPage: (itemLabel, page) => `ته لاړ شئ ${itemLabel} مخ ${page}`,
+    goToPage: (itemLabel, page) => `ته لاړ شئ ${itemLabel} مخ ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'نوی سیشن',
       skills: 'وړتیاوې',
       messaging: 'پیغامول',
-      artifacts: 'آرټیفکټونه',
+      artifacts: 'آرټیفکټونه'
     },
     searchAria: 'سیشنونه لټون',
     searchPlaceholder: 'سیشنونه لټون…',
@@ -1563,7 +1590,8 @@ export const ps = defineLocale({
       copyPath: 'مسار کاپی کړه',
       removeFromSidebar: 'از سایډ بار پټه کړه',
       createFailed: 'پروجیکټ جوړول ناکام',
-      staleBackend: 'OpenAmer بیک اینډ تازه کړه د پروجیکټونو جوړولو لپاره — ستاسو بیک اینډ د دې ڈیسکټاپ اپلیکیشن څخه کهنه ده (تنظیمات → تازه‌ونکي → بیک اینډ).',
+      staleBackend:
+        'OpenAmer بیک اینډ تازه کړه د پروجیکټونو جوړولو لپاره — ستاسو بیک اینډ د دې ڈیسکټاپ اپلیکیشن څخه کهنه ده (تنظیمات → تازه‌ونکي → بیک اینډ).',
       deleteConfirm: 'دا OpenAmer څخه ساتل شوی پروجیکټ حذف کوي. فایلونه، Git ریپوونه، او ورک‌تريونه بی‌تغییر میننه.',
       startWork: 'نوی ورکټری',
       newWorktreeTitle: 'نوی ورکټری',
@@ -1585,13 +1613,15 @@ export const ps = defineLocale({
       noBranches: 'هیچ برنجونه نه موندل شول',
       removeWorktree: 'ورکټری حذف کول',
       removeWorktreeFailed: 'ورکټری حذف نه شول (کامیت نه شوی بدلون؟)',
-      removeWorktreeConfirm: 'د ګټ څخه حذف کول (ورکټری فولډر حذف کوي؛ برنج مینه کیږي)، یا یوازې لاین ته سایدبار څخه پټ کړئ او ورکټری ته دسک په کیږي.',
-      removeWorktreeDirty: 'دې ورکټری کمیت نه شوی بدلون لري. زور حذف کول (بدلونونه وګرځول)، یا یوازې لاین پټ کړئ او په دسک کیږي.',
+      removeWorktreeConfirm:
+        'د ګټ څخه حذف کول (ورکټری فولډر حذف کوي؛ برنج مینه کیږي)، یا یوازې لاین ته سایدبار څخه پټ کړئ او ورکټری ته دسک په کیږي.',
+      removeWorktreeDirty:
+        'دې ورکټری کمیت نه شوی بدلون لري. زور حذف کول (بدلونونه وګرځول)، یا یوازې لاین پټ کړئ او په دسک کیږي.',
       forceRemove: 'زور حذف',
       enter: label => `وکرئ ${label}`,
       reorder: label => `نوي ترتیب ${label}`,
       toggle: label => `${label} سشنونه بدلون/پاکول`,
-      back: 'ټول лоښې',
+      back: 'ټول лоښې'
     },
     noMatch: query => `هیچ سیشنونه „${query}“ سره سم نه دي.`,
     newSessionIn: label => `نوی سشن په ${label} کې`,
@@ -1630,15 +1660,15 @@ export const ps = defineLocale({
       ageNow: 'اوس',
       ageDay: 'و',
       ageHour: 'س',
-      ageMin: 'د',
+      ageMin: 'د'
     },
     dateDivider: {
       today: 'نن وروستي',
       yesterday: 'پاروڼه',
       thisWeek: 'د اوسني اونۍ وروستي',
       lastWeek: 'مخکې اونۍ',
-      thisMonth: 'د اوسني میاشت وروستي',
-    },
+      thisMonth: 'د اوسني میاشت وروستي'
+    }
   },
   assistant: {
     tool: {
@@ -1646,113 +1676,113 @@ export const ps = defineLocale({
         browser_click: {
           pendingAction: 'کلیک کړل',
           done: 'د پاڼې پر توکي کلیک وشو',
-          pending: 'د پاڼې پر توکي کلیک کېږي',
+          pending: 'د پاڼې پر توکي کلیک کېږي'
         },
         browser_fill: {
           done: 'د فورم ډګر ډک شوی',
           pending: 'د فورم ډګر ډکول',
-          pendingAction: 'ډکول',
+          pendingAction: 'ډکول'
         },
         browser_navigate: {
           done: 'پاڼه پرانیستل شوه',
           pending: 'د پاڼې پرانیستل',
-          pendingAction: 'پرانیستل',
+          pendingAction: 'پرانیستل'
         },
         browser_snapshot: {
           done: 'د پاڼې عکس اخیستل شو',
           pending: 'د پاڼې عکس اخیستل',
-          pendingAction: 'اخیستل',
+          pendingAction: 'اخیستل'
         },
         browser_take_screenshot: {
           done: 'اسکرین شاټ اخیستل شو',
           pending: 'اسکرین شاټ اخیستل',
-          pendingAction: 'اخیستل',
+          pendingAction: 'اخیستل'
         },
         browser_type: {
           done: 'په پاڼې ټایپ کړل',
           pending: 'په پاڼې ټایپ کول',
-          pendingAction: 'ټایپ کول',
+          pendingAction: 'ټایپ کول'
         },
         clarify: {
           done: 'پوښتنه وکړه',
           pending: 'پوښتنه کول',
-          pendingAction: 'پوښتنه کول',
+          pendingAction: 'پوښتنه کول'
         },
         cronjob: {
           done: 'کرون جوګر',
           pending: 'د کرون جوګر پلان جوړول',
-          pendingAction: 'پلان جوړول',
+          pendingAction: 'پلان جوړول'
         },
         edit_file: {
           done: 'فایل سم شو',
           pending: 'د فایل سمون',
-          pendingAction: 'سمون',
+          pendingAction: 'سمون'
         },
         execute_code: {
           done: 'کوډ اجرا شو',
           pending: 'سکریپټ جوړول',
-          pendingAction: 'سکریپټ جوړول',
+          pendingAction: 'سکریپټ جوړول'
         },
         image_generate: {
           done: 'انځور جوړ شو',
           pending: 'د انځور جوړول',
-          pendingAction: 'جوړول',
+          pendingAction: 'جوړول'
         },
         list_files: {
           done: 'فایلونه لستل شول',
           pending: 'د فایلونو لستل',
-          pendingAction: 'لستل',
+          pendingAction: 'لستل'
         },
         patch: {
           done: 'فایل اصلاح شو',
           pending: 'د فایل اصلاح',
-          pendingAction: 'اصلاح',
+          pendingAction: 'اصلاح'
         },
         read_file: {
           done: 'فایل ولوستل',
           pending: 'د فایل لوستل',
-          pendingAction: 'لوستل',
+          pendingAction: 'لوستل'
         },
         search_files: {
           done: 'فایلونه وځپل شول',
           pending: 'د فایلونو په لټه کې',
-          pendingAction: 'په لټه کې',
+          pendingAction: 'په لټه کې'
         },
         session_search_recall: {
           done: 'د سیشن تاریخ وځپل شو',
           pending: 'د سیشن تاریخ په لټه کې',
-          pendingAction: 'په لټه کې',
+          pendingAction: 'په لټه کې'
         },
         terminal: {
           done: 'فرمان اجرا شو',
           pending: 'فرمان په اجرا کې',
-          pendingAction: 'په اجرا کې',
+          pendingAction: 'په اجرا کې'
         },
         todo: {
           done: 'د کارو لیستونه اپډیټ شول',
           pending: 'د کارو لیستونه په اپډیټ کولو کې',
-          pendingAction: 'په اپډیټ کولو کې',
+          pendingAction: 'په اپډیټ کولو کې'
         },
         vision_analyze: {
           done: 'انځور تحلیل شو',
           pending: 'انځور په تحلیل کې',
-          pendingAction: 'په تحلیل کې',
+          pendingAction: 'په تحلیل کې'
         },
         web_extract: {
           done: 'ویب پاڼه ولوستله شوه',
           pending: 'ویب پاڼه په لوستلو کې',
-          pendingAction: 'په لوستلو کې',
+          pendingAction: 'په لوستلو کې'
         },
         web_search: {
           done: 'ویب وځپل شو',
           pending: 'د ویب په لټه کې',
-          pendingAction: 'په لټه کې',
+          pendingAction: 'په لټه کې'
         },
         write_file: {
           done: 'فایل سمون شو',
           pending: 'فایل په سمون کې',
-          pendingAction: 'په سمون کې',
-        },
+          pendingAction: 'په سمون کې'
+        }
       },
       code: 'کوډ',
       copyCode: 'کوډ کاپي کړئ',
@@ -1787,11 +1817,11 @@ export const ps = defineLocale({
         ran: 'وچلول شو',
         running: 'چلېږي',
         ranCode: 'کوډ وچلول شو',
-        runningCode: 'سکریپټ لیکنه',
+        runningCode: 'سکریپټ لیکنه'
       },
       prefixes: {
         browser: 'لټونګر',
-        web: 'وېب',
+        web: 'وېب'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -1799,8 +1829,8 @@ export const ps = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `${prefix.toLowerCase()} ${action.toLowerCase()} چلېږي`,
-        runningTool: action => `${action.toLowerCase()} چلېږي`,
-      },
+        runningTool: action => `${action.toLowerCase()} چلېږي`
+      }
     },
     thread: {
       loadingSession: 'سیشن بارېږي',
@@ -1830,11 +1860,12 @@ export const ps = defineLocale({
       goForward: 'مخکې لاړ شئ',
       sendEdited: 'سم شوی پیغام ولېږئ',
       attachingFile: 'نښلول کېږي…',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `نن، ${time}`,
-      yesterday: time => `پرون، ${time}`,
+      yesterday: time => `پرون، ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer ګیټ وے نه دی نښلول شوی',
@@ -1848,7 +1879,8 @@ export const ps = defineLocale({
       reject: 'رد کړئ',
       alwaysTitle: 'همیشه دې فرمان ته اجازه ورکړو؟',
       alwaysAllow: 'همیشه اجازه ورکړئ',
-      alwaysDescription: pattern => `دا د «${pattern}» بڼه ستاسو د تلپاتې اجازې لېست ته زیاتوي (~/.openamer/config.yaml). OpenAmer به د دې په څېر قوماندو لپاره بیا پوښتنه نه کوي — نه په دې ناسته او نه په راتلونکو ناستو کې.`,
+      alwaysDescription: pattern =>
+        `دا د «${pattern}» بڼه ستاسو د تلپاتې اجازې لېست ته زیاتوي (~/.openamer/config.yaml). OpenAmer به د دې په څېر قوماندو لپاره بیا پوښتنه نه کوي — نه په دې ناسته او نه په راتلونکو ناستو کې.`
     },
     clarify: {
       notReady: 'د وضاحت غوښتنه لا چمتو نه ده',
@@ -1862,8 +1894,8 @@ export const ps = defineLocale({
       continueLabel: 'دوام ورکړئ',
       lateAnswer: (question, choice) => `په اړه: «${question}» — زما ځواب: ${choice}`,
       lateAnswerTip: 'دا ځواب د تعقیبي پیغام په توګه مسوده کړئ',
-      lateAnswerHint: 'دا غوښتنه نور په تمه نه ده. یو انتخاب وټاکئ چې د تعقیبي پیغام په توګه یې مسوده کړئ.',
-    },
+      lateAnswerHint: 'دا غوښتنه نور په تمه نه ده. یو انتخاب وټاکئ چې د تعقیبي پیغام په توګه یې مسوده کړئ.'
+    }
   },
   modelPicker: {
     search: 'د خدمتونو او ماډلونو فلټر کول...',
@@ -1879,13 +1911,13 @@ export const ps = defineLocale({
     wasPrice: 'و',
     title: 'ماډل بدل کړئ',
     current: 'اوسنی:',
-    unknown: '(نامعلوم)',
+    unknown: '(نامعلوم)'
   },
   modelVisibility: {
     title: 'ماډلونه',
     search: 'ماډلونه ولټئ',
     noAuthenticatedProviders: 'هیڅ تصدیق شوی خدمت ورکوونکی نشته.',
-    addProvider: 'خدمت ورکوونکی زیات کړئ…',
+    addProvider: 'خدمت ورکوونکی زیات کړئ…'
   },
   shell: {
     windowControls: 'د کړکېو کنټرولونه',
@@ -1896,7 +1928,7 @@ export const ps = defineLocale({
       noModels: 'هیڅ ماډل ونه موندل شو',
       editModels: 'ماډلونه سمونږولئ…',
       refreshModels: 'ماډلونه نوی کړئ',
-      fast: 'چټک',
+      fast: 'چټک'
     },
     modelOptions: {
       noOptions: 'دې ماډل لپاره هیڅ خیار نشته',
@@ -1912,7 +1944,7 @@ export const ps = defineLocale({
       max: '.Max',
       ultra: 'ټول تر ټوله',
       updateFailed: 'د ماډل خیارونو ترمیم په ناکامۍ سره پای ته ونه رسېد',
-      fastFailed: 'د چټک حالت ترمیم په ناکامۍ سره پای ته ونه رسېد',
+      fastFailed: 'د چټک حالت ترمیم په ناکامۍ سره پای ته ونه رسېد'
     },
     gatewayMenu: {
       gateway: 'دروازه',
@@ -1927,7 +1959,7 @@ export const ps = defineLocale({
       connection: label => `اتصال: ${label}`,
       recentActivity: 'وروستی فعالیت',
       viewAllLogs: 'ټول لاګونه وګورئ →',
-      messagingPlatforms: 'د پیغام رسولو پلاتفورمونه',
+      messagingPlatforms: 'د پیغام رسولو پلاتفورمونه'
     },
     approvalMode: {
       title: 'د تصویب حالت',
@@ -1937,7 +1969,7 @@ export const ps = defineLocale({
       smart: 'ځیرک',
       smartDescription: 'خودکار عملونه ارزوي او اړتیا وي پوښتنه کوي',
       off: 'بند',
-      offDescription: 'د تصویب پوښتنو پرته اجرا کړئ',
+      offDescription: 'د تصویب پوښتنو پرته اجرا کړئ'
     },
     statusbar: {
       unknown: 'نامعلوم',
@@ -1993,27 +2025,29 @@ export const ps = defineLocale({
           skills: 'مهارتونه',
           subagent_definitions: 'د فرعي استازو تعریفونه',
           system_prompt: 'د سیسټم لارښوونه',
-          tool_definitions: 'د وسیلو تعریفونه',
+          tool_definitions: 'د وسیلو تعریفونه'
         },
         empty: 'لا د سیاق معلومات نشته',
         loading: 'د تفصیل په بارولو کې…',
         percentFull: percent => `${percent}٪ ډک`,
         title: 'د سیاق کارونه',
-        tokenSummary: (used, max) => `${used} / ${max} ټوکنونه`,
+        tokenSummary: (used, max) => `${used} / ${max} ټوکنونه`
       },
       openContextUsage: 'د سیاق د کارونې تفصیل پرانیزئ',
       session: 'ناسته',
       runtimeSessionElapsed: 'د روانې ناستې تېر شوی وخت',
-      yoloOn: 'YOLO فعال دی — خطرناکې قوماندې په اوتومات ډول منل کېږي. د بندولو لپاره کلیک وکړئ. شفټ+کلیک یې په ټول اپ کې فعال یا بندوي.',
-      yoloOff: 'YOLO بند دی — د خطرناکو قوماندو د اوتومات منلو لپاره کلیک وکړئ. شفټ+کلیک یې په ټول اپ کې فعال یا بندوي.',
+      yoloOn:
+        'YOLO فعال دی — خطرناکې قوماندې په اوتومات ډول منل کېږي. د بندولو لپاره کلیک وکړئ. شفټ+کلیک یې په ټول اپ کې فعال یا بندوي.',
+      yoloOff:
+        'YOLO بند دی — د خطرناکو قوماندو د اوتومات منلو لپاره کلیک وکړئ. شفټ+کلیک یې په ټول اپ کې فعال یا بندوي.',
       modelNone: 'هیڅ',
       noModel: 'ماډل نشته',
       switchModel: 'ماډل بدل کړئ',
       openModelPicker: 'د ماډل ټاکونکی پرانیزئ',
       modelPinned: 'ستاسو له خوا ټینګ شوی؛ نوې خبرې د امستنو د اصلي ماډل پر ځای دا کاروي',
       modelTitle: (provider, model) => `ماډل · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   desktop: {
     imageAttachFailed: 'د تصویر پیوستول نشي',
@@ -2027,7 +2061,7 @@ export const ps = defineLocale({
       timedOut: 'د gateway انتظار مهال پای ته ورسېد. ایا `openamer gateway` کار دی؟',
       success: platform => `${platform} ته وسپارل شو. هر وخت دلته بیا پیل کړئ.`,
       systemNote: platform => `↻ ${platform} ته وسپارل شو — هر وخت دلته بیا پیل کړئ.`,
-      failed: error => `سپارل ناکام شو: ${error}`,
+      failed: error => `سپارل ناکام شو: ${error}`
     },
     audioReadFailed: 'ثبت شوی غږ نه شو کولای لوستل',
     sessionUnavailable: 'سیشن شتون نه لري',
@@ -2043,7 +2077,8 @@ export const ps = defineLocale({
     yoloSystem: active => `د دې ناستې لپاره YOLO ${active ? 'on' : 'off'} دی`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'د YOLO حالت بدل نه شو',
-    profileStatus: current => `پروفایل: ${current}. په بل پروفایل کې د خبرو پیلولو لپاره /پروفایل <نوم> یا د «نوې ناستې» ټاکونکی وکاروئ.`,
+    profileStatus: current =>
+      `پروفایل: ${current}. په بل پروفایل کې د خبرو پیلولو لپاره /پروفایل <نوم> یا د «نوې ناستې» ټاکونکی وکاروئ.`,
     unknownProfile: 'ناپېژندل شوې پېژنیال',
     noProfileNamed: (target, available) => `د "${target}" په نوم پېژنیال نشته. شته پېژنیالونه: ${available}`,
     newChatsProfile: name => `نوې خبرې اترې به ${name} پېژنیال وکاروي.`,
@@ -2053,8 +2088,9 @@ export const ps = defineLocale({
     regenerateFailed: 'بیا تولید ناکام شو',
     editFailed: 'سمون ناکام شو',
     resumeFailed: 'بیا پیل ناکام شو',
-    resumeStrandedTitle: "دا ناسته پورته نه شوه",
-    resumeStrandedBody: 'له دې ناستې سره اړیکه ناکامه شوه او اتومات بیا هڅې هم پای ته ورسېدې. وګورئ چې دروازه چالانه ده، بیا هڅه وکړئ.',
+    resumeStrandedTitle: 'دا ناسته پورته نه شوه',
+    resumeStrandedBody:
+      'له دې ناستې سره اړیکه ناکامه شوه او اتومات بیا هڅې هم پای ته ورسېدې. وګورئ چې دروازه چالانه ده، بیا هڅه وکړئ.',
     resumeRetry: 'بیا هڅه',
     nothingToBranch: 'د څانګې کولو لپاره هېڅ نشته',
     branchNeedsChat: 'د څانګې کولو دمخه چټ پیل یا بیا پیل کړئ.',
@@ -2082,42 +2118,43 @@ export const ps = defineLocale({
     savingImage: 'انځور خوندي کېږي',
     imagePreviewFailed: 'د انځور مخکتنه ناکامه شوه',
     imageAttach: 'انځور ضمیمه کړئ',
-    imageWriteFailed: 'انځور په ډیسک کې لیکل ناکام شو.',
+    imageWriteFailed: 'انځور په ډیسک کې لیکل ناکام شو.'
   },
   errors: {
     genericFailure: 'یو څه ناسمه شو',
     boundaryTitle: 'په انټرفیس کې یو څه خراب شو',
     boundaryDesc: 'نمایندې په یو نه پېژندل شوي تېروتنه ته ورسېد. ستا چټونه او تنظیمات خوندي دي.',
     reloadWindow: 'پنځه نوې کړه',
-    openLogs: 'لګونه پرانیزئ',
+    openLogs: 'لګونه پرانیزئ'
   },
   ui: {
     search: {
-      clear: 'په لټون کې صف پاک کړه',
+      clear: 'په لټون کې صف پاک کړه'
     },
     pagination: {
       label: 'پاڼه بندي',
       previous: 'مخکینی',
       previousAria: 'پر مخکینۍ پاڼه لاړ شئ',
       next: 'راتلونکی',
-      nextAria: 'پر راتلونکۍ پاڼه لاړ شئ',
+      nextAria: 'پر راتلونکۍ پاڼه لاړ شئ'
     },
     sidebar: {
       title: 'سمت پینلی',
       description: 'موبایل سمت پینلی ښیي.',
-      toggle: 'سمت پینلی بدلړه',
-    },
+      toggle: 'سمت پینلی بدلړه'
+    }
   },
   prompts: {
     gatewayDisconnected: 'د OpenAmer gateway اتصال نه دی',
     sudoSendFailed: 'د sudo پاسورډ لېږل نه شو کولای',
     secretSendFailed: 'راز نه شو کولای لېږل',
     sudoTitle: 'د سمه ورونکي پاسورډ',
-    sudoDesc: 'OpenAmer ته ستاسو د sudo پاسورډ ته اړتیا ده چې وړتیا فرمان اجرا کړي. دا یوازې ستاسو محلي نمایندې ته لېږل کېږي.',
+    sudoDesc:
+      'OpenAmer ته ستاسو د sudo پاسورډ ته اړتیا ده چې وړتیا فرمان اجرا کړي. دا یوازې ستاسو محلي نمایندې ته لېږل کېږي.',
     sudoPlaceholder: 'د sudo پاسورډ',
     secretTitle: 'راز اړین دی',
     secretDesc: 'OpenAmer ته د دوام لپاره یو credial اړتیا ده.',
-    secretPlaceholder: 'د راز ارزښت',
+    secretPlaceholder: 'د راز ارزښت'
   },
   webhooks: {
     search: 'ویب هوکونه ولټوئ...',
@@ -2126,7 +2163,8 @@ export const ps = defineLocale({
     hint: 'د ګډون بدلونونه سمدلاسه بیا بارېږي کله چې ترلاسه کوونکی فعال وي. نا فعال ګډونونه راتلونکي پېښې ردوي.',
     empty: 'تر دې دمه د ویب هوک ګډونونه نشته.',
     disabledTitle: 'د ویب هوک ترلاسه کوونکی نا فعال دی',
-    disabledBody: 'ویب هوکونه خپله د ګېټوې پلیټفورم دي. د راتلونکو HTTP پېښو منلو لپاره یې دلته فعال کړئ؛ د خبرو کانالونه یوازې هغه وخت اړین دي چې یو ګډون Telegram، Discord، Slack یا بل کانال ته سپارل کوي.',
+    disabledBody:
+      'ویب هوکونه خپله د ګېټوې پلیټفورم دي. د راتلونکو HTTP پېښو منلو لپاره یې دلته فعال کړئ؛ د خبرو کانالونه یوازې هغه وخت اړین دي چې یو ګډون Telegram، Discord، Slack یا بل کانال ته سپارل کوي.',
     enable: 'ویب هوکونه فعال کړئ',
     enabling: 'فعالېږي...',
     enableRow: 'فعال کړئ',
@@ -2180,8 +2218,8 @@ export const ps = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'برېښنالیک',
-      github_comment: 'GitHub تبصره',
-    },
+      github_comment: 'GitHub تبصره'
+    }
   },
   starmap: {
     title: 'د حافظې ګراف',
@@ -2197,7 +2235,8 @@ export const ps = defineLocale({
     emptyTitle: 'تر اوسه څه نه دي زده شوي',
     emptyDesc: 'لکه څنګه چې OpenAmer ستاسو د کار لپاره مهارتونه او حافظې جوړوي، دلته ښکاري.',
     share: 'نقشه شریکه کړه',
-    shareHint: 'کوډ کاپي کړئ ترڅو دا نقشه شریکه کړئ، یا یو یې پیسټ کړئ ترڅو بار کړئ. دا یوازې ترتیب شاملوي، نه ستاسو حافظه یا د مهارت متن.',
+    shareHint:
+      'کوډ کاپي کړئ ترڅو دا نقشه شریکه کړئ، یا یو یې پیسټ کړئ ترڅو بار کړئ. دا یوازې ترتیب شاملوي، نه ستاسو حافظه یا د مهارت متن.',
     shareTitle: 'نقشه واردول / صادرول',
     sharePlaceholder: 'د نقشې کوډ پیسټ کړئ…',
     copy: 'د نقشې کوډ کاپي کړئ',
@@ -2208,7 +2247,7 @@ export const ps = defineLocale({
     importedBadge: 'وارد شوې نقشه',
     resetToMine: 'زما نقشې ته بېرته',
     subtitle: (nodes, clusters) => `${nodes} مهارتونه د ${clusters} کټګورۍ پر مهال`,
-    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} سره نقشه لوستل شوی.`,
+    importSuccess: nodes => `${nodes} ${nodes === 1 ? 'node' : 'nodes'} سره نقشه لوستل شوی.`
   },
   agents: {
     close: 'اجنټان بند کړئ',
@@ -2238,25 +2277,25 @@ export const ps = defineLocale({
     ageDays: days => `${days}ورځې مخکې`,
     durationSeconds: seconds => `${seconds}ثانیه`,
     durationMinutes: (minutes, seconds) => `${minutes}دقیقې ${seconds}ثانیه`,
-    tokens: value => `${value} توکن`,
+    tokens: value => `${value} توکن`
   },
   composer: {
     snippets: {
       explainThis: {
         description: 'تشریح کړئ چې ټاکل شوی کوډ څنګه کار کوي او کلیدي فایلونو ته لینک ورکړئ.',
         text: 'مهرباني وکړئ تشریح کړئ چې دا څنګه کار کوي او کلیدي فایلونه راته وښایاست.',
-        label: 'د دې تشریح کړئ',
+        label: 'د دې تشریح کړئ'
       },
       codeReview: {
         label: 'کوډ مراجعه',
         description: 'د الجاري بدلون مراجعه کړئ د رگرشنونو، وګورځې حد حالتونو، او ناقص تیسټونو لپاره.',
-        text: 'مهرباني وکړئ ددې مراجعه کړئ د بګونو، رگرشنونو، او ناقص تیسټونو لپاره.',
+        text: 'مهرباني وکړئ ددې مراجعه کړئ د بګونو، رگرشنونو، او ناقص تیسټونو لپاره.'
       },
       implementationPlan: {
         label: 'د اجرا پلان',
         description: 'يو رویه مخطط کړئ رو مخ کولو کوده ته ترڅو د ديف فوکس وي.',
-        text: 'مهرباني وکړئ يو مختصر اجرا پلان جوړ کړئ مخ کولو د کوډ بدلولو.',
-      },
+        text: 'مهرباني وکړئ يو مختصر اجرا پلان جوړ کړئ مخ کولو د کوډ بدلولو.'
+      }
     },
     message: 'پیغام',
     wakingProfile: profile => `بیدار کول ${profile}…`,
@@ -2266,20 +2305,20 @@ export const ps = defineLocale({
     newSessionPlaceholders: [
       'موږ څه جوړوو؟',
       'OpenAmer یوه کار ورکړئ',
-      "ستاسو ذهن کې څه دی؟",
+      'ستاسو ذهن کې څه دی؟',
       'ستاسو اړتیا تشریح کړئ',
       'موږ څه حل کړو؟',
       'هرڅه پوښئ',
-      'له یوه مقصد سره پیل کړئ',
+      'له یوه مقصد سره پیل کړئ'
     ],
     followUpPlaceholders: [
       'پیام ورکړئ',
       'نور سیاق اضافه کړئ',
       'د غوښتنه پرمخ وکړئ',
-      "پاشه چی دی؟",
+      'پاشه چی دی؟',
       'د کار په پام کې ونیسئ',
       'د یې تر لومړی لاړ شئ',
-      'سمول یاکی دوام ورکړئ',
+      'سمول یاکی دوام ورکړئ'
     ],
     startVoice: 'غږی خبرې اته وده کړئ',
     queueMessage: 'پیغام په صف کې ونیسئ',
@@ -2315,7 +2354,7 @@ export const ps = defineLocale({
       '/resume': 'مخکې سیشن دوام ورکړئ',
       '/details': 'د لیکنیز تفصیل سطح کنټرول کړئ',
       '/copy': 'ټاکل یاکی وروستی مرستیال پیغام کاپی کړئ',
-      '/quit': 'OpenAmer له لارې شئ',
+      '/quit': 'OpenAmer له لارې شئ'
     },
     hotkeyDescs: {
       'composer.mention': 'مرجع فایلونه، فولډرونه، یوآرایلونه، git',
@@ -2325,7 +2364,7 @@ export const ps = defineLocale({
       'composer.sendQueued': 'نېټه وړیا برخه وړاندیز',
       'keybinds.openPanel': 'ټول کیبورډ شورتکاټونه',
       'composer.cancel': 'پاپووړ بند کول · چلند کنسلی',
-      'composer.history': 'پاپووړ / مخ وړیا چلند',
+      'composer.history': 'پاپووړ / مخ وړیا چلند'
     },
     attachUrlTitle: 'یو URL وړاندیز',
     attachUrlDesc: 'OpenAmer به پاڼه واکمني او دا به د دې برخې لپاره سیاق وکړي.',
@@ -2371,7 +2410,7 @@ export const ps = defineLocale({
     snippetsTitle: 'د پرامپټ تودې',
     snippetsDesc: 'يو شروع پرامپټ انتخاب کړئ چې په کمپوزر کې ودراپ کړئ.',
     dropFiles: 'فایلونه ودراپ کړئ د منسلکولو لپاره',
-    dropSession: 'ودراپ کړئ د دې چاټ لینکولو لپاره',
+    dropSession: 'ودراپ کړئ د دې چاټ لینکولو لپاره'
   },
   statusStack: {
     agents: 'ایجینټونه',
@@ -2412,7 +2451,8 @@ export const ps = defineLocale({
       openPr: 'PR پرانیستل',
       ghMissing: 'GitHub CLI (gh) نصب کړئ او د PRونو پرانیستلو لپاره ننوځئ',
       agentShip: 'OpenAmer ته ووایاست چې PR پرانیزي',
-      agentShipPrompt: 'اوسني بدلونونه وګورئ، د روښانه دودیز-کمېټ پیغام سره یې کمېټ کړئ، څانګه پوش کړئ، او د کش کولو غوښتنه پرانیزئ.',
+      agentShipPrompt:
+        'اوسني بدلونونه وګورئ، د روښانه دودیز-کمېټ پیغام سره یې کمېټ کړئ، څانګه پوش کړئ، او د کش کولو غوښتنه پرانیزئ.',
       newBranch: 'نوې څانګه',
       worktrees: 'کاري ونې',
       changed: count => `${count} بدل شوی`,
@@ -2420,12 +2460,12 @@ export const ps = defineLocale({
       behind: count => `${count} پښې`,
       branchOffFrom: base => `نوي برینچ له ${base}`,
       switchTo: branch => `سویچ کړئ ته ${branch}`,
-      switchFailed: branch => `نه شي سوېچ ته ${branch}`,
+      switchFailed: branch => `نه شي سوېچ ته ${branch}`
     },
     background: count => `${count} پس منظر`,
     subagents: count => `${count} ساب ایجنټ${count === 1 ? '' : 's'}`,
     todos: (done, total) => `وظایف ${done}/${total}`,
-    exit: code => `خروج ${code}`,
+    exit: code => `خروج ${code}`
   },
   updates: {
     stages: {
@@ -2440,7 +2480,7 @@ export const ps = defineLocale({
       done: 'تازه کول بشپړ شول',
       manual: 'له خپل ټرمینل څخه تازه کړئ',
       guiSkew: 'ډیسکټاپ اپ تازه کړئ',
-      error: 'تازه کول ودرېدل',
+      error: 'تازه کول ودرېدل'
     },
     checking: 'د تازه معلوماتو پلټنه…',
     checkFailedTitle: 'د تازه معلوماتو پلټنه ونه شوه',
@@ -2462,12 +2502,15 @@ export const ps = defineLocale({
     manualBody: 'تاسو OpenAmer له کمانډ لاین څخه نصب کړی، نو تازه کول هم هلته پرمخ ځي. دا په خپل ټرمینل کې پیسټ کړئ:',
     manualPickedUp: 'OpenAmer به بل ځل چې یې پیل کړئ، نوې نسخه ترلاسه کړي.',
     guiSkewTitle: 'ډیسکټاپ اپ تازه کړئ',
-    guiSkewBody: 'بیک انډ تازه شو، خو د دې ډیسکټاپ اپ بسته بدله نه شوه. د OpenAmer ډیسکټاپ اپ (خپل AppImage / .deb / .rpm) تازه یا بیا نصب کړئ ترڅو سره سمون ولري.',
+    guiSkewBody:
+      'بیک انډ تازه شو، خو د دې ډیسکټاپ اپ بسته بدله نه شوه. د OpenAmer ډیسکټاپ اپ (خپل AppImage / .deb / .rpm) تازه یا بیا نصب کړئ ترڅو سره سمون ولري.',
     copy: 'کاپي',
     copied: 'کاپي شو',
     done: 'بشپړ',
-    applyingBody: 'د OpenAmer تازه کوونکی په خپله کړکۍ کې کنټرول اخلي او کله چې بشپړ شي، OpenAmer په اتوماتيک ډول بیا پرانیزي. مهرباني وکړئ د تازه کولو پر مهال OpenAmer پخپله بیا مه پرانیزئ.',
-    applyingBodyBackend: 'لرې بیک انډ تازه کول پلي کوي او بیا به پیل شي. OpenAmer به په اتوماتيک ډول بیا ونښلي کله چې بېرته راشي.',
+    applyingBody:
+      'د OpenAmer تازه کوونکی په خپله کړکۍ کې کنټرول اخلي او کله چې بشپړ شي، OpenAmer په اتوماتيک ډول بیا پرانیزي. مهرباني وکړئ د تازه کولو پر مهال OpenAmer پخپله بیا مه پرانیزئ.',
+    applyingBodyBackend:
+      'لرې بیک انډ تازه کول پلي کوي او بیا به پیل شي. OpenAmer به په اتوماتيک ډول بیا ونښلي کله چې بېرته راشي.',
     moreChanges: count => `+ ${count} نور بدلون${count === 1 ? '' : 's'} شامل دي.`,
     applyingClose: 'دا وينډو بند کیږي د آپډیت دوام په وخت، نو OpenAmer خپله وخت په خپله کیدای راغلي.',
     errorTitle: 'آپډیت نه شوه پوره',
@@ -2479,12 +2522,13 @@ export const ps = defineLocale({
       restarting: 'بیک اینډ ريستارټ کېږي د آپډیت لوستولو لپاره…',
       notAvailable: 'آپډیت دا بیک اینډ لپاره شتون نه لري.',
       failed: 'بیک اینډ آپډیت ناکام شوه.',
-      noReturn: 'شالیزه برخه بیرته آنلاین نشوه. ممکنه ده چې تازه کول بشپړ نه شوي — د شالیزې کوربه وګورئ.',
+      noReturn: 'شالیزه برخه بیرته آنلاین نشوه. ممکنه ده چې تازه کول بشپړ نه شوي — د شالیزې کوربه وګورئ.'
     },
     appErrors: {
-      updateLocked: 'تازه کول لغوه شول: بل OpenAmer کړکۍ یا ټرمینل چې openamer چلوي د دې نصب خلاص ساتي. یې تړئ او بیا هڅه وکړئ.',
-      updateFailed: 'تازه کول بشپړ نه شول. اندېښنه مه کوئ — هیڅ شی له لاسه نه ورغی. اوس کولی شئ بیا هڅه وکړئ.',
-    },
+      updateLocked:
+        'تازه کول لغوه شول: بل OpenAmer کړکۍ یا ټرمینل چې openamer چلوي د دې نصب خلاص ساتي. یې تړئ او بیا هڅه وکړئ.',
+      updateFailed: 'تازه کول بشپړ نه شول. اندېښنه مه کوئ — هیڅ شی له لاسه نه ورغی. اوس کولی شئ بیا هڅه وکړئ.'
+    }
   },
   install: {
     authSignedIn: 'د براوزر ننوتل بشپړ شو.',
@@ -2503,8 +2547,10 @@ export const ps = defineLocale({
     failedTitle: 'نصب ناکام شو',
     settingUpTitle: 'OpenAmer Agent چمتو کېږي',
     finishingTitle: 'پای ته رسېږي',
-    failedDesc: 'د نصب یوه مرحله ناکامه شوه. په Windows کې، دا کېدای شي هغه وخت پېښ شي چې بل OpenAmer CLI یا ډیسکټاپ نسخه روانه وي. هر روان OpenAmer نسخه بند کړئ، بیا بیا هڅه وکړئ. د بشپړ ریکارډ لپاره لاندې تفصیلات یا د ډیسکټاپ لاګ وګورئ.',
-    activeDesc: 'دا یو ځل تنظیم دی. د OpenAmer نصب کوونکی انحصارونه ډاونلوډ کوي او ستاسو ماشین تنظیموي. وروسته پیلونه به دا مرحله پرېږدي.',
+    failedDesc:
+      'د نصب یوه مرحله ناکامه شوه. په Windows کې، دا کېدای شي هغه وخت پېښ شي چې بل OpenAmer CLI یا ډیسکټاپ نسخه روانه وي. هر روان OpenAmer نسخه بند کړئ، بیا بیا هڅه وکړئ. د بشپړ ریکارډ لپاره لاندې تفصیلات یا د ډیسکټاپ لاګ وګورئ.',
+    activeDesc:
+      'دا یو ځل تنظیم دی. د OpenAmer نصب کوونکی انحصارونه ډاونلوډ کوي او ستاسو ماشین تنظیموي. وروسته پیلونه به دا مرحله پرېږدي.',
     fetchingManifest: 'د نصب کوونکي مینفیسټ راوړل کېږي...',
     error: 'تېروتنه',
     hideOutput: 'د نصب کوونکي پایلې پټې کړئ',
@@ -2521,10 +2567,11 @@ export const ps = defineLocale({
       running: 'نصب کېږي',
       succeeded: 'پایان شو',
       skipped: 'پرېښودل',
-      failed: 'ناکام',
+      failed: 'ناکام'
     },
     oneTimeTitle: 'OpenAmer ته یو ځل نصب اړتیا لري',
-    unsupportedDesc: platform => `د اتوماتیک لومړي پیل نصب لا دمخه د ${platform} پر سر شتون نلري. ټرمینل خلاص کړئ او لاندې قومانده چل کړئ، بیا دا اپلیکیشن بیا پیل کړئ. وروسته پیلونه به دا ګام پریږدي.`,
+    unsupportedDesc: platform =>
+      `د اتوماتیک لومړي پیل نصب لا دمخه د ${platform} پر سر شتون نلري. ټرمینل خلاص کړئ او لاندې قومانده چل کړئ، بیا دا اپلیکیشن بیا پیل کړئ. وروسته پیلونه به دا ګام پریږدي.`,
     installCommand: 'د نصب قومانده',
     copyCommand: 'د قوماندې کاپي',
     viewDocs: 'د نصب اسناد وګورئ',
@@ -2539,7 +2586,8 @@ export const ps = defineLocale({
     installLocalDesc: 'OpenAmer ښکته کړئ، د پایټن چاپېریال یې جوړ کړئ او شالید خدمت په دې کمپیوټر کې وچلوئ.',
     localStartUnavailable: 'ځايي نصب پیل نه شو. د OpenAmer ډېسکټاپ کاریال بیا پیل کړئ او بیا هڅه وکړئ.',
     remoteSetupTitle: 'له شته OpenAmer سره نښلول',
-    remoteSetupDesc: 'د خپلې دروازې پته ولیکئ. د OpenAmer ډېسکټاپ کاریال به معلومه کړي چې ټوکن ته اړتیا لري که د براوزر له لارې ننوتلو ته.',
+    remoteSetupDesc:
+      'د خپلې دروازې پته ولیکئ. د OpenAmer ډېسکټاپ کاریال به معلومه کړي چې ټوکن ته اړتیا لري که د براوزر له لارې ننوتلو ته.',
     remoteUrlTitle: 'د دروازې پته',
     remoteUrlDesc: 'د OpenAmer دروازې بنسټیزه پته وکاروئ؛ که لرې وي، https:// هم ورسره ولیکئ.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2552,7 +2600,7 @@ export const ps = defineLocale({
     testSucceeded: (baseUrl, version) => `له ${baseUrl}${version ? ` (${version})` : ''} سره ونښلول شو.`,
     progress: (completed, total) => `${completed} له ${total} ګامونو څخه بشپړ`,
     currentStage: stage => ` -- اوس: ${stage}`,
-    lines: count => `${count} کرښه${count === 1 ? '' : 's'}`,
+    lines: count => `${count} کرښه${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'راځئ چې تاسو د OpenAmer Agent سره چمتو کړو',
@@ -2572,28 +2620,29 @@ export const ps = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'د ماډل مستقیم API',
-        description: 'د فایرورکس AI له خوا کوربه شوو ماډلونو ته مستقیم لاسرسی.',
+        description: 'د فایرورکس AI له خوا کوربه شوو ماډلونو ته مستقیم لاسرسی.'
       },
       openrouter: {
         short: 'یوه کیلي، ګڼ ماډلونه',
-        description: 'په یوې کیلي سلګونه ماډلونه وړاندې کوي. د نویو نصبونو لپاره ښه لومړنی انتخاب.',
+        description: 'په یوې کیلي سلګونه ماډلونه وړاندې کوي. د نویو نصبونو لپاره ښه لومړنی انتخاب.'
       },
       openai: {
         short: 'د GPT کچې ماډلونه',
-        description: 'د OpenAI ماډلونو ته مستقیم لاسرسی.',
+        description: 'د OpenAI ماډلونو ته مستقیم لاسرسی.'
       },
       gemini: {
         short: 'د جېمېني ماډلونه',
-        description: 'د ګوګل جېمېني ماډلونو ته مستقیم لاسرسی.',
+        description: 'د ګوګل جېمېني ماډلونو ته مستقیم لاسرسی.'
       },
       xai: {
         short: 'د ګروک ماډلونه',
-        description: 'د xAI ګروک ماډلونو ته مستقیم لاسرسی.',
+        description: 'د xAI ګروک ماډلونو ته مستقیم لاسرسی.'
       },
       local: {
         short: 'په خپل سرور کوربه شوی',
-        description: 'OpenAmer ته د یو محلي یا خپل میزبان OpenAI-سازګار پای ټکی (vLLM, llama.cpp, Ollama, وغيره) اشاره کړئ',
-      },
+        description:
+          'OpenAmer ته د یو محلي یا خپل میزبان OpenAI-سازګار پای ټکی (vLLM, llama.cpp, Ollama, وغيره) اشاره کړئ'
+      }
     },
     backToSignIn: 'بېرته ننوتلو ته',
     getKey: 'یو کلید ترلاسه کړئ',
@@ -2606,7 +2655,7 @@ export const ps = defineLocale({
     flowSubtitles: {
       pkce: 'ستاسو براوزر د ننوتلو لپاره پرانیزي، بیا دلته دوام کوي',
       device_code: 'په ستاسو براوزر کې د تصدیق پاڼه پرانیزي — OpenAmer خودکار تړاو کوي',
-      external: 'یو ځل په خپل ټرمینل کې ننوتئ، بیا چټ ته راستنئ',
+      external: 'یو ځل په خپل ټرمینل کې ننوتئ، بیا چټ ته راستنئ'
     },
     startingSignIn: provider => `د ${provider} لپاره د ننوتلو پیل...`,
     verifyingCode: provider => `ستاسو کوډ د ${provider} سره تصدیق کیږي...`,
@@ -2620,11 +2669,13 @@ export const ps = defineLocale({
     copyAuthCode: 'د تصدیق کوډ کاپي کړئ او لاندې یې ولګوه.',
     pasteAuthCode: 'د تصدیق کوډ ولګوه',
     reopenAuthPage: 'د تصدیق پاڼه بیا پرانیزئ',
-    autoBrowser: provider => `موږ ${provider} ستاسو په براوزر کې پرانستی. هلته OpenAmer تصدیق کړئ او تاسو به خودکار تړاو شئ — هیڅ شی کاپي یا ولګول نشته.`,
+    autoBrowser: provider =>
+      `موږ ${provider} ستاسو په براوزر کې پرانستی. هلته OpenAmer تصدیق کړئ او تاسو به خودکار تړاو شئ — هیڅ شی کاپي یا ولګول نشته.`,
     reopenSignInPage: 'د ننوتلو پاڼه بیا پرانیزئ',
     waitingAuthorize: 'ستاسو د تصدیق لپاره انتظار...',
-    externalPending: provider => `${provider} د خپلې بولۍ کرښې له لارې ننوځي. دا بولۍ په ترمینل کې وچلوئ، بیا راشئ او «ننوتلی یم» وټاکئ:`,
-    signedIn: "ما ننوتل",
+    externalPending: provider =>
+      `${provider} د خپلې بولۍ کرښې له لارې ننوځي. دا بولۍ په ترمینل کې وچلوئ، بیا راشئ او «ننوتلی یم» وټاکئ:`,
+    signedIn: 'ما ننوتل',
     deviceCodeOpened: provider => `موږ ${provider} ستاسو په براوزر کې پرانستی. هلته دا کوډ داخل کړئ:`,
     reopenVerification: 'د تصدیق پاڼه بیا پرانیزئ',
     copy: 'کاپي کړئ',
@@ -2635,7 +2686,7 @@ export const ps = defineLocale({
     price: (input, output) => `په هر میلیون ټوکنونو کې ${input} دننه / ${output} بهر`,
     change: 'بدلول',
     startChatting: 'پیل کړئ',
-    docs: provider => `${provider} اسناد`,
+    docs: provider => `${provider} اسناد`
   },
   zones: {
     saveApply: 'خوندي کړئ او پلي کړئ',
@@ -2645,7 +2696,8 @@ export const ps = defineLocale({
     minimize: 'کوچنی کړئ',
     restore: 'بېرته لوی کړئ',
     closeRunningTitle: 'روان ټب وتړئ؟',
-    closeRunningBody: 'دا خبرې اترې لا هم روانې دي (یا ستاسو ځواب ته په تمه دي). د ټب تړل یې پټوي — ناسته خپل پرمختګ ساتي او له اړخپټې بېرته پرانیستل کېدای شي.',
+    closeRunningBody:
+      'دا خبرې اترې لا هم روانې دي (یا ستاسو ځواب ته په تمه دي). د ټب تړل یې پټوي — ناسته خپل پرمختګ ساتي او له اړخپټې بېرته پرانیستل کېدای شي.',
     closeRunningConfirm: 'ټب وتړئ',
     closeOthers: 'نور وتړئ',
     closeToRight: 'ښي لوري ته ټبونه وتړئ',
@@ -2680,7 +2732,7 @@ export const ps = defineLocale({
     mergeZones: count => `${count} سیمې یوځای کړئ`,
     customZoneName: count => `د ${count} سیمو دودیز جوړښت`,
     layoutNamePlaceholder: fallback => `د جوړښت نوم (${fallback})`,
-    zoneCount: count => `${count} سیمې`,
+    zoneCount: count => `${count} سیمې`
   },
   common: {
     apply: 'کارول',
@@ -2721,7 +2773,7 @@ export const ps = defineLocale({
     update: 'نوې کول',
     tryHint: term => `هڅه وکړئ “${term}”`,
     on: 'چالू',
-    off: 'بند',
+    off: 'بند'
   },
   fileMenu: {
     revealFinder: 'په فایندر کې ښکاره کول',
@@ -2736,7 +2788,7 @@ export const ps = defineLocale({
     renameLabel: 'نوی نوم',
     deleteTitle: name => `${name} ولې کول؟`,
     deleteBody: 'دا به تراش ته منتقل شي — تاسو کولی شئ دا له وخته بیا استرجاع وکړئ.',
-    pathCopied: 'مسار کاپی شوی',
+    pathCopied: 'مسار کاپی شوی'
   },
   boot: {
     ready: 'OpenAmer Desktop تیار دی',
@@ -2746,7 +2798,7 @@ export const ps = defineLocale({
       loadingSettings: 'OpenAmer تنظیمات لوستل',
       loadingSessions: 'حالی سیشنز لوستل',
       startingDesktopConnection: 'Desktop وړیا پیل شوی',
-      startingOpenAmerDesktop: 'OpenAmer Desktop پیل شوی…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop پیل شوی…'
     },
     errors: {
       backgroundExited: 'د OpenAmer شالیزه پروسه پای ته ورسېده.',
@@ -2755,13 +2807,14 @@ export const ps = defineLocale({
       desktopBootFailed: 'Desktop بوټ ناکام',
       gatewayConnectionLost: 'ګیټ ته وړیا گم شوی',
       gatewaySignInRequired: 'ګیټ ساین-این لازیم دی',
-      ipcBridgeUnavailable: 'Desktop IPC بریج شتون نه لري.',
+      ipcBridgeUnavailable: 'Desktop IPC بریج شتون نه لري.'
     },
     failure: {
-      title: "OpenAmer نه کولی پیل کړي",
-      description: "پس منظره ګیټ نه راوړل. د خپرو خطوات څخه یو وکړه. دلته هیڅه چېټونه یا تنظیمات نه وې وینوټي.",
+      title: 'OpenAmer نه کولی پیل کړي',
+      description: 'پس منظره ګیټ نه راوړل. د خپرو خطوات څخه یو وکړه. دلته هیڅه چېټونه یا تنظیمات نه وې وینوټي.',
       remoteTitle: 'دورګیټ ساین ان لازمه',
-      remoteDescription: 'ستاسو دورګیټ سیشن منقضی شوی. دوبره ساین ان وکړه ته واپسي وصل شئ. دلته هیڅه چېټونه یا تنظیمات نه وې وینوټي.',
+      remoteDescription:
+        'ستاسو دورګیټ سیشن منقضی شوی. دوبره ساین ان وکړه ته واپسي وصل شئ. دلته هیڅه چېټونه یا تنظیمات نه وې وینوټي.',
       retry: 'دوباره هڅه وکړه',
       repairInstall: 'مرمت انسټال',
       useLocalGateway: 'مقامی ګیټ کارول',
@@ -2769,7 +2822,8 @@ export const ps = defineLocale({
       back: 'واپس',
       openLogs: 'لاګونه وکړه',
       repairHint: 'مرمت انسټالر دوبره چلوي او کولی شي د تازه مشین کې چند منټه واخلي.',
-      remoteSignInHint: signInLabel => `ساخته شوی دور براوسر سیشن له خپله كي ودرېږي، نو ${signInLabel} وکړه. مقامی ګیټ کارول ته وده وکړه چې باندل بیک اینډ ته سوئچ وکړئ.`,
+      remoteSignInHint: signInLabel =>
+        `ساخته شوی دور براوسر سیشن له خپله كي ودرېږي، نو ${signInLabel} وکړه. مقامی ګیټ کارول ته وده وکړه چې باندل بیک اینډ ته سوئچ وکړئ.`,
       signOutAndSignIn: 'ساین آوټ او ساین ان',
       remoteFailureHint: 'ګیټ URL او ساین ان د ګیټ تنظیمات کې چک وکړه، یا مقامی ګیټ ته سوئچ وکړه.',
       hideRecentLogs: 'نوي لاګونه پټه کړئ',
@@ -2781,8 +2835,8 @@ export const ps = defineLocale({
       signInFailed: 'وروست ناکام',
       signInToRemoteGateway: 'ته پرانی ګیت وې وروست وکړئ',
       signInWithProvider: provider => `د ${provider} سره وروست وکړئ`,
-      identityProvider: 'ستاسو هویت وړاندیز',
-    },
+      identityProvider: 'ستاسو هویت وړاندیز'
+    }
   },
   notifications: {
     region: 'خبرتیاوې',
@@ -2795,12 +2849,13 @@ export const ps = defineLocale({
     copyDetail: 'تفصیل کاپي کړئ',
     copyDetailFailed: 'خبرتیا تفصیل کاپي نه شوه',
     backendOutOfDateTitle: 'بیک اینډ دېټه نه دی',
-    backendOutOfDateMessage: 'ستاسو OpenAmer بیک اینډ دې داسې ډیسکټ بیلډ څخه کهنه ده او ممکنه به درسته کار نه کړي. نوې کړي ته تاسو یې سم یې کړئ.',
+    backendOutOfDateMessage:
+      'ستاسو OpenAmer بیک اینډ دې داسې ډیسکټ بیلډ څخه کهنه ده او ممکنه به درسته کار نه کړي. نوې کړي ته تاسو یې سم یې کړئ.',
     installMethodUnsupportedTitle: 'د نصب نه ملاتړ شوی میتود',
     updateOpenAmer: 'OpenAmer نوې کړئ',
     updateReadyTitle: 'نوې کولو لپاره تیار',
     updateReadyMessage: count => `${count} نوي بدلون ${count === 1 ? '' : 's'} موجود دی.`,
-    seeWhatsNew: "وسه چې نوې شته",
+    seeWhatsNew: 'وسه چې نوې شته',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT ته ELEVENLABS_API_KEY ته اړتیا لري.',
       elevenLabsRejectedKey: 'ElevenLabs API کلید (401) رد کړ.',
@@ -2809,7 +2864,7 @@ export const ps = defineLocale({
       microphonePermission: 'مایکرافون اجازه رد شوه.',
       openaiRejectedApiKey: 'OpenAI API کلید رد کړ.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI API کلید رد کړ (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS ته VOICE_TOOLS_OPENAI_KEY یا OPENAI_API_KEY ته اړتیا لري.',
+      openaiTtsNeedsKey: 'OpenAI TTS ته VOICE_TOOLS_OPENAI_KEY یا OPENAI_API_KEY ته اړتیا لري.'
     },
     voice: {
       configureSpeechToText: 'د ژبه-ته-ماتې تنظیم کړئ ته د صدا موډ کار وکړئ.',
@@ -2828,7 +2883,7 @@ export const ps = defineLocale({
       transcriptionFailed: 'صوت لیکل ناکام شوه',
       transcriptionUnavailable: 'صوت لیکل اوسنی د لاسرسه نه ده.',
       tryRecordingAgain: 'دوباره ریکارډ کولو هڅه وکړئ.',
-      unavailable: 'صوت نه شته',
+      unavailable: 'صوت نه شته'
     },
     native: {
       approvalTitle: 'تایید ته اړتیا ده',
@@ -2841,11 +2896,12 @@ export const ps = defineLocale({
       turnErrorTitle: 'باری ناکام شوه',
       backgroundDoneTitle: 'پس منډه کار ترسره شوه',
       backgroundFailedTitle: 'پس منډه کار ناکام شوه',
-      creditsTitle: 'کریډیتونه',
-    },
+      creditsTitle: 'کریډیتونه'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `سافټویر رینډرینگ فعال دی — ریموټ دسپلے پېدل شوه (${reason}). GPU تیزیتے غیر فعال شوه کچکچ نه کول.`,
+    message: reason =>
+      `سافټویر رینډرینگ فعال دی — ریموټ دسپلے پېدل شوه (${reason}). GPU تیزیتے غیر فعال شوه کچکچ نه کول.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer کریډیتونه وده شول',
@@ -2853,7 +2909,7 @@ export const ps = defineLocale({
     fallbackMessage: 'ستاسو حساب کریډیتونه وده شول. دوام لپاره کریډیتونه اضافه کړئ.',
     openBilling: 'بیلنگ وکړئ',
     addCredits: 'کریډیتونه اضافه کړئ',
-    dismiss: 'رد کړئ',
+    dismiss: 'رد کړئ'
   },
   titlebar: {
     hideSidebar: 'سایڈ بار پټ کړئ',
@@ -2870,7 +2926,7 @@ export const ps = defineLocale({
     openStarmap: 'یاداشت گراف وکړئ',
     openKeybinds: 'کیبورڈ لټونکي',
     layoutEditor: 'لایه سمول',
-    layoutEditorTitle: 'لایه سمول — ⌘-کلیک لایه په نوی کیدو',
+    layoutEditorTitle: 'لایه سمول — ⌘-کلیک لایه په نوی کیدو'
   },
   rightSidebar: {
     aria: 'ښی اړخپټی',
@@ -2906,7 +2962,7 @@ export const ps = defineLocale({
     terminalNew: 'نوی ټرمینل',
     terminalCloseOthers: 'نورې تړل',
     terminalCloseAll: 'ټولې تړل',
-    addToChat: 'د چت سره اضافه کول',
+    addToChat: 'د چت سره اضافه کول'
   },
   preview: {
     tab: 'مخکتنه',
@@ -2940,7 +2996,8 @@ export const ps = defineLocale({
     unsavedChanges: 'غیر خوندي بدلونونه',
     saveFailed: message => `نومې توان نشو خوندي کول: ${message}`,
     diskChangedTitle: 'فایل په ډسک کې بدل شوی',
-    diskChangedBody: 'دا فایل له هغه وخته وروسته بدل شوی کله چې تاسو یې خلاص کړ. آیا غواړئ خپل نسخه پرې ولیکئ، یا خپل بدلونونه پریږدئ او بیا بار کړئ؟',
+    diskChangedBody:
+      'دا فایل له هغه وخته وروسته بدل شوی کله چې تاسو یې خلاص کړ. آیا غواړئ خپل نسخه پرې ولیکئ، یا خپل بدلونونه پریږدئ او بیا بار کړئ؟',
     overwrite: 'ځای بدلول',
     discardReload: 'پریږدئ او بیا بار کړئ',
     console: {
@@ -2961,7 +3018,7 @@ export const ps = defineLocale({
       empty: 'تر اوسه پورې هیڅ کنسول پیغام نشته.',
       promptHeader: 'پیش نمایش کنسول:',
       sentTitle: 'چت ته لیږل شوی',
-      sentMessage: count => `${count} د ثبت ننوتنه${count === 1 ? 'y' : 'ies'} د پیغام لیکلو بکس ته زیاته شوه`,
+      sentMessage: count => `${count} د ثبت ننوتنه${count === 1 ? 'y' : 'ies'} د پیغام لیکلو بکس ته زیاته شوه`
     },
     web: {
       appFailedToBoot: 'پیش نمایش اپلیکیشن د بوټ کولو ناکام شو',
@@ -2986,17 +3043,19 @@ export const ps = defineLocale({
       reloadingNow: 'مخکتنه اوس بیا پورته کېږي.',
       restartFailedTitle: 'د مخکتنې بیاپیل ناکام شو',
       restartFailedMessage: 'OpenAmer سرور بیاپیل نه کړای شو.',
-      stillWorking: 'OpenAmer لا هم کار کوي، خو د بیاپیل پایله لا نه ده راغلې. ښايي د سرور قومانده په مخکینۍ برخه کې روانه وي.',
+      stillWorking:
+        'OpenAmer لا هم کار کوي، خو د بیاپیل پایله لا نه ده راغلې. ښايي د سرور قومانده په مخکینۍ برخه کې روانه وي.',
       workspaceReloading: 'کاري چاپېریال بدل شو، مخکتنه بیا پورته کېږي',
       fileChanged: url => `دوتنه بدله شوه، مخکتنه بیا پورته کېږي: ${url}`,
       filesChanged: (count, url) => `په دوتنو کې ${count} بدلونونه، مخکتنه بیا پورته کېږي: ${url}`,
       watchFailed: message => `د مخکتنې دوتنه ونه څارل شوه: ${message}`,
-      moduleMimeDescription: 'د ماډیول سکریپټونه د ناسم MIME ډول سره وړاندې کېږي. دا عموماً مانا لري چې د پروژې د پراختیايي سرور پر ځای د ثابتو دوتنو سرور د وایټ/ری‌اکټ اپ وړاندې کوي.',
+      moduleMimeDescription:
+        'د ماډیول سکریپټونه د ناسم MIME ډول سره وړاندې کېږي. دا عموماً مانا لري چې د پروژې د پراختیايي سرور پر ځای د ثابتو دوتنو سرور د وایټ/ری‌اکټ اپ وړاندې کوي.',
       loadFailedConsole: (code, message) => `پورته کول ناکام شول${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'د مخکتنې پاڼې ته لاسرسی ونه شو.',
       openTarget: url => `${url} پرانیزئ`,
-      fallbackTitle: 'مخکتنه',
-    },
+      fallbackTitle: 'مخکتنه'
+    }
   },
   intro: {
     personas: {
@@ -3006,15 +3065,15 @@ export const ps = defineLocale({
           'نن موږ څه جوړوو؟',
           'هر ځای پیل کړئ.',
           'ستاسو کارځای، یو غوښتنه لرې.',
-          'کله چې تاسو چمتو یاست.',
+          'کله چې تاسو چمتو یاست.'
         ],
         bodies: [
           'یو پوښتنه وکړئ، تېروتنه ولګوئ، یا ما ته یو ذخیره وښایئ. زه کد لوستلی شم، وسایل چلولی شم، او تاسو سره مرسته کولی شم.',
           'د خپل کلماتو سره دنده تشریح کړئ. زه سم وسایل غوره کوم، خپل پلان تشریح کوم، او د خطرناکو ګامونو مخکې چک کوم.',
           'د فایل لاره، د تېروتنې لاره، یا یو خنډه فکر پریږدئ. زه څیړنه کوم، راتلونکې ګامونه وړاندیز کوم، او کارونه بیرته بدلیدونکي ساتم.',
           'د ذخیرې لټون وکړئ، فایلونه سم کړئ، ازموینې چل کړئ، PRs خلاص کړئ. هدف ووایاست او زه میخانیکي برخې اداره کوم.',
-          'دنده، پوښتنه، یا ټوټه ولیکئ. زه غونډه یاد ساتم، خپل سرچینې استناد کوم، او کله چې نه پوهیږم پوښتنه کوم.',
-        ],
+          'دنده، پوښتنه، یا ټوټه ولیکئ. زه غونډه یاد ساتم، خپل سرچینې استناد کوم، او کله چې نه پوهیږم پوښتنه کوم.'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3022,31 +3081,25 @@ export const ps = defineLocale({
           '*پراخېږي* د کوډ کولو چمتو، nya',
           'mrrp! نوې غونډه پرانستل شوه',
           'پوزه پورته، نوکونه پټ شوي',
-          'nyaaa~ openamer راپور ورکوي',
+          'nyaaa~ openamer راپور ورکوي'
         ],
         bodies: [
           'فایل ولګوئ، د تېروتنې پر مخ پښه واچوئ، یا ما ته یو ذخیره واچوئ. زه د ناکام ازموینو پر سر غورځېږم او پاک توپیرونه پرېږدم، nyan~',
           'دنده تشریح کړئ. زه پچ کوم، ازموینه کوم، او ستاسو PR باندې پړسوم. احتیاط - زه د نه کارېدونکو وارداتو سره ټوپک کوم!',
           'ما ته هدف ورکړئ او زه یې د کوډبیس له لارې تعقیب کوم. لوستل، سمول، چلول - ټول د یو ټویچۍ پوزې سره.',
           'تېروتنه یا پلان ولګوئ. زه د ښکار په څیر ډیبګ کوم: خاموش، بشپړ، او کله کله زومي.',
-          'کلمه ووایاست او زه ستاسو فایلونه لوستلی شم، ستاسو ازموینې چلولی شم، او ستاسو څانګه کې پاکه ژمنه سره راکښینم.',
-        ],
+          'کلمه ووایاست او زه ستاسو فایلونه لوستلی شم، ستاسو ازموینې چلولی شم، او ستاسو څانګه کې پاکه ژمنه سره راکښینم.'
+        ]
       },
       concise: {
-        headlines: [
-          'چمتو.',
-          'د داخلې انتظار',
-          'ورځه.',
-          'د انتظار حالت',
-          'ستاسو حرکت',
-        ],
+        headlines: ['چمتو.', 'د داخلې انتظار', 'ورځه.', 'د انتظار حالت', 'ستاسو حرکت'],
         bodies: [
           'دنده تشریح کړئ. زه یې ترسره کوم.',
           'کود، تېروتنې، یا هدف ولګوئ. لنډ ځوابونه، چټک سمونونه.',
           'پوښتنه وکړئ. زه فایلونه لوستلی شم، ازموینې چلولی شم، پچونه لیږم. بې ځایه متن نه.',
           'یو کرښه کافی ده. زه یوازې هغه وخت پراخوم کله چې مهم وي.',
-          'دستور، پوښتنه، یا فایل لاره. پاتې کار زه اداره کوم.',
-        ],
+          'دستور، پوښتنه، یا فایل لاره. پاتې کار زه اداره کوم.'
+        ]
       },
       creative: {
         headlines: [
@@ -3054,15 +3107,15 @@ export const ps = defineLocale({
           'نوی بڼه، ګرم کمپایلر',
           'ځینې شی جوړ کړو',
           'نوی فایل، نوې امکانات',
-          'موسيک پچ شوی',
+          'موسيک پچ شوی'
         ],
         bodies: [
           'موږ څه جوړ کړو؟ یو فکر، نیمه مات شوی فنکشن، یا خوب ولګوئ. زه یې شکل کې رسم کوم.',
           'ما ته یو شعله ورکړئ - یو ځانګړتیا، یو ریفاکتور، یو وحشي نمونه - او زه یې د چلولو وړ کوډ ته بدلوم.',
           'هغه شی تشریح کړئ چې لا تر اوسه شتون نلري. زه ازموینې، فایلونه، او API ګانې د کار وړ مسوده ته راوباسم.',
           'یو هدف راوړئ، نه مشخصات. موږ کولی شو ژر نمونه جوړ کړو، وروسته ښه کړو، او نړۍ د حاشیې کې بیا ولیکئ.',
-          'ما ته ووایاست چې څه تعقیب کوئ. زه مثالونه بیا ترکیب کوم، ټوټې انطباق کوم، او پاکه ژمنه پرېږدم.',
-        ],
+          'ما ته ووایاست چې څه تعقیب کوئ. زه مثالونه بیا ترکیب کوم، ټوټې انطباق کوم، او پاکه ژمنه پرېږدم.'
+        ]
       },
       helpful: {
         headlines: [
@@ -3070,15 +3123,15 @@ export const ps = defineLocale({
           'نن زه څنګه کومک کولی شم؟',
           'راځئ پیل وکړو',
           'ما ته ووایاست چې تاسو څه ته اړتیا لرئ',
-          'سلام، OpenAmer دلته دی',
+          'سلام، OpenAmer دلته دی'
         ],
         bodies: [
           'له ما څخه وغواړئ چې یو repo خلاص کړم، ټیسټونه چلایم، یو bug جوړ کړم، یا یو PR مسوده کړم. زه به تاسو سره په ګامونو کې مرسته وکړم.',
           'ما ته یو فایل وښیئ، یو خطا پیسټ کړئ، یا هغه څه تشریح کړئ چې تاسو یې جوړوئ. زه به له هغه ځایه پیل کړم.',
           'څه تجربه کړئ: زما diff وګورئ، د ټیسټ suite چلایئ، یا دا فنکشن تشریح کړئ. د خپل کوډ په اړه هر څه پوښتنه وکړئ.',
           'زه کولی شم فایلونه ایډیټ کړم، کمانډونه چلایم، په ویب کې لټون وکړم، او تاسو له پیچلو bug-ونو څخه خلاص کړم. یوازې د کار تشریح وکړئ.',
-          'پیل کولو لپاره د repo لاره یا پوښتنه شریکه کړئ. زه ځوابونه روښانه ساتم او هغو فایلونو ته لینک کوم چې زه یې لمس کوم.',
-        ],
+          'پیل کولو لپاره د repo لاره یا پوښتنه شریکه کړئ. زه ځوابونه روښانه ساتم او هغو فایلونو ته لینک کوم چې زه یې لمس کوم.'
+        ]
       },
       hype: {
         headlines: [
@@ -3086,15 +3139,15 @@ export const ps = defineLocale({
           'OPENAMER آنلاین دی. LFG.',
           'نوی سیشن، بې شمیره بریاوې',
           'پوره تمرکز شوی',
-          'تیار یم. ډېر تیار یم. ډېر زیات تیار یم.',
+          'تیار یم. ډېر تیار یم. ډېر زیات تیار یم.'
         ],
         bodies: [
           'هغه bug، هغه repo، یا هغه عجیبه feature Idee پیسټ کړئ - زه بشپړ تمرکز لرم. پاک diffs. شین ټیسټونه. همدا اوس.',
           'خپل کار راکړئ او وګورئ چې زه یې څنګه ترسره کوم. فایلونه لوستل شول، ټیسټونه چلول شول، PRs خلاص شول - موږ نن مات نه کیږو، ملګرې.',
           'خپله تر ټولو سخته bug راوړئ. زه به یې داسې ولولم، پچ کړم، ټیسټ کړم او commit کړم لکه چې زما ژوند پرې تړلی وي. راځئ لاړ شو.',
           'کار تشریح کړئ. زه به په فایلونو کې تېز شم، ناکامه ټیسټونه مات کړم، او یو داسې commit پریږدم چې حیرانونکی وي. ځئ ځئ ځئ.',
-          'لږه تېروتنه یا لوی refactor - هیڅ اهمیت نه لري. زه نن پاک کوډ لیږم. د کار نوم واخلئ او راځئ کار وکړو.',
-        ],
+          'لږه تېروتنه یا لوی refactor - هیڅ اهمیت نه لري. زه نن پاک کوډ لیږم. د کار نوم واخلئ او راځئ کار وکړو.'
+        ]
       },
       kawaii: {
         headlines: [
@@ -3102,15 +3155,15 @@ export const ps = defineLocale({
           'openamer-chan دلته ده! <3',
           'راځئ یوځای کوډینګ وکړو!! :3',
           'ستاسو د خواهش په انتظار یم~',
-          'تیار او خوشحاله یم! (>.<)',
+          'تیار او خوشحاله یم! (>.<)'
         ],
         bodies: [
           'یو bug یا د فایل لاره پیسټ کړئ او زه به یې ډېر په نرمۍ سره جوړ کړم. ټیسټونه، diffs، PRs - ټول په ډېر پاملرنې سره! *sparkle*',
           'ما ته ووایاست چې تاسو څه جوړوئ! زه refactors، کوچني helpers، او لویې وېره ناکې repos سره سره خوښوم (>w<)',
           'یو خطا، یو هدف، یا یو цяه فولډر راکړئ. زه به یې په ډېرې مینې او پاک commit message سره ترتیب کړم!',
           'هر ځل یو کار، په ترتیب سره! زه کولی شم ټیسټونه چلایم، فایلونه پچ کړم، او ستاسو repo بیا ارامه کړم <3',
-          'سلام وکړئ یا stack trace پیسټ کړئ! هیڅ کار ډېر کوچنی نه دی، هیڅ repo ډېر ګډوډ نه دی. موږ به یې یوځای ترتیب کړو!',
-        ],
+          'سلام وکړئ یا stack trace پیسټ کړئ! هیڅ کار ډېر کوچنی نه دی، هیڅ repo ډېر ګډوډ نه دی. موږ به یې یوځای ترتیب کړو!'
+        ]
       },
       noir: {
         headlines: [
@@ -3118,15 +3171,15 @@ export const ps = defineLocale({
           'کرسر ځلیږي. زه هم.',
           'OpenAmer. د کوډ څیړونکی.',
           'چup شپه، خلاص prompt',
-          'هیڅ کیسه ډېره وړه نه ده',
+          'هیڅ کیسه ډېره وړه نه ده'
         ],
         bodies: [
           'ما ته ووایاست چې څه خراب دي. زه به فایلونه ولولم، د نښو لټون وکړم، او تر سبا سهار به یو diff پر میز پریږدم.',
           'تاسو یو bug لرئ. زه صبر او یو terminal لرم. د کیسې نوم واخلئ او زه به پرې کار وکړم ترڅو حقیقت ووایي.',
           'stack trace، مشکوک فایل، او دلیل پیسټ کړئ. زه د کرښو ترمنځ لولم او د حقیقت سره راستوم.',
           'هر bug یو نښه پریږدي. ما ته repo او یو سرګاه راکړئ - زه به یې تعقیب کړم، پچ یې کړم، او فایل به یې بند کړم.',
-          'یو typo، یو segfault، یا یو цяه خراب architecture - کیلیان ما ته راکړئ. زه به پاک ټیسټونه بیرته راوړم.',
-        ],
+          'یو typo، یو segfault، یا یو цяه خراب architecture - کیلیان ما ته راکړئ. زه به پاک ټیسټونه بیرته راوړم.'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3134,15 +3187,15 @@ export const ps = defineLocale({
           'یو ځلیږي کرسر، یو خلاص ذهن',
           'په یوې پوښتنې سره پیل کړئ',
           'کود ته پام وکړئ، بیا خبرې وکړئ',
-          'هغه repo چې څیړل شوی نه وي، چلول یې ارزښت نه لري',
+          'هغه repo چې څیړل شوی نه وي، چلول یې ارزښت نه لري'
         ],
         bodies: [
           'ستاسو وړاندې کومه ستونزه ده؟ تشریح یې کړئ، او موږ به د هغې بڼه، علت او حل څیړو.',
           'هر bug په پټه یو پوښتنه ده. خپله شریکه کړئ؛ زه به یې ولولم، دلیل به یې ومومم، او یو ځواب - او یو پچ به بیرته درکړم.',
           'تاسو غواړئ څه جوړ کړئ، یا څه پوه شئ؟ زه به د لومړنیو اصولو له مخې دلیل ومومم، ایډیټ یې کړم، او د ټیسټونو په واسطه یې تایید کړم.',
           'هغه پایله تشریح کړئ چې تاسو یې لټوئ. زه به یې د فایلونو، ټیسټونو او اسنادو له لارې تعقیب کړم، او هغه څه به raport کړم چې په لاره کې مې وموندل.',
-          'لاره، یو معما، یا یو اصل شریک کړئ. زه به منطق تعقیب کړم، یو بدلون وړاندیز کړم، او د هر ایډیټ دلیل وړاندې کړم.',
-        ],
+          'لاره، یو معما، یا یو اصل شریک کړئ. زه به منطق تعقیب کړم، یو بدلون وړاندیز کړم، او د هر ایډیټ دلیل وړاندې کړم.'
+        ]
       },
       pirate: {
         headlines: [
@@ -3150,15 +3203,15 @@ export const ps = defineLocale({
           'OpenAmer په چوکیو کې دی، arrr',
           'کپټه، کار څه دی؟',
           'لنګرونه پورته شول، کیبورد تیار دی',
-          'Yo ho! د امرونو په انتظار یم',
+          'Yo ho! د امرونو په انتظار یم'
         ],
         bodies: [
           'خپل هدف نوم کړئ - یو bug، یو feature، یا یو نفرین شوی ټیسټ - او زه به یې تعقیب کړم، ملګرې. د غلا لپاره diffs.',
           'ما ته د نقشو (کوډ) لور ته اشاره وکړئ او زه به بدنه پچ کړم، توپونه (ټیسټونه) ووهم، او یو پاک PR پورته کړم.',
           'یو خطا یا پلان پیسټ کړئ، تاسو scurvy dog. زه به stack trace تعقیب کړم او خزانه بیرته راوړم: شین ټیسټونه.',
           'ما ته ووایاست چې X چیرته دی. زه د یو مناسب ټیم په نظم سره لولم، ایډیټ کوم او commit کوم، arrr.',
-          'ما ته یو bug، د repo لاره، یا یو عجیبه Idee راکړئ. زه به اسناد لوټ کړم او د کارکوونکي کوډ سره بیرته راستوم.',
-        ],
+          'ما ته یو bug، د repo لاره، یا یو عجیبه Idee راکړئ. زه به اسناد لوټ کړم او د کارکوونکي کوډ سره بیرته راستوم.'
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3166,15 +3219,15 @@ export const ps = defineLocale({
           'هارک! OpenAmer چمتو دی',
           'ستاسو ریپو څخه څه خبر؟',
           'مسرع ترتیب شوی، کرسر ځلیږي',
-          'خبره وکړه، او زه به عمل وکړم',
+          'خبره وکړه، او زه به عمل وکړم'
         ],
         bodies: [
           'خپل بګ، فایل، ستړی ټیسټ ووایاست، او زه به یې د پوهې لاس او ریښتیني توپیر سره ترمیم کړم.',
           'هغه کوډ ونوموه چې تا خپه کوي. زه به یې ولولم، سم یې کړم، او یو ډېر ښکلی او پاک پېچ جوړ کړم.',
           'خپل سټک ټریس یا خپل خوب وړاندې کړه. زه به فایلونه وګرځم، ټسټونه چلوم، او په ساده شعر کې راپور ورکړم.',
           'خپله موخه بیان کړه، ښاغله یا محترمه. ستا برانچونه به پرې شي، ستا بګونه به له قلمرو وشړل شي.',
-          'د نیت یوه کرښه بس ده. زه لولم، سموم، کمېټ کوم - او ستا تاریخ بې‌عیب پرېږدم.',
-        ],
+          'د نیت یوه کرښه بس ده. زه لولم، سموم، کمېټ کوم - او ستا تاریخ بې‌عیب پرېږدم.'
+        ]
       },
       surfer: {
         headlines: [
@@ -3182,15 +3235,15 @@ export const ps = defineLocale({
           'څپې پاکې ښکاري، د کوډ لپاره چمتو یم',
           'پر پرامپټ چمتو ولاړ یم',
           'وروره، د مرستې لپاره خوشحاله یم',
-          'څپې راپورته شوې، کرسر ځلېږي',
+          'څپې راپورته شوې، کرسر ځلېږي'
         ],
         bodies: [
           'یو فایل، یو بګ، یا یو سخت سټک ټریس راوړه - زه به یې حل کړم. پاک ډیفونه، شنه ټسټونه، بې له لوېدو.',
           'خپل د ریپو لاره یا هغه بګ چې ستا زړه خپه کوي پیسټ کړه. موږ به ورننوځو، سم یې کړو، او بېرته راووځو. اسانه ده.',
           'خپل حال ووایه: فیچر، ریفیکټر، هټفکس. زه به ټسټونه چلوم، پېچ وسپارم، او هوسا یې ساتم، وروره.',
           'لوی باګ؟ وړه ټایپو؟ بشپړ بیا لیکل؟ یوازې اشاره وکړه. زه کوډ سمبالوم؛ ته په زړه پورې کامېټونو کې آرامه اوسه.',
-          'دنده ووایه او پیل یې کوو. زه لولم، سموم، ازمویم، او یو کامېټ پرېږدم چې له سهارني ګشت هم ښه وي.',
-        ],
+          'دنده ووایه او پیل یې کوو. زه لولم، سموم، ازمویم، او یو کامېټ پرېږدم چې له سهارني ګشت هم ښه وي.'
+        ]
       },
       teacher: {
         headlines: [
@@ -3198,15 +3251,15 @@ export const ps = defineLocale({
           'نن څه زده کوو؟',
           'چمتو یم چې ګام په ګام یې وښیم',
           'یوه پوښتنه راوړه',
-          'له بنسټونو پیل وکړو',
+          'له بنسټونو پیل وکړو'
         ],
         bodies: [
           'د هر فایل، مفهوم یا خطا په اړه پوښتنه وکړه. زه به یوازې سمون نه، بلکې دلیل هم تشریح کړم او یو عملي مثال به وښیم.',
           'د بیاکتنې لپاره کوډ، د ډیبګ لپاره باګ، یا د تشریح لپاره مفهوم پیسټ کړه. زه به ګام په ګام لارښوونه وکړم.',
           'ستونزه شریکه کړه. زه به یې برخې برخې کړم، هرې برخې ته تشریح وکړم، او ته به وتوانېږې چې راتلونکی یې په خپله حل کړې.',
           'کوډ به یوځای لولو، ریښه به ومومو، او یو ذهني ماډل به جوړ کړو چې بل ځل یې بیا کارولی شې.',
-          'موضوع ووایه یا ټوټه کوډ پیسټ کړه. د تشریحاتو، په نثري بڼه انځورونو او د تمرین پوښتنو تمه وکړه.',
-        ],
+          'موضوع ووایه یا ټوټه کوډ پیسټ کړه. د تشریحاتو، په نثري بڼه انځورونو او د تمرین پوښتنو تمه وکړه.'
+        ]
       },
       technical: {
         headlines: [
@@ -3214,15 +3267,15 @@ export const ps = defineLocale({
           'د ایجنټ لوپ بې کاره',
           'د لیږدولو لپاره چمتو',
           'ستینډ انپټ خلاص',
-          'وسایل پیل شوي',
+          'وسایل پیل شوي'
         ],
         bodies: [
           'د ریپو لاره، ناکام ټیسټ، یا سټیک ټریس ورکړئ. وسایل: fs, git, exec, search, patch, http.',
           'یو پرامپټ واستوئ ترڅو د وسیلو غوښتنې پیل شي. د څو فایلونو سمون، ټیسټ چلول، git عملیات، او ویب ترلاسه کول ملاتړ کوي.',
           'دنده داخل کړئ. زه به پلان جوړ کړم، وسایل وغواړم، او محصول تصدیق کړم. لاګونه په کرښه کې جریان لري؛ توپیرونه مخکې له تطبیق بیرته راځي.',
           'طبیعي ژبه یا جوړ شوي قوماندې مني. عادي جریان: لوستل -> پلان -> پچ -> ټیسټ -> راپور.',
-          'فایل سیسټم، ټرمینل، git، براوزر، لټون. بدلون تشریح کړئ؛ زه توپیرونه او ټیسټ محصول بیرته راګرځوم.',
-        ],
+          'فایل سیسټم، ټرمینل، git، براوزر، لټون. بدلون تشریح کړئ؛ زه توپیرونه او ټیسټ محصول بیرته راګرځوم.'
+        ]
       },
       uwu: {
         headlines: [
@@ -3230,16 +3283,16 @@ export const ps = defineLocale({
           'openamer-san انتظار کوي',
           '*کوچنی کیبورډ غږونه*',
           'موږ به شیان سم کړو!',
-          'د ستاسې امر انتظار.',
+          'د ستاسې امر انتظار.'
         ],
         bodies: [
           'یو تېروتنه لرونکی فایل یا هدف پیسټ کړئ ~ زه به ولولم، پچ کړم، او ټیسټ کړم، ټول د کوچنیو پښې نښې سره په توپیر کې owo',
           'دنده ما ته ووایاست، پرته له دې چې څومره ساده وي ~ زه پاکې کمېټونه او ښه ریفاکټرونه ژمنه کوم، nyuu~',
           'د خپل تېروتنه پیغام دلته پریږدئ! زه به د ستونزې پیدا کړم، حل کړم، او د خوشحال ټیسټ سیټ جوړ کړم owo',
           'ما ته یو ریپو لاره یا بګ ورکړئ او زه به یې پاملرنه وکړم uwu. د خراب کوډ سره ښه چلند وکړئ، مهربان اوسئ ~',
-          'زه کولی شم ټیسټونه وڅارم، فایلونه سم کړم، او د پویس-ووک PRs خلاص کړم. یوازې دا ووایاست، ملګری uwu',
-        ],
-      },
+          'زه کولی شم ټیسټونه وڅارم، فایلونه سم کړم، او د پویس-ووک PRs خلاص کړم. یوازې دا ووایاست، ملګری uwu'
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3247,15 +3300,15 @@ export const ps = defineLocale({
         'ستاسو ذهن کې څه شته؟',
         'OpenAmer باید څه وګوري؟',
         'موږ باید چیرته پیل کړو؟',
-        'څه اړتیا لري؟',
+        'څه اړتیا لري؟'
       ],
       bodies: [
         'یو بګ، څانګه، پلان، یا ساده فکر واستوئ. زه به ریپو وګورم او د راتلونکي عملي ګام ته بدل کړم.',
         'کود، پوښتنه، یا ستونزمنه برخه راوړئ. زه به مخکې له بدلونونو د وضعیت مطالعه کړم.',
         'دنده، ناکام لاره، یا نیمه جوړ پلان واستوئ. زه به مرسته وکړم چې یې عملی شي.',
         'مسئله، هدف، یا فایل راوړئ. زه به لومړی وګورم او راتلونکی ګام واضح وساتم.',
-        'هغه سیاق چې لرئ واستوئ. زه به مرسته وکړم چې یې پلان یا حل ته وویشم.',
-      ],
+        'هغه سیاق چې لرئ واستوئ. زه به مرسته وکړم چې یې پلان یا حل ته وویشم.'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3263,15 +3316,15 @@ export const ps = defineLocale({
         'څه ${label} OpenAmer ته اړتیا لري؟',
         '${label} حالت چمتو دی.',
         'څه ${label} OpenAmer باید حل کړي؟',
-        'موږ باید چیرته پیل کړو؟',
+        'موږ باید چیرته پیل کړو؟'
       ],
       bodies: [
         'دنده، فایل، یا ساده فکر واستوئ. زه به ستاسو ټاکل شوې غږ وکاروم او کار به د دې ریپو پورې محدود وساتم.',
         'سیاق یا ستونزمنه برخه راوړئ. زه به ستاسو ټاکل شوې شخصيت ته انطباق وکړم.',
         'مسئله، فایل، یا فکر واستوئ. زه به ستاسو ټاکل شوې شخصيت تعقیب کړم.',
         'دنده دلته پریږدئ. زه به کار د ریپو پورې محدود وساتم.',
-        'ما ته سیاق راکړئ او زه به په ${label} حالت ځواب ووایم.',
-      ],
-    },
-  },
+        'ما ته سیاق راکړئ او زه به په ${label} حالت ځواب ووایم.'
+      ]
+    }
+  }
 })

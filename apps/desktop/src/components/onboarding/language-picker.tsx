@@ -147,9 +147,7 @@ export function DesktopLanguagePickerOverlay({ enabled, onCompleted }: DesktopLa
         </div>
 
         <div className="flex items-center justify-between gap-2 border-t border-(--ui-stroke-tertiary) px-5 py-3">
-          <span className="text-[0.6875rem] text-(--ui-text-tertiary)">
-            {isSavingLocale ? t.language.saving : ''}
-          </span>
+          <span className="text-[0.6875rem] text-(--ui-text-tertiary)">{isSavingLocale ? t.language.saving : ''}</span>
           <Button disabled={isSavingLocale} onClick={finish} size="sm" type="button" variant="ghost">
             {t.common.skip}
           </Button>

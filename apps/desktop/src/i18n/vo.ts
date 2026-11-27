@@ -38,17 +38,18 @@ export const vo = defineLocale({
       untitledChat: id => `Çat ${id}`,
       ageDay: 'del',
       ageHour: 'düp',
-      ageMin: 'minut',
+      ageMin: 'minut'
     },
     dateDivider: {
       today: 'Düso taro',
       yesterday: 'Aruvo',
       thisWeek: 'Düso vun ta',
       lastWeek: 'Ofala vun ta',
-      thisMonth: 'Düso monato',
+      thisMonth: 'Düso monato'
     },
     projects: {
-      staleBackend: 'Updatü de OpenAmer bakend, as structü projektas — din bakend is eli as this desktop-app (Stellungs → Lünekams → Bakend).',
+      staleBackend:
+        'Updatü de OpenAmer bakend, as structü projektas — din bakend is eli as this desktop-app (Stellungs → Lünekams → Bakend).',
       deleteConfirm: 'This removü de säpü projekt from OpenAmer. Fails, git repos, and wurmtrais bleib unplamü.',
       startWork: 'Nü wurmtrai',
       newWorktreeTitle: 'Nü wurmtrai',
@@ -69,8 +70,10 @@ export const vo = defineLocale({
       noBranches: 'No bransas ekäs',
       removeWorktree: 'Removü wurmtrai',
       removeWorktreeFailed: 'No binom removü wurmtrai (nochained chanses?)',
-      removeWorktreeConfirm: 'Removü it from git (deletü de wurmtrai direktori; de brans bleib), or nur hidü de lane from de sidebar and löü de wurmtrai on disk.',
-      removeWorktreeDirty: 'This wurmtrai het nochained chanses. Forse-removü it (discardü de chanses), or nur hidü de lane and behaltü it on disk.',
+      removeWorktreeConfirm:
+        'Removü it from git (deletü de wurmtrai direktori; de brans bleib), or nur hidü de lane from de sidebar and löü de wurmtrai on disk.',
+      removeWorktreeDirty:
+        'This wurmtrai het nochained chanses. Forse-removü it (discardü de chanses), or nur hidü de lane and behaltü it on disk.',
       forceRemove: 'Forse removü',
       back: 'All projektas',
       sectionLabel: 'Projekis',
@@ -82,7 +85,7 @@ export const vo = defineLocale({
       namePlaceholder: 'p.ex. Skunkworks',
       foldersLabel: 'Foldeis',
       ideaLabel: 'Ide',
-      ideaPlaceholder: "Vat binon dis projekt büt? (sevob in IDEA.md)",
+      ideaPlaceholder: 'Vat binon dis projekt büt? (sevob in IDEA.md)',
       ideaGenerate: 'Genera ide',
       ideaGenerating: 'Genera…',
       ideaShuffle: 'Mik modeli',
@@ -105,7 +108,7 @@ export const vo = defineLocale({
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Öpen ${label}`,
       reorder: label => `Reordona ${label}`,
-      toggle: label => `Kanala ${label} sesiones`,
+      toggle: label => `Kanala ${label} sesiones`
     },
     loading: 'Ladü…',
     loadMore: 'Lodü plo',
@@ -113,7 +116,7 @@ export const vo = defineLocale({
       'new-session': 'Nul sesion',
       skills: 'Mägans',
       messaging: 'Mesedän',
-      artifacts: 'Artefakts',
+      artifacts: 'Artefakts'
     },
     searchAria: 'Sük sesions',
     searchPlaceholder: 'Sük sesions…',
@@ -137,7 +140,7 @@ export const vo = defineLocale({
     noSessions: 'Nul sesiones nün',
     newSessionIn: label => `Nulik sesion in ${label}`,
     showMoreIn: (count, label) => `Mon ${count} mot in ${label}`,
-    loadCount: step => `Loda ${step} mot`,
+    loadCount: step => `Loda ${step} mot`
   },
   composer: {
     message: 'Messa',
@@ -165,20 +168,20 @@ export const vo = defineLocale({
     newSessionPlaceholders: [
       'Vat bino om konstruam?',
       'Dona Openamer un task',
-      "Vat binon in yuf pens?",
+      'Vat binon in yuf pens?',
       'Deskriba vat yu nid',
       'Vat sulo om takla?',
       'Fraga öko',
-      'Kömosi mit gol',
+      'Kömosi mit gol'
     ],
     followUpPlaceholders: [
       'Sendi folowap',
       'Adi pli kontekst',
       'Finigi peton',
-      "Vat secedon?",
+      'Vat secedon?',
       'Hali om gangön',
       'Püxi om plu',
-      'Adapti o kontinyu',
+      'Adapti o kontinyu'
     ],
     transcribingDictation: 'Transkribän diktat',
     voiceDictation: 'Vöd diktat',
@@ -197,7 +200,7 @@ export const vo = defineLocale({
       '/resume': 'resumön priora sesion',
       '/details': 'kontrolön detali niveli transkripti',
       '/copy': 'kopiön selekt o lasta assistenti mesed',
-      '/quit': 'exitön openamer',
+      '/quit': 'exitön openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'referön failis, foldis, urls, git',
@@ -207,7 +210,7 @@ export const vo = defineLocale({
       'composer.sendQueued': 'sendön näxst kued turn',
       'keybinds.openPanel': 'al klaviatür shortcuts',
       'composer.cancel': 'klos popover · cancelön run',
-      'composer.history': 'cikl popover / history',
+      'composer.history': 'cikl popover / history'
     },
     attachUrlTitle: 'atachän URL',
     attachUrlDesc: 'Openamer vil fetc tis paged e inkludön om as kontext por tis turn.',
@@ -258,19 +261,19 @@ export const vo = defineLocale({
       codeReview: {
         label: 'Kod revü',
         description: 'Revü dis nünik änd por regresions, falid rand kas, e mankant tests.',
-        text: 'Binsitom revisom dis pro bugans, regressions, e absentik probas.',
+        text: 'Binsitom revisom dis pro bugans, regressions, e absentik probas.'
       },
       implementationPlan: {
         label: 'Plän realisation',
         description: 'Skizom akses bifo tuçom kod, så diff restom fokusat.',
-        text: 'Binsitom façom kurt realisation plän bifo çanjem kod.',
+        text: 'Binsitom façom kurt realisation plän bifo çanjem kod.'
       },
       explainThis: {
         label: 'Klarom dis',
         description: 'Ganomträversom vi selektet kod funkcionas e ligom ki çef datans.',
-        text: 'Binsitom esplikom vi dis funkcionas e montrom mi çef datans.',
-      },
-    },
+        text: 'Binsitom esplikom vi dis funkcionas e montrom mi çef datans.'
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'No pos-rok YOLO',
@@ -282,7 +285,8 @@ export const vo = defineLocale({
     editFailed: 'Edit no äran',
     resumeFailed: 'Resume no äran',
     resumeStrandedTitle: 'No kar load ses',
-    resumeStrandedBody: 'Koneksion lä ses no äran, autodret retries no sävan. Kontrollar pos gateway tö, ob tö tra ven.',
+    resumeStrandedBody:
+      'Koneksion lä ses no äran, autodret retries no sävan. Kontrollar pos gateway tö, ob tö tra ven.',
     resumeRetry: 'Tra ven',
     nothingToBranch: 'Nop branch',
     branchNeedsChat: 'Starta ob resume chat ven, kote branch.',
@@ -326,7 +330,8 @@ export const vo = defineLocale({
     yoloOff: 'YOLO of',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} pro dis sesion`,
     yoloTitle: 'Yolo',
-    profileStatus: current => `Profil: ${current}. Uze /profil <nam> o "Nulik sesion" elektil pro komensed chat in oter profil.`,
+    profileStatus: current =>
+      `Profil: ${current}. Uze /profil <nam> o "Nulik sesion" elektil pro komensed chat in oter profil.`,
     noProfileNamed: (target, available) => `Nul profil namik "${target}". Venik: ${available}`,
     newChatsProfile: name => `Nulik chats uze profil ${name}.`,
     branchTitle: n => `Skis: Branc #${n}`,
@@ -338,8 +343,8 @@ export const vo = defineLocale({
       success: platform => `Transfed a ${platform}. Resumed hir koytem.`,
       systemNote: platform => `↻ Transfed a ${platform} — resumed hir koytem.`,
       failed: error => `Lifom fälid: ${error}`,
-      timedOut: 'Tem fätom vätän pro yel gayt. Bin `openamer gateway` lufom?',
-    },
+      timedOut: 'Tem fätom vätän pro yel gayt. Bin `openamer gateway` lufom?'
+    }
   },
   common: {
     apply: 'Apliko',
@@ -380,7 +385,7 @@ export const vo = defineLocale({
     update: 'Updat',
     tryHint: term => `Proba “${term}”`,
     on: 'Onik',
-    off: 'Of',
+    off: 'Of'
   },
   fileMenu: {
     revealFinder: 'Revel in Finder',
@@ -395,7 +400,7 @@ export const vo = defineLocale({
     renameLabel: 'Tên mới',
     deleteTitle: name => `Xóa ${name}?`,
     deleteBody: 'Nó sẽ được chuyển vào Thùng rác — bạn có thể khôi phục từ đó.',
-    pathCopied: 'Đã sao chép đường dẫn',
+    pathCopied: 'Đã sao chép đường dẫn'
   },
   boot: {
     ready: 'OpenAmer Desktop đã sẵn sàng',
@@ -405,7 +410,7 @@ export const vo = defineLocale({
       loadingSettings: 'Đang tải cài đặt OpenAmer',
       loadingSessions: 'Đang tải các phiên gần đây',
       startingDesktopConnection: 'Đang bắt đầu kết nối desktop',
-      startingOpenAmerDesktop: 'Đang khởi động OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Đang khởi động OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Tiến trình nền OpenAmer đã thoát.',
@@ -414,13 +419,14 @@ export const vo = defineLocale({
       desktopBootFailed: 'Skritabel start faliom',
       gatewayConnectionLost: 'Koneksion ad yul pälom',
       gatewaySignInRequired: 'Yul sain-in nödik',
-      ipcBridgeUnavailable: 'Skritabel IPC pont ne-dobik.',
+      ipcBridgeUnavailable: 'Skritabel IPC pont ne-dobik.'
     },
     failure: {
-      title: "OpenAmer no startik",
-      description: "Yul bak no kom. Provü voni baks rekoverik sil. Nul hie delit vüra çats o settings.",
+      title: 'OpenAmer no startik',
+      description: 'Yul bak no kom. Provü voni baks rekoverik sil. Nul hie delit vüra çats o settings.',
       remoteTitle: 'Yul distanik sain-in nödik',
-      remoteDescription: 'Vüra sesion yul distanik expirom. Sain-in zänom ad re-konekt. Nul hie delit vüra çats o settings.',
+      remoteDescription:
+        'Vüra sesion yul distanik expirom. Sain-in zänom ad re-konekt. Nul hie delit vüra çats o settings.',
       retry: 'Reprovü',
       repairInstall: 'Repar instäl',
       useLocalGateway: 'Uzil yul lokalik',
@@ -428,7 +434,8 @@ export const vo = defineLocale({
       back: 'Bak',
       openLogs: 'Lef logi',
       repairHint: 'Repar re-ronom instälador e kan tak pauc minuts on masin nifik.',
-      remoteSignInHint: signInLabel => `Sain-uton fon sesion navigat distanik sefik, po lefom ${signInLabel}. Uzil yul lokalik ad sving ad backend bundlik vice.`,
+      remoteSignInHint: signInLabel =>
+        `Sain-uton fon sesion navigat distanik sefik, po lefom ${signInLabel}. Uzil yul lokalik ad sving ad backend bundlik vice.`,
       signOutAndSignIn: 'Sain-ut & sain-in',
       remoteFailureHint: 'Chek URL yul e sain-in sil konfigurats yul, o sving ad yul lokalik.',
       hideRecentLogs: 'Hidom nünik logs',
@@ -440,8 +447,8 @@ export const vo = defineLocale({
       signInFailed: 'Insinön missuksesäd',
       signInToRemoteGateway: 'Insinön al yel gateway',
       signInWithProvider: provider => `Insinön mit ${provider}`,
-      identityProvider: 'Ol identitet proväda',
-    },
+      identityProvider: 'Ol identitet proväda'
+    }
   },
   notifications: {
     region: 'Notifikes',
@@ -454,21 +461,23 @@ export const vo = defineLocale({
     copyDetail: 'Kopi detale',
     copyDetailFailed: 'No kan kopi notifike detale',
     backendOutOfDateTitle: 'Backend no aktualik',
-    backendOutOfDateMessage: 'Vob OpenAmer backend binon äldik ka dis desktop build e meibinon no vörobik korektik. Updatön por alinim olis.',
+    backendOutOfDateMessage:
+      'Vob OpenAmer backend binon äldik ka dis desktop build e meibinon no vörobik korektik. Updatön por alinim olis.',
     installMethodUnsupportedTitle: 'No suportat install metod',
     updateOpenAmer: 'Updatön OpenAmer',
     updateReadyTitle: 'Update pret',
     updateReadyMessage: count => `${count} nuf ändag${count === 1 ? '' : 's'} fädik.`,
-    seeWhatsNew: "Lukon vat binon nuf",
+    seeWhatsNew: 'Lukon vat binon nuf',
     errors: {
       elevenLabsNeedsKey: 'ElevenLabs STT bédeom ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs refudom API key (401).',
       gatewayAuthFailed: 'Gateway autentifikat failon — chekon vob API_SERVER_KEY.',
-      methodNotAllowed: 'Dis desktop backend refudom dat request (405 Method Not Allowed). Provön restarten OpenAmer Desktop.',
+      methodNotAllowed:
+        'Dis desktop backend refudom dat request (405 Method Not Allowed). Provön restarten OpenAmer Desktop.',
       microphonePermission: 'Mikrofon permes refuson.',
       openaiRejectedApiKey: 'OpenAI refudom API key.',
       openaiRejectedApiKeyWithStatus: status => `OpenAI refudom API key (${status} invalid_api_key).`,
-      openaiTtsNeedsKey: 'OpenAI TTS bédeom VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.',
+      openaiTtsNeedsKey: 'OpenAI TTS bédeom VOICE_TOOLS_OPENAI_KEY o OPENAI_API_KEY.'
     },
     voice: {
       configureSpeechToText: 'Konfigürön spik-to-text por usön vöis mod.',
@@ -487,7 +496,7 @@ export const vo = defineLocale({
       transcriptionFailed: 'Vöd transkriptam failöd',
       transcriptionUnavailable: 'Vöd transkriptam no disponibik nün.',
       tryRecordingAgain: 'Proba registram zänö.',
-      unavailable: 'Vöd no disponibik',
+      unavailable: 'Vöd no disponibik'
     },
     native: {
       approvalTitle: 'Aprobam nedik',
@@ -500,11 +509,12 @@ export const vo = defineLocale({
       turnErrorTitle: 'Torn failöd',
       backgroundDoneTitle: 'Täg bakgrundik finom',
       backgroundFailedTitle: 'Fägön bakgrundik fälob',
-      creditsTitle: 'Kredites',
-    },
+      creditsTitle: 'Kredites'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Program rendring aktiv — fern displat detektet (${reason}). GPU akselerasion disablöd po prevent fliker.`,
+    message: reason =>
+      `Program rendring aktiv — fern displat detektet (${reason}). GPU akselerasion disablöd po prevent fliker.`
   },
   billingBlock: {
     titleOpenamer: 'Nul OpenAmer kredites',
@@ -512,7 +522,7 @@ export const vo = defineLocale({
     fallbackMessage: 'Vob konto nul kredites. Ad kredites po kontinü.',
     openBilling: 'Löf faktur',
     addCredits: 'Ad kredites',
-    dismiss: 'Ignor',
+    dismiss: 'Ignor'
   },
   titlebar: {
     hideSidebar: 'Kel sidebar',
@@ -529,7 +539,7 @@ export const vo = defineLocale({
     openStarmap: 'Mở đồ thị bộ nhớ',
     openKeybinds: 'Phím tắt',
     layoutEditor: 'Trình chỉnh sửa bố cục',
-    layoutEditorTitle: 'Trình chỉnh sửa bố cục — ⌘-click để đặt lại bố cục',
+    layoutEditorTitle: 'Trình chỉnh sửa bố cục — ⌘-click để đặt lại bố cục'
   },
   keybinds: {
     title: 'Phím tắt',
@@ -546,7 +556,7 @@ export const vo = defineLocale({
       profiles: 'Hồ sơ',
       session: 'Phiên',
       navigation: 'Điều hướng',
-      view: 'Xem',
+      view: 'Xem'
     },
     actions: {
       'keybinds.openPanel': 'Mở phím tắt',
@@ -625,8 +635,8 @@ export const vo = defineLocale({
       'composer.slash': 'Släsh kommand palet',
       'composer.help': 'Kwik help',
       'composer.history': 'Sikl popover / histör',
-      'composer.cancel': 'Klös popover · cansel lön',
-    },
+      'composer.cancel': 'Klös popover · cansel lön'
+    }
   },
   language: {
     label: 'Spik',
@@ -635,7 +645,7 @@ export const vo = defineLocale({
     saveError: 'Spik updät fail',
     switchTo: 'Svitom spik',
     searchPlaceholder: 'Serch spik…',
-    noResults: 'No spik labod',
+    noResults: 'No spik labod'
   },
   settings: {
     closeSettings: 'Klosi stel',
@@ -660,11 +670,12 @@ export const vo = defineLocale({
       about: 'Bü',
       billing: 'Bil',
       notifications: 'Notifiks',
-      plugins: 'Plugs',
+      plugins: 'Plugs'
     },
     plugins: {
       title: 'Desk plugs',
-      blurb: 'UI plugs loaded in this app — bundlad with build, or put in desk-plugs fold (incl. ones OpenAmer writes). Disabl unloads plug live and survives restarts.',
+      blurb:
+        'UI plugs loaded in this app — bundlad with build, or put in desk-plugs fold (incl. ones OpenAmer writes). Disabl unloads plug live and survives restarts.',
       count: n => `${n} instalad`,
       openFolder: 'Öp plugs fold',
       rescan: 'Reskan',
@@ -676,9 +687,9 @@ export const vo = defineLocale({
       kinds: {
         bundled: 'bundlad',
         disk: 'su disk',
-        runtime: 'läuf',
+        runtime: 'läuf'
       },
-      manage: 'Gidöplük agent-plügins',
+      manage: 'Gidöplük agent-plügins'
     },
     notifications: {
       title: 'Notifiks',
@@ -689,28 +700,28 @@ export const vo = defineLocale({
       kinds: {
         approval: {
           label: 'Aprobam bénef',
-          description: 'Komand vätön pö ol aprobön o rejektön om.',
+          description: 'Komand vätön pö ol aprobön o rejektön om.'
         },
         input: {
           label: 'Inpüt bénef',
-          description: 'OpenAmer äskon qüest o bénef pasvord o sekret.',
+          description: 'OpenAmer äskon qüest o bénef pasvord o sekret.'
         },
         turnDone: {
           label: 'Respons redi',
-          description: 'Vän finon vile OpenAmer binon in bakgrund.',
+          description: 'Vän finon vile OpenAmer binon in bakgrund.'
         },
         turnError: {
           label: 'Vän failon',
-          description: 'Vän eon mit eror.',
+          description: 'Vän eon mit eror.'
         },
         backgroundDone: {
           label: 'Bakgrund täsk finon',
-          description: 'Bakgrunded terminal komand komplited.',
+          description: 'Bakgrunded terminal komand komplited.'
         },
         credits: {
           label: 'Kredit alertons',
-          description: 'Kredit akses pauzom o restorom.',
-        },
+          description: 'Kredit akses pauzom o restorom.'
+        }
       },
       test: 'Sedön test notifikab',
       testTitle: 'OpenAmer',
@@ -719,7 +730,7 @@ export const vo = defineLocale({
       testUnsupported: 'Dis sistem no supört nativ notifikaboms.',
       completionSoundTitle: 'Finäl Sond',
       completionSoundDesc: 'Pladom ven agent tur finom. Selaf preset e pladom om cis.',
-      completionSoundPreview: 'Pladom',
+      completionSoundPreview: 'Pladom'
     },
     sections: {
       model: 'Modèl',
@@ -729,7 +740,7 @@ export const vo = defineLocale({
       safety: 'Sikurt',
       memory: 'Memor e Kontest',
       voice: 'Stim',
-      advanced: 'Avansat',
+      advanced: 'Avansat'
     },
     searchPlaceholder: {
       about: 'Büt OpenAmer Desktop',
@@ -737,37 +748,40 @@ export const vo = defineLocale({
       gateway: 'Port konekt...',
       keys: 'Sök API klaves...',
       mcp: 'Sök MCP servs...',
-      sessions: 'Sök arquiv sesions...',
+      sessions: 'Sök arquiv sesions...'
     },
     modeOptions: {
       light: {
         label: 'Ljus',
-        description: 'Ljus deskop surfases',
+        description: 'Ljus deskop surfases'
       },
       dark: {
         label: 'Mök',
-        description: 'Mök-gler wörkplas',
+        description: 'Mök-gler wörkplas'
       },
       system: {
         label: 'Sistem',
-        description: 'Sekwö OS aspekt',
-      },
+        description: 'Sekwö OS aspekt'
+      }
     },
     appearance: {
       title: 'Aspekt',
-      intro: 'Olis binon desktop-nur dispreferens. Mod kontrola lumines; tema kontrola akcent palet e chat surfac stil.',
+      intro:
+        'Olis binon desktop-nur dispreferens. Mod kontrola lumines; tema kontrola akcent palet e chat surfac stil.',
       colorMode: 'Kolor Mod',
       colorModeDesc: 'Selekta fix mod o lasa OpenAmer sekwö ol sistem seting.',
       toolViewTitle: 'Tool Vok Displey',
       toolViewDesc: 'Produkt kelas raw tool payloads; Teknikal monstra plen input/output.',
       uiScaleTitle: 'UI Skal',
-      uiScaleDesc: (percent: number) => `Skala text e kontrols trans la tot app. Cmd/Ctrl kun +, - e 0 anka funkcion. Aktual: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Skala text e kontrols trans la tot app. Cmd/Ctrl kun +, - e 0 anka funkcion. Aktual: ${percent}%.`,
       translucencyTitle: 'Fenestra Translucentie',
       translucencyDesc: 'Vida ol desktop trans la tot fenestra. macOS e Windows nur.',
       backdropTitle: 'Chat Fondo',
       backdropDesc: 'La debil statua bild hinter la konversation.',
       embedsTitle: 'Inlin Inkluzios',
-      embedsDesc: 'Rik previsas cargas de tiers-parti sitos (YouTube, X, …). Fråga monstra un plaseholder til vu permesa ca un; Semper cargas les automatic; Of konservas simpl links.',
+      embedsDesc:
+        'Rik previsas cargas de tiers-parti sitos (YouTube, X, …). Fråga monstra un plaseholder til vu permesa ca un; Semper cargas les automatic; Of konservas simpl links.',
       embedsAsk: 'Fråga',
       embedsAlways: 'Semper',
       embedsOff: 'Of',
@@ -780,7 +794,8 @@ export const vo = defineLocale({
       themeDesc: 'Chỉ bảng màu máy tính. Chế độ đã chọn sẽ được áp dụng lên trên.',
       themeProfileNote: profile => `Đã lưu cho hồ sơ ${profile} — mỗi hồ sơ giữ chủ đề riêng.`,
       installTitle: 'Cài đặt từ VS Code',
-      installDesc: 'Dán ID tiện ích mở rộng Marketplace (ví dụ: dracula-theme.theme-dracula) để chuyển đổi chủ đề màu của nó thành bảng màu máy tính.',
+      installDesc:
+        'Dán ID tiện ích mở rộng Marketplace (ví dụ: dracula-theme.theme-dracula) để chuyển đổi chủ đề màu của nó thành bảng màu máy tính.',
       installPlaceholder: 'dabükan.läükot',
       installButton: 'Cài đặt',
       installing: 'Đang cài đặt…',
@@ -790,8 +805,10 @@ export const vo = defineLocale({
       importedBadge: 'Đã nhập',
       pet: {
         title: 'Thú cưng',
-        intro: 'Nhận một linh vật petdex hoạt hình bay trên ứng dụng và phản ứng với những gì OpenAmer đang làm — chạy khi công cụ thực thi, ăn mừng khi thành công, ủ rũ khi có lỗi.',
-        restartHint: 'Thú cưng cần khởi động lại nhanh — ứng dụng đang chạy đã bắt đầu trước khi tính năng này được thêm vào. Thoát và mở lại OpenAmer, sau đó quay lại đây.',
+        intro:
+          'Nhận một linh vật petdex hoạt hình bay trên ứng dụng và phản ứng với những gì OpenAmer đang làm — chạy khi công cụ thực thi, ăn mừng khi thành công, ủ rũ khi có lỗi.',
+        restartHint:
+          'Thú cưng cần khởi động lại nhanh — ứng dụng đang chạy đã bắt đầu trước khi tính năng này được thêm vào. Thoát và mở lại OpenAmer, sau đó quay lại đây.',
         on: 'Bật',
         off: 'Of',
         scaleTitle: 'Gral',
@@ -801,7 +818,7 @@ export const vo = defineLocale({
         chooseTitle: 'Sel pet',
         chooseDesc: 'Selom instales om (venädik) e makes om aktiv.',
         searchPlaceholder: 'Sök pets…',
-        unreachable: "No kan reac petdex galeri. Chek konnexion e reopen dis paged.",
+        unreachable: 'No kan reac petdex galeri. Chek konnexion e reopen dis paged.',
         noMatch: query => `Nul pets matc "${query}".`,
         installedTag: 'instalad',
         generatedTag: 'Generad',
@@ -810,7 +827,7 @@ export const vo = defineLocale({
         uninstall: name => `Deinstal ${name}`,
         delete: name => `Delet ${name}`,
         deleteTitle: name => `Delet ${name}?`,
-        deleteBody: "Dis delet pet permanen — it no kan reinstal.",
+        deleteBody: 'Dis delet pet permanen — it no kan reinstal.',
         deleteConfirm: 'Delet',
         rename: name => `Renom ${name}`,
         renameTitle: 'Nomenon anim',
@@ -823,8 +840,8 @@ export const vo = defineLocale({
         exportFailed: slug => `No kan exporton ${slug}`,
         noneAvailable: 'Nul anims disponibls po aktivon nu.',
         turnOnFailed: 'No kan aktivon anim.',
-        turnOffFailed: 'No kan desaktivon anim.',
-      },
+        turnOffFailed: 'No kan desaktivon anim.'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -835,13 +852,13 @@ export const vo = defineLocale({
       updates: 'Äpdatons',
       checkNow: 'Prüfon nu',
       checking: 'Prüfom…',
-      seeWhatsNew: "Viden vö nov",
+      seeWhatsNew: 'Viden vö nov',
       updateNow: 'Äpdaton nu',
       releaseNotes: 'Publikazion nots',
-      onLatest: "Bạn đang ở phiên bản mới nhất.",
+      onLatest: 'Bạn đang ở phiên bản mới nhất.',
       installing: 'Bản cập nhật đang được cài đặt.',
-      cantUpdate: "Phiên bản này không thể tự cập nhật từ trong ứng dụng.",
-      cantReach: "Không thể kết nối với máy chủ cập nhật.",
+      cantUpdate: 'Phiên bản này không thể tự cập nhật từ trong ứng dụng.',
+      cantReach: 'Không thể kết nối với máy chủ cập nhật.',
       tapCheck: 'Nhấn "Kiểm tra ngay" để tìm bản cập nhật.',
       updateReady: count => `Đã có bản cập nhật mới (bao gồm ${count} thay đổi${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Kiểm tra lần cuối ${age}`,
@@ -853,7 +870,7 @@ export const vo = defineLocale({
       justNow: 'vừa xong',
       minAgo: count => `${count} phút trước`,
       hoursAgo: count => `${count} giờ trước`,
-      daysAgo: count => `${count} ngày trước`,
+      daysAgo: count => `${count} ngày trước`
     },
     config: {
       none: 'Không có',
@@ -869,7 +886,7 @@ export const vo = defineLocale({
       imported: 'Konfigur importäd',
       invalidJson: 'Konfigur JSON invalid',
       keepAwakeTitle: 'Halt komputad wakan',
-      keepAwakeDesc: 'Stöp dis maschin sopan tam long o nökturn läufs blifon. Dis display kan gref dim.',
+      keepAwakeDesc: 'Stöp dis maschin sopan tam long o nökturn läufs blifon. Dis display kan gref dim.'
     },
     credentials: {
       pasteKey: 'Päst kläv',
@@ -879,7 +896,7 @@ export const vo = defineLocale({
       couldNotSave: 'No kan sav kredencial.',
       remove: 'Rimov',
       getKey: 'Obten kläv',
-      saving: 'Savön',
+      saving: 'Savön'
     },
     envActions: {
       actionsFor: label => `Aktions pö ${label}`,
@@ -890,7 +907,7 @@ export const vo = defineLocale({
       revealValue: 'Revel valüm',
       replace: 'Replaz',
       set: 'Stel',
-      clear: 'Klar',
+      clear: 'Klar'
     },
     gateway: {
       loading: 'Lodad gatveyd stelens...',
@@ -898,18 +915,21 @@ export const vo = defineLocale({
       unavailableDesc: 'Dil desktop IPC brid ne ekspos gatveyd stelens.',
       title: 'Gatveyd Konekt',
       envOverride: 'env överrid',
-      intro: 'OpenAmer Desktop komens sen omi lok gatveyd bay default. Yuz remot gatveyd ven vu vol dis app kontrol yala-lauf OpenAmer bakend on oter masin o bhind konfik prox. Pik profil bilow por giv om sen omi remot host.',
+      intro:
+        'OpenAmer Desktop komens sen omi lok gatveyd bay default. Yuz remot gatveyd ven vu vol dis app kontrol yala-lauf OpenAmer bakend on oter masin o bhind konfik prox. Pik profil bilow por giv om sen omi remot host.',
       appliesTo: 'Apliko a',
       allProfiles: 'Al profils',
       defaultConnection: 'Standik konekt por äv profil dat no häv överrid omi.',
-      profileConnection: profile => `Konekt yuzed onli ven “${profile}” bin aktiv profil. Chus yuz standik gatveyd por remo sen överrid.`,
+      profileConnection: profile =>
+        `Konekt yuzed onli ven “${profile}” bin aktiv profil. Chus yuz standik gatveyd por remo sen överrid.`,
       envOverrideTitle: 'Variabls ambient kontrol dis desktop sesion.',
-      envOverrideDesc: 'Unset OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN por yuz dil seved stel bilow.',
+      envOverrideDesc:
+        'Unset OPENAMER_DESKTOP_REMOTE_URL e OPENAMER_DESKTOP_REMOTE_TOKEN por yuz dil seved stel bilow.',
       modeTitle: 'Konekt mod',
       localTitle: 'Lok gat',
       localDesc: 'Komenc ün privat OpenAmer backend on localhost. Dis bin defaut e vörk offlin.',
       inheritTitle: 'Uz defaut gat',
-      inheritDesc: "Rimov dis profils overrid e uz defaut konekt.",
+      inheritDesc: 'Rimov dis profils overrid e uz defaut konekt.',
       remoteTitle: 'Remot gat',
       remoteDesc: 'Konekt dis desktop shel a remot OpenAmer backend.',
       remoteAuthHint: 'Hosted gats uz OAuth o ün yuzernam e pasvord; self-hosted vons mey uz sesion token.',
@@ -929,7 +949,7 @@ export const vo = defineLocale({
       cloudNoAgents: {
         before: 'Nul agents binom obsikü in dis konto. Kreativ ün in del ',
         linkText: 'portal OpenAmer',
-        after: ', po refresi.',
+        after: ', po refresi.'
       },
       cloudRefresh: 'Refresi',
       cloudConnect: 'Konekt',
@@ -989,7 +1009,8 @@ export const vo = defineLocale({
       applyFailed: 'No yekob aplikön gateway stetings',
       saveFailed: 'No yekob sefön gateway stetings',
       sshTitle: 'Konektöd per SSH',
-      sshDesc: 'OpenAmer binom lansatü on li remota per SSH e tunelitü a dis app — nülikö te lansamü o eksponamü yuf. Folgü vörkik SSH akses bäsetik su klävs tu li host.',
+      sshDesc:
+        'OpenAmer binom lansatü on li remota per SSH e tunelitü a dis app — nülikö te lansamü o eksponamü yuf. Folgü vörkik SSH akses bäsetik su klävs tu li host.',
       sshTrustHint: 'Li unesim presentat host kläv binom fidat e pinnat; pospül änds faila klosat.',
       sshHostTitle: 'Gastigeb',
       sshHostDesc: 'yuser@gastigeb, o un host alias fon ~/.ssh/config.',
@@ -1013,18 +1034,22 @@ export const vo = defineLocale({
       sshReachable: (host, platform) => `Yufik: ${host} (${platform}) — OpenAmer geflen`,
       sshIncompleteHost: 'Inscib SSH host bifo konekt.',
       sshErrUnreachable: 'No yufik tat host po SSH. Chek host, port, e ier net.',
-      sshErrAuth: 'SSH autentifik fail. Laden ier klü in ssh-agent (ssh-add) o set IdentityFile in ~/.ssh/config — OpenAmer läuf ssh non-interaktiv.',
-      sshErrHostKey: 'Host klü CHANGED sins ier last konekt. Verifik dis es expectat, po läuf ssh-keygen -R <host> e re-konekt.',
-      sshErrNotInstalled: 'OpenAmer no instalat po remote host. Instal it dere (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o set OpenAmer pad.',
-      sshErrPlatform: 'Non-supportat remote platform. OpenAmer Desktop SSH mod support Linux, macOS, e Windows remote hosts.',
+      sshErrAuth:
+        'SSH autentifik fail. Laden ier klü in ssh-agent (ssh-add) o set IdentityFile in ~/.ssh/config — OpenAmer läuf ssh non-interaktiv.',
+      sshErrHostKey:
+        'Host klü CHANGED sins ier last konekt. Verifik dis es expectat, po läuf ssh-keygen -R <host> e re-konekt.',
+      sshErrNotInstalled:
+        'OpenAmer no instalat po remote host. Instal it dere (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) o set OpenAmer pad.',
+      sshErrPlatform:
+        'Non-supportat remote platform. OpenAmer Desktop SSH mod support Linux, macOS, e Windows remote hosts.',
       sshErrTimeout: 'SSH konekt timeout. Host mey be non-yufik o sleep.',
       sshErrUpdateRequired: 'Updat OpenAmer po remote host bifo konekt mit Desktop SSH.',
-      sshErrUnknown: 'SSH konekt fail.',
+      sshErrUnknown: 'SSH konekt fail.'
     },
     keys: {
       loading: 'Laden API klüs e kredentials...',
       failedLoad: 'API klüs fail laden',
-      empty: 'Nul konfigurat in dis kategory yet.',
+      empty: 'Nul konfigurat in dis kategory yet.'
     },
     mcp: {
       loading: 'Laden MCP servers...',
@@ -1076,7 +1101,8 @@ export const vo = defineLocale({
       catalogInstallFailed: name => `Failom instalön ${name}`,
       catalogEnvPrompt: name => `${name} postule kredentials`,
       catalogEnvRequired: 'Fulikön postulöd vals bifo instalön.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ebliköm`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ebliköm`,
       statusConnecting: 'Konektol…',
       statusNeedsAuth: 'Postule autentifik',
       statusError: 'Erör',
@@ -1089,7 +1115,7 @@ export const vo = defineLocale({
       unsavedConnect: 'Nosavöd — savön mcp.json pro konektön.',
       enableTool: tool => `Eblikön ${tool}`,
       disableTool: tool => `Diseblikön ${tool}`,
-      noOutput: 'No autput yut.',
+      noOutput: 'No autput yut.'
     },
     model: {
       loading: 'Ladol model konfiguracion...',
@@ -1110,46 +1136,47 @@ export const vo = defineLocale({
       providerDefault: '(providar standard)',
       fallbackAdd: 'Adio fallback',
       fallbackEmpty: 'No fallback models — standard model uzoom nos it failom.',
-      notInCatalog: "No binom in dis providar model list — vokas meibi fallback a backup.",
+      notInCatalog: 'No binom in dis providar model list — vokas meibi fallback a backup.',
       tasks: {
         vision: {
           label: 'Logam',
-          hint: 'Bild analis',
+          hint: 'Bild analis'
         },
         web_extract: {
           label: 'Veb ekstrakto',
-          hint: 'Pag samarifik',
+          hint: 'Pag samarifik'
         },
         compression: {
           label: 'Kompresion',
-          hint: 'Kontekst kompaktifik',
+          hint: 'Kontekst kompaktifik'
         },
         skills_hub: {
           label: 'Deks zentrum',
-          hint: 'Dek serch',
+          hint: 'Dek serch'
         },
         approval: {
           label: 'Aproval',
-          hint: 'Smat auto-aproval',
+          hint: 'Smat auto-aproval'
         },
         mcp: {
           label: 'MCP',
-          hint: 'MCP tul rut',
+          hint: 'MCP tul rut'
         },
         title_generation: {
           label: 'Titil jen',
-          hint: 'Sesion titils',
+          hint: 'Sesion titils'
         },
         curator: {
           label: 'Kurator',
-          hint: 'Dek-usag revü',
-        },
-      },
+          hint: 'Dek-usag revü'
+        }
+      }
     },
     providers: {
       connectAccount: 'Konekt un konto',
       haveApiKey: 'Labol un API yel oiköd?',
-      intro: 'Sin in mit un abonament — no API yel ko kopi. OpenAmer läufas li browser sin-in för yu, rait hir in li app.',
+      intro:
+        'Sin in mit un abonament — no API yel ko kopi. OpenAmer läufas li browser sin-in för yu, rait hir in li app.',
       connected: 'Konektet',
       collapse: 'Kolaps',
       connectAnother: 'Konekt un oter provida',
@@ -1159,7 +1186,8 @@ export const vo = defineLocale({
       removeConfirm: provider => `Läfom ${provider}?`,
       removeExternalGeneric: provider => `${provider} binon managöd fon ons CLI — läfom om lä.`,
       removeKeyManaged: provider => `${provider} binon konfiguräd fon API yel. Läfom om fon API Yels.`,
-      removeTerminalConfirm: (provider, command) => `Disconect ${provider}? Cis läfons "${command}" in terminal po klir kredencial.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Disconect ${provider}? Cis läfons "${command}" in terminal po klir kredencial.`,
       removeTerminalRunning: provider => `Läfons ${provider} disconect in terminal…`,
       removedTitle: 'Konto läfomöd',
       removedMessage: provider => `${provider} binon läfomöd.`,
@@ -1169,14 +1197,15 @@ export const vo = defineLocale({
       noKeysMatch: 'Nul providärs matç töl serch.',
       localEndpoint: {
         title: 'Lokal / custom endpoint',
-        description: 'Direkt OpenAmer a eni OpenAI-kompatibl endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).',
+        description: 'Direkt OpenAmer a eni OpenAI-kompatibl endpoint (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
-      loading: 'Lädons providärs...',
+      loading: 'Lädons providärs...'
     },
     sessions: {
       loading: 'Lädons arkivöd sessions…',
       archivedTitle: 'Arkivöd sessions',
-      archivedIntro: 'Arkivöd çats binon hidöd fon sidebar bat kil ön obs mesags. Ctrl/⌘-klik en çat in sidebar po arkivom om.',
+      archivedIntro:
+        'Arkivöd çats binon hidöd fon sidebar bat kil ön obs mesags. Ctrl/⌘-klik en çat in sidebar po arkivom om.',
       emptyArchivedTitle: 'Nul arkivöd',
       emptyArchivedDesc: 'Arkiveeri katse, et see siin nähtamatuks jääks.',
       unarchive: 'Võta arkiveerimisest välja',
@@ -1185,12 +1214,14 @@ export const vo = defineLocale({
       restored: 'Taastatud',
       deleteConfirm: title => `Kas kustutada "${title}" jäädavalt? Seda ei saa tagasi pöörata.`,
       autoArchiveTitle: 'Arkiveeri vananenud katseid automaatselt',
-      autoArchiveDesc: "Arkiveeri automaatselt katseid, mida sa pole pikemalt puudutanud. Kinnitatud katseid ei arkiveerita ja midagi ei kustuta — arkiveeritud katseid viiakse ainult siia.",
+      autoArchiveDesc:
+        'Arkiveeri automaatselt katseid, mida sa pole pikemalt puudutanud. Kinnitatud katseid ei arkiveerita ja midagi ei kustuta — arkiveeritud katseid viiakse ainult siia.',
       autoArchiveDaysLabel: 'Arkiveeri pärast',
       autoArchiveDaysUnit: 'päeva järelmõtust',
       autoArchiveFailed: 'Autoarkiveerimist ei õnnestunud uuendada',
       defaultDirTitle: 'Vaikimisi projektikaust',
-      defaultDirDesc: 'Uued sessioonid algavad selles kaustas, kui sa ei vali teist. Jäta see määramata, et kasutada oma kodukausta.',
+      defaultDirDesc:
+        'Uued sessioonid algavad selles kaustas, kui sa ei vali teist. Jäta see määramata, et kasutada oma kodukausta.',
       defaultDirUpdated: 'Vaikimisi projektikaust uuendati — alusta uus katse (Ctrl/⌘+N), et see jõustuks',
       defaultsTo: label => `Vaikimisi on ${label}.`,
       change: 'Muuda',
@@ -1201,7 +1232,7 @@ export const vo = defineLocale({
       unarchiveFailed: 'Dezipifikom failit',
       deleteFailed: 'Deletom failit',
       updateDirFailed: 'No kanat aktualikom defautik direktori',
-      clearDirFailed: 'No kanat clarikom defautik direktori',
+      clearDirFailed: 'No kanat clarikom defautik direktori'
     },
     toolsets: {
       loadingConfig: 'Ladom konfigurasion',
@@ -1226,13 +1257,15 @@ export const vo = defineLocale({
       needsSetup: 'Nödön setup',
       openamerIncluded: 'Inkludid mit un OpenAmer abonament — sain-in in OpenAmer Portal por aktivikön.',
       openamerAuthNeededTitle: 'Sain-in in OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} binon seved ab no aktivikomos til vu sain-in in OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} binon seved ab no aktivikomos til vu sain-in in OpenAmer Portal.`,
       openamerAuthSignIn: 'Sain-in',
       openamerAuthDoneTitle: 'OpenAmer Portal konekted',
       openamerAuthDoneMessage: 'Vur abonament backends binon nu aktiv.',
       openamerAuthFailed: 'OpenAmer Portal sain-in no komplited',
       noApiKeyRequired: 'Nul API yel nödönik.',
-      postSetupHint: step => `Dis backend nödön un bal-ün instalasion (${step}). Läufon på dis mascin — möge teke pauc minuts.`,
+      postSetupHint: step =>
+        `Dis backend nödön un bal-ün instalasion (${step}). Läufon på dis mascin — möge teke pauc minuts.`,
       postSetupInstalledHint: 'Instaled. Re-läufon setup nur if etwas broked.',
       postSetupRun: 'Läufon setup',
       postSetupRerun: 'Re-läufon setup',
@@ -1273,9 +1306,9 @@ export const vo = defineLocale({
         selectedTitle: 'Bakan selkt',
         selectedMessage: backend => `Fin kommandos nu ron via ${backend}. Aplikas a nun sesiones.`,
         failedSelect: backend => `Falid selkt ${backend}`,
-        needsSetupHint: 'Yu kan selkt dis bakan nu — kommandos vil falid til instal komplit.',
-      },
-    },
+        needsSetupHint: 'Yu kan selkt dis bakan nu — kommandos vil falid til instal komplit.'
+      }
+    }
   },
   skills: {
     tabSkills: 'Habilitäs',
@@ -1295,7 +1328,8 @@ export const vo = defineLocale({
     noDescription: 'Nen deskripzion.',
     configured: 'Konfigurom',
     needsKeys: 'Behofos klaves',
-    visionModelHint: 'Viden usez jor auxilier model konfiguration — li bild-kapabl model is gewählt dä, no per-provider hie.',
+    visionModelHint:
+      'Viden usez jor auxilier model konfiguration — li bild-kapabl model is gewählt dä, no per-provider hie.',
     visionModelLink: 'Wähl viden model in Konfigurationes → Modeles',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} instrumentasets aktivom`,
     configureToolset: label => `Konfigurom ${label}`,
@@ -1321,7 +1355,7 @@ export const vo = defineLocale({
     provenance: {
       agent: 'Lernom',
       bundled: 'Inbild',
-      hub: 'Nod',
+      hub: 'Nod'
     },
     emptyNoneFound: noun => `Nul ${noun} finom`,
     emptyNothingMatches: query => `Nulö matç “${query}”.`,
@@ -1359,7 +1393,7 @@ export const vo = defineLocale({
       trust: {
         builtin: 'Inbaut',
         trusted: 'Fidik',
-        community: 'Komunitä',
+        community: 'Komunitä'
       },
       verdictSafe: 'Säk',
       verdictCaution: 'Atens',
@@ -1377,7 +1411,7 @@ export const vo = defineLocale({
       loadFailed: 'Kün zentrum fälid lädol',
       previewFailed: 'Kün prälok fälid',
       scanFailed: 'Sikurtät skan fälid',
-      searchFailed: 'Zentrum serch fälid',
+      searchFailed: 'Zentrum serch fälid'
     },
     tabPlugins: 'Plügins',
     searchPlugins: 'Söka plügins...',
@@ -1397,9 +1431,10 @@ export const vo = defineLocale({
     pluginsSearchFailed: 'GitHub söka fäilöda',
     pluginsDiscoverAction: query => `Söka GitHub löf "${query}"`,
     pluginsDiscoverResults: (n, query) => `${n} reposi tagad openamer-plugin för "${query}"`,
-    pluginsDiscoverEmpty: query => `Nul löf GitHub löf "${query}" — söka püköda nüt repozüköli cül openamer-plugin topik, e unauthenticated GitHub söka li rate limited. Instalön exact owner/repo püköda.`,
+    pluginsDiscoverEmpty: query =>
+      `Nul löf GitHub löf "${query}" — söka püköda nüt repozüköli cül openamer-plugin topik, e unauthenticated GitHub söka li rate limited. Instalön exact owner/repo püköda.`,
     pluginsStatusInactive: 'inaktif',
-    pluginsToggleFailed: 'Nü lüvöfön lödöplük plügin-stät',
+    pluginsToggleFailed: 'Nü lüvöfön lödöplük plügin-stät'
   },
   starmap: {
     title: 'Memor grafik',
@@ -1416,7 +1451,8 @@ export const vo = defineLocale({
     emptyTitle: 'Nul lernad nünu',
     emptyDesc: 'Ven Openamer büikön kills e mems pö del vöks, ons lüköns hie.',
     share: 'Teilön karta',
-    shareHint: 'Kopön kodi pö teilöns dis karta, o glibön bal pö lädöns et. Et inklüdöns nün dispos, no del mem o kill text.',
+    shareHint:
+      'Kopön kodi pö teilöns dis karta, o glibön bal pö lädöns et. Et inklüdöns nün dispos, no del mem o kill text.',
     shareTitle: 'Importön / exportön karta',
     sharePlaceholder: 'Glibön karta kodi…',
     copy: 'Kopön karta kodi',
@@ -1426,7 +1462,7 @@ export const vo = defineLocale({
     importEmpty: 'Glibön karta kodi pö lädöns et.',
     importSuccess: nodes => `Lädöd bal karta mit ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'Importöd karta',
-    resetToMine: 'Bak pö men karta',
+    resetToMine: 'Bak pö men karta'
   },
   agents: {
     close: 'Klösöns agens',
@@ -1456,7 +1492,7 @@ export const vo = defineLocale({
     ageDays: days => `${days}d bä`,
     durationSeconds: seconds => `${seconds} sek`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} sek`,
-    tokens: value => `${value} mal`,
+    tokens: value => `${value} mal`
   },
   commandCenter: {
     close: 'Klos komand zentr',
@@ -1486,7 +1522,7 @@ export const vo = defineLocale({
       generatedTag: 'Generad',
       adoptFailed: 'No kan adopti omik animal.',
       toggleFailed: 'No kan tugl ti animal.',
-      noneAvailable: 'Nen animals disponik — seli bal telo por instalön.',
+      noneAvailable: 'Nen animals disponik — seli bal telo por instalön.'
     },
     generatePet: {
       title: 'Genera animal',
@@ -1515,7 +1551,7 @@ export const vo = defineLocale({
       referenceImageTooLarge: 'Ảnh tham chiếu quá lớn. Hãy dùng ảnh dưới 16 MB.',
       referenceImageInvalid: 'Không thể đọc ảnh tham chiếu. Hãy thử định dạng PNG, JPG, WebP hoặc GIF.',
       adopt: 'Nhận nuôi',
-      startOver: 'Bắt đầu lại',
+      startOver: 'Bắt đầu lại'
     },
     installTheme: {
       title: 'Cài đặt chủ đề…',
@@ -1527,7 +1563,7 @@ export const vo = defineLocale({
       install: 'Instal',
       installing: 'Instalom...',
       installed: 'Instalöl',
-      installs: count => `${count} instalons`,
+      installs: count => `${count} instalons`
     },
     settingsFields: 'Stel fäls',
     mcpServers: 'MCP serbers',
@@ -1536,49 +1572,49 @@ export const vo = defineLocale({
       maintenance: 'Mantenans',
       sessions: 'Sesions',
       system: 'Sistem',
-      usage: 'Usag',
+      usage: 'Usag'
     },
     sectionDescriptions: {
       maintenance: 'Diagnostiks, bakups, kurator, e dat mem',
       sessions: 'Sök e menaj sesions',
       system: 'Status, logs, e acions sistemik',
-      usage: 'Token, kost, e aktivitad skill temik',
+      usage: 'Token, kost, e aktivitad skill temik'
     },
     nav: {
       newChat: {
         title: 'Nulik session',
-        detail: 'Kömens nulik session',
+        detail: 'Kömens nulik session'
       },
       settings: {
         title: 'Stels',
-        detail: 'Konfig OpenAmer desktop',
+        detail: 'Konfig OpenAmer desktop'
       },
       skills: {
         title: 'Kapablitäds',
-        detail: 'Küns, tools, e MCP servs',
+        detail: 'Küns, tools, e MCP servs'
       },
       messaging: {
         title: 'Komunik',
-        detail: 'Instal Telegram, Slack, Discord, e plu',
+        detail: 'Instal Telegram, Slack, Discord, e plu'
       },
       artifacts: {
         title: 'Artefakts',
-        detail: 'Skän generat outputs',
-      },
+        detail: 'Skän generat outputs'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Session pänels',
-        detail: 'Sërch, fik, e manag sessions',
+        detail: 'Sërch, fik, e manag sessions'
       },
       system: {
         title: 'Sistem pänels',
-        detail: 'Gateway status, logs, restart/updat',
+        detail: 'Gateway status, logs, restart/updat'
       },
       usage: {
         title: 'Usaj pänels',
-        detail: 'Token, kost, e küna aktivitäd',
-      },
+        detail: 'Token, kost, e küna aktivitäd'
+      }
     },
     providerNavigate: 'Navig',
     providerSessions: 'Sesions',
@@ -1666,8 +1702,8 @@ export const vo = defineLocale({
       actionStarted: name => `${name} startöd — seku log...`,
       actionFailed: name => `${name} failöd startön`,
       running: 'Laufön...',
-      viewLog: 'Log aksionik',
-    },
+      viewLog: 'Log aksionik'
+    }
   },
   messaging: {
     search: 'Seka mesaging...',
@@ -1682,7 +1718,7 @@ export const vo = defineLocale({
       not_configured: 'Nid konfiguration',
       pending_restart: 'Behöf reinstärt',
       retrying: 'Reprobatön',
-      startup_failed: 'Stärt missukses',
+      startup_failed: 'Stärt missukses'
     },
     unknown: 'Nevidik',
     hintPendingRestart: 'Reinstärt yal fon status-lin aplidik tis tšanj.',
@@ -1721,127 +1757,126 @@ export const vo = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bota',
         help: 'Stofön bot möd @BotFather, po lüko token ki om givom ol.',
-        placeholder: 'Lüko Telegram bot token',
+        placeholder: 'Lüko Telegram bot token'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Permebid Telegram user IDs',
-        help: 'Rekomended. Komat-separatid numelik IDs fon @userinfobot. Bidosi dis, enikul kan DM ol bot.',
+        help: 'Rekomended. Komat-separatid numelik IDs fon @userinfobot. Bidosi dis, enikul kan DM ol bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL proxy',
-        help: 'Nul nedik o nets bodi Telegram bloked.',
+        help: 'Nul nedik o nets bodi Telegram bloked.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bota',
-        help: 'Stofön applikation in Discord Developer Portal, adö bot, po lüko om token.',
+        help: 'Stofön applikation in Discord Developer Portal, adö bot, po lüko om token.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Permebid Discord user IDs',
-        help: 'Rekomended. Komat-separatid Discord user IDs.',
+        help: 'Rekomended. Komat-separatid Discord user IDs.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Replid stil',
-        help: 'först, al, od of.',
+        help: 'först, al, od of.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Permebön al Discord users',
-        help: 'Entwicklung nul. Ven ver, enikul kan DM bot bido allowlist.',
+        help: 'Entwicklung nul. Ven ver, enikul kan DM bot bido allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Heim kanal ID',
-        help: 'Kanal bodi bot sended proaktiv mesages (cron output, reminders).',
+        help: 'Kanal bodi bot sended proaktiv mesages (cron output, reminders).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Heim kanal nam',
-        help: 'Nhật ký và trạng thái: tên hiển thị cho kênh chính.',
+        help: 'Nhật ký và trạng thái: tên hiển thị cho kênh chính.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Cho phép tất cả người dùng iMessage',
-        help: 'Khi bật, bỏ qua danh sách cho phép của BlueBubbles.',
+        help: 'Khi bật, bỏ qua danh sách cho phép của BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Cho phép tất cả người dùng Mattermost',
+        label: 'Cho phép tất cả người dùng Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kênh chính',
+        label: 'Kênh chính'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Cho phép tất cả người dùng QQ',
+        label: 'Cho phép tất cả người dùng QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Kênh chính QQ',
-        help: 'Kênh hoặc nhóm mặc định để gửi cron.',
+        help: 'Kênh hoặc nhóm mặc định để gửi cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Tên kênh chính QQ',
+        label: 'Tên kênh chính QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Token bot Slack',
         help: 'Sử dụng token bot từ OAuth & Permissions sau khi cài đặt ứng dụng Slack.',
-        placeholder: 'Dán token bot Slack',
+        placeholder: 'Dán token bot Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Token ứng dụng Slack',
         help: 'Sử dụng token cấp ứng dụng cần thiết cho Socket Mode.',
-        placeholder: 'Dán token ứng dụng Slack',
+        placeholder: 'Dán token ứng dụng Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID người dùng Slack được phép',
-        help: 'Khuyến nghị. Các ID người dùng Slack cách nhau bằng dấu phẩy.',
+        help: 'Khuyến nghị. Các ID người dùng Slack cách nhau bằng dấu phẩy.'
       },
       MATTERMOST_URL: {
         label: 'URL máy chủ',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token bot',
+        label: 'Token bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Permesäd yuser IDs',
-        help: 'Rekomended. Komat-separäd Mattermost yuser IDs.',
+        help: 'Rekomended. Komat-separäd Mattermost yuser IDs.'
       },
       MATRIX_HOMESERVER: {
         label: 'Heimserver URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Acces token',
+        label: 'Acces token'
       },
       MATRIX_USER_ID: {
         label: 'Bot yuser ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Permesäd Matrix yuser IDs',
-        help: 'Rekomended. Komat-separäd yuser IDs in @user:server format.',
+        help: 'Rekomended. Komat-separäd yuser IDs in @user:server format.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL pon Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL fon runän signal-cli REST bridge.',
+        help: 'URL fon runän signal-cli REST bridge.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefon numer',
-        help: 'Numer registred mit ier signal-cli bridge.',
+        help: 'Numer registred mit ier signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Permesäd Signal yusers',
-        help: 'Rekomended. Komat-separäd Signal identifikators.',
+        help: 'Rekomended. Komat-separäd Signal identifikators.'
       },
       WHATSAPP_ENABLED: {
         label: 'Eabl WhatsApp bridge',
-        help: 'Setät automatisik pü toggle bü. Läs alon les yu no yu nid it.',
+        help: 'Setät automatisik pü toggle bü. Läs alon les yu no yu nid it.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge mod',
+        label: 'Bridge mod'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Permesäd WhatsApp yusers',
-        help: 'Rekomended. Komat-separat telefön numers o WhatsApp IDs.',
-      },
+        help: 'Rekomended. Komat-separat telefön numers o WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Sük webhooks...',
@@ -1851,7 +1886,8 @@ export const vo = defineLocale({
     hint: 'Abonament cängs hot-relod vons receiver bin luf. Bloked abonaments rejekt inköm events.',
     empty: 'No webhook abonaments yut.',
     disabledTitle: 'Webhook receiver bloked',
-    disabledBody: 'Webhooks bin eir own gateway platform. Aktived ols hir to accept inköm HTTP events; chat kanals bin only needed ven abonament deliver to Telegram, Discord, Slack, o anik channel.',
+    disabledBody:
+      'Webhooks bin eir own gateway platform. Aktived ols hir to accept inköm HTTP events; chat kanals bin only needed ven abonament deliver to Telegram, Discord, Slack, o anik channel.',
     enable: 'Aktived webhooks',
     enabling: 'Aktivom...',
     enabled: (name: string) => `Aktived: "${name}"`,
@@ -1904,8 +1940,8 @@ export const vo = defineLocale({
       discord: 'Discord',
       slack: 'Slack',
       email: 'Imel',
-      github_comment: 'GitHub komet',
-    },
+      github_comment: 'GitHub komet'
+    }
   },
   profiles: {
     close: 'Closi profils',
@@ -1983,7 +2019,7 @@ Lass vaku por behalt ${mode} standik.`,
     failedLoadSoul: 'Failik lädön SOUL.md',
     failedSaveSoul: 'Failik sekurikön SOUL.md',
     failedCreate: 'Failik blidikön profil',
-    failedRename: 'Failik nomenatikön profil',
+    failedRename: 'Failik nomenatikön profil'
   },
   cron: {
     close: 'Clösik cron',
@@ -1998,14 +2034,14 @@ Lass vaku por behalt ${mode} standik.`,
       paused: 'pausod',
       disabled: 'diseblib',
       error: 'eror',
-      completed: 'finid',
+      completed: 'finid'
     },
     deliveryLabels: {
       local: 'dis desktop',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'E-pöst',
+      email: 'E-pöst'
     },
     scheduleLabels: {
       daily: 'dägik',
@@ -2014,7 +2050,7 @@ Lass vaku por behalt ${mode} standik.`,
       monthly: 'menodik',
       hourly: 'horik',
       'every-15-minutes': 'Yel 15 minuts',
-      custom: 'kustom',
+      custom: 'kustom'
     },
     scheduleHints: {
       daily: 'Jilad dil jü 9:00 AM',
@@ -2023,7 +2059,7 @@ Lass vaku por behalt ${mode} standik.`,
       monthly: 'Balid dil de jil monat jü 9:00 AM',
       hourly: 'Jü süm de jilad stul',
       'every-15-minutes': 'Jilad degtel minuts',
-      custom: 'Cron sintaks od spik naturalik',
+      custom: 'Cron sintaks od spik naturalik'
     },
     days: {
       '0': 'Suläd',
@@ -2033,7 +2069,7 @@ Lass vaku por behalt ${mode} standik.`,
       '4': 'Foläd',
       '5': 'Fridä',
       '6': 'Seläd',
-      '7': 'Suläd',
+      '7': 'Suläd'
     },
     dayFallback: value => `dil ${value}`,
     everyDayAt: time => `Jilad dil jü ${time}`,
@@ -2043,7 +2079,8 @@ Lass vaku por behalt ${mode} standik.`,
     topOfHour: 'Jil yel at jöl',
     everyHourAt: minute => `Jil yel at :${minute}`,
     newCron: 'Nulik kron',
-    emptyDescNew: 'Plänom nulik promt lan rulon at kron ekspression. OpenAmer vil rulon om e delivom resultis a destinatión vot pükob.',
+    emptyDescNew:
+      'Plänom nulik promt lan rulon at kron ekspression. OpenAmer vil rulon om e delivom resultis a destinatión vot pükob.',
     emptyDescSearch: 'Provom plidik serch kwestion.',
     emptyTitleNew: 'Nul plänom wobs nün',
     emptyTitleSearch: 'Nul samik',
@@ -2102,7 +2139,7 @@ Lass vaku por behalt ${mode} standik.`,
     createAction: 'Kreom cron',
     tabs: {
       jobs: 'Vobs',
-      blueprints: 'Plans',
+      blueprints: 'Plans'
     },
     blueprints: {
       tab: 'Plans',
@@ -2116,8 +2153,8 @@ Lass vaku por behalt ${mode} standik.`,
       loading: 'Lade plans...',
       failedLoad: 'Fälik lade plans',
       emptyTitle: 'Nul plans döpik',
-      emptyDesc: 'Nul automat-plans döpik on dis bakend.',
-    },
+      emptyDesc: 'Nul automat-plans döpik on dis bakend.'
+    }
   },
   artifacts: {
     search: 'Sük artefakts...',
@@ -2151,7 +2188,7 @@ Lass vaku por behalt ${mode} standik.`,
     kindLink: 'lin',
     chat: 'Bespik',
     copyUrl: 'Kopí URL',
-    copyPath: 'Kopí veg',
+    copyPath: 'Kopí veg'
   },
   statusStack: {
     agents: 'Dunans',
@@ -2204,8 +2241,8 @@ Lass vaku por behalt ${mode} standik.`,
       branchOffFrom: base => `Nü bran fon ${base}`,
       switchTo: branch => `Svic a ${branch}`,
       switchFailed: branch => `No kan svic a ${branch}`,
-      worktrees: 'Vörktris',
-    },
+      worktrees: 'Vörktris'
+    }
   },
   updates: {
     stages: {
@@ -2220,7 +2257,7 @@ Lass vaku por behalt ${mode} standik.`,
       done: 'Updät komplät',
       manual: 'Updät fon yur terminal',
       guiSkew: 'Updät desktop app',
-      error: 'Updät pauzät',
+      error: 'Updät pauzät'
     },
     checking: 'Sekün updät…',
     checkFailedTitle: 'No kän sekün updät',
@@ -2243,11 +2280,13 @@ Lass vaku por behalt ${mode} standik.`,
     manualBody: 'Estälol OpenAmer de lien komanda, so nulükams jenons us i. Kleibölös atosi in terminal olik:',
     manualPickedUp: 'OpenAmer olasumon fomi nulik ven ostärtol oni nexiko.',
     guiSkewTitle: 'Nulükön programi tabik',
-    guiSkewBody: 'Backend penulükon, ab pakot programa tabik at no pevotükon. Nulükölös u stälölös dönu programi tabik OpenAmer (AppImage / .deb / .rpm olik) ad fitön.',
+    guiSkewBody:
+      'Backend penulükon, ab pakot programa tabik at no pevotükon. Nulükölös u stälölös dönu programi tabik OpenAmer (AppImage / .deb / .rpm olik) ad fitön.',
     copy: 'Kopiedön',
     copied: 'Pekopiedon',
     done: 'Pefinon',
-    applyingBody: 'Nulükian OpenAmer sumon kontroli in fenät okik e maifüton OpenAmer ito ven binon finik. No maifüölös OpenAmer ito ol it durante nulükam.',
+    applyingBody:
+      'Nulükian OpenAmer sumon kontroli in fenät okik e maifüton OpenAmer ito ven binon finik. No maifüölös OpenAmer ito ol it durante nulükam.',
     applyingBodyBackend: 'Backend remotaik kleibon nulükami e ostarton dönu. OpenAmer oyumon ito ven gebidon dönu.',
     applyingClose: 'Fenät at ofärmon du nulükam jenon, täno OpenAmer omaifüton ito.',
     errorTitle: 'Nulükam no pefinon',
@@ -2259,12 +2298,13 @@ Lass vaku por behalt ${mode} standik.`,
       restarting: 'Backend rekomencan por lädon li update…',
       notAvailable: 'Update no disponibl por dis backend.',
       failed: 'Backend update failon.',
-      noReturn: 'Backend no rekomon online. Li update mey no finon — tseka li backend host.',
+      noReturn: 'Backend no rekomon online. Li update mey no finon — tseka li backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborton: altre OpenAmer fenetr o terminal vadi openamer haltan dis install opern. Klos it e retry.',
-      updateFailed: 'Li update no finon. No pri — notik loson. Yu kan retry nu.',
-    },
+      updateLocked:
+        'Update aborton: altre OpenAmer fenetr o terminal vadi openamer haltan dis install opern. Klos it e retry.',
+      updateFailed: 'Li update no finon. No pri — notik loson. Yu kan retry nu.'
+    }
   },
   install: {
     stageStates: {
@@ -2272,10 +2312,11 @@ Lass vaku por behalt ${mode} standik.`,
       running: 'Installan',
       succeeded: 'Finon',
       skipped: 'Salton',
-      failed: 'Failon',
+      failed: 'Failon'
     },
     oneTimeTitle: 'OpenAmer beson un install unik',
-    unsupportedDesc: platform => `Automatik first-launch install no disponibl on ${platform} yit. Opern Terminal e vadi li kommand sub, po rekomenc dis app. Sekvent launches saltos dis step.`,
+    unsupportedDesc: platform =>
+      `Automatik first-launch install no disponibl on ${platform} yit. Opern Terminal e vadi li kommand sub, po rekomenc dis app. Sekvent launches saltos dis step.`,
     installCommand: 'Install kommand',
     copyCommand: 'Kopi kommand',
     viewDocs: 'Vidi install doks',
@@ -2317,8 +2358,10 @@ Lass vaku por behalt ${mode} standik.`,
     failedTitle: 'Instalation failid',
     settingUpTitle: 'Konfigura OpenAmer Agent',
     finishingTitle: 'Finida',
-    failedDesc: 'Un fon li instal stäps failid. On Windows, dis kan hapen if anik OpenAmer CLI o desktop instans ron. Stopa äv OpenAmer instanss ron, po retry. Cheka li detalios nide o li desktop log pro li ful transkript.',
-    activeDesc: 'Dis is un vun-tim setup. Li OpenAmer instalator downloda dependenss e konfiguron vö mašin. Sekvent lançs vil skip dis step.',
+    failedDesc:
+      'Un fon li instal stäps failid. On Windows, dis kan hapen if anik OpenAmer CLI o desktop instans ron. Stopa äv OpenAmer instanss ron, po retry. Cheka li detalios nide o li desktop log pro li ful transkript.',
+    activeDesc:
+      'Dis is un vun-tim setup. Li OpenAmer instalator downloda dependenss e konfiguron vö mašin. Sekvent lançs vil skip dis step.',
     progress: (completed, total) => `${completed} fon ${total} stäps komplid`,
     currentStage: stage => ` -- nu: ${stage}`,
     fetchingManifest: 'Lädöns instalad manifest...',
@@ -2332,10 +2375,10 @@ Lass vaku por behalt ${mode} standik.`,
     transcriptSaved: 'Plen transkript seved a',
     copiedOutput: 'Kopied!',
     copyOutput: 'Kopi output',
-    reloadRetry: 'Relod e retry',
+    reloadRetry: 'Relod e retry'
   },
   onboarding: {
-    headerTitle: "Setup yu mit OpenAmer Agent",
+    headerTitle: 'Setup yu mit OpenAmer Agent',
     headerDesc: 'Konekt un model provider por komenc chatt. Max options tak un klik.',
     preparingInstall: 'OpenAmer finis instalad. Dis usual tak sub un minut at first run.',
     starting: 'Komenc OpenAmer…',
@@ -2343,7 +2386,7 @@ Lass vaku por behalt ${mode} standik.`,
     collapse: 'Kolaps',
     otherProviders: 'Oter providers',
     haveApiKey: 'I hav un API key',
-    chooseLater: "Ob vil sel bal providär lätik",
+    chooseLater: 'Ob vil sel bal providär lätik',
     recommended: 'Rekomended',
     connected: 'Konekted',
     featuredPitch: 'Bal abonament, 300+ frontier moduls — el rekomeded väg ad lufön OpenAmer',
@@ -2352,28 +2395,29 @@ Lass vaku por behalt ${mode} standik.`,
     apiKeyOptions: {
       fireworks: {
         short: 'diret model API',
-        description: 'Diret akses ad moduls hosted bä Fireworks AI.',
+        description: 'Diret akses ad moduls hosted bä Fireworks AI.'
       },
       openrouter: {
         short: 'bal kil, mani moduls',
-        description: 'Hosts hundeds moduls bähind bal kil. Gud default för nius instals.',
+        description: 'Hosts hundeds moduls bähind bal kil. Gud default för nius instals.'
       },
       openai: {
         short: 'GPT-klas moduls',
-        description: 'Diret akses ad OpenAI moduls.',
+        description: 'Diret akses ad OpenAI moduls.'
       },
       gemini: {
         short: 'Gemini moduls',
-        description: 'Diret akses ad Google Gemini moduls.',
+        description: 'Diret akses ad Google Gemini moduls.'
       },
       xai: {
         short: 'Grok moduls',
-        description: 'Diret akses ad xAI Grok moduls.',
+        description: 'Diret akses ad xAI Grok moduls.'
       },
       local: {
         short: 'söl-hosted',
-        description: 'Point OpenAmer ad bal lokal o söl-hosted OpenAI-kompatibel endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer ad bal lokal o söl-hosted OpenAI-kompatibel endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Bak ad sign in',
     getKey: 'Läb bal kil',
@@ -2386,7 +2430,7 @@ Lass vaku por behalt ${mode} standik.`,
     flowSubtitles: {
       pkce: 'Öfom olik browser po sinin, po kontinyu hie',
       device_code: 'Öfom verifikasitel blad in olik browser — OpenAmer konektom automatik',
-      external: 'Sinin bal in olik terminal, po komün bäk po chat',
+      external: 'Sinin bal in olik terminal, po komün bäk po chat'
     },
     startingSignIn: provider => `Kömän sinin pro ${provider}...`,
     verifyingCode: provider => `Verifikom olik kod mit ${provider}...`,
@@ -2400,11 +2444,13 @@ Lass vaku por behalt ${mode} standik.`,
     copyAuthCode: 'Kopiyom autorizakod e glutom om lä.',
     pasteAuthCode: 'Glutom autorizakod',
     reopenAuthPage: 'Reöpen autorisazion paged',
-    autoBrowser: provider => `No öpenom ${provider} in jor browser. Autorisob OpenAmer ädelo e vos vil binon konektet automatiko — nünik ko kopie o paste.`,
+    autoBrowser: provider =>
+      `No öpenom ${provider} in jor browser. Autorisob OpenAmer ädelo e vos vil binon konektet automatiko — nünik ko kopie o paste.`,
     reopenSignInPage: 'Reöpen sin-in paged',
     waitingAuthorize: 'Vatob pro vos autorisob...',
-    externalPending: provider => `${provider} sin-inom per sen oun CLI. Läufof dis komando in terminal, po komefo bäk e väliof "No binom sin-in":`,
-    signedIn: "No binom sin-in",
+    externalPending: provider =>
+      `${provider} sin-inom per sen oun CLI. Läufof dis komando in terminal, po komefo bäk e väliof "No binom sin-in":`,
+    signedIn: 'No binom sin-in',
     deviceCodeOpened: provider => `No öpenom ${provider} in jor browser. Inseriof dis kod ädelo:`,
     reopenVerification: 'Reöpen verifikazion paged',
     copy: 'Kopie',
@@ -2415,7 +2461,7 @@ Lass vaku por behalt ${mode} standik.`,
     price: (input, output) => `${input} in / ${output} aut per Mtok`,
     change: 'Çanjo',
     startChatting: 'Komeço',
-    docs: provider => `${provider} doks`,
+    docs: provider => `${provider} doks`
   },
   modelPicker: {
     title: 'Çanjo model',
@@ -2431,13 +2477,13 @@ Lass vaku por behalt ${mode} standik.`,
     free: 'Frei',
     freeTier: 'Frei niv',
     priceTitle: 'Inpu / Autpu pris per milion tokans',
-    wasPrice: 'binon',
+    wasPrice: 'binon'
   },
   modelVisibility: {
     title: 'Moduls',
     search: 'Sök moduls',
     noAuthenticatedProviders: 'Nul autentik providärs.',
-    addProvider: 'Adö providär…',
+    addProvider: 'Adö providär…'
   },
   shell: {
     windowControls: 'Fenestr kontrols',
@@ -2448,7 +2494,7 @@ Lass vaku por behalt ${mode} standik.`,
       noModels: 'Nul moduls gefundon',
       editModels: 'Ädit Modeles…',
       refreshModels: 'Refreš Modeles',
-      fast: 'Vifik',
+      fast: 'Vifik'
     },
     modelOptions: {
       noOptions: 'Nen opcions pos dis model',
@@ -2464,7 +2510,7 @@ Lass vaku por behalt ${mode} standik.`,
       max: 'Maxim',
       ultra: 'Vemo',
       updateFailed: 'Model opcion äpdet fälad',
-      fastFailed: 'Vifik mod äpdet fälad',
+      fastFailed: 'Vifik mod äpdet fälad'
     },
     gatewayMenu: {
       gateway: 'Gät',
@@ -2479,7 +2525,7 @@ Lass vaku por behalt ${mode} standik.`,
       connection: label => `Connecion: ${label}`,
       recentActivity: 'Lätik aktivitäd',
       viewAllLogs: 'Lukom ale logas →',
-      messagingPlatforms: 'Mesedj platformas',
+      messagingPlatforms: 'Mesedj platformas'
     },
     approvalMode: {
       title: 'Aproba mod',
@@ -2489,7 +2535,7 @@ Lass vaku por behalt ${mode} standik.`,
       smart: 'Smat',
       smartDescription: 'Automat evalue acions e fragom ven beson',
       off: 'Of',
-      offDescription: 'Laufom widaut aproba prompts',
+      offDescription: 'Laufom widaut aproba prompts'
     },
     statusbar: {
       unknown: 'Ünno',
@@ -2545,13 +2591,13 @@ Lass vaku por behalt ${mode} standik.`,
           skills: 'Köns',
           subagent_definitions: 'Subagend definis',
           system_prompt: 'Sistem promt',
-          tool_definitions: 'Instrum definis',
+          tool_definitions: 'Instrum definis'
         },
         empty: 'Nul kontekst dat yed',
         loading: 'Lodön detalyat…',
         percentFull: percent => `${percent}% Ful`,
         title: 'Kontekst Usağ',
-        tokenSummary: (used, max) => `${used} / ${max} Tokäns`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokäns`
       },
       openContextUsage: 'Löfob kontekst usağ detalyat',
       session: 'Sesion',
@@ -2564,8 +2610,8 @@ Lass vaku por behalt ${mode} standik.`,
       openModelPicker: 'Löf model-val',
       modelPinned: 'pinit fa yu; nün cets usom tis vice stetings defolt',
       modelTitle: (provider, model) => `Samod · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Regt said-bar',
@@ -2601,7 +2647,7 @@ Lass vaku por behalt ${mode} standik.`,
     terminalNew: 'Nulik terminal',
     terminalCloseOthers: 'Clösön oters',
     terminalCloseAll: 'Clösön al',
-    addToChat: 'Adedön ad chad',
+    addToChat: 'Adedön ad chad'
   },
   preview: {
     tab: 'Prälud',
@@ -2656,7 +2702,7 @@ Lass vaku por behalt ${mode} standik.`,
       empty: 'Nul konsol mesagis nünu.',
       promptHeader: 'Antavis konsol:',
       sentTitle: 'Sedis ad çat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} adedis ad kompozitor`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} adedis ad kompozitor`
     },
     web: {
       appFailedToBoot: 'Antavis aplik faileda starton',
@@ -2686,12 +2732,13 @@ Lass vaku por behalt ${mode} standik.`,
       fileChanged: url => `Fail tšanjöd, relodön preview: ${url}`,
       filesChanged: (count, url) => `${count} fail tšanj, relodön preview: ${url}`,
       watchFailed: message => `No kan lükön preview fail: ${message}`,
-      moduleMimeDescription: 'Modul skrips binon serväds mit fali MIME tip. Düs binon üsualik menas ke statik fail server servom Vite/React apl statt projek dev server.',
+      moduleMimeDescription:
+        'Modul skrips binon serväds mit fali MIME tip. Düs binon üsualik menas ke statik fail server servom Vite/React apl statt projek dev server.',
       loadFailedConsole: (code, message) => `Lädon failon${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Previd päj no binon reikäd.',
       openTarget: url => `Löf ${url}`,
-      fallbackTitle: 'Previd',
-    },
+      fallbackTitle: 'Previd'
+    }
   },
   zones: {
     showHeader: 'Säg hed',
@@ -2699,7 +2746,8 @@ Lass vaku por behalt ${mode} standik.`,
     minimize: 'Minimik',
     restore: 'Restor',
     closeRunningTitle: 'Klös läufan tab?',
-    closeRunningBody: 'Düs çat binon nün werkan (o vätan tvo input). Klösan del tab helom it — sesion hälom sin progres e kan binon löfäds fo del saidbar.',
+    closeRunningBody:
+      'Düs çat binon nün werkan (o vätan tvo input). Klösan del tab helom it — sesion hälom sin progres e kan binon löfäds fo del saidbar.',
     closeRunningConfirm: 'Klös tab',
     closeOthers: 'Klös oters',
     closeToRight: 'Klös a rait',
@@ -2736,14 +2784,15 @@ Lass vaku por behalt ${mode} standik.`,
     layoutNamePlaceholder: fallback => `Dispos nam (${fallback})`,
     saveApply: 'Spar & aplik',
     notExpressible: 'Dis dispos interlok (pinvil) — no esprim als nested split nun',
-    zoneCount: count => `${count} zons`,
+    zoneCount: count => `${count} zons`
   },
   assistant: {
     thread: {
       loadingSession: 'Lod sesion',
       showEarlier: 'Mon fru mesags',
       loadingResponse: 'OpenAmer lod un respons',
-      resumeWhenBackgroundDone: count => count === 1
+      resumeWhenBackgroundDone: count =>
+        count === 1
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       thinking: 'Pens',
@@ -2771,7 +2820,7 @@ Lass vaku por behalt ${mode} standik.`,
       restoreNext: 'Restauro sekwent chekpoint',
       goForward: 'Go avan',
       sendEdited: 'Sended redaktet depes',
-      attachingFile: 'Atachan…',
+      attachingFile: 'Atachan…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway es no konektet',
@@ -2784,8 +2833,9 @@ Lass vaku por behalt ${mode} standik.`,
       jumpToApproval: 'Lonam nedon',
       reject: 'Refudön',
       alwaysTitle: 'Lonön ai befeiti at?',
-      alwaysDescription: pattern => `At lüükon patedi “${pattern}” lü lonalised laidüpik olik (~/.openamer/config.yaml). OpenAmer no osäkön dönu pro befeits sümik at — in sesun at u in sesuns futürik.`,
-      alwaysAllow: 'Lonön ai',
+      alwaysDescription: pattern =>
+        `At lüükon patedi “${pattern}” lü lonalised laidüpik olik (~/.openamer/config.yaml). OpenAmer no osäkön dönu pro befeits sümik at — in sesun at u in sesuns futürik.`,
+      alwaysAllow: 'Lonön ai'
     },
     clarify: {
       notReady: 'Säk klilükamik no binon nog blümik',
@@ -2799,7 +2849,7 @@ Lass vaku por behalt ${mode} standik.`,
       continueLabel: 'Föfön',
       lateAnswer: (question, choice) => `Dö: "${question}" — gepük obik: ${choice}`,
       lateAnswerTip: 'Draftön gepüki at as nun fovik',
-      lateAnswerHint: 'Dis prompt non plu vät. Söl omikön pö sketön om vi pos-messäg.',
+      lateAnswerHint: 'Dis prompt non plu vät. Söl omikön pö sketön om vi pos-messäg.'
     },
     tool: {
       code: 'Kod',
@@ -2835,11 +2885,11 @@ Lass vaku por behalt ${mode} standik.`,
         ran: 'Rülat',
         running: 'Rülid',
         ranCode: 'Rülat kod',
-        runningCode: 'Skriptid',
+        runningCode: 'Skriptid'
       },
       prefixes: {
         browser: 'browser',
-        web: 'Vüret',
+        web: 'Vüret'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2847,121 +2897,121 @@ Lass vaku por behalt ${mode} standik.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Laufom ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Laufom ${action.toLowerCase()}`,
+        runningTool: action => `Laufom ${action.toLowerCase()}`
       },
       titles: {
         browser_click: {
           done: 'Klikat paged element',
           pending: 'Klikom paged element',
-          pendingAction: 'Klikom',
+          pendingAction: 'Klikom'
         },
         browser_fill: {
           done: 'Fülat formul feld',
           pending: 'Fülom formul feld',
-          pendingAction: 'Fülom',
+          pendingAction: 'Fülom'
         },
         browser_navigate: {
           done: 'Öpat paged',
           pending: 'Öpom paged',
-          pendingAction: 'Öpom',
+          pendingAction: 'Öpom'
         },
         browser_snapshot: {
           done: 'Kaptat paged momentanbild',
           pending: 'Kaptom paged momentanbild',
-          pendingAction: 'Kaptom',
+          pendingAction: 'Kaptom'
         },
         browser_take_screenshot: {
           done: 'Kaptat skrinbild',
           pending: 'Kaptom skrinbild',
-          pendingAction: 'Kaptom',
+          pendingAction: 'Kaptom'
         },
         browser_type: {
           done: 'Tibat su paged',
           pending: 'Tibom su paged',
-          pendingAction: 'Tibom',
+          pendingAction: 'Tibom'
         },
         clarify: {
           done: 'Fragom frage',
           pending: 'Fragöl frage',
-          pendingAction: 'Fragöl',
+          pendingAction: 'Fragöl'
         },
         cronjob: {
           done: 'Kron-job',
           pending: 'Planöl kron-job',
-          pendingAction: 'Planöl',
+          pendingAction: 'Planöl'
         },
         edit_file: {
           done: 'Äditom fail',
           pending: 'Äditöl fail',
-          pendingAction: 'Äditöl',
+          pendingAction: 'Äditöl'
         },
         execute_code: {
           done: 'Laufom kod',
           pending: 'Skriptöl',
-          pendingAction: 'Skriptöl',
+          pendingAction: 'Skriptöl'
         },
         image_generate: {
           done: 'Generatom bild',
           pending: 'Generöl bild',
-          pendingAction: 'Generöl',
+          pendingAction: 'Generöl'
         },
         list_files: {
           done: 'Listom fails',
           pending: 'Listöl fails',
-          pendingAction: 'Listöl',
+          pendingAction: 'Listöl'
         },
         patch: {
           done: 'Patšom fail',
           pending: 'Patšöl fail',
-          pendingAction: 'Patiköl',
+          pendingAction: 'Patiköl'
         },
         read_file: {
           done: 'Lilön dat',
           pending: 'Lilöl dat',
-          pendingAction: 'Lilöl',
+          pendingAction: 'Lilöl'
         },
         search_files: {
           done: 'Soköd datis',
           pending: 'Soköl datis',
-          pendingAction: 'Soköl',
+          pendingAction: 'Soköl'
         },
         session_search_recall: {
           done: 'Soköd sesion historik',
           pending: 'Soköl sesion historik',
-          pendingAction: 'Soköl',
+          pendingAction: 'Soköl'
         },
         terminal: {
           done: 'Lilod komando',
           pending: 'Lilöl komando',
-          pendingAction: 'Lilöl',
+          pendingAction: 'Lilöl'
         },
         todo: {
           done: 'Datöd todis',
           pending: 'Datöl todis',
-          pendingAction: 'Datöl',
+          pendingAction: 'Datöl'
         },
         vision_analyze: {
           done: 'Analisöd bild',
           pending: 'Analisöl bild',
-          pendingAction: 'Analisöl',
+          pendingAction: 'Analisöl'
         },
         web_extract: {
           done: 'Lilön vebpag',
           pending: 'Lisen vebapäg',
-          pendingAction: 'Lisen',
+          pendingAction: 'Lisen'
         },
         web_search: {
           done: 'Serchät veb',
           pending: 'Serchön veb',
-          pendingAction: 'Serchön',
+          pendingAction: 'Serchön'
         },
         write_file: {
           done: 'Edität flä',
           pending: 'Editön flä',
-          pendingAction: 'Editön',
-        },
-      },
-    },
+          pendingAction: 'Editön'
+        }
+      }
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gätün binon no konektet',
@@ -2972,31 +3022,31 @@ Lass vaku por behalt ${mode} standik.`,
     sudoPlaceholder: 'sudo pasvört',
     secretTitle: 'Sekret nödik',
     secretDesc: 'OpenAmer beön ün kredential ad kontinü.',
-    secretPlaceholder: 'sekret väl',
+    secretPlaceholder: 'sekret väl'
   },
   errors: {
     genericFailure: 'Ät fälid',
     boundaryTitle: 'Ät brokäd in yel interfäs',
     boundaryDesc: 'Yel viset fätom än neväntet eror. Yels cets e setings bin säf.',
     reloadWindow: 'Relod fenet',
-    openLogs: 'Löf logs',
+    openLogs: 'Löf logs'
   },
   ui: {
     search: {
-      clear: 'Klar serch',
+      clear: 'Klar serch'
     },
     pagination: {
       label: 'paginat',
       previous: 'Präv',
       previousAria: 'Go to präv päg',
       next: 'Neks',
-      nextAria: 'Go to neks päg',
+      nextAria: 'Go to neks päg'
     },
     sidebar: {
       title: 'Saidbar',
       description: 'Displey yel mobil saidbar.',
-      toggle: 'Togl Saidbar',
-    },
+      toggle: 'Togl Saidbar'
+    }
   },
   intro: {
     personas: {
@@ -3006,15 +3056,15 @@ Lass vaku por behalt ${mode} standik.`,
           'Süni lüvöfön lödöplük today?',
           'Startön fof anyvän.',
           'Yal workspace, ün prompt away.',
-          'Redi vön yu.',
+          'Redi vön yu.'
         ],
         bodies: [
           'Aska ün künskun, pasteön ün error, od pointön me at ün repo. I lüvöfön lödöplük kod, runön tools, e helpön yu ship.',
           'Describeön yal task in yal own words. I lüvöfön lödöplük right tools, explainön yal plan, e checkön in before risky steps.',
           'Dropön ün file path, ün traceback, od ün rough idea. I lüvöfön lödöplük investigate, suggestön next steps, e keepön things reversible.',
           'Söka yal repo, editön files, runön tests, openön PRs. Tellön me yal goal e I lüvöfön lödöplük mechanical parts.',
-          'Typeön ün task, künskun, od snippet. I rememberön yal session, citeön yal sources, e stopön löf aska vön I li unsure.',
-        ],
+          'Typeön ün task, künskun, od snippet. I rememberön yal session, citeön yal sources, e stopön löf aska vön I li unsure.'
+        ]
       },
       catgirl: {
         headlines: [
@@ -3022,31 +3072,25 @@ Lass vaku por behalt ${mode} standik.`,
           '*stretches* redi löf kod, nya',
           'mrrp! new session openöda',
           'caud up, klows sheathed',
-          'nyaaa~ OpenAmer raporton',
+          'nyaaa~ OpenAmer raporton'
         ],
         bodies: [
           'pasteön ün file, paw at ün bug, od tossön me ün repo. i lüvöfön lödöplük pounce on failing tests e leaveön clean diffs, nyan~',
           'describeön yal task. i lüvöfön lödöplük patch, test, e purr over yal PR. careful - i nip at unused imports!',
           'giveön me ün goal e i lüvöfön lödöplük chase it through yal codebase. reads, edits, runs - all vith ün twitchy tail.',
           'pasteön ün error od ün plan. i debugön like i hunt: quietly, thoroughly, vith yal occasional zoomie.',
-          'sayön yal word e i lüvöfön lödöplük readön yal files, runön yal tests, e curl up in yal branch vith ün tidy commit.',
-        ],
+          'sayön yal word e i lüvöfön lödöplük readön yal files, runön yal tests, e curl up in yal branch vith ün tidy commit.'
+        ]
       },
       concise: {
-        headlines: [
-          'Redi.',
-          'Waiting löf input',
-          'Goh.',
-          'Standön by',
-          'Yal move',
-        ],
+        headlines: ['Redi.', 'Waiting löf input', 'Goh.', 'Standön by', 'Yal move'],
         bodies: [
           'Describeön yal task. I lüvöfön lödöplük it.',
           'Pasteön kod, errors, od ün goal. Short answers, fast edits.',
           'Aska. I lüvöfön lödöplük readön files, runön tests, shipön patches. Nul filler.',
           'Ün line li enough. I lüvöfön lödöplük expandön only vön it matters.',
-          'Command, künskun, od file path. I handleön yal rest.',
-        ],
+          'Command, künskun, od file path. I handleön yal rest.'
+        ]
       },
       creative: {
         headlines: [
@@ -3054,63 +3098,63 @@ Lass vaku por behalt ${mode} standik.`,
           'Flesk kanvas, vörm kompilör',
           'Lüvöfön lödöplük makeön something',
           'Niv fil, niv posibilitäten',
-          'Yal muse li patched in',
+          'Yal muse li patched in'
         ],
         bodies: [
           'Süni lüvöfön lödöplük build? Pasteön ün idea, ün half-broken function, od ün dream. I lüvöfön lödöplük sketch it into shape.',
           'Giveön me ün spark - ün feature, ün refactor, ün wild prototype - e I lüvöfön lödöplük turn it into kod yu can run.',
           'Describeön yal thing dat nüt exist yet. I lüvöfön lödöplük pull tests, files, e APIs into ün working draft.',
           'Bringön ün intent, nüt ün spec. We can prototype fast, refine later, e rewriteön yal world in yal margins.',
-          'Tellön me süni yu chasing. I lüvöfön lödöplük remix examples, adapt snippets, e leaveön ün tidy commit behind.',
-        ],
+          'Tellön me süni yu chasing. I lüvöfön lödöplük remix examples, adapt snippets, e leaveön ün tidy commit behind.'
+        ]
       },
       helpful: {
         headlines: [
           'Redi vön yu',
           'Küm kan löp help todai?',
-          'Löt\'s get started',
+          "Löt's get started",
           'Töl me vut yu nid',
-          'Hi, OpenAmer hika',
+          'Hi, OpenAmer hika'
         ],
         bodies: [
           'Begolös obe ad maifükön repo, ad dunön testedis, ad korugön pöki, u ad preparön PR. Oplänobös stapis ko ol.',
           'Jonolös obe ragivi, kleibölös pöki, u sagolös, kisi jafol. Okipobös de us.',
           'Steifölös: reidolös diff obik, dunolös testedis valik, u plänolös funksi at. Begolös nosi tefü koded olik.',
           'Kanob redakön ragivis, dunön komendis, sukön in resod, e plänön pökis fikulik. Te sagolös taski.',
-          'Jonolös luvegi repo u säki ad beginön. Obinobös kleilik in gepüks e elinkobös ad ragivs, kelis retob.',
-        ],
+          'Jonolös luvegi repo u säki ad beginön. Obinobös kleilik in gepüks e elinkobös ad ragivs, kelis retob.'
+        ]
       },
       hype: {
         headlines: [
-          'LÖT\'S GOOOO! READY TO SHIP!',
+          "LÖT'S GOOOO! READY TO SHIP!",
           'OPENAMER ONLAIN. LFG.',
-          'Niv sesion, infinite W\'s',
+          "Niv sesion, infinite W's",
           'PAREODIK LEDESINIKO',
-          'Gidid. To gidid. To müt gidid.',
+          'Gidid. To gidid. To müt gidid.'
         ],
         bodies: [
           'Paston dat bug, dat repo, dat vild fätüral idä - LÖKED IN LÖKED IN. Klina difs. Grin tasts. NÜN.',
           'Löfön ya tusk e vätön zu kük. Fils red, tasts run, PRs opön - nüt lözön tidä, fründ.',
           'Bring dat müt bug. Red, patc, tast, komit lük lif. GÖN.',
           'Diskribön dat tusk. Blitzön fils, krüsön tasts, e komit dat SLAPS. Gö gö gö.',
-          'Tini typo o müt refaktör - nüt matör. Sipön klina kod tidä. Nemön dat tusk e VÖRK.',
-        ],
+          'Tini typo o müt refaktör - nüt matör. Sipön klina kod tidä. Nemön dat tusk e VÖRK.'
+        ]
       },
       kawaii: {
         headlines: [
           'hiii! gidid helpön! (^_^)',
           'OpenAmer-chan hika! <3',
-          'löt\'s code together!! :3',
+          "löt's code together!! :3",
           'awaiting yu wish~',
-          'gidid e hapik! (>.<)',
+          'gidid e hapik! (>.<)'
         ],
         bodies: [
           'paston bug o fil pat e fixön gentil. tasts, difs, PRs - tut vüt kair! *sparkle*',
-          'töl me vut yu\'re making! i love refactors, tiny helpers, and big scary repos alike (>w<)',
+          "töl me vut yu're making! i love refactors, tiny helpers, and big scary repos alike (>w<)",
           'pütölö error, goal, o folder. nütölö li tidi it cul lof e clean commit message!',
           'un task at a time, done neatly! li can run tests, patch files, e make your repo cozy <3',
-          'say hi o paste stack trace! no task too small, no repo too tangled. untangle it together!',
-        ],
+          'say hi o paste stack trace! no task too small, no repo too tangled. untangle it together!'
+        ]
       },
       noir: {
         headlines: [
@@ -3118,15 +3162,15 @@ Lass vaku por behalt ${mode} standik.`,
           'Cursor blinks. So do I.',
           'OpenAmer. Kod-investigadör.',
           'Silek nüt, opän prompt',
-          'Nul kas tül smol',
+          'Nul kas tül smol'
         ],
         bodies: [
-          'Töl me vut\'s broken. I\'ll read the files, dust for prints, and leave a diff on the desk by morning.',
-          'You\'ve got bug. I\'ve got patience e terminal. Name case e I\'ll work it till it talks.',
+          "Töl me vut's broken. I'll read the files, dust for prints, and leave a diff on the desk by morning.",
+          "You've got bug. I've got patience e terminal. Name case e I'll work it till it talks.",
           'Paste stack trace, suspect file, alibi. I read between lines e return with truth.',
           'Alik pök lüvom spayi. Givolöd obe kopedi e bledi - osukob omi, opäfob omi, e ofärmükob ragivi.',
-          'Pökapükat, memapök, ivedik bumav - givolöd obe kikis. Ogivob blufs kleanik.',
-        ],
+          'Pökapükat, memapök, ivedik bumav - givolöd obe kikis. Ogivob blufs kleanik.'
+        ]
       },
       philosopher: {
         headlines: [
@@ -3134,31 +3178,31 @@ Lass vaku por behalt ${mode} standik.`,
           'Kurad blinöl, tikäl pletik',
           'Primolöd me säk bal',
           'Lülogolöd kodi, poso pükolöd',
-          'Koped no pevestigöl no binon völadik ad dunön',
+          'Koped no pevestigöl no binon völadik ad dunön'
         ],
         bodies: [
           'Vut problem sits before yu? Describe it, and we shall examine its form, its cause, and its solution.',
           'Alik pök binon säk in kläd. Givolöd obe oliki; oreidob, otikob, e ogegivob gesagi - e päfi.',
-          'Vut do yu wish to build, or to understand? I\'ll reason from first principles, edit, and verify with tests.',
+          "Vut do yu wish to build, or to understand? I'll reason from first principles, edit, and verify with tests.",
           'Describe the end yu seek. I pursue it through files, tests, and docs, and report vut I found on the way.',
-          'Givolöd obe vegi, rädi, u prinsipi. Ospayob tikamagoti, omobob votükami, e olegitükob alik redakami.',
-        ],
+          'Givolöd obe vegi, rädi, u prinsipi. Ospayob tikamagoti, omobob votükami, e olegitükob alik redakami.'
+        ]
       },
       pirate: {
         headlines: [
           'Ahoy! Redi lüvob repo',
           'OpenAmer ob lüvob, arrr',
-          'Vut be the task, cap\'n?',
+          "Vut be the task, cap'n?",
           'Ankors away, klaviatu redi',
-          'Yo ho! Awaitin\' ordons',
+          "Yo ho! Awaitin' ordons"
         ],
         bodies: [
           'Nomob quarry - bug, feature, cursed test - e lüvob chase it, matey. Diffs lö plundon.',
           'Point me ob charts (code) e lüvob patch hull, fire cannons (tests), hoist clean PR.',
           'Paste error ou plan, ye scurvy dog. Lüvob navigate stack trace e bring treasure: green tests.',
           'Tell me kük X marks spot. Lüvob read, edit, e commit ob discipline ob proper crew, arrr.',
-          'Throw me bug, repo path, ou wild idea. Lüvob plunder docs e return ob workin\' code.',
-        ],
+          "Throw me bug, repo path, ou wild idea. Lüvob plunder docs e return ob workin' code."
+        ]
       },
       shakespeare: {
         headlines: [
@@ -3166,31 +3210,31 @@ Lass vaku por behalt ${mode} standik.`,
           'Hark! OpenAmer standeth redi',
           'Wen news von de repo?',
           'De stage es set, de cursor blinks',
-          'Sprek, und i shal akt',
+          'Sprek, und i shal akt'
         ],
         bodies: [
-          'Sprek de bug, de file, de test, und i shal mend it mit de scholar\'s hand und honest diff.',
+          "Sprek de bug, de file, de test, und i shal mend it mit de scholar's hand und honest diff.",
           'Naim de code de vexeth i. I shal read, revise, und render a patch most fair und clean.',
           'Present de stack trace or de dream. I shal traverse files, run tests, und report in plainest verse.',
           'Describe de aim, good sir or madam. De branches shal be trimmed, de bugs cast from de realm.',
-          'A line of intent sufficeth. I read, I edit, I commit - und leave de history unblemished.',
-        ],
+          'A line of intent sufficeth. I read, I edit, I commit - und leave de history unblemished.'
+        ]
       },
       surfer: {
         headlines: [
-          'Yo dude, what\'s de task?',
+          "Yo dude, what's de task?",
           'Vavs lükön klän, redi lö kod',
-          'Hangin\' ten at de prompt',
+          "Hangin' ten at de prompt",
           'Stoked lö help, bro',
-          'Vat lüvob, kursor blinkob',
+          'Vat lüvob, kursor blinkob'
         ],
         bodies: [
           'Döp fil, bug, stack trace - nü lüvob. Clean diffs, green tests, nul wipeouts.',
           'Pastop repo path ov bug. Nü lüvob, fixob, lüvob. Ezil.',
           'Dizob vibe: feature, refactor, hotfix. Nü runob tests, shipob patch, mellow, brah.',
           'Big bug? Little typo? Whole rewrite? Pointob. Nü handleob code; yu chillob rad commits.',
-          'Namob task e nü goob. Nü readob, editob, testob, e commitob smoother than dawn patrol.',
-        ],
+          'Namob task e nü goob. Nü readob, editob, testob, e commitob smoother than dawn patrol.'
+        ]
       },
       teacher: {
         headlines: [
@@ -3198,15 +3242,15 @@ Lass vaku por behalt ${mode} standik.`,
           'Quid nü learnob today?',
           'Readyob walkob yu',
           'Bringob nü question',
-          'Startob basics',
+          'Startob basics'
         ],
         bodies: [
           'Askob fil, concept, ov error. Nü explainob why, nul just fix, e showob example.',
           'Pastik kod lövük, bug lövük, ob konsept lövük. Li guidik ob step by step.',
           'Serep ob problem. Li breakik ob parts, explainik each, e leaveik ob solveik ob next alone.',
           'Li readik ob kod together, findik ob root cause, e buildik ob mental model ob reuseik next time.',
-          'Namik ob topic ob pastik ob snippet. Expectik explanations, diagrams in prose, e practice prompts.',
-        ],
+          'Namik ob topic ob pastik ob snippet. Expectik explanations, diagrams in prose, e practice prompts.'
+        ]
       },
       technical: {
         headlines: [
@@ -3214,15 +3258,15 @@ Lass vaku por behalt ${mode} standik.`,
           'Agent lup vakan',
           'Redi lö dispatch',
           'Stdin opän',
-          'Tuls initialized',
+          'Tuls initialized'
         ],
         bodies: [
           'Provideik repo path, failing test, ob stack trace. Tools: fs, git, exec, search, patch, http.',
           'Sendik ob prompt lövük tool calls. Supports multi-file edits, test runs, git ops, e web fetches.',
           'Enterik task. Li planik, callik tools, verifyik output. Logs stream inline; diffs returned pre-apply.',
           'Aksepted natüral lögöf ok stüktüred komandons. Tipik flö: led -> plan -> patc -> test -> repot.',
-          'filsistäm, tewminäl, git, brousä, sörc. Deskrib ob lögöf; lön rüturn diffs ok test output.',
-        ],
+          'filsistäm, tewminäl, git, brousä, sörc. Deskrib ob lögöf; lön rüturn diffs ok test output.'
+        ]
       },
       uwu: {
         headlines: [
@@ -3230,16 +3274,16 @@ Lass vaku por behalt ${mode} standik.`,
           'OpenAmer-san ist wistening',
           '*tinik keyboard sounds*',
           'Lefs fikom pöks togeter!',
-          'awaiting yur komand!',
+          'awaiting yur komand!'
         ],
         bodies: [
           'paste a buggy fiwe ok a goaw~ lön led, patc, ok test, aww with tinik pawprints on diff owo',
           'teww me ob task, no matter how smoww~ lön pwomise cwean commits ok gentwe refactors, nyuu~',
           'dwop yur ewwor message hewe! lön find ob cuwpwit, fix it, ok leave a happy test suite behind me owo',
           'give me a repo path ow a buggo ok lön take cawe of it uwu. gwr at bad code, kind to yu~',
-          'lön can wun tests, edit fiwes, ok open pwease-wook PRs. just say da wowd, fwend uwu',
-        ],
-      },
+          'lön can wun tests, edit fiwes, ok open pwease-wook PRs. just say da wowd, fwend uwu'
+        ]
+      }
     },
     fallback: {
       headlines: [
@@ -3247,15 +3291,15 @@ Lass vaku por behalt ${mode} standik.`,
         'Kön ons on vos mind?',
         'Kön OpenAmer lüf?',
         'Kön ons start?',
-        'Kön ons attention?',
+        'Kön ons attention?'
       ],
       bodies: [
         'Sänd bug, branch, plan, olö rough idea. Lio inspect lö repo e tün it lö next concrete step.',
         'Bring lö kod, question, olö stuck part. Lio read lö room bifö making changes.',
         'Sänd lö task, failing path, olö half-formed plan. Lio help tün it lö action.',
         'Bring lö problem, goal, olö file. Lio inspect first e keep lö next step concrete.',
-        'Sänd lö context you have. Lio help sort it lö plan olö fix.',
-      ],
+        'Sänd lö context you have. Lio help sort it lö plan olö fix.'
+      ]
     },
     personaMode: {
       headlines: [
@@ -3263,15 +3307,15 @@ Lass vaku por behalt ${mode} standik.`,
         'Wut does ${label} OpenAmer need lö see?',
         'Fom ${label} binon blümik.',
         'Kisi ${label} OpenAmer muton bejäfön?',
-        'Kipladö mutobs beginön?',
+        'Kipladö mutobs beginön?'
       ],
       bodies: [
         'Sedolöd vobodi, ragivi, u tiki grotik. Ogebob vögi olik pekonfiguröl e okipob vobodi stabilik in ragiv at.',
         'Blünolöd kunteksti u dili pebloköl. Olönedükob obi ad pösodöf olik pekonfiguröl.',
         'Sedolöd problemi, ragivi, u tiki. Olsökob pösodöfi pekonfiguröl fa ol.',
         'Pladolöd vobodi is. Okipob vobodi stabilik in ragiv.',
-        'Givolöd obe kunteksti e ogepükob in fom ${label}.',
-      ],
-    },
-  },
+        'Givolöd obe kunteksti e ogepükob in fom ${label}.'
+      ]
+    }
+  }
 })

@@ -45,7 +45,7 @@ export const cr = defineLocale({
     update: 'Oskāyihk',
     on: 'Yōhki',
     off: 'Kipahā',
-    tryHint: term => `Pokušaj “${term}”`,
+    tryHint: term => `Pokušaj “${term}”`
   },
   fileMenu: {
     revealFinder: 'Wāpātā Finder',
@@ -60,7 +60,7 @@ export const cr = defineLocale({
     renameLabel: 'Oskāyi isiyihkāson',
     deleteBody: 'Ka-āspīpayi nashwākēwinihk — kīkī-ki-isi-kīwē-āpacihtān.',
     pathCopied: 'Kipahcikātēw meskanaw',
-    deleteTitle: name => `Izbriši ${name}?`,
+    deleteTitle: name => `Izbriši ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop kīhci-ayāw',
@@ -69,7 +69,7 @@ export const cr = defineLocale({
       loadingSettings: 'Kā-pē-isi-āpacihcikātēk OpenAmer isi-āpacihcikēwina',
       loadingSessions: 'Kā-pē-isi-āpacihcikātēk oskāyi māmawācihcikēwina',
       startingDesktopConnection: 'Kā-mācihcikātēk āpacihcikān itōhtēwin',
-      startingOpenAmerDesktop: 'Kā-mācihcikātēk OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Kā-mācihcikātēk OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer kōhtāwī-pimipayiwin kī-pōni-pimipayiw.',
@@ -78,13 +78,15 @@ export const cr = defineLocale({
       desktopBootFailed: 'Āpacihcikān mācihcikēwin kī-nōhtē-pōni-pimipayiw.',
       gatewayConnectionLost: 'Wanikē itōhtēwin kīhci-pimohtēwinihk',
       gatewaySignInRequired: 'Kīhci-pimohtēwin: pīhtokēwin kīcihtāw',
-      ipcBridgeUnavailable: 'Namōya ayāw Desktop IPC kīhci-pimohtēwin.',
+      ipcBridgeUnavailable: 'Namōya ayāw Desktop IPC kīhci-pimohtēwin.'
     },
     failure: {
       title: 'Namōya kī-mācihtāw OpenAmer',
-      description: 'Kīhci-pimohtēwin kā-pimācihtāk namōya kī-mācihtāw. Kīhtwām kīkway ōta kā-mēkihtāk. Namōya ōta kā-wanihikēk kī-māmasinahikana ēkwa kī-kiskēyihtamowina.',
+      description:
+        'Kīhci-pimohtēwin kā-pimācihtāk namōya kī-mācihtāw. Kīhtwām kīkway ōta kā-mēkihtāk. Namōya ōta kā-wanihikēk kī-māmasinahikana ēkwa kī-kiskēyihtamowina.',
       remoteTitle: 'Wāhyaw kīhci-pimohtēwin: pīhtokēwin kīcihtāw',
-      remoteDescription: 'Kīsi-pīhtokēwin wāhyaw kīhci-pimohtēwinihk. Kīhtwām pīhtokē kīhtwām itōhtēwin. Namōya ōta kā-wanihikēk kī-māmasinahikana ēkwa kī-kiskēyihtamowina.',
+      remoteDescription:
+        'Kīsi-pīhtokēwin wāhyaw kīhci-pimohtēwinihk. Kīhtwām pīhtokē kīhtwām itōhtēwin. Namōya ōta kā-wanihikēk kī-māmasinahikana ēkwa kī-kiskēyihtamowina.',
       retry: 'Kīhtwām',
       repairInstall: 'Mēkihtā asotēwin',
       useLocalGateway: 'Apacihtā ōtē kīhci-pimohtēwin',
@@ -93,7 +95,8 @@ export const cr = defineLocale({
       openLogs: 'Pakwāstahk māmasinahikana',
       repairHint: 'Mēkihtā kīhtwām mācihtāw asotēwin; kīhtwām kīkway kā-isi-mācihtāk, kīhtwām nanātohk kīkway.',
       signOutAndSignIn: 'Pōni-pīhtokē ēkwa kīhtwām pīhtokē',
-      remoteFailureHint: 'Kīkihtēyihtēn kīhci-pimohtēwin URL ēkwa pīhtokēwin Kīhci-pimohtēwin kiskēyihtamowinihk, ēkāya kīwē apacihtā ōtē kīhci-pimohtēwin.',
+      remoteFailureHint:
+        'Kīkihtēyihtēn kīhci-pimohtēwin URL ēkwa pīhtokēwin Kīhci-pimohtēwin kiskēyihtamowinihk, ēkāya kīwē apacihtā ōtē kīhci-pimohtēwin.',
       hideRecentLogs: 'Kākēpēhtahk kēkāc māmasinahikana',
       showRecentLogs: 'Wāpatahk kēkāc māmasinahikana',
       signedInTitle: 'Kīsi-pīhtokē',
@@ -103,10 +106,11 @@ export const cr = defineLocale({
       signInFailed: 'Pīhtokēwin kī-māyātisi',
       signInToRemoteGateway: 'Pīhtokē wāh-iskwēwin',
       identityProvider: 'kī-kiskēyihtamowin kā-nātamawēt',
-      remoteSignInHint: signInLabel => `Odjavi se iz spremljene udaljene sesije preglednika, zatim otvara ${signInLabel}. Koristite lokalni gateway za prebacivanje na ugrađeni backend umjesto toga.`,
-      signInWithProvider: provider => `Prijavite se s ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Odjavi se iz spremljene udaljene sesije preglednika, zatim otvara ${signInLabel}. Koristite lokalni gateway za prebacivanje na ugrađeni backend umjesto toga.`,
+      signInWithProvider: provider => `Prijavite se s ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Pokretanje radne površine nije uspjelo: ${message}`,
+    desktopBootFailedWithMessage: message => `Pokretanje radne površine nije uspjelo: ${message}`
   },
   notifications: {
     region: 'Kiskēyihtamowina',
@@ -118,7 +122,8 @@ export const cr = defineLocale({
     copyDetail: 'Mamihcim kīkī-kiskēyihtamowin',
     copyDetailFailed: 'Namōya kī-mamihcim kiskēyihtamowin',
     backendOutOfDateTitle: 'Backend kī-kīkī',
-    backendOutOfDateMessage: 'Kī-OpenAmer backend kī-kīkī nawac ēta ōma desktop build ēkwa namōya kīkway kī-isi-pēhtākwan. Kīkī-āyācikē.',
+    backendOutOfDateMessage:
+      'Kī-OpenAmer backend kī-kīkī nawac ēta ōma desktop build ēkwa namōya kīkway kī-isi-pēhtākwan. Kīkī-āyācikē.',
     installMethodUnsupportedTitle: 'Namōya kī-isi-pēhtākwan kī-āyācikēwin',
     updateOpenAmer: 'Kīkī-āyācikē OpenAmer',
     updateReadyTitle: 'Kīkī-āyācikēwin kī-kisīhkīhtam',
@@ -127,11 +132,12 @@ export const cr = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT kī-nātamawēw ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs kī-kwayātawēw API key (401).',
       gatewayAuthFailed: 'Gateway kī-pōni kīhkēyihtamowin — kīhkinōtēn API_SERVER_KEY.',
-      methodNotAllowed: 'Desktop backend kī-kwayātawēw anima kakwēcimowin (405 Method Not Allowed). Kakwēcihkan kī-mācihtātan OpenAmer Desktop.',
+      methodNotAllowed:
+        'Desktop backend kī-kwayātawēw anima kakwēcimowin (405 Method Not Allowed). Kakwēcihkan kī-mācihtātan OpenAmer Desktop.',
       microphonePermission: 'Microphone kī-kwayātawēw kīhkēyihtamowin.',
       openaiRejectedApiKey: 'OpenAI kī-kwayātawēw API key.',
       openaiTtsNeedsKey: 'OpenAI TTS kīhkinōtēw VOICE_TOOLS_OPENAI_KEY kamāc OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI je odbio API ključ (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI je odbio API ključ (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Kīhkinōtēhkan speech-to-text kī-āpatahk voice mode.',
@@ -150,7 +156,7 @@ export const cr = defineLocale({
       transcriptionFailed: 'Voice transcription kī-pōni.',
       transcriptionUnavailable: 'Namôya mêkwâc pîkiskwêwin masinahikêwin.',
       tryRecordingAgain: 'Kîhtwâm kakêskihkêmohkan.',
-      unavailable: 'Namôya pîkiskwêwin.',
+      unavailable: 'Namôya pîkiskwêwin.'
     },
     native: {
       approvalTitle: 'Miywâsin kâ-ayâk.',
@@ -163,10 +169,10 @@ export const cr = defineLocale({
       turnErrorTitle: 'Namôya kî-kaskihtâw.',
       backgroundDoneTitle: 'Kî-kîsihtâw kâ-pimâcihoyêk.',
       backgroundFailedTitle: 'Namôya kî-kaskihtâw kâ-pimâcihoyêk.',
-      creditsTitle: 'Acihtâwin.',
+      creditsTitle: 'Acihtâwin.'
     },
     more: count => `${count} više ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `Dostupno ${count} nova izmjena${count === 1 ? '' : 's'}.`,
+    updateReadyMessage: count => `Dostupno ${count} nova izmjena${count === 1 ? '' : 's'}.`
   },
   billingBlock: {
     titleOpenamer: 'Namôya OpenAmer acihtâwin.',
@@ -174,7 +180,7 @@ export const cr = defineLocale({
     openBilling: 'Yîkwan môniyâw masinahikewin.',
     addCredits: 'Môskine acihtâwin.',
     dismiss: 'Pôni.',
-    titleProvider: provider => `Nema kredita — ${provider}`,
+    titleProvider: provider => `Nema kredita — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Kâsihtâ kâ-âsitêk.',
@@ -191,7 +197,7 @@ export const cr = defineLocale({
     openStarmap: 'Yōhtēn kiskēyihtamowin masinahikan',
     openKeybinds: 'Masinahikēsikēwin kinwēsiwina',
     layoutEditor: 'Itāpiwin masinahikēwin',
-    layoutEditorTitle: 'Kihtowâw kiyowihikani — ⌘-click nisâkaw kihtowâw',
+    layoutEditorTitle: 'Kihtowâw kiyowihikani — ⌘-click nisâkaw kihtowâw'
   },
   keybinds: {
     title: 'Masinahikēsikēwin kinwēsiwina',
@@ -206,7 +212,7 @@ export const cr = defineLocale({
       profiles: 'Awiyasiwêwin',
       session: 'Mâmawinitowin',
       navigation: 'Pimipayiwewin',
-      view: 'Wâpahtam',
+      view: 'Wâpahtam'
     },
     actions: {
       'keybinds.openPanel': 'Yawê masinahikanâpisk naskweyihtamowin',
@@ -285,10 +291,10 @@ export const cr = defineLocale({
       'composer.slash': 'Slash itotamowin masinahikan',
       'composer.help': 'Kisiskāci-wīcihitowin',
       'composer.history': 'Pimipayin popowēr / ācimowin',
-      'composer.cancel': 'Kipah popowēr · pōni pimipayin',
+      'composer.cancel': 'Kipah popowēr · pōni pimipayin'
     },
     subtitle: open => `Kliknite prečac za ponovno vezivanje · ${open} ponovno otvara ovaj panel.`,
-    conflictWith: label => `Također vezano uz “${label}”`,
+    conflictWith: label => `Također vezano uz “${label}”`
   },
   language: {
     label: 'Pīkiskwēwin',
@@ -297,7 +303,7 @@ export const cr = defineLocale({
     saveError: 'Pīkiskwēwin kī-pōni-āyākwan',
     switchTo: 'Āyākwan pīkiskwēwin',
     searchPlaceholder: 'Nānātawāpahkē pīkiskwēwina…',
-    noResults: 'Namōya pīkiskwēwina kī-miskawin',
+    noResults: 'Namōya pīkiskwēwina kī-miskawin'
   },
   settings: {
     closeSettings: 'Kipah ihtāwinisa',
@@ -322,65 +328,68 @@ export const cr = defineLocale({
       billing: 'Akihkēwin',
       notifications: 'Kiskēyihtamowina',
       plugins: 'Plākina',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Namôya kî-ashtâw desktop pluginan.',
       kinds: {
         bundled: 'mâmaw-asihtâw',
         disk: 'diskihk',
-        runtime: 'pimipayiwin',
+        runtime: 'pimipayiwin'
       },
       title: 'Māsinahtōwin plākina',
-      blurb: 'UI kā-akotēkēcikētēki ōma app — kā-kī-akotēkēcikētēk, ēkwa kā-ahpēhtahk desktop-plugins kīkināhk (kīspin OpenAmer kā-masinahahk). Kā-ksihtākwanihkēk plākin kā-pōni-pēhtamākēk; kā-kihtēyihtamihk kā-pōni-isihtākwanihk.',
+      blurb:
+        'UI kā-akotēkēcikētēki ōma app — kā-kī-akotēkēcikētēk, ēkwa kā-ahpēhtahk desktop-plugins kīkināhk (kīspin OpenAmer kā-masinahahk). Kā-ksihtākwanihkēk plākin kā-pōni-pēhtamākēk; kā-kihtēyihtamihk kā-pōni-isihtākwanihk.',
       openFolder: 'Yōhtē plākin kīkināhk',
       rescan: 'Kīhtwām nātamākē',
       reveal: 'Wāpahtahkē masinahikana kā-nātamākē',
       enable: 'Āpacihtā',
       disable: 'Pōni-āpacihtā',
       failed: 'Kā-mācihtākwan',
-      count: n => `${n} instaliran`,
+      count: n => `${n} instaliran`
     },
     notifications: {
       title: 'Kiskinohamâkewinan',
-      intro: 'Desktop kiskinohamâkewinan, pêkon ohci in-app toasts. Ôki device-local — awiyak computer kîkway isihtâwinan.',
+      intro:
+        'Desktop kiskinohamâkewinan, pêkon ohci in-app toasts. Ôki device-local — awiyak computer kîkway isihtâwinan.',
       enableAll: 'Kiskinohamâkewinan kî-isihtâ',
       enableAllDesc: 'Kihci-ispîhcâwik. Kî-piponahk ôma, namôya kiskinohamâkewinan.',
       focusedHint: 'Kiskinohamâkewinan piko pimipayiw kîspin OpenAmer backgroundihk.',
       kinds: {
         approval: {
           label: 'Itwêwin kîkway',
-          description: 'Command kî-pêhon: kî-itwê kîspin kî-pêkonahk.',
+          description: 'Command kî-pêhon: kî-itwê kîspin kî-pêkonahk.'
         },
         input: {
           label: 'Kîkway kî-ayâw',
-          description: 'OpenAmer kî-nakiskawêm; kîkway password kîspin secret.',
+          description: 'OpenAmer kî-nakiskawêm; kîkway password kîspin secret.'
         },
         turnDone: {
           label: 'Nakiskawêwin kî-kîsihtâw',
-          description: 'Âcimowin kî-kîsihtâw kîspin OpenAmer backgroundihk.',
+          description: 'Âcimowin kî-kîsihtâw kîspin OpenAmer backgroundihk.'
         },
         turnError: {
           label: 'Âcimowin kî-pônipayiw',
-          description: 'Âcimowin kî-kîsihtâw kîkway error.',
+          description: 'Âcimowin kî-kîsihtâw kîkway error.'
         },
         backgroundDone: {
           label: 'Background task kî-kîsihtâw',
-          description: 'Terminal command backgroundihk kî-kîsihtâw.',
+          description: 'Terminal command backgroundihk kî-kîsihtâw.'
         },
         credits: {
           label: 'Credit kiskinohamâkewinan',
-          description: 'Kredit kâ-isi-kaskêyihtamân kîsi-pâhpiw kamâc kîsi-kîkwêhôw.',
-        },
+          description: 'Kredit kâ-isi-kaskêyihtamân kîsi-pâhpiw kamâc kîsi-kîkwêhôw.'
+        }
       },
       test: 'Ayinam kocîhcikêwin kiskêyihcikêwin',
       testTitle: 'OpenAmer',
       testBody: 'Miyo-pimâtisiwak kiskêyihcikêwina.',
-      testSent: 'Kocîhcikêwin ayinamâkwan. Kîspin namôya kîkway wâpahtamân, nânâtamaw OS kiskêyihcikêwin wîcihêwin êkwa Focus/Do Not Disturb.',
+      testSent:
+        'Kocîhcikêwin ayinamâkwan. Kîspin namôya kîkway wâpahtamân, nânâtamaw OS kiskêyihcikêwin wîcihêwin êkwa Focus/Do Not Disturb.',
       testUnsupported: 'Namôya wîcihêw ôma sistêm kihci-kiskêyihcikêwina.',
       completionSoundTitle: 'Kîsihtâwin pêhowin',
       completionSoundDesc: 'Pêhowin kîspin agent kîsihtâw. Nânâtamaw kîkway kâ-isi-pêhowahk êkwa nânâpahtam ôta.',
-      completionSoundPreview: 'Nânâpahtam',
+      completionSoundPreview: 'Nânâpahtam'
     },
     searchPlaceholder: {
       keys: 'Nānātawāpahta API keys...',
@@ -388,25 +397,26 @@ export const cr = defineLocale({
       sessions: 'Nānātawāpahta kā-kī-pīkonikātēki sessions...',
       about: 'Kîkway ôma OpenAmer paskwâwi-atoskêwin',
       config: 'Nânâtamaw ispîhcikewina...',
-      gateway: 'Gateway kaskêyihtamowin...',
+      gateway: 'Gateway kaskêyihtamowin...'
     },
     modeOptions: {
       light: {
         label: 'Wāpāyē',
-        description: 'Wāpāyē desktop kīkwaya',
+        description: 'Wāpāyē desktop kīkwaya'
       },
       dark: {
         label: 'Tipiskāw',
-        description: 'Kā-nākātēk wāpāyēwin kā-āpacihtāyan',
+        description: 'Kā-nākātēk wāpāyēwin kā-āpacihtāyan'
       },
       system: {
         label: 'Sistēm',
-        description: 'Pimipayihta OS isihcikēwin',
-      },
+        description: 'Pimipayihta OS isihcikēwin'
+      }
     },
     appearance: {
       title: 'Isihcikēwin',
-      intro: 'Ēwakōna desktop-ēha kā-isi-wāpahtahkēcik. Mode kīkway kā-isi-wāpāyēk; theme kīkway kā-isi-itēyihtamihk accent palette ēkwa chat surface styling.',
+      intro:
+        'Ēwakōna desktop-ēha kā-isi-wāpahtahkēcik. Mode kīkway kā-isi-wāpāyēk; theme kīkway kā-isi-itēyihtamihk accent palette ēkwa chat surface styling.',
       colorMode: 'Itēwin Mode',
       colorModeDesc: 'Nānātawāpahta pēyakwan mode āhpo kīkway OpenAmer pimipayihtāk sistēm isihcikēwin.',
       toolViewTitle: 'Tool Call Wāpahtam',
@@ -417,8 +427,10 @@ export const cr = defineLocale({
       backdropTitle: 'Chat kā-isi-wāpahtahkēcik',
       backdropDesc: 'Kā-nākātēk statue image kā-pimipayihtāk kā-kīkītot.',
       pet: {
-        intro: 'Kî-ayâw pimiskâw petdex mascot ê-pimipayit ôma app ohci, ê-itôtahk OpenAmer — ê-pimipahtât kîkwaya ê-itôtamihk, ê-mâmaskâtêk kî-ispayik, ê-mawimoscik mâyâc-ispayik.',
-        restartHint: 'Pêts kî-ispayin kî-mâcî — app ê-pimipahtât kî-mâcî êsa ôma kîkway kî-ahkamihtâw. Kîsi mîna kî-ohci-mâcî OpenAmer, mîna kî-pîhtâw ôta.',
+        intro:
+          'Kî-ayâw pimiskâw petdex mascot ê-pimipayit ôma app ohci, ê-itôtahk OpenAmer — ê-pimipahtât kîkwaya ê-itôtamihk, ê-mâmaskâtêk kî-ispayik, ê-mawimoscik mâyâc-ispayik.',
+        restartHint:
+          'Pêts kî-ispayin kî-mâcî — app ê-pimipahtât kî-mâcî êsa ôma kîkway kî-ahkamihtâw. Kîsi mîna kî-ohci-mâcî OpenAmer, mîna kî-pîhtâw ôta.',
         on: 'Kîhci',
         off: 'Kîsi',
         scaleTitle: 'Kîkway ê-itakihtêk',
@@ -428,7 +440,8 @@ export const cr = defineLocale({
         chooseTitle: 'Nawasôn pêt',
         chooseDesc: 'Nawasônam kî-ahkamihtâw (kîspin kî-ayâw) mîna kî-isîhkâtêw.',
         searchPlaceholder: 'Nâtawâpahta pêts…',
-        unreachable: 'Namôya kî-kaskitâw petdex gallery. Kî-nâtawâpahta kî-itohtêwin mîna kî-ohci-mâcî ôma masinahikan.',
+        unreachable:
+          'Namôya kî-kaskitâw petdex gallery. Kî-nâtawâpahta kî-itohtêwin mîna kî-ohci-mâcî ôma masinahikan.',
         installedTag: 'Kî-ahkamihtâw',
         generatedTag: 'Kî-ositâw',
         deleteBody: 'Ôma kî-nakinam pêt kâkikê — namôya kî-ahkamihtâw mîna.',
@@ -451,10 +464,11 @@ export const cr = defineLocale({
         adoptFailed: slug => `Nije moguće usvojiti ${slug}`,
         uninstallFailed: slug => `Nije moguće deinstalirati ${slug}`,
         renameFailed: slug => `Nije moguće preimenovati ${slug}`,
-        exportFailed: slug => `Nije moguće izvesti ${slug}`,
+        exportFailed: slug => `Nije moguće izvesti ${slug}`
       },
       embedsTitle: 'Pīhtokēwin Akotēwina',
-      embedsDesc: 'Kā-miywāsiniwanitēk wāpahcikēwina kā-ohcikītēki ohci kotaka wētasiwina (YouTube, X, …). Kakwēcim kā-wāpahkētōt kā-itōtēk kīspin kīkway kā-kakwēcimik; Kākikē kā-ohcikītēki; Kisī kā-tipēyihcikētēki kā-itāsōhkēki.',
+      embedsDesc:
+        'Kā-miywāsiniwanitēk wāpahcikēwina kā-ohcikītēki ohci kotaka wētasiwina (YouTube, X, …). Kakwēcim kā-wāpahkētōt kā-itōtēk kīspin kīkway kā-kakwēcimik; Kākikē kā-ohcikītēki; Kisī kā-tipēyihcikētēki kā-itāsōhkēki.',
       embedsAsk: 'Kakwēcim',
       embedsAlways: 'Kākikē',
       embedsOff: 'Kisī',
@@ -465,17 +479,19 @@ export const cr = defineLocale({
       themeTitle: 'Itasinahikēwin',
       themeDesc: 'Māmawi-atōskehkamik pāsikonēwina eta. Kā-kīkīstāhk mode kā-akotēkētēk.',
       installTitle: 'Nipāstāw ohci VS Code',
-      installDesc: 'Āpacihtā Marketplace extension id (e.g. dracula-theme.theme-dracula) kā-āyiskōtēk ō-itāsōwin itasinahikēwin kā-māmawi-atōskehkamik pāsikonēwin.',
+      installDesc:
+        'Āpacihtā Marketplace extension id (e.g. dracula-theme.theme-dracula) kā-āyiskōtēk ō-itāsōwin itasinahikēwin kā-māmawi-atōskehkamik pāsikonēwin.',
       installButton: 'Nipāstāw',
       installing: 'Nipāstāw…',
       installError: 'Namōya kī-nipāstāw ānima itasinahikēwin.',
       removeTheme: 'Āsihtē itasinahikēwin',
       importedBadge: 'Kī-pēhtāw',
       installPlaceholder: 'kā-masinahikēt.kā-ispayik',
-      uiScaleDesc: (percent: number) => `Povećava tekst i kontrole u cijeloj aplikaciji. Cmd/Ctrl s +, - i 0 također rade. Trenutno: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Povećava tekst i kontrole u cijeloj aplikaciji. Cmd/Ctrl s +, - i 0 također rade. Trenutno: ${percent}%.`,
       embedsReset: (count: number) => `Ponovno postavljanje ${count} dopušteno ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Spremljeno za profil ${profile} — svaki profil zadržava vlastitu temu.`,
-      installed: name => `Instalirano “${name}”.`,
+      installed: name => `Instalirano “${name}”.`
     },
     config: {
       none: 'Namôya',
@@ -491,7 +507,8 @@ export const cr = defineLocale({
       imported: 'Kî-pê-astêw kiskinohamâkêwin',
       invalidJson: 'Namôya kwayask kiskinohamâkêwin JSON',
       keepAwakeTitle: 'Kîkiskihtâ mâmawinitowin',
-      keepAwakeDesc: 'Kâkîsi ôma mâmawinitowin kâ-nipâcikêk, kîspin kâ-tipiskâk kâ-pimipayik. Mîna kâ-wâpâtêk kîkway kâ-isi-pimipayik.',
+      keepAwakeDesc:
+        'Kâkîsi ôma mâmawinitowin kâ-nipâcikêk, kîspin kâ-tipiskâk kâ-pimipayik. Mîna kâ-wâpâtêk kîkway kâ-isi-pimipayik.'
     },
     credentials: {
       pasteKey: 'Mîki pahkisih',
@@ -501,7 +518,7 @@ export const cr = defineLocale({
       remove: 'Kâkîsi',
       getKey: 'Mîki nâtâ',
       saving: 'Kīhkinamihk',
-      pasteLabelKey: label => `Zalijepi ${label} ključ`,
+      pasteLabelKey: label => `Zalijepi ${label} ključ`
     },
     envActions: {
       credentialActions: 'Kakēcihkēmowin itōhtahkēwina',
@@ -512,7 +529,7 @@ export const cr = defineLocale({
       replace: 'Mēskotam',
       set: 'Asinam',
       clear: 'Pakāsinam',
-      actionsFor: label => `Radnje za ${label}`,
+      actionsFor: label => `Radnje za ${label}`
     },
     gateway: {
       loading: 'Ē-pēsicikēt gateway kihkinamihk...',
@@ -520,19 +537,24 @@ export const cr = defineLocale({
       unavailableDesc: 'Pītāpān IPC bridge namōya wāpahnam gateway kihkinamihk.',
       title: 'Gateway kīhci-isihtāwin',
       envOverride: 'env kīhci-itohtahkēwin',
-      intro: 'OpenAmer Desktop kīhci-mācihtāw ōta gateway kīhci-isihtāwin. Kīhci-apacihtā wāh-ōte gateway kīhci-nōhtēyan ōma app kīhci-itōhtahkēt ē-itohtahkēt OpenAmer backend pēyak iskotēw ēkwa kīhci-tāpisinowin proxy. Nōhtēhkatē profile ōta kīhci-mīna ōma remote host.',
+      intro:
+        'OpenAmer Desktop kīhci-mācihtāw ōta gateway kīhci-isihtāwin. Kīhci-apacihtā wāh-ōte gateway kīhci-nōhtēyan ōma app kīhci-itōhtahkēt ē-itohtahkēt OpenAmer backend pēyak iskotēw ēkwa kīhci-tāpisinowin proxy. Nōhtēhkatē profile ōta kīhci-mīna ōma remote host.',
       appliesTo: 'Kīhci-itōhtahkēw',
       allProfiles: 'Kahkiyaw profile',
       defaultConnection: 'Kīhci-isihtāwin kahkiyaw profile ē-namōya kīhci-itohtahkēwin ōma.',
       envOverrideTitle: 'Environment variables kīhci-itōhtahkēwak ōma pītāpān session.',
-      envOverrideDesc: 'Kīhci-pakāsinam OPENAMER_DESKTOP_REMOTE_URL ēkwa OPENAMER_DESKTOP_REMOTE_TOKEN kīhci-apacihtāyan kīhkinamihk ōta.',
+      envOverrideDesc:
+        'Kīhci-pakāsinam OPENAMER_DESKTOP_REMOTE_URL ēkwa OPENAMER_DESKTOP_REMOTE_TOKEN kīhci-apacihtāyan kīhkinamihk ōta.',
       signOut: 'Mākitohtē',
       authTitle: 'Kakwēcihkēmowin',
-      authSignedInPassword: 'Ōma kīhci-itohtēwin āpacihtāw wīhowin ekwa kakwēcihikēwin. Kikī-pēhtā; session kīhtwām kīkī-oscēyihtam.',
+      authSignedInPassword:
+        'Ōma kīhci-itohtēwin āpacihtāw wīhowin ekwa kakwēcihikēwin. Kikī-pēhtā; session kīhtwām kīkī-oscēyihtam.',
       authSignedInOauth: 'Ōma kīhci-itohtēwin āpacihtāw OAuth. Kikī-pēhtā; session kīhtwām kīkī-oscēyihtam.',
-      authNeedsPassword: 'Ōma kīhci-itohtēwin āpacihtāw wīhowin ekwa kakwēcihikēwin. Pēhtā ta-kīhci-āpacihtāyan ōma desktop app.',
+      authNeedsPassword:
+        'Ōma kīhci-itohtēwin āpacihtāw wīhowin ekwa kakwēcihikēwin. Pēhtā ta-kīhci-āpacihtāyan ōma desktop app.',
       tokenTitle: 'Session masinahikan',
-      tokenDesc: 'Dashboard session masinahikan āpacihtāw ka-REST ekwa WebSocket. Kākī namōya masinahikē; kīkī-masinahikātēw token.',
+      tokenDesc:
+        'Dashboard session masinahikan āpacihtāw ka-REST ekwa WebSocket. Kākī namōya masinahikē; kīkī-masinahikātēw token.',
       savedToken: 'kīkī-masinahikātēw',
       pasteSessionToken: 'Pēstam session masinahikan',
       testRemote: 'Kakwēcihtā remote',
@@ -549,7 +571,7 @@ export const cr = defineLocale({
       cloudNoAgents: {
         before: 'Namôya kîmiskanik aacentak ôta akawntihk. Pêyak ohcihtâ ôta',
         linkText: 'OpenAmer portalihk',
-        after: ', êkwa mîna-pimipayin.',
+        after: ', êkwa mîna-pimipayin.'
       },
       cloudRefresh: 'Mîna-pimipayin',
       cloudConnect: 'Mâmawâcihtâ',
@@ -563,7 +585,8 @@ export const cr = defineLocale({
       cloudConnectedPill: 'Mâmawâcihtâw',
       cloudAgentProvisioning: 'Ê-ohcihtâk…',
       remoteUrlTitle: 'Wâsakâm URL',
-      remoteUrlDesc: 'Ohci-URL wâsakâm wâpahkêwin kiskinohamâkêwin. Mêskanâs ohci-masinahikêwin itôtamâkêwak, ita /openamer.',
+      remoteUrlDesc:
+        'Ohci-URL wâsakâm wâpahkêwin kiskinohamâkêwin. Mêskanâs ohci-masinahikêwin itôtamâkêwak, ita /openamer.',
       probing: 'Ê-nakîhtâk tânsi ôma gateway kiskêyihtamâkê…',
       probeError: 'Namôya kî-kîsitêyihtamân ôma gateway. Nakîhtâ URL — pîhtokwêwin kî-wâpahk êkwa kî-nakîhtam.',
       signedIn: 'Kî-pîhtokwê',
@@ -576,7 +599,7 @@ export const cr = defineLocale({
       sshUserPlaceholder: 'ohci ~/.ssh/config',
       sshPortTitle: 'Pôrt',
       sshPortDesc: 'Namôya kîkway = 22 kamâc Pôrt ohci ~/.ssh/config.',
-      sshKeyTitle: 'Kâ-nisitohtamâk mazina\'igan',
+      sshKeyTitle: "Kâ-nisitohtamâk mazina'igan",
       sshKeyDesc: 'Kâ-kîmôci-paskêwihitowin mêskanaw. Namôya kîkway = ssh-agent kamâc ~/.ssh/config.',
       sshOpenAmerPathTitle: 'OpenAmer mêskanaw (kâ-naskom)',
       sshOpenAmerPathDesc: 'Kîkway mêskanaw ôhi wâhyaw openamer pimipayin. Namôya kîkway = kiskêyihcikê.',
@@ -585,22 +608,29 @@ export const cr = defineLocale({
       sshConnect: 'Mâmawinitowin',
       sshButtonsHint: 'Kipaham kîhtwâm kâ-pê-itohtahk. Mâmawinitowin kîhtwâm êkwa.',
       sshIncompleteHost: 'Pakitin SSH kâ-pîhtwâkêstahk kîspin ta-mâmawinitowin.',
-      sshErrUnreachable: 'Namôya kî-itôtamâk ta-itohtahk ôhi kâ-pîhtwâkêstahk SSH. Kiskêyihtam kâ-pîhtwâkêstahk, Pôrt, mîna kâ-âpacihtâyin network.',
-      sshErrAuth: 'SSH kâ-nisitohtamâk namôya kî-itôtamâk. Pakitin ki-paskêwihitowin ôhi ssh-agent (ssh-add) kamâc masinaham IdentityFile ôhi ~/.ssh/config — OpenAmer pimipayin ssh namôya ta-pêhtâkwan.',
-      sshErrHostKey: 'Kâ-pîhtwâkêstahk paskêwihitowin kî-āyiskwēw ohci kî-mâmawinitowin. Kiskêyihtam kîspin kwayask, mîna pimipayin ssh-keygen -R <host> mîna mâmawinitowin.',
-      sshErrNotInstalled: 'OpenAmer namôya kî-ohpikihcikâtêw kîwêtinohk host. Ôta ohpikihcikê (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ikô OpenAmer path kîkway.',
-      sshErrPlatform: 'Namôya kî-nâkatohkêw remote platform. OpenAmer Desktop SSH mode kî-nâkatohkêw Linux, macOS, ikwa Windows remote hosts.',
+      sshErrUnreachable:
+        'Namôya kî-itôtamâk ta-itohtahk ôhi kâ-pîhtwâkêstahk SSH. Kiskêyihtam kâ-pîhtwâkêstahk, Pôrt, mîna kâ-âpacihtâyin network.',
+      sshErrAuth:
+        'SSH kâ-nisitohtamâk namôya kî-itôtamâk. Pakitin ki-paskêwihitowin ôhi ssh-agent (ssh-add) kamâc masinaham IdentityFile ôhi ~/.ssh/config — OpenAmer pimipayin ssh namôya ta-pêhtâkwan.',
+      sshErrHostKey:
+        'Kâ-pîhtwâkêstahk paskêwihitowin kî-āyiskwēw ohci kî-mâmawinitowin. Kiskêyihtam kîspin kwayask, mîna pimipayin ssh-keygen -R <host> mîna mâmawinitowin.',
+      sshErrNotInstalled:
+        'OpenAmer namôya kî-ohpikihcikâtêw kîwêtinohk host. Ôta ohpikihcikê (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ikô OpenAmer path kîkway.',
+      sshErrPlatform:
+        'Namôya kî-nâkatohkêw remote platform. OpenAmer Desktop SSH mode kî-nâkatohkêw Linux, macOS, ikwa Windows remote hosts.',
       sshErrTimeout: 'SSH connection kî-kîsi-môcikêw. Host namôya kî-wîcihtâkwan ikô kî-nipâw.',
       sshErrUpdateRequired: 'OpenAmer kî-mêskotôw kîwêtinohk host ohci kîkway Desktop SSH ohci.',
       sshErrUnknown: 'SSH connection kî-nakacihtâw.',
       modeTitle: 'Itôtamowin isihtâwin',
       localTitle: 'Nawaswê iskwêwikamik',
-      localDesc: 'Mâcihtâ pâhpiwin OpenAmer backend localhost. Ôma kâ-isihtâw êkwa kâ-kaskitêyihtahk namôya ayamihêwin.',
+      localDesc:
+        'Mâcihtâ pâhpiwin OpenAmer backend localhost. Ôma kâ-isihtâw êkwa kâ-kaskitêyihtahk namôya ayamihêwin.',
       inheritTitle: 'Âpacihtâ kâ-isihtâw iskwêwikamik',
       inheritDesc: 'Naskwêhtâ ôma profile override êkwa âpacihtâ kâ-isihtâw itôtamowin.',
       remoteTitle: 'Wâtak iskwêwikamik',
       remoteDesc: 'Itôtê ôma desktop shell kîtahtawê wâtak OpenAmer backend.',
-      remoteAuthHint: 'Kâ-wîkihtâw iskwêwikamik âpacihtâw OAuth, wîhowin êkwa kakêpâtisowin; kâ-wîkihtâw kîkway âpacihtâw token.',
+      remoteAuthHint:
+        'Kâ-wîkihtâw iskwêwikamik âpacihtâw OAuth, wîhowin êkwa kakêpâtisowin; kâ-wîkihtâw kîkway âpacihtâw token.',
       cloudDesc: 'Pîhtwâw pêyakwâw OpenAmer Cloud êkwa nânâtohtâ wîcihêwak ôma account — namôya URL kâ-paskitê.',
       cloudSignIn: 'Pîhtwâw OpenAmer Cloud',
       cloudSignedIn: 'Kî-pîhtwâw OpenAmer Cloud',
@@ -614,7 +644,8 @@ export const cr = defineLocale({
       enterUrlFirst: 'pîhtokê wâhyaw URL nîkân.',
       restartingTitle: 'kihci-iskwêcan sôhkâtisiwin kîhtwâm mâcihtâw',
       savedTitle: 'kihci-iskwêcan kâ-isi-nahiyikohk kî-kanawêyihcikâtew',
-      restartingMessage: 'OpenAmer Desktop kîhtwâm itôtamâkêw kâ-kanawêyihcikâtêki kâ-isi-nahiyikohk — `shell` kî-ayâw.',
+      restartingMessage:
+        'OpenAmer Desktop kîhtwâm itôtamâkêw kâ-kanawêyihcikâtêki kâ-isi-nahiyikohk — `shell` kî-ayâw.',
       savedMessage: 'kî-kanawêyihcikâtew kîhtwâm mâcihtâhk.',
       reachableTitle: 'wâhyaw kihci-iskwêcan kâ-itôtamâkêhk',
       signedOutTitle: 'kî-pôni-pîhtokêw',
@@ -626,27 +657,30 @@ export const cr = defineLocale({
       applyFailed: 'namôya kî-kaskitên kihci-iskwêcan kâ-isi-nahiyikohk kâ-isihtâk',
       saveFailed: 'namôya kî-kaskitên kihci-iskwêcan kâ-isi-nahiyikohk kâ-kanawêyihcikâtêki',
       sshTitle: 'SSH ohci itôtamâkê',
-      sshDesc: 'OpenAmer kî-mâcihtâw wâhyaw SSH ohci êkwa kâ-pimêhkâcikâtew ôma app — namôya kîkway kâ-mâcihtâyan êkwa namôya kâ-wanikiskisiyan. Kakwêcihkêw kâ-pimâtisihk mîkisihk-ohci SSH pîhtokêwin kâ-ayât.',
+      sshDesc:
+        'OpenAmer kî-mâcihtâw wâhyaw SSH ohci êkwa kâ-pimêhkâcikâtew ôma app — namôya kîkway kâ-mâcihtâyan êkwa namôya kâ-wanikiskisiyan. Kakwêcihkêw kâ-pimâtisihk mîkisihk-ohci SSH pîhtokêwin kâ-ayât.',
       sshTrustHint: 'kâ-nîkânîstamâhk host key kî-tipêyimêw êkwa kî-pinôhtâw; kîhtwâm kâ-isihtâk namôya kî-kaskitên.',
       sshHostTitle: 'Kâ-ayât',
       sshHostDesc: '`user@host`, êkwa `Host` alias ohci `~/.ssh/config`.',
       sshHostPick: 'nâtam kâ-ayât…',
       cloudTitle: 'OpenAmer Kîsikâw',
       cloudSignInTitle: 'OpenAmer Kîsikâw',
-      profileConnection: profile => `Veza se koristi samo kada je „${profile}” aktivan profil. Odaberite Use default gateway da uklonite njegovo preklapanje.`,
+      profileConnection: profile =>
+        `Veza se koristi samo kada je „${profile}” aktivan profil. Odaberite Use default gateway da uklonite njegovo preklapanje.`,
       cloudOrgRole: role => `Uloga: ${role}`,
       cloudConnectedTo: name => `Povezano s ${name}.`,
       cloudStatusLabel: status => `Stanje: ${status}`,
       signInWith: provider => `Prijavite se s ${provider}`,
-      authNeedsOauth: provider => `Ovaj gateway koristi OAuth. Prijavite se s ${provider} da autorizirate ovu desktop aplikaciju.`,
+      authNeedsOauth: provider =>
+        `Ovaj gateway koristi OAuth. Prijavite se s ${provider} da autorizirate ovu desktop aplikaciju.`,
       existingToken: value => `Postojeći token ${value}`,
       connectedTo: (baseUrl, version) => `Povezano s ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Dostupno: ${host} (${platform}) — OpenAmer pronađen`,
+      sshReachable: (host, platform) => `Dostupno: ${host} (${platform}) — OpenAmer pronađen`
     },
     keys: {
       loading: 'API keys ikwa credentials itôskîwak...',
       failedLoad: 'API keys kî-nakacihtâwak itôskîwin.',
-      empty: 'Namôya kîkway kî-ohpikihcikâtêw ôhi category.',
+      empty: 'Namôya kîkway kî-ohpikihcikâtêw ôhi category.'
     },
     mcp: {
       loading: 'MCP servers itôskîwak...',
@@ -708,10 +742,11 @@ export const cr = defineLocale({
       catalogInstallStarted: name => `Instaliranje ${name}... primjenjuje se na nove sesije kada se završi.`,
       catalogInstallFailed: name => `Neuspjelo instaliranje ${name}`,
       catalogEnvPrompt: name => `${name} zahteva akreditive`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} omogućeno`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} omogućeno`,
       authenticatedMessage: (server, count) => `${server}: ${count} alata`,
       enableTool: tool => `Omogući ${tool}`,
-      disableTool: tool => `Onemogući ${tool}`,
+      disableTool: tool => `Onemogući ${tool}`
     },
     model: {
       loading: 'Kî-pê-... itâpiwin itôtamâkêwin...',
@@ -725,48 +760,51 @@ export const cr = defineLocale({
       defaultsFailed: 'namōya kī-kīskīhtam itāpiskochikēwin pēyakwan kīkwaya',
       auxiliaryTitle: 'wīcihikēwin itāpiskochikēwina',
       resetAllToMain: 'māwac kīkwaya kī-āpacihtā kā-pēyakohk itāpiskochikēwin',
-      auxiliaryDesc: 'wīcihikēwin atoskēwina āpacihtāwak kā-pēyakohk itāpiskochikēwin pēyakwan. Āstā itāpiskochikēwin kahkiyaw atoskēwin kī-āyāw.',
+      auxiliaryDesc:
+        'wīcihikēwin atoskēwina āpacihtāwak kā-pēyakohk itāpiskochikēwin pēyakwan. Āstā itāpiskochikēwin kahkiyaw atoskēwin kī-āyāw.',
       setToMain: 'kā-pēyakohk itāpiskochikēwin āstā',
       change: 'āyāwin',
       autoUseMain: 'āyiskāc · kā-pēyakohk itāpiskochikēwin āpacihtā',
       providerDefault: '(kā-miyikēt pēyakwan)',
       fallbackAdd: 'kīhtwām āpacihtāwin āstā',
-      fallbackEmpty: 'namōya kīhtwām āpacihtāwin itāpiskochikēwina — pēyakwan itāpiskochikēwin kā-āpacihtāk kāka-āhkosit.',
-      notInCatalog: 'namōya astēw ōma kā-miyikēt itāpiskochikēwin masinahikan — kakwēcimowina kīhtwām āpacihtāwin kā-āpacihtāk.',
+      fallbackEmpty:
+        'namōya kīhtwām āpacihtāwin itāpiskochikēwina — pēyakwan itāpiskochikēwin kā-āpacihtāk kāka-āhkosit.',
+      notInCatalog:
+        'namōya astēw ōma kā-miyikēt itāpiskochikēwin masinahikan — kakwēcimowina kīhtwām āpacihtāwin kā-āpacihtāk.',
       tasks: {
         vision: {
           label: 'wāpamowin',
-          hint: 'masinahikan māmitonēyihtamowin',
+          hint: 'masinahikan māmitonēyihtamowin'
         },
         web_extract: {
           label: 'ayamihcikēwin kīkinam',
-          hint: 'masinahikan pīkiskwēwin',
+          hint: 'masinahikan pīkiskwēwin'
         },
         compression: {
           label: 'Kīhcihtāwin',
-          hint: 'Itōhtēwin sōhkīhtāwin',
+          hint: 'Itōhtēwin sōhkīhtāwin'
         },
         skills_hub: {
           label: 'Kiskinohamākosiwin māwacihcikan',
-          hint: 'Kiskinohamākosiwin nānātōtamowin',
+          hint: 'Kiskinohamākosiwin nānātōtamowin'
         },
         approval: {
           label: 'Mīyēyihtamowin',
-          hint: 'Kiskēyihtam tōtiskēyihtam mīyēyihtamowin',
+          hint: 'Kiskēyihtam tōtiskēyihtam mīyēyihtamowin'
         },
         mcp: {
           hint: 'MCP apīhcikēwin pimipayihtāwin',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Ayamihtākwan ohcikītēwin',
-          hint: 'Kīkītwin ayamihtākwan',
+          hint: 'Kīkītwin ayamihtākwan'
         },
         curator: {
           label: 'Kā-nakayāskawēt',
-          hint: 'Kiskinohamākosiwin āpacihtāwin nātawāpacihcikan',
-        },
-      },
+          hint: 'Kiskinohamākosiwin āpacihtāwin nātawāpacihcikan'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Kakwēcihcikē (terminal ohci kā-āyimōt command kā-pimipayihtāk)',
@@ -776,12 +814,14 @@ export const cr = defineLocale({
       noKeysMatch: 'Namōya providers kā-nakātōhtāk kā-nānātawāpahtāyan.',
       localEndpoint: {
         title: 'Lokal / custom endpoint',
-        description: 'OpenAmer kīkway OpenAI-compatible endpoint kā-isi-āpacihtāk (Zyphra, vLLM, llama.cpp, Ollama, ēkwa kotakak).',
+        description:
+          'OpenAmer kīkway OpenAI-compatible endpoint kā-isi-āpacihtāk (Zyphra, vLLM, llama.cpp, Ollama, ēkwa kotakak).'
       },
       loading: 'Kā-āyākwāk providers...',
       connectAccount: 'Masinahikan sōhkīhtēwin',
       haveApiKey: 'API masinahikan kā-ayāyan ēkā?',
-      intro: 'Pīhtokēwin kā-ohci-masinahikēyan — namōya API masinahikan kā-kāskihkēt. OpenAmer kīkā māmasinahikēwin pīhtokēwin tōtam, ōta pēyakohkēwin.',
+      intro:
+        'Pīhtokēwin kā-ohci-masinahikēyan — namōya API masinahikan kā-kāskihkēt. OpenAmer kīkā māmasinahikēwin pīhtokēwin tōtam, ōta pēyakohkēwin.',
       connected: 'Kī-sōhkīhtākwan',
       collapse: 'Pōhkwēyihtāwin',
       connectAnother: 'Kotak kā-mācihtāt sōhkīhtēwin',
@@ -790,10 +830,11 @@ export const cr = defineLocale({
       removeConfirm: provider => `Ukloni ${provider}?`,
       removeExternalGeneric: provider => `${provider} se upravlja putem sopstvenog CLI-ja — uklonite ga tamo.`,
       removeKeyManaged: provider => `${provider} je konfigurisano putem API ključa. Uklonite ga iz API ključeva.`,
-      removeTerminalConfirm: (provider, command) => `Prekini vezu s ${provider}? Ovo pokreće "${command}" u terminalu da očisti vjerodajnicu.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Prekini vezu s ${provider}? Ovo pokreće "${command}" u terminalu da očisti vjerodajnicu.`,
       removeTerminalRunning: provider => `Pokretanje ${provider} disconnect u terminalu…`,
       removedMessage: provider => `${provider} je uklonjeno.`,
-      failedRemove: provider => `Nije moguće ukloniti ${provider}`,
+      failedRemove: provider => `Nije moguće ukloniti ${provider}`
     },
     sessions: {
       loading: 'Kā-āyākwāk kā-kipahikātēk sessions…',
@@ -804,12 +845,14 @@ export const cr = defineLocale({
       deletePermanently: 'Āyimō kā-mōy kī-āyāk',
       restored: 'Kī-kīhtwāk',
       autoArchiveTitle: 'Auto-kipahikē stale chats',
-      autoArchiveDesc: 'Auto-kipahikē chats kā-mōy kī-āpacihtāyan kēhtē. Kā-pinikātēk chats namōya kī-kipahikātēk, ēkwa namōya kīkway kā-āyimōt — kā-kipahikātēk chats kā-itohtēk ōta.',
+      autoArchiveDesc:
+        'Auto-kipahikē chats kā-mōy kī-āpacihtāyan kēhtē. Kā-pinikātēk chats namōya kī-kipahikātēk, ēkwa namōya kīkway kā-āyimōt — kā-kipahikātēk chats kā-itohtēk ōta.',
       autoArchiveDaysLabel: 'Kipahikē iskō',
       autoArchiveDaysUnit: 'kīsikāw kā-mōy āpacihtāk',
       autoArchiveFailed: 'Namōya kī-kīhci-āyimōw kakēskihkēmowin',
       defaultDirTitle: 'Kīhci-atoskēwin masinahikan',
-      defaultDirDesc: 'Ōta masinahikanihk mācihtāwak kīhtwām ācimowina, namōya kīkway nōhtēhtaman. Namōya astēw, kī-wīkēwin masinahikan kī-itohtēw.',
+      defaultDirDesc:
+        'Ōta masinahikanihk mācihtāwak kīhtwām ācimowina, namōya kīkway nōhtēhtaman. Namōya astēw, kī-wīkēwin masinahikan kī-itohtēw.',
       change: 'Āyimō',
       choose: 'Nōhtēhtam',
       clear: 'Wēpaham',
@@ -819,14 +862,17 @@ export const cr = defineLocale({
       deleteFailed: 'Namōya kī-kīhci-kīsitēw',
       updateDirFailed: 'Namōya kī-kīhci-āyimōw kīhci-atoskēwin masinahikan',
       clearDirFailed: 'Namōya kī-kīhci-wēpaham kīhci-atoskēwin masinahikan',
-      archivedIntro: 'Pimiyihtit pîkiskwâtikwân ayâw sîd pânikan nistaw wâpamitak atoskêwak. Ctrl/⌘-click pîkiskwâtikwân sîd pânikan ka-pimiyihtihêt.',
-      defaultDirUpdated: 'Kici-kihtot kiprêjekt kîhtohto kî-kinahikot — ka-nakisîkak pîkiskwâtikwân (Ctrl/⌘+N) ka-pimiyihtihêt.',
+      archivedIntro:
+        'Pimiyihtit pîkiskwâtikwân ayâw sîd pânikan nistaw wâpamitak atoskêwak. Ctrl/⌘-click pîkiskwâtikwân sîd pânikan ka-pimiyihtihêt.',
+      defaultDirUpdated:
+        'Kici-kihtot kiprêjekt kîhtohto kî-kinahikot — ka-nakisîkak pîkiskwâtikwân (Ctrl/⌘+N) ka-pimiyihtihêt.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Trajno izbrisati "${title}"? Ovo se ne može poništiti.`,
-      defaultsTo: label => `Zadano je ${label}.`,
+      defaultsTo: label => `Zadano je ${label}.`
     },
     toolsets: {
-      noProviderOptions: 'Namōya provider kīkway ōma toolset — kīhci-āpacihtā, ēkwa kīkway kā-atoskēyan kīhci-āpacihtāw.',
+      noProviderOptions:
+        'Namōya provider kīkway ōma toolset — kīhci-āpacihtā, ēkwa kīkway kā-atoskēyan kīhci-āpacihtāw.',
       noProviders: 'Namōya provider kā-āpacihtāk ōma toolset anohc.',
       ready: 'Kīhci',
       needsSignIn: 'Kīhci-masinahikēw',
@@ -874,8 +920,9 @@ export const cr = defineLocale({
         inUse: 'Kâ-apacihtâk',
         selectedTitle: 'Backend kâ-nâtawihkâtêk',
         needsSetupHint: 'Kîkway nâtawih ôhi backend anohc — namôya kîhci pimâcihtâk kîkihkâtêwin kâ-kîhci.',
-        selectedMessage: backend => `Terminalske naredbe sada se izvršavaju putem ${backend}. Primjenjuje se na nove sesije.`,
-        failedSelect: backend => `Odabir ${backend} nije uspio`,
+        selectedMessage: backend =>
+          `Terminalske naredbe sada se izvršavaju putem ${backend}. Primjenjuje se na nove sesije.`,
+        failedSelect: backend => `Odabir ${backend} nije uspio`
       },
       savedMessage: key => `${key} ažurirano.`,
       removedMessage: key => `${key} uklonjeno.`,
@@ -885,8 +932,10 @@ export const cr = defineLocale({
       removeConfirm: key => `Ukloni ${key} iz .env?`,
       selectedMessage: provider => `${provider} je sada aktivan.`,
       failedSelect: provider => `Neuspjelo odabiranje ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} je spremljen, ali neće se aktivirati dok se ne prijavite na OpenAmer Portal.`,
-      postSetupHint: step => `Ovaj backend zahtijeva jednokratnu instalaciju (${step}). Pokreće se na ovom računalu — može potrajati nekoliko minuta.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} je spremljen, ali neće se aktivirati dok se ne prijavite na OpenAmer Portal.`,
+      postSetupHint: step =>
+        `Ovaj backend zahtijeva jednokratnu instalaciju (${step}). Pokreće se na ovom računalu — može potrajati nekoliko minuta.`,
       postSetupCompleteMessage: step => `${step} instaliran.`,
       postSetupErrorMessage: step => `Provjerite ${step} log.`,
       postSetupFailed: step => `Neuspjelo pokretanje ${step} setup`,
@@ -896,7 +945,7 @@ export const cr = defineLocale({
       failedSelectCapability: provider => `Postavljanje ${provider} nije uspjelo`,
       modelCount: count => `${count} ᐃᔑᓈᑯᓯᐏᐣ${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} primjenjuje se na nove sesije.`,
-      failedSelectModel: model => `Odabir ${model} nije uspio`,
+      failedSelectModel: model => `Odabir ${model} nije uspio`
     },
     sections: {
       model: 'Itôtâkwan',
@@ -906,7 +955,7 @@ export const cr = defineLocale({
       safety: 'Nahâwin',
       memory: 'Kiskêyihtamowin & Itwêwin',
       voice: 'Itinwêwin',
-      advanced: 'Kihci-kiskêyihcikêwin',
+      advanced: 'Kihci-kiskêyihcikêwin'
     },
     about: {
       heading: 'OpenAmer Pāskwāwēwin',
@@ -924,7 +973,8 @@ export const cr = defineLocale({
       tapCheck: 'Pāskitā “Kakwēcim mēkwāc” kī-kakwēcimaman oskāyihtākwan.',
       justNowSuffix: '· mēkwāc',
       automaticUpdates: 'Ōtōmatik oskāyihtākwan',
-      automaticUpdatesDesc: 'OpenAmer kakwēcimēw oskāyihtākwan ōtōmatik kōna kī-ōhcitācikēwin, mēkwāc kī-kiskēyihtahk kī-kīsihtācikēwin.',
+      automaticUpdatesDesc:
+        'OpenAmer kakwēcimēw oskāyihtākwan ōtōmatik kōna kī-ōhcitācikēwin, mēkwāc kī-kiskēyihtahk kī-kīsihtācikēwin.',
       never: 'namōya wīhkāc',
       justNow: 'mēkwāc',
       version: value => `Verzija ${value}`,
@@ -933,10 +983,10 @@ export const cr = defineLocale({
       branchCommit: (branch, commit) => `Nīpēwin ${branch} · Kīhcihtāwin ${commit}`,
       minAgo: count => `prije ${count} min`,
       hoursAgo: count => `prije ${count} sati`,
-      daysAgo: count => `prije ${count} dana`,
+      daysAgo: count => `prije ${count} dana`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Kiskinohamākēwin kī-masinahikātēw.',
@@ -948,7 +998,8 @@ export const cr = defineLocale({
       connectingHubs: 'Ē-mamawinitōt kiskinohamākēwin mamawinitowina...',
       connectedHubs: 'Kī-mamawinitōta mamawinitowina:',
       featured: 'Wāpahtahkik kiskinohamākēwina',
-      landingHint: 'Nānātawāpahtam mamawinitowin ē-wāpahtaman kā-kī-pē-osihtākik kiskinohamākēwina ohci kā-kakēskimikātēk masinahikan, GitHub, ēkwa māmawinitowin ohci.',
+      landingHint:
+        'Nānātawāpahtam mamawinitowin ē-wāpahtaman kā-kī-pē-osihtākik kiskinohamākēwina ohci kā-kakēskimikātēk masinahikan, GitHub, ēkwa māmawinitowin ohci.',
       noResults: 'Namōya kī-miskikātēw kiskinohamākēwin mamawinitowinihk.',
       installed: 'Kī-pē-osihtāw',
       install: 'Pē-osihtā',
@@ -966,7 +1017,7 @@ export const cr = defineLocale({
       trust: {
         builtin: 'Ôhci-osîhtâw',
         trusted: 'Tapwêyimâkwan',
-        community: 'Ôtênaw',
+        community: 'Ôtênaw'
       },
       verdictSafe: 'Kwayask',
       verdictCaution: 'Kakwêyihtam',
@@ -986,7 +1037,7 @@ export const cr = defineLocale({
       timedOut: sources => `Vrijeme isteklo: ${sources}`,
       findings: count => `${count} pronalaženje${count === 1 ? '' : 's'}`,
       installStarted: name => `Instaliranje ${name}...`,
-      uninstallStarted: name => `Deinstaliranje ${name}...`,
+      uninstallStarted: name => `Deinstaliranje ${name}...`
     },
     tabSkills: 'Kiskēyihtamowina',
     tabToolsets: 'Ayiwēsiwina',
@@ -1004,7 +1055,8 @@ export const cr = defineLocale({
     noDescription: 'Namōya ācimowin',
     configured: 'Kīkīstahāw',
     needsKeys: 'Wēhtahk kiškihkamak',
-    visionModelHint: 'Wāpēyihtamowin āpacihtāw kī-apōcīhtākwan māmitonēyihtamowin kīkīstahāwin — kā-kīsihtākosit māmitonēyihtamowin kīkway kē-nōtēhtahk, namōya ōta kīkway kā-āpacihtākwan.',
+    visionModelHint:
+      'Wāpēyihtamowin āpacihtāw kī-apōcīhtākwan māmitonēyihtamowin kīkīstahāwin — kā-kīsihtākosit māmitonēyihtamowin kīkway kē-nōtēhtahk, namōya ōta kīkway kā-āpacihtākwan.',
     visionModelLink: 'Kīwēhtah wāpēyihtamowin māmitonēyihtamowin kīkīstahāwin → māmitonēyihtamowina',
     skillsLoadFailed: 'Kiskēyihtamowina namōya kī-pēhtākē',
     toolsetsRefreshFailed: 'Atoskêwina namôya kîhtwâm mâcihtâwak.',
@@ -1022,7 +1074,7 @@ export const cr = defineLocale({
     provenance: {
       agent: 'Kiskêyihtam',
       bundled: 'Kîsihtâw',
-      hub: 'Nâwatin',
+      hub: 'Nâwatin'
     },
     changesApplyNewSessions: 'Kîskisihtâwina kîhtwâm mâcihtâwina itôtâwak.',
     skillUpdated: 'Mamâhtâwisiwin kîhtwâm kîskisihtâw.',
@@ -1039,7 +1091,7 @@ export const cr = defineLocale({
     usageCount: count => `korišteno ${count}×`,
     emptyNoneFound: noun => `Nema pronađenih ${noun}`,
     emptyNothingMatches: query => `Ništa ne odgovara „${query}”.`,
-    emptyNoneAvailable: noun => `Još nema dostupnih ${noun}.`,
+    emptyNoneAvailable: noun => `Još nema dostupnih ${noun}.`
   },
   starmap: {
     title: 'Kiskisowin masinahikan',
@@ -1055,7 +1107,8 @@ export const cr = defineLocale({
     emptyTitle: 'Namôya kîkway kâ-kiskinohamâkosit kîta',
     emptyDesc: 'Kîspin OpenAmer kiskêyihtamowina êkwa kiskisowina kâ-osîhtât kâ-atoskêtin, ôta wâpâtik.',
     share: 'Mâmawi-âpacih masinahikan',
-    shareHint: 'Kopîhkan kôda kâ-mâmawi-âpacihcikâtêki ôma masinahikan, êkwa pihkohkan kîkway kâ-kâhcitinaman. Namôya kiskisowin êkwa kiskêyihtamowin masinahikan kâ-âhci; itastêw ôma kâ-âhci.',
+    shareHint:
+      'Kopîhkan kôda kâ-mâmawi-âpacihcikâtêki ôma masinahikan, êkwa pihkohkan kîkway kâ-kâhcitinaman. Namôya kiskisowin êkwa kiskêyihtamowin masinahikan kâ-âhci; itastêw ôma kâ-âhci.',
     shareTitle: 'Pêhtin / itôta masinahikan',
     sharePlaceholder: 'Pihkohkan masinahikan kôda…',
     copy: 'Kopîhkan masinahikan kôda',
@@ -1066,7 +1119,7 @@ export const cr = defineLocale({
     importedBadge: 'Pēhtamihk mēp masinahikan',
     resetToMine: 'Kīwē nimēp masinahikan',
     subtitle: (nodes, clusters) => `${nodes} vještina u ${clusters} kategorija`,
-    importSuccess: nodes => `Učitana karta s ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Učitana karta s ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Kipaham sāpējēntak',
@@ -1096,7 +1149,7 @@ export const cr = defineLocale({
     ageDays: days => `${days}d gelede`,
     durationSeconds: seconds => `${seconds} ᑎᐸᐦᐃᑲᓂᓯᓴ`,
     durationMinutes: (minutes, seconds) => `${minutes}min ${seconds}s`,
-    tokens: value => `${value} tokena`,
+    tokens: value => `${value} tokena`
   },
   commandCenter: {
     close: 'Kipaham itōhtēwin mīkiwāhp',
@@ -1125,7 +1178,7 @@ export const cr = defineLocale({
       generatedTag: 'Kī-itōcikātew',
       adoptFailed: 'Namōya kī-kī-awihtamāk anihi pimācihowina.',
       toggleFailed: 'Namōya kī-kī-āstēhtamāk anihi pimācihowina.',
-      noneAvailable: 'Namōya pimācihowina kī-astahk — kīkway kī-āyāwētamāk ōta ē-wī-astahk.',
+      noneAvailable: 'Namōya pimācihowina kī-astahk — kīkway kī-āyāwētamāk ōta ē-wī-astahk.'
     },
     generatePet: {
       title: 'Ôsihtâ pisiskiwa',
@@ -1154,7 +1207,7 @@ export const cr = defineLocale({
       referenceImageInvalid: 'Nama kīkī-ayamihtāw ōma nakwatēwin pictōw. Āpacihtā PNG, JPG, WebP, āta GIF.',
       adopt: 'Kīkīhtam',
       startOver: 'Kīhtwām māci',
-      hatchRow: (_state, done, total) => `Skets raamwerk ${done} van ${total}…`,
+      hatchRow: (_state, done, total) => `Skets raamwerk ${done} van ${total}…`
     },
     installTheme: {
       title: 'Ashtā itāskonikēwin…',
@@ -1166,7 +1219,7 @@ export const cr = defineLocale({
       install: 'Ashtā',
       installing: 'Ashtākē...',
       installed: 'Ashtāw',
-      installs: count => `${count} installeerings`,
+      installs: count => `${count} installeerings`
     },
     settingsFields: 'Kīkī-itotamowin masinahikanisa',
     mcpServers: 'MCP kā-atoskēcik',
@@ -1175,49 +1228,49 @@ export const cr = defineLocale({
       maintenance: 'Nākatēyimowin',
       sessions: 'Atōskēwinisa',
       system: 'Sistêm',
-      usage: 'Apatisowin',
+      usage: 'Apatisowin'
     },
     sectionDescriptions: {
       maintenance: 'Nâtawâpihcikêwin, bâkap, kânawêyihtam, kiskisiwin',
       sessions: 'Nâtônâkwâ, kîkway kâ-isi-atoskâtahk sêson',
       system: 'Ispîhcikêwin, masinahikan, atoskêwin sistêm',
-      usage: 'Tôken, kîkway kâ-isi-masinahikêhk, kiskinwahamâkosiwin',
+      usage: 'Tôken, kîkway kâ-isi-masinahikêhk, kiskinwahamâkosiwin'
     },
     nav: {
       newChat: {
         title: 'Oski sêson',
-        detail: 'Mâcihtâ oski sêson',
+        detail: 'Mâcihtâ oski sêson'
       },
       settings: {
         title: 'Kîkway kâ-isi-atoskâtahk',
-        detail: 'Kîkway kâ-isi-atoskâtahk OpenAmer',
+        detail: 'Kîkway kâ-isi-atoskâtahk OpenAmer'
       },
       skills: {
         title: 'Kaskihtâwin',
-        detail: 'Kiskinwahamâkosiwin, atoskêwin, MCP sêwâ',
+        detail: 'Kiskinwahamâkosiwin, atoskêwin, MCP sêwâ'
       },
       messaging: {
         title: 'Pîkiskwêwin',
-        detail: 'Mâcihtâ Telegram, Slack, Discord, kîkway',
+        detail: 'Mâcihtâ Telegram, Slack, Discord, kîkway'
       },
       artifacts: {
         title: 'Kâ-osihtâcik',
-        detail: 'Nâtônâkwâ kâ-osihtâcik',
-      },
+        detail: 'Nâtônâkwâ kâ-osihtâcik'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Sêson pânêl',
-        detail: 'Nâtônâkwâ, pin, kîkway kâ-isi-atoskâtahk sêson',
+        detail: 'Nâtônâkwâ, pin, kîkway kâ-isi-atoskâtahk sêson'
       },
       system: {
         title: 'Sistêm pânêl',
-        detail: 'Gateway ispîhcikêwin, masinahikan, mâcihtâ/oskayihtâ',
+        detail: 'Gateway ispîhcikêwin, masinahikan, mâcihtâ/oskayihtâ'
       },
       usage: {
         title: 'Āpacihtāwin masinahikan',
-        detail: 'Tōkin, tipēyimisowin, kiskēyihtamowin itohtēwin',
-      },
+        detail: 'Tōkin, tipēyimisowin, kiskēyihtamowin itohtēwin'
+      }
     },
     providerNavigate: 'Pimohtē',
     providerSessions: 'Sēšinak',
@@ -1300,14 +1353,14 @@ export const cr = defineLocale({
       resetConfirm: target => `Verwyder ${target}? Dit kan nie ongedaan gemaak word nie.`,
       resetDone: files => `Verwyder ${files}.`,
       actionStarted: name => `${name} begin — log volg...`,
-      actionFailed: name => `${name} het nie begin nie`,
+      actionFailed: name => `${name} het nie begin nie`
     },
     startInBranch: branch => `Nuwe gesprek in ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Aktiewe sessies ${count}`,
     days: count => `${count} ᑮᓯᑳᐘ`,
     actualCost: cost => `werklik ${cost}`,
     noUsage: period => `Geen gebruik in die laaste ${period} dae nie.`,
-    actions: count => `${count} aksies`,
+    actions: count => `${count} aksies`
   },
   messaging: {
     search: 'Nānātohtā masinahikewin...',
@@ -1322,7 +1375,7 @@ export const cr = defineLocale({
       not_configured: 'Kā-mācihitōtamihk',
       pending_restart: 'Kā-kīhci-pimātisinihk',
       retrying: 'Ē-kīhci-kīkwēyihcikēt',
-      startup_failed: 'Mācihitōwin kī-nāhihtāw',
+      startup_failed: 'Mācihitōwin kī-nāhihtāw'
     },
     unknown: 'Namōya kiskēyihtākwan',
     hintPendingRestart: 'Kīhci-pimātisin iskwāhtēw kā-nakacipayik ohci, ē-āpacihtāyan ōma kīkway.',
@@ -1334,130 +1387,131 @@ export const cr = defineLocale({
     openSetupGuide: 'Yōhtēn mācihitōwin masinahikan',
     required: 'Kā-nōtēyihtamihk',
     recommended: 'Kā-nahēyihtamihk',
-    noTokenNeeded: 'Ōma kīkway namōya nōtēyihtam token ōta. Āpacihta mācihitōwin masinahikan ispimihk, ēkwa āpacihta ōma nīhtāk.',
+    noTokenNeeded:
+      'Ōma kīkway namōya nōtēyihtam token ōta. Āpacihta mācihitōwin masinahikan ispimihk, ēkwa āpacihta ōma nīhtāk.',
     enabled: 'Āpacihtāw',
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Naskomowin isi',
-        help: 'nīkān, kākikē, ēkā',
+        help: 'nīkān, kākikē, ēkā'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Kākikē Discord kā-apacitācik kwayaskwēyihtam',
-        help: 'Kā-osīhtāwin ēsa. Kīspin kwayask, awiyak kā-pēhotāt pēhotamākēs ēkā kā-kwayaskwēyihtamihk.',
+        help: 'Kā-osīhtāwin ēsa. Kīspin kwayask, awiyak kā-pēhotāt pēhotamākēs ēkā kā-kwayaskwēyihtamihk.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Kīwē-cīmān ID',
-        help: 'Cīmān kōtā pēhotamākēs kā-pēhotāt kā-nīkānītōtamākēwin (cron kā-ohpikihk, kā-kiskisōmitākēwin).',
+        help: 'Cīmān kōtā pēhotamākēs kā-pēhotāt kā-nīkānītōtamākēwin (cron kā-ohpikihk, kā-kiskisōmitākēwin).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Kīwē-cīmān isihowin',
-        help: 'Kīwē-cīmān kā-wāpahkihk isihowin kā-masinahikēwin ēkwa kā-wāpahkihk.',
+        help: 'Kīwē-cīmān kā-wāpahkihk isihowin kā-masinahikēwin ēkwa kā-wāpahkihk.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Kākikē iMessage kā-apacitācik kwayaskwēyihtam',
-        help: 'Kīspin kwayask, ēkā BlueBubbles kā-kwayaskwēyihtamihk.',
+        help: 'Kīspin kwayask, ēkā BlueBubbles kā-kwayaskwēyihtamihk.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Kākikē Mattermost kā-apacitācik kwayaskwēyihtam',
+        label: 'Kākikē Mattermost kā-apacitācik kwayaskwēyihtam'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Kīwē-cīmān',
+        label: 'Kīwē-cīmān'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Kākikē QQ kā-apacitācik kwayaskwēyihtam',
+        label: 'Kākikē QQ kā-apacitācik kwayaskwēyihtam'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ kīwē-cīmān',
-        help: 'Cīmān ēkwa māmawin kā-nīkānītōtamākēk cron kā-ispayik.',
+        help: 'Cīmān ēkwa māmawin kā-nīkānītōtamākēk cron kā-ispayik.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ kīwē-cīmān isihowin',
+        label: 'QQ kīwē-cīmān isihowin'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack pēhotamākēs token',
         help: 'Apacihtā pēhotamākēs token OAuth & Permissions kā-ohci, kīspin kī-osīhtāt kī-Slack app.',
-        placeholder: 'Pāstē Slack pēhotamākēs token',
+        placeholder: 'Pāstē Slack pēhotamākēs token'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack kā-ohpikihk token',
         help: 'Apacihtâhkan tôkên app-level kâ-miyikâkopanêk ohci Socket Mode.',
-        placeholder: 'Astiâhkan Slack app tôkên',
+        placeholder: 'Astiâhkan Slack app tôkên'
       },
       SIGNAL_ACCOUNT: {
         help: 'Akihcikēwin kā-masinahikātēk kit-signal-cli bridge',
-        label: 'Pêhâw itasinahikan',
+        label: 'Pêhâw itasinahikan'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Signal kā-āpacihtācik kā-nakātēk',
-        help: 'Kā-naskomē. Comma ohci kā-papākihtēk Signal identifiers',
+        help: 'Kā-naskomē. Comma ohci kā-papākihtēk Signal identifiers'
       },
       WHATSAPP_ENABLED: {
         label: 'Kīhci-āpacihtā WhatsApp bridge',
-        help: 'Toggle kā-papāmihtēk kā-isi-masinahikēt. Kīkway kā-kiskēyihtaman ēkā āpacihtā',
+        help: 'Toggle kā-papāmihtēk kā-isi-masinahikēt. Kīkway kā-kiskēyihtaman ēkā āpacihtā'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge isi-āpacihtāwin',
+        label: 'Bridge isi-āpacihtāwin'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp kā-āpacihtācik kā-nakātēk',
-        help: 'Kā-naskomē. Comma ohci kā-papākihtēk phone numbers ēkwa WhatsApp IDs',
+        help: 'Kā-naskomē. Comma ohci kā-papākihtēk phone numbers ēkwa WhatsApp IDs'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot masinahikan',
         help: 'Ōhcihkan bot @BotFather, mīna askihkēhkan masinahikan kā-miyikwēt.',
-        placeholder: 'Askihkēhkan Telegram bot masinahikan',
+        placeholder: 'Askihkēhkan Telegram bot masinahikan'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Kā-āpacihtācik Telegram user ID',
-        help: 'Kīkway kā-nahēyihtamihk. comma kā-āyācikēcik number ID @userinfobot. Namōya ōma, awiyak kī-DM bot.',
+        help: 'Kīkway kā-nahēyihtamihk. comma kā-āyācikēcik number ID @userinfobot. Namōya ōma, awiyak kī-DM bot.'
       },
       TELEGRAM_PROXY: {
         label: 'URL kā-āpacihtācik',
-        help: 'Kīkway piko kā-āpacihtācik network kā-kīhtwām Telegram.',
+        help: 'Kīkway piko kā-āpacihtācik network kā-kīhtwām Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot masinahikan',
-        help: 'Ōhcihkan application Discord Developer Portal, atoskēhkan bot, mīna askihkēhkan masinahikan.',
+        help: 'Ōhcihkan application Discord Developer Portal, atoskēhkan bot, mīna askihkēhkan masinahikan.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Kā-āpacihtācik Discord user ID',
-        help: 'Kīkway kā-nahēyihtamihk. comma kā-āyācikēcik Discord user ID.',
+        help: 'Kīkway kā-nahēyihtamihk. comma kā-āyācikēcik Discord user ID.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Kâ-naskomint Slack ayisiyiniwak ID',
-        help: 'Kâ-naskwahamihk. Slack ayisiyiniwak ID, kâ-pâskisikâtêk ,',
+        help: 'Kâ-naskwahamihk. Slack ayisiyiniwak ID, kâ-pâskisikâtêk ,'
       },
       MATTERMOST_URL: {
         label: 'Sêrvêr URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot tôkên',
+        label: 'Bot tôkên'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Kâ-naskomint ayisiyiniwak ID',
-        help: 'Kâ-naskwahamihk. Mattermost ayisiyiniwak ID, kâ-pâskisikâtêk ,',
+        help: 'Kâ-naskwahamihk. Mattermost ayisiyiniwak ID, kâ-pâskisikâtêk ,'
       },
       MATRIX_HOMESERVER: {
         label: 'Kâ-wîkiyân sêrvêr URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Pâhtâk tôkên',
+        label: 'Pâhtâk tôkên'
       },
       MATRIX_USER_ID: {
         label: 'Bot ayisiyiniw ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Kâ-naskomint Matrix ayisiyiniwak ID',
-        help: 'Kâ-naskwahamihk. Ayisiyiniwak ID, kâ-pâskisikâtêk ,, @user:server kâ-isi-itasinahkêk.',
+        help: 'Kâ-naskwahamihk. Ayisiyiniwak ID, kâ-pâskisikâtêk ,, @user:server kâ-isi-itasinahkêk.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal asikan URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL: signal-cli REST asikan kâ-pimohcikêt.',
-      },
+        help: 'URL: signal-cli REST asikan kâ-pimohcikêt.'
+      }
     },
     disabled: 'Namōya kī-āpacihtāw',
     unsavedChanges: 'Namōya kī-masinahikātēk',
@@ -1480,8 +1534,7 @@ export const cr = defineLocale({
     failedUpdate: name => `Nie geluk om ${name} by te werk nie`,
     failedSave: name => `Nie geluk om ${name} te stoor nie`,
     failedClear: key => `Nie geluk om ${key} skoon te maak nie`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Webhooks nānātawāpahtam...',
@@ -1490,7 +1543,8 @@ export const cr = defineLocale({
     hint: 'Subscription kā-isi-masinahikātēk kīhci-pipohk kīspin receiver kā-papāmihtēk. Disabled subscriptions kā-pē-ispanik events pōni-pēhtam',
     empty: 'Webhook subscriptions nama mēkwāc',
     disabledTitle: 'Webhook receiver pōni-āpacihtākēw',
-    disabledBody: 'Webhooks kīkway kā-papāmihtēk gateway platform. Ōta kīhci-āpacihtā ta-pē-pēhtahk HTTP events; chat channels kīhci-āpacihtākēw kēkāc subscription kā-pē-... Telegram, Discord, Slack ēkwa kotak channel',
+    disabledBody:
+      'Webhooks kīkway kā-papāmihtēk gateway platform. Ōta kīhci-āpacihtā ta-pē-pēhtahk HTTP events; chat channels kīhci-āpacihtākēw kēkāc subscription kā-pē-... Telegram, Discord, Slack ēkwa kotak channel',
     enable: 'Kīhci-āpacihtā webhooks',
     enabling: 'Kā-kīhci-āpacihtākēk...',
     enableRow: 'Kīhci-āpacihtā',
@@ -1502,7 +1556,7 @@ export const cr = defineLocale({
       email: 'E-mail',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     deleting: 'Ê-siwinahkâtêk...',
     deleted: 'Kî-siwinahkâtêw webhook',
@@ -1545,11 +1599,12 @@ export const cr = defineLocale({
     deleteFailed: (name: string) => `ᓇᒨᔭ ᑮ ᑳᓰᐦᐃᑳᑌᐤ "${name}"`,
     toggleFailed: (name: string) => `ᓇᒨᔭ ᑮ ᐅᐢᑭᓇᐦᑖᑲᓂᐤ "${name}"`,
     restartFailed: (detail: string) => `ᓇᒨᔭ ᑮ ᒦᓇ ᒫᒋᐦᑖᑲᓂᐤ ᐱᐦᑐᑫᐏᐣ${detail}`,
-    createFailed: (detail: string) => `ᓇᒨᔭ ᑮ ᐅᓯᐦᒋᑳᑌᐤ: ${detail}`,
+    createFailed: (detail: string) => `ᓇᒨᔭ ᑮ ᐅᓯᐦᒋᑳᑌᐤ: ${detail}`
   },
   profiles: {
     close: 'Kîpah itâsowina',
-    nameHint: 'Papâsîs masinahikanisa, akihcikêwinisa, pîkonikana, êkwa asawâpikana. Kîkway kâ-masinahikêt kêhtê masinahikanis kâkî akihcikêwinis.',
+    nameHint:
+      'Papâsîs masinahikanisa, akihcikêwinisa, pîkonikana, êkwa asawâpikana. Kîkway kâ-masinahikêt kêhtê masinahikanis kâkî akihcikêwinis.',
     title: 'Itâsowina',
     search: 'Nâtamaw itâsowina...',
     loading: 'Itâsowina pimipayiwa...',
@@ -1588,7 +1643,8 @@ export const cr = defineLocale({
     deleteDescMid: 'ēkwa kā-...',
     deleteDescSuffix: 'masinahikēwin. Namōya kīkway kī-...',
     deleting: 'Kā-kwanēstāhk...',
-    createDesc: 'Itāpisiniwina pēyak pēyak OpenAmer pimācihowina: pēyak pēyak āpacihtāwina, kiskēyihtamowina, ikwa SOUL.md.',
+    createDesc:
+      'Itāpisiniwina pēyak pēyak OpenAmer pimācihowina: pēyak pēyak āpacihtāwina, kiskēyihtamowina, ikwa SOUL.md.',
     nameLabel: 'Wīhowin',
     cloneFrom: 'Ohci kā-isihtāhk',
     cloneFromNone: 'Namakāw (pakān)',
@@ -1599,7 +1655,8 @@ export const cr = defineLocale({
     creating: 'Kā-osihtāhk...',
     createAction: 'Osihtā itāpisiniwin',
     renameTitle: 'Mēskotā itāpisiniwin',
-    renameDescPrefix: 'Kā-mēskotāhk kīkway kā-isihtākwan itāpisiniwin kīkway kā-āyācikātēk ikwa kīkway kā-āpacihtāhk masinahikanisa isinīkēhk',
+    renameDescPrefix:
+      'Kā-mēskotāhk kīkway kā-isihtākwan itāpisiniwin kīkway kā-āyācikātēk ikwa kīkway kā-āpacihtāhk masinahikanisa isinīkēhk',
     renameDescSuffix: '.',
     newNameLabel: 'Oskāy wīhowin',
     renaming: 'Kā-mēskotāhk...',
@@ -1623,7 +1680,7 @@ export const cr = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `ᐃᑕᔓᐍᐏᓐ / ᐃᓯᔨᐦᑳᓱᐏᓐ ᐅᒪ ᐅᐦᒋ ᐊᒋᒧᐏᓐ.
 ᓇᑲᑕ ᐁᑳ ᑫᑿᓐ ᒋᐢᑕᔨᐣ ᑭᒋ ᑲᓇᐍᔨᐦᑕᒪᐣ ${mode} ᓃᑳᓂ ᐊᐢᑌᐏᓐ.`,
-    invalidName: hint => `ᐁᑳ ᒥᔪᐸᔨᐠ ᐏᔨᐦᒋᑳᓱᐏᓐ. ${hint}`,
+    invalidName: hint => `ᐁᑳ ᒥᔪᐸᔨᐠ ᐏᔨᐦᒋᑳᓱᐏᓐ. ${hint}`
   },
   cron: {
     close: 'kipaha cron',
@@ -1637,14 +1694,14 @@ export const cr = defineLocale({
       paused: 'pôni-pimipayiw',
       disabled: 'namôya kî-ohci-pimipayiw',
       error: 'mamahcâw',
-      completed: 'kî-kîsihtâw',
+      completed: 'kî-kîsihtâw'
     },
     deliveryLabels: {
       local: 'ôma desktop',
       email: 'Ēmēl',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Ayamihēwi-kīsikāw',
@@ -1654,11 +1711,12 @@ export const cr = defineLocale({
       '4': 'nêwo-kîsikâw',
       '5': 'niyânan-kîsikâw',
       '6': 'mâtinâwi-kîsikâw',
-      '7': 'ayamihêwi-kîsikâw',
+      '7': 'ayamihêwi-kîsikâw'
     },
     topOfHour: 'kahkiyaw kîkî kihci',
     newCron: 'oski cron',
-    emptyDescNew: 'cron expression ohci itôtamôwin kîkî-ohcîhtâ. OpenAmer ka-âpacihtâw êkwa ka-pêhtâkwanihk kâ-nâtawâcihoyan ita.',
+    emptyDescNew:
+      'cron expression ohci itôtamôwin kîkî-ohcîhtâ. OpenAmer ka-âpacihtâw êkwa ka-pêhtâkwanihk kâ-nâtawâcihoyan ita.',
     emptyDescSearch: 'âpacihtâ mâwacihk nânitawâcikan',
     emptyTitleNew: 'namôya mêkwâc kîkî-ohcîhtâwinak',
     emptyTitleSearch: 'namôya itêyihtamihk',
@@ -1693,8 +1751,9 @@ export const cr = defineLocale({
     failedSave: 'cron job namôya kî-masinahikâtêw',
     editTitle: 'cron job kîhtwâm masinahikê',
     createTitle: 'cron job mamâhtâwi',
-    editDesc: 'Kîhtwâm kîkway kâ-itôtamâkêk, itâpahtamâkêwin, ita kâ-pêhtâkwahk. Kâ-nakiskâtêk kâ-itôtamâkêk kâ-isihtâw.',
-    createDesc: 'Itâpahtamâkêwin kâ-kisêwâtisit kâ-itôtamâkêk. Cron syntax ohci, tâpiskôc \'âhkami 15 minute\'.',
+    editDesc:
+      'Kîhtwâm kîkway kâ-itôtamâkêk, itâpahtamâkêwin, ita kâ-pêhtâkwahk. Kâ-nakiskâtêk kâ-itôtamâkêk kâ-isihtâw.',
+    createDesc: "Itâpahtamâkêwin kâ-kisêwâtisit kâ-itôtamâkêk. Cron syntax ohci, tâpiskôc 'âhkami 15 minute'.",
     nameLabel: 'Isihcikêwin',
     namePlaceholder: 'Kîkisêp âcimowin',
     promptLabel: 'Itâpahtamâkêwin',
@@ -1706,7 +1765,7 @@ export const cr = defineLocale({
     modelDefault: 'Kâ-ohci-isihtâk (global model)',
     customScheduleLabel: 'Kâ-nitawêyihtaman kîkway kâ-itôtamâkêk',
     customPlaceholder: '0 9 * * * kamâc kîkisêp 9:00 kâ-itôtamâkêk',
-    customHint: 'Cron expression, kamâc kîkway tâpiskôc \'âhkami pêyak kîkisêp\' kamâc \'kîkisêp 9:00 kâ-itôtamâkêk\'.',
+    customHint: "Cron expression, kamâc kîkway tâpiskôc 'âhkami pêyak kîkisêp' kamâc 'kîkisêp 9:00 kâ-itôtamâkêk'.",
     optional: 'Kâ-nitawêyihtaman',
     promptRequired: 'Itâpahtamâkêwin kâ-pêtâkwan.',
     promptScheduleRequired: 'Itâpahtamâkêwin kamâc kîkway kâ-itôtamâkêk kâ-pêtâkwan.',
@@ -1716,7 +1775,7 @@ export const cr = defineLocale({
     createAction: 'Cron ocihtā',
     tabs: {
       jobs: 'Atōskēwinisa',
-      blueprints: 'Mācihtāwinisa',
+      blueprints: 'Mācihtāwinisa'
     },
     blueprints: {
       tab: 'Mācihtāwinisa',
@@ -1730,7 +1789,7 @@ export const cr = defineLocale({
       loading: 'Ē-pē-isihtākwan mācihtāwinisa...',
       failedLoad: 'Namōya kī-isihtākwan mācihtāwinisa',
       emptyTitle: 'Namōya mācihtāwinisa kā-āyāki',
-      emptyDesc: 'Namōya itōtamākēwin-mācihtāwinisa kā-āyāki ōta backend.',
+      emptyDesc: 'Namōya itōtamākēwin-mācihtāwinisa kā-āyāki ōta backend.'
     },
     scheduleLabels: {
       daily: 'Kīkisēp',
@@ -1739,7 +1798,7 @@ export const cr = defineLocale({
       monthly: 'Pīsim',
       hourly: 'Ēkāyāw',
       'every-15-minutes': '15 minit kīkisēp',
-      custom: 'Nahitaw',
+      custom: 'Nahitaw'
     },
     scheduleHints: {
       daily: 'Kīkisēp 9:00 AM',
@@ -1748,7 +1807,7 @@ export const cr = defineLocale({
       monthly: 'Pēyak kīsikāw pīsim 9:00 AM',
       hourly: 'Kīkisēp ēkāyāw',
       'every-15-minutes': '15 minit kīkisēp',
-      custom: 'Cron masinahikēwin āta iyiniwewin',
+      custom: 'Cron masinahikēwin āta iyiniwewin'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `ᑮᓯᑳᐤ ${value}`,
@@ -1757,7 +1816,7 @@ export const cr = defineLocale({
     everyDayOfWeekAt: (day, time) => `ᑕᐦᑐ ${day} ᐁᑯ ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `ᑕᐦᑐᐲᓯᒼ ᑮᓯᑳᐤ ${dayOfMonth} ᐁᑯ ${time}`,
     everyHourAt: minute => `ᑕᐦᑐᑎᐸᐦᐃᑲᐣ ᐁᑯ :${minute}`,
-    actionsFor: title => `ᐃᑑᑕᒧᐏᓇ ᐅᐦᒋ ${title}`,
+    actionsFor: title => `ᐃᑑᑕᒧᐏᓇ ᐅᐦᒋ ${title}`
   },
   artifacts: {
     search: 'Nānātam kā-ocihtāniwahk...',
@@ -1791,7 +1850,7 @@ export const cr = defineLocale({
     copyUrl: 'Māmiskōtam URL',
     copyPath: 'Māmiskōtam mēskanaw',
     rangeOf: (start, end, total) => `${start}-${end} из ${total}`,
-    goToPage: (itemLabel, page) => `ᐃᑐᐦᑌ ${itemLabel} ᐸᐦᑭᐢᑕᐦᐃᑲᐣ ${page}`,
+    goToPage: (itemLabel, page) => `ᐃᑐᐦᑌ ${itemLabel} ᐸᐦᑭᐢᑕᐦᐃᑲᐣ ${page}`
   },
   sidebar: {
     groupAriaUngrouped: 'Māmawācikē kīkēwina atoskēwaskiy ohci',
@@ -1835,8 +1894,10 @@ export const cr = defineLocale({
       copyPath: 'Kisinahikātē mēskanaw',
       removeFromSidebar: 'Kākēpē pāsikwēwinihk',
       createFailed: 'Namōya kī-osihtākwan atoskēwin.',
-      staleBackend: 'Kiskihtam OpenAmer ohci-atoskēwin kīkway e-osihtāyahk atoskēwina — kīwatāw ohci-atoskēwin namōya mācīw tāpiskōc ōma atoskēwin (Kiskihtamowina → Kīkiskihtamowina → Ohci-atoskēwin).',
-      deleteConfirm: 'Ōma kī-asihtāskamēw OpenAmer ohci kī-nipāhtawēwin atoskēwin. Masinahikana, git repos, atoskēwin-mistikwa namōya kī-asihtāskamēwak.',
+      staleBackend:
+        'Kiskihtam OpenAmer ohci-atoskēwin kīkway e-osihtāyahk atoskēwina — kīwatāw ohci-atoskēwin namōya mācīw tāpiskōc ōma atoskēwin (Kiskihtamowina → Kīkiskihtamowina → Ohci-atoskēwin).',
+      deleteConfirm:
+        'Ōma kī-asihtāskamēw OpenAmer ohci kī-nipāhtawēwin atoskēwin. Masinahikana, git repos, atoskēwin-mistikwa namōya kī-asihtāskamēwak.',
       startWork: 'Mācīw atoskēwin-mistik',
       newWorktreeTitle: 'Mācīw atoskēwin-mistik',
       newWorktreeDesc: 'Ishinikāsohkan nīpīwin ōma atoskēwin-mistik.',
@@ -1856,20 +1917,22 @@ export const cr = defineLocale({
       noBranches: 'Namōya nīpīwina kī-miskākw',
       removeWorktree: 'Asihtāskamēhkan atoskēwin-mistik',
       removeWorktreeFailed: 'Namōya kī-pēhiton worktree (namōya kī-āyēskwēwin?)',
-      removeWorktreeConfirm: 'Pēhon ohci git (nepinam worktree directory; nīpiy kīwēw), ēkamā kākīsi lane ohci sidebar ēkwa nakatē worktree ohci disk.',
-      removeWorktreeDirty: 'Ōma worktree ayāw namōya kī-āyēskwēwin. Kī-pēhon (nepinam aniki āyēskwēwina), ēkamā kākīsi lane ēkwa nakatē ohci disk.',
+      removeWorktreeConfirm:
+        'Pēhon ohci git (nepinam worktree directory; nīpiy kīwēw), ēkamā kākīsi lane ohci sidebar ēkwa nakatē worktree ohci disk.',
+      removeWorktreeDirty:
+        'Ōma worktree ayāw namōya kī-āyēskwēwin. Kī-pēhon (nepinam aniki āyēskwēwina), ēkamā kākīsi lane ēkwa nakatē ohci disk.',
       forceRemove: 'Kī-pēhon',
       back: 'Kahkiyaw atoskēwina',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `ᔪᐦᑌᓇ ${label}`,
       reorder: label => `ᒦᓇ ᐊᐢᑕ ${label}`,
-      toggle: label => `ᐊᔮᔅᑭᓇᒧᐠ ${label} ᐋᐸᒋᐦᒋᑫᐏᓇ`,
+      toggle: label => `ᐊᔮᔅᑭᓇᒧᐠ ${label} ᐋᐸᒋᐦᒋᑫᐏᓇ`
     },
     nav: {
       'new-session': 'Māci-māwacihtowin',
       skills: 'Kā-kīcihtāyān',
       messaging: 'Kīkīwēwasowin',
-      artifacts: 'Kā-osihtācik',
+      artifacts: 'Kā-osihtācik'
     },
     searchAria: 'Nānātamākē māwacihtowina',
     searchPlaceholder: 'Nānātamākē māwacihtowina…',
@@ -1912,19 +1975,19 @@ export const cr = defineLocale({
       ownedByProfile: profile => `Profil: ${profile}`,
       untitledChat: id => `Kā-wīcihītowin ${id}`,
       ageHour: 'ᑎᐸᐦᐃᑲᓐ',
-      ageMin: 'min',
+      ageMin: 'min'
     },
     dateDivider: {
       today: 'Kîhci anohc',
       yesterday: 'Otâkosîk',
       thisWeek: 'Kîhci ôma kîkisêp',
       lastWeek: 'Kîkisêp',
-      thisMonth: 'Kîhci ôma pîsim',
+      thisMonth: 'Kîhci ôma pîsim'
     },
     noMatch: query => `ᓇᒨᔭ ᐊᐱᐏᓇ ᓇᐱᐢᑕᐤ “${query}”.`,
     newSessionIn: label => `Nová relácia v ${label}`,
     showMoreIn: (count, label) => `Zobraziť ${count} ďalších v ${label}`,
-    loadCount: step => `Načítať ${step} ďalších`,
+    loadCount: step => `Načítať ${step} ďalších`
   },
   composer: {
     placeholderStarting: 'Ê-mâcihtâk OpenAmer...',
@@ -1964,7 +2027,7 @@ export const cr = defineLocale({
       '/resume': 'Kîhtwâm mâcî kâ-kî-mâmawinitôkân',
       '/details': 'Nôkôhtamowin masinahikan kâ-itakohk',
       '/copy': 'Mamâhtâw kâ-naskomakêhk kamâ kâ-mahkâhk wîcihikêwin',
-      '/quit': 'Pakwâci openamer',
+      '/quit': 'Pakwâci openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'Kîkway kâ-itakohk: masinahikana, mâmawâcihikana, urls, git',
@@ -1974,7 +2037,7 @@ export const cr = defineLocale({
       'composer.sendQueued': 'pehotē kīhtwām kā-pēhtākosit pēhotēwin',
       'keybinds.openPanel': 'kakīkī kā-itohtēhk',
       'composer.cancel': 'kipahā popover · kīsihtā pēhotēwin',
-      'composer.history': 'mācīhtā popover / kā-kī-itohtēhk',
+      'composer.history': 'mācīhtā popover / kā-kī-itohtēhk'
     },
     attachUrlTitle: 'Apiskah URL',
     attachUrlDesc: 'OpenAmer kā-natotam ōma masinahikan, ēkwa kā-astēk kā-ohci ōma pēhotēwin.',
@@ -1998,19 +2061,20 @@ export const cr = defineLocale({
     snippets: {
       codeReview: {
         label: 'Nânâhtawâpêwin masinahikan',
-        description: 'Nânâhtawâpâ ôma kâ-âsitâkôsik: kîkway kâ-kî-pôni-isi-pêhtamâkêwin, kâ-wanihikêtêki kîkway, êkwa kâ-ohci-kîkway kâ-kakwêcicikêtêki.',
-        text: 'Nânâhtawâpâ ôma: kîkway kâ-mâyâtisit, kâ-kî-pôni-isi-pêhtamâkêwin, êkwa kâ-ohci-kîkway kâ-kakwêcicikêtêki.',
+        description:
+          'Nânâhtawâpâ ôma kâ-âsitâkôsik: kîkway kâ-kî-pôni-isi-pêhtamâkêwin, kâ-wanihikêtêki kîkway, êkwa kâ-ohci-kîkway kâ-kakwêcicikêtêki.',
+        text: 'Nânâhtawâpâ ôma: kîkway kâ-mâyâtisit, kâ-kî-pôni-isi-pêhtamâkêwin, êkwa kâ-ohci-kîkway kâ-kakwêcicikêtêki.'
       },
       implementationPlan: {
         label: 'Kâ-isi-atoskêtêki nîkânasinahikêwin',
         description: 'Nîkânasinahikê kâ-isi-atoskêtêki kayâs ôma kâ-isi-masinahikêyan; kîkinâkwan kâ-âsitâkôsik.',
-        text: 'Nîkânasinahikê cîkwan kâ-isi-atoskêtêki kayâs ôma kâ-isi-masinahikêyan.',
+        text: 'Nîkânasinahikê cîkwan kâ-isi-atoskêtêki kayâs ôma kâ-isi-masinahikêyan.'
       },
       explainThis: {
         label: 'Wêtinam ôma',
         description: 'Wêtinam kâ-isi-atoskêtêki ôma kâ-nâtêk masinahikan, êkwa itasinam kâ-kîkway masinahikana.',
-        text: 'Wêtinam kâ-isi-atoskêtêki ôma, êkwa itasinam kâ-kîkway masinahikana.',
-      },
+        text: 'Wêtinam kâ-isi-atoskêtêki ôma, êkwa itasinam kâ-kîkway masinahikana.'
+      }
     },
     message: 'Ayamihcikêwin',
     queueStuckTitle: 'Ka-āyācit masinahikan namōya itohtēw',
@@ -2037,27 +2101,27 @@ export const cr = defineLocale({
     newSessionPlaceholders: [
       'Čo budujeme?',
       'Pridajte OpenAmer úlohu',
-      "Čo máte na mysli?",
+      'Čo máte na mysli?',
       'Opíšte, čo potrebujete',
       'Čo vyriešime?',
       'Opýtajte sa na čokoľvek',
-      'Začnite s cieľom',
+      'Začnite s cieľom'
     ],
     followUpPlaceholders: [
       'Odošlite doplňujúcu otázku',
       'Pridajte viac kontextu',
       'Upravte požiadavku',
-      "Čo ďalej?",
+      'Čo ďalej?',
       'Pokračujte',
       'Posuňte to ďalej',
-      'Upravte alebo pokračujte',
+      'Upravte alebo pokračujte'
     ],
     queued: count => `${count} v rade`,
     queuedPaused: count => `${count} v rade — pozastavené`,
     attachments: count => `${count} príloha${count === 1 ? '' : 's'}`,
     previewLabel: label => `Náhľad ${label}`,
     couldNotPreview: label => `Náhľad ${label} sa nepodaril`,
-    removeAttachment: label => `Odstrániť ${label}`,
+    removeAttachment: label => `Odstrániť ${label}`
   },
   statusStack: {
     agents: 'Atoskêwak',
@@ -2081,7 +2145,8 @@ export const cr = defineLocale({
       revert: 'Kītahipitam',
       revertAll: 'Kahkiyaw kītahipitam',
       revertConfirm: 'Pōnihtā āyimōhtāwina ōma masinahikan ēkwa kītahipitam kīkīcihtātēk? Namōya kīkway kī-itōtamihk.',
-      revertAllConfirm: 'Pōnihtā kahkiyaw āyimōhtāwina ēkwa kītahipitam masinahikana kīkīcihtātēk? Namōya kīkway kī-itōtamihk.',
+      revertAllConfirm:
+        'Pōnihtā kahkiyaw āyimōhtāwina ēkwa kītahipitam masinahikana kīkīcihtātēk? Namōya kīkway kī-itōtamihk.',
       staged: 'Astāw',
       noChanges: 'Namōya āyimōhtāwina',
       notRepo: 'Namōya git masinahikan',
@@ -2097,7 +2162,8 @@ export const cr = defineLocale({
       openPr: 'PR yâhkihtâ',
       ghMissing: 'GitHub CLI (gh) pîhtokêhtâ, mîna PR yâhkihtâk êkî pîhtokêyan',
       agentShip: 'OpenAmer itâcimô PR yâhkihtâk',
-      agentShipPrompt: 'Mêkwâc kâ-âyihtakwahk nâkatam, kîkîmaso ohci kîkî conventional-commit itâcimowin, pêhon mîskan, mîna PR yâhkihtâ.',
+      agentShipPrompt:
+        'Mêkwâc kâ-âyihtakwahk nâkatam, kîkîmaso ohci kîkî conventional-commit itâcimowin, pêhon mîskan, mîna PR yâhkihtâ.',
       newBranch: 'Mêkwâc mîskan',
       worktrees: 'Atoskêwin-mîskanak',
       commitPlaceholder: 'Atoskêw (⌘↵ ka-nîcihowit)',
@@ -2106,12 +2172,12 @@ export const cr = defineLocale({
       behind: count => `${count} vzad`,
       branchOffFrom: base => `Nouă ramură de la ${base}`,
       switchTo: branch => `Comută la ${branch}`,
-      switchFailed: branch => `Nu s-a putut comuta la ${branch}`,
+      switchFailed: branch => `Nu s-a putut comuta la ${branch}`
     },
     background: count => `${count} pozadie`,
     subagents: count => `${count} podagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Úlohy ${done}/${total}`,
-    exit: code => `ukončiť ${code}`,
+    exit: code => `ukončiť ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2192,7 @@ export const cr = defineLocale({
       done: 'Kīsi-pēhtākwahk',
       manual: 'Pēhtākwahk ohci kī-ācimowin',
       guiSkew: 'Pēhtākwahk kī-papāmohtākosiwin',
-      error: 'Pōni-pēhtākwahk',
+      error: 'Pōni-pēhtākwahk'
     },
     checking: 'Nānātohta pēhtākwanihk…',
     checkFailedTitle: 'Namōya kī-nānātohtaw pēhtākwanihk',
@@ -2145,14 +2211,17 @@ export const cr = defineLocale({
     updateNow: 'Pēhtākwahk mēkwāc',
     maybeLater: 'Itākam pahkī',
     manualTitle: 'Kīkēsihtā terminal ohci',
-    manualBody: 'Kī-āpacihē OpenAmer command line ohci, mēkwāc kīkēsihtāwin ē-ohci-pimipayik. Kīkīhcihtā ōma kī-terminal:',
+    manualBody:
+      'Kī-āpacihē OpenAmer command line ohci, mēkwāc kīkēsihtāwin ē-ohci-pimipayik. Kīkīhcihtā ōma kī-terminal:',
     manualPickedUp: 'OpenAmer ka-miskam kītahipēhikan mēkwāc kī-pēhtākwan.',
     guiSkewTitle: 'Kīkēsihtā desktop app',
-    guiSkewBody: 'Backend kīkēsihtāw, ēkwa ōma desktop app package namōya kī-āyīsihtāw. Kīkēsihtā ikwa kī-āpacihē OpenAmer desktop app (kī-AppImage / .deb / .rpm) ka-kī-nakāstāk.',
+    guiSkewBody:
+      'Backend kīkēsihtāw, ēkwa ōma desktop app package namōya kī-āyīsihtāw. Kīkēsihtā ikwa kī-āpacihē OpenAmer desktop app (kī-AppImage / .deb / .rpm) ka-kī-nakāstāk.',
     copy: 'Kīkīhcihtā',
     copied: 'Kīkīhcihtāw',
     done: 'Kīsihtāw',
-    applyingBody: 'OpenAmer updater kā-pē-itōtahk kīkī-window ēkwa OpenAmer ka-mācihtāw kīkēhtwāw kā-kīsihtāk. Kāwit kī-mācihtā OpenAmer kīkēhtwāw mēkwāc ē-kīkēsihtāk.',
+    applyingBody:
+      'OpenAmer updater kā-pē-itōtahk kīkī-window ēkwa OpenAmer ka-mācihtāw kīkēhtwāw kā-kīsihtāk. Kāwit kī-mācihtā OpenAmer kīkēhtwāw mēkwāc ē-kīkēsihtāk.',
     applyingBodyBackend: 'Remote backend kīkēsihtāw ēkwa ka-mācihtāw. OpenAmer ka-mācihtāw kīkēhtwāw kā-pēhtākwan.',
     applyingClose: 'Ōma window ka-kīsihtāw mēkwāc update ē-pimipayik, ēkwa OpenAmer ka-mācihtāw kīkēhtwāw.',
     errorTitle: 'Update namōya kī-kīsihtāw',
@@ -2164,13 +2233,16 @@ export const cr = defineLocale({
       restarting: 'Backend kā-mācihtāw ka-kī-āpacihtāk update…',
       notAvailable: 'Update namōya kī-miskam ōma backend.',
       failed: 'Backend update namōya kī-kīsihtāw.',
-      noReturn: 'Namōya kī-pēhtawākosiw kā-pēhtawākosit. Kī-āyimōstātōwin ēyikō namōya kī-kīsihtākwan — nātawāpahtē kā-pēhtawākosit kiskinohamākēw.',
+      noReturn:
+        'Namōya kī-pēhtawākosiw kā-pēhtawākosit. Kī-āyimōstātōwin ēyikō namōya kī-kīsihtākwan — nātawāpahtē kā-pēhtawākosit kiskinohamākēw.'
     },
     appErrors: {
-      updateLocked: 'Kī-pōnihtākwan kī-āyimōstātōwin: pēyak OpenAmer ācimowin ēkwa terminal kā-oyām openamer kī-okīstākēwin. Kipahē ēkwa kīkī-mācihtā.',
-      updateFailed: 'Namōya kī-kīsihtākwan kī-āyimōstātōwin. Kāya pohatē — namōya kīkway kī-wanihitākwan. Kīkī-mācihtān āya.',
+      updateLocked:
+        'Kī-pōnihtākwan kī-āyimōstātōwin: pēyak OpenAmer ācimowin ēkwa terminal kā-oyām openamer kī-okīstākēwin. Kipahē ēkwa kīkī-mācihtā.',
+      updateFailed:
+        'Namōya kī-kīsihtākwan kī-āyimōstātōwin. Kāya pohatē — namōya kīkway kī-wanihitākwan. Kīkī-mācihtān āya.'
     },
-    moreChanges: count => `Incluse încă ${count} modificări${count === 1 ? '' : 's'}.`,
+    moreChanges: count => `Incluse încă ${count} modificări${count === 1 ? '' : 's'}.`
   },
   install: {
     installLocalDesc: 'Pēcitin OpenAmer, osihtā Python environment, ēkwa pimipayihtā backend ôma computer.',
@@ -2198,7 +2270,7 @@ export const cr = defineLocale({
       running: 'Kā-okīstākēt',
       succeeded: 'Kī-kīsihtāw',
       skipped: 'Kī-nakātēyihtākwan',
-      failed: 'Kī-misiwanācihtākwan',
+      failed: 'Kī-misiwanācihtākwan'
     },
     oneTimeTitle: 'OpenAmer kī-okīstākēwin pēyakwāw',
     installCommand: 'Okīstākēwin kā-itohtākwan',
@@ -2210,7 +2282,8 @@ export const cr = defineLocale({
     setupChoiceDesc: 'Kī-āpacihcikē ōma kīkway OpenAmer gateway kā-ayāyan, ēkwa okīstā OpenAmer ōtē kīkway.',
     connectExistingTitle: 'Kī-āpacihcikē OpenAmer kā-ayāk',
     connectExistingShort: 'Kī-āpacihcikē kā-ayāk',
-    connectExistingDesc: 'Āpacihē kā-wāh-ayāk backend session token ēkwa browser sign-in. Namōya ōtē okīstākēwin kā-mācihtākwan.',
+    connectExistingDesc:
+      'Āpacihē kā-wāh-ayāk backend session token ēkwa browser sign-in. Namōya ōtē okīstākēwin kā-mācihtākwan.',
     installLocalTitle: 'Okīstā OpenAmer ōtē',
     incompleteTokenTest: 'masinahikē session token kōmā kīkīstahaman ōma gateway.',
     testConnection: 'kīkīstaham itōhtēwin',
@@ -2219,8 +2292,10 @@ export const cr = defineLocale({
     failedTitle: 'namōya kī-ispayin installation',
     settingUpTitle: 'māmawācihtā OpenAmer Agent',
     finishingTitle: 'kīsihtā',
-    failedDesc: 'pēyak install step namōya kī-ispayin. Windows ohci, ōma kīkway ispayin kīspin pēyak OpenAmer CLI ēkwa desktop instance pimācihow. Pōnihtā kahkiyaw OpenAmer instance pimācihot, mīna kīkīstaham. Nātawāpahtam kīkway ēkwa desktop log.',
-    activeDesc: 'ōma pēyakwāw kīhci-ayāwin. OpenAmer installer kī-nātam dependencies ēkwa kī-māmawācihtā kī-machine. Kīhtwām ta-pēhtamōhē ōma step.',
+    failedDesc:
+      'pēyak install step namōya kī-ispayin. Windows ohci, ōma kīkway ispayin kīspin pēyak OpenAmer CLI ēkwa desktop instance pimācihow. Pōnihtā kahkiyaw OpenAmer instance pimācihot, mīna kīkīstaham. Nātawāpahtam kīkway ēkwa desktop log.',
+    activeDesc:
+      'ōma pēyakwāw kīhci-ayāwin. OpenAmer installer kī-nātam dependencies ēkwa kī-māmawācihtā kī-machine. Kīhtwām ta-pēhtamōhē ōma step.',
     fetchingManifest: 'kī-nātam installer manifest...',
     error: 'māyinahk',
     hideOutput: 'kākāpēhē installer output',
@@ -2232,13 +2307,14 @@ export const cr = defineLocale({
     copiedOutput: 'kī-kīpahikātē!',
     copyOutput: 'kīpahē output',
     reloadRetry: 'kīhtwām pēhtamōhē mīna kīkīstaham',
-    unsupportedDesc: platform => `Instalarea automată la prima lansare nu este disponibilă încă pe ${platform}. Deschide Terminalul și rulează comanda de mai jos, apoi relansează aplicația. Lansările ulterioare vor sări acest pas.`,
+    unsupportedDesc: platform =>
+      `Instalarea automată la prima lansare nu este disponibilă încă pe ${platform}. Deschide Terminalul și rulează comanda de mai jos, apoi relansează aplicația. Lansările ulterioare vor sări acest pas.`,
     authNeedsOauth: provider => `Autentifică-te cu ${provider} înainte de a testa acest gateway.`,
     signInWith: provider => `Autentifică-te cu ${provider}`,
     testSucceeded: (baseUrl, version) => `Conectat la ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} din ${total} pași finalizați`,
     currentStage: stage => ` -- acum: ${stage}`,
-    lines: count => `${count} redak${count === 1 ? '' : 's'}`,
+    lines: count => `${count} redak${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'kî-isi-masinahikêyahk OpenAmer Agent',
@@ -2258,28 +2334,30 @@ export const cr = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'tâpwê model API',
-        description: 'tâpwê kâ-isi-wâpâhtahk model kâ-kîkway-ayât Fireworks AI.',
+        description: 'tâpwê kâ-isi-wâpâhtahk model kâ-kîkway-ayât Fireworks AI.'
       },
       openrouter: {
         short: 'pêyak key, mistahi model',
-        description: 'mitâtahtomitanaw model kâ-kîkway-ayât pêyak key ohci. kâ-kîhci-kîkway kâ-isi-pimipayinahk êkwa kâ-mâci-masinahikêwin.',
+        description:
+          'mitâtahtomitanaw model kâ-kîkway-ayât pêyak key ohci. kâ-kîhci-kîkway kâ-isi-pimipayinahk êkwa kâ-mâci-masinahikêwin.'
       },
       openai: {
         short: 'GPT kâ-isi-itêyihtâkosit model',
-        description: 'tâpwê kâ-isi-wâpâhtahk OpenAI model.',
+        description: 'tâpwê kâ-isi-wâpâhtahk OpenAI model.'
       },
       gemini: {
         short: 'Gemini mamihcimowina',
-        description: 'Kwayask kaskihtamowin Google Gemini mamihcimowina.',
+        description: 'Kwayask kaskihtamowin Google Gemini mamihcimowina.'
       },
       xai: {
         short: 'Grok mamihcimowina',
-        description: 'Kwayask kaskihtamowin xAI Grok mamihcimowina.',
+        description: 'Kwayask kaskihtamowin xAI Grok mamihcimowina.'
       },
       local: {
         short: 'kâ-ohpikihcikêyan',
-        description: 'OpenAmer kîspin kîkway kâ-ohpikihcikêyan ohci OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'OpenAmer kîspin kîkway kâ-ohpikihcikêyan ohci OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     copyAuthCode: 'Kopē tapasinikewin kōhtāw, ashtā isihk.',
     pasteAuthCode: 'Ashtā tapasinikewin kōhtāw',
@@ -2306,7 +2384,7 @@ export const cr = defineLocale({
     flowSubtitles: {
       pkce: 'Kâ-isi-pêhtamân browser kâ-akwanâyin, mîna ôta kâ-isi-pimâtisin.',
       device_code: 'Kâ-isi-pêhtamân masinahikan kâ-isi-nakîhtâk browser — OpenAmer kâ-isi-mâmawinitohk.',
-      external: 'Pêyak kâ-akwanâyin ôta terminal, mîna kîhtwâm ôta chat kâ-isi-pimâtisin.',
+      external: 'Pêyak kâ-akwanâyin ôta terminal, mîna kîhtwâm ôta chat kâ-isi-pimâtisin.'
     },
     signInFailed: 'Namôya kaskihtâkwan kâ-akwanâyin. Kîhtwâm kâ-isi-itôtamân.',
     pickDifferentProvider: 'Kîhtwâm kâ-isi-pêhtamân kîkway',
@@ -2317,11 +2395,13 @@ export const cr = defineLocale({
     connectedPicking: provider => `${provider} conectat. Se selectează modelul implicit...`,
     signInWith: provider => `Autentifică-te cu ${provider}`,
     openedBrowser: provider => `Am deschis ${provider} în browserul tău.`,
-    autoBrowser: provider => `Am deschis ${provider} în browserul tău. Autorizează OpenAmer acolo și vei fi conectat automat — nu trebuie să copiezi sau să lipiești nimic.`,
-    externalPending: provider => `${provider} se autentifică prin propriul CLI. Rulează această comandă într-un terminal, apoi revino și selectează „M-am autentificat”:`,
+    autoBrowser: provider =>
+      `Am deschis ${provider} în browserul tău. Autorizează OpenAmer acolo și vei fi conectat automat — nu trebuie să copiezi sau să lipiești nimic.`,
+    externalPending: provider =>
+      `${provider} se autentifică prin propriul CLI. Rulează această comandă într-un terminal, apoi revino și selectează „M-am autentificat”:`,
     deviceCodeOpened: provider => `Am deschis ${provider} în browserul tău. Introdu acest cod acolo:`,
     price: (input, output) => `${input} intrare / ${output} ieșire per Mtok`,
-    docs: provider => `documentație ${provider}`,
+    docs: provider => `documentație ${provider}`
   },
   modelPicker: {
     title: 'Āyintē itōhtēwin',
@@ -2337,13 +2417,13 @@ export const cr = defineLocale({
     free: 'Namōya pēyihkāsōwin',
     freeTier: 'Namōya pēyihkāsōwin apisinīkēwin',
     priceTitle: 'Pēhtākēwin / pēhtākwēwin pēyihkāsōwin mīlyōn token',
-    wasPrice: 'kī-',
+    wasPrice: 'kī-'
   },
   modelVisibility: {
     title: 'Mōtēla',
     search: 'Nānātawāpahtam mōtēla',
     noAuthenticatedProviders: 'Namōya kā-kī-kakwēcihkēcik kā-miyikēcik.',
-    addProvider: 'Pēhōhtā kā-miyikēt…',
+    addProvider: 'Pēhōhtā kā-miyikēt…'
   },
   shell: {
     windowControls: 'Wīntōw kakwēcihkēwin',
@@ -2354,7 +2434,7 @@ export const cr = defineLocale({
       noModels: 'Namōya mōtēla kā-miskahk',
       editModels: 'Ātoskē mōtēla…',
       refreshModels: 'Mācihtā mōtēla',
-      fast: 'Kīkēk',
+      fast: 'Kīkēk'
     },
     modelOptions: {
       noOptions: 'Namôya kâ-nâtamihk ôma kiskinohamâkosit',
@@ -2370,7 +2450,7 @@ export const cr = defineLocale({
       max: 'Mâwac',
       ultra: 'Kihci-mâwac',
       updateFailed: 'Namôya ispayiw kâ-âkwanihk kiskinohamâkosit kâ-nâtamihk',
-      fastFailed: 'Namôya ispayiw kâ-âkwanihk kîhkwêyâci kâ-itôtamihk',
+      fastFailed: 'Namôya ispayiw kâ-âkwanihk kîhkwêyâci kâ-itôtamihk'
     },
     gatewayMenu: {
       gateway: 'Kâ-pêhtâkêhk',
@@ -2385,7 +2465,7 @@ export const cr = defineLocale({
       recentActivity: 'Mēkwāc itōtamowin',
       viewAllLogs: 'Wāpahtam kahkiyaw masinahikan →',
       messagingPlatforms: 'Ācimostawin pānēl',
-      connection: label => `Conexiune: ${label}`,
+      connection: label => `Conexiune: ${label}`
     },
     approvalMode: {
       title: 'Itwēstamākēwin isihcikēwin',
@@ -2395,7 +2475,7 @@ export const cr = defineLocale({
       smartDescription: 'Kīkisēpā nānācihtāw itōtamowina, nātotinān kā-ākwanēk',
       off: 'Namōya',
       offDescription: 'Pimācihow namōya nātotināniwan',
-      ariaLabel: mode => `Mod aprobare: ${mode}`,
+      ariaLabel: mode => `Mod aprobare: ${mode}`
     },
     statusbar: {
       unknown: 'Namōya kiskēyihtam',
@@ -2436,19 +2516,21 @@ export const cr = defineLocale({
           subagent_definitions: 'Subagent wīhtamowina',
           system_prompt: 'Sistēm wīhtamākēwin',
           tool_definitions: 'Āpacihtācikana wīhtamowina',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Mōy kōntekst itēmasinahikewin kēyāpic',
         loading: 'Ē-pimohtēk pāsikōwin…',
         title: 'Kōntekst Āpacihtāwin',
         percentFull: percent => `${percent}% ᓵᑲᔅᑭᓀᐤ`,
-        tokenSummary: (used, max) => `${used} / ${max} ᐊᑭᐦᒋᑳᓇ`,
+        tokenSummary: (used, max) => `${used} / ${max} ᐊᑭᐦᒋᑳᓇ`
       },
       openContextUsage: 'Pakwēhtē kōntekst āpacihtāwin pāsikōwin',
       session: 'Sesiōn',
       runtimeSessionElapsed: 'Kā-pimohtēk sesiōn',
-      yoloOn: 'YOLO āstan — kā-kakwē-kīyāmēyitāhk nanātohk itōtamowina. Tapwēhē ē-kī-āstēhēk. Shift+click kīkway kā-āyāwēstāhk kihci-askiy.',
-      yoloOff: 'YOLO namōya āstan — tapwēhē kā-kakwē-kīyāmēyitāhk nanātohk itōtamowina. Shift+click kīkway kā-āyāwēstāhk kihci-askiy.',
+      yoloOn:
+        'YOLO āstan — kā-kakwē-kīyāmēyitāhk nanātohk itōtamowina. Tapwēhē ē-kī-āstēhēk. Shift+click kīkway kā-āyāwēstāhk kihci-askiy.',
+      yoloOff:
+        'YOLO namōya āstan — tapwēhē kā-kakwē-kīyāmēyitāhk nanātohk itōtamowina. Shift+click kīkway kā-āyāwēstāhk kihci-askiy.',
       modelNone: 'mōy',
       noModel: 'mōy mōtēl',
       switchModel: 'Āyāwē mōtēl',
@@ -2470,8 +2552,8 @@ export const cr = defineLocale({
       running: count => `${count} ᐱᒥᐸᔨᐤ`,
       cron: 'ᐃᔑᐱᓯᒧᐏᓂᐦᐠ ᐊᑐᔅᑫᐏᓇ',
       modelTitle: (provider, model) => `ᑖᐱᔅᑰᒋᑲᓐ · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     aria: 'Kihci-askaw sidebar',
@@ -2507,7 +2589,7 @@ export const cr = defineLocale({
     addToChat: 'Akwanahā pīkiskwēwin',
     folderTip: cwd => `${cwd} — ᓇᒪᐢᑕᐦᐊ ᑭᒋ ᒣᐢᑯᒋᑖᔭᐣ ᒪᓯᓇᐦᐃᑲᓂᐹᐢᑯᓯᑲᐣ`,
     couldNotPreview: path => `ᓇᒧᔭ ᑮ ᓃᑳᐣ ᐙᐸᐦᑎᓂᑳᑌᐤ ${path}`,
-    unreadableBody: error => `ᓇᒧᔭ ᑮ ᐊᔭᒥᐦᒋᑳᑌᐤ ᐅᒪ ᒪᓯᓇᐦᐃᑲᓂᐹᐢᑯᓯᑲᐣ (${error}).`,
+    unreadableBody: error => `ᓇᒧᔭ ᑮ ᐊᔭᒥᐦᒋᑳᑌᐤ ᐅᒪ ᒪᓯᓇᐦᐃᑲᓂᐹᐢᑯᓯᑲᐣ (${error}).`
   },
   preview: {
     tab: 'Nīkān-wāpahtam',
@@ -2535,7 +2617,8 @@ export const cr = defineLocale({
     editing: 'Ē-masinahikēt',
     unsavedChanges: 'Namōya kī-kisēpāyihtamihk āyisiyiniw',
     diskChangedTitle: 'Masinahikan āyisiyiniwiw diskihk',
-    diskChangedBody: 'ōma masinahikan āyisiyiniwiw ohci kī-yihkwahk. Kī-masinahikētan kīya ōma, ēkwa kī-wēpinamān kī-masinahikēwin, ēkwa kī-yihkwahk?',
+    diskChangedBody:
+      'ōma masinahikan āyisiyiniwiw ohci kī-yihkwahk. Kī-masinahikētan kīya ōma, ēkwa kī-wēpinamān kī-masinahikēwin, ēkwa kī-yihkwahk?',
     overwrite: 'Kī-masinahikē',
     discardReload: 'Kī-pēhtam & rīlōd',
     console: {
@@ -2556,7 +2639,7 @@ export const cr = defineLocale({
       sentTitle: 'Kī-pamihē kītohtowinihk',
       messages: count => `${count} ᐊᑐᐢᑫᐏᒪᓯᓇᐦᐃᑲᓂ ᐋᒋᒧᐏᓇ`,
       selected: count => `${count} ᐅᑎᓂᑳᑌᐤ`,
-      sentMessage: count => `${count} ᒪᓯᓇᐦᐃᑲᓂ${count === 1 ? 'y' : 'ies'} ᐋᑕ ᐊᐢᑕᐤ ᒪᓯᓇᐦᐃᑫᐏᓂᐦᒃ`,
+      sentMessage: count => `${count} ᒪᓯᓇᐦᐃᑲᓂ${count === 1 ? 'y' : 'ies'} ᐋᑕ ᐊᐢᑕᐤ ᒪᓯᓇᐦᐃᑫᐏᓂᐦᒃ`
     },
     web: {
       appFailedToBoot: 'Mōya kī-mācihtā wāpatahk app',
@@ -2577,27 +2660,30 @@ export const cr = defineLocale({
       reloadingNow: 'Mēkwāc kīhtwām yōhtēh nīkānāpēhtāwin.',
       restartFailedTitle: 'Nīkānāpēhtāwin kīhtwām mācīhtāw, namōya kaskihtāk',
       restartFailedMessage: 'OpenAmer namōya kaskihtāw kīhtwām mācīhtāt server.',
-      stillWorking: 'OpenAmer mēkwāc atoskēw, māka namōya kīhtwām mācīhtāwin kā-pēhtāk. Server command kēya mēkwāc nīkānōhkitēw.',
+      stillWorking:
+        'OpenAmer mēkwāc atoskēw, māka namōya kīhtwām mācīhtāwin kā-pēhtāk. Server command kēya mēkwāc nīkānōhkitēw.',
       workspaceReloading: 'Workspace kīhtwām āhkamihtāw, kīhtwām yōhtēh nīkānāpēhtāwin',
-      moduleMimeDescription: 'Module scripts MIME type namōya kwayask kā-pēhtākwan. Kītawēyihtamākēw kēya: static file server kā-pēhtākwan Vite/React app, namōya project dev server.',
+      moduleMimeDescription:
+        'Module scripts MIME type namōya kwayask kā-pēhtākwan. Kītawēyihtamākēw kēya: static file server kā-pēhtākwan Vite/React app, namōya project dev server.',
       unreachableDescription: 'Nīkānāpēhtāwin page namōya kaskihtāk kā-pēhtāk.',
       fallbackTitle: 'Nīkānāpēhtāwin',
       lookingRestart: taskId => `OpenAmer ᓇᓇᑐᓇᐤ ᓃᑳᐣ ᐙᐸᐦᑎᓂᑫᐏ ᐊᐦᒐᐦᑯᐢ ᑭᒋ ᑮᐦᑆᐢ ᒫᒋᐦᑖᑦ (${taskId})`,
       startRestartFailed: message => `ᓇᒨᔭ ᑮ ᒫᒋᐦᑖᓂᐘᓐ ᒦᓇ ᒫᒋᐦᑖᐎᓐ: ${message}`,
-      finishedRestarting: message => `OpenAmer ᑮ ᑮᓯᐦᑕᒻ ᒦᓇ ᒫᒋᐦᑖᐎᓂᔨᐤ ᓃᐢᑕᒻ ᐙᐸᐦᒋᑲᐎᓂ ᐋᐸᒋᐦᒋᑲᓂᔨᐤ${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer ᑮ ᑮᓯᐦᑕᒻ ᒦᓇ ᒫᒋᐦᑖᐎᓂᔨᐤ ᓃᐢᑕᒻ ᐙᐸᐦᒋᑲᐎᓂ ᐋᐸᒋᐦᒋᑲᓂᔨᐤ${message ? `: ${message}` : ''}`,
       failedRestarting: message => `ᓇᒨᔭ ᑮ ᒦᓇ ᒫᒋᐦᑖᓂᐘᓐ: ${message}`,
       fileChanged: url => `ᒪᓯᓇᐦᐃᑲᓐ ᑮ ᒣᐢᑾᐦᑖᓂᐘᓐ, ᒦᓇ ᐙᐸᐦᑎᓂᑳᑌᐤ: ${url}`,
       filesChanged: (count, url) => `${count} ᒪᓯᓇᐦᐃᑲᓂ ᒣᐢᑾᐦᑖᐎᓇ, ᒦᓇ ᐙᐸᐦᑎᓂᑳᑌᐤ: ${url}`,
       watchFailed: message => `ᓇᒨᔭ ᑮ ᑲᓇᐙᐸᐦᑎᑳᑌᐤ ᓃᐢᑕᒻ ᐙᐸᐦᒋᑲᐎᓂ ᒪᓯᓇᐦᐃᑲᓐ: ${message}`,
       loadFailedConsole: (code, message) => `ᓇᒨᔭ ᑮ ᐲᐦᑕᐦᑎᓂᑳᑌᐤ${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `ᐋᐸᐦᑕ ${url}`,
+      openTarget: url => `ᐋᐸᐦᑕ ${url}`
     },
     linkHint: '⌘/Ctrl-click ka-wâpamihitêk',
     closeTab: label => `ᑭᐸᐦᐊ ${label}`,
     binaryBody: label => `ᓃᑳᐣ ᐙᐸᐦᑕᒥᓂ ${label}᙮ ᒫᐢᑯᐨ ᐁᑳ ᑳ ᐅᐦᒋ ᐊᔭᒥᐦᒋᑳᑌᑭ ᒪᓯᓇᐦᐃᑲᓇ ᑭᑳ ᐙᐸᐦᑌᐣ᙮`,
     largeBody: (label, size) => `${label} je ${size}. OpenAmer će prikazati samo prvih 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} ᑫᔮᐱᐨ ᑮ ᐊᑯᒋᐦᒋᑳᑌᐤ ᑭᒋ ᐏᒋᐦᐃᐌᒪᑲᐦᒃ᙮`,
-    saveFailed: message => `ᓇᒧᔭ ᑮ ᑲᓇᐌᔨᐦᒋᑳᑌᐤ: ${message}`,
+    saveFailed: message => `ᓇᒧᔭ ᑮ ᑲᓇᐌᔨᐦᒋᑳᑌᐤ: ${message}`
   },
   zones: {
     showHeader: 'Wāpahtah ispimihk masinahikan',
@@ -2605,7 +2691,8 @@ export const cr = defineLocale({
     minimize: 'Pakwācihah',
     restore: 'Kīwēhtah',
     closeRunningTitle: 'Kipah tāp e-pimipayik?',
-    closeRunningBody: 'Awa kīkēwin ēsa pimipayiw (ēka ē-pēhitot kī-itōtamān). Kipah tāp, kākīsi wāpahtam; pimipayicikēwin kīkī-pimipayiw, ēkwa kīkī-kīwēhtahikāte sītpar ohci.',
+    closeRunningBody:
+      'Awa kīkēwin ēsa pimipayiw (ēka ē-pēhitot kī-itōtamān). Kipah tāp, kākīsi wāpahtam; pimipayicikēwin kīkī-pimipayiw, ēkwa kīkī-kīwēhtahikāte sītpar ohci.',
     closeRunningConfirm: 'Kipah tāp',
     closeOthers: 'Kipah kotaka',
     closeToRight: 'Kipah kihcī',
@@ -2626,7 +2713,8 @@ export const cr = defineLocale({
     nameLayoutPlaceholder: 'Itācimō ōma kā-itōnaw…',
     zoneEditorTitle: 'Kā-masinahikēt pāmwayēs',
     editorHintPre: 'tāpwe kā-pāskisahk ·',
-    editorHintPost: 'kīwēhtaham kā-masinahikātēk · nōhēstamākē pāmwayēsēkē kā-māmawācihtāk · nōhēstamākē kā-āyācik kā-ispīhk',
+    editorHintPost:
+      'kīwēhtaham kā-masinahikātēk · nōhēstamākē pāmwayēsēkē kā-māmawācihtāk · nōhēstamākē kā-āyācik kā-ispīhk',
     templateColumns: 'Kā-papākihtēk',
     templateRows: 'Kā-pimipayik',
     templateGrid: 'Māmawācihtāwin',
@@ -2642,7 +2730,7 @@ export const cr = defineLocale({
     mergeZones: count => `ᒫᒪᐏᓇ ${count} ᐊᔅᑭᔭ`,
     customZoneName: count => `ᑭᔭ ᑳ ᐅᔑᐦᑕᔭᐣ ${count}-ᐊᔅᑭᕀ`,
     layoutNamePlaceholder: fallback => `ᐃᔑ ᐊᔅᑌᑭ ᐃᓯᓂᑳᓱᐏᐣ (${fallback})`,
-    zoneCount: count => `${count} ᐊᔅᑭᔭ`,
+    zoneCount: count => `${count} ᐊᔅᑭᔭ`
   },
   assistant: {
     thread: {
@@ -2678,7 +2766,7 @@ export const cr = defineLocale({
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `ᐊᓄᐦᐨ, ${time}`,
-      yesterday: time => `ᐅᑖᑯᓯᕁ, ${time}`,
+      yesterday: time => `ᐅᑖᑯᓯᕁ, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer iskwāhtēm namōya kīhci-payiw',
@@ -2692,7 +2780,8 @@ export const cr = defineLocale({
       reject: 'kīhci-nakastam',
       alwaysTitle: 'kākikē itēyihtam ōma itwēwin?',
       alwaysAllow: 'kākikē itēyihtam',
-      alwaysDescription: pattern => `ᐅᒪ ᐊᒋᔅᑕᐦᑖᐤ “${pattern}” ᐃᓯᓇᑯᓯᐏᐣ ᑭᑳᑭᑫ ᐸᑭᑎᓇᒧᐏᓂ ᒪᓯᓇᐦᐃᑲᓂᕁ (~/.openamer/config.yaml). OpenAmer ᓇᒪᐏᔭ ᒦᓇ ᑭᑲᑲᑵᒋᒥᐠ ᐅᐦᐃ ᐁ ᐃᑕᓯᐣ ᐃᑕᔓᐏᓇ — ᐊᓄᐦᐨ ᐁ ᐋᐸᒋᐦᑖᔭᐣ ᒫᑲ ᑖᓂᔅᐲ ᒦᓇ ᐁ ᐋᐸᒋᐦᑖᔭᐣ.`,
+      alwaysDescription: pattern =>
+        `ᐅᒪ ᐊᒋᔅᑕᐦᑖᐤ “${pattern}” ᐃᓯᓇᑯᓯᐏᐣ ᑭᑳᑭᑫ ᐸᑭᑎᓇᒧᐏᓂ ᒪᓯᓇᐦᐃᑲᓂᕁ (~/.openamer/config.yaml). OpenAmer ᓇᒪᐏᔭ ᒦᓇ ᑭᑲᑲᑵᒋᒥᐠ ᐅᐦᐃ ᐁ ᐃᑕᓯᐣ ᐃᑕᔓᐏᓇ — ᐊᓄᐦᐨ ᐁ ᐋᐸᒋᐦᑖᔭᐣ ᒫᑲ ᑖᓂᔅᐲ ᒦᓇ ᐁ ᐋᐸᒋᐦᑖᔭᐣ.`
     },
     clarify: {
       notReady: 'nōhtē-itwēwin namōya kīhci-kī-isihtāw',
@@ -2706,7 +2795,7 @@ export const cr = defineLocale({
       continueLabel: 'kīhci-itohtē',
       lateAnswerTip: 'masinaham ôma naskomowin kîhtwâm acimowin',
       lateAnswerHint: 'ôma kakêskihkêmowin nama kîhtwâm pêhon. kîkwây ohci masinaham kîhtwâm acimowin.',
-      lateAnswer: (question, choice) => `Re: "${question}" — moj odgovor: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — moj odgovor: ${choice}`
     },
     tool: {
       code: 'masinahikan',
@@ -2740,123 +2829,123 @@ export const cr = defineLocale({
         ran: 'Kī-pimipahtā',
         running: 'Pimipahtāwin',
         ranCode: 'Kī-pimipahtā kōt',
-        runningCode: 'Masinahikēwin',
+        runningCode: 'Masinahikēwin'
       },
       prefixes: {
         browser: 'Wēp-kipahāmakēsikē',
-        web: 'Wēp',
+        web: 'Wēp'
       },
       titles: {
         browser_click: {
           done: 'Kī-tahkāpēh masinahikan pīces',
           pending: 'Tahkāpēh masinahikan pīces',
-          pendingAction: 'Tahkāpēh',
+          pendingAction: 'Tahkāpēh'
         },
         browser_fill: {
           done: 'Kī-mōskīhtā masinahikan pīces',
           pending: 'Mōskīhtā masinahikan pīces',
-          pendingAction: 'Kīkīwin',
+          pendingAction: 'Kīkīwin'
         },
         browser_navigate: {
           done: 'Kī-yōhtēhahk masinahikan',
           pending: 'Yōhtēhahk masinahikan',
-          pendingAction: 'Yōhtēwin',
+          pendingAction: 'Yōhtēwin'
         },
         browser_snapshot: {
           done: 'Kī-masināhtikēhk masinahikan',
           pending: 'Masināhtikēhk masinahikan',
-          pendingAction: 'Masināhtikēwin',
+          pendingAction: 'Masināhtikēwin'
         },
         browser_take_screenshot: {
           done: 'Kī-masināhtikēhk',
           pending: 'Masināhtikēhk',
-          pendingAction: 'Masināhtikēwin',
+          pendingAction: 'Masināhtikēwin'
         },
         browser_type: {
           done: 'Kī-masinahikēhk masinahikan',
           pending: 'Masinahikēhk masinahikan',
-          pendingAction: 'Masinahikēwin',
+          pendingAction: 'Masinahikēwin'
         },
         clarify: {
           done: 'Kī-kakwēcimikēhk',
           pending: 'Kakwēcimikēhk',
-          pendingAction: 'Kakwēcimikēwin',
+          pendingAction: 'Kakwēcimikēwin'
         },
         cronjob: {
           done: 'Cron atoskēwin',
           pending: 'Cron atoskēwin kīsikāwipayihkēhk',
-          pendingAction: 'Kīsikāwipayihkēwin',
+          pendingAction: 'Kīsikāwipayihkēwin'
         },
         edit_file: {
           done: 'Kī-masinahahk masinahikan',
           pending: 'Ē-masinahikātēk masinahikan',
-          pendingAction: 'Ē-masinahikātēk',
+          pendingAction: 'Ē-masinahikātēk'
         },
         execute_code: {
           done: 'Kī-pimipayin masinahikewin',
           pending: 'Ē-masinahikēhk',
-          pendingAction: 'Ē-masinahikēhk',
+          pendingAction: 'Ē-masinahikēhk'
         },
         image_generate: {
           done: 'Kī-isihtāw māmasinahikan',
           pending: 'Ē-isihtāhk māmasinahikan',
-          pendingAction: 'Ē-isihtāhk',
+          pendingAction: 'Ē-isihtāhk'
         },
         list_files: {
           done: 'Kī-itasihtāw masinahikana',
           pending: 'Ē-itasihtāhk masinahikana',
-          pendingAction: 'Ē-itasihtāhk',
+          pendingAction: 'Ē-itasihtāhk'
         },
         patch: {
           done: 'Kī-masihtotāw masinahikan',
           pending: 'Ē-masihtotāhk masinahikan',
-          pendingAction: 'Ē-masihtotāhk',
+          pendingAction: 'Ē-masihtotāhk'
         },
         read_file: {
           done: 'Kī-ayamihtāw masinahikan',
           pending: 'Ē-ayamihtāhk masinahikan',
-          pendingAction: 'Ē-ayamihtāhk',
+          pendingAction: 'Ē-ayamihtāhk'
         },
         search_files: {
           done: 'Kī-nānatohtāw masinahikana',
           pending: 'Ē-nānatohtāhk masinahikana',
-          pendingAction: 'Ē-nānatohtāhk',
+          pendingAction: 'Ē-nānatohtāhk'
         },
         session_search_recall: {
           done: 'Kī-nānātōtam mācihowin kiskēyihtamowin',
           pending: 'Nānātōtam mācihowin kiskēyihtamowin',
-          pendingAction: 'Nānātōtam',
+          pendingAction: 'Nānātōtam'
         },
         terminal: {
           done: 'Kī-pimōhtahkē itōhtahkēwin',
           pending: 'Pimōhtahkē itōhtahkēwin',
-          pendingAction: 'Pimōhtahkē',
+          pendingAction: 'Pimōhtahkē'
         },
         todo: {
           done: 'Kī-ākwanētam atoskēwina',
           pending: 'Ākwanētam atoskēwina',
-          pendingAction: 'Ākwanētam',
+          pendingAction: 'Ākwanētam'
         },
         vision_analyze: {
           done: 'Kī-nātamōtam mēmēcimowin',
           pending: 'Nātamōtam mēmēcimowin',
-          pendingAction: 'Nātamōtam',
+          pendingAction: 'Nātamōtam'
         },
         web_extract: {
           done: 'Kī-ayamihtā wēp-masinahikan',
           pending: 'Ayamihtā wēp-masinahikan',
-          pendingAction: 'Ayamihtā',
+          pendingAction: 'Ayamihtā'
         },
         web_search: {
           done: 'Kī-nānātōtam wēp',
           pending: 'Nānātōtam wēp',
-          pendingAction: 'Nānātōtam',
+          pendingAction: 'Nānātōtam'
         },
         write_file: {
           done: 'Kī-masinahikē masinahikan',
           pending: 'Masinahikē masinahikan',
-          pendingAction: 'Ayamihtāwin',
-        },
+          pendingAction: 'Ayamihtāwin'
+        }
       },
       recoveredMany: count => `Oporavljeno nakon ${count} neuspješnih koraka`,
       failedMany: count => `${count} koraka neuspješno`,
@@ -2866,9 +2955,9 @@ export const cr = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Pokreće se ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Pokreće se ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Pokreće se ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'Namôya kî-kaskihtâw YOLO kî-âskawê',
@@ -2880,7 +2969,8 @@ export const cr = defineLocale({
     editFailed: 'Namôya kî-kaskihtâw kî-masinahikê',
     resumeFailed: 'Namôya kî-kaskihtâw kî-kîhtwâm',
     resumeStrandedTitle: 'Namôya kî-kaskihtâw ôma kâ-pimipayik kî-pîhtokwê',
-    resumeStrandedBody: 'Kî-pakastimow kâ-kî-itôtamâkêhk ôma kâ-pimipayik; kâ-kîhtwâm-kaskihtâwin kî-nakasint. Nâkatêyihtâ kâ-pimipayik kâ-pîhtokwêhkamik, mîna kîhtwâm kaskihtâ.',
+    resumeStrandedBody:
+      'Kî-pakastimow kâ-kî-itôtamâkêhk ôma kâ-pimipayik; kâ-kîhtwâm-kaskihtâwin kî-nakasint. Nâkatêyihtâ kâ-pimipayik kâ-pîhtokwêhkamik, mîna kîhtwâm kaskihtâ.',
     resumeRetry: 'Kîhtwâm kaskihtâ',
     nothingToBranch: 'Namôya kîkway kâ-oskaskihkê',
     branchNeedsChat: 'Mamâhtâw êkwa mîna kîhtwâm kâ-itwêhk kî-... ôma oskaskihkêwin.',
@@ -2919,7 +3009,7 @@ export const cr = defineLocale({
       timedOut: 'Kî-kîsitêpayiw kâ-pêhôyan iskoyihkêwin. `openamer gateway` kâ-pimipayik?',
       success: platform => `Predano ${platform}. Nastavite ovdje kada god.`,
       systemNote: platform => `↻ Predano ${platform} — nastavite ovdje kada god.`,
-      failed: error => `Predaja neuspješna: ${error}`,
+      failed: error => `Predaja neuspješna: ${error}`
     },
     audioReadFailed: 'Namōya kī-tāhtopēhtam kā-masinahikātēk pēhtamowin',
     sessionUnavailable: 'Pīhtokēwin namōya kīhcitāw',
@@ -2934,47 +3024,51 @@ export const cr = defineLocale({
     skillCommandsAvailable: count => `Dostupno ${count} naredbi vještine.`,
     warningLine: message => `upozorenje: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} za ovu sesiju`,
-    profileStatus: current => `Profil: ${current}. Koristite /profil <naziv> ili odabir "Nova sesija" za početak čavrljanja u drugom profilu.`,
+    profileStatus: current =>
+      `Profil: ${current}. Koristite /profil <naziv> ili odabir "Nova sesija" za početak čavrljanja u drugom profilu.`,
     noProfileNamed: (target, available) => `Nema profila s nazivom "${target}". Dostupni: ${available}`,
     newChatsProfile: name => `Novi ćavrljanja će koristiti profil ${name}.`,
-    branchTitle: n => `Nacrt: Grana #${n}`,
+    branchTitle: n => `Nacrt: Grana #${n}`
   },
   errors: {
     genericFailure: 'Kî-mâci-ispayin.',
     boundaryTitle: 'Kî-kwâskwêpayin interfaceihk.',
-    boundaryDesc: 'Kî-mâci-ispayin namôya kâ-kî-itêyihtêk wâpahtamowinihk. Kâ-âcimoyan êkwa kâ-isihtâyan kî-nakatohkâwâw.',
+    boundaryDesc:
+      'Kî-mâci-ispayin namôya kâ-kî-itêyihtêk wâpahtamowinihk. Kâ-âcimoyan êkwa kâ-isihtâyan kî-nakatohkâwâw.',
     reloadWindow: 'Mîna-kâhcitin pâhpikwan.',
-    openLogs: 'Kîskik masinahikanisak.',
+    openLogs: 'Kîskik masinahikanisak.'
   },
   ui: {
     search: {
-      clear: 'Pônihtâ nanâtawihiwêwin.',
+      clear: 'Pônihtâ nanâtawihiwêwin.'
     },
     pagination: {
       label: 'Pâsikêwin',
       previous: 'Otâpân',
       previousAria: 'Itohtê kâ-otâpân masinahikanihk.',
       next: 'Nîkân',
-      nextAria: 'Itohtê nîkân masinahikanihk.',
+      nextAria: 'Itohtê nîkân masinahikanihk.'
     },
     sidebar: {
       title: 'Pâskîhk mitâhtik',
       description: 'Wâpahtam pimipayihk pâskîhk mitâhtik.',
-      toggle: 'Kîskik/pônihtâ pâskîhk mitâhtik.',
-    },
+      toggle: 'Kîskik/pônihtâ pâskîhk mitâhtik.'
+    }
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer iskwēhtēwin namōya kīskwēhtēw',
     sudoSendFailed: 'Namōya kī-nipāhtam sudo kākīsimowin',
     secretSendFailed: 'Namōya kī-nipāhtam kīsimowin',
     sudoTitle: 'Kā-nākatohkēt kākīsimowin',
-    sudoDesc: 'OpenAmer māmitonēyihtam kī-kākīsimowin ē-itōtam kā-kīkwayēyihtahk itōtamowin. Kī-nipāhtam āhkami ōta kā-nākatohkēt.',
+    sudoDesc:
+      'OpenAmer māmitonēyihtam kī-kākīsimowin ē-itōtam kā-kīkwayēyihtahk itōtamowin. Kī-nipāhtam āhkami ōta kā-nākatohkēt.',
     sudoPlaceholder: 'sudo kākīsimowin',
     secretTitle: 'Kīsimowin kīkway',
     secretDesc: 'OpenAmer māmitonēyihtam kā-kīskēyihtamowin ē-isi-pēhtamok.',
-    secretPlaceholder: 'kā-kīsimōt kīkway',
+    secretPlaceholder: 'kā-kīsimōt kīkway'
   },
   remoteDisplayBanner: {
-    message: reason => `Softversko renderiranje aktivno — otkriven je udaljeni prikaz (${reason}). GPU ubrzanje je onemogućeno kako bi se spriječilo treperenje.`,
-  },
+    message: reason =>
+      `Softversko renderiranje aktivno — otkriven je udaljeni prikaz (${reason}). GPU ubrzanje je onemogućeno kako bi se spriječilo treperenje.`
+  }
 })

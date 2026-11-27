@@ -8,13 +8,7 @@ import { Input } from '@/components/ui/input'
 import { useI18n } from '@/i18n'
 import { compactNumber } from '@/lib/format'
 import { queryClient } from '@/lib/query-client'
-import {
-  getPluginsHub,
-  installAgentPlugin,
-  rescanPlugins,
-  searchAgentPlugins,
-  setAgentPluginEnabled
-} from '@/openamer'
+import { getPluginsHub, installAgentPlugin, rescanPlugins, searchAgentPlugins, setAgentPluginEnabled } from '@/openamer'
 import { notify, notifyError } from '@/store/notifications'
 import type { AgentPluginRow, PluginsHub } from '@/types/openamer'
 
@@ -28,15 +22,7 @@ const PLUGINS_QUERY_KEY = ['plugins-hub'] as const
 // Stable identity so `?? []` never re-arms the filter memo on every render.
 const NO_PLUGINS: AgentPluginRow[] = []
 
-function PluginRow({
-  row,
-  busy,
-  onToggle
-}: {
-  row: AgentPluginRow
-  busy: boolean
-  onToggle: (next: boolean) => void
-}) {
+function PluginRow({ row, busy, onToggle }: { row: AgentPluginRow; busy: boolean; onToggle: (next: boolean) => void }) {
   const { t } = useI18n()
 
   return (
@@ -190,12 +176,7 @@ export function PluginsTab({ query }: { query: string }) {
               <span className="text-xs opacity-70">{t.skills.pluginsDiscoverEmpty(discover.data.query)}</span>
             )
           ) : (
-            <Button
-              disabled={discover.isPending}
-              onClick={() => discover.mutate(needle)}
-              size="sm"
-              variant="outline"
-            >
+            <Button disabled={discover.isPending} onClick={() => discover.mutate(needle)} size="sm" variant="outline">
               <Codicon name={discover.isPending ? 'loading~spin' : 'search'} size="0.85rem" />
               {t.skills.pluginsDiscoverAction(needle)}
             </Button>

@@ -75,7 +75,9 @@ test('production teardown retires its process owner before delivering SIGTERM', 
     pid: 123,
     killed: false,
     kill: () => {
-      if (state.clearForCurrentProcess(owner)) {teardownRestartEvents += 1}
+      if (state.clearForCurrentProcess(owner)) {
+        teardownRestartEvents += 1
+      }
     }
   }
 
@@ -126,7 +128,9 @@ test('real updater PID marker keeps startup blocked after local handoff ends', a
     await reconnect
     assert.equal(spawned, true)
   } finally {
-    if (updater.exitCode === null) {updater.kill()}
+    if (updater.exitCode === null) {
+      updater.kill()
+    }
     fs.rmSync(home, { recursive: true, force: true })
   }
 })
@@ -186,7 +190,9 @@ test.runIf(process.platform === 'win32')(
       assert.ok(owner)
       let exitNotifications = 0
       child.on('exit', () => {
-        if (state.clearForCurrentProcess(owner)) {exitNotifications += 1}
+        if (state.clearForCurrentProcess(owner)) {
+          exitNotifications += 1
+        }
       })
       exited = once(child, 'exit')
       const { fn: isLocked } = mainFunction('isShimLocked', { IS_WINDOWS: true, fs })
@@ -204,7 +210,9 @@ test.runIf(process.platform === 'win32')(
         backendPool: new Map(),
         stopAllPoolBackends: () => {},
         forceKillProcessTree: (pid: number) => {
-          if (pid === child.pid) {child.kill('SIGKILL')}
+          if (pid === child.pid) {
+            child.kill('SIGKILL')
+          }
         },
         venvOpenAmerShimPath: () => shim,
         isShimLocked: isLocked,
@@ -220,9 +228,13 @@ test.runIf(process.platform === 'win32')(
       await reconnect
       assert.equal(reconnected, true)
     } finally {
-      if (child.exitCode === null) {child.kill()}
+      if (child.exitCode === null) {
+        child.kill()
+      }
 
-      if (exited) {await exited}
+      if (exited) {
+        await exited
+      }
       fs.rmSync(home, { recursive: true, force: true })
     }
   }
@@ -244,7 +256,9 @@ test('recovery refuses handoff when the environment stays locked and clears its 
     path,
     chooseUpdaterArgs: () => ['--update'],
     releaseBackendLockForUpdate: async () => ({ unlocked: false }),
-    spawnUpdaterProcess: () => { updaterSpawns += 1 }
+    spawnUpdaterProcess: () => {
+      updaterSpawns += 1
+    }
   })
 
   await assert.rejects(fn('test'), /could not release the running installation/)
@@ -270,7 +284,9 @@ test('recovery spawn failure releases its gate instead of stranding reconnects',
     chooseUpdaterArgs: () => ['--update'],
     pathWithOpenAmerManagedNode: () => 'fixture-path',
     releaseBackendLockForUpdate: async () => ({ unlocked: true }),
-    spawnUpdaterProcess: () => { throw new Error('injected spawn failure') }
+    spawnUpdaterProcess: () => {
+      throw new Error('injected spawn failure')
+    }
   })
 
   await assert.rejects(fn('test'), /injected spawn failure/)
@@ -292,9 +308,11 @@ test('a superseded pool start does not delete the replacement backend entry', as
     startPoolIdleReaper: () => {},
     spawnPoolBackend: async (key: string, entry: unknown) => {
       const current = backendPool.get(key)
+
       if (current !== entry) {
         throw new Error('OpenAmer profile backend start was superseded by teardown.')
       }
+
       return 'connection'
     }
   })

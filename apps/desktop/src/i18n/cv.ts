@@ -27,7 +27,7 @@ export const cv = defineLocale({
       generatedTag: 'Проектланӑ',
       adoptFailed: 'Ӗ пӗтӗне илӗрме марӑ.',
       toggleFailed: 'Пӗтӗшӗн тӗрӗвӗне улӑштариччи марӑ.',
-      noneAvailable: 'Пӗтӗсем ҫук — установирма пӗрӗнче ҫирӗк.',
+      noneAvailable: 'Пӗтӗсем ҫук — установирма пӗрӗнче ҫирӗк.'
     },
     generatePet: {
       title: 'Пӗтӗ тӗрт',
@@ -56,7 +56,7 @@ export const cv = defineLocale({
       referenceImageTooLarge: 'Эзлӗ сурӑх ҫынна. 16 MB-тан кӑвак уйӑр.',
       referenceImageInvalid: 'Бу эзлӗ сурӑхнӑ окшувҫӑк. PNG, JPG, WebP яки GIF уйӑр.',
       adopt: 'Пӗрле',
-      startOver: 'Янгӑран савӑн',
+      startOver: 'Янгӑран савӑн'
     },
     logSearchPlaceholder: 'Фильтровать строки журнала...',
     maintenance: {
@@ -101,7 +101,7 @@ export const cv = defineLocale({
       resetConfirm: target => `${target} çăлтав? Бул кайта çăлкуççă.`,
       resetDone: files => `Çăлту ${files}.`,
       actionStarted: name => `${name} çурăt — лог куçак...`,
-      actionFailed: name => `${name} çурăмаççĕ`,
+      actionFailed: name => `${name} çурăмаççĕ`
     },
     close: 'Командный центрӑр кайар',
     paletteTitle: 'Команд палитра',
@@ -120,7 +120,7 @@ export const cv = defineLocale({
       install: 'Пултар',
       installing: 'Пултаравӑлла...',
       installed: 'Пултарӑн',
-      installs: count => `${count} пултарма`,
+      installs: count => `${count} пултарма`
     },
     settingsFields: 'Настройка пулӑкӗсем',
     mcpServers: 'MCP серверсем',
@@ -129,49 +129,49 @@ export const cv = defineLocale({
       maintenance: 'Тухтав',
       sessions: 'Сессисем',
       system: 'Системе',
-      usage: 'Пултаран',
+      usage: 'Пултаран'
     },
     sectionDescriptions: {
       maintenance: 'Диагностика, резервные копии, куратор и данные памяти',
       sessions: 'Поиск и управление сессиями',
       system: 'Статус, журналы и системные действия',
-      usage: 'Токены, стоимость и активность навыков во времени',
+      usage: 'Токены, стоимость и активность навыков во времени'
     },
     nav: {
       newChat: {
         title: 'Новая сессия',
-        detail: 'Начать новую сессию',
+        detail: 'Начать новую сессию'
       },
       settings: {
         title: 'Настройки',
-        detail: 'Настроить рабочий стол OpenAmer',
+        detail: 'Настроить рабочий стол OpenAmer'
       },
       skills: {
         title: 'Возможности',
-        detail: 'Навыки, инструменты и серверы MCP',
+        detail: 'Навыки, инструменты и серверы MCP'
       },
       messaging: {
         title: 'Обмен сообщениями',
-        detail: 'Настроить Telegram, Slack, Discord и др.',
+        detail: 'Настроить Telegram, Slack, Discord и др.'
       },
       artifacts: {
         title: 'Артефакты',
-        detail: 'Просмотр сгенерированных результатов',
-      },
+        detail: 'Просмотр сгенерированных результатов'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Панель сессий',
-        detail: 'Поиск, закрепление и управление сессиями',
+        detail: 'Поиск, закрепление и управление сессиями'
       },
       system: {
         title: 'Системная панель',
-        detail: 'Статус шлюза, журналы, перезапуск/обновление',
+        detail: 'Статус шлюза, журналы, перезапуск/обновление'
       },
       usage: {
         title: 'Панель использования',
-        detail: 'Токены, стоимость и активность навыков',
-      },
+        detail: 'Токены, стоимость и активность навыков'
+      }
     },
     providerNavigate: 'Навигация',
     providerSessions: 'Сессии',
@@ -215,7 +215,7 @@ export const cv = defineLocale({
     noSkillActivity: 'Умлăх активностĕççĕ.',
     actions: count => `${count} действисем`,
     logFile: 'Лог файлĕ',
-    logLevel: 'Пахча',
+    logLevel: 'Пахча'
   },
   messaging: {
     search: 'Поиск систем обмена сообщениями...',
@@ -230,130 +230,130 @@ export const cv = defineLocale({
       not_configured: 'Настройка кайта',
       pending_restart: 'Каюта çурăt кайта',
       retrying: 'Янра пулмакта',
-      startup_failed: 'Çурăt халăх',
+      startup_failed: 'Çурăt халăх'
     },
     fieldCopy: {
       DISCORD_REPLY_TO_MODE: {
         label: 'Хурав стилӗ',
-        help: 'пӗрремӗш, пурте е сӳнӗ.',
+        help: 'пӗрремӗш, пурте е сӳнӗ.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Пур Discord усӑҫине те ирӗк пар',
-        help: 'Аталанӑвӗнче ҫеҫ. Чӑн пулсан, кирек кам та ирӗклӗ списоксӑр бот патне тӳрех ҫыру яма пултарать.',
+        help: 'Аталанӑвӗнче ҫеҫ. Чӑн пулсан, кирек кам та ирӗклӗ списоксӑр бот патне тӳрех ҫыру яма пултарать.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Тӗп канал ID',
-        help: 'Бот хӑй тӗллӗн ҫырусем (cron тухӑҫӗ, асаилтерӳсем) яракан канал.',
+        help: 'Бот хӑй тӗллӗн ҫырусем (cron тухӑҫӗ, асаилтерӳсем) яракан канал.'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Тӗп канал ячӗ',
-        help: 'Тӗп каналӑн журналсемпе статус тухӑҫӗнче кӑтартакан ячӗ.',
+        help: 'Тӗп каналӑн журналсемпе статус тухӑҫӗнче кӑтартакан ячӗ.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Пур iMessage усӑҫине те ирӗк пар',
-        help: 'Чӑн пулсан, BlueBubbles ирӗклӗ списокне сиктер.',
+        help: 'Чӑн пулсан, BlueBubbles ирӗклӗ списокне сиктер.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Пур Mattermost усӑҫине те ирӗк пар',
+        label: 'Пур Mattermost усӑҫине те ирӗк пар'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Тӗп канал',
+        label: 'Тӗп канал'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Пур QQ усӑҫине те ирӗк пар',
+        label: 'Пур QQ усӑҫине те ирӗк пар'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ тӗп каналӗ',
-        help: 'Cron ҫиттерӗвӗ валли стандартлӑ канал е ушкӑн.',
+        help: 'Cron ҫиттерӗвӗ валли стандартлӑ канал е ушкӑн.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ тӗп канал ячӗ',
+        label: 'QQ тӗп канал ячӗ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack бот токенӗ',
-        help: 'Slack приложенине вырнаҫтарнӑ хыҫҫӑн OAuth & Permissions\'ран бот токенне усӑ кур.',
-        placeholder: 'Slack бот токенне кӗрт',
+        help: "Slack приложенине вырнаҫтарнӑ хыҫҫӑн OAuth & Permissions'ран бот токенне усӑ кур.",
+        placeholder: 'Slack бот токенне кӗрт'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack приложени токенӗ',
         help: 'Socket Mode валли кирлӗ приложени шайӗнчи токена усӑ кур.',
-        placeholder: 'Slack приложени токенне кӗрт',
+        placeholder: 'Slack приложени токенне кӗрт'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Ирӗклӗ Slack усӑҫи ID-сем',
-        help: 'Сӑнса панӑ. Slack усӑҫи ID-сене запятойпа уйӑр.',
+        help: 'Сӑнса панӑ. Slack усӑҫи ID-сене запятойпа уйӑр.'
       },
       MATTERMOST_URL: {
         label: 'Сервер URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Бот токенӗ',
+        label: 'Бот токенӗ'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Ирӗклӗ усӑҫи ID-сем',
-        help: 'Сӑнса панӑ. Mattermost усӑҫи ID-сене запятойпа уйӑр.',
+        help: 'Сӑнса панӑ. Mattermost усӑҫи ID-сене запятойпа уйӑр.'
       },
       MATRIX_HOMESERVER: {
         label: 'Тӗп сервер URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Кӗрмелли токен',
+        label: 'Кӗрмелли токен'
       },
       MATRIX_USER_ID: {
         label: 'Бот усӑҫи ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Ирӗклӗ Matrix усӑҫи ID-сем',
-        help: 'Сӑнса панӑ. Усӑҫи ID-сене @user:server форматра запятойпа уйӑр.',
+        help: 'Сӑнса панӑ. Усӑҫи ID-сене @user:server форматра запятойпа уйӑр.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal кӗперӗн URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Ӗҫлесе тӑракан signal-cli REST кӗперӗн URL.',
+        help: 'Ӗҫлесе тӑракан signal-cli REST кӗперӗн URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Телефон номерӗ',
-        help: 'Номерът, регистриран във вашия signal-cli мост.',
+        help: 'Номерът, регистриран във вашия signal-cli мост.'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Бот токен',
         help: '@BotFather хут бота тĕрĕт, шукки токенĕ вăраш.',
-        placeholder: 'Telegram бот токенĕ вăраш',
+        placeholder: 'Telegram бот токенĕ вăраш'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Рушмалла Telegram пĕрлешĕ ID-сем',
-        help: 'Тавтăрмалли. @userinfobot-ран комма хутла числовые ID-сем. Мун пĕрлешсĕз, хайхи кĕнеке ботан DM вăра ашалла.',
+        help: 'Тавтăрмалли. @userinfobot-ран комма хутла числовые ID-сем. Мун пĕрлешсĕз, хайхи кĕнеке ботан DM вăра ашалла.'
       },
       TELEGRAM_PROXY: {
         label: 'Прокси URL',
-        help: 'Так та вăрман, ку Telegram тухтатил сетивĕсен.',
+        help: 'Так та вăрман, ку Telegram тухтатил сетивĕсен.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Бот токен',
-        help: 'Discord Developer Portal-ра приложение тĕрĕт, бот вăраш, шукки токенĕ вăраш.',
+        help: 'Discord Developer Portal-ра приложение тĕрĕт, бот вăраш, шукки токенĕ вăраш.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Рушмалла Discord пĕрлешĕ ID-сем',
-        help: 'Препоръчително. ID-та на потребители в Discord, разделени със запетая.',
+        help: 'Препоръчително. ID-та на потребители в Discord, разделени със запетая.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Разрешени потребители на Signal',
-        help: 'Препоръчително. Идентификатори на Signal, разделени със запетая.',
+        help: 'Препоръчително. Идентификатори на Signal, разделени със запетая.'
       },
       WHATSAPP_ENABLED: {
         label: 'Активирай WhatsApp мост',
-        help: 'Задава се автоматично от превключвателя по-долу. Не променяйте, освен ако не знаете, че е необходимо.',
+        help: 'Задава се автоматично от превключвателя по-долу. Не променяйте, освен ако не знаете, че е необходимо.'
       },
       WHATSAPP_MODE: {
-        label: 'Режим на моста',
+        label: 'Режим на моста'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Разрешени потребители на WhatsApp',
-        help: 'Препоръчително. Телефонни номера или WhatsApp ID-та, разделени със запетая.',
-      },
+        help: 'Препоръчително. Телефонни номера или WhatsApp ID-та, разделени със запетая.'
+      }
     },
     unknown: 'Тупаç',
     hintPendingRestart: 'Шлюзи кайта çурăt статус панель păлтан, бул çынни хушармак уйна.',
@@ -388,8 +388,7 @@ export const cv = defineLocale({
     failedUpdate: name => `${name} пĕррету вăлли`,
     failedSave: name => `${name} сахлаш вăлли`,
     failedClear: key => `${key} чистĕрту вăлли`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   profiles: {
     renameMenu: 'Ӗнерле…',
@@ -467,7 +466,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     failedLoadSoul: 'Error en carregar SOUL.md',
     failedSaveSoul: 'Error en guardar SOUL.md',
     failedCreate: 'Error en crear perfil',
-    failedRename: 'Error en reanomenar perfil',
+    failedRename: 'Error en reanomenar perfil'
   },
   cron: {
     days: {
@@ -478,11 +477,12 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       '4': 'Чӑршӗмӗш',
       '5': 'Пӗнчирӗмӗш',
       '6': 'Шӑршӗмӗш',
-      '7': 'Вырсыршӗмӗш',
+      '7': 'Вырсыршӗмӗш'
     },
     topOfHour: 'Хӑйӗн вара тӗпӗнче',
     newCron: 'Çӗнӗ cron',
-    emptyDescNew: 'cron вырӗнӗ тӣрлӗх ойпат. OpenAmer ӗҫлевӗсӗ ирткӗлӗ тӗртӗрӗм вара результатсене сана ҫӗрӗҫ ҫӗрӗх сирӗп пӗлӗх.',
+    emptyDescNew:
+      'cron вырӗнӗ тӣрлӗх ойпат. OpenAmer ӗҫлевӗсӗ ирткӗлӗ тӗртӗрӗм вара результатсене сана ҫӗрӗҫ ҫӗрӗх сирӗп пӗлӗх.',
     emptyDescSearch: 'Кӑлай тапӑҫла валли иҫ.',
     emptyTitleNew: 'Йӗлӗх тӗрӗх ӗҫлевӗ хӑш пурӗ',
     emptyTitleSearch: 'Ӑҫ тӗрри нумайса',
@@ -526,14 +526,14 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       paused: 'pausat',
       disabled: 'desactivat',
       error: 'епаллăх',
-      completed: 'completat',
+      completed: 'completat'
     },
     deliveryLabels: {
-      local: 'Цей комп\'ютер',
+      local: "Цей комп'ютер",
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Ел. пошта',
+      email: 'Ел. пошта'
     },
     scheduleLabels: {
       daily: 'Щодня',
@@ -542,16 +542,16 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       monthly: 'Щомісяця',
       hourly: 'Щогодини',
       'every-15-minutes': 'Кожні 15 хвилин',
-      custom: 'Спеціальний',
+      custom: 'Спеціальний'
     },
     scheduleHints: {
       daily: 'Щодня о 9:00',
-      weekdays: 'З понеділка по п\'ятницю о 9:00',
+      weekdays: "З понеділка по п'ятницю о 9:00",
       weekly: 'Щопонеділка о 9:00',
       monthly: 'Першого числа кожного місяця о 9:00',
       hourly: 'На початку кожної години',
       'every-15-minutes': 'Кожні 15 хвилин',
-      custom: 'Синтаксис cron або природна мова',
+      custom: 'Синтаксис cron або природна мова'
     },
     dayFallback: value => `день ${value}`,
     everyDayAt: time => `Щодня о ${time}`,
@@ -564,7 +564,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     editTitle: 'Редагувати завдання cron',
     createTitle: 'Нове завдання cron',
     editDesc: 'Оновіть розклад, промпт або ціль доставки. Зміни застосуються під час наступного запуску.',
-    createDesc: 'Заплануйте автоматичний запуск промпту. Використовуйте синтаксис cron або природну фразу, наприклад "кожні 15 хвилин".',
+    createDesc:
+      'Заплануйте автоматичний запуск промпту. Використовуйте синтаксис cron або природну фразу, наприклад "кожні 15 хвилин".',
     nameLabel: 'Назва',
     namePlaceholder: 'Ранковий брифінг',
     promptLabel: 'Промпт',
@@ -586,7 +587,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     createAction: 'Cron тутар',
     tabs: {
       jobs: 'Ишлĕ',
-      blueprints: 'Чертĕжĕ',
+      blueprints: 'Чертĕжĕ'
     },
     blueprints: {
       tab: 'Чертĕжĕ',
@@ -600,8 +601,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       loading: 'Чертĕжĕсĕ кайта...',
       failedLoad: 'Чертĕжĕсĕ кайташмаш',
       emptyTitle: 'Чертĕжĕсĕ юк',
-      emptyDesc: 'Ман бэкенд-ра автоматизация чертĕжĕсĕ юк.',
-    },
+      emptyDesc: 'Ман бэкенд-ра автоматизация чертĕжĕсĕ юк.'
+    }
   },
   zones: {
     showHeader: 'Кăрăк кăтарт',
@@ -609,7 +610,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     minimize: 'Хăтĕрĕ',
     restore: 'Тăрăхтăр',
     closeRunningTitle: 'Ĕçлев табне хăпмалла-и?',
-    closeRunningBody: 'Çивĕ çăтмалă ĕçлевшĕн ĕ тепĕр санăн е ĕнерĕне кăнать. Табне хăпсан, вăл пытарăнать — сессия ĕçлевне сĕтĕрет, айĕнче те ĕçлевĕпе унăнса ĕçлетĕрĕ.',
+    closeRunningBody:
+      'Çивĕ çăтмалă ĕçлевшĕн ĕ тепĕр санăн е ĕнерĕне кăнать. Табне хăпсан, вăл пытарăнать — сессия ĕçлевне сĕтĕрет, айĕнче те ĕçлевĕпе унăнса ĕçлетĕрĕ.',
     closeRunningConfirm: 'Таб хăп',
     closeOthers: 'Ытти табсене хăп',
     closeToRight: 'Справа табсене хăп',
@@ -636,7 +638,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     templateGrid: 'Сетка',
     templatePriority: 'Приоритет',
     saveApply: 'Хăтĕр тата тăрăхтăр',
-    notExpressible: 'Ҫакă йĕркеме ĕçтĕнчен пĕр-ене ĕçĕнĕт (пинвил) — ытти вăйĕнче те пĕрле ичи пĕрле ĕçĕнĕм тавĕн ҫăнăх вырăн йĕк',
+    notExpressible:
+      'Ҫакă йĕркеме ĕçтĕнчен пĕр-ене ĕçĕнĕт (пинвил) — ытти вăйĕнче те пĕрле ичи пĕрле ĕçĕнĕм тавĕн ҫăнăх вырăн йĕк',
     split: dir => `${dir} уйăр`,
     move: dir => `${dir} куçар`,
     pluginDisabled: pluginId => `«${pluginId}» плагин сӳнтернĕ`,
@@ -646,7 +649,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     mergeZones: count => `${count} зонӑна пӗрлештер`,
     customZoneName: count => `Хӑйне евӗр ${count} зонӑллӑ`,
     layoutNamePlaceholder: fallback => `Вырнаҫтару ячӗ (${fallback})`,
-    zoneCount: count => `${count} зона`,
+    zoneCount: count => `${count} зона`
   },
   assistant: {
     thread: {
@@ -682,7 +685,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       restoreNext: 'Ҫитес сыхлав вырӑнне тавӑр',
       goForward: 'Малалла куҫ',
       sendEdited: 'Тӳрлетнӗ пӗлтерӗве яр',
-      attachingFile: 'Ҫыпӑҫтаратпӑр…',
+      attachingFile: 'Ҫыпӑҫтаратпӑр…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer шлюзӗ ҫыхӑнман',
@@ -695,8 +698,9 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       jumpToApproval: 'Ирӗк памалла',
       reject: 'Йышӑнмасӑр хӑварас',
       alwaysTitle: 'Ку командӑна яланах ирӗк парас-и?',
-      alwaysDescription: pattern => `Ку «${pattern}» шаблона сирӗн яланхи ирӗк панӑсен спискине (~/.openamer/config.yaml) хушать. OpenAmer кунашкал командӑсемшӗн урӑх ыйтмӗ — ку сессире те, малашнехисенче те.`,
-      alwaysAllow: 'Яланах ирӗк парас',
+      alwaysDescription: pattern =>
+        `Ку «${pattern}» шаблона сирӗн яланхи ирӗк панӑсен спискине (~/.openamer/config.yaml) хушать. OpenAmer кунашкал командӑсемшӗн урӑх ыйтмӗ — ку сессире те, малашнехисенче те.`,
+      alwaysAllow: 'Яланах ирӗк парас'
     },
     clarify: {
       notReady: 'Ӑнлантару ыйтӑвӗ халӗ хатӗр мар',
@@ -710,7 +714,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       continueLabel: 'Малалла',
       lateAnswer: (question, choice) => `«${question}» ҫинчен — манӑн хурав: ${choice}`,
       lateAnswerTip: 'Ку хурава хушма ҫыру пек хатӗрлӗр',
-      lateAnswerHint: 'Ку ыйту тек хурав кӗтмест. Ӑна хушма ҫыру пек хатӗрлеме варианчӗсене суйлӑр.',
+      lateAnswerHint: 'Ку ыйту тек хурав кӗтмест. Ӑна хушма ҫыру пек хатӗрлеме варианчӗсене суйлӑр.'
     },
     tool: {
       code: 'Код',
@@ -746,11 +750,11 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
         ran: 'Пурнӑҫланчӗ',
         running: 'Пурнӑҫланать',
         ranCode: 'Код пурнӑҫланчӗ',
-        runningCode: 'Скрипт ҫырать',
+        runningCode: 'Скрипт ҫырать'
       },
       prefixes: {
         browser: 'Браузер',
-        web: 'Интернет',
+        web: 'Интернет'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -758,121 +762,121 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Пурнӑҫланать ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `${action.toLowerCase()} ӗҫлет`,
+        runningTool: action => `${action.toLowerCase()} ӗҫлет`
       },
       titles: {
         browser_click: {
           done: 'Страница элеменчӗ ҫине пуснӑ',
           pending: 'Страница элеменчӗ ҫине пусать',
-          pendingAction: 'Пусать',
+          pendingAction: 'Пусать'
         },
         browser_fill: {
           done: 'Форма уйне тултарнӑ',
           pending: 'Форма уйне тултарать',
-          pendingAction: 'Тултарать',
+          pendingAction: 'Тултарать'
         },
         browser_navigate: {
           done: 'Страница уҫӑлчӗ',
           pending: 'Страница уҫӑлать',
-          pendingAction: 'Уҫӑлать',
+          pendingAction: 'Уҫӑлать'
         },
         browser_snapshot: {
           done: 'Страницӑн сӑнӳкерчӗкне тунӑ',
           pending: 'Страницӑн сӑнӳкерчӗкне тӑвать',
-          pendingAction: 'Ӳкерсе илет',
+          pendingAction: 'Ӳкерсе илет'
         },
         browser_take_screenshot: {
           done: 'Экран ӳкерчӗкне турӗ',
           pending: 'Экран ӳкерчӗкне тӑвать',
-          pendingAction: 'Ӳкерсе илет',
+          pendingAction: 'Ӳкерсе илет'
         },
         browser_type: {
           done: 'Страницӑра текст ҫырчӗ',
           pending: 'Страницӑра текст ҫырать',
-          pendingAction: 'Текст ҫырать',
+          pendingAction: 'Текст ҫырать'
         },
         clarify: {
           done: 'Ыйту пачӗ',
           pending: 'Ыйту парать',
-          pendingAction: 'Ыйтать',
+          pendingAction: 'Ыйтать'
         },
         cronjob: {
           done: 'Крон ӗҫӗ',
           pending: 'Крон ӗҫӗн вӑхӑтне палӑртать',
-          pendingAction: 'Вӑхӑт палӑртни',
+          pendingAction: 'Вӑхӑт палӑртни'
         },
         edit_file: {
           done: 'Файла улӑштарнӑ',
           pending: 'Файла улӑштарать',
-          pendingAction: 'Улӑштарать',
+          pendingAction: 'Улӑштарать'
         },
         execute_code: {
           done: 'Кода ӗҫлеттернӗ',
           pending: 'Скрипт ҫырни',
-          pendingAction: 'Скрипт ҫырни',
+          pendingAction: 'Скрипт ҫырни'
         },
         image_generate: {
           done: 'Ӳкерчӗк тунӑ',
           pending: 'Ӳкерчӗк тӑвать',
-          pendingAction: 'Тӑвать',
+          pendingAction: 'Тӑвать'
         },
         list_files: {
           done: 'Файлсен списокне кӑларнӑ',
           pending: 'Файлсен списокне кӑларать',
-          pendingAction: 'Списока кӑларни',
+          pendingAction: 'Списока кӑларни'
         },
         patch: {
           done: 'Файла тӳрлетнӗ',
           pending: 'Файла тӳрлетни',
-          pendingAction: 'Тӳрлетни',
+          pendingAction: 'Тӳрлетни'
         },
         read_file: {
           done: 'Файла вуланӑ',
           pending: 'Файла вулани',
-          pendingAction: 'Вулани',
+          pendingAction: 'Вулани'
         },
         search_files: {
           done: 'Файлсенче шыранӑ',
           pending: 'Файлсенче шырани',
-          pendingAction: 'Шырани',
+          pendingAction: 'Шырани'
         },
         session_search_recall: {
           done: 'Сесси историйӗнче шыранӑ',
           pending: 'Сесси историйӗнче шырани',
-          pendingAction: 'Шырать',
+          pendingAction: 'Шырать'
         },
         terminal: {
           done: 'Команда пурнӑҫланчӗ',
           pending: 'Команда пурнӑҫланать',
-          pendingAction: 'Пурнӑҫланать',
+          pendingAction: 'Пурнӑҫланать'
         },
         todo: {
           done: 'Тумалли ӗҫсем ҫӗнетӗлчӗҫ',
           pending: 'Тумалли ӗҫсем ҫӗнетӗлеҫҫӗ',
-          pendingAction: 'Ҫӗнетӗлет',
+          pendingAction: 'Ҫӗнетӗлет'
         },
         vision_analyze: {
           done: 'Ӳкерчӗк тишкерӗлчӗ',
           pending: 'Ӳкерчӗк тишкерӗлет',
-          pendingAction: 'Тишкерӗлет',
+          pendingAction: 'Тишкерӗлет'
         },
         web_extract: {
           done: 'Веб-страница вуланчӗ',
           pending: 'Веб-страница вуланать',
-          pendingAction: 'Вулать',
+          pendingAction: 'Вулать'
         },
         web_search: {
           done: 'Интернетра шыранӑ',
           pending: 'Интернетра шырать',
-          pendingAction: 'Шырать',
+          pendingAction: 'Шырать'
         },
         write_file: {
           done: 'Файла улӑштарнӑ',
           pending: 'Файла улӑштарать',
-          pendingAction: 'Улӑштарать',
-        },
-      },
-    },
+          pendingAction: 'Улӑштарать'
+        }
+      }
+    }
   },
   fileMenu: {
     revealFileManager: 'Файл пур папкӑна уҫ',
@@ -887,7 +891,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     pathCopied: 'Ҫул копиленчӗ',
     revealFinder: 'Finder-та кăтарт',
     revealExplorer: 'File Explorer-та кăтарт',
-    deleteTitle: name => `Smazat ${name}?`,
+    deleteTitle: name => `Smazat ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop хатӗр',
@@ -896,7 +900,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       loadingSettings: 'OpenAmer настройкӑсене тиенетпӗр',
       loadingSessions: 'Юлашки сеанссене тиенетпӗр',
       startingDesktopConnection: 'Рабочӑй стол ҫыхӑнӑвне пуҫлататпӑр',
-      startingOpenAmerDesktop: 'OpenAmer Desktop пуҫлататпӑр…',
+      startingOpenAmerDesktop: 'OpenAmer Desktop пуҫлататпӑр…'
     },
     errors: {
       backgroundExited: 'OpenAmer фонри процесӗ тухрӗ.',
@@ -905,13 +909,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       desktopBootFailed: 'Рабочӑй стол пуҫлани ӑнӑҫсӑр пулчӗ',
       gatewayConnectionLost: 'Gateway ҫыхӑнӑвне ҫухатрӑмӑр',
       gatewaySignInRequired: 'Gateway-ра кӗрмелле',
-      ipcBridgeUnavailable: 'Рабочӑй стол IPC кӗперӗпе усӑ курма ҫук.',
+      ipcBridgeUnavailable: 'Рабочӑй стол IPC кӗперӗпе усӑ курма ҫук.'
     },
     failure: {
       title: 'OpenAmer пуҫланма пултараймарӗ',
-      description: 'Фонри gateway пуҫланмарӗ. Аялти тавӑрмалли утӑмсенчен пӗрне тӑрӑшӑр. Кунта нимӗн те сирӗн чатсене е настройкӑсене пӗтермест.',
+      description:
+        'Фонри gateway пуҫланмарӗ. Аялти тавӑрмалли утӑмсенчен пӗрне тӑрӑшӑр. Кунта нимӗн те сирӗн чатсене е настройкӑсене пӗтермест.',
       remoteTitle: 'Инҫетри gateway-ра кӗрмелле',
-      remoteDescription: 'Сирӗн инҫетри gateway сеансӗ вӗҫленнӗ. Ҫыхӑнма тепӗр хут кӗрӗр. Кунта нимӗн те сирӗн чатсене е настройкӑсене пӗтермест.',
+      remoteDescription:
+        'Сирӗн инҫетри gateway сеансӗ вӗҫленнӗ. Ҫыхӑнма тепӗр хут кӗрӗр. Кунта нимӗн те сирӗн чатсене е настройкӑсене пӗтермест.',
       retry: 'Тепӗр хут',
       repairInstall: 'Установкӑна юса',
       useLocalGateway: 'Вырӑнти gateway-па усӑ кур',
@@ -930,10 +936,11 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       signInFailed: 'Кӗнни ӑнӑҫмарӗ',
       signInToRemoteGateway: 'Инҫетри шлюза кӗр',
       identityProvider: 'эсирӗн идентификаци провайдерӗ',
-      remoteSignInHint: signInLabel => `Odhlásí uloženou vzdálenou relaci prohlížeče a pak otevře ${signInLabel}. Použijte místnou bránu pro přepnutí na vestavěný backend.`,
-      signInWithProvider: provider => `Přihlásit se pomocí ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Odhlásí uloženou vzdálenou relaci prohlížeče a pak otevře ${signInLabel}. Použijte místnou bránu pro přepnutí na vestavěný backend.`,
+      signInWithProvider: provider => `Přihlásit se pomocí ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Start plochy selhal: ${message}`,
+    desktopBootFailedWithMessage: message => `Start plochy selhal: ${message}`
   },
   common: {
     apply: 'Пурнăçла',
@@ -974,7 +981,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     update: 'Çĕнет',
     on: 'Çунать',
     off: 'Сӳннĕ',
-    tryHint: term => `Zkuste „${term}”`,
+    tryHint: term => `Zkuste „${term}”`
   },
   notifications: {
     region: 'Пӗлтерӳсем',
@@ -986,7 +993,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     copyDetail: 'Тӗплӗнне копиле',
     copyDetailFailed: 'Пӗлтерӳ тӗплӗнне копилеме май килмерӗ.',
     backendOutOfDateTitle: 'Бэкенд кивӗ',
-    backendOutOfDateMessage: 'Эсирӗн OpenAmer бэкендӗ ку десктоп версинчен кивӗрех, вӑл тӗрӗс ӗҫлеме пултараймасть. Вӗсене танлаштарма ҫӗнете.',
+    backendOutOfDateMessage:
+      'Эсирӗн OpenAmer бэкендӗ ку десктоп версинчен кивӗрех, вӑл тӗрӗс ӗҫлеме пултараймасть. Вӗсене танлаштарма ҫӗнете.',
     installMethodUnsupportedTitle: 'Установка меле килӗштермен',
     updateOpenAmer: 'OpenAmer ҫӗнете',
     updateReadyTitle: 'Ҫӗнетни хатӗр',
@@ -995,11 +1003,12 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       elevenLabsNeedsKey: 'ElevenLabs STT валли ELEVENLABS_API_KEY кирлӗ.',
       elevenLabsRejectedKey: 'ElevenLabs API ключне йышӑнмарӗ (401).',
       gatewayAuthFailed: 'Шлюз аутентификацийӗ ӑнӑҫмарӗ — API_SERVER_KEY тӗрӗслӗр.',
-      methodNotAllowed: 'Десктоп бэкендӗ ҫав ыйтӑва йышӑнмарӗ (405 Меслечӗпе йышӑнман). OpenAmer Desktop тепӗр хут тапратса пӑхӑр.',
+      methodNotAllowed:
+        'Десктоп бэкендӗ ҫав ыйтӑва йышӑнмарӗ (405 Меслечӗпе йышӑнман). OpenAmer Desktop тепӗр хут тапратса пӑхӑр.',
       microphonePermission: 'Микрофон ирӗкӗ панӑ мар.',
       openaiRejectedApiKey: 'OpenAI API ключне йышӑнмарӗ.',
       openaiTtsNeedsKey: 'OpenAI TTS валли VOICE_TOOLS_OPENAI_KEY е OPENAI_API_KEY кирлӗ.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI zamítl klíč API (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI zamítl klíč API (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Сӑмахран тексчӗ тавӑрассине сасӑ режимӗпе усӑ курма йӗркелӗр.',
@@ -1018,7 +1027,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       transcriptionFailed: 'Сасӑна текст ҫине куҫарни ӑнӑҫмарӗ',
       transcriptionUnavailable: 'Сасă куçарни халипе çук.',
       tryRecordingAgain: 'Сасă çырма татах тăрăшăр.',
-      unavailable: 'Сасă çук',
+      unavailable: 'Сасă çук'
     },
     native: {
       approvalTitle: 'Çирĕплетни кирлĕ',
@@ -1031,10 +1040,10 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       turnErrorTitle: 'Черет ăнăçмарĕ',
       backgroundDoneTitle: 'Фонри ĕç пĕтрĕ',
       backgroundFailedTitle: 'Фонри ĕç ăнăçмарĕ',
-      creditsTitle: 'Кредитсем',
+      creditsTitle: 'Кредитсем'
     },
     more: count => `${count} další ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `K dispozici ${count} nová změna${count === 1 ? '' : 's'}.`,
+    updateReadyMessage: count => `K dispozici ${count} nová změna${count === 1 ? '' : 's'}.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer кредичĕсем пĕтрĕç',
@@ -1042,7 +1051,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     openBilling: 'Тӳлеве уç',
     addCredits: 'Кредит хуш',
     dismiss: 'Пăрах',
-    titleProvider: provider => `Nedostatek kreditů — ${provider}`,
+    titleProvider: provider => `Nedostatek kreditů — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Çум панеле пытар',
@@ -1059,7 +1068,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     openStarmap: 'Асăнăш графне уç',
     openKeybinds: 'Клавиатура кĕске çулĕсем',
     layoutEditor: 'Вырнаçу редакторĕ',
-    layoutEditorTitle: 'Editor rozložení — ⌘-klik resetuje rozložení',
+    layoutEditorTitle: 'Editor rozložení — ⌘-klik resetuje rozložení'
   },
   keybinds: {
     title: 'Клавиатура кĕске çулĕсем',
@@ -1074,7 +1083,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       profiles: 'Профильсем',
       session: 'Сесси',
       navigation: 'Навигаци',
-      view: 'Курăм',
+      view: 'Курăм'
     },
     actions: {
       'keybinds.openPanel': 'Клавиатура кĕске çулĕсене уç',
@@ -1153,10 +1162,10 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       'composer.slash': 'Slash командӑсен палитри',
       'composer.help': 'Хăвăрт пулăшу',
       'composer.history': 'Поповер / истори çаврăнăшĕ',
-      'composer.cancel': 'Поповера хуп · çÿреве пăрах',
+      'composer.cancel': 'Поповера хуп · çÿреве пăрах'
     },
     subtitle: open => `Klikněte na zkratku pro přenastavení · ${open} znovu otevře tento panel.`,
-    conflictWith: label => `Také přiřazeno k „${label}”`,
+    conflictWith: label => `Také přiřazeno k „${label}”`
   },
   language: {
     label: 'Чĕлхе',
@@ -1165,7 +1174,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     saveError: 'Чĕлхене çĕнетни ăнăçмарĕ',
     switchTo: 'Чĕлхене улăштар',
     searchPlaceholder: 'Чĕлхесем шыра…',
-    noResults: 'Чĕлхесем тупăнмарĕç',
+    noResults: 'Чĕлхесем тупăнмарĕç'
   },
   settings: {
     closeSettings: 'Çирĕплетевсене хуп',
@@ -1190,11 +1199,12 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       billing: 'Тӳлев',
       notifications: 'Пĕлтерӳсем',
       plugins: 'Плагинсем',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Десктоп плагинĕсем',
-      blurb: 'Ку приложенине тиенĕ UI хушăмĕсем — сборкăпа пĕрле пынă е desktop-plugins папкăна хунă (OpenAmer çырнисене те). Чарсан плагин тухса ÿкет тата çаврăнса тапсан та юлать.',
+      blurb:
+        'Ку приложенине тиенĕ UI хушăмĕсем — сборкăпа пĕрле пынă е desktop-plugins папкăна хунă (OpenAmer çырнисене те). Чарсан плагин тухса ÿкет тата çаврăнса тапсан та юлать.',
       openFolder: 'Плагинсен папкине уç',
       rescan: 'Çĕнĕрен сканирла',
       reveal: 'Файл менеджерĕнче кăтарт',
@@ -1206,13 +1216,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       kinds: {
         bundled: 'vestavěné',
         disk: 'na disku',
-        runtime: 'běhové prostředí',
-      },
+        runtime: 'běhové prostředí'
+      }
     },
     appearance: {
       pet: {
-        intro: 'OpenAmer мĕн тунине хуравлакан, приложени çийĕн ишекен анимациллĕ petdex маскота йышăн — инструментсем пурнăçланă чухне чупать, ăнăçу чухне савăнать, йăнăшсенче хурланать.',
-        restartHint: 'Питомецсем валли кĕске перезапуск кирлĕ — ĕçлекен приложени ку функци хушăнччен пуçланнă. OpenAmer хуп та çĕнĕрен уç, унтан кунта таврăн.',
+        intro:
+          'OpenAmer мĕн тунине хуравлакан, приложени çийĕн ишекен анимациллĕ petdex маскота йышăн — инструментсем пурнăçланă чухне чупать, ăнăçу чухне савăнать, йăнăшсенче хурланать.',
+        restartHint:
+          'Питомецсем валли кĕске перезапуск кирлĕ — ĕçлекен приложени ку функци хушăнччен пуçланнă. OpenAmer хуп та çĕнĕрен уç, унтан кунта таврăн.',
         on: 'Çунать',
         off: 'Хупă',
         scaleTitle: 'Пысăкăш',
@@ -1245,7 +1257,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
         adoptFailed: slug => `Negalima priimti ${slug}`,
         uninstallFailed: slug => `Negalima pašalinti ${slug}`,
         renameFailed: slug => `Negalima pervadinti ${slug}`,
-        exportFailed: slug => `Negalima eksportuoti ${slug}`,
+        exportFailed: slug => `Negalima eksportuoti ${slug}`
       },
       title: 'Вӗренче',
       intro: 'Ман стол вӗренче пултар. Режим çуллук пултарар; тема акцент палитра хӑпӑ чат поверхность стиль пултарар.',
@@ -1254,13 +1266,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       toolViewTitle: 'Алат вызов вӗренче',
       toolViewDesc: 'Продукт сырой алат данные хакӑр; Технический тӑват вӗренче/çык вӗренче.',
       uiScaleTitle: 'UI Масштаб',
-      uiScaleDesc: (percent: number) => `Текст хӑпӑ контрольсем тӑват приложение масштаб. Cmd/Ctrl +, - хӑпӑ 0 вӗрен пултарар. Текущий: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Текст хӑпӑ контрольсем тӑват приложение масштаб. Cmd/Ctrl +, - хӑпӑ 0 вӗрен пултарар. Текущий: ${percent}%.`,
       translucencyTitle: 'Кӗнеке прозрачность',
       translucencyDesc: 'Тӑват кӗнеке стол вӗрен. macOS хӑпӑ Windows вӗрен.',
       backdropTitle: 'Сӗтлӗш артавӑл',
       backdropDesc: 'Сӗтлӗш арта статуя сурӑхӗ.',
       embedsTitle: 'Встроенный вложениесем',
-      embedsDesc: 'Богатый предпросмотрсем третье тараф сайтсемден (YouTube, X, …). Сорӑ placeholder вӗренче кӑйик разрешение; Автоматически вӗренче; Ялта простой ссылкасем саклар.',
+      embedsDesc:
+        'Богатый предпросмотрсем третье тараф сайтсемден (YouTube, X, …). Сорӑ placeholder вӗренче кӑйик разрешение; Автоматически вӗренче; Ялта простой ссылкасем саклар.',
       embedsAsk: 'Сорӑ',
       embedsAlways: 'Хевесле',
       embedsOff: 'Iš',
@@ -1273,14 +1287,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       themeDesc: 'Tik darbalaukio paletės. Pasirinktas režimas taikomas viršuje.',
       themeProfileNote: profile => `Išsaugota ${profile} profiliui — kiekvienas profilis saugo savo temą.`,
       installTitle: 'Įdiegti iš VS Code',
-      installDesc: 'Įklijuokite Marketplace plėtinio ID (pvz. dracula-theme.theme-dracula), kad konvertuotų jo spalvų temą į darbalaukio paletę.',
+      installDesc:
+        'Įklijuokite Marketplace plėtinio ID (pvz. dracula-theme.theme-dracula), kad konvertuotų jo spalvų temą į darbalaukio paletę.',
       installPlaceholder: 'leidėjas.plėtinys',
       installButton: 'Įdiegti',
       installing: 'Įdiegiamas…',
       installError: 'Negalima įdiegti tos temos.',
       installed: name => `Įdiegta “${name}”.`,
       removeTheme: 'Pašalinti temą',
-      importedBadge: 'Importuota',
+      importedBadge: 'Importuota'
     },
     about: {
       versionUnavailable: 'Верси паллă мар',
@@ -1307,7 +1322,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       branchCommit: (branch, commit) => `Šaka ${branch} · Įrašas ${commit}`,
       minAgo: count => `prieš ${count} min`,
       hoursAgo: count => `prieš ${count} val`,
-      daysAgo: count => `prieš ${count} d.`,
+      daysAgo: count => `prieš ${count} d.`
     },
     gateway: {
       modeTitle: 'Ҫыхӑну режимӗ',
@@ -1317,7 +1332,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       inheritDesc: 'Ку профилӗн уйрӑмлӑхне пӑрах та тӗп ҫыхӑнупа усӑ кур.',
       remoteTitle: 'Инҫетри шлюз',
       remoteDesc: 'Ку десктоп оболочкине инҫетри OpenAmer бэкендпа ҫыхӑнтар.',
-      remoteAuthHint: 'Хостингри шлюзсем OAuth е ятпа пароль усӑ кураҫҫӗ; хӑй хостингри шлюзсем сесси токенӗпе усӑ курма пултараҫҫӗ.',
+      remoteAuthHint:
+        'Хостингри шлюзсем OAuth е ятпа пароль усӑ кураҫҫӗ; хӑй хостингри шлюзсем сесси токенӗпе усӑ курма пултараҫҫӗ.',
       cloudDesc: 'OpenAmer Cloud-ра пӗр хут кӗр те хӑвӑн аккаунтри агентсене суйла — URL ҫыпҫтарма кирлӗ мар.',
       cloudSignIn: 'OpenAmer Cloud-ра кӗр',
       cloudSignedIn: 'OpenAmer Cloud-ра кӗнӗ',
@@ -1331,7 +1347,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       cloudNoAgents: {
         before: 'Ку аккаунтра агентсем тупӑнмарӗҫ. Пӗрне тӑвӑр',
         linkText: 'OpenAmer порталӗнче',
-        after: ', унтан ҫӗнетӗр.',
+        after: ', унтан ҫӗнетӗр.'
       },
       cloudRefresh: 'Ҫӗнет',
       cloudConnect: 'Ҫыхӑнтар',
@@ -1353,15 +1369,18 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       loading: 'Завантаження налаштувань шлюзу...',
       unavailableTitle: 'Налаштування шлюзу недоступні',
       unavailableDesc: 'Настільний IPC-міст не надає доступу до налаштувань шлюзу.',
-      title: 'З\'єднання зі шлюзом',
+      title: "З'єднання зі шлюзом",
       envOverride: 'перевизначення env',
-      intro: 'OpenAmer Desktop за замовчуванням запускає власний локальний шлюз. Використовуйте віддалений шлюз, якщо хочете, щоб цей додаток керував уже запущеним бекендом OpenAmer на іншій машині або за довіреним проксі. Виберіть профіль нижче, щоб призначити йому власний віддалений хост.',
+      intro:
+        'OpenAmer Desktop за замовчуванням запускає власний локальний шлюз. Використовуйте віддалений шлюз, якщо хочете, щоб цей додаток керував уже запущеним бекендом OpenAmer на іншій машині або за довіреним проксі. Виберіть профіль нижче, щоб призначити йому власний віддалений хост.',
       appliesTo: 'Застосовується до',
       allProfiles: 'Усі профілі',
-      defaultConnection: 'З\'єднання за замовчуванням для кожного профілю, що не має власного перевизначення.',
-      profileConnection: profile => `З'єднання, що використовується лише тоді, коли «${profile}» є активним профілем. Виберіть «Використовувати шлюз за замовчуванням», щоб видалити перевизначення.`,
+      defaultConnection: "З'єднання за замовчуванням для кожного профілю, що не має власного перевизначення.",
+      profileConnection: profile =>
+        `З'єднання, що використовується лише тоді, коли «${profile}» є активним профілем. Виберіть «Використовувати шлюз за замовчуванням», щоб видалити перевизначення.`,
       envOverrideTitle: 'Кернел пултаране сессий пултаране.',
-      envOverrideDesc: 'OPENAMER_DESKTOP_REMOTE_URL хăпар OPENAMER_DESKTOP_REMOTE_TOKEN-не тăрталта, хутласан пултаране пултара.',
+      envOverrideDesc:
+        'OPENAMER_DESKTOP_REMOTE_URL хăпар OPENAMER_DESKTOP_REMOTE_TOKEN-не тăрталта, хутласан пултаране пултара.',
       cloudTitle: 'OpenAmer пӗлӗчӗ',
       cloudSignInTitle: 'OpenAmer пӗлӗчӗ',
       cloudOrgRole: role => `Роль: ${role}`,
@@ -1373,7 +1392,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       authSignedInPassword: 'Ман шлюз хăпар пароль пултара. Сиз пултарсан; сессий автоматик ярать.',
       authSignedInOauth: 'Ман шлюз OAuth пултара. Сиз пултарсан; сессий автоматик ярать.',
       authNeedsPassword: 'Ман шлюз хăпар пароль пултара. Пултара, ман десктоп илĕн авторизация пултара.',
-      authNeedsOauth: provider => `Ман шлюз OAuth пултара. ${provider}-мен пултара, ман десктоп илĕн авторизация пултара.`,
+      authNeedsOauth: provider =>
+        `Ман шлюз OAuth пултара. ${provider}-мен пултара, ман десктоп илĕн авторизация пултара.`,
       tokenTitle: 'Сессий токен',
       tokenDesc: 'Дашборд сессий токен REST хăпар WebSocket пултарасĕ. Тутан калта, хутласан токен-не сакла.',
       existingToken: value => `Ман токен ${value}`,
@@ -1406,7 +1426,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       applyFailed: 'Шлюз пултарать пур тарар',
       saveFailed: 'Шлюз пултарать саклав тарар',
       sshTitle: 'SSH валли улаш',
-      sshDesc: 'OpenAmer SSH валли хурамаштан пултарап, бул пултаракка туннельлантарап кӗнеке. Икӗ пурмас, икӗ эпӗ кайтамас. Хостра ключ-пурнаш SSH улаш валли.',
+      sshDesc:
+        'OpenAmer SSH валли хурамаштан пултарап, бул пултаракка туннельлантарап кӗнеке. Икӗ пурмас, икӗ эпӗ кайтамас. Хостра ключ-пурнаш SSH улаш валли.',
       sshTrustHint: 'Илкӗ килте хост ключӗ вӗренче лӑп, пинлантарап; поян измӗнчӗсем тарар ялта.',
       sshHostTitle: 'Хост',
       sshHostDesc: 'user@host, яки ~/.ssh/config-ран хост псевдонимӗ.',
@@ -1430,13 +1451,17 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       sshReachable: (host, platform) => `Улашмаш: ${host} (${platform}) — OpenAmer таптарап`,
       sshIncompleteHost: 'SSH хост кирте улашран пеш.',
       sshErrUnreachable: 'Бу хост SSH валли улашмаш тарар. Хост, порт, хӗрле сӑн сеть пултарар.',
-      sshErrAuth: 'SSH аутентификация тарар. Сӑн ключӑн ssh-agent-ра (ssh-add) юларар яки IdentityFile ~/.ssh/config-ра пуртарар — OpenAmer ssh интерактивне валли пултарап.',
-      sshErrHostKey: 'Хост ключӗ сӑн поян улашсан палла ИЗМӖНЧӖ. Пулла вӗренче, поян ssh-keygen -R <host> ишетте хакӑр улаштар.',
-      sshErrNotInstalled: 'OpenAmer хурама хостран пурмаш. Вӗренче пуртарар (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) яки OpenAmer юлӗ пуртарар.',
-      sshErrPlatform: 'Пурмаш хурама платформа. OpenAmer Desktop SSH режим Linux, macOS, Windows хурама хостсеме пуртарап.',
+      sshErrAuth:
+        'SSH аутентификация тарар. Сӑн ключӑн ssh-agent-ра (ssh-add) юларар яки IdentityFile ~/.ssh/config-ра пуртарар — OpenAmer ssh интерактивне валли пултарап.',
+      sshErrHostKey:
+        'Хост ключӗ сӑн поян улашсан палла ИЗМӖНЧӖ. Пулла вӗренче, поян ssh-keygen -R <host> ишетте хакӑр улаштар.',
+      sshErrNotInstalled:
+        'OpenAmer хурама хостран пурмаш. Вӗренче пуртарар (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) яки OpenAmer юлӗ пуртарар.',
+      sshErrPlatform:
+        'Пурмаш хурама платформа. OpenAmer Desktop SSH режим Linux, macOS, Windows хурама хостсеме пуртарап.',
       sshErrTimeout: 'SSH улаш тамаш уйрӑ. Хост улашмаш яки уйнамаш валли.',
       sshErrUpdateRequired: 'OpenAmer-ӑн хурама хостран янгарта Desktop SSH валли улашран пеш.',
-      sshErrUnknown: 'SSH улаш тарар.',
+      sshErrUnknown: 'SSH улаш тарар.'
     },
     providers: {
       disconnectInTerminal: 'Çыхăнăва тат (терминалра кăларса пăрахакан командăна пурнăçлать)',
@@ -1446,12 +1471,14 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       noKeysMatch: 'Эсир шыракан провайдерсем тупăнмарĕç.',
       localEndpoint: {
         title: 'Вырăнти / хăй тунă эндпоинт',
-        description: 'OpenAmer-а OpenAI-па килĕшÿллĕ кирек мĕнле эндпоинта çыхăнтар (Zyphra, vLLM, llama.cpp, Ollama, т. ыт.).',
+        description:
+          'OpenAmer-а OpenAI-па килĕшÿллĕ кирек мĕнле эндпоинта çыхăнтар (Zyphra, vLLM, llama.cpp, Ollama, т. ыт.).'
       },
       loading: 'Провайдерсем тиенеççĕ...',
       connectAccount: 'Аккаунт ҫыхӑнтар',
       haveApiKey: 'API ключ пур-и ӑна вырӑнне?',
-      intro: 'Абонементпа кӗр — API ключ копилеме кирлӗ мар. OpenAmer сирӗн валли браузерти кӗрӗве ҫак приложенирех пурнӑҫлать.',
+      intro:
+        'Абонементпа кӗр — API ключ копилеме кирлӗ мар. OpenAmer сирӗн валли браузерти кӗрӗве ҫак приложенирех пурнӑҫлать.',
       connected: 'Ҫыхӑннӑ',
       collapse: 'Кӗпӗлте',
       connectAnother: 'Пултатар яра провайдер',
@@ -1460,10 +1487,11 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       removeConfirm: provider => `${provider} пурнаштар?`,
       removeExternalGeneric: provider => `${provider} ош CLI-ра пултара — вӑҫ тара пурнаштар.`,
       removeKeyManaged: provider => `${provider} API ключ-ра пултара. API Keys-ра пурнаштар.`,
-      removeTerminalConfirm: (provider, command) => `${provider} пултамасhtar? Бу терминал-ра "${command}" ишет креденциал пурнаштар.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} пултамасhtar? Бу терминал-ра "${command}" ишет креденциал пурнаштар.`,
       removeTerminalRunning: provider => `Терминал-ра ${provider} пултамас ишетпӗр…`,
       removedMessage: provider => `${provider} пурнашталли.`,
-      failedRemove: provider => `${provider} пурнаштармади`,
+      failedRemove: provider => `${provider} пурнаштармади`
     },
     sessions: {
       loading: 'Архивланă сеанссем тиенеççĕ…',
@@ -1474,12 +1502,14 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       deletePermanently: 'Пĕтĕмпех кăларса пăрах',
       restored: 'Тавăрнă',
       autoArchiveTitle: 'Кивĕ чатсене автоархивла',
-      autoArchiveDesc: 'Эсир нумай вăхăт уçман чатсене автоматизмла архивлăр. Çирĕплетнĕ чатсем нихăçан та архивланмаççĕ, нимĕн те пĕтермен — архивланă чатсем кунта çеç куçаççĕ.',
+      autoArchiveDesc:
+        'Эсир нумай вăхăт уçман чатсене автоматизмла архивлăр. Çирĕплетнĕ чатсем нихăçан та архивланмаççĕ, нимĕн те пĕтермен — архивланă чатсем кунта çеç куçаççĕ.',
       autoArchiveDaysLabel: 'Архивламалли',
       autoArchiveDaysUnit: 'ĕçлемен кун',
       autoArchiveFailed: 'Автоархива çĕнетесси пулмарĕ',
       defaultDirTitle: 'Проектăн тĕп директорийĕ',
-      defaultDirDesc: 'Çĕнĕ сеанссем çак папкăра пуçланаççĕ, эсир урăххине суйламасан. Хăвăрăн кил директорине усă курма ăна пушах хăварăр.',
+      defaultDirDesc:
+        'Çĕнĕ сеанссем çак папкăра пуçланаççĕ, эсир урăххине суйламасан. Хăвăрăн кил директорине усă курма ăна пушах хăварăр.',
       change: 'Улăштар',
       choose: 'Суйла',
       clear: 'Тасат',
@@ -1489,11 +1519,12 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       deleteFailed: 'Кăларса пăрахасси пулмарĕ',
       updateDirFailed: 'Тĕп директорие çĕнетесси пулмарĕ',
       clearDirFailed: 'Тĕп директорие тасатасси пулмарĕ',
-      archivedIntro: 'Архивланкан чатсем сайдбар-ра кучмас, амӑ хӗрлӗ пулмашсӗм сахланна. Ctrl/⌘-клик чат сайдбар-ра архивламасӑр.',
+      archivedIntro:
+        'Архивланкан чатсем сайдбар-ра кучмас, амӑ хӗрлӗ пулмашсӗм сахланна. Ctrl/⌘-клик чат сайдбар-ра архивламасӑр.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `"${title}" тӗпӗ пурнаштар? Бу вӑлта пурнаштармас.`,
       defaultDirUpdated: 'Стул проект директория вӗренелли — тӑвах чат вӗрентар (Ctrl/⌘+N) пултамасӑр.',
-      defaultsTo: label => `Стул ${label}.`,
+      defaultsTo: label => `Стул ${label}.`
     },
     toolsets: {
       loadingConfig: 'Конфигураци тиенеççĕ...',
@@ -1511,20 +1542,23 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       removeConfirm: key => `Eliminar ${key} de .env?`,
       selectedMessage: provider => `${provider} ara està actiu.`,
       failedSelect: provider => `Error al seleccionar ${provider}`,
-      noProviderOptions: 'Aquest conjunt d\'eines no té opcions de proveïdor — activeu-lo i funcionarà amb la configuració actual.',
-      noProviders: 'No hi ha proveïdors disponibles per a aquest conjunt d\'eines ara mateix.',
+      noProviderOptions:
+        "Aquest conjunt d'eines no té opcions de proveïdor — activeu-lo i funcionarà amb la configuració actual.",
+      noProviders: "No hi ha proveïdors disponibles per a aquest conjunt d'eines ara mateix.",
       ready: 'Llest',
       needsSignIn: 'Cal iniciar sessió',
       needsSetup: 'Cal configurar',
       openamerIncluded: 'Inclòs amb una subscripció OpenAmer — inicieu sessió al Portal OpenAmer per activar.',
       openamerAuthNeededTitle: 'Inicieu sessió al Portal OpenAmer',
-      openamerAuthNeededMessage: provider => `${provider} s'ha desat però no s'activarà fins que inicieu sessió al Portal OpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} s'ha desat però no s'activarà fins que inicieu sessió al Portal OpenAmer.`,
       openamerAuthSignIn: 'Iniciar sessió',
       openamerAuthDoneTitle: 'Portal OpenAmer connectat',
       openamerAuthDoneMessage: 'Els backends de la vostra subscripció ara estan actius.',
-      openamerAuthFailed: 'L\'inici de sessió al Portal OpenAmer no s\'ha completat',
+      openamerAuthFailed: "L'inici de sessió al Portal OpenAmer no s'ha completat",
       noApiKeyRequired: 'No es requereix clau API.',
-      postSetupHint: step => `Aquest backend necessita una instal·lació única (${step}). S'executa en aquesta màquina — pot trigar uns minuts.`,
+      postSetupHint: step =>
+        `Aquest backend necessita una instal·lació única (${step}). S'executa en aquesta màquina — pot trigar uns minuts.`,
       postSetupInstalledHint: 'Instal·lat. Torneu a executar la configuració només si alguna cosa està trencada.',
       postSetupRun: 'Executar configuració',
       postSetupRerun: 'Tornar a executar configuració',
@@ -1542,7 +1576,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       webUseForSearch: 'Utilitzar per a Cerca',
       webUseForExtract: 'Utilitzar per a Extracció',
       webUsedForSearch: 'Backend de cerca',
-      webUsedForExtract: 'Backend d\'extracció',
+      webUsedForExtract: "Backend d'extracció",
       webCapabilitySelectedMessage: (provider, capability) => `${provider} ara gestiona el web ${capability}.`,
       failedSelectCapability: provider => `${provider} тӑтлӑхсӑр`,
       loadingModels: 'Модель каталогӗ юлалла...',
@@ -1565,8 +1599,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
         selectedTitle: 'Бэкенд пӗрлӗ',
         selectedMessage: backend => `Терминал командасем хак ${backend} пуллат. Тӗнче сессиемпӗрне пулла.`,
         failedSelect: backend => `${backend} пӗрлӗхсӑр`,
-        needsSetupHint: 'Эпӗ бэкенд пӗрлӗх пӗрна — командасем настройка тӑрхатта мар тӑтлӑх.',
-      },
+        needsSetupHint: 'Эпӗ бэкенд пӗрлӗх пӗрна — командасем настройка тӑрхатта мар тӑтлӑх.'
+      }
     },
     mcp: {
       noOutput: 'Тухӑм ҫук-ха.',
@@ -1619,7 +1653,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       catalogInstallFailed: name => `${name} вӗрнетме ярмади`,
       catalogEnvPrompt: name => `${name} креденциаллӑр йӑрки`,
       catalogEnvRequired: 'Вӗрнетчен ӑнче кӗнеке валлӑрнӑ пултар.',
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} аслан`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} аслан`,
       statusConnecting: 'Пултап яр...',
       statusNeedsAuth: 'Аутентификация йӑрки',
       statusError: 'Хӗрлӗк',
@@ -1631,7 +1666,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       authenticate: 'Аутентификация',
       unsavedConnect: 'Сахланма — пултамасӑр mcp.json сахла.',
       enableTool: tool => `${tool} аслантар`,
-      disableTool: tool => `${tool} каптатар`,
+      disableTool: tool => `${tool} каптатар`
     },
     model: {
       loading: 'Модель конфигурацине тиен...',
@@ -1645,7 +1680,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       defaultsFailed: 'Модель стандартне упраймарӑм',
       auxiliaryTitle: 'Пулашу модельсем',
       resetAllToMain: 'Пурне те тӗп модель ҫине тавӑр',
-      auxiliaryDesc: 'Пулашу ӗҫӗсем стандартпа тӗп модель ҫинче ӗҫлеҫҫӗ. Улӑштарма кирек мӗнле ӗҫе те уйрӑм модель ларт.',
+      auxiliaryDesc:
+        'Пулашу ӗҫӗсем стандартпа тӗп модель ҫинче ӗҫлеҫҫӗ. Улӑштарма кирек мӗнле ӗҫе те уйрӑм модель ларт.',
       setToMain: 'Тӗп модель ҫине ларт',
       change: 'Улӑштар',
       autoUseMain: 'авто · тӗп модельпе усӑ кур',
@@ -1656,69 +1692,70 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       tasks: {
         vision: {
           label: 'Курӑм',
-          hint: 'Ӳкерчӗк анализӗ',
+          hint: 'Ӳкерчӗк анализӗ'
         },
         web_extract: {
           label: 'Вебран илни',
-          hint: 'Страницӑна кӗскенлетни',
+          hint: 'Страницӑна кӗскенлетни'
         },
         compression: {
           label: 'Пӗҫӗртни',
-          hint: 'Контекста пӗҫӗртни',
+          hint: 'Контекста пӗҫӗртни'
         },
         skills_hub: {
           label: 'Ӑсталӑхсен хабӗ',
-          hint: 'Ӑсталӑх шыравӗ',
+          hint: 'Ӑсталӑх шыравӗ'
         },
         approval: {
           label: 'Ҫирӗплетӳ',
-          hint: 'Ӑслӑ авто-ҫирӗплетӳ',
+          hint: 'Ӑслӑ авто-ҫирӗплетӳ'
         },
         mcp: {
           hint: 'MCP инструмент маршручӗ',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Ят генерацийӗ',
-          hint: 'Сесси ячӗсем',
+          hint: 'Сесси ячӗсем'
         },
         curator: {
           label: 'Куратор',
-          hint: 'Ӑсталӑх усӑ курнине тӗрӗслени',
-        },
-      },
+          hint: 'Ӑсталӑх усӑ курнине тӗрӗслени'
+        }
+      }
     },
     notifications: {
       title: 'Oznámení',
-      intro: 'Nativní oznámení plochy, oddělená od upozornění v aplikaci. Jsou lokální pro zařízení — každý počítač si uchovává vlastní nastavení.',
+      intro:
+        'Nativní oznámení plochy, oddělená od upozornění v aplikaci. Jsou lokální pro zařízení — každý počítač si uchovává vlastní nastavení.',
       enableAll: 'Povolit oznámení',
       enableAllDesc: 'Hlavní přepínač. Vypněte pro potlačení všech oznámení níže.',
       focusedHint: 'Upozornění na dokončení se spouštějí pouze když je OpenAmer na pozadí.',
       kinds: {
         approval: {
           label: 'Potřebné schválení',
-          description: 'Příkaz čeká na vaše schválení nebo zamítnutí.',
+          description: 'Příkaz čeká na vaše schválení nebo zamítnutí.'
         },
         input: {
           label: 'Potřebný vstup',
-          description: 'OpenAmer se zeptal nebo potřebuje heslo nebo tajemství.',
+          description: 'OpenAmer se zeptal nebo potřebuje heslo nebo tajemství.'
         },
         turnDone: {
           label: 'Odpověď připravena',
-          description: 'Kolo skončilo, zatímco byl OpenAmer na pozadí.',
+          description: 'Kolo skončilo, zatímco byl OpenAmer na pozadí.'
         },
         turnError: {
           label: 'Kolo selhalo',
-          description: 'Kolo skončilo s chybou.',
+          description: 'Kolo skončilo s chybou.'
         },
         backgroundDone: {
           label: 'Úloha na pozadí dokončena',
-          description: 'Příkaz terminálu na pozadí byl dokončen.',
+          description: 'Příkaz terminálu na pozadí byl dokončen.'
         },
         credits: {
           label: 'Upozornění kreditů',
-          description: 'Přístup k kreditům je pozastaven nebo obnoven.',
-        },
+          description: 'Přístup k kreditům je pozastaven nebo obnoven.'
+        }
       },
       test: 'Odeslat testové oznámení',
       testTitle: 'OpenAmer',
@@ -1727,7 +1764,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       testUnsupported: 'Ман систем натив уведомлениесем пултараç.',
       completionSoundTitle: 'Тамаклӑх савӑ',
       completionSoundDesc: 'Агент вӗренче тамачланса çыннара. Предустановка хыпарла пӗрлешӗр пултарар.',
-      completionSoundPreview: 'Пешле',
+      completionSoundPreview: 'Пешле'
     },
     sections: {
       model: 'Модель',
@@ -1737,7 +1774,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       safety: 'Кӑвак',
       memory: 'Хотӑм & Контекст',
       voice: 'Савӑ',
-      advanced: 'Илле',
+      advanced: 'Илле'
     },
     searchPlaceholder: {
       about: 'OpenAmer Desktop ҫинче',
@@ -1745,21 +1782,21 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       gateway: 'Шлюз пултарар...',
       keys: 'API ключӗсем хыпарла...',
       mcp: 'MCP серверӗсем хыпарла...',
-      sessions: 'Архив сессисем хыпарла...',
+      sessions: 'Архив сессисем хыпарла...'
     },
     modeOptions: {
       light: {
         label: 'Çул',
-        description: 'Çул стол поверхностьсем',
+        description: 'Çул стол поверхностьсем'
       },
       dark: {
         label: 'Хура',
-        description: 'Хура вӗренче пултар',
+        description: 'Хура вӗренче пултар'
       },
       system: {
         label: 'Систем',
-        description: 'OS вӗренче пултарар',
-      },
+        description: 'OS вӗренче пултарар'
+      }
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -1776,18 +1813,19 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       autosaveFailed: 'Автозбереження не вдалося',
       imported: 'Конфігурацію імпортовано',
       invalidJson: 'Неправильний JSON конфігурації',
-      keepAwakeTitle: 'Не допускати сну комп\'ютера',
-      keepAwakeDesc: 'Запобігає переходу машини в режим сну, щоб тривалі або нічні процеси продовжували працювати. Екран все ще може тьмяніти.',
+      keepAwakeTitle: "Не допускати сну комп'ютера",
+      keepAwakeDesc:
+        'Запобігає переходу машини в режим сну, щоб тривалі або нічні процеси продовжували працювати. Екран все ще може тьмяніти.'
     },
     credentials: {
       pasteKey: 'Ключ вставки',
       pasteLabelKey: label => `Ключ вставки ${label}`,
-      optional: 'Необов\'язково',
+      optional: "Необов'язково",
       enterValueFirst: 'Спочатку введіть значення.',
       couldNotSave: 'Не вдалося зберегти облікові дані.',
       remove: 'Видалити',
       getKey: 'Отримати ключ',
-      saving: 'Збереження',
+      saving: 'Збереження'
     },
     envActions: {
       actionsFor: label => `Дії для ${label}`,
@@ -1798,13 +1836,13 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       revealValue: 'Показати значення',
       replace: 'Замінити',
       set: 'Встановити',
-      clear: 'Очистити',
+      clear: 'Очистити'
     },
     keys: {
       loading: 'API ключсеме хӗрле аккредитациясеме юклав...',
       failedLoad: 'API ключсеме юклаш тарар',
-      empty: 'Бу категорияра хакӑр икӗ пурмаш.',
-    },
+      empty: 'Бу категорияра хакӑр икӗ пурмаш.'
+    }
   },
   sidebar: {
     groupAriaUngrouped: 'Сессисене ĕç уçлăхĕпе ушкăнла',
@@ -1848,7 +1886,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       copyPath: 'Çулне копиле',
       removeFromSidebar: 'Сайдбартан пытар',
       createFailed: 'Проект тăваймарĕ',
-      staleBackend: 'OpenAmer бэкенди обновла, проектсем пулăшарын — бэкендĕ пулăшмас, пулăшмас (Настройкасем → Обновленнесем → Бэкенд).',
+      staleBackend:
+        'OpenAmer бэкенди обновла, проектсем пулăшарын — бэкендĕ пулăшмас, пулăшмас (Настройкасем → Обновленнесем → Бэкенд).',
       deleteConfirm: 'Ман проект OpenAmer-ран таратăр. Файлсем, git репозиторийсем вăрă worktreeсем хăпарта калатар.',
       startWork: 'Новый worktree',
       newWorktreeTitle: 'Новый worktree',
@@ -1870,19 +1909,21 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       noBranches: 'Веткасем тапăлма',
       removeWorktree: 'Worktree тарат',
       removeWorktreeFailed: 'Worktree таратмас (коммит вăрăмас вăрăшсем?)',
-      removeWorktreeConfirm: 'Git-ран тарат (worktree директория вăрăш; ветка калатар), яки боковой панель-ран юлаш вăрă worktree диске калатар.',
-      removeWorktreeDirty: 'Ман worktree-вĕ коммит вăрăмас вăрăшсем пур. Эрĕ тарат (вăрăшсем тарат), яки юлаш вăрă диске калатар.',
+      removeWorktreeConfirm:
+        'Git-ран тарат (worktree директория вăрăш; ветка калатар), яки боковой панель-ран юлаш вăрă worktree диске калатар.',
+      removeWorktreeDirty:
+        'Ман worktree-вĕ коммит вăрăмас вăрăшсем пур. Эрĕ тарат (вăрăшсем тарат), яки юлаш вăрă диске калатар.',
       forceRemove: 'Эрĕ тарат',
       enter: label => `Уйăх ${label}`,
       reorder: label => `Тарту ${label}`,
       toggle: label => `${label} сессисем вăрăш`,
-      back: 'Пул проектсем',
+      back: 'Пул проектсем'
     },
     nav: {
       'new-session': 'Çěнĕ сессия',
       skills: 'Мăкĕллĕ',
       messaging: 'Пулăшма',
-      artifacts: 'Артефакты',
+      artifacts: 'Артефакты'
     },
     searchAria: 'Сессисем пулăш',
     searchPlaceholder: 'Сессисем пулăш…',
@@ -1929,15 +1970,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       ageNow: 'хак',
       ageDay: 'к',
       ageHour: 'с',
-      ageMin: 'м',
+      ageMin: 'м'
     },
     dateDivider: {
       today: 'Хак кун пулранта',
       yesterday: 'Тӗнче',
       thisWeek: 'Мана недель пулранта',
       lastWeek: 'Уйӑх недель',
-      thisMonth: 'Мана уйӑх пулранта',
-    },
+      thisMonth: 'Мана уйӑх пулранта'
+    }
   },
   updates: {
     applyStatus: {
@@ -1946,11 +1987,12 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       pulling: 'Бэкенд çĕнĕрлеççĕ…',
       restarting: 'Бэкенд çĕнетĕве кĕртес тесе çĕнĕрен пуçланать…',
       notAvailable: 'Ку бэкенд валли çĕнетÿ çук.',
-      failed: 'Бэкенд çĕнетĕвĕ ăнăçсăр вĕçленчĕ.',
+      failed: 'Бэкенд çĕнетĕвĕ ăнăçсăр вĕçленчĕ.'
     },
     appErrors: {
-      updateLocked: 'Ҫӗнетӳ чарӑнчӗ: урӑх OpenAmer чӳрече е openamer ӗҫлесе тӑракан терминал ку установкӑна уҫӑ тытать. Ӑна хуп та тепӗр хут тӑрӑш.',
-      updateFailed: 'Ҫӗнетӳ вӗҫленмерӗ. Ан пӑшӑрхан — нимӗн те ҫухалмарӗ. Халӗ тепӗр хут тӑрӑшма пултаратӑн.',
+      updateLocked:
+        'Ҫӗнетӳ чарӑнчӗ: урӑх OpenAmer чӳрече е openamer ӗҫлесе тӑракан терминал ку установкӑна уҫӑ тытать. Ӑна хуп та тепӗр хут тӑрӑш.',
+      updateFailed: 'Ҫӗнетӳ вӗҫленмерӗ. Ан пӑшӑрхан — нимӗн те ҫухалмарӗ. Халӗ тепӗр хут тӑрӑшма пултаратӑн.'
     },
     stages: {
       restart: 'OpenAmer çĕнĕрен пуçланать…',
@@ -1964,7 +2006,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       pull: 'Кăтăрнă…',
       pydeps: 'Тăрăхлăн…',
       update: 'OpenAmer тăрăхлăн…',
-      rebuild: 'Столăн аппликацие тăрăхлăн…',
+      rebuild: 'Столăн аппликацие тăрăхлăн…'
     },
     checking: 'Çĕнетӳсене шыраççĕ…',
     checkFailedTitle: 'Çĕнетӳсене тĕрĕслеме пулмарĕ',
@@ -1983,20 +2025,24 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     updateNow: 'Халĕ çĕнĕртĕр',
     maybeLater: 'Каярах',
     manualTitle: 'Хăвăн терминалтан çĕнĕртĕр',
-    manualBody: 'Эсир OpenAmer команда йĕрĕнчен вырнаçтарнă, çавăнпа çĕнетӳсем унта та пыраççĕ. Ку текста терминала çыпăçтарăр:',
+    manualBody:
+      'Эсир OpenAmer команда йĕрĕнчен вырнаçтарнă, çавăнпа çĕнетӳсем унта та пыраççĕ. Ку текста терминала çыпăçтарăр:',
     manualPickedUp: 'OpenAmer тепĕр хут уçнă чух çĕнĕ версине йышăнĕ.',
     guiSkewTitle: 'Десктоп приложенийне çĕнĕртĕр',
-    guiSkewBody: 'Бэкенд çĕнĕртрĕç, анчах ку десктоп приложенийĕн пакетне улăштарман. OpenAmer десктоп приложенийне (хăвăн AppImage / .deb / .rpm) çĕнĕртĕр е тепĕр хут вырнаçтарăр, вĕсем килĕшĕн тăвас тесен.',
+    guiSkewBody:
+      'Бэкенд çĕнĕртрĕç, анчах ку десктоп приложенийĕн пакетне улăштарман. OpenAmer десктоп приложенийне (хăвăн AppImage / .deb / .rpm) çĕнĕртĕр е тепĕр хут вырнаçтарăр, вĕсем килĕшĕн тăвас тесен.',
     copy: 'Копи',
     copied: 'Копилĕнчĕ',
     done: 'Хатĕр',
-    applyingBody: 'OpenAmer çĕнетÿçи хăйĕн тĕкĕрĕнче ĕçе куçать та, вĕçленсен OpenAmer автоматлăн тепĕр хут уçăлать. Çĕнетÿ пыра чухне OpenAmer хăвăр тепĕр хут ан уçăр.',
-    applyingBodyBackend: 'Инçетри бэкенд çĕнетĕве кĕртет тата çĕнĕрен пуçланать. Вăл таврăнсан OpenAmer автоматлăн çыхăнăва йĕркелет.',
+    applyingBody:
+      'OpenAmer çĕнетÿçи хăйĕн тĕкĕрĕнче ĕçе куçать та, вĕçленсен OpenAmer автоматлăн тепĕр хут уçăлать. Çĕнетÿ пыра чухне OpenAmer хăвăр тепĕр хут ан уçăр.',
+    applyingBodyBackend:
+      'Инçетри бэкенд çĕнетĕве кĕртет тата çĕнĕрен пуçланать. Вăл таврăнсан OpenAmer автоматлăн çыхăнăва йĕркелет.',
     applyingClose: 'Çак тĕкĕр çĕнетÿ пыра чухне хупăнать, унтан OpenAmer хăй тĕллĕн уçăлать.',
     errorTitle: 'Çĕнетÿ вĕçленмерĕ',
     errorBody: 'Ан пăшăрханăр — нимĕн те çухалмарĕ. Халĕ тепĕр хут тăрăшма пултаратăр.',
     notNow: 'Халĕ мар',
-    moreChanges: count => `+ Тата ${count} улшӑну${count === 1 ? '' : 's'} кӗртнӗ.`,
+    moreChanges: count => `+ Тата ${count} улшӑну${count === 1 ? '' : 's'} кӗртнӗ.`
   },
   install: {
     stageStates: {
@@ -2004,7 +2050,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       running: 'Установкалаҫҫӗ',
       succeeded: 'Пӗтнӗ',
       skipped: 'Сиктернӗ',
-      failed: 'Ӑнӑҫсӑр',
+      failed: 'Ӑнӑҫсӑр'
     },
     oneTimeTitle: 'OpenAmer пӗр хут установкаламалла',
     installCommand: 'Установка команди',
@@ -2013,13 +2059,15 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     installTo: 'Ӑҫта установкалать',
     retryAfterRun: 'Эпӗ ӑна ӗҫлеттертӗм -- тепӗр хут тӑрӑш',
     setupChoiceTitle: 'OpenAmer Desktop йӗркеле',
-    setupChoiceDesc: 'Ку приложенине эсир ӗнтӗ ӗҫлеттерекен OpenAmer шлюзине ҫыхӑнтар, е OpenAmer ку компьютер ҫинче вырӑнлӑ установкала.',
+    setupChoiceDesc:
+      'Ку приложенине эсир ӗнтӗ ӗҫлеттерекен OpenAmer шлюзине ҫыхӑнтар, е OpenAmer ку компьютер ҫинче вырӑнлӑ установкала.',
     connectExistingTitle: 'Пур OpenAmer ҫумне ҫыхӑнтар',
     connectExistingShort: 'Пуррине ҫыхӑнтар',
     connectExistingDesc: 'Сесси токенӗ е браузер урлӑ кӗнипе удаллӑ бэкенд усӑ кур. Вырӑнлӑ установка пуҫланмӗ.',
     installLocalTitle: 'OpenAmer вырӑнлӑ установкала',
     installLocalDesc: 'OpenAmer туртса ил, унӑн Python хутлӑхне тӑвӑр, тата ку компьютер ҫинче бэкенд ӗҫлеттер.',
-    localStartUnavailable: 'Вырӑнлӑ установка пуҫланса кайма пултараймарӗ. OpenAmer Desktop ҫӗнӗрен тапрат та тепӗр хут тӑрӑш.',
+    localStartUnavailable:
+      'Вырӑнлӑ установка пуҫланса кайма пултараймарӗ. OpenAmer Desktop ҫӗнӗрен тапрат та тепӗр хут тӑрӑш.',
     remoteSetupTitle: 'Пур OpenAmer ҫумне ҫыхӑнтар',
     remoteSetupDesc: 'Шлюз URL-не кӗрт. OpenAmer Desktop токен е браузер урлӑ кӗни кирлӗ-и тесе палӑртӗ.',
     remoteUrlTitle: 'Шлюз URL',
@@ -2038,7 +2086,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     tokenDesc: 'Удаллӑ шлюзӑн .env файлӗнчен сесси токенне ҫыпӑҫтар.',
     pasteSessionToken: 'Сесси токенне ҫыпӑҫтар',
     incompleteSignInTest: 'Ку OAuth-па хупӑннӑ шлюза тӗрӗслемеччен кӗр.',
-    unsupportedDesc: platform => `Автоматизациллă пĕрĕмшĕн install ${platform} пĕрле тăрăхлăнман. Терминалă аçăрнă тата аşa тăрăхлăннă команданă язăн, кейин аппликацие кайтă аçăрнă. Кейиннĕ тăрăхлăннă кунĕн пăхăрнă кунĕн пăхăрнă.`,
+    unsupportedDesc: platform =>
+      `Автоматизациллă пĕрĕмшĕн install ${platform} пĕрле тăрăхлăнман. Терминалă аçăрнă тата аşa тăрăхлăннă команданă язăн, кейин аппликацие кайтă аçăрнă. Кейиннĕ тăрăхлăннă кунĕн пăхăрнă кунĕн пăхăрнă.`,
     authNeedsOauth: provider => `${provider} пĕрле тăрăхлăннă, ку шлюз пăхăрнă.`,
     signInWith: provider => `${provider} пĕрле тăрăхлăннă`,
     incompleteTokenTest: 'Сессия токенĕн язăн, ку шлюз пăхăрнă.',
@@ -2049,8 +2098,10 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     failedTitle: 'Инсталляция пýлман',
     settingUpTitle: 'OpenAmer Agent настраитăр',
     finishingTitle: 'Тăрăхлăн',
-    failedDesc: 'Инсталляциян пĕр тăрăхĕ пýлман. Windows-ре кунĕн пăхăрнă, эпир OpenAmer CLI е столăн аппликацие тăрăхлăннă пултăр. Тăрăхлăннă OpenAmer инстанцисемĕн ахаснă, кейин кайтă пăхăрнă. Тăрăхлăннă деталисемре е столăн лог-е пăхăрнă.',
-    activeDesc: 'Ку пĕр тăрăхлăннă настраитăр. OpenAmer инсталлятор зависимостьсем юкланнă тата тăрăхлăннă настраитăр. Кейиннĕ тăрăхлăннă кунĕн пăхăрнă кунĕн пăхăрнă.',
+    failedDesc:
+      'Инсталляциян пĕр тăрăхĕ пýлман. Windows-ре кунĕн пăхăрнă, эпир OpenAmer CLI е столăн аппликацие тăрăхлăннă пултăр. Тăрăхлăннă OpenAmer инстанцисемĕн ахаснă, кейин кайтă пăхăрнă. Тăрăхлăннă деталисемре е столăн лог-е пăхăрнă.',
+    activeDesc:
+      'Ку пĕр тăрăхлăннă настраитăр. OpenAmer инсталлятор зависимостьсем юкланнă тата тăрăхлăннă настраитăр. Кейиннĕ тăрăхлăннă кунĕн пăхăрнă кунĕн пăхăрнă.',
     progress: (completed, total) => `${total} утӑмран ${completed} пурнӑҫланнӑ`,
     currentStage: stage => ` -- хәзер: ${stage}`,
     fetchingManifest: 'Инсталлер манифестын йышар...',
@@ -2064,7 +2115,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     transcriptSaved: 'Тулла транскрипт сакланма',
     copiedOutput: 'Копил!',
     copyOutput: 'Нәтижене копил',
-    reloadRetry: 'Яңартып кире керт',
+    reloadRetry: 'Яңартып кире керт'
   },
   modelPicker: {
     loadFailed: 'Модельсене тиесе илме пулмарӗ',
@@ -2080,13 +2131,13 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     search: 'Провайдерсемпе модельсемпе фильтрлӗ...',
     noModels: 'Модельсем сăнăлман.',
     addProvider: 'Провайдер егӗр',
-    pro: 'Профессионаллӑ',
+    pro: 'Профессионаллӑ'
   },
   modelVisibility: {
     title: 'Модельсем',
     search: 'Модельсене шыра',
     noAuthenticatedProviders: 'Аутентификациленӗ провайдерсем çук.',
-    addProvider: 'Провайдер хуш…',
+    addProvider: 'Провайдер хуш…'
   },
   shell: {
     windowControls: 'Чӳрече тытӑмӗ',
@@ -2097,7 +2148,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       noModels: 'Модельсем тупӑнмарӗҫ',
       editModels: 'Модельсене тӳрлет…',
       refreshModels: 'Модельсене ҫӗнет',
-      fast: 'Хӑвӑр',
+      fast: 'Хӑвӑр'
     },
     modelOptions: {
       noOptions: 'Ку модель валли опцисем çук.',
@@ -2113,7 +2164,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       max: 'Максимум',
       ultra: 'Ультра',
       updateFailed: 'Модель опцине ҫӗнетме пулмарӗ',
-      fastFailed: 'Хӑвӑр режима ҫӗнетме пулмарӗ',
+      fastFailed: 'Хӑвӑр режима ҫӗнетме пулмарӗ'
     },
     gatewayMenu: {
       gateway: 'Шлюз',
@@ -2128,7 +2179,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       connection: label => `Связь: ${label}`,
       recentActivity: 'Сăнăлнă ĕçсем',
       viewAllLogs: 'Вăхăтлă логсем →',
-      messagingPlatforms: 'Мессенджер платформасем',
+      messagingPlatforms: 'Мессенджер платформасем'
     },
     approvalMode: {
       title: 'Approval режим',
@@ -2138,7 +2189,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       smart: 'Ӑслӑ',
       smartDescription: 'Автоматически ĕçсемĕн пăлăр та пӗлӗшле пăлăр',
       off: 'Вăйăтнă',
-      offDescription: 'Approval пӗлӗшле пултăрнă',
+      offDescription: 'Approval пӗлӗшле пултăрнă'
     },
     statusbar: {
       unknown: 'небиллӗ',
@@ -2194,18 +2245,19 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
           skills: 'Хӑнӑхусем',
           subagent_definitions: 'Пӗчӗк агентсен ӑнлантарӑвӗсем',
           system_prompt: 'Система хушӑвӗ',
-          tool_definitions: 'Хатӗрсен ӑнлантарӑвӗсем',
+          tool_definitions: 'Хатӗрсен ӑнлантарӑвӗсем'
         },
         empty: 'Контекст кӑтартӑвӗсем халӗ ҫук',
         loading: 'Пайланӑва тиесе илет…',
         percentFull: percent => `${percent}% тулнӑ`,
         title: 'Контекста усӑ курни',
-        tokenSummary: (used, max) => `${used} / ${max} токен`,
+        tokenSummary: (used, max) => `${used} / ${max} токен`
       },
       openContextUsage: 'Контекст мӗнле усӑ курнине уҫ',
       session: 'Сеанс',
       runtimeSessionElapsed: 'Сеанс пуҫланнӑран иртнӗ вӑхӑт',
-      yoloOn: 'YOLO ҫутӑ — хӑрушӑ хушусене хӑй тӗллӗн ҫирӗплетет. Сӳнтерме пусӑр. Шифт+пусни пӗтӗм программӑра улӑштарать.',
+      yoloOn:
+        'YOLO ҫутӑ — хӑрушӑ хушусене хӑй тӗллӗн ҫирӗплетет. Сӳнтерме пусӑр. Шифт+пусни пӗтӗм программӑра улӑштарать.',
       yoloOff: 'YOLO сӳнӗ — хӑрушӑ хушусене хӑй тӗллӗн ҫирӗплетме пусӑр. Шифт+пусни пӗтӗм программӑра улӑштарать.',
       modelNone: 'ҫук',
       noModel: 'модель ҫук',
@@ -2213,8 +2265,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       openModelPicker: 'Модель суйлавне уҫ',
       modelPinned: 'эсир ҫирӗплетнӗ; ҫӗнӗ чатсем ӑна Ӗнерлевсенчи яланхи модель вырӑнне усӑ кураҫҫӗ',
       modelTitle: (provider, model) => `Модель · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     emptyTitle: 'Пуш',
@@ -2250,7 +2302,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     noProjectOpen: 'Уҫӑ проект ҫук',
     noDiffs: 'Уйрӑмлӑхсем ҫук',
     unreadableTitle: 'Улама ҫук',
-    unreadableBody: error => `Ку папкӑна улама май килмерӗ (${error}).`,
+    unreadableBody: error => `Ку папкӑна улама май килмерӗ (${error}).`
   },
   preview: {
     tab: 'Умкурăм',
@@ -2278,7 +2330,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     editing: 'Тӳрлететпĕр',
     unsavedChanges: 'Упранман улшăнусем',
     diskChangedTitle: 'Файл диск çинче улшăннă',
-    diskChangedBody: 'Ку файл эсир ăна уçнăранпа улшăннă. Ăна хăвăр версипе çине çырса хурасшăн-и е тӳрлетĕвĕсене пăрахса тепĕр хут тиентересшĕн-и?',
+    diskChangedBody:
+      'Ку файл эсир ăна уçнăранпа улшăннă. Ăна хăвăр версипе çине çырса хурасшăн-и е тӳрлетĕвĕсене пăрахса тепĕр хут тиентересшĕн-и?',
     closeTab: label => `${label} хуп`,
     linkHint: 'Малтан пӑхмалли панеле уҫма ⌘/Ctrl пусса тытса пӑшал пусӑр',
     binaryBody: label => `${label} малтан пӑхнӑ чух улама ҫук текст курӑнма пултарать.`,
@@ -2305,7 +2358,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       empty: 'Консольре пӗлтерӳсем ҫук-ха.',
       promptHeader: 'Малтан пӑхса туху консолӗ:',
       sentTitle: 'Чата янӑ',
-      sentMessage: count => `${count} журнал ҫырӑвӗ${count === 1 ? 'y' : 'ies'} ҫыру редакторне хушӑннӑ`,
+      sentMessage: count => `${count} журнал ҫырӑвӗ${count === 1 ? 'y' : 'ies'} ҫыру редакторне хушӑннӑ`
     },
     web: {
       appFailedToBoot: 'Малтан пӑхса туху ӗҫпрограммине ӗҫлеттерме май килмерӗ',
@@ -2323,24 +2376,27 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       showConsole: 'Малтанхи курӑм консольне кӑтартӑр',
       hideDevTools: 'Малтан пӑхса туху аталану хатӗрӗсене пытамалла',
       openDevTools: 'Малтан пӑхса туху аталану хатӗрӗсене уҫмалла',
-      finishedRestarting: message => `OpenAmer малтан пӑхса туху серверне ҫӗнӗрен ӗҫлеттерсе ячӗ${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer малтан пӑхса туху серверне ҫӗнӗрен ӗҫлеттерсе ячӗ${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Серверне ҫӗнӗрен ӗҫлеттерсе яма ӑнмарӗ: ${message}`,
       unknownError: 'паллӑ мар йӑнӑш',
       restartedTitle: 'Малтан пӑхса туху серверне ҫӗнӗрен ӗҫлеттерсе янӑ',
       reloadingNow: 'Малтан пӑхса туху халь ҫӗнӗрен тиенет.',
       restartFailedTitle: 'Малтан пӑхса тухӑва ҫӗнӗрен ӗҫлеттерсе яма ӑнмарӗ',
       restartFailedMessage: 'OpenAmer серверне ҫӗнӗрен ӗҫлеттерсе яма пултараймарӗ.',
-      stillWorking: 'OpenAmer ӗҫлеме пӑрахман, анчах ҫӗнӗрен ӗҫлеттерсе янин результачӗ халӗ те килмен. Сервер хушӑвӗ малти планда ӗҫлет пулмалла.',
+      stillWorking:
+        'OpenAmer ӗҫлеме пӑрахман, анчах ҫӗнӗрен ӗҫлеттерсе янин результачӗ халӗ те килмен. Сервер хушӑвӗ малти планда ӗҫлет пулмалла.',
       workspaceReloading: 'Ӗҫ вырӑнӗ улшӑнчӗ, малтан пӑхса туху ҫӗнӗрен тиенет',
       fileChanged: url => `Файл улшӑнчӗ, малтан пӑхса туху ҫӗнӗрен тиенет: ${url}`,
       filesChanged: (count, url) => `${count} файл улшăнчĕ, малтан пăхнине çĕнететпĕр: ${url}`,
       watchFailed: message => `Малтан пăхмалли файла сăнаса тăраймарăмăр: ${message}`,
-      moduleMimeDescription: 'Модуль скрипчĕсене тĕрĕс мар MIME тĕсĕпе параççĕ. Ку ытларах чухне статикăллă файл серверĕ проектăн аталантару серверĕ вырăнне Vite/React приложенийĕне панине пĕлтерет.',
+      moduleMimeDescription:
+        'Модуль скрипчĕсене тĕрĕс мар MIME тĕсĕпе параççĕ. Ку ытларах чухне статикăллă файл серверĕ проектăн аталантару серверĕ вырăнне Vite/React приложенийĕне панине пĕлтерет.',
       loadFailedConsole: (code, message) => `Тиеймерĕмĕр${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'Малтан пăхмалли страница çине кĕреймерĕмĕр.',
       openTarget: url => `${url} уç`,
-      fallbackTitle: 'Малтан пăхни',
-    },
+      fallbackTitle: 'Малтан пăхни'
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO улӑштарма пулмарӗ',
@@ -2352,7 +2408,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     editFailed: 'Тӳрлетме пулмарӗ',
     resumeFailed: 'Малалла тӑсма пулмарӗ',
     resumeStrandedTitle: 'Ку сессине тиеме пулмарӗ',
-    resumeStrandedBody: 'Ку сессипе ҫыхӑну татӑлчӗ, автоматика ҫӗнӗрен хӑтланнисем пӑрахрӗҫ. Шлюз ӗҫлесе тӑнине тӗрӗсле, унтан тепӗр хут тӑрӑш.',
+    resumeStrandedBody:
+      'Ку сессипе ҫыхӑну татӑлчӗ, автоматика ҫӗнӗрен хӑтланнисем пӑрахрӗҫ. Шлюз ӗҫлесе тӑнине тӗрӗсле, унтан тепӗр хут тӑрӑш.',
     resumeRetry: 'Тепӗр хут',
     nothingToBranch: 'Ветка тума нимӗн те ҫук',
     branchNeedsChat: 'Ветка тумаччен чата пуҫла е малалла тӑс.',
@@ -2396,7 +2453,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     yoloOff: 'YOLO сӳнтернӗ',
     yoloSystem: active => `Ҫак сессире YOLO ${active ? 'on' : 'off'}`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Профиль: ${current}. Урӑх профильпе чат пуҫлама /профиль <ят> хушӑва е «Ҫӗнӗ сесси» суйлавне усӑ курӑр.`,
+    profileStatus: current =>
+      `Профиль: ${current}. Урӑх профильпе чат пуҫлама /профиль <ят> хушӑва е «Ҫӗнӗ сесси» суйлавне усӑ курӑр.`,
     noProfileNamed: (target, available) => `«${target}» ятлӑ профиль ҫук. Пуррисем: ${available}`,
     newChatsProfile: name => `Ҫӗнӗ чатсем ${name} профиле усӑ курӗҫ.`,
     branchTitle: n => `Хатӗрлев: турат №${n}`,
@@ -2408,8 +2466,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       success: platform => `${platform} патне парса панӑ. Кунта кирек хӑҫан та малалла тӑсма пулать.`,
       systemNote: platform => `↻ ${platform} патне парса панӑ — кунта кирек хӑҫан та малалла тӑсма пулать.`,
       failed: error => `Парса памалла пулмарӗ: ${error}`,
-      timedOut: 'Шлюза кӗтнин вӑхӑчӗ тухрӗ. OpenAmer шлюзӗ ӗҫлет-и?',
-    },
+      timedOut: 'Шлюза кӗтнин вӑхӑчӗ тухрӗ. OpenAmer шлюзӗ ӗҫлет-и?'
+    }
   },
   statusStack: {
     stop: 'Чарӑн',
@@ -2447,7 +2505,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       openPr: 'PR уҫ',
       ghMissing: 'GitHub CLI (gh) ларт та PR уҫма кӗр.',
       agentShip: 'OpenAmer PR уҫтӑр тесе ыйт.',
-      agentShipPrompt: 'Хальхи улшӑнусене тӗрӗсле, вӗсене ӑнланмалла conventional-commit пӗлтерӗвӗпе коммитле, туратне push ту та PR уҫ.',
+      agentShipPrompt:
+        'Хальхи улшӑнусене тӗрӗсле, вӗсене ӑнланмалла conventional-commit пӗлтерӗвӗпе коммитле, туратне push ту та PR уҫ.',
       newBranch: 'Ҫӗнӗ турат',
       worktrees: 'Ӗҫ йывӑҫӗсем',
       changed: count => `${count} улшӑннӑ`,
@@ -2456,17 +2515,18 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       commitPlaceholder: 'Хабар (⌘↵ илĕсме)',
       branchOffFrom: base => `Çăвăш ${base} пĕрле тăрăхлăн`,
       switchTo: branch => `${branch} пĕрле тăрăхлăн`,
-      switchFailed: branch => `${branch} пĕрле тăрăхлăн пýлман`,
+      switchFailed: branch => `${branch} пĕрле тăрăхлăн пýлман`
     },
     agents: 'Агентсем',
     background: count => `${count} Фон`,
     subagents: count => `${count} Хушма агент${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Тăрăхсем ${done}/${total}`,
     running: 'Тăрăхлăн',
-    exit: code => `тăрăх ${code}`,
+    exit: code => `тăрăх ${code}`
   },
   remoteDisplayBanner: {
-    message: reason => `Softwarové vykreslování aktivní — zjištěn vzdálený displej (${reason}). GPU akcelerace zakázána, aby se zabránilo mrání.`,
+    message: reason =>
+      `Softwarové vykreslování aktivní — zjištěn vzdálený displej (${reason}). GPU akcelerace zakázána, aby se zabránilo mrání.`
   },
   skills: {
     tabSkills: 'Кӗнекесем',
@@ -2486,7 +2546,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     noDescription: 'Описание юк.',
     configured: 'Настроен',
     needsKeys: 'Клавиш кайта',
-    visionModelHint: 'Vision сӑн auxiliar модель настройка пулла — сурӑх модель вӗренче пӗрлӗ, эсӗр провайдер пулранта мар.',
+    visionModelHint:
+      'Vision сӑн auxiliar модель настройка пулла — сурӑх модель вӗренче пӗрлӗ, эсӗр провайдер пулранта мар.',
     visionModelLink: 'Vision модель пӗрлӗ Настройки → Модели',
     toolsetsEnabled: (enabled, total) => `увімкнено ${enabled}/${total} наборів інструментів`,
     configureToolset: label => `Налаштувати ${label}`,
@@ -2512,7 +2573,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     provenance: {
       agent: 'Вивчено',
       bundled: 'Вбудовано',
-      hub: 'Хаб',
+      hub: 'Хаб'
     },
     emptyNoneFound: noun => `${noun} не знайдено`,
     emptyNothingMatches: query => `Нічого не відповідає «${query}».`,
@@ -2530,7 +2591,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       connectingHubs: 'Підключення до хабів навичок...',
       connectedHubs: 'Підключені хаби:',
       featured: 'Рекомендовані навички',
-      landingHint: 'Шукайте в хабі, щоб переглянути навички для встановлення з офіційного індексу, GitHub та спільноти.',
+      landingHint:
+        'Шукайте в хабі, щоб переглянути навички для встановлення з офіційного індексу, GitHub та спільноти.',
       noResults: 'Хубă тупă кĕнеке пулччĕ.',
       resultCount: (count, ms) => `${count} результат${count === 1 ? '' : 's'}${ms !== null ? ` in ${ms}ms` : ''}`,
       timedOut: sources => `Време истекло: ${sources}`,
@@ -2550,7 +2612,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       trust: {
         builtin: 'встроенный',
         trusted: 'доверенный',
-        community: 'сообщество',
+        community: 'сообщество'
       },
       verdictSafe: 'Безопасно',
       verdictCaution: 'Осторожно',
@@ -2568,8 +2630,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       loadFailed: 'Не удалось загрузить центр навыков',
       previewFailed: 'Не удалось загрузить предварительный просмотр навыка',
       scanFailed: 'Сканирование безопасности не удалось',
-      searchFailed: 'Поиск в центре не удался',
-    },
+      searchFailed: 'Поиск в центре не удался'
+    }
   },
   starmap: {
     title: 'Граф памяти',
@@ -2586,7 +2648,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     emptyTitle: 'Nenio lernita ankoraŭ',
     emptyDesc: 'Dum OpenAmer konstruas kapablojn kaj memorojn por via laboro, ili aperas ĉi tie.',
     share: 'Dividi mapon',
-    shareHint: 'Kopiu la kodon por dividi ĉi tiun mapon, aŭ algluu unu por ŝargi. Ĝi nur inkluzivas la aranĝon, ne vian memoron aŭ kapabla tekston.',
+    shareHint:
+      'Kopiu la kodon por dividi ĉi tiun mapon, aŭ algluu unu por ŝargi. Ĝi nur inkluzivas la aranĝon, ne vian memoron aŭ kapabla tekston.',
     shareTitle: 'Importi / eksporti mapon',
     sharePlaceholder: 'Alglui mapkodon…',
     copy: 'Kopii mapkodon',
@@ -2596,7 +2659,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     importEmpty: 'Algluu mapkodon por ĝin ŝargi.',
     importSuccess: nodes => `Ŝargita mapo kun ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'importita mapo',
-    resetToMine: 'Reen al mia mapo',
+    resetToMine: 'Reen al mia mapo'
   },
   agents: {
     close: 'Fermi agentojn',
@@ -2626,7 +2689,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     ageDays: days => `${days} кӗнӗн`,
     durationSeconds: seconds => `${seconds} с`,
     durationMinutes: (minutes, seconds) => `${minutes} м ${seconds} с`,
-    tokens: value => `${value} токен`,
+    tokens: value => `${value} токен`
   },
   webhooks: {
     search: 'Търсене на уебхукове...',
@@ -2636,7 +2699,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     hint: 'Промените в абонаментите се рестартират автоматично, след като приемникът е активен. Деактивираните абонаменти отхвърлят входящи събития.',
     empty: 'Няма активни абонаменти за уебхукове.',
     disabledTitle: 'Приемникът на уебхуковете е деактивиран',
-    disabledBody: 'Уебхуковете са собствена платформа за шлюз. Активирайте ги тук, за да приемате входящи HTTP събития; чат каналите са необходими само ако абонаментът препраща към Telegram, Discord, Slack или друг канал.',
+    disabledBody:
+      'Уебхуковете са собствена платформа за шлюз. Активирайте ги тук, за да приемате входящи HTTP събития; чат каналите са необходими само ако абонаментът препраща към Telegram, Discord, Slack или друг канал.',
     enable: 'Активирай уебхукове',
     enabling: 'Активиране...',
     enabled: (name: string) => `Активирано: "${name}"`,
@@ -2653,7 +2717,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     toggleFailed: (name: string) => `Грешка при актуализиране на "${name}"`,
     newSubscription: 'Нов абонамент',
     restarting: 'Рестартиране на шлюза...',
-    restartNeeded: 'Уебхуковете са активирани, но шлюзът все още се нуждае от рестарт, преди приемникът да стане активен.',
+    restartNeeded:
+      'Уебхуковете са активирани, но шлюзът все още се нуждае от рестарт, преди приемникът да стане активен.',
     restartGateway: 'Рестартирай шлюза',
     restartingGateway: 'Рестартиране...',
     restartFailed: (detail: string) => `Шлюс перезапускӑç çӑватал${detail}`,
@@ -2689,8 +2754,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Электронлӑ пошта',
-      github_comment: 'GitHub комментарий',
-    },
+      github_comment: 'GitHub комментарий'
+    }
   },
   artifacts: {
     search: 'Артефактĕсĕ уй...',
@@ -2724,7 +2789,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     kindLink: 'ссылка',
     chat: 'Чат',
     copyUrl: 'URL-ны копировать',
-    copyPath: 'Йолны копировать',
+    copyPath: 'Йолны копировать'
   },
   composer: {
     message: 'Пуш',
@@ -2735,20 +2800,20 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     newSessionPlaceholders: [
       'Чӑкӑр пултап яр?',
       'OpenAmer-ра пулта тӗтлӗ',
-      "Сӑн хӗвелчен чӑк?",
+      'Сӑн хӗвелчен чӑк?',
       'Хӗрле, чӑк хӗрлӗ',
       'Чӑк пултап яр?',
       'Хӗр чӑк ҫынна',
-      'Мӗксел bilan пӗрлӗ',
+      'Мӗксел bilan пӗрлӗ'
     ],
     followUpPlaceholders: [
       'Ырӑ тӗтлӗ пулта',
       'Вӗрен контекст ҫукла',
       'Ҫыннав ҫинешле',
-      "Хӗр ту?",
+      'Хӗр ту?',
       'Юлалла',
       'Вӗрен кайта',
-      'Тӑхта ярать юла',
+      'Тӑхта ярать юла'
     ],
     startVoice: 'Сӗслӗ пултар пӗрлӗ',
     queueMessage: 'Пуш кӗнекле',
@@ -2784,7 +2849,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       '/resume': 'кайта сессис ула',
       '/details': 'транскрипт пушма паяш пулта',
       '/copy': 'сайлаш кеп ёки кайна помошник вай',
-      '/quit': 'тухта OpenAmer',
+      '/quit': 'тухта OpenAmer'
     },
     hotkeyDescs: {
       'composer.mention': 'сыллама файлсем, папкасем, urls, git',
@@ -2794,7 +2859,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       'composer.sendQueued': 'кейне очередь вай ула',
       'keybinds.openPanel': 'пулна клавиатура клавишсем',
       'composer.cancel': 'пуш всплывающее · сил иштә',
-      'composer.history': 'цикл всплывающее / tarix',
+      'composer.history': 'цикл всплывающее / tarix'
     },
     attachUrlTitle: 'пуш URL',
     attachUrlDesc: 'OpenAmer пушма хуй йӗрле кайта контекст пулта.',
@@ -2815,7 +2880,8 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     queueResume: 'Ула',
     queueResumeTip: 'Тухта тухта — очередь вайсем ула',
     queueStuckTitle: 'Очередь вай ула юк',
-    queueStuckBody: 'Чернеклелти тăрăх ялăн ыллышлăх пĕрле илĕсме пулычкăн. Вăл халĕ янă пĕрле тăрăх есмĕн — кайтă илĕсме пăхăрăн.',
+    queueStuckBody:
+      'Чернеклелти тăрăх ялăн ыллышлăх пĕрле илĕсме пулычкăн. Вăл халĕ янă пĕрле тăрăх есмĕн — кайтă илĕсме пăхăрăн.',
     previewUnavailable: 'Прĕсметĕнче пýлман',
     previewLabel: label => `${label} малтан пӑхса тух`,
     couldNotPreview: label => `${label} прĕсметĕнче пýлман`,
@@ -2845,22 +2911,22 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
       codeReview: {
         label: 'Код ревизия',
         description: 'Нывăрнă тăрăхре регрессионнă епаллăхсем, пăхăрман крайлăхсем тата пăхăрман тестсем пăхăрнă.',
-        text: 'Пăхăрнă епаллăхсем, регрессионнă епаллăхсем тата пăхăрман тестсем пăхăрнă.',
+        text: 'Пăхăрнă епаллăхсем, регрессионнă епаллăхсем тата пăхăрман тестсем пăхăрнă.'
       },
       implementationPlan: {
         label: 'Имплементаци план',
         description: 'Кодре тăрăхлăн пахăрнă плăтăрнă план язăн, тăрăхлăн дифф фокуслă пултăр.',
-        text: 'Кодре тăрăхлăн пахăрнă кăтăрнă имплементаци план язăн.',
+        text: 'Кодре тăрăхлăн пахăрнă кăтăрнă имплементаци план язăн.'
       },
       explainThis: {
         label: 'Çухлăн',
         description: 'Сарăннă кодĕн пăхăрнă тăрăхлăн пĕлĕртнĕнĕ тата кăтăрнă файлласемре пăхăрнă.',
-        text: 'Кунĕн пăхăрнă тăрăхлăн пĕлĕртнĕнĕ тата кăтăрнă файлласемре пăхăрнă.',
-      },
-    },
+        text: 'Кунĕн пăхăрнă тăрăхлăн пĕлĕртнĕнĕ тата кăтăрнă файлласемре пăхăрнă.'
+      }
+    }
   },
   onboarding: {
-    headerTitle: "OpenAmer Agent-не синне урнаштырамыз",
+    headerTitle: 'OpenAmer Agent-не синне урнаштырамыз',
     headerDesc: 'Модель провайдерне тоташтыр, чатла башла. Күп вариантлар бер кликта.',
     preparingInstall: 'OpenAmer инсталляцияне тәмамла. Бу гадәттә беренче эшләмәдә минуттан аз вакыт кала.',
     starting: 'OpenAmer башлана…',
@@ -2868,7 +2934,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     collapse: 'Кысу',
     otherProviders: 'Башка провайдерлар',
     haveApiKey: 'API ачкычым бар',
-    chooseLater: "Киләсе вакытта провайдерне сайлармын",
+    chooseLater: 'Киләсе вакытта провайдерне сайлармын',
     recommended: 'Тәкъдим ителгән',
     connected: 'Тоташтырылган',
     featuredPitch: 'Бер язылу, 300+ фронтир модель — OpenAmer-не эшләтү өчен тәкъдим ителгән ысул',
@@ -2877,28 +2943,29 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     apiKeyOptions: {
       fireworks: {
         short: 'директ модель API',
-        description: 'Fireworks AI хостланган модельләргә туры керү',
+        description: 'Fireworks AI хостланган модельләргә туры керү'
       },
       openrouter: {
         short: 'бер ачкыч, күп модель',
-        description: 'Бер ачкыч артында йөзләгән модель хостлана. Яңа инсталляцияләр өчен яхшы стандарт',
+        description: 'Бер ачкыч артында йөзләгән модель хостлана. Яңа инсталляцияләр өчен яхшы стандарт'
       },
       openai: {
         short: 'GPT-тип модельләр',
-        description: 'OpenAI модельләренә туры керү',
+        description: 'OpenAI модельләренә туры керү'
       },
       gemini: {
         short: 'Gemini модельләр',
-        description: 'Google Gemini модельләренә туры керү',
+        description: 'Google Gemini модельләренә туры керү'
       },
       xai: {
         short: 'Grok модельләр',
-        description: 'xAI Grok модельләренә туры керү',
+        description: 'xAI Grok модельләренә туры керү'
       },
       local: {
         short: 'үз-үзең хостлаган',
-        description: 'OpenAmer-не локаль яки үз-үзең хостлаган OpenAI-га туры килүче ноктасына күрсәт (vLLM, llama.cpp, Ollama, һ.б.)',
-      },
+        description:
+          'OpenAmer-не локаль яки үз-үзең хостлаган OpenAI-га туры килүче ноктасына күрсәт (vLLM, llama.cpp, Ollama, һ.б.)'
+      }
     },
     backToSignIn: 'Кирешәгә кире',
     getKey: 'Ачкыч ал',
@@ -2911,7 +2978,7 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     flowSubtitles: {
       pkce: 'Браузерны ачып кирешә, аннары монда дәвам итә',
       device_code: 'Браузерда тикшерү битен ача — OpenAmer автоматик тоташу',
-      external: 'Терминалда бер тапкыр кирешә, аннары чатка кир',
+      external: 'Терминалда бер тапкыр кирешә, аннары чатка кир'
     },
     startingSignIn: provider => `Кирешә башлана ${provider} өчен…`,
     verifyingCode: provider => `${provider} белән кодны тикшерә`,
@@ -2925,11 +2992,13 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     copyAuthCode: 'Авторизация кодыны копиллә һәм түбәнгә керт',
     pasteAuthCode: 'Авторизация кодыны керт',
     reopenAuthPage: 'Авторизация битен яңадан ач',
-    autoBrowser: provider => `Браузерда ${provider} ачтык. OpenAmer-не анда авторизациялә, һәм син автоматик тоташырсың — копиллә яки кертмә кирәкми.`,
+    autoBrowser: provider =>
+      `Браузерда ${provider} ачтык. OpenAmer-не анда авторизациялә, һәм син автоматик тоташырсың — копиллә яки кертмә кирәкми.`,
     reopenSignInPage: 'Кирешә битен яңадан ач',
     waitingAuthorize: 'Авторизацияне көтәбез…',
-    externalPending: provider => `${provider} хӑйӗн CLI урлӑ кӗрет. Ҫак хушӑва терминалта ӗҫлӗр, унтан таврӑнса «Эпӗ кӗтӗм» пункта суйлӑр:`,
-    signedIn: "Эпӗ керлӗ",
+    externalPending: provider =>
+      `${provider} хӑйӗн CLI урлӑ кӗрет. Ҫак хушӑва терминалта ӗҫлӗр, унтан таврӑнса «Эпӗ кӗтӗм» пункта суйлӑр:`,
+    signedIn: 'Эпӗ керлӗ',
     deviceCodeOpened: provider => `Эпӗ браузерĕнче ${provider} açнăр. Кун кодĕнĕ куна пӗрĕсĕн:`,
     reopenVerification: 'Верификаци страницасĕнĕ кайтта aç',
     copy: 'Копилер',
@@ -2940,41 +3009,42 @@ Deixa en blanc per mantenir el ${mode} per defecte.`,
     price: (input, output) => `Миллион токеншӑн ${input} кӗрекен / ${output} тухакан`,
     change: 'Улӑштар',
     startChatting: 'Пуҫалтăр',
-    docs: provider => `${provider} документ`,
+    docs: provider => `${provider} документ`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer шлюзӗ ҫыхӑнман',
     sudoSendFailed: 'Администратор паролне ярса пама пулмарӗ',
     secretSendFailed: 'Вӑрттӑн информацие ярса пама пулмарӗ',
     sudoTitle: 'Администратор паролӗ',
-    sudoDesc: 'Ҫӳллӗрех правӑсемпе командӑна пурнӑҫлама OpenAmer валли сирӗн администратор паролӗ кирлӗ. Ӑна сирӗн локаллӑ агентна ҫеҫ яраҫҫӗ.',
+    sudoDesc:
+      'Ҫӳллӗрех правӑсемпе командӑна пурнӑҫлама OpenAmer валли сирӗн администратор паролӗ кирлӗ. Ӑна сирӗн локаллӑ агентна ҫеҫ яраҫҫӗ.',
     sudoPlaceholder: 'Администратор паролӗ',
     secretTitle: 'Хупӑнчӑк пӗлтерӗш кирлӗ',
     secretDesc: 'Малалла тӑсма OpenAmer кӗрӳ даннӑйӗсене ыйтать.',
-    secretPlaceholder: 'Хупӑнчӑк пӗлтерӗш',
+    secretPlaceholder: 'Хупӑнчӑк пӗлтерӗш'
   },
   errors: {
     genericFailure: 'Темӗн йӑнӑш пулса тухрӗ',
     boundaryTitle: 'Интерфейсра темӗн хуҫӑлчӗ',
     boundaryDesc: 'Кӑтартура кӗтмен йӑнӑш тухрӗ. Сирӗн чатсемпе ӗнерлевсем упраннӑ.',
     reloadWindow: 'Чӳречене ҫӗнӗрен тийӗр',
-    openLogs: 'Журналсене уҫӑр',
+    openLogs: 'Журналсене уҫӑр'
   },
   ui: {
     search: {
-      clear: 'Шыравӑ таса тӑвӑр',
+      clear: 'Шыравӑ таса тӑвӑр'
     },
     pagination: {
       label: 'Страницӑсене пайлани',
       previous: 'Умӗнхи',
       previousAria: 'Умӗнхи страницӑна куҫ',
       next: 'Тепӗр',
-      nextAria: 'Тепӗр страницӑна куҫ',
+      nextAria: 'Тепӗр страницӑна куҫ'
     },
     sidebar: {
       title: 'Ҫумри панель',
       description: 'Мобиллӗ ҫумри панеле кӑтартать.',
-      toggle: 'Ҫумри панеле уҫ/хуп',
-    },
-  },
+      toggle: 'Ҫумри панеле уҫ/хуп'
+    }
+  }
 })

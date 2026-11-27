@@ -13,7 +13,7 @@ export const yo = defineLocale({
       profiles: 'Àwọn profáìlì',
       session: 'Ìpàdé',
       navigation: 'Ìtọ́nisọ́nà',
-      view: 'Ìwò',
+      view: 'Ìwò'
     },
     actions: {
       'keybinds.openPanel': 'Ṣí àwọn ọ̀nà kíkúrú kíbọ́ọ̀dù',
@@ -92,7 +92,7 @@ export const yo = defineLocale({
       'composer.slash': 'Pẹpẹ àṣẹ slash',
       'composer.help': 'Ìrànwọ́ kíákíá',
       'composer.history': 'Yí popover / ìtàn',
-      'composer.cancel': 'Tì popover · fagilé ìṣe',
+      'composer.cancel': 'Tì popover · fagilé ìṣe'
     },
     title: 'Àwọn ìró kíbọ́ọ̀dù',
     subtitle: open => `Tẹ ìró kan láti yí i padà · ${open} ṣí panel yìí padà.`,
@@ -101,7 +101,7 @@ export const yo = defineLocale({
     reset: 'Padà sí àkòtán',
     resetAll: 'Pa gbogbo rẹ̀ padà',
     pressKey: 'Tẹ kókó kan…',
-    conflictWith: label => `A tún so mọ́ “${label}”`,
+    conflictWith: label => `A tún so mọ́ “${label}”`
   },
   fileMenu: {
     revealFileManager: 'Ṣí folda tó ní í',
@@ -116,7 +116,7 @@ export const yo = defineLocale({
     pathCopied: 'A ti ṣe ẹ̀dà ọ̀nà',
     revealFinder: 'Fi hàn nínú Finder',
     revealExplorer: 'Fi hàn nínú File Explorer',
-    deleteTitle: name => `Siba ${name}?`,
+    deleteTitle: name => `Siba ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop ti ṣetán',
@@ -125,7 +125,7 @@ export const yo = defineLocale({
       loadingSettings: 'Ń gbé ètò OpenAmer',
       loadingSessions: 'Ń gbé àwọn ìsọ̀rọ̀ aipẹ́',
       startingDesktopConnection: 'Ń bẹ̀rẹ̀ ìsopọ̀ desktop',
-      startingOpenAmerDesktop: 'Ń bẹ̀rẹ̀ OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ń bẹ̀rẹ̀ OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Ìlànà abẹ́lẹ̀ OpenAmer ti jáde.',
@@ -134,13 +134,15 @@ export const yo = defineLocale({
       desktopBootFailed: 'Ìbẹ̀rẹ̀ desktop kùnà',
       gatewayConnectionLost: 'A ti pàdánù ìsopọ̀ sí gateway',
       gatewaySignInRequired: 'Ìwọlé gateway pọn dandan',
-      ipcBridgeUnavailable: 'Afárá IPC desktop kò wà.',
+      ipcBridgeUnavailable: 'Afárá IPC desktop kò wà.'
     },
     failure: {
       title: 'OpenAmer kò lè bẹ̀rẹ̀',
-      description: 'Gateway abẹ́lẹ̀ kò dìde. Gbìyànjú ọ̀kan lára àwọn ìgbésẹ̀ ìmúpadà ní ìsàlẹ̀. Kò sí nǹkan níbí tí yóò pa àwọn ìsọ̀rọ̀ tàbí ètò rẹ rẹ́.',
+      description:
+        'Gateway abẹ́lẹ̀ kò dìde. Gbìyànjú ọ̀kan lára àwọn ìgbésẹ̀ ìmúpadà ní ìsàlẹ̀. Kò sí nǹkan níbí tí yóò pa àwọn ìsọ̀rọ̀ tàbí ètò rẹ rẹ́.',
       remoteTitle: 'Ìwọlé gateway jíjìnnà pọn dandan',
-      remoteDescription: 'Àkókò ìsọ̀rọ̀ gateway jíjìnnà rẹ ti tán. Tún wọlé láti sopọ̀ mọ́. Kò sí nǹkan níbí tí yóò pa àwọn ìsọ̀rọ̀ tàbí ètò rẹ rẹ́.',
+      remoteDescription:
+        'Àkókò ìsọ̀rọ̀ gateway jíjìnnà rẹ ti tán. Tún wọlé láti sopọ̀ mọ́. Kò sí nǹkan níbí tí yóò pa àwọn ìsọ̀rọ̀ tàbí ètò rẹ rẹ́.',
       retry: 'Tún gbìyànjú',
       repairInstall: 'Ìmúpadà ìfiṣe',
       useLocalGateway: 'Lo gateway ìbílẹ̀',
@@ -159,10 +161,11 @@ export const yo = defineLocale({
       signInFailed: 'Ìwọlé kùnà',
       signInToRemoteGateway: 'Wọlé sí ẹnu-ọ̀nà jíjìn',
       identityProvider: 'Olùpèsè ìdánimọ̀ rẹ',
-      remoteSignInHint: signInLabel => `Okuggya mu kaseera ka browser eyasavudde, oluvanyuma okuggula ${signInLabel}. Kokolesa local gateway okukyusa ku bundled backend.`,
-      signInWithProvider: provider => `Yingira n' ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Okuggya mu kaseera ka browser eyasavudde, oluvanyuma okuggula ${signInLabel}. Kokolesa local gateway okukyusa ku bundled backend.`,
+      signInWithProvider: provider => `Yingira n' ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Okutambula kw'eddesiki kulekese: ${message}`,
+    desktopBootFailedWithMessage: message => `Okutambula kw'eddesiki kulekese: ${message}`
   },
   notifications: {
     region: 'Àwọn ìfitónilétí',
@@ -174,7 +177,8 @@ export const yo = defineLocale({
     copyDetail: 'Dàkọ àlàyé',
     copyDetailFailed: 'Kò lè dàkọ àlàyé ìfitónilétí',
     backendOutOfDateTitle: 'Backend ti pẹ́',
-    backendOutOfDateMessage: 'Backend OpenAmer rẹ ti pẹ́ ju ẹ̀dá desktop yìí lọ, ó sì lè má ṣiṣẹ́ dáadáa. Ṣe ìmúdójúúrẹ̀ kí wọ́n dọ́gba.',
+    backendOutOfDateMessage:
+      'Backend OpenAmer rẹ ti pẹ́ ju ẹ̀dá desktop yìí lọ, ó sì lè má ṣiṣẹ́ dáadáa. Ṣe ìmúdójúúrẹ̀ kí wọ́n dọ́gba.',
     installMethodUnsupportedTitle: 'Ọ̀nà ìfiṣẹ́de kò ní àtìlẹ́yìn',
     updateOpenAmer: 'Ṣe ìmúdójúúrẹ̀ OpenAmer',
     updateReadyTitle: 'Ìmúdójúúrẹ̀ ti ṣetán',
@@ -183,11 +187,12 @@ export const yo = defineLocale({
       elevenLabsNeedsKey: 'ElevenLabs STT nílò ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs kọ API key (401).',
       gatewayAuthFailed: 'Ìjẹ́rìí gateway kùnà — ṣàyẹ̀wò API_SERVER_KEY rẹ.',
-      methodNotAllowed: 'Backend desktop kọ ìbéèrè yẹn (405 Method Not Allowed). Gbìyànjú láti tún OpenAmer Desktop bẹ̀rẹ̀.',
+      methodNotAllowed:
+        'Backend desktop kọ ìbéèrè yẹn (405 Method Not Allowed). Gbìyànjú láti tún OpenAmer Desktop bẹ̀rẹ̀.',
       microphonePermission: 'A kọ ìyọ̀nda maikrofónù.',
       openaiRejectedApiKey: 'OpenAI kọ API key.',
       openaiTtsNeedsKey: 'OpenAI TTS nílò VOICE_TOOLS_OPENAI_KEY tàbí OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI gakyise API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI gakyise API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Ṣètò ìyí ọ̀rọ̀ sísọ sí ọ̀rọ̀ kíkọ láti lo ipò ohùn.',
@@ -206,7 +211,7 @@ export const yo = defineLocale({
       transcriptionFailed: 'Ìyí ohùn sí ọ̀rọ̀ kùnà',
       transcriptionUnavailable: 'Okukyusa eddoboozi mu maandiko tekikaliwo kati.',
       tryRecordingAgain: 'Geekola okureko nate.',
-      unavailable: 'Eddoboozi tekikaliwo',
+      unavailable: 'Eddoboozi tekikaliwo'
     },
     more: count => `${count} endirise ${count === 1 ? 'notification' : 'notifications'}`,
     updateReadyMessage: count => `${count} kyakyusa ${count === 1 ? '' : 's'} kiriko.`,
@@ -219,10 +224,10 @@ export const yo = defineLocale({
       turnDoneTitle: 'OpenAmer yakala',
       turnDoneBody: 'Eddoboozi lyaliyise.',
       turnErrorTitle: 'Okukyusa kulekese',
-      backgroundDoneTitle: 'Omulimu gw\'embuta gwakala',
-      backgroundFailedTitle: 'Omulimu gw\'embuta gulekese',
-      creditsTitle: 'Sente z\'okukozesa',
-    },
+      backgroundDoneTitle: "Omulimu gw'embuta gwakala",
+      backgroundFailedTitle: "Omulimu gw'embuta gulekese",
+      creditsTitle: "Sente z'okukozesa"
+    }
   },
   settings: {
     plugins: {
@@ -230,58 +235,61 @@ export const yo = defineLocale({
       kinds: {
         bundled: 'Tí ó wà pẹ̀lú',
         disk: 'Lórí diskì',
-        runtime: 'Àkókò ìṣiṣẹ́',
+        runtime: 'Àkókò ìṣiṣẹ́'
       },
       title: 'Àwọn plugin desktop',
-      blurb: 'Àwọn ìtẹ̀síwájú UI tí a gbé sínú app yìí — tí a so pọ̀ mọ́ build, tàbí tí a sọ sínú folda desktop-plugins (pẹ̀lú àwọn tí OpenAmer kọ). Dídìí máa ń yọ plugin kan lẹ́sẹ̀kẹsẹ̀, yóò sì dúró kọjá àwọn ìtúnbẹ̀rẹ̀.',
+      blurb:
+        'Àwọn ìtẹ̀síwájú UI tí a gbé sínú app yìí — tí a so pọ̀ mọ́ build, tàbí tí a sọ sínú folda desktop-plugins (pẹ̀lú àwọn tí OpenAmer kọ). Dídìí máa ń yọ plugin kan lẹ́sẹ̀kẹsẹ̀, yóò sì dúró kọjá àwọn ìtúnbẹ̀rẹ̀.',
       openFolder: 'Ṣí folda plugin',
       rescan: 'Tún ṣàyẹ̀wò',
       reveal: 'Fi hàn nínú olùṣàkóso fáìlì',
       enable: 'Mú ṣiṣẹ́',
       disable: 'Dìí',
       failed: 'kùnà',
-      count: n => `A ti fi ${n} sílẹ̀`,
+      count: n => `A ti fi ${n} sílẹ̀`
     },
     notifications: {
       title: 'Àwọn ìfitónilétí',
-      intro: 'Àwọn ìfitónilétí desktop àbínibí, yàtọ̀ sí àwọn toast inú app. Wọ́n jẹ́ ti ẹrọ — kọ̀mpútà kọ̀ọ̀kan máa ń tọ́jú ètò rẹ̀.',
+      intro:
+        'Àwọn ìfitónilétí desktop àbínibí, yàtọ̀ sí àwọn toast inú app. Wọ́n jẹ́ ti ẹrọ — kọ̀mpútà kọ̀ọ̀kan máa ń tọ́jú ètò rẹ̀.',
       enableAll: 'Mú ìfitónilétí ṣiṣẹ́',
       enableAllDesc: 'Switi pátápátá. Pa eyi láti dákẹ́ gbogbo ìfitónilétí tí ó wà nísàlẹ̀.',
       focusedHint: 'Àwọn ìkìlọ̀ ìparí máa ń ṣiṣẹ́ nìkan nígbà tí OpenAmer wà ní abẹ́lẹ̀.',
       kinds: {
         approval: {
           label: 'Ìfọwọ́sí nílò',
-          description: 'Àṣẹ kan ń dúró fún ọ láti fọwọ́ sí i tàbí kọ̀ ọ́.',
+          description: 'Àṣẹ kan ń dúró fún ọ láti fọwọ́ sí i tàbí kọ̀ ọ́.'
         },
         input: {
           label: 'Ìtẹ̀wọ́lé nílò',
-          description: 'OpenAmer béèrè ìbéèrè tàbí nílò ọ̀rọ̀ìpamọ́ tàbí àṣírí.',
+          description: 'OpenAmer béèrè ìbéèrè tàbí nílò ọ̀rọ̀ìpamọ́ tàbí àṣírí.'
         },
         turnDone: {
           label: 'Ìdáhùn ti ṣetán',
-          description: 'Ìyí kan parí nígbà tí OpenAmer wà ní abẹ́lẹ̀.',
+          description: 'Ìyí kan parí nígbà tí OpenAmer wà ní abẹ́lẹ̀.'
         },
         turnError: {
           label: 'Ìyí kùnà',
-          description: 'Ìyí kan parí pẹ̀lú àṣìṣe.',
+          description: 'Ìyí kan parí pẹ̀lú àṣìṣe.'
         },
         backgroundDone: {
           label: 'Iṣẹ́ abẹ́lẹ̀ ti parí',
-          description: 'Àṣẹ terminal abẹ́lẹ̀ kan ti parí.',
+          description: 'Àṣẹ terminal abẹ́lẹ̀ kan ti parí.'
         },
         credits: {
           label: 'Àwọn ìkìlọ̀ kírẹ́dítì',
-          description: 'Àǹfààní kírẹ́dítì ti dúró tàbí ti padà.',
-        },
+          description: 'Àǹfààní kírẹ́dítì ti dúró tàbí ti padà.'
+        }
       },
       test: 'Fi ìfitónilétí ìdánwò ránṣẹ́',
       testTitle: 'OpenAmer',
       testBody: 'Àwọn ìfitónilétí ń ṣiṣẹ́.',
-      testSent: 'A ti rán ìdánwò. Bí kò bá sí ohun tí ó farahàn, ṣàyẹ̀wò àwọn ìyọ̀nda ìfitónilétí OS rẹ àti Focus/Do Not Disturb.',
+      testSent:
+        'A ti rán ìdánwò. Bí kò bá sí ohun tí ó farahàn, ṣàyẹ̀wò àwọn ìyọ̀nda ìfitónilétí OS rẹ àti Focus/Do Not Disturb.',
       testUnsupported: 'Ètò yìí kò ṣe àtìlẹ́yìn ìfitónilétí àbínibí.',
       completionSoundTitle: 'Ohùn Ìparí',
       completionSoundDesc: 'Á máa dún nígbà tí ìyí aṣojú kan bá parí. Yan ètò àdáṣe kí o sì wo ìgbéwò rẹ̀ níbí.',
-      completionSoundPreview: 'Ìgbéwò',
+      completionSoundPreview: 'Ìgbéwò'
     },
     sections: {
       model: 'Mọ́dẹ́lì',
@@ -291,7 +299,7 @@ export const yo = defineLocale({
       safety: 'Ààbò',
       memory: 'Ìrántí & Àyíká',
       voice: 'Ohùn',
-      advanced: 'Ìlọ́tẹ̀',
+      advanced: 'Ìlọ́tẹ̀'
     },
     searchPlaceholder: {
       about: 'Nípa OpenAmer Desktop',
@@ -299,7 +307,7 @@ export const yo = defineLocale({
       gateway: 'Ìsopọ̀ Gateway...',
       keys: 'Wá àwọn kọ́kọ́rọ́ API...',
       mcp: 'Wá àwọn sẹ́bà MCP...',
-      sessions: 'Wá àwọn ìsọ̀rọ̀ tí a fipamọ́...',
+      sessions: 'Wá àwọn ìsọ̀rọ̀ tí a fipamọ́...'
     },
     closeSettings: 'Tì ètò',
     exportConfig: 'Fi ìṣètò jáde',
@@ -323,25 +331,26 @@ export const yo = defineLocale({
       billing: 'Ìsanwó',
       notifications: 'Ìfitónilétí',
       plugins: 'Àwọn plugin',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     modeOptions: {
       light: {
         label: 'Ìmọ́lẹ̀',
-        description: 'Àwọn ojú desktop tó mọ́lẹ̀',
+        description: 'Àwọn ojú desktop tó mọ́lẹ̀'
       },
       dark: {
         label: 'Òkùnkùn',
-        description: 'Àyè iṣẹ́ aláìdán',
+        description: 'Àyè iṣẹ́ aláìdán'
       },
       system: {
         label: 'Sístẹ́mù',
-        description: 'Tẹ̀lé ìrísí OS',
-      },
+        description: 'Tẹ̀lé ìrísí OS'
+      }
     },
     appearance: {
       title: 'Ìrísí',
-      intro: 'Àwọn ìfẹ́ ìfihàn orí desktop nìkan ni wọ́n. Ipò ń ṣàkóso ìmọ́lẹ̀; àwòrán ń ṣàkóso àwò àkànṣe àti ọ̀ṣọ́ ojú ìsọ̀rọ̀.',
+      intro:
+        'Àwọn ìfẹ́ ìfihàn orí desktop nìkan ni wọ́n. Ipò ń ṣàkóso ìmọ́lẹ̀; àwòrán ń ṣàkóso àwò àkànṣe àti ọ̀ṣọ́ ojú ìsọ̀rọ̀.',
       colorMode: 'Ipò Àwọ̀',
       colorModeDesc: 'Yan ipò tí ó dúró tàbí jẹ́ kí OpenAmer tẹ̀lé ètò sístẹ́mù rẹ.',
       toolViewTitle: 'Ìfihàn Ìpè Irinṣẹ́',
@@ -352,7 +361,8 @@ export const yo = defineLocale({
       backdropTitle: 'Ẹ̀yìn Ìsọ̀rọ̀',
       backdropDesc: 'Àwòrán ère tó kò hàn gbangba lẹ́yìn ìsọ̀rọ̀.',
       embedsTitle: 'Àwọn àkóónú tí a fi sínú ìlà',
-      embedsDesc: 'Àwọn àwòrán àkójọpọ̀ ń gbé wọlé láti àwọn ojú-ìwé ẹlẹ́ni-kẹta (YouTube, X, …). Bèèrè ń fi àpèrè hàn títí tí ìwọ yóò fi gbà ọ̀kọ̀ọ̀kan; Nígbà gbogbo ń gbé wọn wọlé fúnra rẹ̀; Pààrẹ́ ń jẹ́ kí àwọn ìjápọ̀ wà bíi tiwọn.',
+      embedsDesc:
+        'Àwọn àwòrán àkójọpọ̀ ń gbé wọlé láti àwọn ojú-ìwé ẹlẹ́ni-kẹta (YouTube, X, …). Bèèrè ń fi àpèrè hàn títí tí ìwọ yóò fi gbà ọ̀kọ̀ọ̀kan; Nígbà gbogbo ń gbé wọn wọlé fúnra rẹ̀; Pààrẹ́ ń jẹ́ kí àwọn ìjápọ̀ wà bíi tiwọn.',
       embedsAsk: 'Bèèrè',
       embedsAlways: 'Nígbà gbogbo',
       embedsOff: 'Pààrẹ́',
@@ -363,7 +373,8 @@ export const yo = defineLocale({
       themeTitle: 'Àwòrán',
       themeDesc: 'Àwọn àwòrán desktop nìkan. Ipò tí a yàn ni a ń fi sí orí.',
       installTitle: 'Fi sínú láti VS Code',
-      installDesc: 'Lẹ̀ ìdánimọ̀ àfikún Marketplace (àpẹẹrẹ: dracula-theme.theme-dracula) láti yí àwòrán àwọ̀ rẹ̀ padà sí àwòrán desktop.',
+      installDesc:
+        'Lẹ̀ ìdánimọ̀ àfikún Marketplace (àpẹẹrẹ: dracula-theme.theme-dracula) láti yí àwòrán àwọ̀ rẹ̀ padà sí àwòrán desktop.',
       installButton: 'Fi sínú',
       installing: 'Ń fi sínú…',
       installError: 'Kò lè fi àwòrán yẹn sínú.',
@@ -371,8 +382,10 @@ export const yo = defineLocale({
       importedBadge: 'Ti wọlé',
       pet: {
         title: 'Ẹran-ọ̀sìn',
-        intro: 'Gba mascot petdex aláwòrán kan ti o maa n fo lori app naa ti o si dahun si ohun ti OpenAmer n se — n sare nigba ti awon irinse n sise, n se ayeye nigba aseyori, n koro nigba awon asise.',
-        restartHint: 'Awon ohun osin nilo atunbere kiakia — app ti n sise bere siwaju ki a to fi ẹya yi kun. Pa OpenAmer ki o si tun un ṣii, lẹhinna pada si ibi.',
+        intro:
+          'Gba mascot petdex aláwòrán kan ti o maa n fo lori app naa ti o si dahun si ohun ti OpenAmer n se — n sare nigba ti awon irinse n sise, n se ayeye nigba aseyori, n koro nigba awon asise.',
+        restartHint:
+          'Awon ohun osin nilo atunbere kiakia — app ti n sise bere siwaju ki a to fi ẹya yi kun. Pa OpenAmer ki o si tun un ṣii, lẹhinna pada si ibi.',
         on: 'Tan',
         off: 'Pa',
         scaleTitle: 'Iwọn',
@@ -404,13 +417,14 @@ export const yo = defineLocale({
         adoptFailed: slug => `Kò ṣeé ṣe láti gba ${slug} tọ́jú`,
         uninstallFailed: slug => `Kò ṣeé ṣe láti yọ ${slug} kúrò`,
         renameFailed: slug => `Kò ṣeé ṣe láti yí orúkọ ${slug} padà`,
-        exportFailed: slug => `Kò ṣeé ṣe láti gbé ${slug} jáde`,
+        exportFailed: slug => `Kò ṣeé ṣe láti gbé ${slug} jáde`
       },
-      uiScaleDesc: (percent: number) => `Ó ń gbé ọ̀rọ̀ àti àwọn ohun ìṣàkóso tóbi sí i ní gbogbo app. Cmd/Ctrl pẹ̀lú +, - àti 0 tún ń ṣiṣẹ́. Èyí tí ó wà lọ́wọ́: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Ó ń gbé ọ̀rọ̀ àti àwọn ohun ìṣàkóso tóbi sí i ní gbogbo app. Cmd/Ctrl pẹ̀lú +, - àti 0 tún ń ṣiṣẹ́. Èyí tí ó wà lọ́wọ́: ${percent}%.`,
       embedsReset: (count: number) => `Padà sí ${count} gba ${count === 1 ? 'iṣẹ́ kan' : 'àwọn iṣẹ́'} láyè`,
       themeProfileNote: profile => `A ti sọ́ fún profile ${profile} — profile kọọkan ní theme tirẹ̀.`,
       installPlaceholder: 'olùtẹ̀jáde.àfikún',
-      installed: name => `A ti fi “${name}” sínú rẹ̀.`,
+      installed: name => `A ti fi “${name}” sínú rẹ̀.`
     },
     about: {
       versionUnavailable: 'Ẹya ko si',
@@ -427,7 +441,8 @@ export const yo = defineLocale({
       tapCheck: 'Tẹ "Ṣayẹwo bayi" lati wa awon imudojuiwọn.',
       justNowSuffix: '· ni bayi',
       automaticUpdates: 'Awon imudojuiwọn alaifọwọyi',
-      automaticUpdatesDesc: 'OpenAmer n ṣayẹwo awon imudojuiwọn laifọwọyi ni abẹlẹ ki o si sọ fun ọ nigba ti ọkan ba ṣetan.',
+      automaticUpdatesDesc:
+        'OpenAmer n ṣayẹwo awon imudojuiwọn laifọwọyi ni abẹlẹ ki o si sọ fun ọ nigba ti ọkan ba ṣetan.',
       never: 'rara',
       justNow: 'ni bayi',
       heading: 'OpenAmer fún Kọ̀ǹpútà Orí Tábìlì',
@@ -437,7 +452,7 @@ export const yo = defineLocale({
       branchCommit: (branch, commit) => `Ẹ̀ka ${branch} · Ìgbésí ayé ${commit}`,
       minAgo: count => `Ìṣẹ́jú ${count} sẹ́yìn`,
       hoursAgo: count => `Wákàtí ${count} sẹ́yìn`,
-      daysAgo: count => `Ọjọ́ ${count} sẹ́yìn`,
+      daysAgo: count => `Ọjọ́ ${count} sẹ́yìn`
     },
     gateway: {
       probeError: 'A kò tíì le dé ẹnu-ọna yii. Ẹ wo URL — ọ̀nà ìfọwọ́sí yóò hàn ní kété tí ó bá dáhùn.',
@@ -478,28 +493,34 @@ export const yo = defineLocale({
       applyFailed: 'A kò le fi ètò ẹnu-ọna sílò',
       saveFailed: 'A kò le fipamọ́ ètò ẹnu-ọna',
       sshTitle: 'Sopọ̀ nípasẹ̀ SSH',
-      sshDesc: 'A ń bẹ̀rẹ̀ OpenAmer lórí ẹ̀rọ jijin nípasẹ̀ SSH, a sì ń gbé e wọ inú àpùpọ̀ yii — kò sí ohun tí ẹ gbọ́dọ̀ bẹ̀rẹ̀ tàbí fi ara yín hàn. Ó nílò àǹfààní SSH tó ń ṣiṣẹ́ tí ó dá lórí kọ́kọ́rọ́ sí host.',
+      sshDesc:
+        'A ń bẹ̀rẹ̀ OpenAmer lórí ẹ̀rọ jijin nípasẹ̀ SSH, a sì ń gbé e wọ inú àpùpọ̀ yii — kò sí ohun tí ẹ gbọ́dọ̀ bẹ̀rẹ̀ tàbí fi ara yín hàn. Ó nílò àǹfààní SSH tó ń ṣiṣẹ́ tí ó dá lórí kọ́kọ́rọ́ sí host.',
       sshTrustHint: 'A gbára lé kọ́kọ́rọ́ host àkọ́kọ́ tí ó hàn, a sì pinnu rẹ̀; àwọn ìyípadà tó tẹ̀le yóò kùnà tààrà.',
       loading: 'Ń gbé ẹ̀tọ́ àgbègbè sílẹ̀...',
       unavailableTitle: 'Ẹ̀tọ́ àgbègbè kò wà',
       unavailableDesc: 'Ìpinnu IPC dẹskítọ́p kò ṣàlàyé ẹ̀tọ́ àgbègbè.',
       title: 'Ìbànújẹ àgbègbè',
       envOverride: 'env yọ́sí',
-      intro: 'OpenAmer Desktop bẹ́rẹ̀ sí ìpinnu àgbègbè àtijọ́ ṣíi nípa àfikun. Lo ìpinnu àgbègbè àlàáfíà tí ó bá fẹ́ kí ìṣẹ́-ọ̀rọ̀ yì tó ẹ̀dá OpenAmer backend tí a ti bẹ́rẹ̀ lórí ẹ̀dá míràn tabi lórí àfikún tí a gbàgbọ́. Yàn àkọ́lé ní ìsàlẹ̀ láti fún ni ìpinnu àgbègbè àlàáfíà rẹ̀.',
+      intro:
+        'OpenAmer Desktop bẹ́rẹ̀ sí ìpinnu àgbègbè àtijọ́ ṣíi nípa àfikun. Lo ìpinnu àgbègbè àlàáfíà tí ó bá fẹ́ kí ìṣẹ́-ọ̀rọ̀ yì tó ẹ̀dá OpenAmer backend tí a ti bẹ́rẹ̀ lórí ẹ̀dá míràn tabi lórí àfikún tí a gbàgbọ́. Yàn àkọ́lé ní ìsàlẹ̀ láti fún ni ìpinnu àgbègbè àlàáfíà rẹ̀.',
       appliesTo: 'Ṣe fún',
       allProfiles: 'Gbogbo àkọ́lé',
       defaultConnection: 'Ìbànújẹ àfikun fún gbogbo àkọ́lé tí kò ní yọ́sí rẹ̀.',
-      profileConnection: profile => `Ìpinnu tí a ṣe afikun nígbà kan nígbà tí “${profile}” ni àpẹrẹ tí a ṣe ṣíṣẹ́. Yàn “Lo ìpinnu kókó” láti fi ìpinnu rẹ̀ sílẹ̀.`,
+      profileConnection: profile =>
+        `Ìpinnu tí a ṣe afikun nígbà kan nígbà tí “${profile}” ni àpẹrẹ tí a ṣe ṣíṣẹ́. Yàn “Lo ìpinnu kókó” láti fi ìpinnu rẹ̀ sílẹ̀.`,
       envOverrideTitle: 'Àwọn ẹ̀kọ́ àìlerí ṣe ṣàlàyé wíwá àkóso àpẹrẹ àtijọ́ra yìí.',
-      envOverrideDesc: 'Fi OPENAMER_DESKTOP_REMOTE_URL àti OPENAMER_DESKTOP_REMOTE_TOKEN sílẹ̀ láti lo ìpinnu tí a ti fi hàn ní ìsàlẹ̀.',
+      envOverrideDesc:
+        'Fi OPENAMER_DESKTOP_REMOTE_URL àti OPENAMER_DESKTOP_REMOTE_TOKEN sílẹ̀ láti lo ìpinnu tí a ti fi hàn ní ìsàlẹ̀.',
       modeTitle: 'Àkóso ìpinnu',
       localTitle: 'Ìpinnu àbíyí',
-      localDesc: 'Bẹ́rẹ̀ OpenAmer backend àgbàgbà lórí localhost. Ìyí ni àkóso kókó àti ó ṣe ṣíṣẹ́ láìka ìpinnu ìntánẹ́ẹ́tì.',
+      localDesc:
+        'Bẹ́rẹ̀ OpenAmer backend àgbàgbà lórí localhost. Ìyí ni àkóso kókó àti ó ṣe ṣíṣẹ́ láìka ìpinnu ìntánẹ́ẹ́tì.',
       inheritTitle: 'Lo ìpinnu kókó',
-      inheritDesc: "Fi ìtàn àpẹrẹ yìí sílẹ̀ àti lo ìpinnu kókó.",
+      inheritDesc: 'Fi ìtàn àpẹrẹ yìí sílẹ̀ àti lo ìpinnu kókó.',
       remoteTitle: 'Ìpinnu òde',
       remoteDesc: 'Pinnu àkóso àtijọ́ra yìí sí OpenAmer backend òde.',
-      remoteAuthHint: 'Àwọn ìpinnu tí a gbe lórí òkè lo OAuth tabi orúkọ olùṣakóso àti àwọn àkóso; tí a gbe lórí ẹ̀dá lẹ́wa lè lo àkóso ìsìnmi.',
+      remoteAuthHint:
+        'Àwọn ìpinnu tí a gbe lórí òkè lo OAuth tabi orúkọ olùṣakóso àti àwọn àkóso; tí a gbe lórí ẹ̀dá lẹ́wa lè lo àkóso ìsìnmi.',
       cloudTitle: 'Àwọsánmà OpenAmer',
       cloudDesc: 'Tẹ́lé sí OpenAmer Cloud kankan àti yàn nípa àwọn agbègbè lórí àkọ́lé rẹ — kò sí URL láti fi sí.',
       cloudSignInTitle: 'Àwọsánmà OpenAmer',
@@ -516,7 +537,7 @@ export const yo = defineLocale({
       cloudNoAgents: {
         before: 'Kò sí agbègbè tí a rí lórí àkọ́lé yìí. Dá ṣíi kan ní ',
         linkText: 'Portal OpenAmer',
-        after: ', ṣùgbọ́n tún ṣíi.',
+        after: ', ṣùgbọ́n tún ṣíi.'
       },
       cloudRefresh: 'Tún ṣíi',
       cloudConnect: 'Pinnu',
@@ -560,13 +581,17 @@ export const yo = defineLocale({
       sshReachable: (host, platform) => `Yóò rì: ${host} (${platform}) — OpenAmer ti rí`,
       sshIncompleteHost: 'Tẹ́ alábò SSH kankan ṣíi kọ́lé.',
       sshErrUnreachable: 'Kò sí i rì alábò yìí lórí SSH. Ṣàyéwo alábò, pọ́ọ́tì, àti nẹ́tẹ́wọ́kì rẹ.',
-      sshErrAuth: 'Ìṣàkóso SSH ti kúrò. Fí kíì rẹ̀ sí ssh-agent (ssh-add) tabi bẹ́ IdentityFile ní ~/.ssh/config — OpenAmer ṣe ssh ní àìṣe-ìbànújẹ.',
-      sshErrHostKey: 'Kíì alábò ti YÍ PADA láti ìgbà tí o kọ́lé kẹrinla. Ṣàyéwo pé yóò wà, ṣíi rùn ssh-keygen -R <host> àti kọ́lé síi.',
-      sshErrNotInstalled: 'OpenAmer kò wà ní àlàáfíà. Fipamọ́ síbẹ̀ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) tabi bẹ́ ìtànka OpenAmer.',
-      sshErrPlatform: 'Àpẹrẹ àlàáfíà tí a kò ṣe àtìlẹ́yin. Ìpinnu SSH OpenAmer Desktop ṣe àtìlẹ́yin Linux, macOS, àti Windows àlàáfíà.',
+      sshErrAuth:
+        'Ìṣàkóso SSH ti kúrò. Fí kíì rẹ̀ sí ssh-agent (ssh-add) tabi bẹ́ IdentityFile ní ~/.ssh/config — OpenAmer ṣe ssh ní àìṣe-ìbànújẹ.',
+      sshErrHostKey:
+        'Kíì alábò ti YÍ PADA láti ìgbà tí o kọ́lé kẹrinla. Ṣàyéwo pé yóò wà, ṣíi rùn ssh-keygen -R <host> àti kọ́lé síi.',
+      sshErrNotInstalled:
+        'OpenAmer kò wà ní àlàáfíà. Fipamọ́ síbẹ̀ (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) tabi bẹ́ ìtànka OpenAmer.',
+      sshErrPlatform:
+        'Àpẹrẹ àlàáfíà tí a kò ṣe àtìlẹ́yin. Ìpinnu SSH OpenAmer Desktop ṣe àtìlẹ́yin Linux, macOS, àti Windows àlàáfíà.',
       sshErrTimeout: 'Ìbànújẹ SSH ti kúrò. Alábò lè kò sí wà tabi ń sun.',
       sshErrUpdateRequired: 'Yí OpenAmer padà ní àlàáfíà ṣíi kọ́lé pẹlu Desktop SSH.',
-      sshErrUnknown: 'Ìbànújẹ SSH ti kúrò.',
+      sshErrUnknown: 'Ìbànújẹ SSH ti kúrò.'
     },
     mcp: {
       gatewayUnavailableMessage: 'Tun ẹnu-ọ̀nà so pọ̀ kí o tó tún MCP gbé.',
@@ -628,10 +653,11 @@ export const yo = defineLocale({
       catalogInstallStarted: name => `Ń gbé ${name} lórí... ṣe àfikún fún ìpinnu tuntun nígbà tí a bá ti ṣẹ́dáa.`,
       catalogInstallFailed: name => `Kò ṣẹ́dáa láti gbé ${name} lórí`,
       catalogEnvPrompt: name => `${name} nílò àtúnṣe`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ti gba`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ti gba`,
       authenticatedMessage: (server, count) => `${server}: ${count} ohun-ṣiṣẹ́`,
       enableTool: tool => `Gba ${tool}`,
-      disableTool: tool => `Kí ${tool}`,
+      disableTool: tool => `Kí ${tool}`
     },
     toolsets: {
       notSet: 'Kò tíì ṣètò',
@@ -677,9 +703,10 @@ export const yo = defineLocale({
         unavailable: 'Kò wà',
         inUse: 'Ní ṣíṣẹ́',
         selectedTitle: 'Ìpínlẹ̀ ti yan',
-        selectedMessage: backend => `Àwọn àfíkun Ìpinnu àfikun ṣẹ̀dáà ṣíṣẹ́ nípa ${backend}. Ṣe àfikún fún àwọn ìpinnu tuntun.`,
+        selectedMessage: backend =>
+          `Àwọn àfíkun Ìpinnu àfikun ṣẹ̀dáà ṣíṣẹ́ nípa ${backend}. Ṣe àfikún fún àwọn ìpinnu tuntun.`,
         failedSelect: backend => `Kò ṣeé yan ${backend}`,
-        needsSetupHint: 'O lè yan ìpínlẹ̀ yìí báyìí — àwọn àfíkun yóò kúṣẹ́ kó ṣeé to ìpinnu.',
+        needsSetupHint: 'O lè yan ìpínlẹ̀ yìí báyìí — àwọn àfíkun yóò kúṣẹ́ kó ṣeé to ìpinnu.'
       },
       loadingConfig: 'Ń gbé ìṣètò wọlé',
       savedTitle: 'A fipamọ́ ẹ̀rí',
@@ -704,7 +731,7 @@ export const yo = defineLocale({
       failedSelectCapability: provider => `Kò ṣeé ṣe ${provider}`,
       modelCount: count => `Ẹ̀dá ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} ṣe àfikún fún àwọn ìpinnu tuntun.`,
-      failedSelectModel: model => `Kò ṣeé yan ${model}`,
+      failedSelectModel: model => `Kò ṣeé yan ${model}`
     },
     providers: {
       connectAnother: 'Sopọ́ olùpèsè mìíràn',
@@ -717,7 +744,8 @@ export const yo = defineLocale({
       noKeysMatch: 'Kò sí olùpèsè tó bá ìwádìí rẹ mu.',
       localEndpoint: {
         title: 'Ibi ìparí àdúgbò / àkànṣe',
-        description: 'Tọ́ OpenAmer sí ibi ìparí èyíkéyìí tó bá OpenAI mu (Zyphra, vLLM, llama.cpp, Ollama, àti bẹ́ẹ̀ bẹ́ẹ̀ lọ).',
+        description:
+          'Tọ́ OpenAmer sí ibi ìparí èyíkéyìí tó bá OpenAI mu (Zyphra, vLLM, llama.cpp, Ollama, àti bẹ́ẹ̀ bẹ́ẹ̀ lọ).'
       },
       loading: 'Ń gbé àwọn olùpèsè wọlé...',
       connectAccount: 'Pín àkọ́lé',
@@ -728,27 +756,31 @@ export const yo = defineLocale({
       removeConfirm: provider => `Fí ${provider} sílẹ?`,
       removeExternalGeneric: provider => `A ṣe àkóso ${provider} pẹ̀lú CLI rẹ̀ — fí sílẹ̀ níbí.`,
       removeKeyManaged: provider => `A ṣe àkúnya ${provider} láti kí API. Fí sílẹ̀ láti API Keys.`,
-      removeTerminalConfirm: (provider, command) => `Fagun ${provider}? Yìí ṣe "${command}" ní terminal láti farapa àǹfààní.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Fagun ${provider}? Yìí ṣe "${command}" ní terminal láti farapa àǹfààní.`,
       removeTerminalRunning: provider => `Ń ṣe ${provider} fagun ní terminal…`,
       removedMessage: provider => `A ti fí ${provider} sílẹ̀.`,
-      failedRemove: provider => `Kò lè fí ${provider} sílẹ̀`,
+      failedRemove: provider => `Kò lè fí ${provider} sílẹ̀`
     },
     sessions: {
       loading: 'Ń gbé àwọn ìjíròrò tí a fipamọ́ wọlé…',
       archivedTitle: 'Àwọn ìjíròrò tí a fipamọ́',
-      archivedIntro: 'A fi àwọn ìjíròrò tí a fipamọ́ pamọ́ kúrò ní ọ̀wọ̀ ẹ̀gbẹ́ ṣùgbọ́n wọ́n ní gbogbo àwọn ìfiranṣẹ́ wọn. Tẹ Ctrl/⌘-click ìjíròrò kan ní ọ̀wọ̀ ẹ̀gbẹ́ láti fipamọ́ rẹ̀.',
+      archivedIntro:
+        'A fi àwọn ìjíròrò tí a fipamọ́ pamọ́ kúrò ní ọ̀wọ̀ ẹ̀gbẹ́ ṣùgbọ́n wọ́n ní gbogbo àwọn ìfiranṣẹ́ wọn. Tẹ Ctrl/⌘-click ìjíròrò kan ní ọ̀wọ̀ ẹ̀gbẹ́ láti fipamọ́ rẹ̀.',
       emptyArchivedTitle: 'Kò sí ohun tí a fipamọ́',
       emptyArchivedDesc: 'Fipamọ́ ìjíròrò kí o lè fi pamọ́ síbí.',
       unarchive: 'Yọ kúrò nínú ìfipamọ́',
       deletePermanently: 'Paarẹ́ pátápátá',
       restored: 'A mú padà',
       autoArchiveTitle: 'Àfipamọ́ aládàáṣe àwọn ìjíròrò àtijọ́',
-      autoArchiveDesc: 'Fipamọ́ àwọn ìjíròrò tí o kò fọwọ́ kàn fún ìgbà díẹ̀ lọ́nà aládàáṣe. A kì í fipamọ́ àwọn ìjíròrò tí a fín mọ́, a kò sì pa ohunkóhun rẹ́ — àwọn ìjíròrò tí a fipamọ́ kàn ń lọ síbí.',
+      autoArchiveDesc:
+        'Fipamọ́ àwọn ìjíròrò tí o kò fọwọ́ kàn fún ìgbà díẹ̀ lọ́nà aládàáṣe. A kì í fipamọ́ àwọn ìjíròrò tí a fín mọ́, a kò sì pa ohunkóhun rẹ́ — àwọn ìjíròrò tí a fipamọ́ kàn ń lọ síbí.',
       autoArchiveDaysLabel: 'Fipamọ́ lẹ́yìn',
       autoArchiveDaysUnit: 'ọjọ́ àìṣiṣẹ́',
       autoArchiveFailed: 'Kò lè ṣe àtúnṣe àfipamọ́ aládàáṣe',
       defaultDirTitle: 'Folda iṣẹ́ àdáṣe',
-      defaultDirDesc: 'Àwọn ìjíròrò tuntun máa ń bẹ̀rẹ̀ nínú folda yìí àyàfi tí o bá yan òmíràn. Fi sílẹ̀ láìṣètò láti lo folda ilé rẹ.',
+      defaultDirDesc:
+        'Àwọn ìjíròrò tuntun máa ń bẹ̀rẹ̀ nínú folda yìí àyàfi tí o bá yan òmíràn. Fi sílẹ̀ láìṣètò láti lo folda ilé rẹ.',
       defaultDirUpdated: 'A ti ṣe àtúnṣe folda iṣẹ́ àdáṣe — bẹ̀rẹ̀ ìjíròrò tuntun (Ctrl/⌘+N) kí ó lè wúlò',
       change: 'Yí padà',
       choose: 'Yan',
@@ -761,7 +793,7 @@ export const yo = defineLocale({
       clearDirFailed: 'Kò lè nu folda àdáṣe',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Parí "${title}" ní gbogbo igba? Yìí kò lè padà.`,
-      defaultsTo: label => `Ṣíṣe fún ${label}.`,
+      defaultsTo: label => `Ṣíṣe fún ${label}.`
     },
     fieldLabels: FIELD_LABELS,
     fieldDescriptions: FIELD_DESCRIPTIONS,
@@ -779,7 +811,7 @@ export const yo = defineLocale({
       imported: 'Ẹ̀tọ́ ti wá',
       invalidJson: 'JSON ẹ̀tọ́ kò ṣe',
       keepAwakeTitle: 'Jẹ́ kí kọ́mputa wá',
-      keepAwakeDesc: 'Fi ìpinnu yì sun nínú ìgbà gbogbo tabi lórí ọ̀rọ̀-álé. Ìtàn lè yọ́.',
+      keepAwakeDesc: 'Fi ìpinnu yì sun nínú ìgbà gbogbo tabi lórí ọ̀rọ̀-álé. Ìtàn lè yọ́.'
     },
     credentials: {
       pasteKey: 'Tẹ kí',
@@ -789,7 +821,7 @@ export const yo = defineLocale({
       couldNotSave: 'Kò lè kẹ́ ẹ̀kọ́.',
       remove: 'Fífi',
       getKey: 'Gba kí kan',
-      saving: 'Ń kẹ́',
+      saving: 'Ń kẹ́'
     },
     envActions: {
       actionsFor: label => `Ìṣẹ́ fún ${label}`,
@@ -800,12 +832,12 @@ export const yo = defineLocale({
       revealValue: 'Ṣàlàyé ẹ̀dá',
       replace: 'Yí padà',
       set: 'Ṣeto',
-      clear: 'Parí',
+      clear: 'Parí'
     },
     keys: {
       loading: 'Ń gbé API kíì àti àfihàn sílẹ̀...',
       failedLoad: 'API kíì kò gbé wá',
-      empty: 'Kò sí ìtọ́ka tí a ṣe ní àkọ́lé yìí.',
+      empty: 'Kò sí ìtọ́ka tí a ṣe ní àkọ́lé yìí.'
     },
     model: {
       loading: 'Ń gbé ṣeto àpẹrẹ lórí...',
@@ -826,42 +858,42 @@ export const yo = defineLocale({
       providerDefault: '(àkóso olùfẹ́)',
       fallbackAdd: 'Kun àfikún',
       fallbackEmpty: 'Kò sí àpẹrẹ àfikún — a lo àpẹrẹ àkóso tí a kò bá ṣẹ́dáa.',
-      notInCatalog: "kò wà ní orúkọ ẹ̀dá àwọn mọ́dèl tó wà ní àwọn olùfẹ́yìnmi yìí — ìpinnu lè wáyé sí àfikun tó dá lórí.",
+      notInCatalog: 'kò wà ní orúkọ ẹ̀dá àwọn mọ́dèl tó wà ní àwọn olùfẹ́yìnmi yìí — ìpinnu lè wáyé sí àfikun tó dá lórí.',
       tasks: {
         vision: {
           label: 'Ìmọ̀rá',
-          hint: 'Ìtúpalẹ̀ àwọn àwòrán',
+          hint: 'Ìtúpalẹ̀ àwọn àwòrán'
         },
         web_extract: {
           label: 'Gba lórí wẹ́b',
-          hint: 'Ìdákẹ́kọ àwọn ewé',
+          hint: 'Ìdákẹ́kọ àwọn ewé'
         },
         compression: {
           label: 'Ìfífi',
-          hint: 'Ìfífi àkọ́lé',
+          hint: 'Ìfífi àkọ́lé'
         },
         skills_hub: {
           label: 'Ọ̀dọ̀ àwọn ìmọ̀',
-          hint: 'Wá àwọn ìmọ̀',
+          hint: 'Wá àwọn ìmọ̀'
         },
         approval: {
           label: 'Ìgbàgbọ́',
-          hint: 'Ọlọ́fẹ́ auto-gbagbọ́',
+          hint: 'Ọlọ́fẹ́ auto-gbagbọ́'
         },
         mcp: {
           label: 'MCP',
-          hint: 'Ìpinnu ìṣẹ́ MCP',
+          hint: 'Ìpinnu ìṣẹ́ MCP'
         },
         title_generation: {
           label: 'Dá orúkọ',
-          hint: 'Àwọn orúkọ ìjọba',
+          hint: 'Àwọn orúkọ ìjọba'
         },
         curator: {
           label: 'Olùdájú',
-          hint: 'Ìwádìí lò ìmọ̀',
-        },
-      },
-    },
+          hint: 'Ìwádìí lò ìmọ̀'
+        }
+      }
+    }
   },
   language: {
     label: 'Èdè',
@@ -870,7 +902,7 @@ export const yo = defineLocale({
     saveError: 'Ìmúdójúìwọ̀n èdè kùnà',
     switchTo: 'Yí èdè',
     searchPlaceholder: 'Wá èdè…',
-    noResults: 'Kò rí èdè kankan',
+    noResults: 'Kò rí èdè kankan'
   },
   skills: {
     tabSkills: 'Àwọn ọgbọ́n',
@@ -889,7 +921,8 @@ export const yo = defineLocale({
     noDescription: 'Kò sí àpèjúwe.',
     configured: 'Ti ṣètò',
     needsKeys: 'Nílò àwọn kọ́kọ́rọ́',
-    visionModelHint: 'Ìrí ń lo ìṣètò àwòṣe olùrànlọ́wọ́ rẹ — àwòṣe tí ó lè ṣiṣẹ́ pẹ̀lú àwòrán ni a ń yàn níbẹ̀, kì í ṣe fún olùpèsè kọ̀ọ̀kan níbí.',
+    visionModelHint:
+      'Ìrí ń lo ìṣètò àwòṣe olùrànlọ́wọ́ rẹ — àwòṣe tí ó lè ṣiṣẹ́ pẹ̀lú àwòrán ni a ń yàn níbẹ̀, kì í ṣe fún olùpèsè kọ̀ọ̀kan níbí.',
     visionModelLink: 'Yan àwòṣe ìrí ní Ètò → Àwọn àwòṣe',
     skillsLoadFailed: 'Ó kùnà láti gbé àwọn ọgbọ́n wọlé',
     toolsetsRefreshFailed: 'Ó kùnà láti tún àwọn àpapọ̀ irinṣẹ́ ṣe',
@@ -907,7 +940,7 @@ export const yo = defineLocale({
     provenance: {
       agent: 'Tí a kọ́',
       bundled: 'Àdáni',
-      hub: 'Ibùdó',
+      hub: 'Ibùdó'
     },
     changesApplyNewSessions: 'Àwọn ìyípadà máa kan àwọn ìgbà tuntun.',
     skillUpdated: 'Ọgbọ́n ti ṣe àtúnṣe',
@@ -922,7 +955,8 @@ export const yo = defineLocale({
       connectingHubs: 'Ń sopọ̀ mọ́ àwọn ibudo ọgbọ́n...',
       connectedHubs: 'Àwọn ibudo tí ó sopọ̀:',
       featured: 'Àwọn ọgbọ́n àfihàn',
-      landingHint: 'Wá ibudo náà láti wo àwọn ọgbọ́n tí a lè fi sórí ẹ̀rọ láti àkójọpọ̀ osise, GitHub, àti àwọn orísun àwùjọ.',
+      landingHint:
+        'Wá ibudo náà láti wo àwọn ọgbọ́n tí a lè fi sórí ẹ̀rọ láti àkójọpọ̀ osise, GitHub, àti àwọn orísun àwùjọ.',
       noResults: 'A kò rí ọgbọ́n tí ó bá mu nínú ibudo náà.',
       installed: 'Ti fi sórí ẹ̀rọ',
       install: 'Fi sórí ẹ̀rọ',
@@ -940,7 +974,7 @@ export const yo = defineLocale({
       trust: {
         builtin: 'àdáni',
         trusted: 'Tí a gbẹ́kẹ̀lé',
-        community: 'àwùjọ',
+        community: 'àwùjọ'
       },
       verdictSafe: 'Láàbò',
       verdictCaution: 'Ṣọ́ra',
@@ -960,7 +994,7 @@ export const yo = defineLocale({
       timedOut: sources => `Ọjọ́ ti pari: ${sources}`,
       findings: count => `${count} n wá${count === 1 ? '' : 's'}`,
       installStarted: name => `Ń fi ${name} sori...`,
-      uninstallStarted: name => `Ń gba ${name} wá...`,
+      uninstallStarted: name => `Ń gba ${name} wá...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `Àwọn ìgbésí ayé ${enabled}/${total} ti wulẹ̀`,
@@ -973,7 +1007,7 @@ export const yo = defineLocale({
     usageCount: count => `ti ṣíṣẹ́ ${count}×`,
     emptyNoneFound: noun => `Kò sí ${noun} ti wá`,
     emptyNothingMatches: query => `Kò sí ohun ti wà pẹ́lú “${query}”.`,
-    emptyNoneAvailable: noun => `Kò sí ${noun} ti wà ní báyìí.`,
+    emptyNoneAvailable: noun => `Kò sí ${noun} ti wà ní báyìí.`
   },
   commandCenter: {
     logSearchPlaceholder: 'Ṣe àlẹmọ́ àwọn ìlà àkọsílẹ̀...',
@@ -1019,7 +1053,7 @@ export const yo = defineLocale({
       resetConfirm: target => `Pa ${target}? Kò lè padà.`,
       resetDone: files => `Ti pa ${files}.`,
       actionStarted: name => `${name} ti bẹ́rẹ̀ — ń tẹ́kà ìtàn...`,
-      actionFailed: name => `${name} kò gbọ́dọ̀ bẹ́rẹ̀`,
+      actionFailed: name => `${name} kò gbọ́dọ̀ bẹ́rẹ̀`
     },
     paletteTitle: 'Pẹlẹtì àṣẹ',
     back: 'Pada',
@@ -1046,7 +1080,7 @@ export const yo = defineLocale({
       generatedTag: 'Ti ṣẹ̀dá',
       adoptFailed: 'Kò lè gba ẹran ọ̀sìn yẹn.',
       toggleFailed: 'Kò lè yí ẹran ọ̀sìn padà.',
-      noneAvailable: 'Kò sí ẹran ọ̀sìn — yan ọ̀kan ní ìsàlẹ̀ láti fi sínú.',
+      noneAvailable: 'Kò sí ẹran ọ̀sìn — yan ọ̀kan ní ìsàlẹ̀ láti fi sínú.'
     },
     generatePet: {
       title: 'Ṣẹ̀dá ẹran ọ̀sìn',
@@ -1065,17 +1099,18 @@ export const yo = defineLocale({
       hatchSaving: 'Ó fẹ́rẹ̀ dé…',
       namePlaceholder: 'Sọ orúkọ ẹran ọ̀sìn rẹ',
       hatchRow: (_state, done, total) => `Okugoba ekifuba ${done} okuva mu ${total}…`,
-      staleBackend: 'Weza OpenAmer okuleeta ebintu eby\'okulabirako.',
+      staleBackend: "Weza OpenAmer okuleeta ebintu eby'okulabirako.",
       backgroundHint: 'Oyinza okifunga — OpenAmer ejikugamba nga wezize.',
-      slowProviderHint: 'Kino kiyinza okutwala edaki ez\'emu',
+      slowProviderHint: "Kino kiyinza okutwala edaki ez'emu",
       remix: 'Kukyusa',
       remixConfirmTitle: 'Okyusa enno?',
-      remixConfirmBody: 'Kino kireeta ebikwata ku nteekateeka empya okukozesa kino nga kitandikiro. Kiyinza okutwala edaki ez\'emu.',
+      remixConfirmBody:
+        "Kino kireeta ebikwata ku nteekateeka empya okukozesa kino nga kitandikiro. Kiyinza okutwala edaki ez'emu.",
       genericError: 'Okuleeta kyasalawo — geerako nate oba tereke ekigambo ekigukuyambako.',
-      referenceImageTooLarge: 'Ekifaananyi ky\'okulabirako kinene nnyo. Kozesa ekikoma ku 16 MB.',
+      referenceImageTooLarge: "Ekifaananyi ky'okulabirako kinene nnyo. Kozesa ekikoma ku 16 MB.",
       referenceImageInvalid: 'Tusobola okusoma ekifaananyi kino. Kozesa PNG, JPG, WebP, oba GIF.',
       adopt: 'Kuzza',
-      startOver: 'Tandika okusaasa',
+      startOver: 'Tandika okusaasa'
     },
     close: 'Funga ekiti kya kutegeka',
     startInBranch: branch => `Okwogamba okusaasa mu ${branch}`,
@@ -1089,7 +1124,7 @@ export const yo = defineLocale({
       install: 'Teeka',
       installing: 'Kiteekebwa...',
       installed: 'Kyateekebwa',
-      installs: count => `${count} bateekebwa`,
+      installs: count => `${count} bateekebwa`
     },
     settingsFields: 'Ebikwata ku nteekateeka',
     mcpServers: 'Àwọn sẹ́bà MCP',
@@ -1098,49 +1133,49 @@ export const yo = defineLocale({
       maintenance: 'Okulungula',
       sessions: 'Ebiseera',
       system: 'Sisitemu',
-      usage: 'Okukozesa',
+      usage: 'Okukozesa'
     },
     sectionDescriptions: {
-      maintenance: 'Okunoonya, okugumiza, omulabirizi, n\'ebikwata ku kutegeka',
+      maintenance: "Okunoonya, okugumiza, omulabirizi, n'ebikwata ku kutegeka",
       sessions: 'Noonya era olungula ebiseera',
       system: 'Ìpinnu, àwọn ìtàn, àti àwọn ìṣẹ́ ọ̀rọ̀',
-      usage: 'Tóókùn, ìbáṣe, àti ìṣẹ́ ọ̀rọ̀ nípa àkókò',
+      usage: 'Tóókùn, ìbáṣe, àti ìṣẹ́ ọ̀rọ̀ nípa àkókò'
     },
     nav: {
       newChat: {
         title: 'Ìpinnu tuntun',
-        detail: 'Bẹ́rẹ̀ ìpinnu tuntun',
+        detail: 'Bẹ́rẹ̀ ìpinnu tuntun'
       },
       settings: {
         title: 'Ẹ̀tọ́',
-        detail: 'Ṣètó OpenAmer dẹ́skítọ́p',
+        detail: 'Ṣètó OpenAmer dẹ́skítọ́p'
       },
       skills: {
         title: 'Àgbègbè',
-        detail: 'Ọ̀rọ̀, àwọn ọ̀rọ̀, àti àwọn MCP sẹ́vá',
+        detail: 'Ọ̀rọ̀, àwọn ọ̀rọ̀, àti àwọn MCP sẹ́vá'
       },
       messaging: {
         title: 'Ìfọkànsìn',
-        detail: 'Ṣètó Telegram, Slack, Discord, àti bẹ́ẹ̀lọ́',
+        detail: 'Ṣètó Telegram, Slack, Discord, àti bẹ́ẹ̀lọ́'
       },
       artifacts: {
         title: 'Àwọn ohun tí a dá',
-        detail: 'Wàwá àwọn ìdáyọ̀ tí a dá',
-      },
+        detail: 'Wàwá àwọn ìdáyọ̀ tí a dá'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Pánẹ̀l ìpinnu',
-        detail: 'Wá, fífi pín, àti ṣíṣẹ́ ìpinnu',
+        detail: 'Wá, fífi pín, àti ṣíṣẹ́ ìpinnu'
       },
       system: {
         title: 'Pánẹ̀l ọ̀rọ̀',
-        detail: 'Ìpinnu gẹ́tìwé, àwọn ìtàn, tún ṣíṣẹ́ síi/ìmúdájú',
+        detail: 'Ìpinnu gẹ́tìwé, àwọn ìtàn, tún ṣíṣẹ́ síi/ìmúdájú'
       },
       usage: {
         title: 'Pánẹ̀l ìlo',
-        detail: 'Tóókùn, ìbáṣe, àti ìṣẹ́ ọ̀rọ̀',
-      },
+        detail: 'Tóókùn, ìbáṣe, àti ìṣẹ́ ọ̀rọ̀'
+      }
     },
     providerNavigate: 'Wá',
     providerSessions: 'Àwọn ìpinnu',
@@ -1184,7 +1219,7 @@ export const yo = defineLocale({
     noSkillActivity: 'Kò sí ìṣẹ́ ọgbọ́n tẹ́lẹ̀.',
     actions: count => `Ìṣẹ́ ${count}`,
     logFile: 'Fáìlì ìtàn',
-    logLevel: 'Ìpínlẹ̀',
+    logLevel: 'Ìpínlẹ̀'
   },
   messaging: {
     search: 'Wá ìfọ̀rọ̀wérọ̀...',
@@ -1199,7 +1234,7 @@ export const yo = defineLocale({
       not_configured: 'Fẹ́ Ẹ̀tọ́',
       pending_restart: 'Tún bẹ́rẹ̀ fẹ́',
       retrying: 'Ń ṣe tẹ́lẹ̀',
-      startup_failed: 'Ìbẹ́rẹ̀ ti kú',
+      startup_failed: 'Ìbẹ́rẹ̀ ti kú'
     },
     unknown: 'Kò mọ́',
     hintPendingRestart: 'Tún àfikún bẹ́rẹ̀ láti àwọn àpẹrẹ ìpinnu kí ó tó ṣe àyíká yìí.',
@@ -1238,127 +1273,126 @@ export const yo = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token bọ́t',
         help: 'Dá bọ́t pẹ́lú @BotFather, ṣugbọn tẹ token tí ó fún ẹ.',
-        placeholder: 'Tẹ token bọ́t Telegram',
+        placeholder: 'Tẹ token bọ́t Telegram'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Àwọn ID olùṣe Telegram tí a gba',
-        help: 'Àkíyèsí. Àwọn ID nọ́mbà tí a yọ́sí pẹ́lú kọ́ma láti @userinfobot. Láìsí yì, eníkan lè DM bọ́t rẹ.',
+        help: 'Àkíyèsí. Àwọn ID nọ́mbà tí a yọ́sí pẹ́lú kọ́ma láti @userinfobot. Láìsí yì, eníkan lè DM bọ́t rẹ.'
       },
       TELEGRAM_PROXY: {
         label: 'URL Proxy',
-        help: 'Nikan ní ìlòye ní àwọn nẹ́tìwọ̀kí tí a gba Telegram.',
+        help: 'Nikan ní ìlòye ní àwọn nẹ́tìwọ̀kí tí a gba Telegram.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token bọ́t',
-        help: 'Dá ìṣẹ́ ní Pọ́ọ́tì Alábápẹ̀ Discord, fi bọ́t kún, ṣugbọn tẹ token rẹ.',
+        help: 'Dá ìṣẹ́ ní Pọ́ọ́tì Alábápẹ̀ Discord, fi bọ́t kún, ṣugbọn tẹ token rẹ.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Àwọn ID olùṣe Discord tí a gba',
-        help: 'Àkíyèsí. Àwọn ID olùṣe Discord tí a yọ́sí pẹ́lú kọ́ma.',
+        help: 'Àkíyèsí. Àwọn ID olùṣe Discord tí a yọ́sí pẹ́lú kọ́ma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Àkúnya àdájọ́',
-        help: 'akọ́kọ́, gbogbo, tabi kuro.',
+        help: 'akọ́kọ́, gbogbo, tabi kuro.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Gba gbogbo awọn olùṣe Discord',
-        help: 'Ìdájọ́ nípa àkọ́lé. Bí ó jẹ́ òótọ́, gbogbo ènìyàn lè DM bọ́tì kò sí lísìtì àlàáfíà.',
+        help: 'Ìdájọ́ nípa àkọ́lé. Bí ó jẹ́ òótọ́, gbogbo ènìyàn lè DM bọ́tì kò sí lísìtì àlàáfíà.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID àkọ́lé ilera',
-        help: 'Àkọ́lé tí bọ́tì ṣe fí ohun-ìtànṣe tó wà ní àfikun ṣí (ìdáṣí cron, ìtànṣe).',
+        help: 'Àkọ́lé tí bọ́tì ṣe fí ohun-ìtànṣe tó wà ní àfikun ṣí (ìdáṣí cron, ìtànṣe).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Orúkọ àkọ́lé ilera',
-        help: 'Orúkọ tí a ṣe fi hàn fún àkọ́lé ilera ní àkọ́lé àti ìdáṣí ìpinnu.',
+        help: 'Orúkọ tí a ṣe fi hàn fún àkọ́lé ilera ní àkọ́lé àti ìdáṣí ìpinnu.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Gba gbogbo awọn olùṣe iMessage',
-        help: 'Bí ó jẹ́ òótọ́, jẹ́wọ́ lísìtì àlàáfíà BlueBubbles.',
+        help: 'Bí ó jẹ́ òótọ́, jẹ́wọ́ lísìtì àlàáfíà BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Gba gbogbo awọn olùṣe Mattermost',
+        label: 'Gba gbogbo awọn olùṣe Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Àkọ́lé ilera',
+        label: 'Àkọ́lé ilera'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Gba gbogbo awọn olùṣe QQ',
+        label: 'Gba gbogbo awọn olùṣe QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Àkọ́lé ilera QQ',
-        help: 'Àkọ́lé tabi Ẹgbẹ́ àlàáfíà fún ìfọkùsìn cron.',
+        help: 'Àkọ́lé tabi Ẹgbẹ́ àlàáfíà fún ìfọkùsìn cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Orúkọ àkọ́lé ilera QQ',
+        label: 'Orúkọ àkọ́lé ilera QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Tóókùn bọ́tì Slack',
         help: 'Lò tóókùn bọ́tì láti OAuth & Ìlérí nípa bẹ́ẹ̀ kó ṣe fífi Slack app rẹ sílẹ̀.',
-        placeholder: 'Tẹ́lẹ̀ tóókùn bọ́tì Slack',
+        placeholder: 'Tẹ́lẹ̀ tóókùn bọ́tì Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Tóókùn apẹrẹ Slack',
         help: 'Lò tóókùn apẹ̀rẹ tí a nilo fún Ìpinnu Socket.',
-        placeholder: 'Tẹ́lẹ̀ tóókùn apẹrẹ Slack',
+        placeholder: 'Tẹ́lẹ̀ tóókùn apẹrẹ Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'ID olùṣe Slack tí a gba',
-        help: 'Ìtàn. ID olùṣe Slack tí a yọ́ kí í jẹ́ kòmà.',
+        help: 'Ìtàn. ID olùṣe Slack tí a yọ́ kí í jẹ́ kòmà.'
       },
       MATTERMOST_URL: {
         label: 'URL Ìjọba',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Tóókùn bọ́tì',
+        label: 'Tóókùn bọ́tì'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'ID olùṣe tí a gba',
-        help: 'Ìtàn. ID olùṣe Mattermost tí a yọ́ kí í jẹ́ kòmà.',
+        help: 'Ìtàn. ID olùṣe Mattermost tí a yọ́ kí í jẹ́ kòmà.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL Ìjọba Ilera',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Tóókùn Ìbànújẹ',
+        label: 'Tóókùn Ìbànújẹ'
       },
       MATRIX_USER_ID: {
         label: 'ID olùṣe bọ́tì',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'ID olùṣe Matrix tí a gba',
-        help: 'Ìtàn. ID olùṣe tí a yọ́ kí í jẹ́ kòmà ní fọ́matì @user:server.',
+        help: 'Ìtàn. ID olùṣe tí a yọ́ kí í jẹ́ kòmà ní fọ́matì @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL Ìpinnu Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL tí a ṣe lò fún signal-cli REST bridge tí ó ṣe ṣíṣẹ́.',
+        help: 'URL tí a ṣe lò fún signal-cli REST bridge tí ó ṣe ṣíṣẹ́.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nọ́mbà fóònù',
-        help: 'Nọ́mbà tí a fòkànsìn pẹ́lú bridge signal-cli rẹ.',
+        help: 'Nọ́mbà tí a fòkànsìn pẹ́lú bridge signal-cli rẹ.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Awọn olùṣà Signal tí a gba',
-        help: 'Tó ṣeé ṣe. Awọn àpẹrẹ Signal tí a yọ́sí kóma.',
+        help: 'Tó ṣeé ṣe. Awọn àpẹrẹ Signal tí a yọ́sí kóma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Ṣe WhatsApp bridge ṣeé ṣe',
-        help: 'Ṣeto lẹ́wa lórí ẹ̀rọ̀ ìpínlẹ̀ kẹ́rinlá. Fí sílẹ̀ bí a kò mọ̀ pé o ní fẹ́.',
+        help: 'Ṣeto lẹ́wa lórí ẹ̀rọ̀ ìpínlẹ̀ kẹ́rinlá. Fí sílẹ̀ bí a kò mọ̀ pé o ní fẹ́.'
       },
       WHATSAPP_MODE: {
-        label: 'Àkúnṣe bridge',
+        label: 'Àkúnṣe bridge'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Awọn olùṣà WhatsApp tí a gba',
-        help: 'Tó ṣeé ṣe. Nọ́mbà foonu tí a yọ́sí kóma tabi WhatsApp IDs.',
-      },
+        help: 'Tó ṣeé ṣe. Nọ́mbà foonu tí a yọ́sí kóma tabi WhatsApp IDs.'
+      }
     },
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   cron: {
     days: {
@@ -1369,11 +1403,12 @@ export const yo = defineLocale({
       '4': 'Ọjọ́bọ',
       '5': 'Ẹtì',
       '6': 'Àbámẹ́ta',
-      '7': 'Àìkú',
+      '7': 'Àìkú'
     },
     topOfHour: 'Ní ìbẹ̀rẹ̀ wákàtí kọ̀ọ̀kan',
     newCron: 'Cron tuntun',
-    emptyDescNew: 'Ṣètò ìtọ́ni láti ṣiṣẹ́ lórí ìfọ̀rọ̀ cron. OpenAmer yóò ṣiṣẹ́ rẹ̀ kí ó sì fi àwọn àbájáde ránṣẹ́ sí ibi tí o bá yàn.',
+    emptyDescNew:
+      'Ṣètò ìtọ́ni láti ṣiṣẹ́ lórí ìfọ̀rọ̀ cron. OpenAmer yóò ṣiṣẹ́ rẹ̀ kí ó sì fi àwọn àbájáde ránṣẹ́ sí ibi tí o bá yàn.',
     emptyDescSearch: 'Gbìyànjú ìwádìí tó gbòòrò.',
     emptyTitleNew: 'Kò sí iṣẹ́ ìṣètò kankan',
     emptyTitleSearch: 'Kò sí ìbámu',
@@ -1417,14 +1452,14 @@ export const yo = defineLocale({
       paused: 'ó dúró',
       disabled: 'tí a tì',
       error: 'àṣìṣe',
-      completed: 'tí ó pé',
+      completed: 'tí ó pé'
     },
     deliveryLabels: {
       local: 'Kọ̀mputà yìí',
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Ìmeèlì',
+      email: 'Ìmeèlì'
     },
     scheduleLabels: {
       daily: 'Ní gbogbo ọjọ́',
@@ -1433,7 +1468,7 @@ export const yo = defineLocale({
       monthly: 'Ní gbogbo ọṣù',
       hourly: 'Ní gbogbo wákàtí',
       'every-15-minutes': 'Ní gbogbo ìṣẹ́jú mẹ́fà',
-      custom: 'Àtọ́kànwá',
+      custom: 'Àtọ́kànwá'
     },
     scheduleHints: {
       daily: 'Ní gbogbo ọjọ́ ní 9:00 Ọ̀rọ̀',
@@ -1442,7 +1477,7 @@ export const yo = defineLocale({
       monthly: 'Ọjọ́ àkọ́kọ́ ní gbogbo ọṣù ní 9:00 Ọ̀rọ̀',
       hourly: 'Lórí gbogbo wákàtí',
       'every-15-minutes': 'Ní gbogbo ìṣẹ́jú mẹ́fà',
-      custom: 'Ìtọ́kasí Cron tabi èdè àṣeyọrí',
+      custom: 'Ìtọ́kasí Cron tabi èdè àṣeyọrí'
     },
     dayFallback: value => `ọjọ́ ${value}`,
     everyDayAt: time => `Ní gbogbo ọjọ́ ní ${time}`,
@@ -1477,7 +1512,7 @@ export const yo = defineLocale({
     createAction: 'Dá cron',
     tabs: {
       jobs: 'Ìṣẹ́',
-      blueprints: 'Àkúnṣe',
+      blueprints: 'Àkúnṣe'
     },
     blueprints: {
       tab: 'Àkúnṣe',
@@ -1491,8 +1526,8 @@ export const yo = defineLocale({
       loading: 'Ń gbé àkúnṣe...',
       failedLoad: 'Kò lè gbé àkúnṣe',
       emptyTitle: 'Kò sí àkúnṣe péye',
-      emptyDesc: 'Kò sí àkúnṣe ìtẹ́lẹ̀-ṣíṣe péye ní backend yìí.',
-    },
+      emptyDesc: 'Kò sí àkúnṣe ìtẹ́lẹ̀-ṣíṣe péye ní backend yìí.'
+    }
   },
   profiles: {
     refreshing: 'Ń sọ àwọn profáìlì di tuntun',
@@ -1570,7 +1605,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     failedLoadSoul: 'Kùnà láti gbé SOUL.md wọlé',
     failedSaveSoul: 'Kùnà láti fi SOUL.md pamọ́',
     failedCreate: 'Kùnà láti ṣẹ̀dá profaili',
-    failedRename: 'Kùnà láti tún orúkọ̀ profaili ṣe',
+    failedRename: 'Kùnà láti tún orúkọ̀ profaili ṣe'
   },
   rightSidebar: {
     noProjectTitle: 'Kò sí projekiti',
@@ -1606,7 +1641,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     collapseAll: 'Collapse all folders',
     previewUnavailable: 'Preview unavailable',
     couldNotPreview: path => `Could not preview ${path}`,
-    unreadableBody: error => `Could not read this folder (${error}).`,
+    unreadableBody: error => `Could not read this folder (${error}).`
   },
   preview: {
     tab: 'Àfihàn',
@@ -1640,7 +1675,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     unsavedChanges: 'Unsaved changes',
     saveFailed: message => `Couldn't save: ${message}`,
     diskChangedTitle: 'File changed on disk',
-    diskChangedBody: 'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
+    diskChangedBody:
+      'This file changed since you opened it. Overwrite it with your version, or discard your edits and reload?',
     overwrite: 'Overwrite',
     discardReload: 'Discard & reload',
     console: {
@@ -1661,7 +1697,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       empty: 'No console messages yet.',
       promptHeader: 'Preview console:',
       sentTitle: 'Sent to chat',
-      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`,
+      sentMessage: count => `${count} log entr${count === 1 ? 'y' : 'ies'} added to composer`
     },
     web: {
       appFailedToBoot: 'Preview app failed to boot',
@@ -1686,17 +1722,19 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       reloadingNow: 'Reloading the preview now.',
       restartFailedTitle: 'Preview restart failed',
       restartFailedMessage: 'OpenAmer could not restart the server.',
-      stillWorking: 'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
+      stillWorking:
+        'OpenAmer is still working, but no restart result has arrived yet. The server command may be running in the foreground.',
       workspaceReloading: 'Workspace changed, reloading preview',
       fileChanged: url => `File changed, reloading preview: ${url}`,
       filesChanged: (count, url) => `${count} file changes, reloading preview: ${url}`,
       watchFailed: message => `Could not watch preview file: ${message}`,
-      moduleMimeDescription: 'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
+      moduleMimeDescription:
+        'Module scripts are being served with the wrong MIME type. This usually means a static file server is serving a Vite/React app instead of the project dev server.',
       loadFailedConsole: (code, message) => `Load failed${code ? ` (${code})` : ''}: ${message}`,
       unreachableDescription: 'The preview page could not be reached.',
       openTarget: url => `Open ${url}`,
-      fallbackTitle: 'Preview',
-    },
+      fallbackTitle: 'Preview'
+    }
   },
   common: {
     apply: 'Lo',
@@ -1737,7 +1775,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     update: 'Ṣàtúnṣe',
     on: 'Tàn',
     off: 'Pa',
-    tryHint: term => `Geeko “${term}”`,
+    tryHint: term => `Geeko “${term}”`
   },
   sidebar: {
     projects: {
@@ -1746,8 +1784,10 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       copyPath: 'Daakọ ipa-ọ̀nà',
       removeFromSidebar: 'Fi pamọ́ kúrò ní ẹ̀gbẹ́',
       createFailed: 'Kò le ṣẹ̀dá iṣẹ́ akanṣe',
-      staleBackend: 'Ṣe ìmúdójúìwọ̀n ẹ̀yìn OpenAmer láti ṣẹ̀dá àwọn iṣẹ́ akanṣe — ẹ̀yìn rẹ ti pẹ́ ju app desktop yìí lọ (Ètò → Àwọn ìmúdójúìwọ̀n → Ẹ̀yìn).',
-      deleteConfirm: 'Èyí yóò yọ iṣẹ́ akanṣe tí a fipamọ́ kúrò ní OpenAmer. Àwọn fáìlì, àwọn àkójọpọ̀ git, àti àwọn igi iṣẹ́ yóò dúró bí wọ́n ṣe wà.',
+      staleBackend:
+        'Ṣe ìmúdójúìwọ̀n ẹ̀yìn OpenAmer láti ṣẹ̀dá àwọn iṣẹ́ akanṣe — ẹ̀yìn rẹ ti pẹ́ ju app desktop yìí lọ (Ètò → Àwọn ìmúdójúìwọ̀n → Ẹ̀yìn).',
+      deleteConfirm:
+        'Èyí yóò yọ iṣẹ́ akanṣe tí a fipamọ́ kúrò ní OpenAmer. Àwọn fáìlì, àwọn àkójọpọ̀ git, àti àwọn igi iṣẹ́ yóò dúró bí wọ́n ṣe wà.',
       startWork: 'Igi iṣẹ́ tuntun',
       newWorktreeTitle: 'Igi iṣẹ́ tuntun',
       newWorktreeDesc: 'Sọ orúkọ ẹ̀ka fún igi iṣẹ́ yìí.',
@@ -1767,8 +1807,10 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       noBranches: 'A kò rí ẹ̀ka kankan',
       removeWorktree: 'Yọ igi iṣẹ́ kúrò',
       removeWorktreeFailed: 'Kò le yọ igi iṣẹ́ kúrò (àwọn àyípadà tí kò tíì kọ́míìtì?)',
-      removeWorktreeConfirm: 'Yọ ọ́ kúrò nínú git (yóò pa folda igi iṣẹ́ rẹ́; ẹ̀ka náà yóò wà), tàbí kan fi ọ̀nà pamọ́ kúrò ní ẹ̀gbẹ́ kí o sì fi igi iṣẹ́ sílẹ̀ lórí disiki.',
-      removeWorktreeDirty: 'Igi iṣẹ́ yìí ní àwọn àyípadà tí kò tíì kọ́míìtì. Yọ ọ́ pẹ̀lú ipá (yóò sọ àwọn àyípadà yẹn nù), tàbí kan fi ọ̀nà pamọ́ kí o sì jẹ́ kí ó wà lórí disiki.',
+      removeWorktreeConfirm:
+        'Yọ ọ́ kúrò nínú git (yóò pa folda igi iṣẹ́ rẹ́; ẹ̀ka náà yóò wà), tàbí kan fi ọ̀nà pamọ́ kúrò ní ẹ̀gbẹ́ kí o sì fi igi iṣẹ́ sílẹ̀ lórí disiki.',
+      removeWorktreeDirty:
+        'Igi iṣẹ́ yìí ní àwọn àyípadà tí kò tíì kọ́míìtì. Yọ ọ́ pẹ̀lú ipá (yóò sọ àwọn àyípadà yẹn nù), tàbí kan fi ọ̀nà pamọ́ kí o sì jẹ́ kí ó wà lórí disiki.',
       forceRemove: 'Yọ pẹ̀lú ipá',
       back: 'Gbogbo iṣẹ́ akanṣe',
       sectionLabel: 'Àpapọ̀',
@@ -1780,7 +1822,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       namePlaceholder: 'bíi. Skunkworks',
       foldersLabel: 'Fọlda',
       ideaLabel: 'Ìróyìn',
-      ideaPlaceholder: "Kí ni àpapọ̀ yìí nípa? (tí a gba lórí IDEA.md)",
+      ideaPlaceholder: 'Kí ni àpapọ̀ yìí nípa? (tí a gba lórí IDEA.md)',
       ideaGenerate: 'Dá ìróyìn',
       ideaGenerating: 'Ń dá…',
       ideaShuffle: 'Yípadà àkọ́lé',
@@ -1798,7 +1840,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Hàn ${label}`,
       reorder: label => `Tún ìpínlẹ̀ ${label} sí`,
-      toggle: label => `Yípadà ìpinnu ${label}`,
+      toggle: label => `Yípadà ìpinnu ${label}`
     },
     loading: 'Ń gbé wọlé…',
     loadMore: 'Gbé síi',
@@ -1833,13 +1875,13 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       ageNow: 'Báyìí',
       ageDay: 'Ọj',
       ageHour: 'Wk',
-      ageMin: 'Iṣ',
+      ageMin: 'Iṣ'
     },
     nav: {
       'new-session': 'Ìpinnu tuntun',
       skills: 'Àgbègbè',
       messaging: 'Ìfọkànsìn',
-      artifacts: 'Àkóso',
+      artifacts: 'Àkóso'
     },
     searchAria: 'Wá ìpinnu',
     searchPlaceholder: 'Wá ìpinnu…',
@@ -1869,8 +1911,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       yesterday: 'Làánà',
       thisWeek: 'Kíákíá ní ọ̀sẹ̀ yìí',
       lastWeek: 'Ọ̀sẹ̀ òkè',
-      thisMonth: 'Kíákíá ní osù yìí',
-    },
+      thisMonth: 'Kíákíá ní osù yìí'
+    }
   },
   statusStack: {
     stop: 'Dúró',
@@ -1909,7 +1951,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       openPr: 'Ṣí PR',
       ghMissing: 'Fi GitHub CLI (gh) sínú ẹ̀rọ, kí o sì wọlé láti ṣí àwọn PR',
       agentShip: 'Béèrè lọ́wọ́ OpenAmer láti ṣí PR',
-      agentShipPrompt: 'Ṣàyẹ̀wò àwọn ìyípadà tó wà, kọ wọ́n sílẹ̀ pẹ̀lú ìfiránṣẹ́ conventional-commit tó ṣe kedere, tì ẹ̀ka náà, kí o sì ṣí ìbéèrè pull kan.',
+      agentShipPrompt:
+        'Ṣàyẹ̀wò àwọn ìyípadà tó wà, kọ wọ́n sílẹ̀ pẹ̀lú ìfiránṣẹ́ conventional-commit tó ṣe kedere, tì ẹ̀ka náà, kí o sì ṣí ìbéèrè pull kan.',
       newBranch: 'Ẹ̀ka tuntun',
       worktrees: 'Àwọn igi iṣẹ́',
       changed: count => `${count} tún`,
@@ -1917,14 +1960,14 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       behind: count => `${count} lẹ́yìn`,
       branchOffFrom: base => `Ẹ̀ka tuntun láti ${base}`,
       switchTo: branch => `Yí padà sí ${branch}`,
-      switchFailed: branch => `Kò lè yí padà sí ${branch}`,
+      switchFailed: branch => `Kò lè yí padà sí ${branch}`
     },
     agents: 'Àgbègbè',
     background: count => `${count} Ìtàn`,
     subagents: count => `${count} Àgbègbè ìtọ́kasí${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Ìṣẹ́ ${done}/${total}`,
     running: 'Ń ṣíṣe',
-    exit: code => `Jadé ${code}`,
+    exit: code => `Jadé ${code}`
   },
   updates: {
     stages: {
@@ -1939,7 +1982,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       done: 'Gùnlẹ̀ ti pari',
       manual: 'Gùnlẹ̀ láti ìkúnlẹ̀ rẹ',
       guiSkew: 'Gùnlẹ̀ apù desktop',
-      error: 'Gùnlẹ̀ ti kún',
+      error: 'Gùnlẹ̀ ti kún'
     },
     checking: 'Ń wá gùnlẹ̀…',
     checkFailedTitle: 'Kò lè wá gùnlẹ̀',
@@ -1959,14 +2002,17 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     maybeLater: 'Lẹ́wa, ọjọ́ míì',
     moreChanges: count => `+ ${count} àyíká ${count === 1 ? '' : 's'} ti wà níní.`,
     manualTitle: 'Ṣe àkúnṣe láti terminal rẹ',
-    manualBody: 'O fífi OpenAmer sílẹ̀ láti àpẹrẹ àwọn orúkọ, nǐtorí náà àkúnṣe ṣe wáyé níbí náà. Fi wáyé yìí sí terminal rẹ:',
+    manualBody:
+      'O fífi OpenAmer sílẹ̀ láti àpẹrẹ àwọn orúkọ, nǐtorí náà àkúnṣe ṣe wáyé níbí náà. Fi wáyé yìí sí terminal rẹ:',
     manualPickedUp: 'OpenAmer yóò gba ìtàn tuntun ní ọjọ́ míì tí o bá fi wáyé.',
     guiSkewTitle: 'Ṣe àkúnṣe ohun-ìlò desktop',
-    guiSkewBody: 'Backend ti àkúnṣe, ṣùgbọ́n àkóso ohun-ìlò desktop yìí kò ṣe àyíká. Ṣe àkúnṣe tabi fífi sílẹ̀ ohun-ìlò OpenAmer desktop (AppImage rẹ / .deb / .rpm) láti jẹ́wọ́.',
+    guiSkewBody:
+      'Backend ti àkúnṣe, ṣùgbọ́n àkóso ohun-ìlò desktop yìí kò ṣe àyíká. Ṣe àkúnṣe tabi fífi sílẹ̀ ohun-ìlò OpenAmer desktop (AppImage rẹ / .deb / .rpm) láti jẹ́wọ́.',
     copy: 'Kópi',
     copied: 'Ti kópi',
     done: 'Ti bọ́wọ́',
-    applyingBody: 'Olùkúnṣe OpenAmer yóò jẹ́wọ́ ní àpẹrẹ rẹ ati fi OpenAmer wáyé òtítọ́ tí ó ti bọ́wọ́. Ẹ jọ́wọ́ kò fi OpenAmer wáyé ọrẹ́ rẹ nígbà tí ó ń ṣe àkúnṣe.',
+    applyingBody:
+      'Olùkúnṣe OpenAmer yóò jẹ́wọ́ ní àpẹrẹ rẹ ati fi OpenAmer wáyé òtítọ́ tí ó ti bọ́wọ́. Ẹ jọ́wọ́ kò fi OpenAmer wáyé ọrẹ́ rẹ nígbà tí ó ń ṣe àkúnṣe.',
     applyingBodyBackend: 'Backend àlàáfíà ń ṣe àkúnṣe yìí ati yóò bẹ́rẹ̀ síi. OpenAmer yóò pín síi òtítọ́ tí ó ti wá.',
     applyingClose: 'Àpẹrẹ yìí yóò dídí nígbà tí àkúnṣe ń ṣe, ṣíi OpenAmer yóò wáyé ọrẹ́ rẹ.',
     errorTitle: 'Àkúnṣe kò bọ́wọ́',
@@ -1978,12 +2024,13 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       restarting: 'Backend ń bẹ́rẹ̀ síi láti gba àkúnṣe…',
       notAvailable: 'Àkúnṣe kò wà fún backend yìí.',
       failed: 'Àkúnṣe backend kò ṣeé ṣé.',
-      noReturn: 'Backend kò wá láìpẹ̀. Àkúnṣe lè kò bọ́wọ́ — wáyé àgbe backend.',
+      noReturn: 'Backend kò wá láìpẹ̀. Àkúnṣe lè kò bọ́wọ́ — wáyé àgbe backend.'
     },
     appErrors: {
-      updateLocked: 'Àkúnṣe ti fi sílẹ̀: àpẹrẹ OpenAmer míì tabi terminal tí ó ń ṣíṣẹ́ openamer ń gba fífi sílẹ̀ yìí wá. Dídí ó ati gùnlẹ̀ síi.',
-      updateFailed: 'Àkúnṣe kò bọ́wọ́. Kò sí níṣọ́kan — kò sí ohun tí a lọ. O lè gùnlẹ̀ síi bayíi.',
-    },
+      updateLocked:
+        'Àkúnṣe ti fi sílẹ̀: àpẹrẹ OpenAmer míì tabi terminal tí ó ń ṣíṣẹ́ openamer ń gba fífi sílẹ̀ yìí wá. Dídí ó ati gùnlẹ̀ síi.',
+      updateFailed: 'Àkúnṣe kò bọ́wọ́. Kò sí níṣọ́kan — kò sí ohun tí a lọ. O lè gùnlẹ̀ síi bayíi.'
+    }
   },
   install: {
     signInIncomplete: 'Ferese wiwọle ti pa kí ìjẹ́rìí ìdánimọ̀ tó parí.',
@@ -1998,8 +2045,10 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     failedTitle: 'Ìgbékalẹ̀ kùnà',
     settingUpTitle: 'Ń ṣètò OpenAmer Agent',
     finishingTitle: 'Ń parí',
-    failedDesc: 'Ọ̀kan lára àwọn ìgbésẹ̀ ìgbékalẹ̀ kùnà. Lórí Windows, èyí lè ṣẹlẹ̀ tí OpenAmer CLI tàbí ẹ̀dá desktop mìíràn bá ń ṣiṣẹ́. Dúró àwọn ẹ̀dá OpenAmer tí ń ṣiṣẹ́, kí o sì tún gbìyànjú. Ṣàyẹ̀wò àwọn àlàyé ní ìsàlẹ̀ tàbí lọ́ọ̀gì desktop fún àkọsílẹ̀ kíkún.',
-    activeDesc: 'Ìṣètò yìí ṣẹlẹ̀ lẹ́ẹ̀kan. Ẹ̀rọ ìgbékalẹ̀ OpenAmer ń gba àwọn ohun tó nílò àti ṣètò ẹ̀rọ rẹ. Àwọn ìbẹ̀rẹ̀ tó tẹ̀le yóò fò ìgbésẹ̀ yìí.',
+    failedDesc:
+      'Ọ̀kan lára àwọn ìgbésẹ̀ ìgbékalẹ̀ kùnà. Lórí Windows, èyí lè ṣẹlẹ̀ tí OpenAmer CLI tàbí ẹ̀dá desktop mìíràn bá ń ṣiṣẹ́. Dúró àwọn ẹ̀dá OpenAmer tí ń ṣiṣẹ́, kí o sì tún gbìyànjú. Ṣàyẹ̀wò àwọn àlàyé ní ìsàlẹ̀ tàbí lọ́ọ̀gì desktop fún àkọsílẹ̀ kíkún.',
+    activeDesc:
+      'Ìṣètò yìí ṣẹlẹ̀ lẹ́ẹ̀kan. Ẹ̀rọ ìgbékalẹ̀ OpenAmer ń gba àwọn ohun tó nílò àti ṣètò ẹ̀rọ rẹ. Àwọn ìbẹ̀rẹ̀ tó tẹ̀le yóò fò ìgbésẹ̀ yìí.',
     fetchingManifest: 'Ń gba manifest ìgbékalẹ̀...',
     error: 'Àṣìṣe',
     hideOutput: 'Fi ìjáde ìgbékalẹ̀ pamọ́',
@@ -2016,10 +2065,11 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       running: 'Ń fífi sílẹ̀',
       succeeded: 'Ti bọ́wọ́',
       skipped: 'Ti fi síwájú',
-      failed: 'Kò ṣé',
+      failed: 'Kò ṣé'
     },
     oneTimeTitle: 'OpenAmer fẹ́ fífi sílẹ̀ kankan',
-    unsupportedDesc: platform => `Fífi sílẹ̀ àkókò tí a ṣe dá lórí ${platform} kò wà ní àkúnya. Wá Terminal ati ṣíṣẹ́ àkóso ìsọ̀rọ̀ ìsìnmi, ṣíi fi ohun-ìlò yìí wáyé síi. Ìwáyé tó wá lẹ́wa yóò fi àpẹrẹ yìí síwájú.`,
+    unsupportedDesc: platform =>
+      `Fífi sílẹ̀ àkókò tí a ṣe dá lórí ${platform} kò wà ní àkúnya. Wá Terminal ati ṣíṣẹ́ àkóso ìsọ̀rọ̀ ìsìnmi, ṣíi fi ohun-ìlò yìí wáyé síi. Ìwáyé tó wá lẹ́wa yóò fi àpẹrẹ yìí síwájú.`,
     installCommand: 'Àkóso fífi sílẹ̀',
     copyCommand: 'Kópi àkóso',
     viewDocs: 'Wo ìwé ìtọ́sọ́nà ìṣínú',
@@ -2029,7 +2079,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     setupChoiceDesc: 'So app yìí mọ́ OpenAmer gateway tí o ti ń lọ́wọ́ rẹ̀, tàbí fi OpenAmer sínú kọ̀mputá yìí.',
     connectExistingTitle: 'So mọ́ OpenAmer tí ó wà',
     connectExistingShort: 'So mọ́ èyí tí ó wà',
-    connectExistingDesc: 'Lo backend remote pẹ̀lú session token tàbí kí o wọlé pẹ̀lú browser. Kò ní sí ìṣínú local kankan.',
+    connectExistingDesc:
+      'Lo backend remote pẹ̀lú session token tàbí kí o wọlé pẹ̀lú browser. Kò ní sí ìṣínú local kankan.',
     installLocalTitle: 'Fi OpenAmer sínú kọ̀mputá yìí',
     installLocalDesc: 'Gba OpenAmer sílẹ̀, ṣẹ̀dá Python environment rẹ̀, kí o sì ṣiṣẹ́ backend lórí kọ̀mputá yìí.',
     localStartUnavailable: 'Ìṣínú local kò lè bẹ̀rẹ̀. Bẹ̀rẹ̀ OpenAmer Desktop padà kí o sì dán an wò mọ́.',
@@ -2051,7 +2102,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     testSucceeded: (baseUrl, version) => `A ti so mọ́ ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `${completed} of ${total} steps complete`,
     currentStage: stage => ` -- lọ́wọ́lọ́wọ́: ${stage}`,
-    lines: count => `${count} line${count === 1 ? '' : 's'}`,
+    lines: count => `${count} line${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Jẹ́ ká ṣètò OpenAmer Agent fún ọ',
@@ -2071,28 +2122,29 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     apiKeyOptions: {
       fireworks: {
         short: 'API àwòṣe tààrà',
-        description: 'Ìbáṣepọ̀ tààrà sí àwọn models tí Fireworks AI gbé.',
+        description: 'Ìbáṣepọ̀ tààrà sí àwọn models tí Fireworks AI gbé.'
       },
       openrouter: {
         short: 'kókó kan, ọ̀pọ̀lọpọ̀ models',
-        description: 'Hosts hundreds of models behind a single key. Good default for new installs.',
+        description: 'Hosts hundreds of models behind a single key. Good default for new installs.'
       },
       openai: {
         short: 'GPT-class models',
-        description: 'Direct access to OpenAI models.',
+        description: 'Direct access to OpenAI models.'
       },
       gemini: {
         short: 'Gemini models',
-        description: 'Direct access to Google Gemini models.',
+        description: 'Direct access to Google Gemini models.'
       },
       xai: {
         short: 'Grok models',
-        description: 'Direct access to xAI Grok models.',
+        description: 'Direct access to xAI Grok models.'
       },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Back to sign in',
     getKey: 'Get a key',
@@ -2105,7 +2157,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     flowSubtitles: {
       pkce: 'Opens your browser to sign in, then continues here',
       device_code: 'Opens a verification page in your browser — OpenAmer connects automatically',
-      external: 'Sign in once in your terminal, then come back to chat',
+      external: 'Sign in once in your terminal, then come back to chat'
     },
     startingSignIn: provider => `Starting sign-in for ${provider}...`,
     verifyingCode: provider => `Verifying your code with ${provider}...`,
@@ -2119,10 +2171,12 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     copyAuthCode: 'Copy the authorization code and paste it below.',
     pasteAuthCode: 'Paste authorization code',
     reopenAuthPage: 'Re-open authorization page',
-    autoBrowser: provider => `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
+    autoBrowser: provider =>
+      `We opened ${provider} in your browser. Authorize OpenAmer there and you'll be connected automatically — nothing to copy or paste.`,
     reopenSignInPage: 'Re-open sign-in page',
     waitingAuthorize: 'Waiting for you to authorize...',
-    externalPending: provider => `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
+    externalPending: provider =>
+      `${provider} signs in through its own CLI. Run this command in a terminal, then come back and pick "I've signed in":`,
     signedIn: "I've signed in",
     deviceCodeOpened: provider => `We opened ${provider} in your browser. Enter this code there:`,
     reopenVerification: 'Re-open verification page',
@@ -2134,7 +2188,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     price: (input, output) => `${input} in / ${output} out per Mtok`,
     change: 'Change',
     startChatting: 'Begin',
-    docs: provider => `${provider} docs`,
+    docs: provider => `${provider} docs`
   },
   assistant: {
     tool: {
@@ -2142,113 +2196,113 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
         browser_click: {
           done: 'Tẹ ẹ̀yà ojú-ìwé',
           pending: 'Títẹ ẹ̀yà ojú-ìwé',
-          pendingAction: 'Títẹ',
+          pendingAction: 'Títẹ'
         },
         browser_fill: {
           done: 'Kún ààyè fọ́ọ̀mù',
           pending: 'Kíkún ààyè fọ́ọ̀mù',
-          pendingAction: 'Kíkún',
+          pendingAction: 'Kíkún'
         },
         browser_navigate: {
           done: 'Ṣí ojú-ìwé',
           pending: 'Ṣíṣí ojú-ìwé',
-          pendingAction: 'Ṣíṣí',
+          pendingAction: 'Ṣíṣí'
         },
         browser_snapshot: {
           done: 'Ya àwòrán ojú-ìwé',
           pending: 'Yíya àwòrán ojú-ìwé',
-          pendingAction: 'Yíya',
+          pendingAction: 'Yíya'
         },
         browser_take_screenshot: {
           done: 'Ya àwòrán ojú-ìbójú',
           pending: 'Yíya àwòrán ojú-ìbójú',
-          pendingAction: 'Yíya',
+          pendingAction: 'Yíya'
         },
         browser_type: {
           done: 'Tẹ̀wé lórí ojú-ìwé',
           pending: 'Títẹ̀wé lórí ojú-ìwé',
-          pendingAction: 'Títẹ̀wé',
+          pendingAction: 'Títẹ̀wé'
         },
         clarify: {
           done: 'Bèèrè ìbéèrè',
           pending: 'Bíbèèrè ìbéèrè',
-          pendingAction: 'Bíbèèrè',
+          pendingAction: 'Bíbèèrè'
         },
         cronjob: {
           done: 'Iṣẹ́ cron',
           pending: 'Ṣíṣètò iṣẹ́ cron',
-          pendingAction: 'Ṣíṣètò',
+          pendingAction: 'Ṣíṣètò'
         },
         edit_file: {
           done: 'Ṣàtúnṣe fáìlì',
           pending: 'Ṣíṣàtúnṣe fáìlì',
-          pendingAction: 'Ṣíṣàtúnṣe',
+          pendingAction: 'Ṣíṣàtúnṣe'
         },
         execute_code: {
           done: 'Ṣe kóòdù',
           pending: 'Ṣíṣe script',
-          pendingAction: 'Ṣíṣe script',
+          pendingAction: 'Ṣíṣe script'
         },
         image_generate: {
           done: 'Dá àwòrán',
           pending: 'Dídá àwòrán',
-          pendingAction: 'Dídá',
+          pendingAction: 'Dídá'
         },
         list_files: {
           done: 'Ṣe àkójọ fáìlì',
           pending: 'Ṣíṣe àkójọ fáìlì',
-          pendingAction: 'Ṣíṣe àkójọ',
+          pendingAction: 'Ṣíṣe àkójọ'
         },
         patch: {
           done: 'Ṣe patch fáìlì',
           pending: 'Ṣíṣe patch fáìlì',
-          pendingAction: 'Ṣíṣe patch',
+          pendingAction: 'Ṣíṣe patch'
         },
         read_file: {
           done: 'Ka fáìlì',
           pending: 'Reading file',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         search_files: {
           done: 'Searched files',
           pending: 'Searching files',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         session_search_recall: {
           done: 'Searched session history',
           pending: 'Searching session history',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         terminal: {
           done: 'Ran command',
           pending: 'Running command',
-          pendingAction: 'Running',
+          pendingAction: 'Running'
         },
         todo: {
           done: 'Updated todos',
           pending: 'Updating todos',
-          pendingAction: 'Updating',
+          pendingAction: 'Updating'
         },
         vision_analyze: {
           done: 'Analyzed image',
           pending: 'Analyzing image',
-          pendingAction: 'Analyzing',
+          pendingAction: 'Analyzing'
         },
         web_extract: {
           done: 'Read webpage',
           pending: 'Reading webpage',
-          pendingAction: 'Reading',
+          pendingAction: 'Reading'
         },
         web_search: {
           done: 'Searched web',
           pending: 'Searching web',
-          pendingAction: 'Searching',
+          pendingAction: 'Searching'
         },
         write_file: {
           done: 'Edited file',
           pending: 'Editing file',
-          pendingAction: 'Editing',
-        },
+          pendingAction: 'Editing'
+        }
       },
       code: 'Code',
       copyCode: 'Copy code',
@@ -2283,11 +2337,11 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
         ran: 'Ran',
         running: 'Running',
         ranCode: 'Ran code',
-        runningCode: 'Scripting',
+        runningCode: 'Scripting'
       },
       prefixes: {
         browser: 'Browser',
-        web: 'Web',
+        web: 'Web'
       },
       titleTemplates: {
         actionCommand: (action, command) => `${action} ${command}`,
@@ -2295,8 +2349,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Running ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Running ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Running ${action.toLowerCase()}`
+      }
     },
     thread: {
       loadingSession: 'Loading session',
@@ -2326,12 +2380,13 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       restoreCheckpoint: 'Restore checkpoint',
       restoreFromHere: 'Restore checkpoint — rerun from this prompt',
       restoreTitle: 'Restore to this checkpoint?',
-      restoreBody: 'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
+      restoreBody:
+        'Everything after this prompt is removed from the conversation, and the prompt runs again from here.',
       restoreConfirm: 'Restore & rerun',
       restoreNext: 'Restore next checkpoint',
       goForward: 'Go forward',
       sendEdited: 'Send edited message',
-      attachingFile: 'Attaching…',
+      attachingFile: 'Attaching…'
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2344,8 +2399,9 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       jumpToApproval: 'Approval needed',
       reject: 'Reject',
       alwaysTitle: 'Always allow this command?',
-      alwaysDescription: pattern => `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
-      alwaysAllow: 'Always allow',
+      alwaysDescription: pattern =>
+        `This adds the “${pattern}” pattern to your permanent allowlist (~/.openamer/config.yaml). OpenAmer won’t ask again for commands like this — in this session or any future one.`,
+      alwaysAllow: 'Always allow'
     },
     clarify: {
       notReady: 'Clarify request is not ready yet',
@@ -2359,11 +2415,12 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       continueLabel: 'Continue',
       lateAnswer: (question, choice) => `Re: "${question}" — my answer: ${choice}`,
       lateAnswerTip: 'Draft this answer as a follow-up message',
-      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.',
-    },
+      lateAnswerHint: 'This prompt is no longer waiting. Pick an option to draft it as a follow-up message.'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Software rendering ekoleka — remote display yazuukidde (${reason}). GPU acceleration gikyuse okuziyiza okukyakya.`,
+    message: reason =>
+      `Software rendering ekoleka — remote display yazuukidde (${reason}). GPU acceleration gikyuse okuziyiza okukyakya.`
   },
   billingBlock: {
     titleOpenamer: 'Sente za OpenAmer zaziziddwa',
@@ -2371,24 +2428,24 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     fallbackMessage: 'Akawunti ko tewali sente. Onga sente okwongera okukozesa.',
     openBilling: 'Ggula okulibwa',
     addCredits: 'Ongera sente',
-    dismiss: 'Ggyawo',
+    dismiss: 'Ggyawo'
   },
   titlebar: {
     hideSidebar: 'Yiba sidebar',
     showSidebar: 'Laga sidebar',
     search: 'Noonya',
-    searchTitle: 'Noonya kaseera, okulaba, n\'ebikolwa',
+    searchTitle: "Noonya kaseera, okulaba, n'ebikolwa",
     swapSidebarSides: 'Kyusa obuku ku sidebar',
-    swapSidebarSidesTitle: 'Kyusa obuku bw\'ekaseera n\'efayiro browser',
-    hideRightSidebar: 'Yiba sidebar ey\'oku lwajja',
-    showRightSidebar: 'Laga sidebar ey\'oku lwajja',
+    swapSidebarSidesTitle: "Kyusa obuku bw'ekaseera n'efayiro browser",
+    hideRightSidebar: "Yiba sidebar ey'oku lwajja",
+    showRightSidebar: "Laga sidebar ey'oku lwajja",
     muteHaptics: 'Ziziza haptics',
     unmuteHaptics: 'Yongera haptics',
     openSettings: 'Ggula enteekateeka',
     openStarmap: 'Ṣí graph ìrántí',
     openKeybinds: 'Àwọn ìró kíbọ́ọ̀dù',
     layoutEditor: 'Olùatúnṣe ètò',
-    layoutEditorTitle: 'Olùatúnṣe ètò — ⌘-click yí ètò padà sí bí ó ṣe wà',
+    layoutEditorTitle: 'Olùatúnṣe ètò — ⌘-click yí ètò padà sí bí ó ṣe wà'
   },
   starmap: {
     title: 'Gráfù Ìtàn',
@@ -2405,7 +2462,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     emptyTitle: 'Ko si ohun ti a kọ',
     emptyDesc: 'Bi OpenAmer se da agbara ati oran fun ise re, won wa nibi.',
     share: 'Pin mapa',
-    shareHint: 'Kope koodu lati pin mapa yi, tabi fi kan si lati gba. O kan si apere, ko si oran re tabi ohun elo agbara.',
+    shareHint:
+      'Kope koodu lati pin mapa yi, tabi fi kan si lati gba. O kan si apere, ko si oran re tabi ohun elo agbara.',
     shareTitle: 'Gba / fi mapa sinmi',
     sharePlaceholder: 'Fi koodu mapa si…',
     copy: 'Kope koodu mapa',
@@ -2415,7 +2473,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     importEmpty: 'Fi koodu mapa si lati gba.',
     importSuccess: nodes => `Ti gba mapa pẹlu ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
     importedBadge: 'mapa ti a gba',
-    resetToMine: 'Pada si mapa mi',
+    resetToMine: 'Pada si mapa mi'
   },
   agents: {
     close: 'To agbegbe',
@@ -2445,7 +2503,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     ageDays: days => `${days} eezu emi`,
     durationSeconds: seconds => `${seconds} emi`,
     durationMinutes: (minutes, seconds) => `${minutes} min ${seconds} emi`,
-    tokens: value => `${value} tok`,
+    tokens: value => `${value} tok`
   },
   webhooks: {
     search: 'Wá webhooks...',
@@ -2455,7 +2513,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     hint: 'Àyíká àfíkun jẹ́ hot-reload ní ìgbà tí olùgba ń ṣiṣẹ́. Àfíkun tí a ṣàlàyé yọ́sí àkúnya tí a ti wá.',
     empty: 'Kò sí àfíkun webhook ní bẹ́ẹ̀lọ́.',
     disabledTitle: 'Olùgba webhook ti ṣàlàyé',
-    disabledBody: 'Webhooks jẹ́ àpẹrẹ ọ̀nà ìbáṣepọ̀ wọn. Ṣe wọn ṣeé ṣe níbí láti gba àkúnya HTTP tí a ti wá; àkúnya ìtàn ní wulẹ́ nígbà gbogbo tí àfíkun bá ṣe ìfọkànsìn sí Telegram, Discord, Slack, tabi àkúnya míì.',
+    disabledBody:
+      'Webhooks jẹ́ àpẹrẹ ọ̀nà ìbáṣepọ̀ wọn. Ṣe wọn ṣeé ṣe níbí láti gba àkúnya HTTP tí a ti wá; àkúnya ìtàn ní wulẹ́ nígbà gbogbo tí àfíkun bá ṣe ìfọkànsìn sí Telegram, Discord, Slack, tabi àkúnya míì.',
     enable: 'Ṣe webhooks ṣeé ṣe',
     enabling: 'Ń ṣeé ṣe...',
     enabled: (name: string) => `Ti ṣeé ṣe: "${name}"`,
@@ -2508,8 +2567,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       discord: 'Discord',
       slack: 'Slack',
       email: 'Ìmẹ́lì',
-      github_comment: 'Àkọ́lé GitHub',
-    },
+      github_comment: 'Àkọ́lé GitHub'
+    }
   },
   artifacts: {
     search: 'Wá àkúnya...',
@@ -2543,7 +2602,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     kindLink: 'línkì',
     chat: 'Ìbánújẹ',
     copyUrl: 'Kópi URL',
-    copyPath: 'Kópi ọ̀nà',
+    copyPath: 'Kópi ọ̀nà'
   },
   composer: {
     message: 'Ọ̀rọ̀',
@@ -2554,20 +2613,20 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     newSessionPlaceholders: [
       'Kí ni a ń kọ?',
       'Fún OpenAmer ní iṣẹ́',
-      "Kí ni lórí ọkan rẹ?",
+      'Kí ni lórí ọkan rẹ?',
       'Ṣàpéjúwe ohun tí o ní fẹ́',
       'Kí ni a yẹ kí a ṣe?',
       'Bẹ́ẹ̀ kí o fẹ́',
-      'Bẹ́rẹ̀ ní àfikún',
+      'Bẹ́rẹ̀ ní àfikún'
     ],
     followUpPlaceholders: [
       'Tẹ́lẹ̀ àkúnya',
       'Fi àlàáfíà míi síi',
       'Tún ìbẹ̀rẹ̀ sílẹ̀',
-      "Kí ni tó tó?",
+      'Kí ni tó tó?',
       'Máa ṣíṣẹ́',
       'Tó síwájú',
-      'Túnṣe tabi jẹ́wọ́',
+      'Túnṣe tabi jẹ́wọ́'
     ],
     startVoice: 'Bẹ́rẹ̀ ìbánújẹ ọ̀rọ̀',
     queueMessage: 'Pín ọ̀rọ̀',
@@ -2603,7 +2662,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       '/resume': 'Dá ìṣẹ́-ṣíṣe àlàáfíà padà',
       '/details': 'Ṣàlàyé pátápátá àkóso ipinnu',
       '/copy': 'Kópi àyànfẹ́ tàbí ìmọ̀èlò alábàṣepò àìlokú',
-      '/quit': 'Jade openamer',
+      '/quit': 'Jade openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'Tọ́ka fáìlì, fọ́lda, URL, git',
@@ -2613,7 +2672,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       'composer.sendQueued': 'Tóka ìtàn àtúnṣe kékeré',
       'keybinds.openPanel': 'Gbogbo àfíkun kíbọ́dì',
       'composer.cancel': 'Pín pópọ̀vẹ̀ · kànṣèl rìn',
-      'composer.history': 'Tún pópọ̀vẹ̀ / àkóso',
+      'composer.history': 'Tún pópọ̀vẹ̀ / àkóso'
     },
     attachUrlTitle: 'Kún URL kàn',
     attachUrlDesc: 'OpenAmer yóò wá wé́bù àti fi han ní àfikún fún ìtàn yìí.',
@@ -2664,19 +2723,19 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       codeReview: {
         label: 'Ìtẹ́kọ́ kọ́dù',
         description: 'Ṣàlàyé àkúnya yìí fún àtúnṣe, àpẹrẹ tí a fi sílẹ̀, àti ìtọ́kasí tí a kò rí',
-        text: 'Jọwọ́ tẹ́kọ́ yìí fún àwọn àkúnya, àtúnṣe, àti ìtọ́kasí tí a kò rí',
+        text: 'Jọwọ́ tẹ́kọ́ yìí fún àwọn àkúnya, àtúnṣe, àti ìtọ́kasí tí a kò rí'
       },
       implementationPlan: {
         label: 'Ìlànà ṣètò',
         description: 'Kọ́ àkọ́lé ìṣẹ́ níparí kọ́dù kí diff lè wà ní fókùsì',
-        text: 'Jọwọ́ ṣe ìlànà ṣètò tó kànkàn níparí àtúnṣe kọ́dù',
+        text: 'Jọwọ́ ṣe ìlànà ṣètò tó kànkàn níparí àtúnṣe kọ́dù'
       },
       explainThis: {
         label: 'Ṣàlàyé yìí',
         description: 'Kọ́́rí bí kọ́dù tí a yan ṣe ṣíṣe àti tún àwọn fáilì múlẹ̀ sí',
-        text: 'Jọwọ́ ṣàlàyé bí yìí ṣe ṣíṣe àti hàn mí sí àwọn fáilì múlẹ̀',
-      },
-    },
+        text: 'Jọwọ́ ṣàlàyé bí yìí ṣe ṣíṣe àti hàn mí sí àwọn fáilì múlẹ̀'
+      }
+    }
   },
   modelPicker: {
     title: 'Switch model',
@@ -2692,13 +2751,13 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',
-    wasPrice: 'was',
+    wasPrice: 'was'
   },
   modelVisibility: {
     title: 'Models',
     search: 'Search models',
     noAuthenticatedProviders: 'No authenticated providers.',
-    addProvider: 'Add provider…',
+    addProvider: 'Add provider…'
   },
   shell: {
     windowControls: 'Window controls',
@@ -2709,7 +2768,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       noModels: 'No models found',
       editModels: 'Edit Models…',
       refreshModels: 'Refresh Models',
-      fast: 'Fast',
+      fast: 'Fast'
     },
     modelOptions: {
       noOptions: 'No options for this model',
@@ -2725,7 +2784,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       max: 'Max',
       ultra: 'Ultra',
       updateFailed: 'Model option update failed',
-      fastFailed: 'Fast mode update failed',
+      fastFailed: 'Fast mode update failed'
     },
     gatewayMenu: {
       gateway: 'Gateway',
@@ -2740,7 +2799,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       connection: label => `Connection: ${label}`,
       recentActivity: 'Recent activity',
       viewAllLogs: 'View all logs →',
-      messagingPlatforms: 'Messaging platforms',
+      messagingPlatforms: 'Messaging platforms'
     },
     approvalMode: {
       title: 'Approval mode',
@@ -2750,7 +2809,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       smart: 'Smart',
       smartDescription: 'Automatically assess actions and ask when needed',
       off: 'Off',
-      offDescription: 'Run without approval prompts',
+      offDescription: 'Run without approval prompts'
     },
     statusbar: {
       unknown: 'unknown',
@@ -2806,13 +2865,13 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
           skills: 'Skills',
           subagent_definitions: 'Subagent definitions',
           system_prompt: 'System prompt',
-          tool_definitions: 'Tool definitions',
+          tool_definitions: 'Tool definitions'
         },
         empty: 'No context data yet',
         loading: 'Loading breakdown…',
         percentFull: percent => `${percent}% Full`,
         title: 'Context Usage',
-        tokenSummary: (used, max) => `${used} / ${max} Tokens`,
+        tokenSummary: (used, max) => `${used} / ${max} Tokens`
       },
       openContextUsage: 'Open context usage breakdown',
       session: 'Session',
@@ -2825,8 +2884,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       openModelPicker: 'Open model picker',
       modelPinned: 'pinned by you; new chats use this instead of the Settings default',
       modelTitle: (provider, model) => `Model · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   zones: {
     showHeader: 'Show header',
@@ -2834,7 +2893,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     minimize: 'Minimize',
     restore: 'Restore',
     closeRunningTitle: 'Close running tab?',
-    closeRunningBody: 'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
+    closeRunningBody:
+      'This chat is still working (or waiting on your input). Closing the tab hides it — the session keeps its progress and can be reopened from the sidebar.',
     closeRunningConfirm: 'Close tab',
     closeOthers: 'Close others',
     closeToRight: 'Close to the right',
@@ -2871,7 +2931,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     layoutNamePlaceholder: fallback => `Layout name (${fallback})`,
     saveApply: 'Save & apply',
     notExpressible: 'this arrangement interlocks (pinwheel) — not expressible as nested splits yet',
-    zoneCount: count => `${count} zones`,
+    zoneCount: count => `${count} zones`
   },
   prompts: {
     gatewayDisconnected: 'OpenAmer gateway is not connected',
@@ -2882,7 +2942,7 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     sudoPlaceholder: 'sudo password',
     secretTitle: 'Secret required',
     secretDesc: 'OpenAmer needs a credential to continue.',
-    secretPlaceholder: 'secret value',
+    secretPlaceholder: 'secret value'
   },
   desktop: {
     audioReadFailed: 'Could not read recorded audio',
@@ -2899,7 +2959,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} for this session`,
     yoloTitle: 'YOLO',
     yoloToggleFailed: 'Could not toggle YOLO',
-    profileStatus: current => `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
+    profileStatus: current =>
+      `Profile: ${current}. Use /profile <name> or the "New session" picker to start a chat in another profile.`,
     unknownProfile: 'Unknown profile',
     noProfileNamed: (target, available) => `No profile named "${target}". Available: ${available}`,
     newChatsProfile: name => `New chats will use profile ${name}.`,
@@ -2910,7 +2971,8 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
     editFailed: 'Edit failed',
     resumeFailed: 'Resume failed',
     resumeStrandedTitle: "Couldn't load this session",
-    resumeStrandedBody: 'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
+    resumeStrandedBody:
+      'The connection to this session failed and automatic retries gave up. Check that the gateway is running, then try again.',
     resumeRetry: 'Retry',
     nothingToBranch: 'Nothing to branch',
     branchNeedsChat: 'Start or resume a chat before branching.',
@@ -2950,31 +3012,31 @@ Fi sílẹ̀ ní òfìfo láti pa àǹfàní ${mode} tì.`,
       success: platform => `Handed off to ${platform}. Resume here anytime.`,
       systemNote: platform => `↻ Handed off to ${platform} — resume here anytime.`,
       failed: error => `Handoff failed: ${error}`,
-      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?',
-    },
+      timedOut: 'Timed out waiting for the gateway. Is `openamer gateway` running?'
+    }
   },
   errors: {
     genericFailure: 'Something went wrong',
     boundaryTitle: 'Something broke in the interface',
     boundaryDesc: 'The view hit an unexpected error. Your chats and settings are safe.',
     reloadWindow: 'Reload window',
-    openLogs: 'Open logs',
+    openLogs: 'Open logs'
   },
   ui: {
     search: {
-      clear: 'Clear search',
+      clear: 'Clear search'
     },
     pagination: {
       label: 'pagination',
       previous: 'Prev',
       previousAria: 'Go to previous page',
       next: 'Next',
-      nextAria: 'Go to next page',
+      nextAria: 'Go to next page'
     },
     sidebar: {
       title: 'Sidebar',
       description: 'Displays the mobile sidebar.',
-      toggle: 'Toggle Sidebar',
-    },
-  },
+      toggle: 'Toggle Sidebar'
+    }
+  }
 })

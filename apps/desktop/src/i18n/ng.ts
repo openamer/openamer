@@ -43,9 +43,9 @@ export const ng = defineLocale({
     copy: 'Kopela',
     copyFailed: 'Kokopela akulekele',
     delete: 'Fikisa',
-    docs: 'Mikand\'u',
+    docs: "Mikand'u",
     done: 'Kuna',
-    tryHint: term => `“${term}” thử xem`,
+    tryHint: term => `“${term}” thử xem`
   },
   fileMenu: {
     revealFinder: 'Monha mu `Finder`',
@@ -60,7 +60,7 @@ export const ng = defineLocale({
     renameLabel: 'Zina ley ipula',
     deleteBody: 'Katobolekwa lixakulo — ungahuumba lapho.',
     pathCopied: 'Nzila ekopitwa',
-    deleteTitle: name => `Xóa ${name}?`,
+    deleteTitle: name => `Xóa ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop kupumbeka',
@@ -69,7 +69,7 @@ export const ng = defineLocale({
       loadingSettings: 'Katandeka tungula ya OpenAmer',
       loadingSessions: 'Katandeka mikando ya nkando',
       startingDesktopConnection: 'Katandeka ukuxhumana kwa desktop',
-      startingOpenAmerDesktop: 'Katandeka OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Katandeka OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'OpenAmer background process isondile.',
@@ -78,7 +78,7 @@ export const ng = defineLocale({
       desktopBootFailed: 'Desktop kubeha',
       gatewayConnectionLost: 'Kueka xigandzo',
       gatewaySignInRequired: 'Xigandzo ximisekane',
-      ipcBridgeUnavailable: 'Ponte ya IPC ya desktop ilipo.',
+      ipcBridgeUnavailable: 'Ponte ya IPC ya desktop ilipo.'
     },
     failure: {
       signInIncompleteTitle: 'Ondjila inopandela',
@@ -87,9 +87,11 @@ export const ng = defineLocale({
       signInToRemoteGateway: 'Djidja ekateway ekale',
       identityProvider: 'wam kambela wu uhemba',
       title: 'OpenAmer nga tomboka',
-      description: 'Xigandzo xomisekani nga pfumelika. Yumba nzela zimwe zokupuluka eziti. Awala kutana awu ku zidhouti na zisetelo.',
+      description:
+        'Xigandzo xomisekani nga pfumelika. Yumba nzela zimwe zokupuluka eziti. Awala kutana awu ku zidhouti na zisetelo.',
       remoteTitle: 'Kusayika xigandzo yapatu',
-      remoteDescription: 'Musika wako wa xigandzo yapatu wa hela. Yanda ko tala ko ulongana. Awala kutana awu ku zidhouti na zisetelo.',
+      remoteDescription:
+        'Musika wako wa xigandzo yapatu wa hela. Yanda ko tala ko ulongana. Awala kutana awu ku zidhouti na zisetelo.',
       retry: 'Yumba',
       repairInstall: 'Lulama okukweta',
       useLocalGateway: 'Yambula xigandzo yomatundu',
@@ -103,10 +105,11 @@ export const ng = defineLocale({
       showRecentLogs: 'Yintha mavilo a tala',
       signedInTitle: 'Wakudikana',
       signedInMessage: 'Ulaka ku tala ko ulongana xigandzo yapatu…',
-      remoteSignInHint: signInLabel => `Đăng xuất khỏi phiên trình duyệt từ xa đã lưu, sau đó mở ${signInLabel}. Sử dụng gateway cục bộ để chuyển sang backend đi kèm.`,
-      signInWithProvider: provider => `Đăng nhập bằng ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Đăng xuất khỏi phiên trình duyệt từ xa đã lưu, sau đó mở ${signInLabel}. Sử dụng gateway cục bộ để chuyển sang backend đi kèm.`,
+      signInWithProvider: provider => `Đăng nhập bằng ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Khởi động desktop thất bại: ${message}`,
+    desktopBootFailedWithMessage: message => `Khởi động desktop thất bại: ${message}`
   },
   notifications: {
     region: 'Tshegi-ti',
@@ -118,7 +121,8 @@ export const ng = defineLocale({
     copyDetail: 'Kopya tinonso',
     copyDetailFailed: 'Akwali kutoma tinonso tshegi-ti',
     backendOutOfDateTitle: 'Muvelekele ya lihwile',
-    backendOutOfDateMessage: 'Muvelekele wa OpenAmer wa kulala kulwile neni desktop build yi one, futo anga sikwele faha. Lulama ku tshimbelela.',
+    backendOutOfDateMessage:
+      'Muvelekele wa OpenAmer wa kulala kulwile neni desktop build yi one, futo anga sikwele faha. Lulama ku tshimbelela.',
     installMethodUnsupportedTitle: 'Ndlela yo pakisha inashambulwa',
     updateOpenAmer: 'Lulama OpenAmer',
     updateReadyTitle: 'Lulama lulundilile',
@@ -127,11 +131,12 @@ export const ng = defineLocale({
       elevenLabsNeedsKey: 'STT ya ElevenLabs ifuna ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'OpenAmer yatana ndi chave ya API (401).',
       gatewayAuthFailed: 'Ulemb wa authentication wa gateway yaheta — tala API_SERVER_KEY wako.',
-      methodNotAllowed: 'Backend ya desktop yatana request yoyo (405 Method Not Allowed). Ygeresa ku restart OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend ya desktop yatana request yoyo (405 Method Not Allowed). Ygeresa ku restart OpenAmer Desktop.',
       microphonePermission: 'Permission ya microphone yakatana.',
       openaiRejectedApiKey: 'OpenAI yatana ndi chave ya API.',
       openaiTtsNeedsKey: 'OpenAI TTS efunika VOICE_TOOLS_OPENAI_KEY kana OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI từ chối khóa API (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI từ chối khóa API (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Yongola speech-to-text wukutambula voice mode.',
@@ -150,7 +155,7 @@ export const ng = defineLocale({
       transcriptionFailed: 'Kutoma voice kaheta',
       transcriptionUnavailable: 'A transcrição vocal ainda não está disponível.',
       tryRecordingAgain: 'Tenta gravar novamente.',
-      unavailable: 'Voz indisponível',
+      unavailable: 'Voz indisponível'
     },
     native: {
       approvalTitle: 'É preciso aprovar',
@@ -163,10 +168,10 @@ export const ng = defineLocale({
       turnErrorTitle: 'A tentativa falhou',
       backgroundDoneTitle: 'A tarefa em segundo plano terminou',
       backgroundFailedTitle: 'A tarefa em segundo plano falhou',
-      creditsTitle: 'Créditos',
+      creditsTitle: 'Créditos'
     },
     more: count => `${count} mo ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} dey available.`,
+    updateReadyMessage: count => `${count} new change${count === 1 ? '' : 's'} dey available.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer ficou sem créditos',
@@ -174,7 +179,7 @@ export const ng = defineLocale({
     openBilling: 'Abrir a facturação',
     addCredits: 'Adicionar créditos',
     dismiss: 'Dispensar',
-    titleProvider: provider => `Hết tín dụng — ${provider}`,
+    titleProvider: provider => `Hết tín dụng — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Ocultar a barra lateral',
@@ -191,7 +196,7 @@ export const ng = defineLocale({
     openStarmap: 'Abrir grafo de memoria',
     openKeybinds: 'Atajos de teclado',
     layoutEditor: 'Editor de diseño',
-    layoutEditorTitle: 'Moeditela ya layout â€” âŒ˜-click uulike layout',
+    layoutEditorTitle: 'Moeditela ya layout â€” âŒ˜-click uulike layout'
   },
   keybinds: {
     title: 'Atajos de teclado',
@@ -206,7 +211,7 @@ export const ng = defineLocale({
       profiles: 'Mikwama',
       session: 'Nkoka',
       navigation: 'Indlela',
-      view: 'Loha',
+      view: 'Loha'
     },
     actions: {
       'keybinds.openPanel': 'Vula mifumo yekibod',
@@ -285,10 +290,10 @@ export const ng = defineLocale({
       'composer.slash': 'Paleta ya slash command',
       'composer.help': 'Aidja eseku',
       'composer.history': 'Pindulula popover / historia',
-      'composer.cancel': 'Sika popover · kansela uwambo',
+      'composer.cancel': 'Sika popover · kansela uwambo'
     },
     subtitle: open => `Nhấp vào phím tắt để gán lại · ${open} mở lại bảng này.`,
-    conflictWith: label => `Đồng thời được gán cho “${label}”`,
+    conflictWith: label => `Đồng thời được gán cho “${label}”`
   },
   language: {
     label: 'Limi',
@@ -297,7 +302,7 @@ export const ng = defineLocale({
     saveError: 'Limi yi fa nguni',
     switchTo: 'Vambula limi',
     searchPlaceholder: 'Tala malimi…',
-    noResults: 'A si talile malimi',
+    noResults: 'A si talile malimi'
   },
   settings: {
     closeSettings: 'Sika mapuluketo',
@@ -322,56 +327,58 @@ export const ng = defineLocale({
       billing: 'Malipi',
       notifications: 'Mataleliko',
       plugins: 'Mawutsem',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       empty: 'Caha, hakuna plugins ka desktop ehenguleni.',
       kinds: {
         bundled: 'ehanguleni',
         disk: 'pali disiki',
-        runtime: 'ndjalo',
+        runtime: 'ndjalo'
       },
       title: 'Mawutsem eka Desktop',
-      blurb: 'Mawedekelo ya UI leyi a lulamisiwe kunkopela — a bundelidziwe na lopoka, ko osi a la swakudzumiseke eka folda ya desktop-plugins (leyi OpenAmer a yianga). Ku y disablea kuvula mawutsem hiku eka sedeni hape mwiko wu hiku xika.',
+      blurb:
+        'Mawedekelo ya UI leyi a lulamisiwe kunkopela — a bundelidziwe na lopoka, ko osi a la swakudzumiseke eka folda ya desktop-plugins (leyi OpenAmer a yianga). Ku y disablea kuvula mawutsem hiku eka sedeni hape mwiko wu hiku xika.',
       openFolder: 'Yikula folda ya mawutsem',
       rescan: 'Hindika',
       reveal: 'Bonisa eka mula wu kutala',
       enable: 'Yuma',
       disable: 'Kaleka',
       failed: 'Ku lopa',
-      count: n => `${n} instalado`,
+      count: n => `${n} instalado`
     },
     notifications: {
       title: 'Tumise',
-      intro: 'Tumise t desktop dya native, edi tali na toasts dya app. Di local kya sikoro — sikoro yohoko yohimaka eputasilo yayo.',
+      intro:
+        'Tumise t desktop dya native, edi tali na toasts dya app. Di local kya sikoro — sikoro yohoko yohimaka eputasilo yayo.',
       enableAll: 'Yimela tumise',
       enableAllDesc: 'K switch lya nkaku. Yimise kuti ku yise tumise yohoko eyana.',
       focusedHint: 'Tumise dya ku fika dina ha yi nkwa OpenAmer nga pakati.',
       kinds: {
         approval: {
           label: 'Kudimeka kwa ku pfumela',
-          description: 'Murundo u wimise ha u fimbu ku pfumela ku wana.',
+          description: 'Murundo u wimise ha u fimbu ku pfumela ku wana.'
         },
         input: {
           label: 'Linput yahinga',
-          description: 'OpenAmer u yise ndjalo ya ku yeba nkoco ku tika ya password.',
+          description: 'OpenAmer u yise ndjalo ya ku yeba nkoco ku tika ya password.'
         },
         turnDone: {
           label: 'Lukwalovo lwase fika',
-          description: 'Luhambo lwase heta nga OpenAmer a nga pakati.',
+          description: 'Luhambo lwase heta nga OpenAmer a nga pakati.'
         },
         turnError: {
           label: 'Luhambo lwa fa',
-          description: 'Luhambo lwa heta na error.',
+          description: 'Luhambo lwa heta na error.'
         },
         backgroundDone: {
           label: 'Murundo wapapata oheta',
-          description: 'Murundo wa terminal o papata oheta.',
+          description: 'Murundo wa terminal o papata oheta.'
         },
         credits: {
           label: 'Tumise dya credit',
-          description: 'Kulamba kwa kutanga kwakoma kuatala.',
-        },
+          description: 'Kulamba kwa kutanga kwakoma kuatala.'
+        }
       },
       test: 'Tuma nduwiso yoyelela',
       testTitle: 'OpenAmer',
@@ -380,7 +387,7 @@ export const ng = defineLocale({
       testUnsupported: 'Osystemu oyu tayi supportinga nduwiso zya native.',
       completionSoundTitle: 'Tundila yotuna',
       completionSoundDesc: 'Tundila yotuna epwepo kana mwala wa mulungu wimala. Sala omosaka mwe oyeye.',
-      completionSoundPreview: 'Onela',
+      completionSoundPreview: 'Onela'
     },
     sections: {
       model: 'Kibiyiso',
@@ -390,7 +397,7 @@ export const ng = defineLocale({
       safety: 'Kikalangiso',
       memory: 'Kuyowola neKontekisto',
       voice: 'Lukwi',
-      advanced: 'Yambawuka',
+      advanced: 'Yambawuka'
     },
     searchPlaceholder: {
       about: 'Lukwa-Lukwa lwa OpenAmer Desktop',
@@ -398,25 +405,26 @@ export const ng = defineLocale({
       gateway: 'Uhambo lwa gateway...',
       keys: 'Tala mifungiyela ya API...',
       mcp: 'Tala mizungu ya MCP...',
-      sessions: 'Tala miphinga mikokosa...',
+      sessions: 'Tala miphinga mikokosa...'
     },
     modeOptions: {
       light: {
         label: 'Ndimuka',
-        description: 'Mifukidi ye kompyuta monanga',
+        description: 'Mifukidi ye kompyuta monanga'
       },
       dark: {
         label: 'Mpofeto',
-        description: 'Mhalo ya iki epangalanga',
+        description: 'Mhalo ya iki epangalanga'
       },
       system: {
         label: 'Sistema',
-        description: 'Landa kiipimika ya sistema',
-      },
+        description: 'Landa kiipimika ya sistema'
+      }
     },
     appearance: {
       title: 'Kipimika',
-      intro: 'Aya mipangiwa yekimyika ya kompyuta. Mokonde ulongo monanga; nkima yonganga yachitundu ki masundu nkima ya majongajongo.',
+      intro:
+        'Aya mipangiwa yekimyika ya kompyuta. Mokonde ulongo monanga; nkima yonganga yachitundu ki masundu nkima ya majongajongo.',
       colorMode: 'Mokonde ya masundu',
       colorModeDesc: 'Sala mokonde wuk 定 ka OpenAmer alanda kiipimika ya sistema.',
       toolViewTitle: 'Lemo la kufikilela ka thamasho',
@@ -427,8 +435,10 @@ export const ng = defineLocale({
       backdropTitle: 'Mfunduko ya majongajongo',
       backdropDesc: 'Mifwana ya mstatue epi ekwela ulandela.',
       pet: {
-        intro: 'Tambeka mudyondzili wa swilima wa petdex uya tambula ponse OpenAmer ni kambuka, a ta yendeleela loko ku hola, a ta tika loko ku bengela.',
-        restartHint: 'Vamudyondzili vya mapefo vihurheleke ku tala — OpenAmer leyi ya ku kambuka e yi ku sungulela feature yi. Yika OpenAmer uyindulule, u tshame kwalaho.',
+        intro:
+          'Tambeka mudyondzili wa swilima wa petdex uya tambula ponse OpenAmer ni kambuka, a ta yendeleela loko ku hola, a ta tika loko ku bengela.',
+        restartHint:
+          'Vamudyondzili vya mapefo vihurheleke ku tala — OpenAmer leyi ya ku kambuka e yi ku sungulela feature yi. Yika OpenAmer uyindulule, u tshame kwalaho.',
         on: 'Vhika',
         off: 'Sika',
         scaleTitle: 'Bunene',
@@ -461,10 +471,11 @@ export const ng = defineLocale({
         adoptFailed: slug => `Không thể nhận ${slug}`,
         uninstallFailed: slug => `Không thể gỡ cài đặt ${slug}`,
         renameFailed: slug => `Không thể đổi tên ${slug}`,
-        exportFailed: slug => `Không thể xuất ${slug}`,
+        exportFailed: slug => `Không thể xuất ${slug}`
       },
       embedsTitle: 'Mbumba t Privatiki',
-      embedsDesc: 'Etangolo likulungu lialoadwa kwawebusaiti vovitili (YouTube, X, …). Vambula liyimwe placeholder mumwe wovapambela; Alwasi lialoadwa ngokutautonoma; Yimwe likatela tikula tanzila.',
+      embedsDesc:
+        'Etangolo likulungu lialoadwa kwawebusaiti vovitili (YouTube, X, …). Vambula liyimwe placeholder mumwe wovapambela; Alwasi lialoadwa ngokutautonoma; Yimwe likatela tikula tanzila.',
       embedsAsk: 'Vambula',
       embedsAlways: 'Alwasi',
       embedsOff: 'Yimwe',
@@ -475,17 +486,19 @@ export const ng = defineLocale({
       themeTitle: 'Mbuno',
       themeDesc: 'Mapula yedesktop kanye. Omode uyaukatelwa unene.',
       installTitle: 'Shuna okutamwa eVS Code',
-      installDesc: 'Namuna id ya Marketplace extension (e.g. dracula-theme.theme-dracula) uku utoloke mbuno wawo wamana uyutone ku mapula adesktop.',
+      installDesc:
+        'Namuna id ya Marketplace extension (e.g. dracula-theme.theme-dracula) uku utoloke mbuno wawo wamana uyutone ku mapula adesktop.',
       installButton: 'Tamuna',
       installing: 'Iitambulwa…',
       installError: 'Sha likatela kutamwa mbuno lowo.',
       removeTheme: 'Fikisa mbuno',
       importedBadge: 'Iimportiwa',
       installPlaceholder: 'mofumekea.ekisenzão',
-      uiScaleDesc: (percent: number) => `Thay đổi tỷ lệ văn bản và điều khiển trong toàn bộ ứng dụng. Cmd/Ctrl cùng với +, - và 0 cũng có tác dụng. Hiện tại: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Thay đổi tỷ lệ văn bản và điều khiển trong toàn bộ ứng dụng. Cmd/Ctrl cùng với +, - và 0 cũng có tác dụng. Hiện tại: ${percent}%.`,
       embedsReset: (count: number) => `Reiniciar ${count} permitido ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Đã lưu cho hồ sơ ${profile} — mỗi hồ sơ giữ chủ đề riêng.`,
-      installed: name => `Đã cài đặt “${name}”.`,
+      installed: name => `Đã cài đặt “${name}”.`
     },
     about: {
       heading: 'OpenAmer para Ambiente de Trabalho',
@@ -503,7 +516,8 @@ export const ng = defineLocale({
       tapCheck: 'Toque em "Verificar agora" para procurar atualizações.',
       justNowSuffix: '· agora mesmo',
       automaticUpdates: 'Atualizações automáticas',
-      automaticUpdatesDesc: 'O OpenAmer procura atualizações automaticamente em segundo plano e avisa quando uma estiver disponível.',
+      automaticUpdatesDesc:
+        'O OpenAmer procura atualizações automaticamente em segundo plano e avisa quando uma estiver disponível.',
       never: 'nunca',
       justNow: 'agora mesmo',
       version: value => `Phiên bản ${value}`,
@@ -512,7 +526,7 @@ export const ng = defineLocale({
       branchCommit: (branch, commit) => `Nhánh ${branch} · Commit ${commit}`,
       minAgo: count => `${count} ominute dha pita`,
       hoursAgo: count => `${count} iita ya pita`,
-      daysAgo: count => `${count} omasiku ga pita`,
+      daysAgo: count => `${count} omasiku ga pita`
     },
     config: {
       none: 'Kashila',
@@ -528,7 +542,8 @@ export const ng = defineLocale({
       imported: 'Ndemela ya katswayo',
       invalidJson: 'JSON ya ndemela leyi nga yi nandziha',
       keepAwakeTitle: 'Leyika khomputa yi nga lali',
-      keepAwakeDesc: 'Susa khomputa ukutala i lali, swa nkarhi lowu tika swi nkarhi lowu tika yi ndzi ku endla. Skrini a nga titimela.',
+      keepAwakeDesc:
+        'Susa khomputa ukutala i lali, swa nkarhi lowu tika swi nkarhi lowu tika yi ndzi ku endla. Skrini a nga titimela.'
     },
     credentials: {
       pasteKey: 'Namela ki',
@@ -538,7 +553,7 @@ export const ng = defineLocale({
       remove: 'Susa',
       getKey: 'Kuma ki',
       saving: 'Kuikonga',
-      pasteLabelKey: label => `Dán khóa ${label}`,
+      pasteLabelKey: label => `Dán khóa ${label}`
     },
     envActions: {
       credentialActions: 'Milimo ya madungi',
@@ -549,7 +564,7 @@ export const ng = defineLocale({
       replace: 'Pindulula',
       set: 'Heta',
       clear: 'Halisa',
-      actionsFor: label => `Hành động cho ${label}`,
+      actionsFor: label => `Hành động cho ${label}`
     },
     gateway: {
       loading: 'Ku karéka mikwambiliro ya kiyingeli...',
@@ -557,16 +572,18 @@ export const ng = defineLocale({
       unavailableDesc: 'Isitalo ya IPC desktop ilandela mikwambiliro ya kiyingeli.',
       title: 'Ukulandana kwa kiyingeli',
       envOverride: 'Kusefula kwa siphiwo sya nambwalo',
-      intro: 'OpenAmer Desktop u starta kiyingeli yayo ya endapa nga pakelo. Shikula kiyingeli ya kure unge ufuna u nene OpenAmer backend eshikilela komachine yana yobile kana ku proxy oyelekwa. Dula mok wa kuongonona u低位 ku eka host yayo ya kure.',
+      intro:
+        'OpenAmer Desktop u starta kiyingeli yayo ya endapa nga pakelo. Shikula kiyingeli ya kure unge ufuna u nene OpenAmer backend eshikilela komachine yana yobile kana ku proxy oyelekwa. Dula mok wa kuongonona u低位 ku eka host yayo ya kure.',
       appliesTo: 'Ambanza ku',
       allProfiles: 'Mokulo wohi',
       defaultConnection: 'Ukulandana wa pakelo kwa mokulo wohi wina onse asinene ku sefula siphiwo sya nambwalo.',
       envOverrideTitle: 'Siphiwo sya nambwalo zilongo sesita yi desktop.',
-      envOverrideDesc: 'Hana OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN u shikule mikwambiliro ya kuikonga enaku eyila.',
+      envOverrideDesc:
+        'Hana OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN u shikule mikwambiliro ya kuikonga enaku eyila.',
       cloudNoAgents: {
         before: 'Não foram encontrados agentes nesta conta. Crie um no',
         linkText: 'portal OpenAmer',
-        after: ', depois atualize.',
+        after: ', depois atualize.'
       },
       cloudRefresh: 'Atualizar',
       cloudConnect: 'Conectar',
@@ -580,18 +597,22 @@ export const ng = defineLocale({
       cloudConnectedPill: 'Conectado',
       cloudAgentProvisioning: 'A provisionar…',
       remoteUrlTitle: 'URL remota',
-      remoteUrlDesc: 'URL base para o backend do painel remoto. São suportados prefixos de caminho, por exemplo /openamer.',
+      remoteUrlDesc:
+        'URL base para o backend do painel remoto. São suportados prefixos de caminho, por exemplo /openamer.',
       probing: 'A verificar como este gateway autentica…',
-      probeError: 'Ainda não foi possível alcançar este gateway. Verifique o URL — o método de autenticação aparecerá depois de este responder.',
+      probeError:
+        'Ainda não foi possível alcançar este gateway. Verifique o URL — o método de autenticação aparecerá depois de este responder.',
       signedIn: 'Sessão iniciada',
       signIn: 'Iniciar sessão',
       signOut: 'Tupa sessão',
       authTitle: 'Uku landila',
-      authSignedInPassword: 'Gateway iyi itumia zina lyomutuma ni fasiwoti. Ni landile; sessão yi hulikiswa hi ku colekisa.',
+      authSignedInPassword:
+        'Gateway iyi itumia zina lyomutuma ni fasiwoti. Ni landile; sessão yi hulikiswa hi ku colekisa.',
       authSignedInOauth: 'Gateway iyi itumia OAuth. Ni landile; sessão yi hulikiswa hi ku colekisa.',
       authNeedsPassword: 'Gateway iyi itumia zina lyomutuma ni fasiwoti. Landila ku hana app ya kompyuta.',
       tokenTitle: 'Tokeni yo sessão',
-      tokenDesc: 'Tokeni yo sessão yo dashboard o ri hikwambela ku fiha REST ni WebSocket. Sala eka ku pakela token o pakelwe.',
+      tokenDesc:
+        'Tokeni yo sessão yo dashboard o ri hikwambela ku fiha REST ni WebSocket. Sala eka ku pakela token o pakelwe.',
       savedToken: 'O pakelwe',
       pasteSessionToken: 'Bika tokeni yo sessão',
       testRemote: 'Kulumba gateway ya remote',
@@ -620,7 +641,8 @@ export const ng = defineLocale({
       applyFailed: 'Akwafana ku kendisha settings ya gateway.',
       saveFailed: 'Akwafana ku salwa settings ya gateway.',
       sshTitle: 'Konekta nge SSH.',
-      sshDesc: 'OpenAmer e launchiwanga kule nge SSH futhi tunneliwanga kuna app hii — hakuna into oyofanela ku starta wala ku wana. Efunika kuva ni SSH access esekuluka nge key kuma host.',
+      sshDesc:
+        'OpenAmer e launchiwanga kule nge SSH futhi tunneliwanga kuna app hii — hakuna into oyofanela ku starta wala ku wana. Efunika kuva ni SSH access esekuluka nge key kuma host.',
       sshTrustHint: 'Host key yal first yat trusted futhi pinwanga; shikulusho kakuhemu kinuna.',
       sshHostTitle: 'Muchima',
       sshHostDesc: 'user@host, kana alias ya Host yakwa ~/.ssh/config.',
@@ -643,10 +665,14 @@ export const ng = defineLocale({
       sshButtonsHint: 'Sala ufumbe kombo ya mbo. Kalula ule uli kalula pakalule.',
       sshIncompleteHost: 'Tambula hosa ya SSH kombo wa kalula.',
       sshErrUnreachable: 'Akwatali ku fika eka hosa eka SSH. Kuna hosa, porta, ni mnetiwa yakwe.',
-      sshErrAuth: 'SSH authentication i lundile. Fula mokinya yakwe eka ssh-agent (ssh-add) kana u pandeke IdentityFile eka ~/.ssh/config — OpenAmer u kondisa ssh ngative ko soroma.',
-      sshErrHostKey: 'Mokinya wa hosa u ndjidrile nimwe uli kalula. Kuna ko kwalula, ndala u tambula ssh-keygen -R <host> uli kalula shili.',
-      sshErrNotInstalled: 'O OpenAmer não está instalado no anfitrião remoto. Instale-o lá (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ou defina o caminho do OpenAmer.',
-      sshErrPlatform: 'Plataforma remota não suportada. O modo SSH do OpenAmer Desktop suporta anfitriões remotos Linux, macOS e Windows.',
+      sshErrAuth:
+        'SSH authentication i lundile. Fula mokinya yakwe eka ssh-agent (ssh-add) kana u pandeke IdentityFile eka ~/.ssh/config — OpenAmer u kondisa ssh ngative ko soroma.',
+      sshErrHostKey:
+        'Mokinya wa hosa u ndjidrile nimwe uli kalula. Kuna ko kwalula, ndala u tambula ssh-keygen -R <host> uli kalula shili.',
+      sshErrNotInstalled:
+        'O OpenAmer não está instalado no anfitrião remoto. Instale-o lá (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) ou defina o caminho do OpenAmer.',
+      sshErrPlatform:
+        'Plataforma remota não suportada. O modo SSH do OpenAmer Desktop suporta anfitriões remotos Linux, macOS e Windows.',
       sshErrTimeout: 'A ligação SSH expirou por tempo limite. O anfitrião pode estar inacessível ou em suspensão.',
       sshErrUpdateRequired: 'Atualize o OpenAmer no anfitrião remoto antes de ligar com o Desktop SSH.',
       sshErrUnknown: 'Falha na ligação SSH.',
@@ -657,7 +683,8 @@ export const ng = defineLocale({
       inheritDesc: 'Katika ushike wuwe u override woshifana, shiisa omushiseko omuduku.',
       remoteTitle: 'Oshiseko oshi kwa kuleyo',
       remoteDesc: 'Tambula omuyikeshi wa desktop ku OpenAmer omuyikeshi okwa kuleyo.',
-      remoteAuthHint: 'Oshiseko oshi sha ku hosting oshi shiisa ne OAuth kana ushinoma no pasiwondi; oshi shinikela eshike nga shiisa ne token ya session.',
+      remoteAuthHint:
+        'Oshiseko oshi sha ku hosting oshi shiisa ne OAuth kana ushinoma no pasiwondi; oshi shinikela eshike nga shiisa ne token ya session.',
       cloudDesc: 'Tungula OpenAmer Cloud kumwe ukwike, yuna omashiki a ku mulongo wuwe — hatii URL yo ku paste.',
       cloudSignIn: 'Tungula ku OpenAmer Cloud',
       cloudSignedIn: 'Wotunga ku OpenAmer Cloud',
@@ -670,20 +697,22 @@ export const ng = defineLocale({
       cloudLoadingAgents: 'Mitumbiko yomitanga â€¦',
       cloudTitle: 'OpenAmer Mpungululo',
       cloudSignInTitle: 'OpenAmer Mpungululo',
-      profileConnection: profile => `Kết nối chỉ được sử dụng khi “${profile}” là hồ sơ hoạt động. Chọn Sử dụng gateway mặc định để xóa ghi đè.`,
+      profileConnection: profile =>
+        `Kết nối chỉ được sử dụng khi “${profile}” là hồ sơ hoạt động. Chọn Sử dụng gateway mặc định để xóa ghi đè.`,
       cloudOrgRole: role => `Vai trò: ${role}`,
       cloudConnectedTo: name => `Đã kết nối với ${name}.`,
       cloudStatusLabel: status => `Oshilele: ${status}`,
       signInWith: provider => `Đăng nhập bằng ${provider}`,
-      authNeedsOauth: provider => `Gateway này sử dụng OAuth. Đăng nhập bằng ${provider} để ủy quyền cho ứng dụng desktop này.`,
+      authNeedsOauth: provider =>
+        `Gateway này sử dụng OAuth. Đăng nhập bằng ${provider} để ủy quyền cho ứng dụng desktop này.`,
       existingToken: value => `Token hiện có ${value}`,
       connectedTo: (baseUrl, version) => `Đã kết nối với ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Có thể tiếp cận: ${host} (${platform}) — Tìm thấy OpenAmer`,
+      sshReachable: (host, platform) => `Có thể tiếp cận: ${host} (${platform}) — Tìm thấy OpenAmer`
     },
     keys: {
       loading: 'A carregar chaves de API e credenciais...',
       failedLoad: 'Falha ao carregar as chaves de API',
-      empty: 'Ainda não há nada configurado nesta categoria.',
+      empty: 'Ainda não há nada configurado nesta categoria.'
     },
     mcp: {
       loading: 'A carregar servidores MCP...',
@@ -745,10 +774,11 @@ export const ng = defineLocale({
       catalogInstallStarted: name => `Đang cài đặt ${name}... sẽ áp dụng cho các phiên mới sau khi hoàn tất.`,
       catalogInstallFailed: name => `Cài đặt ${name} thất bại`,
       catalogEnvPrompt: name => `${name} oya pumbwa omauyelele gokwiingila`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ya pitikwa`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} ya pitikwa`,
       authenticatedMessage: (server, count) => `${server}: iilongitho ${count}`,
       enableTool: tool => `Bật ${tool}`,
-      disableTool: tool => `Tắt ${tool}`,
+      disableTool: tool => `Tắt ${tool}`
     },
     model: {
       loading: 'Ku loadela mtulilo wa modeli...',
@@ -762,48 +792,50 @@ export const ng = defineLocale({
       defaultsFailed: 'Falha ao guardar as predefinições do modelo',
       auxiliaryTitle: 'Modelos auxiliares',
       resetAllToMain: 'Redefinir todos para o principal',
-      auxiliaryDesc: 'As tarefas auxiliares são executadas no modelo principal por predefinição. Atribua um modelo dedicado a qualquer tarefa para substituir.',
+      auxiliaryDesc:
+        'As tarefas auxiliares são executadas no modelo principal por predefinição. Atribua um modelo dedicado a qualquer tarefa para substituir.',
       setToMain: 'Definir como principal',
       change: 'Alterar',
       autoUseMain: 'automático · usar o modelo principal',
       providerDefault: '(predefinição do fornecedor)',
       fallbackAdd: 'Adicionar alternativa',
       fallbackEmpty: 'Não há modelos alternativos — o modelo predefinido é utilizado a menos que falhe.',
-      notInCatalog: 'não consta na lista de modelos deste fornecedor — as chamadas podem recorrer a um modelo de reserva.',
+      notInCatalog:
+        'não consta na lista de modelos deste fornecedor — as chamadas podem recorrer a um modelo de reserva.',
       tasks: {
         vision: {
           label: 'Visão',
-          hint: 'Análise de imagens',
+          hint: 'Análise de imagens'
         },
         web_extract: {
           label: 'Extração da web',
-          hint: 'Resumo da página',
+          hint: 'Resumo da página'
         },
         compression: {
           label: 'Kunungama',
-          hint: 'Kununga kontexto',
+          hint: 'Kununga kontexto'
         },
         skills_hub: {
           label: 'Khubo ya skills',
-          hint: 'Kuroka skills',
+          hint: 'Kuroka skills'
         },
         approval: {
           label: 'Kusimukwa',
-          hint: 'Kusimuka intelligent',
+          hint: 'Kusimuka intelligent'
         },
         mcp: {
           hint: 'Kupambuza zinkumbuso za MCP',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Kupanga titulu',
-          hint: 'Titulu za sesaun',
+          hint: 'Titulu za sesaun'
         },
         curator: {
           label: 'Mucurátor',
-          hint: 'Kongorola kusekisa ya skills',
-        },
-      },
+          hint: 'Kongorola kusekisa ya skills'
+        }
+      }
     },
     providers: {
       disconnectInTerminal: 'Desconectar (executa o comando de remoção no terminal)',
@@ -813,12 +845,14 @@ export const ng = defineLocale({
       noKeysMatch: 'Nenhum provedor corresponde à sua pesquisa.',
       localEndpoint: {
         title: 'Endpoint local / personalizado',
-        description: 'Aponte o OpenAmer para qualquer endpoint compatível com OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc.).',
+        description:
+          'Aponte o OpenAmer para qualquer endpoint compatível com OpenAI (Zyphra, vLLM, llama.cpp, Ollama, etc.).'
       },
       loading: 'A carregar provedores...',
       connectAccount: 'Kongeka akonti',
       haveApiKey: 'Une chave ya API?',
-      intro: 'Dondoka ne subskripsaun — akwanga chave ya API ya kunika. OpenAmer yadondoka brauser kuje, kaha muna app.',
+      intro:
+        'Dondoka ne subskripsaun — akwanga chave ya API ya kunika. OpenAmer yadondoka brauser kuje, kaha muna app.',
       connected: 'Kongekwa',
       collapse: 'Femba',
       connectAnother: 'Kongeka moto ozimwe',
@@ -827,10 +861,11 @@ export const ng = defineLocale({
       removeConfirm: provider => `Xóa ${provider}?`,
       removeExternalGeneric: provider => `${provider} otayi pangelwa ku CLI yayo — yi kuthamo kwinya.`,
       removeKeyManaged: provider => `${provider} oya longekidhwa noshapi sha API. Yi kuthamo mIiyapi ya API.`,
-      removeTerminalConfirm: (provider, command) => `Ngắt kết nối ${provider}? Thao tác này sẽ chạy "${command}" trong terminal để xóa thông tin xác thực.`,
+      removeTerminalConfirm: (provider, command) =>
+        `Ngắt kết nối ${provider}? Thao tác này sẽ chạy "${command}" trong terminal để xóa thông tin xác thực.`,
       removeTerminalRunning: provider => `Đang chạy ngắt kết nối ${provider} trong terminal…`,
       removedMessage: provider => `${provider} oya kuthwamo.`,
-      failedRemove: provider => `Không thể xóa ${provider}`,
+      failedRemove: provider => `Không thể xóa ${provider}`
     },
     sessions: {
       loading: 'A carregar sessões arquivadas…',
@@ -841,12 +876,14 @@ export const ng = defineLocale({
       deletePermanently: 'Eliminar permanentemente',
       restored: 'Restaurado',
       autoArchiveTitle: 'Arquivar automaticamente conversas inativas',
-      autoArchiveDesc: 'Arquive automaticamente conversas em que não interage há algum tempo. As conversas fixadas nunca são arquivadas e nada é eliminado — as conversas arquivadas apenas mudam para aqui.',
+      autoArchiveDesc:
+        'Arquive automaticamente conversas em que não interage há algum tempo. As conversas fixadas nunca são arquivadas e nada é eliminado — as conversas arquivadas apenas mudam para aqui.',
       autoArchiveDaysLabel: 'Arquivar após',
       autoArchiveDaysUnit: 'dias de inatividade',
       autoArchiveFailed: 'Kuakola ku songulela ku yola ngudekere',
       defaultDirTitle: 'Diresiõ ya porojekite eyi ya ntoko',
-      defaultDirDesc: 'Matalula a ma sungula ena kati komi komu nga utate kutola ena. Sala leyi nkonde ku yiseka dikani ya wanda.',
+      defaultDirDesc:
+        'Matalula a ma sungula ena kati komi komu nga utate kutola ena. Sala leyi nkonde ku yiseka dikani ya wanda.',
       change: 'Tindika',
       choose: 'Yula',
       clear: 'Seka',
@@ -856,11 +893,13 @@ export const ng = defineLocale({
       deleteFailed: 'Kuakola ku fuma',
       updateDirFailed: 'Kuakola ku songulela diretório ya ntoko',
       clearDirFailed: 'Kuakola ku seka diretório ya ntoko',
-      archivedIntro: 'Omitumba yookapama ihidingike monsitebe ya mutala, kodese mesilong hinkwoco yeetokoka. Ctrl/âŒ˜-click ombika monsitebe ya mutala ndokutambula.',
-      defaultDirUpdated: 'Mufolodolo wa projeke default uutambululwe â€” tambula ombika mpya (Ctrl/âŒ˜+N) mokutadhana kuishaka',
+      archivedIntro:
+        'Omitumba yookapama ihidingike monsitebe ya mutala, kodese mesilong hinkwoco yeetokoka. Ctrl/âŒ˜-click ombika monsitebe ya mutala ndokutambula.',
+      defaultDirUpdated:
+        'Mufolodolo wa projeke default uutambululwe â€” tambula ombika mpya (Ctrl/âŒ˜+N) mokutadhana kuishaka',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `Xóa vĩnh viễn "${title}"? Hành động này không thể hoàn tác.`,
-      defaultsTo: label => `Mặc định là ${label}.`,
+      defaultsTo: label => `Mặc định là ${label}.`
     },
     toolsets: {
       noProviderOptions: 'Uyi mbuyangu ulina gonaha — yiseka wu fika neka yilwilo yoko.',
@@ -911,8 +950,9 @@ export const ng = defineLocale({
         inUse: 'Em uso',
         selectedTitle: 'Backend selecionado',
         needsSetupHint: 'Pode selecionar este backend agora — os comandos falharão até a configuração estar concluída.',
-        selectedMessage: backend => `Omalombwelo goshikaha shomalombwelo otaga longithwa ngashingeyi okupitila mu ${backend}. Osha guma omathimbo gomilonga omape.`,
-        failedSelect: backend => `Osha nyengwa okuhoolola ${backend}`,
+        selectedMessage: backend =>
+          `Omalombwelo goshikaha shomalombwelo otaga longithwa ngashingeyi okupitila mu ${backend}. Osha guma omathimbo gomilonga omape.`,
+        failedSelect: backend => `Osha nyengwa okuhoolola ${backend}`
       },
       savedMessage: key => `${key} oya tulwa pethimbo.`,
       removedMessage: key => `${key} oya kuthwa mo.`,
@@ -922,21 +962,23 @@ export const ng = defineLocale({
       removeConfirm: key => `Xóa ${key} khỏi .env?`,
       selectedMessage: provider => `${provider} otayi longo ngashingeyi.`,
       failedSelect: provider => `Không thể chọn ${provider}`,
-      openamerAuthNeededMessage: provider => `${provider} oya pungulwa, ihe itayi tameke okulonga sigo wa ninga elogelo mOmweelo gwaOpenAmer.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} oya pungulwa, ihe itayi tameke okulonga sigo wa ninga elogelo mOmweelo gwaOpenAmer.`,
       postSetupHint: step => `Backend này cần cài đặt một lần (${step}). Chạy trên máy này — có thể mất vài phút.`,
       postSetupCompleteMessage: step => `${step} oya tulwa mo.`,
       postSetupErrorMessage: step => `Kiểm tra nhật ký ${step}.`,
       postSetupFailed: step => `Chạy thiết lập ${step} thất bại`,
       webSearchActive: backend => `Konga: ${backend}`,
       webExtractActive: backend => `Kutha mo: ${backend}`,
-      webCapabilitySelectedMessage: (provider, capability) => `${provider} otayi ungaunga ngashingeyi na ${capability} yointaneta.`,
+      webCapabilitySelectedMessage: (provider, capability) =>
+        `${provider} otayi ungaunga ngashingeyi na ${capability} yointaneta.`,
       failedSelectCapability: provider => `Okutula ${provider} osha ndopa`,
       modelCount: count => `${count} omodela${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} otayi longo momathimbo omape gokulonga.`,
-      failedSelectModel: model => `Osha nyengwa okuhoolola ${model}`,
+      failedSelectModel: model => `Osha nyengwa okuhoolola ${model}`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     skillArchivedTitle: 'Uehombo ukakapitikwa',
@@ -966,7 +1008,7 @@ export const ng = defineLocale({
       trust: {
         builtin: 'Ya kutumina',
         trusted: 'Ya kukwama',
-        community: 'Ya kijiji',
+        community: 'Ya kijiji'
       },
       verdictSafe: 'Tungavika',
       verdictCaution: 'Yimvwika',
@@ -986,7 +1028,7 @@ export const ng = defineLocale({
       timedOut: sources => `Hết thời gian chờ: ${sources}`,
       findings: count => `${count} oshimonika${count === 1 ? '' : 's'}`,
       installStarted: name => `Đang cài đặt ${name}...`,
-      uninstallStarted: name => `Đang gỡ cài đặt ${name}...`,
+      uninstallStarted: name => `Đang gỡ cài đặt ${name}...`
     },
     tabSkills: 'Mikundji',
     tabToolsets: 'Tshipi',
@@ -1004,7 +1046,8 @@ export const ng = defineLocale({
     noDescription: 'Cimo cikashili.',
     configured: 'Yikwathise',
     needsKeys: 'Efuna emilwandzi',
-    visionModelHint: 'Kuona kushikila modolo yako ya nkundzi — modolo oyomonjwela itulwa kwoko, hakusi kwa mupe wa mupangi ngonye.',
+    visionModelHint:
+      'Kuona kushikila modolo yako ya nkundzi — modolo oyomonjwela itulwa kwoko, hakusi kwa mupe wa mupangi ngonye.',
     visionModelLink: 'Salula modolo ya kuona ku Mfungamano → Modolo',
     skillsLoadFailed: 'Mikundji taila kunweka',
     toolsetsRefreshFailed: 'Falha na atualização das ferramentas',
@@ -1022,7 +1065,7 @@ export const ng = defineLocale({
     provenance: {
       agent: 'Aprendida',
       bundled: 'Integrada',
-      hub: 'Central',
+      hub: 'Central'
     },
     changesApplyNewSessions: 'As alterações aplicam-se a novas sessões.',
     skillUpdated: 'Competência atualizada',
@@ -1039,7 +1082,7 @@ export const ng = defineLocale({
     usageCount: count => `đã dùng ${count}×`,
     emptyNoneFound: noun => `Không tìm thấy ${noun}`,
     emptyNothingMatches: query => `Không có kết quả cho “${query}”.`,
-    emptyNoneAvailable: noun => `Chưa có ${noun} nào khả dụng.`,
+    emptyNoneAvailable: noun => `Chưa có ${noun} nào khả dụng.`
   },
   starmap: {
     title: 'Gráfico de memória',
@@ -1055,7 +1098,8 @@ export const ng = defineLocale({
     emptyTitle: 'Nada aprendido ainda',
     emptyDesc: 'À medida que OpenAmer constrói competências e memórias para o seu trabalho, elas aparecem aqui.',
     share: 'Partilhar mapa',
-    shareHint: 'Copie o código para partilhar este mapa, ou cole um código para o carregar. Apenas inclui a disposição, não o texto das suas memórias ou competências.',
+    shareHint:
+      'Copie o código para partilhar este mapa, ou cole um código para o carregar. Apenas inclui a disposição, não o texto das suas memórias ou competências.',
     shareTitle: 'Importar / exportar mapa',
     sharePlaceholder: 'Cole um código de mapa…',
     copy: 'Copiar código do mapa',
@@ -1066,7 +1110,7 @@ export const ng = defineLocale({
     importedBadge: 'mapa importado',
     resetToMine: 'Voltar ao meu mapa',
     subtitle: (nodes, clusters) => `${nodes} uunongo miiꞌkwata ${clusters}`,
-    importSuccess: nodes => `Omapa ndjoka yi na ${nodes} ${nodes === 1 ? 'node' : 'nodes'} oya longwa.`,
+    importSuccess: nodes => `Omapa ndjoka yi na ${nodes} ${nodes === 1 ? 'node' : 'nodes'} oya longwa.`
   },
   agents: {
     close: 'Fechar agentes',
@@ -1096,7 +1140,7 @@ export const ng = defineLocale({
     ageDays: days => `omasiku ${days} ga piti`,
     durationSeconds: seconds => `${seconds} osekonde`,
     durationMinutes: (minutes, seconds) => `${minutes} ominute ${seconds} osekonde`,
-    tokens: value => `${value} iitopolwa`,
+    tokens: value => `${value} iitopolwa`
   },
   commandCenter: {
     close: 'Fechar centro de comando',
@@ -1106,22 +1150,22 @@ export const ng = defineLocale({
     goTo: 'Ir para',
     goToSession: 'Ir para a sessão',
     generatePet: {
-      title: 'Yongora u\'bichu',
-      placeholder: 'Tsalusa u\'bichu uya kuyongorwa…',
-      promptHint: 'Tsala, emwima, kutwela Enter uyongore mise eneyi y\'omoyo.',
-      readyHint: 'Twela Enter uyongore mise eneyi y\'omoyo wako.',
+      title: "Yongora u'bichu",
+      placeholder: "Tsalusa u'bichu uya kuyongorwa…",
+      promptHint: "Tsala, emwima, kutwela Enter uyongore mise eneyi y'omoyo.",
+      readyHint: "Twela Enter uyongore mise eneyi y'omoyo wako.",
       generate: 'Yongora',
       generating: 'Ku yongora…',
       retry: 'Yongora yetango',
       hatch: 'Choca',
       spawning: 'Ku choca…',
-      hatching: 'Uchoca u\'bichu wako…',
-      hatchingSub: 'Kuyunga ku m\'bicho…',
+      hatching: "Uchoca u'bichu wako…",
+      hatchingSub: "Kuyunga ku m'bicho…",
       hatched: 'Uchocu!',
       hatchComposing: 'Kuungana…',
       hatchSaving: 'Use kwai ku fika…',
-      namePlaceholder: 'Tia u\'bichu wako',
-      staleBackend: 'Yongora mise y\'OpenAmer uyongore bichu.',
+      namePlaceholder: "Tia u'bichu wako",
+      staleBackend: "Yongora mise y'OpenAmer uyongore bichu.",
       backgroundHint: 'Ukwala kutangha — OpenAmer uyakulavula awi ashi yeendji.',
       slowProviderHint: 'Iyi ndlela yakatanga mizuzu',
       remix: 'Yambula nkhalo',
@@ -1132,7 +1176,7 @@ export const ng = defineLocale({
       referenceImageInvalid: 'Tayekeleli kuyetela shili esho. Yanda PNG, JPG, WebP, to GIF.',
       adopt: 'Tambula',
       startOver: 'Yandala',
-      hatchRow: (_state, done, total) => `Đang phác thảo khung ${done} trên ${total}…`,
+      hatchRow: (_state, done, total) => `Đang phác thảo khung ${done} trên ${total}…`
     },
     branches: 'Makahi',
     commands: 'Emisango',
@@ -1154,7 +1198,7 @@ export const ng = defineLocale({
       generatedTag: 'Igangulwe',
       adoptFailed: 'Hatungekele ku adopta shilikambo shoo.',
       toggleFailed: 'Hatungekele ku shikisha shilikambo.',
-      noneAvailable: 'Hamana makalilo — tsha omulilo omu wena u hete.',
+      noneAvailable: 'Hamana makalilo — tsha omulilo omu wena u hete.'
     },
     installTheme: {
       title: 'Yika tema…',
@@ -1166,7 +1210,7 @@ export const ng = defineLocale({
       install: 'Yika',
       installing: 'U yika...',
       installed: 'I yikidi',
-      installs: count => `${count} omatulomo`,
+      installs: count => `${count} omatulomo`
     },
     settingsFields: 'Mabuku ya masetar',
     mcpServers: 'Maseveri ya MCP',
@@ -1175,49 +1219,49 @@ export const ng = defineLocale({
       maintenance: 'Yanteya',
       sessions: 'Masessão',
       system: 'Sistemo',
-      usage: 'Uushiku',
+      usage: 'Uushiku'
     },
     sectionDescriptions: {
       maintenance: 'Uunopola, mapeke, rondor, ni data ya memoria',
       sessions: 'Pakha u kutola sesa',
       system: 'Sistemo, mafuku, ni tushilo twa sistema',
-      usage: 'Tukambeka, ndondo, uushambo wa mali, ni twilongo twa uunongo',
+      usage: 'Tukambeka, ndondo, uushambo wa mali, ni twilongo twa uunongo'
     },
     nav: {
       newChat: {
         title: 'Sesa omanawa',
-        detail: 'Katula sesa omanawa',
+        detail: 'Katula sesa omanawa'
       },
       settings: {
         title: 'Uushike',
-        detail: 'Shuna OpenAmer desktop',
+        detail: 'Shuna OpenAmer desktop'
       },
       skills: {
         title: 'Inakutala',
-        detail: 'Uunongo, tulambo, ni mapa wa MCP',
+        detail: 'Uunongo, tulambo, ni mapa wa MCP'
       },
       messaging: {
         title: 'Uupfumela',
-        detail: 'Shuna Telegram, Slack, Discord, ni tshipa',
+        detail: 'Shuna Telegram, Slack, Discord, ni tshipa'
       },
       artifacts: {
         title: 'Vihengo',
-        detail: 'Tala vihengo',
-      },
+        detail: 'Tala vihengo'
+      }
     },
     sectionEntries: {
       sessions: {
         title: 'Penalo ya sesa',
-        detail: 'Pakha, fikisha, u kutola sesa',
+        detail: 'Pakha, fikisha, u kutola sesa'
       },
       system: {
         title: 'Penalo ya sistema',
-        detail: 'Sistemo, mafuku, ongela/ngulula',
+        detail: 'Sistemo, mafuku, ongela/ngulula'
       },
       usage: {
         title: 'Paneli ya mat usage',
-        detail: 'Mombo ya token, kosti ni lwimo lwa uinge',
-      },
+        detail: 'Mombo ya token, kosti ni lwimo lwa uinge'
+      }
     },
     providerNavigate: 'Fambisa',
     providerSessions: 'Emiseho',
@@ -1267,7 +1311,8 @@ export const ng = defineLocale({
       backup: 'Criar cópia de segurança',
       backupDesc: 'Compactar configurações, memórias, habilidades e sessões',
       debugShare: 'Partilha de depuração',
-      debugShareDesc: 'Carregar relatório censurado + registos, obter ligações partilháveis (elimina automaticamente em 6h)',
+      debugShareDesc:
+        'Carregar relatório censurado + registos, obter ligações partilháveis (elimina automaticamente em 6h)',
       debugShareRunning: 'A carregar relatório de depuração...',
       debugShareLinks: 'Ligações partilháveis',
       debugShareFailed: 'A partilha de depuração falhou',
@@ -1282,10 +1327,10 @@ export const ng = defineLocale({
       pause: 'Imumina',
       resume: 'Ehulisa',
       runNow: 'Kashila ngoye',
-      memoryData: 'Data d\'omemoria',
-      memoryDataDesc: 'Mfika d\'omemoria yi mela yo fikela ku sesiti yohili',
+      memoryData: "Data d'omemoria",
+      memoryDataDesc: "Mfika d'omemoria yi mela yo fikela ku sesiti yohili",
       builtinMemory: 'yi mela',
-      memoryFile: 'Omemoria y\'omuyakula (MEMORY.md)',
+      memoryFile: "Omemoria y'omuyakula (MEMORY.md)",
       userFile: 'Nd profiles ya mushi (USER.md)',
       empty: 'ipula',
       resetMemory: 'Longa omemoria',
@@ -1293,26 +1338,26 @@ export const ng = defineLocale({
       resetAll: 'Longa byoonhela',
       resetFailed: 'Omemoria alongi',
       running: 'Kashila...',
-      viewLog: 'Mfumo d\'eshikilo',
+      viewLog: "Mfumo d'eshikilo",
       curatorLastRun: when => `Lần chạy cuối ${when}`,
       memoryProvider: name => `Nhà cung cấp đang hoạt động: ${name}`,
       bytes: size => size,
       resetConfirm: target => `Xóa ${target}? Hành động này không thể hoàn tác.`,
       resetDone: files => `Đã xóa ${files}.`,
       actionStarted: name => `${name} sha tameke — taku landulwa ehokololo...`,
-      actionFailed: name => `${name} ina tameka`,
+      actionFailed: name => `${name} ina tameka`
     },
     startInBranch: branch => `Cuộc hội thoại mới trong ${branch}`,
     openamerActiveSessions: (version, count) => `OpenAmer ${version} · Phiên hoạt động ${count}`,
     days: count => `${count} masiku`,
     actualCost: cost => `thực tế ${cost}`,
     noUsage: period => `Không có lượt sử dụng trong ${period} ngày qua.`,
-    actions: count => `${count} iilonga`,
+    actions: count => `${count} iilonga`
   },
   messaging: {
     search: 'Tala mizambiko...',
-    loading: 'Pakatela mapfumo d\'omizambiko...',
-    loadFailed: 'Mapfumo d\'omizambiko akalongozi ku pakateka',
+    loading: "Pakatela mapfumo d'omizambiko...",
+    loadFailed: "Mapfumo d'omizambiko akalongozi ku pakateka",
     states: {
       connected: 'Kakonekela',
       connecting: 'Uutwala',
@@ -1322,7 +1367,7 @@ export const ng = defineLocale({
       not_configured: 'Ushike ongali',
       pending_restart: 'Ushike omulilo',
       retrying: 'Uutadimba',
-      startup_failed: 'Okutumbuka kwalepulupulo kulundika',
+      startup_failed: 'Okutumbuka kwalepulupulo kulundika'
     },
     unknown: 'Oshikwa',
     hintPendingRestart: 'Omulongo wimeno wooneng uulikile ongali kokuseela eshi shikulikile.',
@@ -1334,7 +1379,8 @@ export const ng = defineLocale({
     openSetupGuide: 'Vika ombiki wokupanga',
     required: 'Shikula',
     recommended: 'Ikombolo',
-    noTokenNeeded: 'Eshi likulundili eshina omushini hena. Shikula ombiki wokupanga womwange, ngambelela koonena eshi ongene.',
+    noTokenNeeded:
+      'Eshi likulundili eshina omushini hena. Shikula ombiki wokupanga womwange, ngambelela koonena eshi ongene.',
     enabled: 'Koonena',
     disabled: 'Uikulikile',
     unsavedChanges: 'Iikolo ipula',
@@ -1349,124 +1395,124 @@ export const ng = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Token ya bot',
         help: 'Yikula bot na @BotFather, huna namulela token eye a ku hana.',
-        placeholder: 'Namulela token ya Telegram bot',
+        placeholder: 'Namulela token ya Telegram bot'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'IDs ya wanu wa Telegram dza vokelwa',
-        help: 'Ndikilikelwa. IDs dza numeric omu @userinfobot. Ku nina hii, munene onke a tshokana na bot yenu.',
+        help: 'Ndikilikelwa. IDs dza numeric omu @userinfobot. Ku nina hii, munene onke a tshokana na bot yenu.'
       },
       TELEGRAM_PROXY: {
         label: 'URL ya proxy',
-        help: 'Ishiki konyima kwi mitandao leyi Telegram yi tivikwa.',
+        help: 'Ishiki konyima kwi mitandao leyi Telegram yi tivikwa.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token ya bot',
-        help: 'Yikula kalandela mu Discord Developer Portal, yikula bot, huna namulela token yayo.',
+        help: 'Yikula kalandela mu Discord Developer Portal, yikula bot, huna namulela token yayo.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'IDs ya wanu wa Discord dza vokelwa',
-        help: 'Ndikilikelwa. IDs ya Discord dza iikomo dza comma.',
+        help: 'Ndikilikelwa. IDs ya Discord dza iikomo dza comma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Uunike ulitika',
-        help: 'olule, hinkwvo, kana shuti',
+        help: 'olule, hinkwvo, kana shuti'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Yimela vakwetike ke yena veDiscord',
-        help: 'Vetilike vekuongo. Koko tshikulungunike, unena o nguro bot nande ha allowlist.',
+        help: 'Vetilike vekuongo. Koko tshikulungunike, unena o nguro bot nande ha allowlist.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ya channel ya makaya',
-        help: 'Channel ina bot yi tumisa mela (zoutput ya cron, matukundo).',
+        help: 'Channel ina bot yi tumisa mela (zoutput ya cron, matukundo).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Zita lya channel ya makaya',
-        help: 'Zita lya kuvela channel ya makaya mumauka na fumepo ya status.',
+        help: 'Zita lya kuvela channel ya makaya mumauka na fumepo ya status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Yimela vakwetike ke yena veiMessage',
-        help: 'Yika allowlist ya BlueBubbles',
+        help: 'Yika allowlist ya BlueBubbles'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Yimela vakwetike ke yena veMattermost',
+        label: 'Yimela vakwetike ke yena veMattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Channel ya makaya',
+        label: 'Channel ya makaya'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Yimela vakwetike ke yena veQQ',
+        label: 'Yimela vakwetike ke yena veQQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Channel ya makaya ya QQ',
-        help: 'Channel kana group ya default ya kuisa cron',
+        help: 'Channel kana group ya default ya kuisa cron'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Zita lya channel ya makaya ya QQ',
+        label: 'Zita lya channel ya makaya ya QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Upamba wa bot ya Slack',
         help: 'Shumisa upamba wa bot ova OAuth & Permissions wupaho oshi installerela Slack app yenu.',
-        placeholder: 'Namulela upamba wa bot ya Slack',
+        placeholder: 'Namulela upamba wa bot ya Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Upamba wa app ya Slack',
         help: 'Tambula o token yi appi yo niveli oyo Socket Mode e funenganga.',
-        placeholder: 'Namunela o token yi Slack yi appi.',
+        placeholder: 'Namunela o token yi Slack yi appi.'
       },
       SIGNAL_ACCOUNT: {
         help: 'O nomoru registadu ku signal-cli.',
-        label: 'Numero ya telefoni.',
+        label: 'Numero ya telefoni.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Usuários do Signal permitidos',
-        help: 'Recomendado. Identificadores do Signal separados por vírgulas.',
+        help: 'Recomendado. Identificadores do Signal separados por vírgulas.'
       },
       WHATSAPP_ENABLED: {
         label: 'Ativar a ponte do WhatsApp',
-        help: 'Definidu automaticamente pelu interruptor abaixo. Deixá cumo está a não ser que saiba que precisa.',
+        help: 'Definidu automaticamente pelu interruptor abaixo. Deixá cumo está a não ser que saiba que precisa.'
       },
       WHATSAPP_MODE: {
-        label: 'Modu da ponte',
+        label: 'Modu da ponte'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Usuários do WhatsApp permitidos',
-        help: 'Recomendado. Números de telefone ou IDs do WhatsApp separados por vírgulas.',
+        help: 'Recomendado. Números de telefone ou IDs do WhatsApp separados por vírgulas.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'IDs ya Slack ezakulungeleka.',
-        help: 'Kokonyama. IDs ya Slack ezidatikanwa oyo comma.',
+        help: 'Kokonyama. IDs ya Slack ezidatikanwa oyo comma.'
       },
       MATTERMOST_URL: {
         label: 'URL ya sevisa.',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Token yi boti.',
+        label: 'Token yi boti.'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'IDs yi valumwa ezakulungeleka.',
-        help: 'Kokonyama. IDs ya Mattermost ezidatikanwa oyo comma.',
+        help: 'Kokonyama. IDs ya Mattermost ezidatikanwa oyo comma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ya homeserveri.',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Token ya kufika.',
+        label: 'Token ya kufika.'
       },
       MATRIX_USER_ID: {
         label: 'ID yi valumwa yi boti.',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDs ya Matrix ezakulungeleka.',
-        help: 'Kokonyama. IDs yi valumwa ezidatikanwa oyo comma, mu format @user:server.',
+        help: 'Kokonyama. IDs yi valumwa ezidatikanwa oyo comma, mu format @user:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ya pontinhe yi Signal.',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ya pontinhe yi signal-cli REST oyo ikatama.',
-      },
+        help: 'URL ya pontinhe yi signal-cli REST oyo ikatama.'
+      }
     },
     advanced: count => `Nâng cao (${count})`,
     clearField: key => `Xóa ${key}`,
@@ -1480,8 +1526,7 @@ export const ng = defineLocale({
     failedUpdate: name => `Cập nhật ${name} thất bại`,
     failedSave: name => `Lưu ${name} thất bại`,
     failedClear: key => `Xóa ${key} thất bại`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Procurar webhooks...',
@@ -1490,7 +1535,8 @@ export const ng = defineLocale({
     hint: 'As mudanças de subscrição recarregam-se automaticamente assim que o receptor estiver em execução. As subscrições desativadas rejeitam eventos recebidos.',
     empty: 'Ainda não há subscrições de webhook.',
     disabledTitle: 'Receptor de webhooks desativado',
-    disabledBody: 'Os webhooks são a sua própria plataforma de gateway. Ative-os aqui para receber eventos HTTP; os canais de chat só são necessários quando uma subscrição é entregue ao Telegram, Discord, Slack ou a outro canal.',
+    disabledBody:
+      'Os webhooks são a sua própria plataforma de gateway. Ative-os aqui para receber eventos HTTP; os canais de chat só são necessários quando uma subscrição é entregue ao Telegram, Discord, Slack ou a outro canal.',
     enable: 'Ativar webhooks',
     enabling: 'A ativar...',
     enableRow: 'Ativar',
@@ -1502,7 +1548,7 @@ export const ng = defineLocale({
       email: 'E-mail',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     webhookUrl: 'URL ya webhook',
     secretOnce: 'Siphano (si komborwa marungu)',
@@ -1545,7 +1591,7 @@ export const ng = defineLocale({
     deleteFailed: (name: string) => `Xóa "${name}" thất bại`,
     toggleFailed: (name: string) => `Cập nhật "${name}" thất bại`,
     restartFailed: (detail: string) => `Khởi động lại cổng kết nối thất bại${detail}`,
-    createFailed: (detail: string) => `Tạo thất bại: ${detail}`,
+    createFailed: (detail: string) => `Tạo thất bại: ${detail}`
   },
   profiles: {
     renameMenu: 'Renomear…',
@@ -1623,7 +1669,7 @@ export const ng = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `Câu lệnh hệ thống / persona cho hồ sơ này.
 Để trống để giữ mặc định của ${mode}.`,
-    invalidName: hint => `Tên không hợp lệ. ${hint}`,
+    invalidName: hint => `Tên không hợp lệ. ${hint}`
   },
   cron: {
     close: 'Fechar cron',
@@ -1637,14 +1683,14 @@ export const ng = defineLocale({
       paused: 'em pausa',
       disabled: 'desativado',
       error: 'erro',
-      completed: 'concluído',
+      completed: 'concluído'
     },
     deliveryLabels: {
       local: 'Este ambiente de trabalho',
       email: 'E-mail',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     days: {
       '0': 'Sikundu',
@@ -1654,7 +1700,7 @@ export const ng = defineLocale({
       '4': 'Omukwai',
       '5': 'Omuyengolo',
       '6': 'Omongorongo',
-      '7': 'Otandeka',
+      '7': 'Otandeka'
     },
     topOfHour: 'Ku-oshi ondjikwa',
     newCron: 'Cron mpya',
@@ -1696,7 +1742,7 @@ export const ng = defineLocale({
     createAction: 'Criar cron',
     tabs: {
       jobs: 'Trabalhos',
-      blueprints: 'Modelos',
+      blueprints: 'Modelos'
     },
     blueprints: {
       tab: 'Modelos',
@@ -1710,12 +1756,13 @@ export const ng = defineLocale({
       loading: 'A carregar modelos...',
       failedLoad: 'Falha ao carregar modelos',
       emptyTitle: 'Não há modelos disponíveis',
-      emptyDesc: 'Não há modelos de automação disponíveis neste servidor.',
+      emptyDesc: 'Não há modelos de automação disponíveis neste servidor.'
     },
     failedSave: 'Ku lulwe ku save cron job',
     editTitle: 'Edita cron job',
     createTitle: 'Cron job mpya',
-    editDesc: 'Fikisa schedule, mpandla, kana hinkwavo hiku yi yundiswa ku. Shintsho shita apply laha pa run ya landula.',
+    editDesc:
+      'Fikisa schedule, mpandla, kana hinkwavo hiku yi yundiswa ku. Shintsho shita apply laha pa run ya landula.',
     createDesc: 'Tsakela mpandla eyi ku run awi. Use cron syntax, kana mukweaver wa xikwatsa wo ta u kila minuta 15.',
     nameLabel: 'Dzina',
     namePlaceholder: 'Ndzangu ya makanga',
@@ -1739,7 +1786,7 @@ export const ng = defineLocale({
       monthly: 'Ku mwezi',
       hourly: 'Ku awora',
       'every-15-minutes': 'Awora yimongo 15',
-      custom: 'Yalula',
+      custom: 'Yalula'
     },
     scheduleHints: {
       daily: 'Ku siku nkoka 9:00 AM',
@@ -1748,7 +1795,7 @@ export const ng = defineLocale({
       monthly: 'Siku oyande yomwezi nkoka 9:00 AM',
       hourly: 'Ku makaya nhlefu',
       'every-15-minutes': 'Pa 15 wa minuto',
-      custom: 'Sintaxi ya Cron kana lwandila',
+      custom: 'Sintaxi ya Cron kana lwandila'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `ngày ${value}`,
@@ -1757,7 +1804,7 @@ export const ng = defineLocale({
     everyDayOfWeekAt: (day, time) => `Mỗi ${day} vào lúc ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Hàng tháng vào ngày ${dayOfMonth} lúc ${time}`,
     everyHourAt: minute => `Mỗi giờ vào lúc :${minute}`,
-    actionsFor: title => `Hành động cho ${title}`,
+    actionsFor: title => `Hành động cho ${title}`
   },
   artifacts: {
     search: 'Procurar artefatos...',
@@ -1791,14 +1838,14 @@ export const ng = defineLocale({
     copyUrl: 'Kopye URL',
     copyPath: 'Kopye ndlela',
     rangeOf: (start, end, total) => `${start}-${end} ya ${total}`,
-    goToPage: (itemLabel, page) => `Kenda kopele ${itemLabel} oopele ${page}`,
+    goToPage: (itemLabel, page) => `Kenda kopele ${itemLabel} oopele ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Sesiti leyintshwa',
       skills: 'Mfanakalo',
       messaging: 'Uthumeka',
-      artifacts: 'Tisebenzi',
+      artifacts: 'Tisebenzi'
     },
     searchAria: 'Tadi sesiti',
     searchPlaceholder: 'Tadi sesiti…',
@@ -1830,12 +1877,16 @@ export const ng = defineLocale({
       foldersLabel: 'Emakonde',
       ideaLabel: 'Uudji',
       removeWorktreeFailed: 'Não foi possível remover a árvore de trabalho (alterações não confirmadas?)',
-      removeWorktreeConfirm: 'Remova-o do git (elimina o diretório da árvore de trabalho; o ramo permanece), ou apenas oculte a faixa da barra lateral e deixe a árvore de trabalho no disco.',
-      removeWorktreeDirty: 'Esta árvore de trabalho tem alterações não confirmadas. Force a remoção (descarta essas alterações), ou apenas oculte a faixa e mantenha-a no disco.',
+      removeWorktreeConfirm:
+        'Remova-o do git (elimina o diretório da árvore de trabalho; o ramo permanece), ou apenas oculte a faixa da barra lateral e deixe a árvore de trabalho no disco.',
+      removeWorktreeDirty:
+        'Esta árvore de trabalho tem alterações não confirmadas. Force a remoção (descarta essas alterações), ou apenas oculte a faixa e mantenha-a no disco.',
       forceRemove: 'Forçar remoção',
       back: 'Todos os projetos',
-      staleBackend: 'Upenda backend ya OpenAmer kuti utule misaka — backend yo ya sinyanya kuna app ya desktop (Saila → Mupdates → Backend).',
-      deleteConfirm: 'Eshi lisumika misaka lya OpenAmer. Madodye, repositório ya git ni matilise ya mabasa hinkwavo yafambula.',
+      staleBackend:
+        'Upenda backend ya OpenAmer kuti utule misaka — backend yo ya sinyanya kuna app ya desktop (Saila → Mupdates → Backend).',
+      deleteConfirm:
+        'Eshi lisumika misaka lya OpenAmer. Madodye, repositório ya git ni matilise ya mabasa hinkwavo yafambula.',
       startWork: 'Mtilise ya mabasa',
       newWorktreeTitle: 'Mtilise ya mabasa',
       newWorktreeDesc: 'Eshanga lya njinga ya mtilise ya mabasa.',
@@ -1877,7 +1928,7 @@ export const ng = defineLocale({
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Mở ${label}`,
       reorder: label => `Sắp xếp lại ${label}`,
-      toggle: label => `Bật/tắt các phiên ${label}`,
+      toggle: label => `Bật/tắt các phiên ${label}`
     },
     loading: 'A carregar…',
     loadMore: 'Carregar mais',
@@ -1912,19 +1963,19 @@ export const ng = defineLocale({
       untitledChat: id => `Epopi ${id}`,
       ageDay: 'omathiku',
       ageHour: 'oowili',
-      ageMin: 'oominute',
+      ageMin: 'oominute'
     },
     dateDivider: {
       today: 'Kule ka ntse',
       yesterday: 'Eshi',
       thisWeek: 'Mashi omulilo',
       lastWeek: 'Omulilo wopeye',
-      thisMonth: 'Mashi omvika',
+      thisMonth: 'Mashi omvika'
     },
     noMatch: query => `Không có phiên nào khớp với “${query}”.`,
     newSessionIn: label => `Oshikako oshipe mu ${label}`,
     showMoreIn: (count, label) => `Ulika ${count} iilwe mu ${label}`,
-    loadCount: step => `Tula ${step} iilwe`,
+    loadCount: step => `Tula ${step} iilwe`
   },
   composer: {
     placeholderStarting: 'Ku sukela OpenAmer...',
@@ -1964,7 +2015,7 @@ export const ng = defineLocale({
       '/resume': 'kuyobela sessão yapasho',
       '/details': 'kulawula udzimba wa transcript',
       '/copy': 'kukopola eshi swakudwa kana message ya mupandisi yekulast',
-      '/quit': 'kuvela openamer',
+      '/quit': 'kuvela openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'kutuma mizila, maj folders, urls, git',
@@ -1974,7 +2025,7 @@ export const ng = defineLocale({
       'composer.sendQueued': 'tuma eturnu elikwele elengeza',
       'keybinds.openPanel': 'tutatu ti njila ti keyboard',
       'composer.cancel': 'funga popover · amata ukusebenzisa',
-      'composer.history': 'sundidila popover / hisitoria',
+      'composer.history': 'sundidila popover / hisitoria'
     },
     attachUrlTitle: 'Bambeka URL',
     attachUrlDesc: 'OpenAmer itoola peji futi ayivale ekilondjila ya eturnu ye.',
@@ -1999,18 +2050,18 @@ export const ng = defineLocale({
       codeReview: {
         label: 'Kundihila kodhi',
         description: 'Chumina shindula yongu matundu, mavaka ari ku mpande ni mapuro ari ekaholela.',
-        text: 'Ndondise kundihila ono matundu, mavaka ari ku mpande ni mapuro ari ekaholela.',
+        text: 'Ndondise kundihila ono matundu, mavaka ari ku mpande ni mapuro ari ekaholela.'
       },
       implementationPlan: {
         label: 'Plano yofana',
         description: 'Sobola ndlela yoyokana ku sungula kodhi.',
-        text: 'Ndondise plano yofana yo sungula kodhi.',
+        text: 'Ndondise plano yofana yo sungula kodhi.'
       },
       explainThis: {
         label: 'Tambulula ono',
         description: 'Tambulula kodhi yo sedula ni mafayela asenguluki.',
-        text: 'Tambulula ndlela oni shid functioning no ndondise mafayela asenguluki.',
-      },
+        text: 'Tambulula ndlela oni shid functioning no ndondise mafayela asenguluki.'
+      }
     },
     message: 'Ekakwataniko',
     queueStuckTitle: 'Ekakwataniko ekali mu lisela ekina kutuma',
@@ -2037,27 +2088,27 @@ export const ng = defineLocale({
     newSessionPlaceholders: [
       'Otatu tungu shike?',
       'Pa OpenAmer oshinakugwanithwa',
-      "Owu na shike momadhiladhilo?",
+      'Owu na shike momadhiladhilo?',
       'Fatulula shoka wa pumbwa',
       'Otu na okuninga shike?',
       'Pula kehe shimwe',
-      'Tameka neshilalakanenwa',
+      'Tameka neshilalakanenwa'
     ],
     followUpPlaceholders: [
       'Tuma etumwalaka lyokulanda ko',
       'Gweda po uuyelele',
       'Yambulula eindilo',
-      "Oshike tashi landula?",
+      'Oshike tashi landula?',
       'Tsikila natango',
       'Shi twala komeho',
-      'Lundulula nenge tsikila',
+      'Lundulula nenge tsikila'
     ],
     queued: count => `${count} Ya tulwa momukweyo`,
     queuedPaused: count => `${count} Ya tulwa momukweyo — ya thikamithwa`,
     attachments: count => `${count} oshinamathelwa${count === 1 ? '' : 's'}`,
     previewLabel: label => `Tala tango ${label}`,
     couldNotPreview: label => `Inashi vulika okutala tango ${label}`,
-    removeAttachment: label => `Kutha po ${label}`,
+    removeAttachment: label => `Kutha po ${label}`
   },
   statusStack: {
     agents: 'Ejente',
@@ -2097,7 +2148,8 @@ export const ng = defineLocale({
       openPr: 'Tsanga PR',
       ghMissing: 'Installa GitHub CLI (gh) u kwendelela ku tsanga PR',
       agentShip: 'Eyanga OpenAmer etsange PR',
-      agentShipPrompt: 'Tala minguana yoko ya nkawa, yikumbike na mbumba ya conventional-commit e yil clear, utume branch, u tsange pull request.',
+      agentShipPrompt:
+        'Tala minguana yoko ya nkawa, yikumbike na mbumba ya conventional-commit e yil clear, utume branch, u tsange pull request.',
       newBranch: 'Branch ya nkawa',
       worktrees: 'Mikambu',
       commitPlaceholder: 'Mensagem (âŒ˜â†µ para confirmar)',
@@ -2106,12 +2158,12 @@ export const ng = defineLocale({
       behind: count => `${count} konima`,
       branchOffFrom: base => `Etayi epe okuza ku ${base}`,
       switchTo: branch => `Shintela ku ${branch}`,
-      switchFailed: branch => `Inashi vulika okushintela ku ${branch}`,
+      switchFailed: branch => `Inashi vulika okushintela ku ${branch}`
     },
     background: count => `${count} Monima`,
     subagents: count => `${count} Omukwathi omushona${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Iilonga ${done}/${total}`,
-    exit: code => `pitamo ${code}`,
+    exit: code => `pitamo ${code}`
   },
   updates: {
     stages: {
@@ -2125,8 +2177,8 @@ export const ng = defineLocale({
       restart: 'Kutandula OpenAmer…',
       done: 'Kuveta kwapelula',
       manual: 'Kuveta ku-terminal',
-      guiSkew: 'Kuveta app y\'edesktop',
-      error: 'Kuveta imisimene',
+      guiSkew: "Kuveta app y'edesktop",
+      error: 'Kuveta imisimene'
     },
     checking: 'Tindila kuveta…',
     checkFailedTitle: 'Hatungeveta ku kontrola kuveta',
@@ -2148,12 +2200,15 @@ export const ng = defineLocale({
     manualBody: 'U lisulile OpenAmer ku command line, ndapulelo zi kona ukwisa ngafuko. Sala eshi ku terminal yi nuni:',
     manualPickedUp: 'OpenAmer ita ku teka version leyi ngu eulamba nokutulika esiku u yi vulisa.',
     guiSkewTitle: 'Yungula OpenAmer desktop app',
-    guiSkewBody: 'Backend wa yungulwa, ndati desktop app ya OpenAmer yinona ku cilula. Yungula kana ulisele OpenAmer desktop app (AppImage / .deb / .rpm yi nuni) ku hana na backend.',
+    guiSkewBody:
+      'Backend wa yungulwa, ndati desktop app ya OpenAmer yinona ku cilula. Yungula kana ulisele OpenAmer desktop app (AppImage / .deb / .rpm yi nuni) ku hana na backend.',
     copy: 'Kopayela',
     copied: 'I kopayelwe',
     done: 'Iini',
-    applyingBody: 'OpenAmer updater ita ku tula eshinyimwe eyi yake, ndati ita ku vulisa OpenAmer ku automa ngokuheta. Unga vulisi OpenAmer veye wena nokuba ita yungula.',
-    applyingBodyBackend: 'Backend leyi ku iko ita ku fika ku yungula ndati ita ku fula ko tala. OpenAmer ita ku huluka ko automa ngokuyi humba.',
+    applyingBody:
+      'OpenAmer updater ita ku tula eshinyimwe eyi yake, ndati ita ku vulisa OpenAmer ku automa ngokuheta. Unga vulisi OpenAmer veye wena nokuba ita yungula.',
+    applyingBodyBackend:
+      'Backend leyi ku iko ita ku fika ku yungula ndati ita ku fula ko tala. OpenAmer ita ku huluka ko automa ngokuyi humba.',
     applyingClose: 'Eshi shindowa shi ta ku closedha loko yungula yi humba, ndati OpenAmer ita ku vuliva yi fulela.',
     errorTitle: 'Yungula yinona ku heta',
     errorBody: 'Hikwalaho yini — a ku fali nga yini. U nga ha trya komu sha now.',
@@ -2164,13 +2219,14 @@ export const ng = defineLocale({
       restarting: 'Backend ita ku fula ko tala kutela yungula…',
       notAvailable: 'Yungula ilundile ku backend leyi.',
       failed: 'Yungula ya backend yi tala.',
-      noReturn: 'Backend nominalu ta ku shelekela online. Update inavala eshila — shadhi server ye backend.',
+      noReturn: 'Backend nominalu ta ku shelekela online. Update inavala eshila — shadhi server ye backend.'
     },
     appErrors: {
-      updateLocked: 'Update yambelika: window yimwe ya OpenAmer edi, kana terminal edi running openamer, eleka install yei open. Yimbelika u yishe u keulela.',
-      updateFailed: 'Update inavala ku completion. Hamu shike — hakuna shilongo. U sesha ko yena ko tala ko shuna.',
+      updateLocked:
+        'Update yambelika: window yimwe ya OpenAmer edi, kana terminal edi running openamer, eleka install yei open. Yimbelika u yishe u keulela.',
+      updateFailed: 'Update inavala ku completion. Hamu shike — hakuna shilongo. U sesha ko yena ko tala ko shuna.'
     },
-    moreChanges: count => `+ ${count} omalunduluko gamwe${count === 1 ? '' : 's'} ga gwedhwa mo.`,
+    moreChanges: count => `+ ${count} omalunduluko gamwe${count === 1 ? '' : 's'} ga gwedhwa mo.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2234,7 @@ export const ng = defineLocale({
       running: 'Ku installa',
       succeeded: 'Yambelelwa',
       skipped: 'Yikalikana',
-      failed: 'Yakala',
+      failed: 'Yakala'
     },
     oneTimeTitle: 'OpenAmer ehitana ekainstalli ekandjila',
     installCommand: 'Command yo ekainstalli',
@@ -2187,29 +2243,31 @@ export const ng = defineLocale({
     installTo: 'Tafika ekainstalli ku',
     retryAfterRun: 'Ndiashona ko yena — sesha ko',
     setupChoiceTitle: 'Yungula OpenAmer Desktop',
-    setupChoiceDesc: 'Tambeka app eshi ku gateway ya OpenAmer owa shona ku itana, kana installa OpenAmer ku computer eno.',
+    setupChoiceDesc:
+      'Tambeka app eshi ku gateway ya OpenAmer owa shona ku itana, kana installa OpenAmer ku computer eno.',
     connectExistingTitle: 'Tambeka ku OpenAmer ekalready',
     connectExistingShort: 'Tambeka ekalready',
-    connectExistingDesc: 'Shamba backend ek remote hili token ya session kana ulile ku browser. Ekainstalli ye local inangulile.',
+    connectExistingDesc:
+      'Shamba backend ek remote hili token ya session kana ulile ku browser. Ekainstalli ye local inangulile.',
     installLocalTitle: 'Installa OpenAmer ku computer eno',
-    installLocalDesc: 'Shuna OpenAmer, yeta thimuni yi Python, ni phupa backend k\'kompyuta shin.',
+    installLocalDesc: "Shuna OpenAmer, yeta thimuni yi Python, ni phupa backend k'kompyuta shin.",
     localStartUnavailable: 'Ushungi lomapeho la lopala ashili. Sala OpenAmer Desktop upakutunda.',
-    remoteSetupTitle: 'Hulika k\'OpenAmer eyi khale',
-    remoteSetupDesc: 'Peta URL ya gateway. OpenAmer Desktop itambula ko ono uyana hita token kana nyoka k\'browser.',
+    remoteSetupTitle: "Hulika k'OpenAmer eyi khale",
+    remoteSetupDesc: "Peta URL ya gateway. OpenAmer Desktop itambula ko ono uyana hita token kana nyoka k'browser.",
     remoteUrlTitle: 'URL ya gateway',
     remoteUrlDesc: 'Yambula URL ya OpenAmer gateway, kuikela https:// kana ku khale.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Kutambula uukwathil wa gateway...',
     probeError: 'Ashili ku kula gateway ya OpenAmer eyo.',
-    identityProvider: 'muholisi w\'identity',
+    identityProvider: "muholisi w'identity",
     authTitle: 'Uukwathil',
-    authSignedIn: 'Nyoka k\'browser ku heta.',
+    authSignedIn: "Nyoka k'browser ku heta.",
     connected: 'Hulile',
     signIn: 'Nyoka',
     enterUrlFirst: 'Peta URL ya gateway ku pakutala.',
     signInIncomplete: 'Dhinti loku nyoka loputuka nga ku heta uukwathil.',
     tokenTitle: 'Token ya session',
-    tokenDesc: 'Kambela token ya session kutoka k\'omutumba .env wa gateway ekutumba ku khale.',
+    tokenDesc: "Kambela token ya session kutoka k'omutumba .env wa gateway ekutumba ku khale.",
     pasteSessionToken: 'Kambela token ya session',
     incompleteSignInTest: 'Nyoka pakutala uyu gateway ewolishwa nga OAuth.',
     incompleteTokenTest: 'Tambula omutokolo wa seshoni nga uula nokutestha ongeghe.',
@@ -2219,8 +2277,10 @@ export const ng = defineLocale({
     failedTitle: 'Ombuyambeko owaifana ku omulilo',
     settingUpTitle: 'Okutumbuka OpenAmer Agent',
     finishingTitle: 'Okupeta',
-    failedDesc: 'Nimwe shikambo shombuyambeko shilifa ku endunge. Mwindows, ongeghe ombuyambeko wOpenAmer CLI ka desktop unga ukutwala. Hofika OpenAmer yohinti yohikwale, ndala uyike. Tala emililo eyi kona koongoye ka desktop nokuhoola kutwala.',
-    activeDesc: 'Kali kutumbuka kokulomu. Ombuyambeko wa OpenAmer oondjendela izise ngomizila futi ootumbula omushini wuwe. Okuvulika okutanga komuliku kutala kokushuna eshimo shino.',
+    failedDesc:
+      'Nimwe shikambo shombuyambeko shilifa ku endunge. Mwindows, ongeghe ombuyambeko wOpenAmer CLI ka desktop unga ukutwala. Hofika OpenAmer yohinti yohikwale, ndala uyike. Tala emililo eyi kona koongoye ka desktop nokuhoola kutwala.',
+    activeDesc:
+      'Kali kutumbuka kokulomu. Ombuyambeko wa OpenAmer oondjendela izise ngomizila futi ootumbula omushini wuwe. Okuvulika okutanga komuliku kutala kokushuna eshimo shino.',
     fetchingManifest: 'Oku kondisa matanifesti ombuyambeko...',
     error: 'Mfoola',
     hideOutput: 'Fika olupando lombuyambeko',
@@ -2232,13 +2292,14 @@ export const ng = defineLocale({
     copiedOutput: 'Iikopolelwa!',
     copyOutput: 'Kopola olupando',
     reloadRetry: 'Shikambela futi ubike',
-    unsupportedDesc: platform => `Okutula po kwopaulumati pokutameka oshikando shotango inaku monika ku ${platform} natango. Egulula oshiyakulilo shomalombwelo, ninga elombwelo lya landula, e to tameke ishewe opoloyama ndjika. Pootango dhi na okuya, etampulo ndika otali thigwa po.`,
+    unsupportedDesc: platform =>
+      `Okutula po kwopaulumati pokutameka oshikando shotango inaku monika ku ${platform} natango. Egulula oshiyakulilo shomalombwelo, ninga elombwelo lya landula, e to tameke ishewe opoloyama ndjika. Pootango dhi na okuya, etampulo ndika otali thigwa po.`,
     authNeedsOauth: provider => `Inga mo na ${provider} manga ino makela omweelo nguka.`,
     signInWith: provider => `Kota mo na ${provider}`,
     testSucceeded: (baseUrl, version) => `Wa kwatakanithwa na ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `Oonkatu ${completed} dha manithwa moonkatu ${total}`,
     currentStage: stage => ` -- ngashingeyi: ${stage}`,
-    lines: count => `${count} omusinda${count === 1 ? '' : 's'}`,
+    lines: count => `${count} omusinda${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Tuyeyela ndokutala neOpenAmer wa nhlanhla',
@@ -2258,28 +2319,29 @@ export const ng = defineLocale({
     apiKeyOptions: {
       fireworks: {
         short: 'API yemodelo o monotokela',
-        description: 'Kufikela monotokela ku modelo dzi Fireworks AI a hostingi.',
+        description: 'Kufikela monotokela ku modelo dzi Fireworks AI a hostingi.'
       },
       openrouter: {
         short: 'key imwe, modelo idzi',
-        description: 'Fireworks AI i hostingi makhumi wa modelo nge key imwe. Nkondo nzima ku makalelo matsha.',
+        description: 'Fireworks AI i hostingi makhumi wa modelo nge key imwe. Nkondo nzima ku makalelo matsha.'
       },
       openai: {
         short: 'Modelo dza GPT',
-        description: 'Kufikela monotokela ku modelo dza OpenAI.',
+        description: 'Kufikela monotokela ku modelo dza OpenAI.'
       },
       gemini: {
         short: 'Modelos Gemini',
-        description: 'Acesso direto aos modelos Google Gemini.',
+        description: 'Acesso direto aos modelos Google Gemini.'
       },
       xai: {
         short: 'Modelos Grok',
-        description: 'Acesso direto aos modelos xAI Grok.',
+        description: 'Acesso direto aos modelos xAI Grok.'
       },
       local: {
         short: 'Auto-hospedado',
-        description: 'Aponte o OpenAmer para um destino local ou auto-hospedado compatível com OpenAI (vLLM, llama.cpp, Ollama, etc).',
-      },
+        description:
+          'Aponte o OpenAmer para um destino local ou auto-hospedado compatível com OpenAI (vLLM, llama.cpp, Ollama, etc).'
+      }
     },
     backToSignIn: 'Voltar para iniciar sessão',
     getKey: 'Obter uma chave',
@@ -2292,7 +2354,7 @@ export const ng = defineLocale({
     flowSubtitles: {
       pkce: 'Abre o navegador para iniciar sessão e depois continua aqui',
       device_code: 'Abre uma página de verificação no navegador — o OpenAmer liga-se automaticamente',
-      external: 'Inicie sessão uma vez no terminal e depois volte para conversar',
+      external: 'Inicie sessão uma vez no terminal e depois volte para conversar'
     },
     signInFailed: 'Não foi possível iniciar sessão. Tente novamente.',
     pickDifferentProvider: 'Escolher outro fornecedor',
@@ -2317,11 +2379,13 @@ export const ng = defineLocale({
     connectedPicking: provider => `${provider} wa kwatakanithwa. Otatu hogolola omudhingoloko gwopetameko...`,
     signInWith: provider => `Kota mo na ${provider}`,
     openedBrowser: provider => `Otu egulula ${provider} momutaleli gwoye gwointaneta.`,
-    autoBrowser: provider => `Otu egulula ${provider} momutaleli gwoye gwointaneta. Pitikalela OpenAmer mpoka opo wu kwatakanithwe owala — kape na shoka wu na okukopa nenge okunambeka.`,
-    externalPending: provider => `${provider} oha yi mo okupitila mu CLI yayo. Enditha elombwelo ndika moshikankulitho shoomilandu, opo wu galuke nokuhogolola "Onda ya mo":`,
+    autoBrowser: provider =>
+      `Otu egulula ${provider} momutaleli gwoye gwointaneta. Pitikalela OpenAmer mpoka opo wu kwatakanithwe owala — kape na shoka wu na okukopa nenge okunambeka.`,
+    externalPending: provider =>
+      `${provider} oha yi mo okupitila mu CLI yayo. Enditha elombwelo ndika moshikankulitho shoomilandu, opo wu galuke nokuhogolola "Onda ya mo":`,
     deviceCodeOpened: provider => `Otwa egulula ${provider} momukonakonitumbuti gwoye. Tula mo okakode haka mpoka:`,
     price: (input, output) => `${input} mo / ${output} pondje kehe Mtok`,
-    docs: provider => `Omambo ga ${provider}`,
+    docs: provider => `Omambo ga ${provider}`
   },
   modelPicker: {
     title: 'Mudar de modelo',
@@ -2331,19 +2395,19 @@ export const ng = defineLocale({
     noModels: 'Nenhum modelo encontrado.',
     addProvider: 'Adicionar provedor',
     loadFailed: 'Kutombwela ku fula meyela akupongene',
-    noAuthenticatedProviders: 'A kunyingi vaprovideeri van\'holi.',
+    noAuthenticatedProviders: "A kunyingi vaprovideeri van'holi.",
     pro: 'Nhambo',
     proNeedsSubscription: 'Meyela yeNhambo yilanga subskripsaun yo OpenAmer yo kulipela.',
     free: 'Kimal',
     freeTier: 'Nível kimal',
     priceTitle: 'Ntoko ya Dyaku na Kuhaba kwa milione ya tókeni',
-    wasPrice: 'waxa',
+    wasPrice: 'waxa'
   },
   modelVisibility: {
     title: 'Meyela',
     search: 'Soma meyela',
-    noAuthenticatedProviders: 'A kunyingi vaprovideeri van\'holi.',
-    addProvider: 'Yika vaprovideeri…',
+    noAuthenticatedProviders: "A kunyingi vaprovideeri van'holi.",
+    addProvider: 'Yika vaprovideeri…'
   },
   shell: {
     windowControls: 'Tindikilo ta windowa',
@@ -2354,7 +2418,7 @@ export const ng = defineLocale({
       noModels: 'Kutana meyela',
       editModels: 'Langu meyela…',
       refreshModels: 'Fula meyela',
-      fast: 'Luviki',
+      fast: 'Luviki'
     },
     modelOptions: {
       noOptions: 'Hanga tano ta ku model',
@@ -2370,7 +2434,7 @@ export const ng = defineLocale({
       max: 'Kinene',
       ultra: 'Kale',
       updateFailed: 'Kutuna ku lajila heta tano ya model',
-      fastFailed: 'Kutuna ku lajila heta ndimi ya ngeha',
+      fastFailed: 'Kutuna ku lajila heta ndimi ya ngeha'
     },
     gatewayMenu: {
       gateway: 'Porte',
@@ -2385,7 +2449,7 @@ export const ng = defineLocale({
       recentActivity: 'Atividade recente',
       viewAllLogs: 'Ver todos os registos →',
       messagingPlatforms: 'Plataformas de mensagens',
-      connection: label => `Ekwatathano: ${label}`,
+      connection: label => `Ekwatathano: ${label}`
     },
     approvalMode: {
       title: 'Modo de aprovação',
@@ -2395,7 +2459,7 @@ export const ng = defineLocale({
       smartDescription: 'Avaliar automaticamente as ações e perguntar quando necessário',
       off: 'Desligado',
       offDescription: 'Executar sem solicitações de aprovação',
-      ariaLabel: mode => `Omukalo gwepitiko: ${mode}`,
+      ariaLabel: mode => `Omukalo gwepitiko: ${mode}`
     },
     statusbar: {
       unknown: 'Desconhecido',
@@ -2413,7 +2477,7 @@ export const ng = defineLocale({
       gatewayConnecting: 'nda connecta',
       gatewayOffline: 'online nola',
       gatewayRestarting: 'nda restart…',
-      gatewayTitle: 'Imo yerevangelo l\'ekelelo lOpenAmer',
+      gatewayTitle: "Imo yerevangelo l'ekelelo lOpenAmer",
       agents: 'Ageti',
       closeAgents: 'Fika ageti',
       openAgents: 'Fula ageti',
@@ -2435,18 +2499,19 @@ export const ng = defineLocale({
           subagent_definitions: 'Tinchauye tsubagent',
           system_prompt: 'Prompt ya sistimu',
           tool_definitions: 'Tinchauye tshipangu',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'Akukho idatha yecontext',
         loading: 'Ukuhlukana kwesikhombiso…',
         title: 'Ukusetshenziswa Kwezikhombiso',
         percentFull: percent => `${percent}% Sha yela`,
-        tokenSummary: (used, max) => `${used} / ${max} uutokeni`,
+        tokenSummary: (used, max) => `${used} / ${max} uutokeni`
       },
       openContextUsage: 'Vula ukuhlukana kwesikhombiso',
       session: 'Iseshini',
       runtimeSessionElapsed: 'Iseshini esisebenzayo',
-      yoloOn: 'YOLO yi tshuka — ema timilelo leyi nga khahlhelo tiyivela ku papalela. Click ku yi tshika. Shift+click yi tika hinkwayo.',
+      yoloOn:
+        'YOLO yi tshuka — ema timilelo leyi nga khahlhelo tiyivela ku papalela. Click ku yi tshika. Shift+click yi tika hinkwayo.',
       yoloOff: 'YOLO yi tshika — click ku papalela timilelo leyi nga khahlhelo. Shift+click yi tika hinkwayo.',
       modelNone: 'ku tala',
       noModel: 'hinemodeli',
@@ -2460,9 +2525,11 @@ export const ng = defineLocale({
       connectionSsh: host => `SSH: ${host}`,
       connectionRemote: host => `Kokule: ${host}`,
       connectionCloud: host => `Oshilemo: ${host}`,
-      connectionCloudTooltip: host => `Wa kwatakanithwa ku OpenAmer Oshilemo ku ${host} · nyonena opo wu gandje omayele`,
+      connectionCloudTooltip: host =>
+        `Wa kwatakanithwa ku OpenAmer Oshilemo ku ${host} · nyonena opo wu gandje omayele`,
       connectionSshTooltip: host => `Wa kwatakanithwa okupitila mu SSH ku ${host} · nyonena opo wu gandje omayele`,
-      connectionRemoteTooltip: host => `Wa kwatakanithwa koshitopolwa shokonyima shopokule ${host} · nyonena opo wu gandje omayele`,
+      connectionRemoteTooltip: host =>
+        `Wa kwatakanithwa koshitopolwa shokonyima shopokule ${host} · nyonena opo wu gandje omayele`,
       backendLabel: version => `oshitopolwa shokonyima eindululo ${version}`,
       commit: sha => `etsikilo ${sha}`,
       branch: branch => `oshitayi ${branch}`,
@@ -2470,8 +2537,8 @@ export const ng = defineLocale({
       failed: count => `${count} sha ndopa`,
       running: count => `${count} tashi longo`,
       modelTitle: (provider, model) => `Oshiholelwa · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   rightSidebar: {
     emptyTitle: 'Hau na ningi',
@@ -2487,8 +2554,8 @@ export const ng = defineLocale({
     terminalCloseOthers: 'Sikina eyiitavela',
     terminalCloseAll: 'Sikina yonene',
     addToChat: 'Yambula emulyengeni',
-    aria: 'N\'undapa wa right',
-    panelsAria: 'Mipandla ya n\'undapa wa right',
+    aria: "N'undapa wa right",
+    panelsAria: "Mipandla ya n'undapa wa right",
     files: 'Sisteme ya fa',
     noFolderSelected: 'Hamna folda yakatshwa',
     changeCwdTitle: 'Shinika folda ya kusebenzela',
@@ -2507,7 +2574,7 @@ export const ng = defineLocale({
     terminal: 'Terminale',
     folderTip: cwd => `${cwd} — dhenge opo u shintule ofolda`,
     couldNotPreview: path => `Inashi vulika okutala ${path} komeho`,
-    unreadableBody: error => `Inashi vulika okulesha ofolda ndjika (${error}).`,
+    unreadableBody: error => `Inashi vulika okulesha ofolda ndjika (${error}).`
   },
   preview: {
     tab: 'Ekuvela',
@@ -2526,7 +2593,7 @@ export const ng = defineLocale({
     renderedPreview: 'MONIKA',
     diff: 'KALULA',
     unknownSize: 'Tamanho tshikwama',
-    binaryTitle: 'Mukalati uyi n\'waba ya bináriu',
+    binaryTitle: "Mukalati uyi n'waba ya bináriu",
     largeTitle: 'Mukalati uyi mkulu',
     previewAnyway: 'Monika ntokaznau',
     truncated: 'Tshimbwela 512 KB.',
@@ -2535,7 +2602,8 @@ export const ng = defineLocale({
     editing: 'Ku heta',
     unsavedChanges: 'Mabadala a ma-salusa',
     diskChangedTitle: 'Mukalati muhindulikile pa disuku',
-    diskChangedBody: 'Mukalati uyu muhindulikile pa kuvulwa kwa wena. U-fulule n\'wako, nthi tula tika wa heta wola wutwele?',
+    diskChangedBody:
+      "Mukalati uyu muhindulikile pa kuvulwa kwa wena. U-fulule n'wako, nthi tula tika wa heta wola wutwele?",
     overwrite: 'Sobrescrever',
     discardReload: 'Descartar e recarregar',
     console: {
@@ -2556,7 +2624,7 @@ export const ng = defineLocale({
       sentTitle: 'Enviado para o chat',
       messages: count => `${count} omatumwalaka gokonsoli`,
       selected: count => `${count} ya hogololwa`,
-      sentMessage: count => `${count} oshinyolwa shomilandu${count === 1 ? 'y' : 'ies'} sha gwedhwa komunyoli`,
+      sentMessage: count => `${count} oshinyolwa shomilandu${count === 1 ? 'y' : 'ies'} sha gwedhwa komunyoli`
     },
     web: {
       appFailedToBoot: 'A aplicação de pré-visualização não conseguiu arrancar',
@@ -2577,27 +2645,31 @@ export const ng = defineLocale({
       reloadingNow: 'Puunapa ihulika ko hulika.',
       restartFailedTitle: 'Puunapa itashili kuulikola',
       restartFailedMessage: 'OpenAmer itashili kaulikola onserva.',
-      stillWorking: 'OpenAmer ushili ku shuna, kond e tashi kankana poshi yeuulikola. Komando ya serva ingaba ishambuka nga tumbu.',
+      stillWorking:
+        'OpenAmer ushili ku shuna, kond e tashi kankana poshi yeuulikola. Komando ya serva ingaba ishambuka nga tumbu.',
       workspaceReloading: 'Ongunhu oshikundulwa, puunapa ihulika',
-      moduleMimeDescription: 'Mimino ya module ituma novi ya MIME oshilepo. Kashila hi kelula, serva yemimino leyimikika ituma app ya Vite/React kokutuna no serva yonkunene yongunhu.',
+      moduleMimeDescription:
+        'Mimino ya module ituma novi ya MIME oshilepo. Kashila hi kelula, serva yemimino leyimikika ituma app ya Vite/React kokutuna no serva yonkunene yongunhu.',
       unreachableDescription: 'Efeni ya puunapa eyi shi ka kombelesa.',
       fallbackTitle: 'Puunapa',
       lookingRestart: taskId => `OpenAmer otayi kongo omugandji gwetalelo lyokomeho opo gu tamekwe ishewe (${taskId})`,
       startRestartFailed: message => `Inashi vulika okutameka ishewe omugandji: ${message}`,
-      finishedRestarting: message => `OpenAmer ya mana okutameka ishewe omugandji gwetalelo lyokomeho${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer ya mana okutameka ishewe omugandji gwetalelo lyokomeho${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Okutameka ishewe omugandji kwa punduka: ${message}`,
       fileChanged: url => `Efayili lya lunduluka, etalelo lyokomeho otali longwa ishewe: ${url}`,
       filesChanged: (count, url) => `${count} omalunduluko gomafayili, etalelo lyokomeho otali longwa ishewe: ${url}`,
       watchFailed: message => `Inashi vulika okutalela efayili lyetalelo lyokomeho: ${message}`,
       loadFailedConsole: (code, message) => `Okulonga kwa punduka${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Egulula ${url}`,
+      openTarget: url => `Egulula ${url}`
     },
     linkHint: 'âŒ˜/Ctrl-click para o painel de pré-visualização',
     closeTab: label => `Pata ${label}`,
     binaryBody: label => `Okutala ${label} komeho otaku vulu okuulika iinyolwa yi ha lesheka.`,
     largeBody: (label, size) => `${label} oyi li ${size}. OpenAmer otayi ka ulika ashike 512 KB yotango.`,
-    noInlineBody: mimeType => `${mimeType || 'This file type'} otayi vulu natango okugwedhwa po yi kale uuyelele wokukwathela.`,
-    saveFailed: message => `Inashi vulika okuhifadhi: ${message}`,
+    noInlineBody: mimeType =>
+      `${mimeType || 'This file type'} otayi vulu natango okugwedhwa po yi kale uuyelele wokukwathela.`,
+    saveFailed: message => `Inashi vulika okuhifadhi: ${message}`
   },
   zones: {
     showHeader: 'Mostrar cabeçalho',
@@ -2605,7 +2677,8 @@ export const ng = defineLocale({
     minimize: 'Minimizar',
     restore: 'Restaurar',
     closeRunningTitle: 'Fechar separador em execução?',
-    closeRunningBody: 'Esta conversa ainda está a funcionar (ou à espera da tua entrada). Fechar o separador oculta-o — a sessão mantém o progresso e pode ser reaberta na barra lateral.',
+    closeRunningBody:
+      'Esta conversa ainda está a funcionar (ou à espera da tua entrada). Fechar o separador oculta-o — a sessão mantém o progresso e pode ser reaberta na barra lateral.',
     closeRunningConfirm: 'Fechar separador',
     closeOthers: 'Fechar os outros',
     closeToRight: 'Fechar à direita',
@@ -2617,7 +2690,8 @@ export const ng = defineLocale({
     dirRight: 'Direita',
     pluginDisabledBody: 'Reativa-o em Definições → Plugins para trazer o painel de volta.',
     editTitle: 'Disposições',
-    editHint: 'Escolhe uma disposição ou arrasta painéis entre zonas. Clique com o botão direito numa zona para dividir.',
+    editHint:
+      'Escolhe uma disposição ou arrasta painéis entre zonas. Clique com o botão direito numa zona para dividir.',
     reset: 'Repor',
     templates: 'Modelos',
     custom: 'Londoloka',
@@ -2626,7 +2700,8 @@ export const ng = defineLocale({
     nameLayoutPlaceholder: 'Tayara ipheputha ye…',
     zoneEditorTitle: 'Mushini wa zone',
     editorHintPre: 'klikha ho yula ·',
-    editorHintPost: 'hindika mitsara · tambula ngacross zones kutuna uhlanganise · tambula mitsara eyabelelweyo kutuna ufulume',
+    editorHintPost:
+      'hindika mitsara · tambula ngacross zones kutuna uhlanganise · tambula mitsara eyabelelweyo kutuna ufulume',
     templateColumns: 'Mikolo',
     templateRows: 'Mitsara',
     templateGrid: 'Igrid',
@@ -2642,7 +2717,7 @@ export const ng = defineLocale({
     mergeZones: count => `Kututha iizona ${count}`,
     customZoneName: count => `Zone ya ${count} ya kuthikwa`,
     layoutNamePlaceholder: fallback => `Edina lya layout (${fallback})`,
-    zoneCount: count => `iitopolwa ${count}`,
+    zoneCount: count => `iitopolwa ${count}`
   },
   assistant: {
     thread: {
@@ -2678,7 +2753,7 @@ export const ng = defineLocale({
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Nena, ${time}`,
-      yesterday: time => `Oshikunwa, ${time}`,
+      yesterday: time => `Oshikunwa, ${time}`
     },
     approval: {
       gatewayDisconnected: 'OpenAmer gedina awukakati',
@@ -2692,7 +2767,8 @@ export const ng = defineLocale({
       reject: 'Tanga',
       alwaysTitle: 'Tshika mukula enu hiliku hinkwato?',
       alwaysAllow: 'Tshika hiliku hinkwato',
-      alwaysDescription: pattern => `Oshika shi adda pattern “${pattern}” kuallowlist yawo ya lelika (~/.openamer/config.yaml). OpenAmer itayi vulu okuya kwiilongela omalongelo ngaa — moshikalo shika nenge moshikalo sha kule.`,
+      alwaysDescription: pattern =>
+        `Oshika shi adda pattern “${pattern}” kuallowlist yawo ya lelika (~/.openamer/config.yaml). OpenAmer itayi vulu okuya kwiilongela omalongelo ngaa — moshikalo shika nenge moshikalo sha kule.`
     },
     clarify: {
       notReady: 'Kanga uukwatala hino awukakata',
@@ -2706,7 +2782,7 @@ export const ng = defineLocale({
       continueLabel: 'Tshikila',
       lateAnswerTip: 'Yandika eyitwela ye message ya ku landela',
       lateAnswerHint: 'I prompt tayi lisumelela. Tsanga nhlenghana eyi ku yandika hi message ya ku landela.',
-      lateAnswer: (question, choice) => `Re: "${question}" — omupatulo gwandje: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — omupatulo gwandje: ${choice}`
     },
     tool: {
       code: 'Kódó',
@@ -2731,113 +2807,113 @@ export const ng = defineLocale({
         edit_file: {
           pending: 'Dosolo otongolwa',
           pendingAction: 'Kutongola',
-          done: 'Faela eyalonguswa',
+          done: 'Faela eyalonguswa'
         },
         execute_code: {
           done: 'Código ophethiwe',
           pending: 'Kupanga script',
-          pendingAction: 'Kupanga script',
+          pendingAction: 'Kupanga script'
         },
         image_generate: {
           done: 'Mfumo oupangwa',
           pending: 'Kupanga mfumo',
-          pendingAction: 'Kupanga',
+          pendingAction: 'Kupanga'
         },
         list_files: {
           done: 'Dosolo otangwa',
           pending: 'Kutanga dosolo',
-          pendingAction: 'Kutanga',
+          pendingAction: 'Kutanga'
         },
         patch: {
           done: 'Dosolo olungisiwe',
           pending: 'Kulungisa dosolo',
-          pendingAction: 'Kulungisa',
+          pendingAction: 'Kulungisa'
         },
         read_file: {
           done: 'Dosolo osomwa',
           pending: 'Kusoma dosolo',
-          pendingAction: 'Kusoma',
+          pendingAction: 'Kusoma'
         },
         search_files: {
           done: 'Dosolo okwatiwe',
           pending: 'Kukwata dosolo',
-          pendingAction: 'Kukwata',
+          pendingAction: 'Kukwata'
         },
         browser_fill: {
           pendingAction: 'Ku tshimbela',
           done: 'Campo de formulário preenchido',
-          pending: 'A preencher o campo de formulário',
+          pending: 'A preencher o campo de formulário'
         },
         browser_navigate: {
           done: 'Página oyavulikwa',
           pending: 'Ku vula página',
-          pendingAction: 'Ku vula',
+          pendingAction: 'Ku vula'
         },
         browser_snapshot: {
           done: 'Snapshot ya página oyakputikwa',
           pending: 'Ku putika página',
-          pendingAction: 'Ku putika',
+          pendingAction: 'Ku putika'
         },
         browser_take_screenshot: {
           done: 'Screenshot oyakputikwa',
           pending: 'Ku putika screenshot',
-          pendingAction: 'Ku putika',
+          pendingAction: 'Ku putika'
         },
         browser_type: {
           done: 'Otypile pájina',
           pending: 'Ku tayela pájina',
-          pendingAction: 'Ku tayela',
+          pendingAction: 'Ku tayela'
         },
         clarify: {
           done: 'Uulikile lwili',
           pending: 'Ku ulika lwili',
-          pendingAction: 'Ku ulika',
+          pendingAction: 'Ku ulika'
         },
         cronjob: {
           done: 'Matafu ya cron',
           pending: 'Ku longoza matafu ya cron',
-          pendingAction: 'Ku longoza',
+          pendingAction: 'Ku longoza'
         },
         session_search_recall: {
           done: 'Eshunile emateko eshikulukwini',
           pending: 'Eshunila emateko eshikulukwini',
-          pendingAction: 'Eshunila',
+          pendingAction: 'Eshunila'
         },
         terminal: {
           done: 'Ejikutise imbuy',
           pending: 'Ejikwesa imbuy',
-          pendingAction: 'Ejikwese',
+          pendingAction: 'Ejikwese'
         },
         todo: {
           done: 'Eyangulile emilaba',
           pending: 'Eyangula emilaba',
-          pendingAction: 'Eyangula',
+          pendingAction: 'Eyangula'
         },
         vision_analyze: {
           done: 'Eingulile ifoto',
           pending: 'Eingula ifoto',
-          pendingAction: 'Eingula',
+          pendingAction: 'Eingula'
         },
         web_extract: {
           done: 'Aime mona',
           pending: 'Aiyena mona',
-          pendingAction: 'Aiyena',
+          pendingAction: 'Aiyena'
         },
         web_search: {
           done: 'Eshunile web',
           pending: 'Eshunila web',
-          pendingAction: 'Eshunila',
+          pendingAction: 'Eshunila'
         },
         write_file: {
           done: 'Eyangulile embudyakulo',
           pending: 'Eyangula embudyakulo',
-          pendingAction: 'A editar',
+          pendingAction: 'A editar'
         },
         browser_click: {
           done: 'Elemento da página clicado',
           pending: 'A clicar no elemento da página',
-          pendingAction: 'A clicar',
-        },
+          pendingAction: 'A clicar'
+        }
       },
       statusRecovered: 'Oyokolwa',
       statusDone: 'Kangana',
@@ -2852,11 +2928,11 @@ export const ng = defineLocale({
         ran: 'Vachitisha',
         running: 'Ku chitisha',
         ranCode: 'Vachitisha código',
-        runningCode: 'Kutula scripts',
+        runningCode: 'Kutula scripts'
       },
       prefixes: {
         browser: 'Navegador',
-        web: 'Internet',
+        web: 'Internet'
       },
       recoveredMany: count => `Okwa recoverwa konima yomapandulo ${count} ngoka ga faile`,
       failedMany: count => `Omikalo ${count} dha ndopa`,
@@ -2866,9 +2942,9 @@ export const ng = defineLocale({
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Otashi longo ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Otashi longo ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Otashi longo ${action.toLowerCase()}`
+      }
+    }
   },
   desktop: {
     yoloToggleFailed: 'YOLO uikwela',
@@ -2880,7 +2956,8 @@ export const ng = defineLocale({
     editFailed: 'Kulungisa faile',
     resumeFailed: 'Kufanaela faile',
     resumeStrandedTitle: 'Sesh(i) engewo ku loadwa',
-    resumeStrandedBody: 'Uk connections ye seshi epalume, ndii pakulelo tshidina. Ondjaneni esi gateway eshikwele, ndii pakulela.',
+    resumeStrandedBody:
+      'Uk connections ye seshi epalume, ndii pakulelo tshidina. Ondjaneni esi gateway eshikwele, ndii pakulela.',
     resumeRetry: 'Pakulela',
     nothingToBranch: 'Tali tshokopela',
     branchNeedsChat: 'Yime uye owambo mutumba wa ndondo eshikwele.',
@@ -2899,7 +2976,7 @@ export const ng = defineLocale({
       timedOut: 'Kokonyama kwadjalwa kulamba ngwaka. `openamer gateway` ingaba yitandika?',
       success: platform => `Okwa kuthwa kunda ${platform}. Longitha hapa opo u kendelele.`,
       systemNote: platform => `↻ Okwa kuthwa kunda ${platform} — longitha hapa opo u kendelele.`,
-      failed: error => `Handoff okwa faile: ${error}`,
+      failed: error => `Handoff okwa faile: ${error}`
     },
     cwdChangeFailed: 'Kutamula antumwila la utumela hakufali',
     cwdStagedTitle: 'Antumwila la utumela lyakulungisa',
@@ -2934,47 +3011,50 @@ export const ng = defineLocale({
     warningLine: message => `olombewalo: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} moshikako shika`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profile: ${current}. Longitha /profile <edina> nenge "New session" okuyi lya chat moprofile yikwaali.`,
+    profileStatus: current =>
+      `Profile: ${current}. Longitha /profile <edina> nenge "New session" okuyi lya chat moprofile yikwaali.`,
     noProfileNamed: (target, available) => `Ka pe profile yedina "${target}". Omolya: ${available}`,
     newChatsProfile: name => `Chat ompe otayi longitha profile ${name}.`,
-    branchTitle: n => `Omushangelo gwotango: Oshitayi #${n}`,
+    branchTitle: n => `Omushangelo gwotango: Oshitayi #${n}`
   },
   errors: {
     genericFailure: 'Kahisana kunene',
     boundaryTitle: 'Kahisana mukeka',
     boundaryDesc: 'Konelela kahitana ekulumbwisa. Imib dyetu ne settings zipatela.',
     reloadWindow: 'Saisa ineligibleu',
-    openLogs: 'Vula malogs',
+    openLogs: 'Vula malogs'
   },
   ui: {
     search: {
-      clear: 'Sensa search',
+      clear: 'Sensa search'
     },
     pagination: {
       label: 'Kupagina',
       previous: 'Kudjinga',
       previousAria: 'Yenda kunene',
       next: 'Tambulula',
-      nextAria: 'Yenda kunene',
+      nextAria: 'Yenda kunene'
     },
     sidebar: {
       title: 'Sidebara',
       description: 'Ehola sidebar ya mobile.',
-      toggle: 'Switcha Sidebara',
-    },
+      toggle: 'Switcha Sidebara'
+    }
   },
   prompts: {
     gatewayDisconnected: 'O gateway OpenAmer não está ligado',
     sudoSendFailed: 'Não foi possível enviar a palavra-passe sudo',
     secretSendFailed: 'Não foi possível enviar o segredo',
     sudoTitle: 'Palavra-passe de administrador',
-    sudoDesc: 'O OpenAmer precisa da sua palavra-passe sudo para executar um comando privilegiado. Esta é enviada apenas ao seu agente local.',
+    sudoDesc:
+      'O OpenAmer precisa da sua palavra-passe sudo para executar um comando privilegiado. Esta é enviada apenas ao seu agente local.',
     sudoPlaceholder: 'Palavra-passe sudo',
     secretTitle: 'Segredo obrigatório',
     secretDesc: 'O OpenAmer precisa de uma credencial para continuar.',
-    secretPlaceholder: 'Valor do segredo',
+    secretPlaceholder: 'Valor do segredo'
   },
   remoteDisplayBanner: {
-    message: reason => `Đang hoạt động kết xuất phần mềm — phát hiện hiển thị từ xa (${reason}). Tăng tốc GPU bị vô hiệu hóa để ngăn nhấp nháy.`,
-  },
+    message: reason =>
+      `Đang hoạt động kết xuất phần mềm — phát hiện hiển thị từ xa (${reason}). Tăng tốc GPU bị vô hiệu hóa để ngăn nhấp nháy.`
+  }
 })

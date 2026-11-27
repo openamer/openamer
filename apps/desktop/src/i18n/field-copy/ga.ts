@@ -6,249 +6,252 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "Môdel réamhshocraithe",
-    modelContextLength: "Fuairn cointexta",
-    fallbackProviders: "Móidil fillteacha",
-    toolsets: "Socraí uirliseí cumasa",
-    timezone: "Crios ama",
-    display: {
-      personality: "Pearsanta",
-      showReasoning: "Blocanna réasúnaithe",
+  model: 'Môdel réamhshocraithe',
+  modelContextLength: 'Fuairn cointexta',
+  fallbackProviders: 'Móidil fillteacha',
+  toolsets: 'Socraí uirliseí cumasa',
+  timezone: 'Crios ama',
+  display: {
+    personality: 'Pearsanta',
+    showReasoning: 'Blocanna réasúnaithe'
+  },
+  desktop: {
+    repoScanEnabled: 'Aimsitheoir taisceán go hÉireamh',
+    repoScanRoots: 'Fréamhacha aimsitheoir taisceán',
+    repoScanExcludePaths: 'Cosáin taisceán eisiúdaithe'
+  },
+  agent: {
+    maxTurns: 'Maximum céimeanna gníomhaire',
+    imageInputMode: 'Ceangail íomhá',
+    apiMaxRetries: 'Aththriailí API',
+    serviceTier: 'Leibhéal seirbhíse',
+    toolUseEnforcement: 'Cúinset úsáid uirlise'
+  },
+  terminal: {
+    cwd: 'Feitheamh oibre',
+    backend: 'Inneall chruthuithe',
+    timeout: 'Teorad ama ordaithe',
+    persistentShell: 'Shell buan',
+    envPassthrough: 'Trepas comhshaoil',
+    dockerImage: 'Íomhá Docker',
+    singularityImage: 'Íomhá Singularity',
+    modalImage: 'Íomhá Modal',
+    daytonaImage: 'Íomhá Daytona'
+  },
+  fileReadMaxChars: 'Teorad léite comhaid',
+  toolOutput: {
+    maxBytes: 'Teorad aschuir teirminasail',
+    maxLines: 'Teorad leathannaí comhaid',
+    maxLineLength: 'Teorad fad líne'
+  },
+  codeExecution: {
+    mode: 'Mód chruthuithe cóide'
+  },
+  approvals: {
+    mode: 'Mód cheadauithe',
+    timeout: 'Teorad ama cheadauithe',
+    mcpReloadConfirm: 'Deimhnigh athluitheáil MCP'
+  },
+  commandAllowlist: 'Liosta ceadaithe orraithe',
+  security: {
+    redactSecrets: 'Dúchraigh rúnda',
+    allowPrivateUrls: 'Ceadaigh URLanna príobháideacha'
+  },
+  browser: {
+    allowPrivateUrls: 'URLanna príobháideacha brámaí',
+    autoLocalForPrivateUrls: 'Brabhsála áitiúil le haghaidh URLanna príobháideacha'
+  },
+  checkpoints: {
+    enabled: 'Pointí seiceála comhaid',
+    maxSnapshots: 'Teorad pointí seiceála'
+  },
+  voice: {
+    recordKey: 'Aicearraíocht gutha',
+    maxRecordingSeconds: 'Maximum fad taifeadta',
+    autoTts: 'Léigh freagairtí os ard'
+  },
+  stt: {
+    enabled: 'Chainte go téacs',
+    echoTranscripts: 'Transscríbtaí a chúinear',
+    provider: 'Soláthraí chainte-go-téacs',
+    local: {
+      model: 'Môdel transcriúpta áitiúil',
+      language: 'Teanga transcriúpta'
     },
-    desktop: {
-      repoScanEnabled: "Aimsitheoir taisceán go hÉireamh",
-      repoScanRoots: "Fréamhacha aimsitheoir taisceán",
-      repoScanExcludePaths: "Cosáin taisceán eisiúdaithe",
+    openai: {
+      model: 'Môdel STT OpenAI'
     },
-    agent: {
-      maxTurns: "Maximum céimeanna gníomhaire",
-      imageInputMode: "Ceangail íomhá",
-      apiMaxRetries: "Aththriailí API",
-      serviceTier: "Leibhéal seirbhíse",
-      toolUseEnforcement: "Cúinset úsáid uirlise",
+    groq: {
+      model: 'Môdel STT Groq'
     },
-    terminal: {
-      cwd: "Feitheamh oibre",
-      backend: "Inneall chruthuithe",
-      timeout: "Teorad ama ordaithe",
-      persistentShell: "Shell buan",
-      envPassthrough: "Trepas comhshaoil",
-      dockerImage: "Íomhá Docker",
-      singularityImage: "Íomhá Singularity",
-      modalImage: "Íomhá Modal",
-      daytonaImage: "Íomhá Daytona",
+    mistral: {
+      model: 'Môdel STT Mistral'
     },
-    fileReadMaxChars: "Teorad léite comhaid",
-    toolOutput: {
-      maxBytes: "Teorad aschuir teirminasail",
-      maxLines: "Teorad leathannaí comhaid",
-      maxLineLength: "Teorad fad líne",
+    elevenlabs: {
+      modelId: 'Môdel STT ElevenLabs',
+      languageCode: 'Teanga ElevenLabs',
+      tagAudioEvents: 'Clibeanna imeachtaí fuaime',
+      diarize: 'Diarú cainteoirí'
+    }
+  },
+  tts: {
+    provider: 'Soláthraí téacs-go-chainte',
+    edge: {
+      voice: 'Guth Edge'
     },
-    codeExecution: {
-      mode: "Mód chruthuithe cóide",
+    openai: {
+      model: 'Môdel TTS OpenAI',
+      voice: 'Guth OpenAI'
     },
-    approvals: {
-      mode: "Mód cheadauithe",
-      timeout: "Teorad ama cheadauithe",
-      mcpReloadConfirm: "Deimhnigh athluitheáil MCP",
+    elevenlabs: {
+      voiceId: 'Guth ElevenLabs',
+      modelId: 'Môdel ElevenLabs'
     },
-    commandAllowlist: "Liosta ceadaithe orraithe",
-    security: {
-      redactSecrets: "Dúchraigh rúnda",
-      allowPrivateUrls: "Ceadaigh URLanna príobháideacha",
+    xai: {
+      voiceId: 'Guth xAI (Grok)',
+      language: 'Teanga xAI',
+      speed: 'Luas seinnimh xAI',
+      autoSpeechTags: 'Clibeanna cainte uathoibríochta xAI',
+      optimizeStreamingLatency: 'Optimú aga sroichte xAI',
+      sampleRate: 'Rátá samplála xAI',
+      bitRate: 'Rátá bití xAI'
     },
-    browser: {
-      allowPrivateUrls: "URLanna príobháideacha brámaí",
-      autoLocalForPrivateUrls: "Brabhsála áitiúil le haghaidh URLanna príobháideacha",
+    minimax: {
+      model: 'Môdel TTS MiniMax',
+      voiceId: 'Guth MiniMax'
     },
-    checkpoints: {
-      enabled: "Pointí seiceála comhaid",
-      maxSnapshots: "Teorad pointí seiceála",
+    mistral: {
+      model: 'Môdel TTS Mistral',
+      voiceId: 'Guth Mistral'
     },
-    voice: {
-      recordKey: "Aicearraíocht gutha",
-      maxRecordingSeconds: "Maximum fad taifeadta",
-      autoTts: "Léigh freagairtí os ard",
+    gemini: {
+      model: 'Môdel TTS Gemini',
+      voice: 'Guth Gemini'
     },
-    stt: {
-      enabled: "Chainte go téacs",
-      echoTranscripts: "Transscríbtaí a chúinear",
-      provider: "Soláthraí chainte-go-téacs",
-      local: {
-        model: "Môdel transcriúpta áitiúil",
-        language: "Teanga transcriúpta",
-      },
-      openai: {
-        model: "Môdel STT OpenAI",
-      },
-      groq: {
-        model: "Môdel STT Groq",
-      },
-      mistral: {
-        model: "Môdel STT Mistral",
-      },
-      elevenlabs: {
-        modelId: "Môdel STT ElevenLabs",
-        languageCode: "Teanga ElevenLabs",
-        tagAudioEvents: "Clibeanna imeachtaí fuaime",
-        diarize: "Diarú cainteoirí",
-      },
+    neutts: {
+      model: 'Môdel NeuTTS',
+      device: 'Gléas NeuTTS'
     },
-    tts: {
-      provider: "Soláthraí téacs-go-chainte",
-      edge: {
-        voice: "Guth Edge",
-      },
-      openai: {
-        model: "Môdel TTS OpenAI",
-        voice: "Guth OpenAI",
-      },
-      elevenlabs: {
-        voiceId: "Guth ElevenLabs",
-        modelId: "Môdel ElevenLabs",
-      },
-      xai: {
-        voiceId: "Guth xAI (Grok)",
-        language: "Teanga xAI",
-        speed: "Luas seinnimh xAI",
-        autoSpeechTags: "Clibeanna cainte uathoibríochta xAI",
-        optimizeStreamingLatency: "Optimú aga sroichte xAI",
-        sampleRate: "Rátá samplála xAI",
-        bitRate: "Rátá bití xAI",
-      },
-      minimax: {
-        model: "Môdel TTS MiniMax",
-        voiceId: "Guth MiniMax",
-      },
-      mistral: {
-        model: "Môdel TTS Mistral",
-        voiceId: "Guth Mistral",
-      },
-      gemini: {
-        model: "Môdel TTS Gemini",
-        voice: "Guth Gemini",
-      },
-      neutts: {
-        model: "Môdel NeuTTS",
-        device: "Gléas NeuTTS",
-      },
-      kittentts: {
-        model: "Môdel KittenTTS",
-        voice: "Guth KittenTTS",
-      },
-      piper: {
-        voice: "Guth Piper",
-      },
-      deepinfra: {
-        model: "Môdel TTS DeepInfra",
-        voice: "Guth DeepInfra",
-      },
+    kittentts: {
+      model: 'Môdel KittenTTS',
+      voice: 'Guth KittenTTS'
     },
-    memory: {
-      memoryEnabled: "Cuimhne leathan",
-      userProfileEnabled: "Próifíl úsáideora",
-      memoryCharLimit: "Buget cuimhne",
-      userCharLimit: "Buget próifíle",
-      provider: "Soláthraí cuimhne",
+    piper: {
+      voice: 'Guth Piper'
     },
-    context: {
-      engine: "Inneall cointexta",
-    },
-    compression: {
-      enabled: "Comhbhrú go hÉireamh",
-      threshold: "Tairseach comhbhrúite",
-      targetRatio: "Sprioc comhbhrúite",
-      protectLastN: "Teachtaireachtaí déanacha cosanta",
-    },
-    delegation: {
-      model: "Môdel fo-ghníomhaire",
-      provider: "Soláthraí fo-ghníomhaire",
-      maxIterations: "Teorad turas fo-ghníomhaire",
-      maxConcurrentChildren: "Fo-ghníomhairí comhthreoch",
-      childTimeoutSeconds: "Teorad ama fo-ghníomhaire",
-      reasoningEffort: "Iarracht réasúnaithe fo-ghníomhaire",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Nuashonraigh athruithe áitiúla laistigh den fheidhmchlár",
-    },
+    deepinfra: {
+      model: 'Môdel TTS DeepInfra',
+      voice: 'Guth DeepInfra'
+    }
+  },
+  memory: {
+    memoryEnabled: 'Cuimhne leathan',
+    userProfileEnabled: 'Próifíl úsáideora',
+    memoryCharLimit: 'Buget cuimhne',
+    userCharLimit: 'Buget próifíle',
+    provider: 'Soláthraí cuimhne'
+  },
+  context: {
+    engine: 'Inneall cointexta'
+  },
+  compression: {
+    enabled: 'Comhbhrú go hÉireamh',
+    threshold: 'Tairseach comhbhrúite',
+    targetRatio: 'Sprioc comhbhrúite',
+    protectLastN: 'Teachtaireachtaí déanacha cosanta'
+  },
+  delegation: {
+    model: 'Môdel fo-ghníomhaire',
+    provider: 'Soláthraí fo-ghníomhaire',
+    maxIterations: 'Teorad turas fo-ghníomhaire',
+    maxConcurrentChildren: 'Fo-ghníomhairí comhthreoch',
+    childTimeoutSeconds: 'Teorad ama fo-ghníomhaire',
+    reasoningEffort: 'Iarracht réasúnaithe fo-ghníomhaire'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'Nuashonraigh athruithe áitiúla laistigh den fheidhmchlár'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "Úsáidtear le haghaidh comhrá nua mura roghnaítear môdel eile sa chumadóir.",
-    modelContextLength: "Fágann 0 chun úsáid a bhaint as fuinneog chontextartha an mhóideil roghnaithe.",
-    fallbackProviders: "Iontrálacha provider:model malartacha chun triail a bhaint as má theip ar an mhódel réamhshocraithe.",
-    display: {
-      personality: "Stíl réamhshocraithe an chúntaí le haghaidh seisiún nua.",
-      showReasoning: "Taispeáin rannáin réasúnaithe nuair a sholáthraíonn an backend iad.",
+  model: 'Úsáidtear le haghaidh comhrá nua mura roghnaítear môdel eile sa chumadóir.',
+  modelContextLength: 'Fágann 0 chun úsáid a bhaint as fuinneog chontextartha an mhóideil roghnaithe.',
+  fallbackProviders:
+    'Iontrálacha provider:model malartacha chun triail a bhaint as má theip ar an mhódel réamhshocraithe.',
+  display: {
+    personality: 'Stíl réamhshocraithe an chúntaí le haghaidh seisiún nua.',
+    showReasoning: 'Taispeáin rannáin réasúnaithe nuair a sholáthraíonn an backend iad.'
+  },
+  desktop: {
+    repoScanEnabled: 'Scanann fillteanna áitiúla le haghaidh stórálaithe Git chun iad a thaispeáint i bhTionscadail.',
+    repoScanRoots: 'Fillteanna le scanadh. Fág folamh chun scanadh a dhéanamh ar do fhólder baile.',
+    repoScanExcludePaths: 'Fillteanna agus a gdescendants a fhágáil amuigh le linn aimshe stórálaithe.'
+  },
+  timezone: 'Úsáidtear nuair a bhfuil am áitiúil uisce ag OpenAmer. Folamh úsáideann an clog ama córas.',
+  agent: {
+    imageInputMode: 'Rialaithe conas a sheoltar ceangail íomhá leis an mhódel.',
+    maxTurns: 'Teorainn uachtarach ar chuir glaonna uirlise sula stopann OpenAmer rún.'
+  },
+  terminal: {
+    cwd: 'Fillteán tionscadail réamhshocraithe le haghaidh obair uirlise agus teirminéil.',
+    persistentShell: 'Coinnigh staid an sheilimh idir orduithe nuair a thacaíonn an backend leis.',
+    envPassthrough: 'Athrú comhthomhaisí timpeallachta le pasáil isteach i gcur i bhfeidhm na n-uirlisí.',
+    dockerImage: 'Íomhá coimeála a úsáidtear nuair is é Docker an cnámha feidhmhartha.',
+    singularityImage: 'Íomhá a úsáidtear nuair is é Singularity an cnámha feidhmhartha.',
+    modalImage: 'Íomhá a úsáidtear nuair is é Modal an cnámha feidhmhartha.',
+    daytonaImage: 'Íomhá a úsáidtear nuair is é Daytona an cnámha feidhmhartha.'
+  },
+  codeExecution: {
+    mode: 'Cé chomh dian a chuimiltear cur chóid éagair laithead an tionscadail reatha.'
+  },
+  fileReadMaxChars: 'Uasmhéid carachtar a fhéadann OpenAmer a léamh as iarratas comhartha amháin.',
+  approvals: {
+    mode: 'Conas a bhíonn OpenAmer ag déanamh ordaithe a bhfuil cead follathraithe ag teacht.',
+    timeout: 'Cé chomh fada a bhíonn prompts ceadaithe ag feithimh sula dteimpeálann siad.'
+  },
+  security: {
+    redactSecrets: 'Folaigh rúnda a aimsítear ó chontaint atá le feiceáil don mhódel nuair is féidir.'
+  },
+  checkpoints: {
+    enabled: 'Cruthaigh snapshotanna rollback roimh chuir eagair comhad.'
+  },
+  memory: {
+    memoryEnabled: 'Sábháil cuimhní buan a fhéadfaidh cabhair a thabhairt do sheisiúní amach anseo.',
+    userProfileEnabled: 'Coinnigh próifil chomhbhrúite de chleanntaí an úsáideora.'
+  },
+  context: {
+    engine: 'Straitéis chun comhráite fada a bhainistiú gar don teorainn chontextartha.'
+  },
+  compression: {
+    enabled: 'Aimsigh comhartha seanaithe nuair a fhásann comhráite.'
+  },
+  voice: {
+    autoTts: 'Labhair freagraí an chúntaí go huathoibríoch.'
+  },
+  tts: {
+    xai: {
+      voiceId: 'ID gutha xAI (m.sh. eve) nó ID gutha saincheaptha.',
+      language: 'Cód teanga labhrartha (m.sh. en, pt-BR) nó "auto" chun braite automatach.',
+      speed: 'Luas atáirseála. 0.7 = níos moille, 1.0 = gnáth, 1.5 = níos tapa.',
+      autoSpeechTags:
+        'Ceadaigh do LLM clibeanna fuaime expressive ([laughing], [sighs]) a chur isteach sa script sula dhéantar synthesis.',
+      optimizeStreamingLatency: 'Malartas idir moille agus cáilíocht. 0 = an fearr cáilíocht, 2 = an lagú moille.',
+      sampleRate: 'Ráta samplála fuaim in Hz. Níos airde = cáilíocht níos fearr, comhaid níos móra.',
+      bitRate: 'Ráta bitá MP3 in bps. Ní bhfuil sé i bhfeidhm ach nuair is é mp3 an codec.'
     },
-    desktop: {
-      repoScanEnabled: "Scanann fillteanna áitiúla le haghaidh stórálaithe Git chun iad a thaispeáint i bhTionscadail.",
-      repoScanRoots: "Fillteanna le scanadh. Fág folamh chun scanadh a dhéanamh ar do fhólder baile.",
-      repoScanExcludePaths: "Fillteanna agus a gdescendants a fhágáil amuigh le linn aimshe stórálaithe.",
-    },
-    timezone: "Úsáidtear nuair a bhfuil am áitiúil uisce ag OpenAmer. Folamh úsáideann an clog ama córas.",
-    agent: {
-      imageInputMode: "Rialaithe conas a sheoltar ceangail íomhá leis an mhódel.",
-      maxTurns: "Teorainn uachtarach ar chuir glaonna uirlise sula stopann OpenAmer rún.",
-    },
-    terminal: {
-      cwd: "Fillteán tionscadail réamhshocraithe le haghaidh obair uirlise agus teirminéil.",
-      persistentShell: "Coinnigh staid an sheilimh idir orduithe nuair a thacaíonn an backend leis.",
-      envPassthrough: "Athrú comhthomhaisí timpeallachta le pasáil isteach i gcur i bhfeidhm na n-uirlisí.",
-      dockerImage: "Íomhá coimeála a úsáidtear nuair is é Docker an cnámha feidhmhartha.",
-      singularityImage: "Íomhá a úsáidtear nuair is é Singularity an cnámha feidhmhartha.",
-      modalImage: "Íomhá a úsáidtear nuair is é Modal an cnámha feidhmhartha.",
-      daytonaImage: "Íomhá a úsáidtear nuair is é Daytona an cnámha feidhmhartha.",
-    },
-    codeExecution: {
-      mode: "Cé chomh dian a chuimiltear cur chóid éagair laithead an tionscadail reatha.",
-    },
-    fileReadMaxChars: "Uasmhéid carachtar a fhéadann OpenAmer a léamh as iarratas comhartha amháin.",
-    approvals: {
-      mode: "Conas a bhíonn OpenAmer ag déanamh ordaithe a bhfuil cead follathraithe ag teacht.",
-      timeout: "Cé chomh fada a bhíonn prompts ceadaithe ag feithimh sula dteimpeálann siad.",
-    },
-    security: {
-      redactSecrets: "Folaigh rúnda a aimsítear ó chontaint atá le feiceáil don mhódel nuair is féidir.",
-    },
-    checkpoints: {
-      enabled: "Cruthaigh snapshotanna rollback roimh chuir eagair comhad.",
-    },
-    memory: {
-      memoryEnabled: "Sábháil cuimhní buan a fhéadfaidh cabhair a thabhairt do sheisiúní amach anseo.",
-      userProfileEnabled: "Coinnigh próifil chomhbhrúite de chleanntaí an úsáideora.",
-    },
-    context: {
-      engine: "Straitéis chun comhráite fada a bhainistiú gar don teorainn chontextartha.",
-    },
-    compression: {
-      enabled: "Aimsigh comhartha seanaithe nuair a fhásann comhráite.",
-    },
-    voice: {
-      autoTts: "Labhair freagraí an chúntaí go huathoibríoch.",
-    },
-    tts: {
-      xai: {
-        voiceId: "ID gutha xAI (m.sh. eve) nó ID gutha saincheaptha.",
-        language: "Cód teanga labhrartha (m.sh. en, pt-BR) nó \"auto\" chun braite automatach.",
-        speed: "Luas atáirseála. 0.7 = níos moille, 1.0 = gnáth, 1.5 = níos tapa.",
-        autoSpeechTags: "Ceadaigh do LLM clibeanna fuaime expressive ([laughing], [sighs]) a chur isteach sa script sula dhéantar synthesis.",
-        optimizeStreamingLatency: "Malartas idir moille agus cáilíocht. 0 = an fearr cáilíocht, 2 = an lagú moille.",
-        sampleRate: "Ráta samplála fuaim in Hz. Níos airde = cáilíocht níos fearr, comhaid níos móra.",
-        bitRate: "Ráta bitá MP3 in bps. Ní bhfuil sé i bhfeidhm ach nuair is é mp3 an codec.",
-      },
-      neutts: {
-        device: "Gléas áitiúil infeire do NeuTTS.",
-      },
-    },
-    stt: {
-      enabled: "Cumasaigh tras-scríbhneadh labhair áitiúil nó atá tacaíte ag provider.",
-      echoTranscripts: "Postáil tras-scríbhneadh amhail 🎙️ na teachtaireachtaí gutha ar ais don chomhrá.",
-      elevenlabs: {
-        languageCode: "Cód teanga roghnach ISO-639-3. Fágann folamh ElevenLabs braite a dhéanamh go huathoibríoch.",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "Nuair a nuashonraíonn OpenAmer é féin ón bhfheidhmiamh (gan prompt teirminéil), coinnigh ciontaithe áitiúla foinse (stash) nó caith i leataobh (discard). Cuireann nuashonruithe teirminéil cead i gcónaí.",
-    },
+    neutts: {
+      device: 'Gléas áitiúil infeire do NeuTTS.'
+    }
+  },
+  stt: {
+    enabled: 'Cumasaigh tras-scríbhneadh labhair áitiúil nó atá tacaíte ag provider.',
+    echoTranscripts: 'Postáil tras-scríbhneadh amhail 🎙️ na teachtaireachtaí gutha ar ais don chomhrá.',
+    elevenlabs: {
+      languageCode: 'Cód teanga roghnach ISO-639-3. Fágann folamh ElevenLabs braite a dhéanamh go huathoibríoch.'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'Nuair a nuashonraíonn OpenAmer é féin ón bhfheidhmiamh (gan prompt teirminéil), coinnigh ciontaithe áitiúla foinse (stash) nó caith i leataobh (discard). Cuireann nuashonruithe teirminéil cead i gcónaí.'
+  }
 })

@@ -56,7 +56,7 @@ export const ts = defineLocale({
       'nav.skills': 'Ala sikaɾo',
       'nav.messaging': 'Ala mbozameli',
       'nav.artifacts': 'Ala arikti',
-      'nav.cron': 'Ala imijelo yamisiɛl\'e',
+      'nav.cron': "Ala imijelo yamisiɛl'e",
       'nav.agents': 'Ala agɛntɛ',
       'session.new': 'Sesino sa novɛ',
       'session.newTab': 'Tabla sa novɛ sesino',
@@ -84,7 +84,7 @@ export const ts = defineLocale({
       'view.showFiles': 'Bɔbɔ ye fɔntɔrɛ',
       'composer.help': 'Mpfuno wo hatlisa',
       'composer.history': 'Cinca popover / matimu',
-      'composer.cancel': 'Pfala popover Â· tshika ku fambisa',
+      'composer.cancel': 'Pfala popover Â· tshika ku fambisa'
     },
     set: 'Seta',
     categories: {
@@ -92,7 +92,7 @@ export const ts = defineLocale({
       profiles: 'Profiɛ',
       session: 'Sesino',
       navigation: 'Nakɔnithi',
-      view: 'Vui',
+      view: 'Vui'
     },
     title: 'Switlhari swa khibodo',
     search: 'Lavisisa switlhari…',
@@ -101,7 +101,7 @@ export const ts = defineLocale({
     resetAll: 'Pfuxela hinkwaswo',
     pressKey: 'Tshikelela khibodo…',
     subtitle: open => `Tika shortcut leswaku u tlula nga yona · ${open} u pfumela panel leyi.`,
-    conflictWith: label => `Na yona boha go “${label}”`,
+    conflictWith: label => `Na yona boha go “${label}”`
   },
   settings: {
     model: {
@@ -113,56 +113,60 @@ export const ts = defineLocale({
       defaultsFailed: 'Faka vumelana vamodeli vamodeli',
       auxiliaryTitle: 'Modeli abaphambili',
       resetAllToMain: 'Faka zonke kumodeli wamandla',
-      auxiliaryDesc: 'Imisebenzi yabaphambili ikhuphe kumodeli wamandla. Beka modeli abaphambile kunoma iyiphi imisebenzi ukuze uqobelwe.',
+      auxiliaryDesc:
+        'Imisebenzi yabaphambili ikhuphe kumodeli wamandla. Beka modeli abaphambile kunoma iyiphi imisebenzi ukuze uqobelwe.',
       setToMain: 'Faka kumodeli wamandla',
       change: 'Shintsha',
       autoUseMain: 'auto · sebentisa modeli wamandla',
       providerDefault: '(mphepo dumelwa)',
       fallbackAdd: 'Faka isivumbure',
-      fallbackEmpty: 'Hoyo akho isivumbure modeli — kumodeli wamandla uyisetshenziselwa ngaphandle kwezinye izenzela ukuba kufanele.',
+      fallbackEmpty:
+        'Hoyo akho isivumbure modeli — kumodeli wamandla uyisetshenziselwa ngaphandle kwezinye izenzela ukuba kufanele.',
       notInCatalog: 'akwakho kuyena mphepo yamodeli — amalungelo angadlala esivumbure.',
       tasks: {
         vision: {
           label: 'Bukhulu',
-          hint: 'Ukuskena isithombe',
+          hint: 'Ukuskena isithombe'
         },
         web_extract: {
           label: 'Ukuhlola webhizinisi',
-          hint: 'Ukwahlola ikhasi',
+          hint: 'Ukwahlola ikhasi'
         },
         compression: {
           label: 'Ukugcina',
-          hint: 'Ukugcina umongo',
+          hint: 'Ukugcina umongo'
         },
         skills_hub: {
           label: 'Ibhokisi labafundile',
-          hint: 'Isikhathi sokufuna isifundo',
+          hint: 'Isikhathi sokufuna isifundo'
         },
         approval: {
           label: 'Umbhalo wokuvuma',
-          hint: 'Sokuvuma okuyingqayi',
+          hint: 'Sokuvuma okuyingqayi'
         },
         mcp: {
           hint: 'Isihlelo somoya esivumbure esivumbure',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Ukwahlola isihloko',
-          hint: 'Izihloko zemininingo',
+          hint: 'Izihloko zemininingo'
         },
         curator: {
           label: 'Umncintiseli',
-          hint: 'Ukwahlola isifundo sokusetshenziswa',
-        },
+          hint: 'Ukwahlola isifundo sokusetshenziswa'
+        }
       },
       loading: 'Ku layicha vuhlanganisi bya modolo...',
-      appliesDesc: 'Swi tirha eka tisessiono letintshwa. Tirhisa mphikeli wa modolo eka composer ku cinca hi ku hatlisa chat leyi tirhaka.',
-      provider: 'Muphakeli',
+      appliesDesc:
+        'Swi tirha eka tisessiono letintshwa. Tirhisa mphikeli wa modolo eka composer ku cinca hi ku hatlisa chat leyi tirhaka.',
+      provider: 'Muphakeli'
     },
     providers: {
       connectAccount: 'Faka ikhonto',
       haveApiKey: 'Unayo nesisu esiyisihloko esiyisihloko?',
-      intro: 'Faka ikhonto nesisu esiyisihloko esiyisihloko — akho nesisu esiyisihloko esiyisihloko esiyisihloko. OpenAmer ikhuphe isivumbure sebhizininisi kwakho, lapho kufunekile khona kukho.',
+      intro:
+        'Faka ikhonto nesisu esiyisihloko esiyisihloko — akho nesisu esiyisihloko esiyisihloko esiyisihloko. OpenAmer ikhuphe isivumbure sebhizininisi kwakho, lapho kufunekile khona kukho.',
       connected: 'Kufakwe',
       collapse: 'Faka ikhonto',
       connectAnother: 'Faka mphepo enye',
@@ -175,21 +179,25 @@ export const ts = defineLocale({
       noKeysMatch: 'A ku na vahaxi lava twananaka na mpfuxeto wa wena.',
       localEndpoint: {
         title: 'Endpoint ya laha / yo hlawuleka',
-        description: 'Veka OpenAmer eka endpoint yihi kumbe yihi leyi twananaka na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, swin\'we).',
+        description:
+          "Veka OpenAmer eka endpoint yihi kumbe yihi leyi twananaka na OpenAI (Zyphra, vLLM, llama.cpp, Ollama, swin'we)."
       },
       loading: 'Ku paka vahaxi...',
       removeConfirm: provider => `Sula ${provider}?`,
       removeExternalGeneric: provider => `${provider} yi lawuriwa hi CLI ya yona — yi suse kwalaho.`,
       removeKeyManaged: provider => `${provider} yi lulamisiwile hi xilotlelo xa API. Yi suse eka Swilotlelo swa API.`,
-      removeTerminalConfirm: (provider, command) => `${provider} bağlantısını kes? Kimlik bilgilerini temizlemek için terminalde "${command}" komutu çalıştırılır.`,
+      removeTerminalConfirm: (provider, command) =>
+        `${provider} bağlantısını kes? Kimlik bilgilerini temizlemek için terminalde "${command}" komutu çalıştırılır.`,
       removeTerminalRunning: provider => `Terminalde ${provider} bağlantı kesme işlemi çalıştırılıyor…`,
       removedMessage: provider => `${provider} yi susiwile.`,
-      failedRemove: provider => `${provider} kaldırılamadı`,
+      failedRemove: provider => `${provider} kaldırılamadı`
     },
     appearance: {
       pet: {
-        intro: 'Amukela mascot ya petdex leyi papamalaka ehenhla ka app naswona yi hlamula leswi OpenAmer yi swi endlaka — yi tsutsuma loko switirhisiwa swi tirha, yi tlanga hi ntsako loko ku humelela, yi nyama loko ku va ni swihoxo.',
-        restartHint: 'Swifuwo swi lava ku sunguriwa nakambe hi ku hatlisa — app leyi tirhaka yi sungule ku nga si engetiwa xiphemu lexi. Tshika u tlhela u pfule OpenAmer, kutani u vuya la.',
+        intro:
+          'Amukela mascot ya petdex leyi papamalaka ehenhla ka app naswona yi hlamula leswi OpenAmer yi swi endlaka — yi tsutsuma loko switirhisiwa swi tirha, yi tlanga hi ntsako loko ku humelela, yi nyama loko ku va ni swihoxo.',
+        restartHint:
+          'Swifuwo swi lava ku sunguriwa nakambe hi ku hatlisa — app leyi tirhaka yi sungule ku nga si engetiwa xiphemu lexi. Tshika u tlhela u pfule OpenAmer, kutani u vuya la.',
         on: 'Tirha',
         off: 'Dzima',
         scaleTitle: 'Sayizi',
@@ -197,9 +205,10 @@ export const ts = defineLocale({
         roamTitle: 'Buma',
         roamDesc: 'Tshika xifuwo xi bumabuma endzeni ka windu hi xoxe loko xi nga endli nchumu.',
         chooseTitle: 'Hlawula xifuwo',
-        chooseDesc: 'Ku hlawula xin\'we swi xi hloma (loko swi laveka) naswona swi xi endla xi tirha.',
+        chooseDesc: "Ku hlawula xin'we swi xi hloma (loko swi laveka) naswona swi xi endla xi tirha.",
         searchPlaceholder: 'Lava swifuwo…',
-        unreachable: 'A swi kotekanga ku fikelela galari ya petdex. Kambisisa vuhlanganisi bya wena ivi u pfule tluka leri nakambe.',
+        unreachable:
+          'A swi kotekanga ku fikelela galari ya petdex. Kambisisa vuhlanganisi bya wena ivi u pfule tluka leri nakambe.',
         installedTag: 'yi hlomiwile',
         generatedTag: 'Yi endliwe',
         deleteBody: 'Leswi swi susa xifuwo hilaha ku nga heriki — a xi nge hlomiwi nakambe.',
@@ -222,10 +231,11 @@ export const ts = defineLocale({
         adoptFailed: slug => `A ku ponoketsa ${slug}`,
         uninstallFailed: slug => `A ku ponoketsa ku sula ${slug}`,
         renameFailed: slug => `A ku ponoketsa ku vula ${slug}.`,
-        exportFailed: slug => `A ku ponoketsa ku rhendzelela ${slug}`,
+        exportFailed: slug => `A ku ponoketsa ku rhendzelela ${slug}`
       },
       title: 'Mavonelo',
-      intro: 'Leri i swilaviso swa vonele swa desikithopo ntsena. Modo yi lawula ku pfunyuka; theme yi lawula palete ya mihlovo na xivumbeko xa fasete ya mbulavulo.',
+      intro:
+        'Leri i swilaviso swa vonele swa desikithopo ntsena. Modo yi lawula ku pfunyuka; theme yi lawula palete ya mihlovo na xivumbeko xa fasete ya mbulavulo.',
       colorMode: 'Modo wa mihlovo',
       colorModeDesc: 'Hlawula modo lowu tiyeke kumbe tshika OpenAmer yi landzelela xinawu xa sisiteme ya wena.',
       toolViewTitle: 'Ku vonisa ku vitana tool',
@@ -236,7 +246,8 @@ export const ts = defineLocale({
       backdropTitle: 'Xifunengeto xa mbulavulo',
       backdropDesc: 'Xifaniso xa xihaxa xo phuphuka lexi nga le ndzhaku wa mbulavulo.',
       embedsTitle: 'Swiendlisi swa le xikarhi',
-      embedsDesc: 'Swivonisi swa le mahlweni swa masayiti ya vunharhu (YouTube, X, …) swa layicha. Vutisa yi kombisa xivonisi xa nkarhi kufikela loko u pfumelela xin\'we na xin\'we; Nkarhi hinkwawo yi swi layicha hi ku tiswikela; Tima yi hlayisa swihlanganisi swo olova.',
+      embedsDesc:
+        "Swivonisi swa le mahlweni swa masayiti ya vunharhu (YouTube, X, …) swa layicha. Vutisa yi kombisa xivonisi xa nkarhi kufikela loko u pfumelela xin'we na xin'we; Nkarhi hinkwawo yi swi layicha hi ku tiswikela; Tima yi hlayisa swihlanganisi swo olova.",
       embedsAsk: 'Vutisa',
       embedsAlways: 'Nkarhi hinkwawo',
       embedsOff: 'Tima',
@@ -247,17 +258,19 @@ export const ts = defineLocale({
       themeTitle: 'Xivumbeko',
       themeDesc: 'Tipalete ta desikithopo ntsena. Modo lowu hlawuriweke wu tirhisiwa ehenhla.',
       installTitle: 'Nghenisa ku suka eka VS Code',
-      installDesc: 'Nametela id ya extension ya Marketplace (xikombiso dracula-theme.theme-dracula) ku hundzula theme ya mihlovo ya yona yi va palete ya desikithopo.',
+      installDesc:
+        'Nametela id ya extension ya Marketplace (xikombiso dracula-theme.theme-dracula) ku hundzula theme ya mihlovo ya yona yi va palete ya desikithopo.',
       installButton: 'Nghenisa',
       installing: 'Ku nghenisa…',
       installError: 'A swi kotekanga ku nghenisa theme yoleyo.',
       removeTheme: 'Susa theme',
       importedBadge: 'Yi nghenisiwile',
       installPlaceholder: 'muhumelerisi.ndlandlamuxo',
-      uiScaleDesc: (percent: number) => `Uygulamanın tamamındaki metinleri ve kontrolleri ölçeklendirir. Cmd/Ctrl ile +, - ve 0 tuşları da çalışır. Güncel: %${percent}.`,
+      uiScaleDesc: (percent: number) =>
+        `Uygulamanın tamamındaki metinleri ve kontrolleri ölçeklendirir. Cmd/Ctrl ile +, - ve 0 tuşları da çalışır. Güncel: %${percent}.`,
       embedsReset: (count: number) => `Tlherisela ${count} leswi pfumeleriweke ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Hlayisile eka profile ya ${profile} — profile yin'wana i ta hlayisa theme ya yona.`,
-      installed: name => `Ashiye “${name}”.`,
+      installed: name => `Ashiye “${name}”.`
     },
     about: {
       versionUnavailable: 'Vhezheni a yi kumeki',
@@ -274,17 +287,19 @@ export const ts = defineLocale({
       tapCheck: 'Tikita "Kambisisa sweswi" ku lava timpfuxetelo.',
       justNowSuffix: '· sweswi',
       automaticUpdates: 'Timpfuxetelo to tirha hi xoxe',
-      automaticUpdatesDesc: 'OpenAmer yi kambisisa timpfuxetelo hi xoxe endzhaku naswona yi ku tivisa loko yin\'we yi lulamile.',
+      automaticUpdatesDesc:
+        "OpenAmer yi kambisisa timpfuxetelo hi xoxe endzhaku naswona yi ku tivisa loko yin'we yi lulamile.",
       never: 'ni siku',
       justNow: 'sweswi',
       heading: 'OpenAmer Desikithopo',
       version: value => `Nkandziyiso ${value}`,
-      updateReady: count => `Mpfuxeto lowuntshwa wu lunghekile (wu katsa ku cinca ka ${count}${count === 1 ? '' : 's'}).`,
+      updateReady: count =>
+        `Mpfuxeto lowuntshwa wu lunghekile (wu katsa ku cinca ka ${count}${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Hlayisile nga ${age}`,
       branchCommit: (branch, commit) => `Dal ${branch} · Commit ${commit}`,
       minAgo: count => `Timinete ta ${count} leti hundzeke`,
       hoursAgo: count => `${count} wa tiawara leti hundzeke`,
-      daysAgo: count => `${count} wa masiku lama hundzeke`,
+      daysAgo: count => `${count} wa masiku lama hundzeke`
     },
     searchPlaceholder: {
       keys: 'Lavisisa tikhii ta API...',
@@ -292,21 +307,21 @@ export const ts = defineLocale({
       sessions: 'Lavisisa tisessioni leti hlayisiweke...',
       about: 'Mayelana na OpenAmer Desktop',
       config: 'Lava swivumbeko...',
-      gateway: 'Vuhlanganisi bya Gateway...',
+      gateway: 'Vuhlanganisi bya Gateway...'
     },
     modeOptions: {
       light: {
         label: 'Ku vonakala',
-        description: 'Tifasete to pfunyuka ta desikithopo',
+        description: 'Tifasete to pfunyuka ta desikithopo'
       },
       dark: {
         label: 'Nyama',
-        description: 'Ndhawu yo tirhela yo nga pfunyuki',
+        description: 'Ndhawu yo tirhela yo nga pfunyuki'
       },
       system: {
         label: 'Sisiteme',
-        description: 'Landzelela xivumbeko xa OS',
-      },
+        description: 'Landzelela xivumbeko xa OS'
+      }
     },
     mcp: {
       reloadFailed: 'Ku pfuxeta MCP swi tsandzekile',
@@ -368,10 +383,11 @@ export const ts = defineLocale({
       catalogInstallStarted: name => `${name} yükleniyor... tamamlandığında yeni oturumlar için geçerli olur.`,
       catalogInstallFailed: name => `${name} yüklenemedi`,
       catalogEnvPrompt: name => `${name} yi lava vuxokoxoko byo nghena`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yi pfuriwile`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} yi pfuriwile`,
       authenticatedMessage: (server, count) => `${server}: switirhisiwa swa ${count}`,
       enableTool: tool => `Enables ${tool}`,
-      disableTool: tool => `Disables ${tool}`,
+      disableTool: tool => `Disables ${tool}`
     },
     config: {
       none: 'A ku na',
@@ -387,7 +403,8 @@ export const ts = defineLocale({
       imported: 'Vheyini yi nghenisiwile',
       invalidJson: 'JSON ya vheyini a yi tirhiki',
       keepAwakeTitle: 'Hlayisa khompyuta yi pfungele',
-      keepAwakeDesc: 'Tshika muchini lowu wu etlela leswaku mintirho yo leha kumbe ya vusiku yi ya emahlweni. Xikrini xi nga ha dzima.',
+      keepAwakeDesc:
+        'Tshika muchini lowu wu etlela leswaku mintirho yo leha kumbe ya vusiku yi ya emahlweni. Xikrini xi nga ha dzima.'
     },
     credentials: {
       pasteKey: 'Nametela khiyi',
@@ -397,7 +414,7 @@ export const ts = defineLocale({
       remove: 'Susa',
       getKey: 'Kuma khiyi',
       saving: 'Ku hlayisa',
-      pasteLabelKey: label => `Bamisa ${label} key`,
+      pasteLabelKey: label => `Bamisa ${label} key`
     },
     envActions: {
       credentialActions: 'Mintirho ya khredensiale',
@@ -408,7 +425,7 @@ export const ts = defineLocale({
       replace: 'Siva',
       set: 'Veka',
       clear: 'Sula',
-      actionsFor: label => `Miyito ya ${label}`,
+      actionsFor: label => `Miyito ya ${label}`
     },
     gateway: {
       loading: 'Ku layicha swilulamisi swa gateway...',
@@ -416,21 +433,26 @@ export const ts = defineLocale({
       unavailableDesc: 'Bloro ya IPC ya desikithopo a yi paluxi swilulamisi swa gateway.',
       title: 'Nxhumo wa Gateway',
       envOverride: 'Ku cinca ka env',
-      intro: 'OpenAmer Desktop yi sungula gateway ya yona ya laha kaya hi ntolovelo. Tirhisa gateway ya le kule loko u lava leswaku app leyi yi lawula backend ya OpenAmer leyi tirhaka kale eka muchini wun\'wan\'wa kumbe endzhaku ka proxy leyi tshembiwaka. Hlawula profile leyi nga laha hansi ku yi nyika host ya yona ya le kule.',
+      intro:
+        "OpenAmer Desktop yi sungula gateway ya yona ya laha kaya hi ntolovelo. Tirhisa gateway ya le kule loko u lava leswaku app leyi yi lawula backend ya OpenAmer leyi tirhaka kale eka muchini wun'wan'wa kumbe endzhaku ka proxy leyi tshembiwaka. Hlawula profile leyi nga laha hansi ku yi nyika host ya yona ya le kule.",
       appliesTo: 'Swi tirha eka',
       allProfiles: 'Tiprofayili hinkwato',
-      defaultConnection: 'Nxhumo wa ntolovelo eka profil yin\'wana ni yin\'wana leyi nga riki na ku cinca ka yona.',
+      defaultConnection: "Nxhumo wa ntolovelo eka profil yin'wana ni yin'wana leyi nga riki na ku cinca ka yona.",
       envOverrideTitle: 'Tivhariyaboli ta mazinghenelo ti lawula sesheni leyi ya desikithopo.',
-      envOverrideDesc: 'Susa OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN ku tirhisa setting leyi hlayisiweke laha hansi.',
+      envOverrideDesc:
+        'Susa OPENAMER_DESKTOP_REMOTE_URL na OPENAMER_DESKTOP_REMOTE_TOKEN ku tirhisa setting leyi hlayisiweke laha hansi.',
       modeTitle: 'Muxaka wa vuhlanganisi',
       localTitle: 'Gediwayi ya le kaya',
-      localDesc: 'Sungula bekhendi ya xihundla ya OpenAmer eka localhost. Loku i xivumbeko xa masungulo naswona yi tirha handle ku nga ri na inthanete.',
+      localDesc:
+        'Sungula bekhendi ya xihundla ya OpenAmer eka localhost. Loku i xivumbeko xa masungulo naswona yi tirha handle ku nga ri na inthanete.',
       inheritTitle: 'Tirhisa gediwayi ya masungulo',
       inheritDesc: 'Susa ku cinca ka phurofayili leyi ivi u tirhisa vuhlanganisi bya masungulo.',
       remoteTitle: 'Gediwayi ya le kule',
       remoteDesc: 'Hlanganisa shele leyi ya desikithopo eka bekhendi ya OpenAmer ya le kule.',
-      remoteAuthHint: 'Magediwayi ya ku hlayisiwa ma tirhisa OAuth kumbe vito ra mutirhisi na phasiwede; ya ku tihlayisela yi nga tirhisa thokini ya seshini.',
-      cloudDesc: 'Nghena kambe eka OpenAmer Cloud ivi u hlawula eka maajente ya le akhawunti ya wena — a ku na URL leyi u faneleku yi namarhela.',
+      remoteAuthHint:
+        'Magediwayi ya ku hlayisiwa ma tirhisa OAuth kumbe vito ra mutirhisi na phasiwede; ya ku tihlayisela yi nga tirhisa thokini ya seshini.',
+      cloudDesc:
+        'Nghena kambe eka OpenAmer Cloud ivi u hlawula eka maajente ya le akhawunti ya wena — a ku na URL leyi u faneleku yi namarhela.',
       cloudSignIn: 'Nghena eka OpenAmer Cloud',
       cloudSignedIn: 'U nghenile eka OpenAmer Cloud',
       cloudNeedsSignIn: 'Nghena eka OpenAmer Cloud ku kuma maajente ya le akhawunti ya wena.',
@@ -441,9 +463,9 @@ export const ts = defineLocale({
       cloudOrgChange: 'Cinca nhlangano',
       cloudLoadingAgents: 'Ku layicha ti-agent ta wena…',
       cloudNoAgents: {
-        before: 'A ku na ti-agent leti kumekeke eka akhawunti leyi. Tumbuluxa yin\'we eka',
+        before: "A ku na ti-agent leti kumekeke eka akhawunti leyi. Tumbuluxa yin'we eka",
         linkText: 'OpenAmer phothali',
-        after: ', endzhaku u pfuxeta.',
+        after: ', endzhaku u pfuxeta.'
       },
       cloudRefresh: 'Pfuxeta',
       cloudConnect: 'Hlanganisa',
@@ -465,7 +487,8 @@ export const ts = defineLocale({
       enterUrlFirst: 'Nghenisa URL yo le kule ku sungula.',
       restartingTitle: 'Ku hlanganisa giyeti ku ta sungula nakambe',
       savedTitle: 'Swilulami swa giyeti swi hlayisiwile',
-      restartingMessage: 'OpenAmer Desktop yi ta hlanganisa nakambe yi tirhisa swilulami leswi hlayisiweke — shell yi sala yi pfulekile.',
+      restartingMessage:
+        'OpenAmer Desktop yi ta hlanganisa nakambe yi tirhisa swilulami leswi hlayisiweke — shell yi sala yi pfulekile.',
       savedMessage: 'Swi hlayiseriwe ku sungula nakambe loku landzelaka.',
       reachableTitle: 'Giyeti yo le kule yi fikeleleka',
       signedOutTitle: 'U humile',
@@ -477,27 +500,34 @@ export const ts = defineLocale({
       applyFailed: 'Ku tsandzekile ku tirhisa swilulami swa giyeti',
       saveFailed: 'Ku tsandzekile ku hlayisa swilulami swa giyeti',
       remoteUrlTitle: 'URL ya le kule',
-      remoteUrlDesc: 'URL ya masungulo ya backend ya dashboard ya le kule. Ti-prefix ta ndlela ta seketeliwa, xikombiso /openamer.',
+      remoteUrlDesc:
+        'URL ya masungulo ya backend ya dashboard ya le kule. Ti-prefix ta ndlela ta seketeliwa, xikombiso /openamer.',
       probing: 'Ku kambela ndlela leyi gateway leyi yi tiyisisa ha yona…',
-      probeError: 'A hi si fikeleli gateway leyi sweswi. Kambela URL — ndlela ya vumbhoni yi ta humelela loko yi hlamula.',
+      probeError:
+        'A hi si fikeleli gateway leyi sweswi. Kambela URL — ndlela ya vumbhoni yi ta humelela loko yi hlamula.',
       signedIn: 'U nghenile',
       signIn: 'Nghena',
       signOut: 'Huma',
       authTitle: 'Ku tiyisisa',
-      authSignedInPassword: 'Gateway leyi yi tirhisa vito ra mutirhisi ni phasiwedi. U nghenile; seshini yi tihlaziya hi yoxe.',
+      authSignedInPassword:
+        'Gateway leyi yi tirhisa vito ra mutirhisi ni phasiwedi. U nghenile; seshini yi tihlaziya hi yoxe.',
       authSignedInOauth: 'Gateway leyi yi tirhisa OAuth. U nghenile; seshini yi tihlaziya hi yoxe.',
-      authNeedsPassword: 'Gateway leyi yi tirhisa vito ra mutirhisi ni phasiwedi. Nghena ku pfumelela app leyi ya desktop.',
+      authNeedsPassword:
+        'Gateway leyi yi tirhisa vito ra mutirhisi ni phasiwedi. Nghena ku pfumelela app leyi ya desktop.',
       tokenTitle: 'Token ya seshini',
-      tokenDesc: 'Token ya seshini ya dashboard leyi tirhisiwaka eka REST ni WebSocket. Siya wu ri hava ku hlayisa token leyi hlayisiweke.',
+      tokenDesc:
+        'Token ya seshini ya dashboard leyi tirhisiwaka eka REST ni WebSocket. Siya wu ri hava ku hlayisa token leyi hlayisiweke.',
       savedToken: 'Swi hlayisiwile',
       pasteSessionToken: 'Nametela token ya seshini',
       testRemote: 'Ringeta le kule',
       saveForRestart: 'Hlayisa ku ya eka restart leyi landzelaka',
       saveAndReconnect: 'Hlayisa ni ku hlanganisa nakambe',
       diagnostics: 'Swikambelo',
-      diagnosticsDesc: 'Paluxa desktop.log eka mufambisi wa tifayili wa wena — swa pfuna loko gateway yi tsandzeka ku sungula.',
+      diagnosticsDesc:
+        'Paluxa desktop.log eka mufambisi wa tifayili wa wena — swa pfuna loko gateway yi tsandzeka ku sungula.',
       sshTitle: 'Xhumana hi SSH',
-      sshDesc: 'OpenAmer yi sunguriwa eka mupfuni wo kule hi SSH ivi yi hundziseriwa eka app leyi — a ku na nchumu wo sungula kumbe wo tivisa wexe. Swi lava mfikelelo wa SSH hi key lowu tirhaka eka host.',
+      sshDesc:
+        'OpenAmer yi sunguriwa eka mupfuni wo kule hi SSH ivi yi hundziseriwa eka app leyi — a ku na nchumu wo sungula kumbe wo tivisa wexe. Swi lava mfikelelo wa SSH hi key lowu tirhaka eka host.',
       sshTrustHint: 'Host key yo sungula leyi humaka yi tiyisiwa ni ku piniwa; ku cinca endzhaku swi ta tsandzeka.',
       sshHostTitle: 'Mupfuni',
       sshHostDesc: 'user@host, kumbe alias ya Host eka ~/.ssh/config.',
@@ -519,39 +549,48 @@ export const ts = defineLocale({
       sshConnect: 'Xhumana',
       sshButtonsHint: 'Hlayisa swi tirha eka ku sungula loku landzelaka. Xhumana swi tlhela swi xhumana sweswi.',
       sshIncompleteHost: 'Nghenisa host ya SSH u nga si xhumana.',
-      sshErrUnreachable: 'A hi swi kotangiki ku fikelela host yoleyo hi SSH. Kambisisa host, porto ni netiweke ya wena.',
-      sshErrAuth: 'Ku tiyisisa SSH ku tsandzekile. Layisha key ya wena eka ssh-agent (ssh-add) kumbe veka IdentityFile eka ~/.ssh/config — OpenAmer tirhisa ssh handle ku nga va na mbhovisi.',
-      sshErrHostKey: 'Key ya host yi CINCILE ku sukela loko u xhumana ro hetelela. Tiyisisa leswaku swi languteriwile, kutani tirhisa ssh-keygen -R <host> u tlhela u xhumana.',
-      sshErrNotInstalled: 'OpenAmer a yi vekiwi eka host ya le kule. Yi veka kona (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kumbe veka ndlela ya OpenAmer.',
-      sshErrPlatform: 'Platiformu ya le kule a yi seketeliwi. Modi ya SSH ya OpenAmer Desktop yi seketela host ta le kule ta Linux, macOS ni Windows.',
+      sshErrUnreachable:
+        'A hi swi kotangiki ku fikelela host yoleyo hi SSH. Kambisisa host, porto ni netiweke ya wena.',
+      sshErrAuth:
+        'Ku tiyisisa SSH ku tsandzekile. Layisha key ya wena eka ssh-agent (ssh-add) kumbe veka IdentityFile eka ~/.ssh/config — OpenAmer tirhisa ssh handle ku nga va na mbhovisi.',
+      sshErrHostKey:
+        'Key ya host yi CINCILE ku sukela loko u xhumana ro hetelela. Tiyisisa leswaku swi languteriwile, kutani tirhisa ssh-keygen -R <host> u tlhela u xhumana.',
+      sshErrNotInstalled:
+        'OpenAmer a yi vekiwi eka host ya le kule. Yi veka kona (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) kumbe veka ndlela ya OpenAmer.',
+      sshErrPlatform:
+        'Platiformu ya le kule a yi seketeliwi. Modi ya SSH ya OpenAmer Desktop yi seketela host ta le kule ta Linux, macOS ni Windows.',
       sshErrTimeout: 'Nkarhi wa xihlanganiso xa SSH wu herile. Host yi nga ha fikeleleki kumbe yi etlele.',
       sshErrUpdateRequired: 'Hluvukisa OpenAmer eka host ya le kule u nga si xhumana hi Desktop SSH.',
       sshErrUnknown: 'Xihlanganiso xa SSH xi tsandzekile.',
       cloudTitle: 'OpenAmer Gute',
       cloudSignInTitle: 'OpenAmer Gute',
-      profileConnection: profile => `Connection yo titika loko “${profile}” hi active profile. Kuma Use default gateway leswaku u sukela override ya yona.`,
+      profileConnection: profile =>
+        `Connection yo titika loko “${profile}” hi active profile. Kuma Use default gateway leswaku u sukela override ya yona.`,
       cloudOrgRole: role => `Rol: ${role}`,
       cloudConnectedTo: name => `${name} adresine bağlandı.`,
       cloudStatusLabel: status => `Xiyimo: ${status}`,
       signInWith: provider => `Khumana ngop ${provider}`,
-      authNeedsOauth: provider => `Gateway leyi i titika OAuth. Khumana ngop ${provider} leswaku u lumelisa app leyi ya desktop.`,
+      authNeedsOauth: provider =>
+        `Gateway leyi i titika OAuth. Khumana ngop ${provider} leswaku u lumelisa app leyi ya desktop.`,
       existingToken: value => `Token leyi ya khale ${value}`,
       connectedTo: (baseUrl, version) => `${baseUrl} adresine bağlandı${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Erişilebilir: ${host} (${platform}) — OpenAmer bulundu`,
+      sshReachable: (host, platform) => `Erişilebilir: ${host} (${platform}) — OpenAmer bulundu`
     },
     toolsets: {
       terminalBackend: {
         inUse: 'Yi tirhisiwa',
         selectedTitle: 'Backend yi hlawuriwile',
-        needsSetupHint: 'U nga hlawula backend leyi sweswi — swileriso swi ta tsandzeka ku fikela loko ku lungiselela ku hetiwa.',
+        needsSetupHint:
+          'U nga hlawula backend leyi sweswi — swileriso swi ta tsandzeka ku fikela loko ku lungiselela ku hetiwa.',
         sectionTitle: 'Backend ya matirhelo',
         loading: 'Ku kambisisa backend ta matirhelo…',
         failedLoad: 'A swi koteki ku layicha backend ta terminal',
         ready: 'Yi lulamile',
         needsSetup: 'Yi lava ku lulamisiwa',
         unavailable: 'A yi kona',
-        selectedMessage: backend => `Terminal komutları artık ${backend} üzerinden çalışıyor. Yeni oturumlar için geçerlidir.`,
-        failedSelect: backend => `${backend} seçilemedi`,
+        selectedMessage: backend =>
+          `Terminal komutları artık ${backend} üzerinden çalışıyor. Yeni oturumlar için geçerlidir.`,
+        failedSelect: backend => `${backend} seçilemedi`
       },
       loadingConfig: 'Ku pakiwa ka xilulamiso',
       savedTitle: 'Vutihlamuleri byi hlayisiwile.',
@@ -560,7 +599,8 @@ export const ts = defineLocale({
       notSet: 'A swi vekiwanga',
       selectedTitle: 'Mugavi u hlawuriwile.',
       failedLoad: 'Xilulamiso xa xitirhisiwa xi tsandzekile ku pakiwa.',
-      noProviderOptions: 'Xitirhisiwa lexi a xi na mikhetho ya mugavi — xi pfumelele, naswona xi ta tirha na ndlela ya wena ya sweswi.',
+      noProviderOptions:
+        'Xitirhisiwa lexi a xi na mikhetho ya mugavi — xi pfumelele, naswona xi ta tirha na ndlela ya wena ya sweswi.',
       noProviders: 'A ku na vagavi eka xitirhisiwa lexi sweswi.',
       ready: 'Lunghekile',
       needsSignIn: 'Ku lava ku nghena',
@@ -572,7 +612,7 @@ export const ts = defineLocale({
       openamerAuthDoneMessage: 'Ti-backend ta xinikelo ya wena ti tirha sweswi',
       openamerAuthFailed: 'Ku nghena eka OpenAmer Portal a ku hetisanga',
       noApiKeyRequired: 'A ku laveki khiyi ya API',
-      postSetupInstalledHint: 'Swi cheriwile. Endla setup nakambe ntsena loko swin\'wana swi onhakele',
+      postSetupInstalledHint: "Swi cheriwile. Endla setup nakambe ntsena loko swin'wana swi onhakele",
       postSetupRun: 'Endla setup',
       postSetupRerun: 'Endla setup nakambe',
       postSetupInstalled: 'Swi cheriwile',
@@ -599,8 +639,10 @@ export const ts = defineLocale({
       removeConfirm: key => `${key}, .env dosyasından kaldırılsın mı?`,
       selectedMessage: provider => `${provider} ya tirha sweswi.`,
       failedSelect: provider => `${provider} seçilemedi`,
-      openamerAuthNeededMessage: provider => `${provider} yi hlayisiwile kambe a yi nge tirhi ku kondza u nghena eka Photali ya OpenAmer.`,
-      postSetupHint: step => `Bu arka uç tek seferlik bir kurulum gerektiriyor (${step}). Bu makinede çalışır — birkaç dakika sürebilir.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} yi hlayisiwile kambe a yi nge tirhi ku kondza u nghena eka Photali ya OpenAmer.`,
+      postSetupHint: step =>
+        `Bu arka uç tek seferlik bir kurulum gerektiriyor (${step}). Bu makinede çalışır — birkaç dakika sürebilir.`,
       postSetupCompleteMessage: step => `${step} yi nghenisiwile.`,
       postSetupErrorMessage: step => `${step} günlüğünü kontrol edin.`,
       postSetupFailed: step => `${step} kurulumu çalıştırılamadı`,
@@ -610,82 +652,89 @@ export const ts = defineLocale({
       failedSelectCapability: provider => `${provider} ayarlanamadı`,
       modelCount: count => `Modhele wa ${count}${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} yi tirha eka tisesixini letintshwa.`,
-      failedSelectModel: model => `${model} seçilemedi`,
+      failedSelectModel: model => `${model} seçilemedi`
     },
     plugins: {
       empty: 'A ku si na tiplugini ta desikithopo leti vekiwileke.',
       kinds: {
         bundled: 'Swi katsiwile',
         disk: 'Eka diski',
-        runtime: 'Nkarhi wo tirha',
+        runtime: 'Nkarhi wo tirha'
       },
       title: 'Swipulagini swa Desikithopo',
-      blurb: 'Swiengetelo swa UI leswi layishiweke eka app leyi — swi hlanganisiwe na ku akiwa, kumbe swi cheriwe eka folda ya desktop-plugins (ku katsa na leswi OpenAmer a swi tsalaka). Ku dzima swi humesa pulagini hi xikarhi naswona swi tshama swi tirha loko ku pfuxiwa.',
+      blurb:
+        'Swiengetelo swa UI leswi layishiweke eka app leyi — swi hlanganisiwe na ku akiwa, kumbe swi cheriwe eka folda ya desktop-plugins (ku katsa na leswi OpenAmer a swi tsalaka). Ku dzima swi humesa pulagini hi xikarhi naswona swi tshama swi tirha loko ku pfuxiwa.',
       openFolder: 'Pfula folda ya swipulagini',
       rescan: 'Hlola Nakambe',
       reveal: 'Paluxa eka mufambisi wa tifayili',
       enable: 'Tirhisa',
       disable: 'Tshika',
       failed: 'Swi Tsandzekile',
-      count: n => `${n} yi nghenisiwile`,
+      count: n => `${n} yi nghenisiwile`
     },
     notifications: {
       title: 'Switsundzuxo',
-      intro: 'Switsundzuxo swa desikithopo swa ntumbuluko, swi hambanile ni switsundzuxo swa nkarhinyana swa le ka xirhisiwa. Leswi i swa le ka xitirhisiwa — khompyuta yin\'wana ni yin\'wana yi hlayisa switiyiselo swa yona.',
+      intro:
+        "Switsundzuxo swa desikithopo swa ntumbuluko, swi hambanile ni switsundzuxo swa nkarhinyana swa le ka xirhisiwa. Leswi i swa le ka xitirhisiwa — khompyuta yin'wana ni yin'wana yi hlayisa switiyiselo swa yona.",
       enableAll: 'Pfula switsundzuxo',
       enableAllDesc: 'Swichi leyikulu. Dzimisa leswi leswaku u miyela switsundzuxo hinkwaswo leswi nga laha hansi.',
       focusedHint: 'Switsundzuxo swa ku heta swi tirha ntsena loko OpenAmer yi ri endzhaku.',
       kinds: {
         approval: {
           label: 'Mpfumelelo wu laveka',
-          description: 'Xileriso xi ku yimele leswaku u xi pfumelela kumbe u xi ala.',
+          description: 'Xileriso xi ku yimele leswaku u xi pfumelela kumbe u xi ala.'
         },
         input: {
           label: 'Ku laveka xinghenisiwa',
-          description: 'OpenAmer yi vutisile xivutiso kumbe yi lave phasiwedi kumbe xihundla.',
+          description: 'OpenAmer yi vutisile xivutiso kumbe yi lave phasiwedi kumbe xihundla.'
         },
         turnDone: {
           label: 'Nhlamulo yi lungile',
-          description: 'Ntirho wu herile loko OpenAmer yi ri endzhaku.',
+          description: 'Ntirho wu herile loko OpenAmer yi ri endzhaku.'
         },
         turnError: {
           label: 'Ntirho wu tsandzekile',
-          description: 'Ntirho wu herile hi xihoxo.',
+          description: 'Ntirho wu herile hi xihoxo.'
         },
         backgroundDone: {
           label: 'Ntirho wa le endzhaku wu herile',
-          description: 'Xileriso xa terminal lexi nga endzhaku xi herile.',
+          description: 'Xileriso xa terminal lexi nga endzhaku xi herile.'
         },
         credits: {
           label: 'Switsundzuxo swa khrediti',
-          description: 'Nfikelelo wa kredithe wu yimisiwile kumbe wu vuyiseriwe.',
-        },
+          description: 'Nfikelelo wa kredithe wu yimisiwile kumbe wu vuyiseriwe.'
+        }
       },
       test: 'Rhumela xitiviso xa xikambelo',
       testTitle: 'OpenAmer',
       testBody: 'Switiviso swi tirha.',
-      testSent: 'Xikambelo xi rhumeriwile. Loko ku nga humi nchumu, kambela timfanelo ta switiviso ta OS ya wena ni Focus/Do Not Disturb.',
+      testSent:
+        'Xikambelo xi rhumeriwile. Loko ku nga humi nchumu, kambela timfanelo ta switiviso ta OS ya wena ni Focus/Do Not Disturb.',
       testUnsupported: 'Sisteme leyi a yi seketeli switiviso swa ntumbuluko.',
       completionSoundTitle: 'Mpfumawulo wa ku heta',
-      completionSoundDesc: 'Yi tlanga loko muejenti a heta nkarhi wa yena. Hlawula xivumbeko xo hlawuriwa ivi u xi ringeta laha.',
-      completionSoundPreview: 'Ringeta',
+      completionSoundDesc:
+        'Yi tlanga loko muejenti a heta nkarhi wa yena. Hlawula xivumbeko xo hlawuriwa ivi u xi ringeta laha.',
+      completionSoundPreview: 'Ringeta'
     },
     sessions: {
       loading: 'Ku paka tisessiono leti hlayisiweke…',
       archivedTitle: 'Tisessiono leti hlayisiweke',
-      archivedIntro: 'Mimbulavurisano leyi hlayisiweke yi tumbetiwe eka sidebar, kambe yi hlayisa marungula hinkwawo. Ctrl/âŒ˜-click eka mbulavurisano eka sidebar ku yi veka eka archive.',
+      archivedIntro:
+        'Mimbulavurisano leyi hlayisiweke yi tumbetiwe eka sidebar, kambe yi hlayisa marungula hinkwawo. Ctrl/âŒ˜-click eka mbulavurisano eka sidebar ku yi veka eka archive.',
       emptyArchivedTitle: 'A ku na lexi hlayisiweke',
       emptyArchivedDesc: 'Veka mbulavurisano eka archive ku yi tumbeta laha.',
       unarchive: 'Humesa eka vuhlayiselo',
       deletePermanently: 'Susa hi ku hela',
       restored: 'Swi vuyisiwile',
       autoArchiveTitle: 'Hlayisa hi xikarhi tichati leti nga tirhisiwiki',
-      autoArchiveDesc: 'Hlayisa hi xikarhi tichati leti u nga ti khumbangiki nkarhi wo leha. Tichati leti phiniweke a ti hlayisiwi nkarhi hinkwawo, naswona a ku susiwi nchumu — tichati leti hlayisiweke ti rhurhela la.',
+      autoArchiveDesc:
+        'Hlayisa hi xikarhi tichati leti u nga ti khumbangiki nkarhi wo leha. Tichati leti phiniweke a ti hlayisiwi nkarhi hinkwawo, naswona a ku susiwi nchumu — tichati leti hlayisiweke ti rhurhela la.',
       autoArchiveDaysLabel: 'Hlayisa endzhaku ka',
       autoArchiveDaysUnit: 'masiku ya ku nga tirhisi',
       autoArchiveFailed: 'A ku koteki ku pfuxeta ku hlayisa hi xikarhi',
       defaultDirTitle: 'Dayirekithi ya projeke hi ntolovelo',
-      defaultDirDesc: 'Tiseshini letintshwa ti sungula eka fayila leyi loko u nga hlawulanga yin\'wana. Tsiya yi nga vekiwa leswaku u tirhisa dayirekithi ya le kaya.',
+      defaultDirDesc:
+        "Tiseshini letintshwa ti sungula eka fayila leyi loko u nga hlawulanga yin'wana. Tsiya yi nga vekiwa leswaku u tirhisa dayirekithi ya le kaya.",
       change: 'Cinca',
       choose: 'Hlawula',
       clear: 'Sula',
@@ -695,10 +744,11 @@ export const ts = defineLocale({
       deleteFailed: 'Ku susa swi tsandzekile',
       updateDirFailed: 'A ku koteki ku pfuxeta dayirekithi hi ntolovelo',
       clearDirFailed: 'A ku koteki ku sula dayirekithi hi ntolovelo',
-      defaultDirUpdated: 'Dayirektori ya phurojeke ya ntolovelo yi pfuxetiwile — sungula chati leyintshwa (Ctrl/âŒ˜+N) leswaku yi tirha.',
+      defaultDirUpdated:
+        'Dayirektori ya phurojeke ya ntolovelo yi pfuxetiwile — sungula chati leyintshwa (Ctrl/âŒ˜+N) leswaku yi tirha.',
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `"${title}" kalıcı olarak silinsin mi? Bu işlem geri alınamaz.`,
-      defaultsTo: label => `Varsayılan: ${label}.`,
+      defaultsTo: label => `Varsayılan: ${label}.`
     },
     closeSettings: 'Pfala swilungiso',
     exportConfig: 'Humesa xivumbeko',
@@ -722,7 +772,7 @@ export const ts = defineLocale({
       billing: 'Ku Hakela',
       notifications: 'Switiviso',
       plugins: 'Swipulagini',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     sections: {
       chat: 'Mbulavurisano',
@@ -732,15 +782,15 @@ export const ts = defineLocale({
       memory: 'Memori na Mbangu',
       voice: 'Rito',
       advanced: 'Swo hetelela',
-      model: 'Modhele',
+      model: 'Modhele'
     },
     keys: {
       loading: 'Ku layisha API keys ni credentials...',
       failedLoad: 'Ku layisha API keys ku tsandzekile.',
-      empty: 'A ku na nchumu lowu lulamisiweke eka kategori leyi.',
+      empty: 'A ku na nchumu lowu lulamisiweke eka kategori leyi.'
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   commandCenter: {
     branches: 'Ximfundo xa Bantfu',
@@ -763,7 +813,7 @@ export const ts = defineLocale({
       adoptFailed: 'Ndiya kufuna le pets.',
       toggleFailed: 'Ndiya kufunda ukuqhafaza le pets.',
       noneAvailable: 'Pets azikho — pheka elinye phakathi ukuze kufundayo.',
-      title: 'Swifuwo',
+      title: 'Swifuwo'
     },
     generatePet: {
       title: 'Yenza pets',
@@ -786,13 +836,14 @@ export const ts = defineLocale({
       readyHint: 'Tinya Enter ku endla mavonele ya mune kusuka eka nhlamuselo ya wena.',
       hatch: 'Pfuka',
       remix: 'Hlanganisa',
-      remixConfirmBody: 'Loku swi endla ntlawa lowuntshwa wa swivumbeko hi ku tirhisa leswi swi ri masungulo. Swi nga teka timinete to hlayanyana.',
+      remixConfirmBody:
+        'Loku swi endla ntlawa lowuntshwa wa swivumbeko hi ku tirhisa leswi swi ri masungulo. Swi nga teka timinete to hlayanyana.',
       genericError: 'Ku tumbuluxa swi tsandzekile — ringeta nakambe kumbe hlawula xibumabumelo.',
       referenceImageTooLarge: 'Xifaniso xo kongomisa xi kulu ngopfu. Tirhisa lexi nga ehansi ka 16 MB.',
       referenceImageInvalid: 'A swi kotekanga ku hlaya xifaniso xo kongomisa. Ringeta PNG, JPG, WebP, kumbe GIF.',
       adopt: 'Amukela',
       startOver: 'Sungula nakambe',
-      hatchRow: (_state, done, total) => `Ku dirowa fureme ya ${done} eka ${total}…`,
+      hatchRow: (_state, done, total) => `Ku dirowa fureme ya ${done} eka ${total}…`
     },
     goToSession: 'Yana eka seshini',
     installTheme: {
@@ -805,7 +856,7 @@ export const ts = defineLocale({
       install: 'Faka',
       installing: 'Ku faka...',
       installed: 'Ku fakiwile',
-      installs: count => `${count} wa ku nghenisiwa`,
+      installs: count => `${count} wa ku nghenisiwa`
     },
     settingsFields: 'Swiyenge swa swilungiselelo',
     mcpServers: 'Tiseva ta MCP',
@@ -814,51 +865,51 @@ export const ts = defineLocale({
       maintenance: 'Nhlayiso',
       sessions: 'Tiseshini',
       system: 'Sisiteme',
-      usage: 'Matirhiselo',
+      usage: 'Matirhiselo'
     },
     sectionDescriptions: {
       maintenance: 'Swikambisisi, tibekapu, muhlayisi, na data ya memori',
       sessions: 'Secha no lawula tiseshini',
       system: 'Xiyimo, tilogu, na swiendlo swa sisiteme',
-      usage: 'Titokini, nxavo, na matirhiselo ya vuswikoti hi nkarhi',
+      usage: 'Titokini, nxavo, na matirhiselo ya vuswikoti hi nkarhi'
     },
     nav: {
       newChat: {
         title: 'Seshini leyintshwa',
-        detail: 'Sungula seshini leyintshwa',
+        detail: 'Sungula seshini leyintshwa'
       },
       settings: {
         title: 'Swilungiselelo',
-        detail: 'Lulamisa OpenAmer desktop',
+        detail: 'Lulamisa OpenAmer desktop'
       },
       skills: {
         title: 'Vuswikoti',
-        detail: 'Swikili, switirhisiwa, na tiseva ta MCP',
+        detail: 'Swikili, switirhisiwa, na tiseva ta MCP'
       },
       messaging: {
         title: 'Ku rhumela mihungu',
-        detail: 'Lulamisa Telegram, Slack, Discord, na swin\'wana',
+        detail: "Lulamisa Telegram, Slack, Discord, na swin'wana"
       },
       artifacts: {
         title: 'Swiendliwa',
-        detail: 'Hlola mbuyelo lowu tumbuluxiweke',
-      },
+        detail: 'Hlola mbuyelo lowu tumbuluxiweke'
+      }
     },
     searchPlaceholder: 'Lavisisa ti-session, swivonele, ni maendlelo',
     goTo: 'Yana eka',
     sectionEntries: {
       sessions: {
         title: 'Phanele ya ti-session',
-        detail: 'Lavisisa, khoma, ni lawula ti-session',
+        detail: 'Lavisisa, khoma, ni lawula ti-session'
       },
       system: {
         title: 'Phanele ya sisiteme',
-        detail: 'Xiyimo xa gateway, ti-log, sungula nakambe/pfuxeta',
+        detail: 'Xiyimo xa gateway, ti-log, sungula nakambe/pfuxeta'
       },
       usage: {
         title: 'Phanele ya matirhiselo',
-        detail: 'Token, mali, ni migingiriko ya xitalu',
-      },
+        detail: 'Token, mali, ni migingiriko ya xitalu'
+      }
     },
     providerNavigate: 'Famba',
     providerSessions: 'Ti-session',
@@ -907,7 +958,7 @@ export const ts = defineLocale({
       resume: 'Yisa emahlweni',
       runNow: 'Tirha sweswi',
       memoryData: 'Datha ya memori',
-      memoryDataDesc: 'Tifayili ta memori ta le ndzeni leti nghenisiweke eka seshini yin\'wana ni yin\'wana',
+      memoryDataDesc: "Tifayili ta memori ta le ndzeni leti nghenisiweke eka seshini yin'wana ni yin'wana",
       builtinMemory: 'swa le ndzeni',
       memoryFile: 'Memori ya muendli (MEMORY.md)',
       userFile: 'Profayili ya mutirhisi (USER.md)',
@@ -924,7 +975,7 @@ export const ts = defineLocale({
       resetConfirm: target => `Susa ${target}? A swi nge tlheriseriwi endzhaku.`,
       resetDone: files => `${files} swi susiwile.`,
       actionStarted: name => `${name} swi sungurile — ku landzelerisiwa rhekhodo...`,
-      actionFailed: name => `${name} swi tsandzekile ku sungula`,
+      actionFailed: name => `${name} swi tsandzekile ku sungula`
     },
     statApiCalls: 'Tifono ta API',
     statTokens: 'Tithokini to nghena/to huma',
@@ -951,7 +1002,7 @@ export const ts = defineLocale({
     days: count => `${count}m`,
     actualCost: cost => `ya xiviri ${cost}`,
     noUsage: period => `A ku tirhisiwanga eka masiku ya ${period} lama hundzeke.`,
-    actions: count => `${count} swiendlo`,
+    actions: count => `${count} swiendlo`
   },
   common: {
     apply: 'Tirhisa',
@@ -992,7 +1043,7 @@ export const ts = defineLocale({
     update: 'Pfuxeta',
     on: 'Tirha',
     off: 'Dzima',
-    tryHint: term => `Komba “${term}”`,
+    tryHint: term => `Komba “${term}”`
   },
   fileMenu: {
     revealFinder: 'Paluxa eka Finder',
@@ -1007,7 +1058,7 @@ export const ts = defineLocale({
     renameLabel: 'Vito leyintshwa',
     deleteBody: 'Hi ya nga sungulwa eka Trash — u nga kombisa hi yona hakambale.',
     pathCopied: 'Nhlangano wo kopola',
-    deleteTitle: name => `Sula ${name}?`,
+    deleteTitle: name => `Sula ${name}?`
   },
   profiles: {
     newNameLabel: 'Vito lerintshwa',
@@ -1025,7 +1076,8 @@ export const ts = defineLocale({
     failedCreate: 'Ku tsandzekile ku endla profayili',
     failedRename: 'Ku tsandzekile ku cinca vito ra profayili',
     close: 'Pfala tiprofayili',
-    nameHint: 'Maletere lamatsongo, tinomboro, tihayifeni, na tihundlu. Swi fanele swi sungula hi letere kumbe nomboro.',
+    nameHint:
+      'Maletere lamatsongo, tinomboro, tihayifeni, na tihundlu. Swi fanele swi sungula hi letere kumbe nomboro.',
     title: 'Tiprofayili',
     search: 'Lava tiprofayili...',
     loading: 'Ku layicha tiprofayili...',
@@ -1085,7 +1137,7 @@ export const ts = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `Xiletelo xa sisiteme / vumunhu bya phurofayili leyi.
 Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
-    invalidName: hint => `Vito a ri amukeleki. ${hint}`,
+    invalidName: hint => `Vito a ri amukeleki. ${hint}`
   },
   cron: {
     close: 'Pfala cron',
@@ -1099,32 +1151,32 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       paused: 'Yi yimisiwile',
       disabled: 'Yi sivelisiwile',
       error: 'Xihoxo',
-      completed: 'Yi hetiwile',
+      completed: 'Yi hetiwile'
     },
     deliveryLabels: {
       local: 'Desikithopo leyi',
       email: 'Imeyili',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Siku na siku',
       weekdays: 'Masiku ya vhiki',
       weekly: 'Vhiki na vhiki',
-      monthly: 'N\'hweti na n\'hweti',
+      monthly: "N'hweti na n'hweti",
       hourly: 'Awara na awara',
       'every-15-minutes': 'Timinete ta 15 na 15',
-      custom: 'Yo hlawuriwa',
+      custom: 'Yo hlawuriwa'
     },
     scheduleHints: {
       daily: 'Siku na siku hi 9:00 AM',
       weekdays: 'Muvhuro ku fika Ravuntlhanu hi 9:00 AM',
-      weekly: 'Muvhuro wun\'wana ni wun\'wana hi 9:00 AM',
-      monthly: 'Siku ro sungula ra n\'hweti yin\'we na yin\'we hi 9:00 AM',
-      hourly: 'Ehenhla ka awara yin\'we na yin\'we',
-      'every-15-minutes': 'Hi timinete ta 15 tin\'we na tin\'we',
-      custom: 'Sintaksi ya Cron kumbe ririmi ra ntumbuluko',
+      weekly: "Muvhuro wun'wana ni wun'wana hi 9:00 AM",
+      monthly: "Siku ro sungula ra n'hweti yin'we na yin'we hi 9:00 AM",
+      hourly: "Ehenhla ka awara yin'we na yin'we",
+      'every-15-minutes': "Hi timinete ta 15 tin'we na tin'we",
+      custom: 'Sintaksi ya Cron kumbe ririmi ra ntumbuluko'
     },
     deleteTitle: 'U hlayiswe cron job?',
     deleteDescPrefix: 'Lowu ta tika',
@@ -1144,7 +1196,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     editTitle: 'Hlaya cron job',
     createTitle: 'Cron job leyintshwa',
     editDesc: 'Cukumisa nkarhi, pfunzo, nhlangho ya ku yisa. Tintshava ta tirha loko u tlanga.',
-    createDesc: 'Lulama pfunzo leswaku tirha hi hi ntoma. Sebenzisa cron syntax kana ndzimi leyi nga ngwana, kutani "ka tin 分钟". Sebenzisa cron syntax kana ndzimi leyi nga ngwana, kutani "ka tin 15 wa minkarhi".',
+    createDesc:
+      'Lulama pfunzo leswaku tirha hi hi ntoma. Sebenzisa cron syntax kana ndzimi leyi nga ngwana, kutani "ka tin 分钟". Sebenzisa cron syntax kana ndzimi leyi nga ngwana, kutani "ka tin 15 wa minkarhi".',
     nameLabel: 'Vito',
     namePlaceholder: 'Nkombiso ya makaya',
     promptLabel: 'Pfunzo',
@@ -1165,7 +1218,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     createAction: 'Vumba cron',
     tabs: {
       jobs: 'Tiko',
-      blueprints: 'Mimati',
+      blueprints: 'Mimati'
     },
     next: 'Landzelaka:',
     noRuns: 'A ku na mitshovo sweswi',
@@ -1193,7 +1246,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       loading: 'Ku layicha tiphulani...',
       failedLoad: 'Ku tsandzekile ku layicha tiphulani',
       emptyTitle: 'A ku na tiphulani leti kumekaka',
-      emptyDesc: 'A ku na tiphulani ta otomethikhi leti kumekaka eka backend leyi.',
+      emptyDesc: 'A ku na tiphulani ta otomethikhi leti kumekaka eka backend leyi.'
     },
     days: {
       '0': 'Sonto',
@@ -1203,11 +1256,12 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       '4': 'Ravumune',
       '5': 'Ravuntlhanu',
       '6': 'Mugqivela',
-      '7': 'Sonto',
+      '7': 'Sonto'
     },
-    topOfHour: 'Eku sunguleni ka awara yin\'wana ni yin\'wana',
+    topOfHour: "Eku sunguleni ka awara yin'wana ni yin'wana",
     newCron: 'Cron leyintshwa',
-    emptyDescNew: 'Hlela phrompthi leyi nga ta tirha hi xivulwa xa cron. OpenAmer yi ta yi tirhisa naswona yi rhumela mimbuyelo eka ndhawu leyi u yi hlawulaka.',
+    emptyDescNew:
+      'Hlela phrompthi leyi nga ta tirha hi xivulwa xa cron. OpenAmer yi ta yi tirhisa naswona yi rhumela mimbuyelo eka ndhawu leyi u yi hlawulaka.',
     emptyDescSearch: 'Ringeta xivutiso xo anama xo lavisisa.',
     emptyTitleNew: 'A ku si na mintirho leyi hleriweke',
     emptyTitleSearch: 'A ku na swi fanaka',
@@ -1219,12 +1273,12 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     everyDayOfWeekAt: (day, time) => `Hi ${day} wun’wana ni wun’wana hi ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `N’hweti yin’wana ni yin’wana hi siku ${dayOfMonth} hi ${time}`,
     everyHourAt: minute => `Awara yin’wana ni yin’wana hi :${minute}`,
-    actionsFor: title => `Swiendlo swa ${title}`,
+    actionsFor: title => `Swiendlo swa ${title}`
   },
   webhooks: {
-    createdSecretHint: 'Kopa xihundla sweswi — xi kombisiwa kan\'we ntsena.',
+    createdSecretHint: "Kopa xihundla sweswi — xi kombisiwa kan'we ntsena.",
     webhookUrl: 'URL ya webhook',
-    secretOnce: 'Xihundla (xi kombisiwa kan\'we)',
+    secretOnce: "Xihundla (xi kombisiwa kan'we)",
     done: 'Swi herile',
     fieldName: 'Vito',
     fieldNamePlaceholder: 'xik. github-push',
@@ -1249,7 +1303,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       github_comment: 'Mavonelo ya GitHub',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     search: 'Tshama webhooks...',
     loading: 'Webhooks tshawari...',
@@ -1257,7 +1311,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     hint: 'Kuchu tembelana ka subscriptions di hulhumela hi ku landzela laha mutirhi wa webhook a rhambu hi ku kongoma. Subscriptions tshikiyiswaka di kaneta swikotana swo tika.',
     empty: 'A ku na subscription ya webhook.',
     disabledTitle: 'Mutirhi wa webhook a nga pfumelelanga',
-    disabledBody: 'Webhooks i rhambu yotimela yo tika. Vula i leswaku u tika swakudeni swa HTTP; swichudeni swa vuxaka swi fanele ku loko subscription yi yisa eka Telegram, Discord, Slack, noma loyi nga ta.',
+    disabledBody:
+      'Webhooks i rhambu yotimela yo tika. Vula i leswaku u tika swakudeni swa HTTP; swichudeni swa vuxaka swi fanele ku loko subscription yi yisa eka Telegram, Discord, Slack, noma loyi nga ta.',
     enable: 'Vula webhooks',
     enabling: 'Ku vulavula...',
     enableRow: 'Vula',
@@ -1270,7 +1325,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     deleteDescSuffix: 'Loko u hlayaka webhook, u ta tika hi ku pfumelela',
     newSubscription: 'Subscription ya ntandhu',
     restarting: 'Gateway a nga ta sungula...',
-    restartNeeded: 'Webhooks a vuliwe, kambe gateway yi fanele ku sungulwa talha hi ku kongoma mutirhi wa webhook a nga ta rhambu.',
+    restartNeeded:
+      'Webhooks a vuliwe, kambe gateway yi fanele ku sungulwa talha hi ku kongoma mutirhi wa webhook a nga ta rhambu.',
     restartGateway: 'Sungula gateway',
     restartingGateway: 'Ku sungula...',
     enabledRestarting: 'Webhooks a vuliwe; gateway a nga ta sungula...',
@@ -1283,50 +1339,51 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     deleteFailed: (name: string) => `Swi tsandzile ku susa "${name}"`,
     toggleFailed: (name: string) => `Swi tsandzile ku pfuxeta "${name}"`,
     restartFailed: (detail: string) => `Ku sungula nakambe ka nyangwa swi tsandzile${detail}`,
-    createFailed: (detail: string) => `Swi tsandzile ku tumbuluxa: ${detail}`,
+    createFailed: (detail: string) => `Swi tsandzile ku tumbuluxa: ${detail}`
   },
   onboarding: {
     apiKeyOptions: {
       fireworks: {
         short: 'API ya modelo yo kongoma',
-        description: 'Ku fikelela timodelo ta Fireworks AI hi ku kongoma.',
+        description: 'Ku fikelela timodelo ta Fireworks AI hi ku kongoma.'
       },
       openrouter: {
-        short: 'kiyi yin\'we, timodelo to tala',
-        description: 'Yi hlayisa madzana ya timodelo hi kiyi yin\'we. Yi kahle eka ku installa lokuntshwa.',
+        short: "kiyi yin'we, timodelo to tala",
+        description: "Yi hlayisa madzana ya timodelo hi kiyi yin'we. Yi kahle eka ku installa lokuntshwa."
       },
       openai: {
         short: 'Timodelo ta kalasi ya GPT',
-        description: 'Ku fikelela timodelo ta OpenAI hi ku kongoma.',
+        description: 'Ku fikelela timodelo ta OpenAI hi ku kongoma.'
       },
       gemini: {
         short: 'Timodelo ta Gemini',
-        description: 'Ku fikelela timodelo ta Google Gemini hi ku kongoma.',
+        description: 'Ku fikelela timodelo ta Google Gemini hi ku kongoma.'
       },
       xai: {
         short: 'Timodelo ta Grok',
-        description: 'Ku fikelela timodelo ta xAI Grok hi ku kongoma.',
+        description: 'Ku fikelela timodelo ta xAI Grok hi ku kongoma.'
       },
       local: {
         short: 'ku ti-hlayisa',
-        description: 'Yisa OpenAmer eka endpoint ya muganga kumbe leyi ti-hlayiseke leyi yelanaka na OpenAI (vLLM, llama.cpp, Ollama, swin\'wana).',
-      },
+        description:
+          "Yisa OpenAmer eka endpoint ya muganga kumbe leyi ti-hlayiseke leyi yelanaka na OpenAI (vLLM, llama.cpp, Ollama, swin'wana)."
+      }
     },
     backToSignIn: 'Tlhelela eka ku nghena',
     getKey: 'Kuma kiyi',
     replaceCurrent: 'Siva ntsengo wa sweswi',
     pasteApiKey: 'Nametela kiyi ya API',
-    localApiKeyPlaceholder: 'Kiyi ya API (a yi boheki — ntsena loko endpoint ya wena yi lava yin\'we)',
+    localApiKeyPlaceholder: "Kiyi ya API (a yi boheki — ntsena loko endpoint ya wena yi lava yin'we)",
     couldNotSave: 'A swi koteki ku hlayisa khredensiale.',
     connecting: 'Ku xhumana',
     update: 'Pfuxeta',
     flowSubtitles: {
       pkce: 'Yi pfula browser ya wena ku nghena, endzhaku yi ya emahlweni laha',
       device_code: 'Yi pfula tluka ro tiyisisa eka browser ya wena — OpenAmer yi xhumana hi yoxe',
-      external: 'Nghena kan\'we eka terminal ya wena, endzhaku u tlhelela eka chat',
+      external: "Nghena kan'we eka terminal ya wena, endzhaku u tlhelela eka chat"
     },
     signInFailed: 'Ku nghena ku tsandzekile. Ringeta nakambe.',
-    pickDifferentProvider: 'Hlawula mugavi wun\'wana',
+    pickDifferentProvider: "Hlawula mugavi wun'wana",
     authorizeThere: 'Pfumelela OpenAmer kwale.',
     copyAuthCode: 'Kopa khodi yo pfumelela u yi nametela ehansi.',
     pasteAuthCode: 'Nametela khodi yo pfumelela',
@@ -1342,38 +1399,45 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     change: 'Cinca',
     startChatting: 'Sungula',
     headerTitle: 'A hi ku lulamiseni na OpenAmer Agent',
-    headerDesc: 'Xhumana ni muphakeli wa model kuri u sungula ku vulavula. Tihlawulelo to tala ti lava ku klika kan\'we.',
+    headerDesc:
+      "Xhumana ni muphakeli wa model kuri u sungula ku vulavula. Tihlawulelo to tala ti lava ku klika kan'we.",
     preparingInstall: 'OpenAmer yi le ku heta ku faka. Leswi swi teka ehansi ka minete eka nkarhi wo sungula.',
     starting: 'Ku sungula OpenAmer…',
     lookingUpProviders: 'Ku lava vaphaakeli...',
     collapse: 'Finyeta',
-    otherProviders: 'Vaphaakeli van\'wana',
+    otherProviders: "Vaphaakeli van'wana",
     haveApiKey: 'Ndzi na khiyi ya API',
     chooseLater: 'Ndzi ta hlawula muphakeli endzhaku',
     recommended: 'Swisunguleriwa',
     connected: 'Xhumekile',
-    featuredPitch: 'Subsikripshini yin\'we, timodela ta le mahlweni ta 300+ — ndlela leyi tsundzuxiwaka yo tirhisa OpenAmer',
+    featuredPitch:
+      "Subsikripshini yin'we, timodela ta le mahlweni ta 300+ — ndlela leyi tsundzuxiwaka yo tirhisa OpenAmer",
     fireworksPitch: 'API ya modela yo kongoma — timodela ta le mahlweni leti hlayisiwaka hi Fireworks',
-    openRouterPitch: 'Khiyi yin\'we, timodela ta makhume — ntolovelo wo tiya',
+    openRouterPitch: "Khiyi yin'we, timodela ta makhume — ntolovelo wo tiya",
     startingSignIn: provider => `Ku sungula ku nghena eka ${provider}...`,
     verifyingCode: provider => `Ku tiyisisa khodi ya wena na ${provider}...`,
     connectedProvider: provider => `${provider} yi hlanganisiwe`,
     connectedPicking: provider => `${provider} yi hlanganisiwe. Ku hlawula modele wa ntolovelo...`,
     signInWith: provider => `Nghena hi ${provider}`,
     openedBrowser: provider => `Hi pfule ${provider} eka xihlamusela-marito xa wena xa inthanete.`,
-    autoBrowser: provider => `Hi pfule ${provider} eka xihlamusela-marito xa wena xa inthanete. Pfumelela OpenAmer kwalaho kutani u ta hlanganisiwa hi yoxe — a ku na xo kopiwa kumbe ku namarhetiwa.`,
-    externalPending: provider => `${provider} yi nghena hi CLI ya yona. Tirhisa xileriso lexi eka theminali, kutani u vuya u hlawula "Se ndzi nghenile":`,
-    deviceCodeOpened: provider => `Hi pfule ${provider} eka xihlamusela-marito xa wena xa inthanete. Nghenisa khodi leyi kwalaho:`,
+    autoBrowser: provider =>
+      `Hi pfule ${provider} eka xihlamusela-marito xa wena xa inthanete. Pfumelela OpenAmer kwalaho kutani u ta hlanganisiwa hi yoxe — a ku na xo kopiwa kumbe ku namarhetiwa.`,
+    externalPending: provider =>
+      `${provider} yi nghena hi CLI ya yona. Tirhisa xileriso lexi eka theminali, kutani u vuya u hlawula "Se ndzi nghenile":`,
+    deviceCodeOpened: provider =>
+      `Hi pfule ${provider} eka xihlamusela-marito xa wena xa inthanete. Nghenisa khodi leyi kwalaho:`,
     pro: 'Xiphurofexinali',
     price: (input, output) => `${input} nghena / ${output} huma hi Mtok`,
-    docs: provider => `${provider} matsalwa`,
+    docs: provider => `${provider} matsalwa`
   },
   preview: {
     web: {
       restartFailedMessage: 'OpenAmer a yi kotanga ku sungula nakambe sevha.',
-      stillWorking: 'OpenAmer yi ha tirha, kambe mbuyelo wa ku sungula nakambe a wu fikanga. Komandi ya sevha yi nga ha tirha emahlweni.',
+      stillWorking:
+        'OpenAmer yi ha tirha, kambe mbuyelo wa ku sungula nakambe a wu fikanga. Komandi ya sevha yi nga ha tirha emahlweni.',
       workspaceReloading: 'Ndhawu yo tirha yi cincile, ku pfula nakambe xiyanghwelo',
-      moduleMimeDescription: 'Swikripti swa module swi nyiketiwa hi muxaka lowu hoxeke wa MIME. Leswi swi vula leswo sevha ya mafayili ya static yi nyiketa app ya Vite/React ematshan\'weni ya sevha yo tirha ya phurojeke.',
+      moduleMimeDescription:
+        "Swikripti swa module swi nyiketiwa hi muxaka lowu hoxeke wa MIME. Leswi swi vula leswo sevha ya mafayili ya static yi nyiketa app ya Vite/React ematshan'weni ya sevha yo tirha ya phurojeke.",
       unreachableDescription: 'A ri kotekanga ku fikelela tluka ra xiyanghwelo.',
       fallbackTitle: 'Xiyanghwelo',
       appFailedToBoot: 'App ya mbonelo yi tsandzekile ku sungula',
@@ -1395,16 +1459,17 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       restartFailedTitle: 'Ku sungula mbonelo nakambe swi tsandzekile',
       lookingRestart: taskId => `OpenAmer yi lava sevha ya nkombiso leswaku yi yi sungula nakambe (${taskId})`,
       startRestartFailed: message => `A swi kotekanga ku sungula sevha nakambe: ${message}`,
-      finishedRestarting: message => `OpenAmer yi hetile ku sungula sevha ya nkombiso nakambe${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer yi hetile ku sungula sevha ya nkombiso nakambe${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Ku sungula sevha nakambe swi tsandzekile: ${message}`,
       fileChanged: url => `Fayili yi cincile, ku layicha nkombiso nakambe: ${url}`,
       filesChanged: (count, url) => `${count} wa ku cinca ka tifayili, ku layicha nkombiso nakambe: ${url}`,
       watchFailed: message => `A swi kotekanga ku landzelerisa fayili ya nkombiso: ${message}`,
       loadFailedConsole: (code, message) => `Ku layicha swi tsandzekile${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Pfula ${url}`,
+      openTarget: url => `Pfula ${url}`
     },
     tab: 'Xikwembo',
-    closeOthers: 'Sima tin\'wana',
+    closeOthers: "Sima tin'wana",
     closeToRight: 'Sima e ku ya ka ha ximoya',
     closeAll: 'Sima hinkwabye',
     closePane: 'Sima pane ya xikwembo',
@@ -1429,7 +1494,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     editing: 'Ku hlela',
     unsavedChanges: 'Mincinceto leyi nga hlayisiwangiki',
     diskChangedTitle: 'Fayili yi cincile eka diski',
-    diskChangedBody: 'Fayili leyi yi cincile ku suka loko u yi pfule. Yi tsala hi ku tlula hi vhekhini ya wena, kumbe tshikela mincinceto ya wena u tlhela u paka?',
+    diskChangedBody:
+      'Fayili leyi yi cincile ku suka loko u yi pfule. Yi tsala hi ku tlula hi vhekhini ya wena, kumbe tshikela mincinceto ya wena u tlhela u paka?',
     overwrite: 'Tsala hi ku tlula',
     discardReload: 'Tshikela u tlhela u paka',
     console: {
@@ -1450,13 +1516,14 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       sentTitle: 'Rumeriwe eka chat',
       messages: count => `${count} wa marungula ya khonsoli`,
       selected: count => `${count} swi hlawuriwile`,
-      sentMessage: count => `${count} wa minkandziyiso${count === 1 ? 'y' : 'ies'} ya rhekhodo yi engeteriwile eka bokisi ro tsala`,
+      sentMessage: count =>
+        `${count} wa minkandziyiso${count === 1 ? 'y' : 'ies'} ya rhekhodo yi engeteriwile eka bokisi ro tsala`
     },
     closeTab: label => `Pfala ${label}`,
     binaryBody: label => `Ku langutisa ${label} swi nga komba matsalwa lama nga hlayekiki.`,
     largeBody: (label, size) => `${label} i ${size}. OpenAmer yi ta komba ntsena 512 KB yo sungula.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} ya ha nga namarhetiwa ku nyika mongo.`,
-    saveFailed: message => `A swi kotekanga ku hlayisa: ${message}`,
+    saveFailed: message => `A swi kotekanga ku hlayisa: ${message}`
   },
   zones: {
     showHeader: 'Komba nhloko',
@@ -1464,9 +1531,10 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     minimize: 'Hunguta',
     restore: 'Vuyisela',
     closeRunningTitle: 'Pfala thebhu leyi tirhaka?',
-    closeRunningBody: 'Chat leyi yi ha tirha (kumbe yi rindzele leswi u swi nghenisaka). Ku pfala thebhu swi yi fihla — session yi hlayisa nhluvuko wa yona naswona yi nga pfuriwa nakambe ku suka eka sidebar.',
+    closeRunningBody:
+      'Chat leyi yi ha tirha (kumbe yi rindzele leswi u swi nghenisaka). Ku pfala thebhu swi yi fihla — session yi hlayisa nhluvuko wa yona naswona yi nga pfuriwa nakambe ku suka eka sidebar.',
     closeRunningConfirm: 'Pfala thebhu',
-    closeOthers: 'Pfala tin\'wana',
+    closeOthers: "Pfala tin'wana",
     closeToRight: 'Pfala eka xinenene',
     closeAll: 'Pfala hinkwaswo',
     newSessionTab: 'Thebhu leyintshwa ya session',
@@ -1476,7 +1544,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     dirRight: 'xinenene',
     pluginDisabledBody: 'Yi pfumelela nakambe eka Swilulamisi → Plugins ku vuyisela phane.',
     editTitle: 'Mavumbiwelo',
-    editHint: 'Hlawula mavumbiwelo, kumbe huda maphane exikarhi ka swiyenge. Tsindza hi xinene eka xiyenge ku avanyisa.',
+    editHint:
+      'Hlawula mavumbiwelo, kumbe huda maphane exikarhi ka swiyenge. Tsindza hi xinene eka xiyenge ku avanyisa.',
     reset: 'Vuyisela',
     templates: 'Tithempulete',
     custom: 'Ya wena',
@@ -1491,7 +1560,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     templateGrid: 'Giridi',
     templatePriority: 'Nkoka',
     saveApply: 'Hlayisa & tirhisa',
-    notExpressible: 'Mavumbiwelo lawa ma hlanganela (pinwheel) — a ma ha koteki ku hlayisiwa tanihi mavanyiso lama ngheneleriseke',
+    notExpressible:
+      'Mavumbiwelo lawa ma hlanganela (pinwheel) — a ma ha koteki ku hlayisiwa tanihi mavanyiso lama ngheneleriseke',
     split: dir => `Avanyisa ${dir}`,
     move: dir => `Fambisa ${dir}`,
     pluginDisabled: pluginId => `Xiengetelo xa "${pluginId}" xi timiwile`,
@@ -1501,7 +1571,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     mergeZones: count => `Hlanganisa tindhawu ta ${count}`,
     customZoneName: count => `Tindhawu ta ${count} leti endleriweke wena`,
     layoutNamePlaceholder: fallback => `Vito ra maendlelo (${fallback})`,
-    zoneCount: count => `Tindhawu ta ${count}`,
+    zoneCount: count => `Tindhawu ta ${count}`
   },
   assistant: {
     thread: {
@@ -1511,7 +1581,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       restoreCheckpoint: 'Vuyisela xiyimo xo hlayisa',
       restoreFromHere: 'Vuyisela xiyimo xo hlayisa — tirha nakambe ku suka eka xivutiso lexi',
       restoreTitle: 'Vuyisela eka xiyimo xo hlayisa lexi?',
-      restoreBody: 'Hinkwaswo leswi nga endzhaku ka xivutiso lexi swi susiwa eka mbulavurisano, naswona xivutiso xi tirhisiwa nakambe ku suka laha.',
+      restoreBody:
+        'Hinkwaswo leswi nga endzhaku ka xivutiso lexi swi susiwa eka mbulavurisano, naswona xivutiso xi tirhisiwa nakambe ku suka laha.',
       restoreConfirm: 'Vuyisela & tirha nakambe',
       restoreNext: 'Vuyisela xiyimo xo hlayisa lexi landzelaka',
       goForward: 'Yana emahlweni',
@@ -1522,7 +1593,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       thinking: 'Ku ehleketa',
       copy: 'Kopa',
       refresh: 'Pfuxeta',
-      moreActions: 'Mintirho yin\'wana',
+      moreActions: "Mintirho yin'wana",
       branchNewChat: 'Tluka eka mbulavulo lowuntshwa',
       dismissError: 'Tshika xihoxo',
       readAloudFailed: 'Ku hlaya hi rito swi tsandzekile',
@@ -1537,11 +1608,11 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Namuntlha, ${time}`,
-      yesterday: time => `Tolo, ${time}`,
+      yesterday: time => `Tolo, ${time}`
     },
     clarify: {
       loadingQuestion: 'Ku layicha xivutiso…',
-      other: 'Yin\'wana (tsala phindzelo ya wena)',
+      other: "Yin'wana (tsala phindzelo ya wena)",
       placeholder: 'Tsala phindzelo ya wena…',
       skip: 'Tshika',
       skipped: 'Ku tshikiwile',
@@ -1551,7 +1622,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       notReady: 'Xikombelo xo hlamusela a xi si lulamangi',
       gatewayDisconnected: 'Ntlango wa OpenAmer a wu hlanganisiwangi',
       sendFailed: 'A swi kotangi ku rhumela phindulo yo hlamusela',
-      lateAnswer: (question, choice) => `Hi mhaka ya "${question}" — nhlamulo ya mina: ${choice}`,
+      lateAnswer: (question, choice) => `Hi mhaka ya "${question}" — nhlamulo ya mina: ${choice}`
     },
     tool: {
       code: 'Khodi',
@@ -1568,8 +1639,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       outputAlt: 'Vuyelo bya xitirhisiwa',
       rawResponse: 'Nhlamulo yo ka yi nga hleriwi',
       copyActivity: 'Kopa ntirho',
-      recoveredOne: 'Ku pfuxiwile endzhaku ka goza rin\'we leri tsandzekeke',
-      failedOne: 'Goza rin\'we ri tsandzekile',
+      recoveredOne: "Ku pfuxiwile endzhaku ka goza rin'we leri tsandzekeke",
+      failedOne: "Goza rin'we ri tsandzekile",
       statusRunning: 'Ku tirha',
       statusError: 'Xihoxo',
       statusRecovered: 'Ku pfuxiwile',
@@ -1585,123 +1656,123 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
         ran: 'Ku tirhile',
         running: 'Ku tirha',
         ranCode: 'Ku tirhile khodi',
-        runningCode: 'Ku endla skript',
+        runningCode: 'Ku endla skript'
       },
       prefixes: {
         browser: 'Brawuza',
-        web: 'Inthanete',
+        web: 'Inthanete'
       },
       titles: {
         browser_click: {
           done: 'Xiphemu xa tluka xi klikiwile',
           pending: 'Ku klika xiphemu xa tluka',
-          pendingAction: 'Ku klika',
+          pendingAction: 'Ku klika'
         },
         browser_fill: {
           done: 'Munda wa fomo wu tatisiwile',
           pending: 'Ku tata munda wa fomo',
-          pendingAction: 'Ku tata',
+          pendingAction: 'Ku tata'
         },
         browser_navigate: {
           done: 'Tluka ri pfuriwile',
           pending: 'Ku pfula tluka',
-          pendingAction: 'Ku pfula',
+          pendingAction: 'Ku pfula'
         },
         browser_snapshot: {
           done: 'Xifaniso xa tluka xi tekiwile',
           pending: 'Ku teka xifaniso xa tluka',
-          pendingAction: 'Ku teka',
+          pendingAction: 'Ku teka'
         },
         browser_take_screenshot: {
           done: 'Xifaniso xa xikrini xi tekiwile',
           pending: 'Ku teka xifaniso xa xikrini',
-          pendingAction: 'Ku khoma',
+          pendingAction: 'Ku khoma'
         },
         vision_analyze: {
           done: 'Xifaniso xi hlahlobiwile',
           pending: 'Ku hlahloba xifaniso',
-          pendingAction: 'Ku hlahloba',
+          pendingAction: 'Ku hlahloba'
         },
         web_extract: {
           done: 'Hlaya pheji ya webu',
           pending: 'Ku hlaya pheji ya webu',
-          pendingAction: 'Ku hlaya',
+          pendingAction: 'Ku hlaya'
         },
         web_search: {
           done: 'Webu yi lavisisiwile',
           pending: 'Ku lavisisa webu',
-          pendingAction: 'Ku lavisisa',
+          pendingAction: 'Ku lavisisa'
         },
         write_file: {
           done: 'Fayili yi lulamisiwile',
           pending: 'Ku lulamisa fayili',
-          pendingAction: 'Ku lulamisa',
+          pendingAction: 'Ku lulamisa'
         },
         browser_type: {
           done: 'Thayipile eka tluka',
           pending: 'Ku thayipa eka tluka',
-          pendingAction: 'Ku thayipa',
+          pendingAction: 'Ku thayipa'
         },
         clarify: {
           done: 'Vutisile xivutiso',
           pending: 'Ku vutisa xivutiso',
-          pendingAction: 'Ku vutisa',
+          pendingAction: 'Ku vutisa'
         },
         cronjob: {
           done: 'Ntirho wa Cron',
           pending: 'Ku lulamisa ntirho wa Cron',
-          pendingAction: 'Ku lulamisa',
+          pendingAction: 'Ku lulamisa'
         },
         edit_file: {
           done: 'Hlerile fayili',
           pending: 'Ku hlela fayili',
-          pendingAction: 'Ku hlela',
+          pendingAction: 'Ku hlela'
         },
         execute_code: {
           done: 'Tirhisile khodi',
           pending: 'Ku tsala skripte',
-          pendingAction: 'Ku tsala skripte',
+          pendingAction: 'Ku tsala skripte'
         },
         image_generate: {
           done: 'Tumbuluxile xifaniso',
           pending: 'Ku tumbuluxa xifaniso',
-          pendingAction: 'Ku tumbuluxa',
+          pendingAction: 'Ku tumbuluxa'
         },
         list_files: {
           done: 'Xaxametile mafayili',
           pending: 'Ku xaxameta mafayili',
-          pendingAction: 'Ku hlela',
+          pendingAction: 'Ku hlela'
         },
         patch: {
           done: 'Fayili leyi lulamisiweke',
           pending: 'Ku lulamisa fayili',
-          pendingAction: 'Ku lulamisa',
+          pendingAction: 'Ku lulamisa'
         },
         read_file: {
           done: 'Hlaya fayili',
           pending: 'Ku hlaya fayili',
-          pendingAction: 'Ku hlaya',
+          pendingAction: 'Ku hlaya'
         },
         search_files: {
           done: 'Tifayili leti lavisiweke',
           pending: 'Ku lava tifayili',
-          pendingAction: 'Ku lava',
+          pendingAction: 'Ku lava'
         },
         session_search_recall: {
           done: 'Matimu ya seshini lama lavisiweke',
           pending: 'Ku lava matimu ya seshini',
-          pendingAction: 'Ku lava',
+          pendingAction: 'Ku lava'
         },
         terminal: {
           done: 'Khomandho leyi tirhisiweke',
           pending: 'Ku tirhisa khomandho',
-          pendingAction: 'Ku tirhisa',
+          pendingAction: 'Ku tirhisa'
         },
         todo: {
           done: 'Mintirho leyi pfuxetiweke',
           pending: 'Ku pfuxeta mintirho',
-          pendingAction: 'Ku pfuxeta',
-        },
+          pendingAction: 'Ku pfuxeta'
+        }
       },
       recoveredMany: count => `Swi vuyiseriwile endzhaku ka magoza ya ${count} lama tsandzekeke`,
       failedMany: count => `Magoza ya ${count} ma tsandzekile`,
@@ -1711,8 +1782,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Ku tirhisa ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Ku tirhisa ${action.toLowerCase()}`,
-      },
+        runningTool: action => `Ku tirhisa ${action.toLowerCase()}`
+      }
     },
     approval: {
       gatewayDisconnected: 'Getiweyi ya OpenAmer a yi hlanganisiwangi',
@@ -1726,8 +1797,9 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       reject: 'Ala',
       alwaysTitle: 'Pfumelela xileriso lexi hi nkarhi hinkwawo?',
       alwaysAllow: 'Pfumelela hi nkarhi hinkwawo',
-      alwaysDescription: pattern => `Leswi swi engetela patironi ya “${pattern}” eka nxaxamelo wa wena wa nkarhi hinkwawo wa leswi pfumeleriweke (~/.openamer/config.yaml). OpenAmer a yi nge he vutisi hi swileriso swo fana ni leswi — eka sexini leyi kumbe eka tin'wana ta nkarhi lowu taka.`,
-    },
+      alwaysDescription: pattern =>
+        `Leswi swi engetela patironi ya “${pattern}” eka nxaxamelo wa wena wa nkarhi hinkwawo wa leswi pfumeleriweke (~/.openamer/config.yaml). OpenAmer a yi nge he vutisi hi swileriso swo fana ni leswi — eka sexini leyi kumbe eka tin'wana ta nkarhi lowu taka.`
+    }
   },
   desktop: {
     imagePreviewFailed: 'Vuhlahluvi bya xifaniso byi tsandzekile',
@@ -1744,7 +1816,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       timedOut: 'Nkarhi wu helile ku lindzela getiweyi. Xana `openamer gateway` yi tirha?',
       success: platform => `Swi hundziseriwe eka ${platform}. Yana mahlweni laha nkarhi wun'wana ni wun'wana.`,
       systemNote: platform => `↻ Swi hundziseriwe eka ${platform} — yana mahlweni laha nkarhi wun'wana ni wun'wana.`,
-      failed: error => `Ku hundzisela swi tsandzekile: ${error}`,
+      failed: error => `Ku hundzisela swi tsandzekile: ${error}`
     },
     audioReadFailed: 'A swi koteki ku hlaya mpfumawulo lowu rhekodiweke',
     sessionUnavailable: 'Sesheni a yi kona',
@@ -1769,7 +1841,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     openImage: 'Pula xifaniso',
     downloadImage: 'Dawuniloda xifaniso',
     savingImage: 'Ku hlayisa xifaniso',
-    resumeStrandedBody: 'Ku hlanganisa ni sesheni leyi swi tsandzekile naswona miringo yo ringeta hi ku tirhisa ximatsi yi tshikile. Kambela leswaku gateway yi tirha, kutani ringeta nakambe.',
+    resumeStrandedBody:
+      'Ku hlanganisa ni sesheni leyi swi tsandzekile naswona miringo yo ringeta hi ku tirhisa ximatsi yi tshikile. Kambela leswaku gateway yi tirha, kutani ringeta nakambe.',
     resumeRetry: 'Ringeta nakambe',
     nothingToBranch: 'A ku na nchumu wo endla branch',
     branchNeedsChat: 'Sungula kumbe yisa emahlweni mbulavulo u nga si endla branch.',
@@ -1793,34 +1866,36 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     warningLine: message => `xilemukiso: ${message}`,
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} eka sexini leyi`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Phurofayili: ${current}. Tirhisa /profile <vito> kumbe xihlawuri xa "Sexini leyintshwa" ku sungula mbulavurisano eka phurofayili yin'wana.`,
+    profileStatus: current =>
+      `Phurofayili: ${current}. Tirhisa /profile <vito> kumbe xihlawuri xa "Sexini leyintshwa" ku sungula mbulavurisano eka phurofayili yin'wana.`,
     noProfileNamed: (target, available) => `A ku na phurofayili leyi vuriwaka "${target}". Leti nga kona: ${available}`,
     newChatsProfile: name => `Mimbulavurisano leyintshwa yi ta tirhisa phurofayili ya ${name}.`,
-    branchTitle: n => `Mpfapfarhuto: Rhavi #${n}`,
+    branchTitle: n => `Mpfapfarhuto: Rhavi #${n}`
   },
   errors: {
     genericFailure: 'Ku hoxekile',
     boundaryTitle: 'Ku thyokile eka xikandza xa mutirhisi',
-    boundaryDesc: 'Ku vona ku kumene xihoxo lexi nga languteriwangiki. Mimbulavuxaka na swilulamiselo swa wena swi hlayisekile.',
+    boundaryDesc:
+      'Ku vona ku kumene xihoxo lexi nga languteriwangiki. Mimbulavuxaka na swilulamiselo swa wena swi hlayisekile.',
     reloadWindow: 'Pfula fasitere nakambe',
-    openLogs: 'Pfula tilogi',
+    openLogs: 'Pfula tilogi'
   },
   ui: {
     search: {
-      clear: 'Sula ku lavisisa',
+      clear: 'Sula ku lavisisa'
     },
     pagination: {
       label: 'Ku phedza mapeji',
       previous: 'Hundzeke',
       previousAria: 'Ya eka pheji leyi hundzeke',
       next: 'Landzelaka',
-      nextAria: 'Ya eka pheji leyi landzelaka',
+      nextAria: 'Ya eka pheji leyi landzelaka'
     },
     sidebar: {
       title: 'Bara ya le tlhelo',
       description: 'Yi kombisa bara ya le tlhelo ya selefouno.',
-      toggle: 'Cinca bara ya le tlhelo',
-    },
+      toggle: 'Cinca bara ya le tlhelo'
+    }
   },
   boot: {
     ready: 'OpenAmer Desktop i nyika',
@@ -1829,7 +1904,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       loadingSettings: 'Ku loada settings za OpenAmer',
       loadingSessions: 'Ku loada mimati ya nkarhi',
       startingDesktopConnection: 'Ku sukela nkondzo ya desktop',
-      startingOpenAmerDesktop: 'Ku sukela OpenAmer Desktop…',
+      startingOpenAmerDesktop: 'Ku sukela OpenAmer Desktop…'
     },
     errors: {
       backgroundExited: 'Ndzila ya background ya OpenAmer yi heta.',
@@ -1838,13 +1913,15 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       desktopBootFailed: 'Desktop yi nga hlula ku sungula',
       gatewayConnectionLost: 'Nkondzo ya gateway yi lahlekeriwe',
       gatewaySignInRequired: 'Kungeni ka gateway ki bohlokile',
-      ipcBridgeUnavailable: 'Bridge ya IPC a nga kona.',
+      ipcBridgeUnavailable: 'Bridge ya IPC a nga kona.'
     },
     failure: {
       title: 'OpenAmer a nga swi sukela',
-      description: 'Gateway ya background a nga pfuma. Kula nga eku hatisa yindlu yo sungula leyi nga hamble below. Hakuna hiku nga sula malunghana ya swakana ni settings.',
+      description:
+        'Gateway ya background a nga pfuma. Kula nga eku hatisa yindlu yo sungula leyi nga hamble below. Hakuna hiku nga sula malunghana ya swakana ni settings.',
       remoteTitle: 'Kungeni ka gateway ya remote ki bohlokile',
-      remoteDescription: 'Mimati ya gateway ya remote yi helile. Kungeni u nga boha wu hlaya. Hakuna hiku nga sula malunghana ya swakana ni settings.',
+      remoteDescription:
+        'Mimati ya gateway ya remote yi helile. Kungeni u nga boha wu hlaya. Hakuna hiku nga sula malunghana ya swakana ni settings.',
       retry: 'Kula namuntlha',
       repairInstall: 'Lulamusa u sungule installer',
       useLocalGateway: 'Use gateway ya ku tsimeka',
@@ -1863,134 +1940,135 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       signInFailed: 'Ku nghena ku tsandzekile',
       signInToRemoteGateway: 'Nghena eka giyeti ya le kule',
       identityProvider: 'muhaxi wa vumunhu bya wena',
-      remoteSignInHint: signInLabel => `U huma eka seshini ya browser eka eka ya hamburgeru eka o hlayisile, emhula u pfumela ${signInLabel}. Tshanani gateway ya thoko leswaku u fikela backend leyi ya xundzheketo.`,
-      signInWithProvider: provider => `Khumana ngop ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `U huma eka seshini ya browser eka eka ya hamburgeru eka o hlayisile, emhula u pfumela ${signInLabel}. Tshanani gateway ya thoko leswaku u fikela backend leyi ya xundzheketo.`,
+      signInWithProvider: provider => `Khumana ngop ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Khomotinyiko ya desktop hi xanile: ${message}`,
+    desktopBootFailedWithMessage: message => `Khomotinyiko ya desktop hi xanile: ${message}`
   },
   messaging: {
     fieldCopy: {
       MATRIX_USER_ID: {
         label: 'ID ya mutirho wa robotha',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'IDs ya mutirho tshikiyiswaka',
-        help: 'Kotombelana. IDs ya mutirho ehahlelelwaka hi nkokwana, eka @mutirho:server.',
+        help: 'Kotombelana. IDs ya mutirho ehahlelelwaka hi nkokwana, eka @mutirho:server.'
       },
       SIGNAL_HTTP_URL: {
         label: 'URL ya timbilisi ya Signal',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'URL ya timbilisi ye Signal-cli REST esi hatsimbiwiki.',
+        help: 'URL ya timbilisi ye Signal-cli REST esi hatsimbiwiki.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Nomboro ya telefoni',
-        help: 'Nomboro leyi registriwile enhay\'weni wena ya Signal-cli.',
+        help: "Nomboro leyi registriwile enhay'weni wena ya Signal-cli."
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Mutirho wa Signal tshikiyiswaka',
-        help: 'Kotombelana. Tintshema ta Signal.',
+        help: 'Kotombelana. Tintshema ta Signal.'
       },
       WHATSAPP_ENABLED: {
         label: 'Vula timbilisi ya WhatsApp',
-        help: 'I tirhwa hi swichudeni leswi hambi. Yi tsundzuka ngale ku loko u tiva leswaku u fanele.',
+        help: 'I tirhwa hi swichudeni leswi hambi. Yi tsundzuka ngale ku loko u tiva leswaku u fanele.'
       },
       WHATSAPP_MODE: {
-        label: 'Mburisa ya timbilisi',
+        label: 'Mburisa ya timbilisi'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'Mutirho wa WhatsApp tshikiyiswaka',
-        help: 'Kotombelana. Nomboro ta telefoni na IDs ta WhatsApp, ehahlelelwaka hi nkokwana.',
+        help: 'Kotombelana. Nomboro ta telefoni na IDs ta WhatsApp, ehahlelelwaka hi nkokwana.'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Pfumelela vatirhisi hinkwavo va QQ',
+        label: 'Pfumelela vatirhisi hinkwavo va QQ'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'Chanele ya kaya ya QQ',
-        help: 'Chanele kumbe ntlawa wa ntolovelo eka ku fikisa cron.',
+        help: 'Chanele kumbe ntlawa wa ntolovelo eka ku fikisa cron.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'Vito ra chanele ya kaya ya QQ',
+        label: 'Vito ra chanele ya kaya ya QQ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Thekeni ya bot ya Slack',
         help: 'Tirhisa thekeni ya bot ku suka eka OAuth & Permissions endzhaku ko hloma app ya Slack.',
-        placeholder: 'Nametela thekeni ya bot ya Slack',
+        placeholder: 'Nametela thekeni ya bot ya Slack'
       },
       SLACK_APP_TOKEN: {
         label: 'Thekeni ya app ya Slack',
         help: 'Tirhisa thekeni ya level ya app leyi lavekaka eka Socket Mode.',
-        placeholder: 'Nametela thekeni ya app ya Slack',
+        placeholder: 'Nametela thekeni ya app ya Slack'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Ti-ID ta vatirhisi va Slack leti pfumeleleriweke',
-        help: 'Swibumabumeliwe. Ti-ID ta vatirhisi va Slack to hambanisiwa hi tikoma.',
+        help: 'Swibumabumeliwe. Ti-ID ta vatirhisi va Slack to hambanisiwa hi tikoma.'
       },
       MATTERMOST_URL: {
         label: 'URL ya sevha',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Thekeni ya bot',
+        label: 'Thekeni ya bot'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Ti-ID ta vatirhisi leti pfumeleleriweke',
-        help: 'Swibumabumeliwe. Ti-ID ta vatirhisi va Mattermost to hambanisiwa hi tikoma.',
+        help: 'Swibumabumeliwe. Ti-ID ta vatirhisi va Mattermost to hambanisiwa hi tikoma.'
       },
       MATRIX_HOMESERVER: {
         label: 'URL ya sevha ya kaya',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Thekeni ya ku nghena',
+        label: 'Thekeni ya ku nghena'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'TINomoro ta ID ta vatirhisi va Telegram leti pfumeleriweke',
-        help: 'Swi bumeriwa. TINomoro ta ID leti hambanisiweke hi tikoma kusuka eka @userinfobot. Handle leswi, munhu un\'wana ni un\'wana a nga rhumela bot ya wena hi DM.',
+        help: "Swi bumeriwa. TINomoro ta ID leti hambanisiweke hi tikoma kusuka eka @userinfobot. Handle leswi, munhu un'wana ni un'wana a nga rhumela bot ya wena hi DM."
       },
       TELEGRAM_PROXY: {
         label: 'URL ya proxy',
-        help: 'Swi laveka ntsena eka tinethiweki leti Telegram yi pfaleriweke eka tona.',
+        help: 'Swi laveka ntsena eka tinethiweki leti Telegram yi pfaleriweke eka tona.'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Token ya bot',
-        help: 'Endla aplikisheni eka Discord Developer Portal, engetela bot, kutani namarhela token ya yona.',
+        help: 'Endla aplikisheni eka Discord Developer Portal, engetela bot, kutani namarhela token ya yona.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'TINomoro ta ID ta vatirhisi va Discord leti pfumeleriweke',
-        help: 'Swi bumeriwa. TINomoro ta ID ta vatirhisi va Discord leti hambanisiweke hi tikoma.',
+        help: 'Swi bumeriwa. TINomoro ta ID ta vatirhisi va Discord leti hambanisiweke hi tikoma.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Muxaka wa nhlamulo',
-        help: 'first, all, kumbe off.',
+        help: 'first, all, kumbe off.'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Pfumela vatirhisi hinkwavo va Discord',
-        help: 'Ntirho wo tumbuluxa ntsena. Loko swi ri ntiyiso, munhu un\'wana ni un\'wana a nga rhumela bot hi DM handle xitayelo xa mavume.',
+        help: "Ntirho wo tumbuluxa ntsena. Loko swi ri ntiyiso, munhu un'wana ni un'wana a nga rhumela bot hi DM handle xitayelo xa mavume."
       },
       DISCORD_HOME_CHANNEL: {
         label: 'ID ya chanele ya kaya',
-        help: 'Chanele laha bot yi rhumelaka timeseji to rhangela (cron output, swikumbutso).',
+        help: 'Chanele laha bot yi rhumelaka timeseji to rhangela (cron output, swikumbutso).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Vito ra chanele ya kaya',
-        help: 'Vito ro kombisa ra chanele ya kaya eka logs ni output ya status.',
+        help: 'Vito ro kombisa ra chanele ya kaya eka logs ni output ya status.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Pfumela vatirhisi hinkwavo va iMessage',
-        help: 'Loko swi ri ntiyiso, tlula xitayelo xa mavume xa BlueBubbles.',
+        help: 'Loko swi ri ntiyiso, tlula xitayelo xa mavume xa BlueBubbles.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Pfumela vatirhisi hinkwavo va Mattermost',
+        label: 'Pfumela vatirhisi hinkwavo va Mattermost'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Chanele ya kaya',
+        label: 'Chanele ya kaya'
       },
       TELEGRAM_BOT_TOKEN: {
         label: 'Thekeni ya bot',
         help: 'Endla bot hi @BotFather, ivi u namarhela thekeni leyi u nyikiwaka yona.',
-        placeholder: 'Namarhela thekeni ya bot ya Telegram',
-      },
+        placeholder: 'Namarhela thekeni ya bot ya Telegram'
+      }
     },
     states: {
       pending_restart: 'Ku laveka ku tlhela ku sungula',
@@ -2001,7 +2079,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       disabled: 'Swi siviwile',
       fatal: 'Xihoxo',
       gateway_stopped: 'Geti ya marungula yi yimile',
-      not_configured: 'Swi lava ku lulamisiwa',
+      not_configured: 'Swi lava ku lulamisiwa'
     },
     unknown: 'A ku tiviwi',
     hintPendingRestart: 'Tlhela u sungula gateway eka status bar leswaku ku cinca loku ku tirha.',
@@ -2013,7 +2091,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     openSetupGuide: 'Pfula giyidi yo lulamisa',
     required: 'Swi laveka',
     recommended: 'Swi bumabumeriwa',
-    noTokenNeeded: 'Platform leyi a yi lavi token laha. Tirhisa giyidi yo lulamisa leyi nga laha hennhla, kutani u yi endla yi tirha laha hansi.',
+    noTokenNeeded:
+      'Platform leyi a yi lavi token laha. Tirhisa giyidi yo lulamisa leyi nga laha hennhla, kutani u yi endla yi tirha laha hansi.',
     enabled: 'Swi tirhisiwile',
     disabled: 'A swi tirhi',
     unsavedChanges: 'Ku cinca loku nga hlayisiwangiki',
@@ -2039,8 +2118,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     failedUpdate: name => `Swi tsandzile ku pfuxeta ${name}`,
     failedSave: name => `Swi tsandzile ku hlayisa ${name}`,
     failedClear: key => `Swi tsandzile ku sula ${key}`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   sidebar: {
     projects: {
@@ -2058,8 +2136,10 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       copyPath: 'Kopanya ndlela',
       removeFromSidebar: 'Fihla e-sidebarini',
       createFailed: 'A nga swi ndala purejenti',
-      staleBackend: 'Kambisa i-OpenAmer backend ku ndala purejenti — i-backend yakho ya kule ya app ya desktop (Thero → Kambiso → Backend).',
-      deleteConfirm: 'Loko ku susa purejenti leyi a nga hlayariwaka e-OpenAmer. Mizedi, i-git repos na i-worktrees mi tsakele.',
+      staleBackend:
+        'Kambisa i-OpenAmer backend ku ndala purejenti — i-backend yakho ya kule ya app ya desktop (Thero → Kambiso → Backend).',
+      deleteConfirm:
+        'Loko ku susa purejenti leyi a nga hlayariwaka e-OpenAmer. Mizedi, i-git repos na i-worktrees mi tsakele.',
       startWork: 'Mutlwa wa ntseketelo leyintshwa',
       newWorktreeTitle: 'Mutlwa wa ntseketelo leyintshwa',
       newWorktreeDesc: 'Nika i-mutlwa wa ntseketelo leyi.',
@@ -2069,7 +2149,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       startWorkFailed: 'A nga swi ndala mutlwa wa ntseketelo',
       convertBranch: 'Phendula mutlwa…',
       convertBranchTitle: 'Phendula mutlwa',
-      convertBranchDesc: 'Vula matafuli leyi a nga hlengetiwanga, kambiwa ndala mutlwa wa ntseketelo wa mutlwa leyi a nga rhuriwanga.',
+      convertBranchDesc:
+        'Vula matafuli leyi a nga hlengetiwanga, kambiwa ndala mutlwa wa ntseketelo wa mutlwa leyi a nga rhuriwanga.',
       convertBranchPlaceholder: 'Tindzela matafuli…',
       convertBranchInstead: 'Phendula mutlwa o leri ku nga kona',
       branchOpenExisting: 'vula',
@@ -2079,8 +2160,10 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       noBranches: 'A nga wari ndi matafuli',
       removeWorktree: 'Susa mutlwa wa ntseketelo',
       removeWorktreeFailed: 'A nga swi susa mutlwa wa ntseketelo (mintengo leyi a nga sa swariwanga?)',
-      removeWorktreeConfirm: 'Susa e-git (wusa i-directory ya mutlwa wa ntseketelo; i-mutlwa i tsakele), kambiwa fihla i-lane e-sidebarini u mutlwa wa ntseketelo u nga sala e-diskin.',
-      removeWorktreeDirty: 'Mutlwa wa ntseketelo wawu wina mintengo leyi a nga sa swariwanga. Susa ngopfu (u lahlo mintengo), kambiwa fihla i-lane u yi sa ya e-diskini.',
+      removeWorktreeConfirm:
+        'Susa e-git (wusa i-directory ya mutlwa wa ntseketelo; i-mutlwa i tsakele), kambiwa fihla i-lane e-sidebarini u mutlwa wa ntseketelo u nga sala e-diskin.',
+      removeWorktreeDirty:
+        'Mutlwa wa ntseketelo wawu wina mintengo leyi a nga sa swariwanga. Susa ngopfu (u lahlo mintengo), kambiwa fihla i-lane u yi sa ya e-diskini.',
       forceRemove: 'Susa ngopfu',
       back: 'Purejenti hinkwato',
       ideaLabel: 'Xianakanyo',
@@ -2093,7 +2176,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       sectionLabel: 'Tiphurojeke',
       newButton: 'Phurojeke leyintshwa',
       createTitle: 'Phurojeke leyintshwa',
-      createDesc: 'Thya ndhawu ya ntirho u engetela folodo yin\'we kumbe ku tlula.',
+      createDesc: "Thya ndhawu ya ntirho u engetela folodo yin'we kumbe ku tlula.",
       renameTitle: 'Cinca vito ra phurojeke',
       addFolderTitle: 'Engetela folodo',
       namePlaceholder: 'xikombiso: Skunkworks',
@@ -2101,7 +2184,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Pfula ${label}`,
       reorder: label => `Hlela ${label} nakambe`,
-      toggle: label => `Cinca ku vonaka ka tiseshini ta ${label}`,
+      toggle: label => `Cinca ku vonaka ka tiseshini ta ${label}`
     },
     loading: 'Ku layisa…',
     loadMore: 'Paka swo tala',
@@ -2136,13 +2219,13 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       handoffOrigin: platform => `Hundziseriwe ku suka eka ${platform}`,
       ownedByProfile: profile => `Phurofayili: ${profile}`,
       untitledChat: id => `Bulo ${id}`,
-      ageMin: 'min',
+      ageMin: 'min'
     },
     nav: {
       'new-session': 'Seshini yintshwa',
       skills: 'Vuswikoti',
       messaging: 'Ku rhumela mahungu',
-      artifacts: 'Swivumbiwa',
+      artifacts: 'Swivumbiwa'
     },
     searchAria: 'Lava tisesheni',
     searchPlaceholder: 'Lava tisesheni…',
@@ -2151,7 +2234,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     pinned: 'Swi piniwile',
     sessions: 'Tisesheni',
     cronJobs: 'Mintirho ya Cron',
-    groupAriaGrouped: 'Komba tisesheni tanihi nongonoko wun\'we',
+    groupAriaGrouped: "Komba tisesheni tanihi nongonoko wun'we",
     groupAriaUngrouped: 'Hlanganisa tisesheni hi ndhawu ya ntirho',
     showProjects: 'Komba tiphurojeke',
     showSessions: 'Komba tisesheni',
@@ -2168,30 +2251,31 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       yesterday: 'Tshamano',
       thisWeek: 'Kale vhiki leri',
       lastWeek: 'Vhiki leri hundzeke',
-      thisMonth: 'Kale n\'hweti leyi',
+      thisMonth: "Kale n'hweti leyi"
     },
     noMatch: query => `A ku na tiseshini leti fambelanaka na “${query}”.`,
     newSessionIn: label => `Seshini leyintshwa eka ${label}`,
     showMoreIn: (count, label) => `Kombisa tin’wana ta ${count} eka ${label}`,
-    loadCount: step => `Layicha tin’wana ta ${step}`,
+    loadCount: step => `Layicha tin’wana ta ${step}`
   },
   composer: {
     snippets: {
       codeReview: {
         text: 'Ndzi kula leswi hinkwabyo swi nga na bugs, regressions ni swi tekisi swo tika.',
         label: 'Nkambisiso wa khodi',
-        description: 'Kambisisa cinco ya sweswi hi swivuyelo swo tlhelela emurhu, milandzu leyi tshikeleriweke ni mikambisiso leyi kayivelaka.',
+        description:
+          'Kambisisa cinco ya sweswi hi swivuyelo swo tlhelela emurhu, milandzu leyi tshikeleriweke ni mikambisiso leyi kayivelaka.'
       },
       implementationPlan: {
         label: 'Ndlela ya u tirha',
         description: 'Kombisa ndlela ya ku ha ndzi ra swi titimela code.',
-        text: 'Endla ndlela yo kondhela ya u tirha.',
+        text: 'Endla ndlela yo kondhela ya u tirha.'
       },
       explainThis: {
         label: 'Hlamusela leswaku',
         description: 'Hamba u vona ka ha code yo hlawuriwile u vaka mavhana a nkoka.',
-        text: 'Hlamusela ka ha leswi swi tirha u ndzi byele eka mavhana a nkoka.',
-      },
+        text: 'Hlamusela ka ha leswi swi tirha u ndzi byele eka mavhana a nkoka.'
+      }
     },
     message: 'Meseji',
     placeholderStarting: 'Ku sungula OpenAmer...',
@@ -2221,7 +2305,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       'composer.cancel': 'pfala popover · tshika ntirho',
       'composer.history': 'cinca popover / matimu',
       'composer.mention': 'Vula mathlele, tifolda, ti-url, git',
-      'composer.slash': 'Paleti ya swileriso ya slash',
+      'composer.slash': 'Paleti ya swileriso ya slash'
     },
     attachUrlTitle: 'Hlanganisa URL',
     attachUrlDesc: 'OpenAmer i ta lava tluka ivi yi ri katsa tanihi mongo wa nkarhi lowu.',
@@ -2255,7 +2339,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       '/resume': 'Yisa emahlweni seshini ya khale',
       '/details': 'Lawula ntikelo wa vuxokoxoko bya tsalwa',
       '/copy': 'Kopa leswi hlawuriweke kumbe rongo ro hetelela ra muthusi',
-      '/quit': 'Huma eka openamer',
+      '/quit': 'Huma eka openamer'
     },
     tipPost: 'ku kombetela tifayili endzeni.',
     snippetsTitle: 'Swiphemu swa xivutiso',
@@ -2264,7 +2348,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     dropSession: 'Tshikela ku xhumanisa mbulavulo lowu.',
     queueResumeTip: 'Yi yimisisiwile hi Stop — rhumela nakambe swilo leswi yimelaka',
     queueStuckTitle: 'Rongwa leri yimelaka a ri rhumeriwanga',
-    queueStuckBody: 'Rongwa leri yimelaka ri tshama ri tsandzeka ku rhumeriwa. Ri ha ri eka nongonoko — ringeta ku ri rhumela nakambe.',
+    queueStuckBody:
+      'Rongwa leri yimelaka ri tshama ri tsandzeka ku rhumeriwa. Ri ha ri eka nongonoko — ringeta ku ri rhumela nakambe.',
     previewUnavailable: 'Xivonelo a xi kumeki',
     dictating: 'Ku dikitara',
     preparingAudio: 'Ku lulamisa odiyo',
@@ -2286,27 +2371,27 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     newSessionPlaceholders: [
       'Hi aka yini?',
       'Nyika OpenAmer xintirhwana',
-      "U ehleketa yini?",
+      'U ehleketa yini?',
       'Hlamusela leswi u swi lavaka',
       'Hi fanele hi tirhana na yini?',
       'Vutisa xin’wana ni xin’wana',
-      'Sungula hi xikongomelo',
+      'Sungula hi xikongomelo'
     ],
     followUpPlaceholders: [
       'Rhumela xivutiso xo landzelela',
       'Engetela vuxokoxoko',
       'Antswisa xikombelo',
-      "Ku landzela yini?",
+      'Ku landzela yini?',
       'Yana mahlweni',
       'Yisa ekule',
-      'Lulamisa kumbe u ya mahlweni',
+      'Lulamisa kumbe u ya mahlweni'
     ],
     queued: count => `${count} Yi le layinini`,
     queuedPaused: count => `${count} Yi le layinini — yi yimisiwile`,
     attachments: count => `${count} xiengetelwa${count === 1 ? '' : 's'}`,
     previewLabel: label => `Languta ${label} ka ha ri mahlweni`,
     couldNotPreview: label => `A swi kotekanga ku languta ${label} ka ha ri mahlweni`,
-    removeAttachment: label => `Susa ${label}`,
+    removeAttachment: label => `Susa ${label}`
   },
   statusStack: {
     agents: 'Hawutana',
@@ -2329,7 +2414,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       viewAsList: 'Vona hi xinyangu',
       revert: 'Rova eshwareni',
       revertAll: 'Rova hinkwayo eshwareni',
-      revertConfirm: 'Lahla kusinthiwa eka xisemu leswi u vula ku swi hlamusa eka ximo ra ku tika? Leswi a nga swi voniwi.',
+      revertConfirm:
+        'Lahla kusinthiwa eka xisemu leswi u vula ku swi hlamusa eka ximo ra ku tika? Leswi a nga swi voniwi.',
       revertAllConfirm: 'Lahla kusinthiwa hinkwayo u swi hlamusa mavhana eka ximo ra ku tika? Leswi a nga swi voniwi.',
       staged: 'Xumile',
       noChanges: 'A ku na kusinthiwa',
@@ -2347,7 +2433,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       openPr: 'Pfula PR',
       ghMissing: 'Faka GitHub CLI (gh) ni ku nghena leswaku u pfula ti-PR',
       agentShip: 'Vutisa OpenAmer ku pfula PR',
-      agentShipPrompt: 'Kambisisa swinco swa sweswi, endla commit ya swinco hi rungula lero vonaka ra conventional-commit, sindzisa brenchi, kutani u pfula PR.',
+      agentShipPrompt:
+        'Kambisisa swinco swa sweswi, endla commit ya swinco hi rungula lero vonaka ra conventional-commit, sindzisa brenchi, kutani u pfula PR.',
       newBranch: 'Brenchi leyintshwa',
       worktrees: 'Swihlahla swa ntirho',
       changed: count => `${count} swi cinciwile`,
@@ -2355,12 +2442,12 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       behind: count => `${count} endzhaku`,
       branchOffFrom: base => `Rhavi lerintshwa ku suka eka ${base}`,
       switchTo: branch => `Cincela eka ${branch}`,
-      switchFailed: branch => `A swi kotekanga ku cincela eka ${branch}`,
+      switchFailed: branch => `A swi kotekanga ku cincela eka ${branch}`
     },
     background: count => `${count} Le ndzhaku`,
     subagents: count => `${count} Muyimeri lontsongo${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Mintirho ${done}/${total}`,
-    exit: code => `huma ${code}`,
+    exit: code => `huma ${code}`
   },
   rightSidebar: {
     terminal: 'Xitimi',
@@ -2388,7 +2475,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     terminalHide: 'Fihla xitimi',
     terminalsAria: 'Txitimi',
     terminalNew: 'Xitimi xintshwa',
-    terminalCloseOthers: 'Sima tin\'wana',
+    terminalCloseOthers: "Sima tin'wana",
     terminalCloseAll: 'Sima hinkwabye',
     addToChat: 'Lulela xichat',
     aria: 'Sidebar ya xinene',
@@ -2396,7 +2483,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     files: 'Sisiteme ya mafayili',
     folderTip: cwd => `${cwd} — tsindziyela ku cinca foldara`,
     couldNotPreview: path => `A swi kotekanga ku langutisa ${path}`,
-    unreadableBody: error => `A swi kotekanga ku hlaya foldara leyi (${error}).`,
+    unreadableBody: error => `A swi kotekanga ku hlaya foldara leyi (${error}).`
   },
   skills: {
     tabSkills: 'Mavuswikoti',
@@ -2409,13 +2496,14 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     refreshing: 'Ku pfuxeta mavuswikoti',
     loading: 'Ku layicha vuswikoti...',
     noSkillsTitle: 'Ku hava mavuswikoti lama kumekeke',
-    noSkillsDesc: 'Ringeta ku lavisisa hi ku anama kumbe kategoriya yin\'wana.',
+    noSkillsDesc: "Ringeta ku lavisisa hi ku anama kumbe kategoriya yin'wana.",
     noToolsetsTitle: 'Ku hava masete ya switirhisiwa lama kumekeke',
     noToolsetsDesc: 'Ringeta xivutiso xo lavisisa lexi anamaka.',
     noDescription: 'Ku hava nhlamuselo.',
     configured: 'Yi lulamisiwile',
     needsKeys: 'Yi lava tikey',
-    visionModelHint: 'Vona i tirhisa ku lulamisiwa ka mudel wa wena wo pfuneta — mudel lowu kotaka swifaniso wu hlawuriwa kwenye, a hi hi mupfuni un\'wana laha.',
+    visionModelHint:
+      "Vona i tirhisa ku lulamisiwa ka mudel wa wena wo pfuneta — mudel lowu kotaka swifaniso wu hlawuriwa kwenye, a hi hi mupfuni un'wana laha.",
     visionModelLink: 'Hlawula mudel wa vona eka Swilulamisi → Mimodel',
     skillsLoadFailed: 'Swikili swi tsandzekile ku layicha',
     toolsetsRefreshFailed: 'Swipfuno swi tsandzekile ku pfuxeta',
@@ -2433,7 +2521,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     provenance: {
       agent: 'Swi dyondziwe',
       bundled: 'Swi le ndzeni',
-      hub: 'Xikarhi',
+      hub: 'Xikarhi'
     },
     changesApplyNewSessions: 'Swicinci swi tirha eka mintlangu leyintshwa.',
     hub: {
@@ -2456,7 +2544,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       trust: {
         builtin: 'Swa le ndzeni',
         trusted: 'Swi holiwa',
-        community: 'Muganga',
+        community: 'Muganga'
       },
       verdictSafe: 'Hola',
       verdictCaution: 'Tisisa',
@@ -2465,7 +2553,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       connectingHubs: 'Ku hlanganisa eka swihubu swa swikili...',
       connectedHubs: 'Swihubu leswi hlanganisiweke:',
       featured: 'Swikili leswi hlawuriweke',
-      landingHint: 'Lava eka hubu ku kambisisa swikili leswi nghenisiwaka kusuka eka index yo ximfumo, GitHub, ni swihlovo swa muganga.',
+      landingHint:
+        'Lava eka hubu ku kambisisa swikili leswi nghenisiwaka kusuka eka index yo ximfumo, GitHub, ni swihlovo swa muganga.',
       noResults: 'Ku hava swikili leswi fambelanaka eka hubu.',
       policyAsk: 'Kambisisa u nga si nghenisa',
       policyBlock: 'Ku nghenisa swi tseriwe hi pholisi',
@@ -2481,7 +2570,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       timedOut: sources => `Nkarhi wu herile: ${sources}`,
       findings: count => `Leswi kumiweke: ${count}${count === 1 ? '' : 's'}`,
       installStarted: name => `Ku nghenisa ${name}...`,
-      uninstallStarted: name => `Ku susa ${name}...`,
+      uninstallStarted: name => `Ku susa ${name}...`
     },
     sortAlpha: 'A–Z',
     skillUpdated: 'Vutshila byi pfuxetiwe',
@@ -2499,7 +2588,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     usageCount: count => `yi tirhisiwe ${count}×`,
     emptyNoneFound: noun => `A ku kumekanga ${noun}`,
     emptyNothingMatches: query => `A ku na lexi fambelanaka na “${query}”.`,
-    emptyNoneAvailable: noun => `A ku si va na ${noun} leyi kumekaka.`,
+    emptyNoneAvailable: noun => `A ku si va na ${noun} leyi kumekaka.`
   },
   starmap: {
     title: 'Grafu ya Mitsheveto',
@@ -2515,7 +2604,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     emptyTitle: 'A ku si na swilo swo dyondziwa',
     emptyDesc: 'Loko OpenAmer a aka swikili na mitsheveto ya ntirho wa wena, swi vonaka laha.',
     share: 'Avela mepe',
-    shareHint: 'Kopa khodi ku avela mepe lowu, kumbe namarhela yin\'wana ku pfula. Yi katsa ntlhamu ntsena, a yi katsi mitsheveto kumbe matsalwa ya swikili swa wena.',
+    shareHint:
+      "Kopa khodi ku avela mepe lowu, kumbe namarhela yin'wana ku pfula. Yi katsa ntlhamu ntsena, a yi katsi mitsheveto kumbe matsalwa ya swikili swa wena.",
     shareTitle: 'Nghenisa / Humisa mepe',
     sharePlaceholder: 'Namarhela khodi ya mepe…',
     copy: 'Kopa khodi ya mepe',
@@ -2526,7 +2616,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     importedBadge: 'Mepu leyi tisiweke',
     resetToMine: 'Tlhela eka mepu ya mina',
     subtitle: (nodes, clusters) => `Vuswikoti bya ${nodes} eka swiyenge swa ${clusters}`,
-    importSuccess: nodes => `Ku layichiwe mepe lowu nga na ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Ku layichiwe mepe lowu nga na ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Pfala ma-agent',
@@ -2556,7 +2646,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     ageDays: days => `${days} wa masiku lama hundzeke`,
     durationSeconds: seconds => `${seconds} wa tisekoni`,
     durationMinutes: (minutes, seconds) => `${minutes} wa timinete ${seconds} wa tisekoni`,
-    tokens: value => `${value} wa tithokene`,
+    tokens: value => `${value} wa tithokene`
   },
   updates: {
     stages: {
@@ -2571,7 +2661,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       fetch: 'Ku downloada…',
       pull: 'Swi le kusuhi…',
       pydeps: 'Ku hetisa…',
-      update: 'Ku pfuxeta OpenAmerâ€¦',
+      update: 'Ku pfuxeta OpenAmerâ€¦'
     },
     checking: 'Ku lava pfuxeto…',
     checkFailedTitle: 'A swi kotekangi ku kambela pfuxeto',
@@ -2586,36 +2676,43 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     availableBody: 'Vhezheni leyintshwa ya OpenAmer yi lulamile ku hlomisiwa.',
     availableTitleBackend: 'Pfuxeto ya backend yi kona',
     availableBodyBackend: 'Vhezheni leyintshwa ya backend ya OpenAmer leyi hlanganisiweke yi lulamile ku hlomisiwa.',
-    availableBodyNoChangelog: 'Vhezheni leyintshwa yi lulamile. Tinoti to humesa a ti kumeki eka muxaka lowu wa ku hlomisa.',
+    availableBodyNoChangelog:
+      'Vhezheni leyintshwa yi lulamile. Tinoti to humesa a ti kumeki eka muxaka lowu wa ku hlomisa.',
     applyStatus: {
       failed: 'Nhluvukiso wa backend wu tsandzekile.',
       noReturn: 'Backend a yi vuyelangi e-inthanete. Nhluvukiso wu nga ha va wu nga helanga — kama host ya backend.',
       preparing: 'Ku pfuxeta backend…',
       pulling: 'Backend yi pfuxeta…',
       restarting: 'Backend yi sungula nakambe ku paka pfuxeto…',
-      notAvailable: 'Pfuxeto a yi kumeki eka backend leyi.',
+      notAvailable: 'Pfuxeto a yi kumeki eka backend leyi.'
     },
     appErrors: {
-      updateLocked: 'Nhluvukiso wu tshikisiwile: windo rin\'wana ra OpenAmer kumbe terminal leyi tirhaka openamer yi pfule ku instali loku. Pfala kona u ringeta nakambe.',
-      updateFailed: 'Nhluvukiso a wu helangi. U nga tshuki u khathazeka — a ku na nchumu lowu lahleke. U nga ringeta nakambe sweswi.',
+      updateLocked:
+        "Nhluvukiso wu tshikisiwile: windo rin'wana ra OpenAmer kumbe terminal leyi tirhaka openamer yi pfule ku instali loku. Pfala kona u ringeta nakambe.",
+      updateFailed:
+        'Nhluvukiso a wu helangi. U nga tshuki u khathazeka — a ku na nchumu lowu lahleke. U nga ringeta nakambe sweswi.'
     },
     updateNow: 'Pfuxeta sweswi',
     maybeLater: 'Kumbexana endzhaku',
     manualTitle: 'Pfuxeta kusuka eka terminal ya wena',
-    manualBody: 'U nghenise OpenAmer kusuka eka layini ya swiletelo, hikwalaho ku pfuxeta swi ta endleka kumeno. Namarhela leswi eka terminal ya wena:',
+    manualBody:
+      'U nghenise OpenAmer kusuka eka layini ya swiletelo, hikwalaho ku pfuxeta swi ta endleka kumeno. Namarhela leswi eka terminal ya wena:',
     manualPickedUp: 'OpenAmer yi ta kuma vhezhini leyintshwa nkarhi lowu landzelaka loko u yi sungula.',
     guiSkewTitle: 'Pfuxeta aplikasi ya desktop',
-    guiSkewBody: 'Backend yi pfuxetiwe, kambe phakete ya aplikasi ya desktop leyi a yi cincangiwanga. Pfuxeta kumbe nghenisa nakambe aplikasi ya desktop ya OpenAmer (AppImage / .deb / .rpm ya wena) leswaku yi fambelana.',
+    guiSkewBody:
+      'Backend yi pfuxetiwe, kambe phakete ya aplikasi ya desktop leyi a yi cincangiwanga. Pfuxeta kumbe nghenisa nakambe aplikasi ya desktop ya OpenAmer (AppImage / .deb / .rpm ya wena) leswaku yi fambelana.',
     copy: 'Kopa',
     copied: 'Ku kopiwe',
     done: 'Hetisiwe',
-    applyingBody: 'Xipfuxeti xa OpenAmer xi ta teka vuswikoti eka windo ra xona ivi xi pfulela OpenAmer hi xoxe loko xi hetile. Ndzi kombela u nga pfuleli OpenAmer hi wena loko xi ha pfuxeta.',
-    applyingBodyBackend: 'Backend ya le kule yi tirhisa pfuxeto naswona yi ta sungula nakambe. OpenAmer yi ta hlangana nakambe hi yoxe loko yi vuyile.',
+    applyingBody:
+      'Xipfuxeti xa OpenAmer xi ta teka vuswikoti eka windo ra xona ivi xi pfulela OpenAmer hi xoxe loko xi hetile. Ndzi kombela u nga pfuleli OpenAmer hi wena loko xi ha pfuxeta.',
+    applyingBodyBackend:
+      'Backend ya le kule yi tirhisa pfuxeto naswona yi ta sungula nakambe. OpenAmer yi ta hlangana nakambe hi yoxe loko yi vuyile.',
     applyingClose: 'Windo leri ri ta pfala loko pfuxeto yi tirha, ivi OpenAmer yi pfuleka nakambe hi yoxe.',
     errorTitle: 'Pfuxeto a yi hetangiki',
     errorBody: 'U nga khathazeki — a ku na nchumu lowu lahlekeriweke. U nga ringeta nakambe sweswi.',
     notNow: 'A hi sweswi',
-    moreChanges: count => `+ ${count} ku cinca kun'wana${count === 1 ? '' : 's'} ku katsiwile.`,
+    moreChanges: count => `+ ${count} ku cinca kun'wana${count === 1 ? '' : 's'} ku katsiwile.`
   },
   install: {
     stageStates: {
@@ -2623,19 +2720,21 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       running: 'Ku instali',
       succeeded: 'Hetisiwile',
       skipped: 'Swi tluriwile',
-      failed: 'Swi tsandzekile',
+      failed: 'Swi tsandzekile'
     },
-    oneTimeTitle: 'OpenAmer yi lava ku instaliwa kan\'we ntsena',
+    oneTimeTitle: "OpenAmer yi lava ku instaliwa kan'we ntsena",
     installCommand: 'Command ya ku instali',
     copyCommand: 'Kopa command',
     viewDocs: 'Vona matsalwa ya ku instali',
     installTo: 'Ku ta instaliwa eka',
     retryAfterRun: 'Ndzi yi tirhisile -- ringeta nakambe',
     setupChoiceTitle: 'Lulamisa OpenAmer Desktop',
-    setupChoiceDesc: 'Xhumanisa app leyi eka gateway ya OpenAmer leyi u yi tirhaka kale, kumbe instali OpenAmer eka khompyuta leyi.',
+    setupChoiceDesc:
+      'Xhumanisa app leyi eka gateway ya OpenAmer leyi u yi tirhaka kale, kumbe instali OpenAmer eka khompyuta leyi.',
     connectExistingTitle: 'Xhumanisa eka OpenAmer leyi tirhaka',
     connectExistingShort: 'Xhumanisa leyi tirhaka',
-    connectExistingDesc: 'Tirhisa backend ya le kule ni token ya session kumbe ku nghena hi browser. Ku instali ya laha a yi nge sunguli.',
+    connectExistingDesc:
+      'Tirhisa backend ya le kule ni token ya session kumbe ku nghena hi browser. Ku instali ya laha a yi nge sunguli.',
     hideOutput: 'Tumbeta vuyelo bya installer',
     showOutput: 'Kombisa vuyelo bya installer',
     noOutput: 'A ku si na vuyelo.',
@@ -2654,15 +2753,20 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     failedTitle: 'Ku hlomeleka ku tsandzekile',
     settingUpTitle: 'Ku lulamisa OpenAmer Agent',
     finishingTitle: 'Ku hetisa',
-    failedDesc: 'Yin\'we ya magava yo hlomeleka yi tsandzekile. Eka Windows, leswi swi nga humelela loko OpenAmer CLI kumbe instance ya desktop yi tirha. Yimisa ti-instance ta OpenAmer leti tirhaka, kutani ringeta nakambe. Languta vuxokoxoko lebyi laha hansi kumbe log ya desktop ku vona transcript yo hlela.',
-    activeDesc: 'Loku i lulamiso leri endliwaka kan\'we ntsena. Installer ya OpenAmer yi downloada tidipendenci naswona yi lulamisa muchini wa wena. Ku sungula loku landzelaka swi ta tlula gava leri.',
+    failedDesc:
+      "Yin'we ya magava yo hlomeleka yi tsandzekile. Eka Windows, leswi swi nga humelela loko OpenAmer CLI kumbe instance ya desktop yi tirha. Yimisa ti-instance ta OpenAmer leti tirhaka, kutani ringeta nakambe. Languta vuxokoxoko lebyi laha hansi kumbe log ya desktop ku vona transcript yo hlela.",
+    activeDesc:
+      "Loku i lulamiso leri endliwaka kan'we ntsena. Installer ya OpenAmer yi downloada tidipendenci naswona yi lulamisa muchini wa wena. Ku sungula loku landzelaka swi ta tlula gava leri.",
     fetchingManifest: 'Ku teka manifeste ya installer...',
     error: 'Xihoxo',
     installLocalTitle: 'Nghenisa OpenAmer eka khompyuta leyi',
-    installLocalDesc: 'Dawuniloda OpenAmer, endla endhawini ya Python ya yona, ivi u tirhisa backend eka khompyuta leyi.',
-    localStartUnavailable: 'Ku nghenisa laha khompyuta a ku sungulangi. Pfuxetani OpenAmer Desktop, kutani miringeteni nakambe.',
+    installLocalDesc:
+      'Dawuniloda OpenAmer, endla endhawini ya Python ya yona, ivi u tirhisa backend eka khompyuta leyi.',
+    localStartUnavailable:
+      'Ku nghenisa laha khompyuta a ku sungulangi. Pfuxetani OpenAmer Desktop, kutani miringeteni nakambe.',
     remoteSetupTitle: 'Xhumana ni OpenAmer leyi nga kona',
-    remoteSetupDesc: 'Nghenisa URL ya gateway ya wena. OpenAmer Desktop yi ta vona loko yi lava thekeni kumbe ku nghena hi browser.',
+    remoteSetupDesc:
+      'Nghenisa URL ya gateway ya wena. OpenAmer Desktop yi ta vona loko yi lava thekeni kumbe ku nghena hi browser.',
     remoteUrlTitle: 'URL ya gateway',
     remoteUrlDesc: 'Tirhisa URL ya masungulo ya gateway ya OpenAmer, ku katsa na https:// loko yi ri kule.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2677,13 +2781,14 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     signInIncomplete: 'Windo ra ku nghena ri pfariwile vutiyisisi byi nga si hela.',
     tokenTitle: 'Thekeni ya seshene',
     tokenDesc: 'Nametela thekeni ya seshene ku suka eka fayili ya .env ya gateway ya kule.',
-    unsupportedDesc: platform => `Ku nghenisa hi ku tiendlekela loko u sungula ro sungula a swi si kumeka eka ${platform}. Pfula Theminali kutani u tirhisa xileriso lexi nga laha hansi, kutani u tlhela u sungula app leyi. Loko u tlhela u yi sungula, yi ta tlulela goza leri.`,
+    unsupportedDesc: platform =>
+      `Ku nghenisa hi ku tiendlekela loko u sungula ro sungula a swi si kumeka eka ${platform}. Pfula Theminali kutani u tirhisa xileriso lexi nga laha hansi, kutani u tlhela u sungula app leyi. Loko u tlhela u yi sungula, yi ta tlulela goza leri.`,
     authNeedsOauth: provider => `Nghena hi ${provider} u nga si ringeta nyangwa leyi.`,
     signInWith: provider => `Nghena hi ${provider}`,
     testSucceeded: (baseUrl, version) => `Ku hlanganisiwe na ${baseUrl}${version ? ` (${version})` : ''}.`,
     progress: (completed, total) => `Ku hetiwe magoza ya ${completed} eka ${total}`,
     currentStage: stage => ` -- sweswi: ${stage}`,
-    lines: count => `${count} ntila${count === 1 ? '' : 's'}`,
+    lines: count => `${count} ntila${count === 1 ? '' : 's'}`
   },
   artifacts: {
     itemsFile: 'Mafayili',
@@ -2711,13 +2816,14 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     tabFiles: 'Tifayili',
     tabLinks: 'Swihlanganisi',
     noArtifactsTitle: 'A ku na swivumbiwa leswi kumekeke',
-    noArtifactsDesc: 'Swifaniso leswi endliweke na swihumelerisi swa tifayili swi ta vonaka laha loko tiseshini ti swi humesa.',
+    noArtifactsDesc:
+      'Swifaniso leswi endliweke na swihumelerisi swa tifayili swi ta vonaka laha loko tiseshini ti swi humesa.',
     failedLoad: 'Swivumbiwa swi hlulekile ku layicha',
     openFailed: 'Ku pfula swi hlulekile',
     itemsImage: 'swifaniso',
     itemsLink: 'swihlanganisi',
     rangeOf: (start, end, total) => `${start}-${end} eka ${total}`,
-    goToPage: (itemLabel, page) => `Yana eka ${itemLabel} pheji ${page}`,
+    goToPage: (itemLabel, page) => `Yana eka ${itemLabel} pheji ${page}`
   },
   modelPicker: {
     title: 'Cinca modela',
@@ -2733,13 +2839,13 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     freeTier: 'Xiyimo xa mahala',
     priceTitle: 'Nxavo wa ku nghenisa / ku humisa hi miliyoni ya tokens',
     wasPrice: 'a ri',
-    pro: 'Xiphurofexinali',
+    pro: 'Xiphurofexinali'
   },
   modelVisibility: {
     title: 'Timodela',
     search: 'Lava timodela',
     noAuthenticatedProviders: 'A ku na vaphakeri lava tiyisisiweke.',
-    addProvider: 'Engeta muhaxi…',
+    addProvider: 'Engeta muhaxi…'
   },
   shell: {
     windowControls: 'Swilawuri swa fasitere',
@@ -2750,7 +2856,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       noModels: 'A ku na timodeli leti kumiweke',
       editModels: 'Hlela Timodeli…',
       refreshModels: 'Pfuxeta Timodeli',
-      fast: 'Hatlisa',
+      fast: 'Hatlisa'
     },
     modelOptions: {
       noOptions: 'A ku na tihlawulo ta modeli leyi',
@@ -2766,7 +2872,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       max: 'Xikulu',
       ultra: 'Xiyimo xa le henhla',
       updateFailed: 'Ku pfuxeta nhlawulo wa modhele ku tsandzekile',
-      fastFailed: 'Ku pfuxeta modhi yo hatlisa ku tsandzekile',
+      fastFailed: 'Ku pfuxeta modhi yo hatlisa ku tsandzekile'
     },
     gatewayMenu: {
       gateway: 'Gethiwayi',
@@ -2781,7 +2887,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       recentActivity: 'Mintirho ya sweswinyana',
       viewAllLogs: 'Vona malogi hinkwawo â†’',
       messagingPlatforms: 'Tiphulatifomo to rhumela marungula',
-      connection: label => `Vuhlanganisi: ${label}`,
+      connection: label => `Vuhlanganisi: ${label}`
     },
     approvalMode: {
       title: 'Modhi ya pfumelelo',
@@ -2791,7 +2897,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       smartDescription: 'Kambela swiendlo hi muchini ni ku vutisa loko swi laveka',
       off: 'Swi timile',
       offDescription: 'Tirhisa handle ka swivutiso swo pfumelela',
-      ariaLabel: mode => `Mokhoa wa mpfumelelo: ${mode}`,
+      ariaLabel: mode => `Mokhoa wa mpfumelelo: ${mode}`
     },
     statusbar: {
       closeAgents: 'Pfala ma-agent',
@@ -2813,13 +2919,13 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
           subagent_definitions: 'Tinhlamuselo ta vayimeri vatsongo',
           system_prompt: 'Xitiviso xa sisteme',
           tool_definitions: 'Tinhlamuselo ta switirhisiwa',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'A ku si na data ya mongo',
         loading: 'Ku layicha nhlamuselo…',
         title: 'Matirhiselo ya mongo',
         percentFull: percent => `${percent}% yi talekile`,
-        tokenSummary: (used, max) => `${used} / ${max} wa tithokene`,
+        tokenSummary: (used, max) => `${used} / ${max} wa tithokene`
       },
       unknown: 'A swi tiveki',
       restart: 'Sungula nakambe',
@@ -2841,13 +2947,16 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       openContextUsage: 'Pfula nhlamuselo ya matirhiselo ya mongo',
       session: 'Sesheni',
       runtimeSessionElapsed: 'Nkarhi wa sesheni wu hundzile',
-      yoloOn: 'YOLO yi tirha — ku pfumelela milawu leyo va ni khombo hi ku tiswongo. Klika ku yi dzima. Shift+click yi yi cinca emisaveni hinkwayo.',
-      yoloOff: 'YOLO yi timile — klika ku pfumelela milawu leyo va ni khombo hi ku tiswongo. Shift+click yi yi cinca emisaveni hinkwayo.',
+      yoloOn:
+        'YOLO yi tirha — ku pfumelela milawu leyo va ni khombo hi ku tiswongo. Klika ku yi dzima. Shift+click yi yi cinca emisaveni hinkwayo.',
+      yoloOff:
+        'YOLO yi timile — klika ku pfumelela milawu leyo va ni khombo hi ku tiswongo. Shift+click yi yi cinca emisaveni hinkwayo.',
       modelNone: 'ku hava',
       noModel: 'ku hava model',
       switchModel: 'Cinca model',
       openModelPicker: 'Pfula xikhethi xa model',
-      modelPinned: 'Yi piniwe hi wena; minkhongotano leyintshwa yi tirhisa leyi esikhundleni sa xisekelo xa Switirhisiwa',
+      modelPinned:
+        'Yi piniwe hi wena; minkhongotano leyintshwa yi tirhisa leyi esikhundleni sa xisekelo xa Switirhisiwa',
       commitsBehind: (count, branch) => `${count} swiboho${count === 1 ? '' : 's'} endzhaku ka ${branch}`,
       desktopVersion: version => `OpenAmer ya Khomphyuta nkandziyiso ${version}`,
       backendVersion: version => `Xiyenge xa le ndzhaku nkandziyiso ${version}`,
@@ -2857,7 +2966,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       connectionCloud: host => `Papa: ${host}`,
       connectionCloudTooltip: host => `Ku hlanganisiwile na Papa ra OpenAmer eka ${host} · tinya ku lawula`,
       connectionSshTooltip: host => `Ku hlanganisiwile hi SSH eka ${host} · tinya ku lawula`,
-      connectionRemoteTooltip: host => `Ku hlanganisiwile na xiyenge xa le ndzhaku xa le kule ${host} · tinya ku lawula`,
+      connectionRemoteTooltip: host =>
+        `Ku hlanganisiwile na xiyenge xa le ndzhaku xa le kule ${host} · tinya ku lawula`,
       backendLabel: version => `nkandziyiso wa xiyenge xa le ndzhaku ${version}`,
       commit: sha => `nhlayiso ${sha}`,
       branch: branch => `rhavi ${branch}`,
@@ -2866,8 +2976,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       running: count => `${count} swa tirha`,
       cron: 'Xiyimisi xa nkarhi',
       modelTitle: (provider, model) => `Modlele · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   prompts: {
     secretPlaceholder: 'Ntsengo wa xihundla',
@@ -2875,10 +2985,11 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     sudoSendFailed: 'A swi kotekanga ku rhumela phasiwedi ya sudo',
     secretSendFailed: 'A swi kotekanga ku rhumela xihundla',
     sudoTitle: 'Phasiwedi ya mulawuri',
-    sudoDesc: 'OpenAmer yi lava phasiwedi ya wena ya sudo ku tirhisa khomandi yo hlawuleka. Yi rhumeriwa ntsena eka ajenti ya wena ya ndhawu.',
+    sudoDesc:
+      'OpenAmer yi lava phasiwedi ya wena ya sudo ku tirhisa khomandi yo hlawuleka. Yi rhumeriwa ntsena eka ajenti ya wena ya ndhawu.',
     sudoPlaceholder: 'Phasiwedi ya sudo',
     secretTitle: 'Xihundla xa laveka',
-    secretDesc: 'OpenAmer yi lava xitshembhiso ku ya emahlweni.',
+    secretDesc: 'OpenAmer yi lava xitshembhiso ku ya emahlweni.'
   },
   notifications: {
     region: 'Switiviso',
@@ -2890,7 +3001,8 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     copyDetail: 'Kopa vuxokoxoko',
     copyDetailFailed: 'A ku kotekangi ku kopa vuxokoxoko bya xitiviso',
     backendOutOfDateTitle: 'Backend yi khale',
-    backendOutOfDateMessage: 'Backend ya OpenAmer ya wena yi khale ku tlula desktop leyi naswona yi nga ha tirhiki kahle. Pfuxetela leswaku swi yelana.',
+    backendOutOfDateMessage:
+      'Backend ya OpenAmer ya wena yi khale ku tlula desktop leyi naswona yi nga ha tirhiki kahle. Pfuxetela leswaku swi yelana.',
     installMethodUnsupportedTitle: 'Ndlela yo hloma leyi nga seketeliwiki',
     updateOpenAmer: 'Pfuxetela OpenAmer',
     updateReadyTitle: 'Pfuxetelo yi lungile',
@@ -2899,11 +3011,12 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       elevenLabsNeedsKey: 'ElevenLabs STT yi lava ELEVENLABS_API_KEY.',
       elevenLabsRejectedKey: 'ElevenLabs yi alele khiyi ya API (401).',
       gatewayAuthFailed: 'Ku tiyisisa ka Gateway ku tsandzekile — kambela API_SERVER_KEY ya wena.',
-      methodNotAllowed: 'Backend ya desikithopo yi alele xikombelo xolexo (405 Method Not Allowed). Ringeta ku tlhela u sungula OpenAmer Desktop.',
+      methodNotAllowed:
+        'Backend ya desikithopo yi alele xikombelo xolexo (405 Method Not Allowed). Ringeta ku tlhela u sungula OpenAmer Desktop.',
       microphonePermission: 'Mpfumelelo wa maikrofoni wu aliwile.',
       openaiRejectedApiKey: 'OpenAI yi alele khiyi ya API.',
       openaiTtsNeedsKey: 'OpenAI TTS yi lava VOICE_TOOLS_OPENAI_KEY kumbe OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI a hana API key (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI a hana API key (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Lulamisa ku hundzuluxa rito ku va matsalwa leswaku swi tirhisa modhi ya rito.',
@@ -2911,7 +3024,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       microphoneAccessDenied: 'Ku fikelela maikrofoni ku aliwile.',
       microphoneConstraintsUnsupported: 'Mikhawulo ya maikrofoni a yi seketiwi hi divayisi leyi.',
       microphoneFailed: 'Maikrofoni ma tsandzekile.',
-      microphoneInUse: 'Maikrofoni ma tirhisiwa kale hi aplikasi yin\'wana.',
+      microphoneInUse: "Maikrofoni ma tirhisiwa kale hi aplikasi yin'wana.",
       microphonePermissionDenied: 'Mpfumelelo wa maikrofoni wu aliwile.',
       microphoneStartFailed: 'A swi kotekanga ku sungula ku rekhoda hi maikrofoni.',
       microphoneUnsupported: 'Runtime leyi a yi seketi ku rekhoda hi maikrofoni.',
@@ -2922,7 +3035,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       transcriptionFailed: 'Ku hundzuluxa rito ku va matsalwa ku tsandzekile.',
       transcriptionUnavailable: 'Ku tsariwa ka rito a ku si kona.',
       tryRecordingAgain: 'Ringeta ku teka rito nakambe.',
-      unavailable: 'Rito a ri kona.',
+      unavailable: 'Rito a ri kona.'
     },
     native: {
       approvalTitle: 'Ku pfumelela swa laveka.',
@@ -2935,10 +3048,10 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
       turnErrorTitle: 'Xiphemu xi tsandzekile.',
       backgroundDoneTitle: 'Ntirho wa le ndzhaku wu hetile.',
       backgroundFailedTitle: 'Ntirho wa le ndzhaku wu tsandzekile.',
-      creditsTitle: 'Tikhrediti',
+      creditsTitle: 'Tikhrediti'
     },
     more: count => `${count} swin'wana ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} ku cinca lokuntshwa ${count === 1 ? '' : 's'} ka kumeka.`,
+    updateReadyMessage: count => `${count} ku cinca lokuntshwa ${count === 1 ? '' : 's'} ka kumeka.`
   },
   billingBlock: {
     titleOpenamer: 'Tikhrediti ta OpenAmer ti herile.',
@@ -2946,7 +3059,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     openBilling: 'Pfula bilingi',
     addCredits: 'Engeta tikhrediti',
     dismiss: 'Susa',
-    titleProvider: provider => `Mali ya xitimela — ${provider}`,
+    titleProvider: provider => `Mali ya xitimela — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Fihla tibara ya matlhelo',
@@ -2963,7 +3076,7 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     openStarmap: 'Pfula grafu ya memori',
     openKeybinds: 'Switlhari swa khibodo',
     layoutEditor: 'Muhleri wa mavumbelo',
-    layoutEditorTitle: 'Muhleri wa mavalo — âŒ˜-click ku vuyisela mavalo',
+    layoutEditorTitle: 'Muhleri wa mavalo — âŒ˜-click ku vuyisela mavalo'
   },
   language: {
     label: 'Ririmi',
@@ -2972,9 +3085,10 @@ Siya ku nga ri na xilo leswaku u hlayisa xiyimiso xa ntolovelo xa ${mode}.`,
     saveError: 'Ku pfuxeta ririmi swi tsandzekile',
     switchTo: 'Cinca ririmi',
     searchPlaceholder: 'Lava tindzimiâ€¦',
-    noResults: 'A ku na tindzimi',
+    noResults: 'A ku na tindzimi'
   },
   remoteDisplayBanner: {
-    message: reason => `Yazılım oluşturma etkin — uzak ekran algılandı (${reason}). Titremeyi önlemek için GPU hızlandırma devre dışı bırakıldı.`,
-  },
+    message: reason =>
+      `Yazılım oluşturma etkin — uzak ekran algılandı (${reason}). Titremeyi önlemek için GPU hızlandırma devre dışı bırakıldı.`
+  }
 })

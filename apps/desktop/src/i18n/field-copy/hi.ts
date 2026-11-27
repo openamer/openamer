@@ -6,249 +6,251 @@
 import { defineFieldCopy } from '@/app/settings/field-copy'
 
 export const FIELD_LABELS: Record<string, string> = defineFieldCopy({
-    model: "डिफ़ॉल्ट मॉडल",
-    modelContextLength: "कॉन्टेक्स्ट विंडो",
-    fallbackProviders: "फ़ॉलबैक मॉडल",
-    toolsets: "सक्षम टूलसेट",
-    timezone: "समय क्षेत्र",
-    display: {
-      personality: "पर्सनैलिटी",
-      showReasoning: "रीज़निंग ब्लॉक",
+  model: 'डिफ़ॉल्ट मॉडल',
+  modelContextLength: 'कॉन्टेक्स्ट विंडो',
+  fallbackProviders: 'फ़ॉलबैक मॉडल',
+  toolsets: 'सक्षम टूलसेट',
+  timezone: 'समय क्षेत्र',
+  display: {
+    personality: 'पर्सनैलिटी',
+    showReasoning: 'रीज़निंग ब्लॉक'
+  },
+  desktop: {
+    repoScanEnabled: 'स्वचालित रिपॉज़िटरी खोज',
+    repoScanRoots: 'रिपॉज़िटरी खोज जड़ें',
+    repoScanExcludePaths: 'बहिष्कृत रिपॉज़िटरी पथ'
+  },
+  agent: {
+    maxTurns: 'अधिकतम एजेंट चरण',
+    imageInputMode: 'छवि अटैचमेंट',
+    apiMaxRetries: 'API पुनःप्रयास',
+    serviceTier: 'सेवा स्तर',
+    toolUseEnforcement: 'टूल-उपयोग प्रवर्तन'
+  },
+  terminal: {
+    cwd: 'कार्य निर्देशिका',
+    backend: 'निष्पादन बैकएंड',
+    timeout: 'कमांड टाइमआउट',
+    persistentShell: 'सतत शेल',
+    envPassthrough: 'पर्यावरण पास-थ्रू',
+    dockerImage: 'Docker इमेज',
+    singularityImage: 'Singularity इमेज',
+    modalImage: 'Modal इमेज',
+    daytonaImage: 'Daytona इमेज'
+  },
+  fileReadMaxChars: 'फ़ाइल पढ़ने की सीमा',
+  toolOutput: {
+    maxBytes: 'टर्मिनल आउटपुट सीमा',
+    maxLines: 'फ़ाइल पेज सीमा',
+    maxLineLength: 'पंक्ति लंबाई सीमा'
+  },
+  codeExecution: {
+    mode: 'कोड निष्पादन मोड'
+  },
+  approvals: {
+    mode: 'अनुमोदन मोड',
+    timeout: 'अनुमोदन टाइमआउट',
+    mcpReloadConfirm: 'MCP पुनर्लोड की पुष्टि करें'
+  },
+  commandAllowlist: 'कमांड अनुमति सूची',
+  security: {
+    redactSecrets: 'सीक्रेट छिपाएँ',
+    allowPrivateUrls: 'निजी URL की अनुमति दें'
+  },
+  browser: {
+    allowPrivateUrls: 'ब्राउज़र निजी URL',
+    autoLocalForPrivateUrls: 'निजी URL के लिए स्थानीय ब्राउज़र'
+  },
+  checkpoints: {
+    enabled: 'फ़ाइल चेकपॉइंट',
+    maxSnapshots: 'चेकपॉइंट सीमा'
+  },
+  voice: {
+    recordKey: 'वॉइस शॉर्टकट',
+    maxRecordingSeconds: 'अधिकतम रिकॉर्डिंग अवधि',
+    autoTts: 'उत्तर ज़ोर से पढ़ें'
+  },
+  stt: {
+    enabled: 'स्पीच टू टेक्स्ट',
+    echoTranscripts: 'ट्रांसक्रिप्ट दोहराएँ',
+    provider: 'स्पीच-टू-टेक्स्ट प्रदाता',
+    local: {
+      model: 'स्थानीय ट्रांसक्रिप्शन मॉडल',
+      language: 'ट्रांसक्रिप्शन भाषा'
     },
-    desktop: {
-      repoScanEnabled: "स्वचालित रिपॉज़िटरी खोज",
-      repoScanRoots: "रिपॉज़िटरी खोज जड़ें",
-      repoScanExcludePaths: "बहिष्कृत रिपॉज़िटरी पथ",
+    openai: {
+      model: 'OpenAI STT मॉडल'
     },
-    agent: {
-      maxTurns: "अधिकतम एजेंट चरण",
-      imageInputMode: "छवि अटैचमेंट",
-      apiMaxRetries: "API पुनःप्रयास",
-      serviceTier: "सेवा स्तर",
-      toolUseEnforcement: "टूल-उपयोग प्रवर्तन",
+    groq: {
+      model: 'Groq STT मॉडल'
     },
-    terminal: {
-      cwd: "कार्य निर्देशिका",
-      backend: "निष्पादन बैकएंड",
-      timeout: "कमांड टाइमआउट",
-      persistentShell: "सतत शेल",
-      envPassthrough: "पर्यावरण पास-थ्रू",
-      dockerImage: "Docker इमेज",
-      singularityImage: "Singularity इमेज",
-      modalImage: "Modal इमेज",
-      daytonaImage: "Daytona इमेज",
+    mistral: {
+      model: 'Mistral STT मॉडल'
     },
-    fileReadMaxChars: "फ़ाइल पढ़ने की सीमा",
-    toolOutput: {
-      maxBytes: "टर्मिनल आउटपुट सीमा",
-      maxLines: "फ़ाइल पेज सीमा",
-      maxLineLength: "पंक्ति लंबाई सीमा",
+    elevenlabs: {
+      modelId: 'ElevenLabs STT मॉडल',
+      languageCode: 'ElevenLabs भाषा',
+      tagAudioEvents: 'ऑडियो इवेंट टैग करें',
+      diarize: 'स्पीकर डायराइज़ेशन'
+    }
+  },
+  tts: {
+    provider: 'टेक्स्ट-टू-स्पीच प्रदाता',
+    edge: {
+      voice: 'Edge आवाज़'
     },
-    codeExecution: {
-      mode: "कोड निष्पादन मोड",
+    openai: {
+      model: 'OpenAI TTS मॉडल',
+      voice: 'OpenAI आवाज़'
     },
-    approvals: {
-      mode: "अनुमोदन मोड",
-      timeout: "अनुमोदन टाइमआउट",
-      mcpReloadConfirm: "MCP पुनर्लोड की पुष्टि करें",
+    elevenlabs: {
+      voiceId: 'ElevenLabs आवाज़',
+      modelId: 'ElevenLabs मॉडल'
     },
-    commandAllowlist: "कमांड अनुमति सूची",
-    security: {
-      redactSecrets: "सीक्रेट छिपाएँ",
-      allowPrivateUrls: "निजी URL की अनुमति दें",
+    xai: {
+      voiceId: 'xAI (Grok) आवाज़',
+      language: 'xAI भाषा',
+      speed: 'xAI प्लेबैक गति',
+      autoSpeechTags: 'xAI ऑटो स्पीच टैग',
+      optimizeStreamingLatency: 'xAI स्ट्रीमिंग विलंबता अनुकूलन',
+      sampleRate: 'xAI सैंपल दर',
+      bitRate: 'xAI बिट दर'
     },
-    browser: {
-      allowPrivateUrls: "ब्राउज़र निजी URL",
-      autoLocalForPrivateUrls: "निजी URL के लिए स्थानीय ब्राउज़र",
+    minimax: {
+      model: 'MiniMax TTS मॉडल',
+      voiceId: 'MiniMax आवाज़'
     },
-    checkpoints: {
-      enabled: "फ़ाइल चेकपॉइंट",
-      maxSnapshots: "चेकपॉइंट सीमा",
+    mistral: {
+      model: 'Mistral TTS मॉडल',
+      voiceId: 'Mistral आवाज़'
     },
-    voice: {
-      recordKey: "वॉइस शॉर्टकट",
-      maxRecordingSeconds: "अधिकतम रिकॉर्डिंग अवधि",
-      autoTts: "उत्तर ज़ोर से पढ़ें",
+    gemini: {
+      model: 'Gemini TTS मॉडल',
+      voice: 'Gemini आवाज़'
     },
-    stt: {
-      enabled: "स्पीच टू टेक्स्ट",
-      echoTranscripts: "ट्रांसक्रिप्ट दोहराएँ",
-      provider: "स्पीच-टू-टेक्स्ट प्रदाता",
-      local: {
-        model: "स्थानीय ट्रांसक्रिप्शन मॉडल",
-        language: "ट्रांसक्रिप्शन भाषा",
-      },
-      openai: {
-        model: "OpenAI STT मॉडल",
-      },
-      groq: {
-        model: "Groq STT मॉडल",
-      },
-      mistral: {
-        model: "Mistral STT मॉडल",
-      },
-      elevenlabs: {
-        modelId: "ElevenLabs STT मॉडल",
-        languageCode: "ElevenLabs भाषा",
-        tagAudioEvents: "ऑडियो इवेंट टैग करें",
-        diarize: "स्पीकर डायराइज़ेशन",
-      },
+    neutts: {
+      model: 'NeuTTS मॉडल',
+      device: 'NeuTTS डिवाइस'
     },
-    tts: {
-      provider: "टेक्स्ट-टू-स्पीच प्रदाता",
-      edge: {
-        voice: "Edge आवाज़",
-      },
-      openai: {
-        model: "OpenAI TTS मॉडल",
-        voice: "OpenAI आवाज़",
-      },
-      elevenlabs: {
-        voiceId: "ElevenLabs आवाज़",
-        modelId: "ElevenLabs मॉडल",
-      },
-      xai: {
-        voiceId: "xAI (Grok) आवाज़",
-        language: "xAI भाषा",
-        speed: "xAI प्लेबैक गति",
-        autoSpeechTags: "xAI ऑटो स्पीच टैग",
-        optimizeStreamingLatency: "xAI स्ट्रीमिंग विलंबता अनुकूलन",
-        sampleRate: "xAI सैंपल दर",
-        bitRate: "xAI बिट दर",
-      },
-      minimax: {
-        model: "MiniMax TTS मॉडल",
-        voiceId: "MiniMax आवाज़",
-      },
-      mistral: {
-        model: "Mistral TTS मॉडल",
-        voiceId: "Mistral आवाज़",
-      },
-      gemini: {
-        model: "Gemini TTS मॉडल",
-        voice: "Gemini आवाज़",
-      },
-      neutts: {
-        model: "NeuTTS मॉडल",
-        device: "NeuTTS डिवाइस",
-      },
-      kittentts: {
-        model: "KittenTTS मॉडल",
-        voice: "KittenTTS आवाज़",
-      },
-      piper: {
-        voice: "Piper आवाज़",
-      },
-      deepinfra: {
-        model: "DeepInfra TTS मॉडल",
-        voice: "DeepInfra आवाज़",
-      },
+    kittentts: {
+      model: 'KittenTTS मॉडल',
+      voice: 'KittenTTS आवाज़'
     },
-    memory: {
-      memoryEnabled: "सतत मेमोरी",
-      userProfileEnabled: "उपयोगकर्ता प्रोफ़ाइल",
-      memoryCharLimit: "मेमोरी बजट",
-      userCharLimit: "प्रोफ़ाइल बजट",
-      provider: "मेमोरी प्रदाता",
+    piper: {
+      voice: 'Piper आवाज़'
     },
-    context: {
-      engine: "कॉन्टेक्स्ट इंजन",
-    },
-    compression: {
-      enabled: "ऑटो-कम्प्रेशन",
-      threshold: "कम्प्रेशन सीमा",
-      targetRatio: "कम्प्रेशन लक्ष्य",
-      protectLastN: "सुरक्षित हाल के संदेश",
-    },
-    delegation: {
-      model: "सबएजेंट मॉडल",
-      provider: "सबएजेंट प्रदाता",
-      maxIterations: "सबएजेंट टर्न सीमा",
-      maxConcurrentChildren: "समानांतर सबएजेंट",
-      childTimeoutSeconds: "सबएजेंट टाइमआउट",
-      reasoningEffort: "सबएजेंट रीज़निंग प्रयास",
-    },
-    updates: {
-      nonInteractiveLocalChanges: "ऐप में स्थानीय बदलाव अपडेट करें",
-    },
+    deepinfra: {
+      model: 'DeepInfra TTS मॉडल',
+      voice: 'DeepInfra आवाज़'
+    }
+  },
+  memory: {
+    memoryEnabled: 'सतत मेमोरी',
+    userProfileEnabled: 'उपयोगकर्ता प्रोफ़ाइल',
+    memoryCharLimit: 'मेमोरी बजट',
+    userCharLimit: 'प्रोफ़ाइल बजट',
+    provider: 'मेमोरी प्रदाता'
+  },
+  context: {
+    engine: 'कॉन्टेक्स्ट इंजन'
+  },
+  compression: {
+    enabled: 'ऑटो-कम्प्रेशन',
+    threshold: 'कम्प्रेशन सीमा',
+    targetRatio: 'कम्प्रेशन लक्ष्य',
+    protectLastN: 'सुरक्षित हाल के संदेश'
+  },
+  delegation: {
+    model: 'सबएजेंट मॉडल',
+    provider: 'सबएजेंट प्रदाता',
+    maxIterations: 'सबएजेंट टर्न सीमा',
+    maxConcurrentChildren: 'समानांतर सबएजेंट',
+    childTimeoutSeconds: 'सबएजेंट टाइमआउट',
+    reasoningEffort: 'सबएजेंट रीज़निंग प्रयास'
+  },
+  updates: {
+    nonInteractiveLocalChanges: 'ऐप में स्थानीय बदलाव अपडेट करें'
+  }
 })
 
 export const FIELD_DESCRIPTIONS: Record<string, string> = defineFieldCopy({
-    model: "नए चैट के लिए उपयोग किया जाता है जब तक कि आप कंपोज़र में कोई अन्य मॉडल न चुनें।",
-    modelContextLength: "चयनित मॉडल की डिटेक्टेड कॉन्टेक्स्ट विंडो का उपयोग करने के लिए 0 पर छोड़ दें।",
-    fallbackProviders: "बैकअप प्रदाता:मॉडल प्रविष्टियाँ जिन्हें डिफॉल्ट मॉडल विफल होने पर आज़माया जा सकता है।",
-    display: {
-      personality: "नए सत्रों के लिए डिफॉल्ट असिस्टेंट स्टाइल।",
-      showReasoning: "जब बैकएंड रीजनिंग सेक्शन प्रदान करे तो उन्हें दिखाएं।",
+  model: 'नए चैट के लिए उपयोग किया जाता है जब तक कि आप कंपोज़र में कोई अन्य मॉडल न चुनें।',
+  modelContextLength: 'चयनित मॉडल की डिटेक्टेड कॉन्टेक्स्ट विंडो का उपयोग करने के लिए 0 पर छोड़ दें।',
+  fallbackProviders: 'बैकअप प्रदाता:मॉडल प्रविष्टियाँ जिन्हें डिफॉल्ट मॉडल विफल होने पर आज़माया जा सकता है।',
+  display: {
+    personality: 'नए सत्रों के लिए डिफॉल्ट असिस्टेंट स्टाइल।',
+    showReasoning: 'जब बैकएंड रीजनिंग सेक्शन प्रदान करे तो उन्हें दिखाएं।'
+  },
+  desktop: {
+    repoScanEnabled: 'प्रोजेक्ट्स में दिखाने के लिए स्थानीय फ़ोल्डरों में Git रिपॉजिटरी स्कैन करें।',
+    repoScanRoots: 'स्कैन करने के लिए फ़ोल्डर। अपनी होम डायरेक्टरी स्कैन करने के लिए खाली छोड़ दें।',
+    repoScanExcludePaths: 'रिपॉजिटरी खोज के दौरान छोड़े जाने वाले फ़ोल्डर और उनके वंशज।'
+  },
+  timezone:
+    'तब उपयोग किया जाता है जब OpenAmer को स्थानीय समय संदर्भ की आवश्यकता होती है। खाली रहने पर सिस्टम टाइमज़ोन का उपयोग होता है।',
+  agent: {
+    imageInputMode: 'नियंत्रित करता है कि इमेज अटैचमेंट मॉडल को कैसे भेजे जाते हैं।',
+    maxTurns: 'टूल-कॉलिंग टर्न की ऊपरी सीमा जिससे पहले OpenAmer रन को रोकता है।'
+  },
+  terminal: {
+    cwd: 'टूल और टर्मिनल कार्य के लिए डिफॉल्ट प्रोजेक्ट फ़ोल्डर।',
+    persistentShell: 'जब बैकएंड समर्थन करता हो, तो कमांड के बीच शेल स्टेट बनाए रखें।',
+    envPassthrough: 'टूल निष्पादन में पास किए जाने वाले एनवायरनमेंट वेरिएबल्स।',
+    dockerImage: 'कंटेनर इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Docker हो।',
+    singularityImage: 'इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Singularity हो।',
+    modalImage: 'इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Modal हो।',
+    daytonaImage: 'इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Daytona हो।'
+  },
+  codeExecution: {
+    mode: 'कोड निष्पादन वर्तमान प्रोजेक्ट तक कितनी सख्ती से सीमित है।'
+  },
+  fileReadMaxChars: 'एक फ़ाइल अनुरोध से OpenAmer द्वारा पढ़े जा सकने वाले अधिकतम वर्ण।',
+  approvals: {
+    mode: 'OpenAmer उन कमांड्स को कैसे संभालता है जिन्हें स्पष्ट अनुमोदन की आवश्यकता होती है।',
+    timeout: 'अनुमोदन प्रॉम्प्ट टाइम आउट होने से पहले कितनी देर प्रतीक्षा करते हैं।'
+  },
+  security: {
+    redactSecrets: 'जहाँ संभव हो, मॉडल-दृश्य सामग्री से डिटेक्टेड सीक्रेट्स को छिपाएं।'
+  },
+  checkpoints: {
+    enabled: 'फ़ाइल संपादन से पहले रोलबैक स्नैपशॉट बनाएं।'
+  },
+  memory: {
+    memoryEnabled: 'स्थायी यादें सहेजें जो भविष्य के सत्रों में मदद कर सकें।',
+    userProfileEnabled: 'उपयोगकर्ता प्राथमिकताओं का एक संक्षिप्त प्रोफाइल बनाए रखें।'
+  },
+  context: {
+    engine: 'कॉन्टेक्स्ट सीमा के पास लंबी बातचीत प्रबंधित करने की रणनीति।'
+  },
+  compression: {
+    enabled: 'बातचीत बड़ी होने पर पुराने कॉन्टेक्स्ट का सारांश निकालें।'
+  },
+  voice: {
+    autoTts: 'असिस्टेंट प्रतिक्रियाओं को स्वचालित रूप से बोलें।'
+  },
+  tts: {
+    xai: {
+      voiceId: 'xAI वॉयस ID (जैसे eve) या कस्टम वॉयस ID।',
+      language: 'बोली जाने वाली भाषा कोड (जैसे en, pt-BR) या ऑटो-डिटेक्शन के लिए "auto"।',
+      speed: 'प्लेबैक गति। 0.7 = धीमी, 1.0 = सामान्य, 1.5 = तेज़।',
+      autoSpeechTags: 'संश्लेषण से पहले LLM को स्क्रिप्ट में एक्सप्रेसिव ऑडियो टैग ([laughing], [sighs]) डालने दें।',
+      optimizeStreamingLatency: 'लेटेंसी बनाम गुणवत्ता का संतुलन। 0 = सर्वोत्तम गुणवत्ता, 2 = न्यूनतम लेटेंसी।',
+      sampleRate: 'Hz में ऑडियो सैंपल रेट। उच्च = बेहतर गुणवत्ता, बड़ी फ़ाइलें।',
+      bitRate: 'bps में MP3 बिटरेट। केवल तब लागू होता है जब कोडेक mp3 हो।'
     },
-    desktop: {
-      repoScanEnabled: "प्रोजेक्ट्स में दिखाने के लिए स्थानीय फ़ोल्डरों में Git रिपॉजिटरी स्कैन करें।",
-      repoScanRoots: "स्कैन करने के लिए फ़ोल्डर। अपनी होम डायरेक्टरी स्कैन करने के लिए खाली छोड़ दें।",
-      repoScanExcludePaths: "रिपॉजिटरी खोज के दौरान छोड़े जाने वाले फ़ोल्डर और उनके वंशज।",
-    },
-    timezone: "तब उपयोग किया जाता है जब OpenAmer को स्थानीय समय संदर्भ की आवश्यकता होती है। खाली रहने पर सिस्टम टाइमज़ोन का उपयोग होता है।",
-    agent: {
-      imageInputMode: "नियंत्रित करता है कि इमेज अटैचमेंट मॉडल को कैसे भेजे जाते हैं।",
-      maxTurns: "टूल-कॉलिंग टर्न की ऊपरी सीमा जिससे पहले OpenAmer रन को रोकता है।",
-    },
-    terminal: {
-      cwd: "टूल और टर्मिनल कार्य के लिए डिफॉल्ट प्रोजेक्ट फ़ोल्डर।",
-      persistentShell: "जब बैकएंड समर्थन करता हो, तो कमांड के बीच शेल स्टेट बनाए रखें।",
-      envPassthrough: "टूल निष्पादन में पास किए जाने वाले एनवायरनमेंट वेरिएबल्स।",
-      dockerImage: "कंटेनर इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Docker हो।",
-      singularityImage: "इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Singularity हो।",
-      modalImage: "इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Modal हो।",
-      daytonaImage: "इमेज जिसका उपयोग तब किया जाता है जब निष्पादन बैकएंड Daytona हो।",
-    },
-    codeExecution: {
-      mode: "कोड निष्पादन वर्तमान प्रोजेक्ट तक कितनी सख्ती से सीमित है।",
-    },
-    fileReadMaxChars: "एक फ़ाइल अनुरोध से OpenAmer द्वारा पढ़े जा सकने वाले अधिकतम वर्ण।",
-    approvals: {
-      mode: "OpenAmer उन कमांड्स को कैसे संभालता है जिन्हें स्पष्ट अनुमोदन की आवश्यकता होती है।",
-      timeout: "अनुमोदन प्रॉम्प्ट टाइम आउट होने से पहले कितनी देर प्रतीक्षा करते हैं।",
-    },
-    security: {
-      redactSecrets: "जहाँ संभव हो, मॉडल-दृश्य सामग्री से डिटेक्टेड सीक्रेट्स को छिपाएं।",
-    },
-    checkpoints: {
-      enabled: "फ़ाइल संपादन से पहले रोलबैक स्नैपशॉट बनाएं।",
-    },
-    memory: {
-      memoryEnabled: "स्थायी यादें सहेजें जो भविष्य के सत्रों में मदद कर सकें।",
-      userProfileEnabled: "उपयोगकर्ता प्राथमिकताओं का एक संक्षिप्त प्रोफाइल बनाए रखें।",
-    },
-    context: {
-      engine: "कॉन्टेक्स्ट सीमा के पास लंबी बातचीत प्रबंधित करने की रणनीति।",
-    },
-    compression: {
-      enabled: "बातचीत बड़ी होने पर पुराने कॉन्टेक्स्ट का सारांश निकालें।",
-    },
-    voice: {
-      autoTts: "असिस्टेंट प्रतिक्रियाओं को स्वचालित रूप से बोलें।",
-    },
-    tts: {
-      xai: {
-        voiceId: "xAI वॉयस ID (जैसे eve) या कस्टम वॉयस ID।",
-        language: "बोली जाने वाली भाषा कोड (जैसे en, pt-BR) या ऑटो-डिटेक्शन के लिए \"auto\"।",
-        speed: "प्लेबैक गति। 0.7 = धीमी, 1.0 = सामान्य, 1.5 = तेज़।",
-        autoSpeechTags: "संश्लेषण से पहले LLM को स्क्रिप्ट में एक्सप्रेसिव ऑडियो टैग ([laughing], [sighs]) डालने दें।",
-        optimizeStreamingLatency: "लेटेंसी बनाम गुणवत्ता का संतुलन। 0 = सर्वोत्तम गुणवत्ता, 2 = न्यूनतम लेटेंसी।",
-        sampleRate: "Hz में ऑडियो सैंपल रेट। उच्च = बेहतर गुणवत्ता, बड़ी फ़ाइलें।",
-        bitRate: "bps में MP3 बिटरेट। केवल तब लागू होता है जब कोडेक mp3 हो।",
-      },
-      neutts: {
-        device: "NeuTTS के लिए स्थानीय इन्फरेंस डिवाइस।",
-      },
-    },
-    stt: {
-      enabled: "स्थानीय या प्रदाता-समर्थित स्पीच ट्रांसक्रिप्शन सक्षम करें।",
-      echoTranscripts: "वॉयस मैसेज के रॉ 🎙️ ट्रांसक्रिप्ट को चैट में वापस पोस्ट करें।",
-      elevenlabs: {
-        languageCode: "वैकल्पिक ISO-639-3 भाषा कोड। खाली रहने पर ElevenLabs ऑटो-डिटेक्ट करता है।",
-      },
-    },
-    updates: {
-      nonInteractiveLocalChanges: "जब OpenAmer ऐप से खुद को अपडेट करता है (बिना टर्मिनल प्रॉम्प्ट के), तो स्थानीय सोर्स संपादन रखें (stash) या उन्हें हटा दें (discard)। टर्मिनल अपडेट हमेशा पूछते हैं।",
-    },
+    neutts: {
+      device: 'NeuTTS के लिए स्थानीय इन्फरेंस डिवाइस।'
+    }
+  },
+  stt: {
+    enabled: 'स्थानीय या प्रदाता-समर्थित स्पीच ट्रांसक्रिप्शन सक्षम करें।',
+    echoTranscripts: 'वॉयस मैसेज के रॉ 🎙️ ट्रांसक्रिप्ट को चैट में वापस पोस्ट करें।',
+    elevenlabs: {
+      languageCode: 'वैकल्पिक ISO-639-3 भाषा कोड। खाली रहने पर ElevenLabs ऑटो-डिटेक्ट करता है।'
+    }
+  },
+  updates: {
+    nonInteractiveLocalChanges:
+      'जब OpenAmer ऐप से खुद को अपडेट करता है (बिना टर्मिनल प्रॉम्प्ट के), तो स्थानीय सोर्स संपादन रखें (stash) या उन्हें हटा दें (discard)। टर्मिनल अपडेट हमेशा पूछते हैं।'
+  }
 })

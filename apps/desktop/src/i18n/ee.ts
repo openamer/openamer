@@ -45,7 +45,7 @@ export const ee = defineLocale({
     update: 'Wɔ yɔyɔ',
     on: 'Ʋu',
     off: 'Tsi',
-    tryHint: term => `Prueba “${term}”`,
+    tryHint: term => `Prueba “${term}”`
   },
   fileMenu: {
     revealFileManager: 'Ʋu folda si me e le',
@@ -60,7 +60,7 @@ export const ee = defineLocale({
     pathCopied: 'Wokɔpi mɔ',
     revealFinder: 'Fia le Finder me',
     revealExplorer: 'Fia le File Explorer me',
-    deleteTitle: name => `Eliminar ${name}?`,
+    deleteTitle: name => `Eliminar ${name}?`
   },
   boot: {
     ready: 'OpenAmer Desktop sɔ gbɔ',
@@ -69,7 +69,7 @@ export const ee = defineLocale({
       loadingSettings: 'Le OpenAmer ƒe ɖoɖowo lɔm',
       loadingSessions: 'Le session yeyeawo lɔm',
       startingDesktopConnection: 'Le desktop kadodo gɔme dɔm',
-      startingOpenAmerDesktop: 'Le OpenAmer Desktop gɔme dɔm…',
+      startingOpenAmerDesktop: 'Le OpenAmer Desktop gɔme dɔm…'
     },
     errors: {
       backgroundExited: 'OpenAmer ƒe background process do go.',
@@ -78,7 +78,7 @@ export const ee = defineLocale({
       desktopBootFailed: 'Desktop boot kpo',
       gatewayConnectionLost: 'Kadodo ɖe gateway ŋu bu',
       gatewaySignInRequired: 'Gateway ŋkɔ nyiŋi hiã',
-      ipcBridgeUnavailable: 'Desktop IPC bridge meli o.',
+      ipcBridgeUnavailable: 'Desktop IPC bridge meli o.'
     },
     failure: {
       signInIncompleteTitle: 'Ŋuɖeɖe eme medzɔ o',
@@ -87,9 +87,11 @@ export const ee = defineLocale({
       signInToRemoteGateway: 'Ŋu ɖe eme le ʋɔtru didi',
       identityProvider: 'wò ŋkɔɖefiaƒe',
       title: 'OpenAmer mate ŋu adze egɔme o',
-      description: 'Background gateway medze o. Te ɖe ɖɔɖɔɖo ƒe afɔɖeɖewo dometɔ ɖeka ŋu le ete. Nane le afi sia matutu wò nuƒoƒowo alo ɖoɖowo o.',
+      description:
+        'Background gateway medze o. Te ɖe ɖɔɖɔɖo ƒe afɔɖeɖewo dometɔ ɖeka ŋu le ete. Nane le afi sia matutu wò nuƒoƒowo alo ɖoɖowo o.',
       remoteTitle: 'Adzɔme gateway ŋkɔ nyiŋi hiã',
-      remoteDescription: 'Wò adzɔme gateway ƒe ɣeyiɣi nu. Gbugbɔ ŋkɔ nyi nàgbɔ kadodo. Nane le afi sia matutu wò nuƒoƒowo alo ɖoɖowo o.',
+      remoteDescription:
+        'Wò adzɔme gateway ƒe ɣeyiɣi nu. Gbugbɔ ŋkɔ nyi nàgbɔ kadodo. Nane le afi sia matutu wò nuƒoƒowo alo ɖoɖowo o.',
       retry: 'Gbugbɔ te',
       repairInstall: 'Ɖɔɖɔɖo tsɔtsɔ ɖo',
       useLocalGateway: 'Zã ƒome gateway',
@@ -103,10 +105,11 @@ export const ee = defineLocale({
       showRecentLogs: 'Fia logs yeyeawo',
       signedInTitle: 'Ŋkɔ nyi',
       signedInMessage: 'Gbugbɔ fo kadodo ɖe adzɔme gateway ŋu…',
-      remoteSignInHint: signInLabel => `Cierra la sesión del navegador remoto guardado y abre ${signInLabel}. Usa la puerta de enlace local para cambiar al backend incluido.`,
-      signInWithProvider: provider => `Iniciar sesión con ${provider}`,
+      remoteSignInHint: signInLabel =>
+        `Cierra la sesión del navegador remoto guardado y abre ${signInLabel}. Usa la puerta de enlace local para cambiar al backend incluido.`,
+      signInWithProvider: provider => `Iniciar sesión con ${provider}`
     },
-    desktopBootFailedWithMessage: message => `Error de arranque de escritorio: ${message}`,
+    desktopBootFailedWithMessage: message => `Error de arranque de escritorio: ${message}`
   },
   notifications: {
     region: 'Nyatakakawo',
@@ -118,7 +121,8 @@ export const ee = defineLocale({
     copyDetail: 'Kɔpi nya ɖoɖo',
     copyDetailFailed: 'Mate ŋu akɔpi nyatakaka ƒe nya ɖoɖo o',
     backendOutOfDateTitle: 'Megbeŋgɔ xoxo',
-    backendOutOfDateMessage: 'Wò OpenAmer megbeŋgɔ xoxo wu desktop tutu sia eye mate ŋu awɔ dɔ nyuie o. Wɔ eŋu yeyee be woasɔ ɖo.',
+    backendOutOfDateMessage:
+      'Wò OpenAmer megbeŋgɔ xoxo wu desktop tutu sia eye mate ŋu awɔ dɔ nyuie o. Wɔ eŋu yeyee be woasɔ ɖo.',
     installMethodUnsupportedTitle: 'Install mɔ si womekpena ɖo o',
     updateOpenAmer: 'Wɔ OpenAmer yeye',
     updateReadyTitle: 'Yeyee sɔ',
@@ -131,7 +135,7 @@ export const ee = defineLocale({
       microphonePermission: 'Wogbe microphone ƒe mɔɖeɖe.',
       openaiRejectedApiKey: 'OpenAI gbe API safui la.',
       openaiTtsNeedsKey: 'OpenAI TTS hiã VOICE_TOOLS_OPENAI_KEY alo OPENAI_API_KEY.',
-      openaiRejectedApiKeyWithStatus: status => `OpenAI rechazó la clave API (${status} invalid_api_key).`,
+      openaiRejectedApiKeyWithStatus: status => `OpenAI rechazó la clave API (${status} invalid_api_key).`
     },
     voice: {
       configureSpeechToText: 'Ðo nuƒoƒo-ŋɔŋlɔ ɖoɖo nàtsɔ gbe mode.',
@@ -150,7 +154,7 @@ export const ee = defineLocale({
       transcriptionFailed: 'Gbe ƒe nuŋlɔɖiɖe do kpoo.',
       transcriptionUnavailable: 'Gbe ŋu nuŋɔŋlɔ menɔ anyi haɖe o.',
       tryRecordingAgain: 'Ɖo gbe ake.',
-      unavailable: 'Gbe menɔ anyi o',
+      unavailable: 'Gbe menɔ anyi o'
     },
     native: {
       approvalTitle: 'Wohiã lɔ̃ɖeɖe',
@@ -163,10 +167,10 @@ export const ee = defineLocale({
       turnErrorTitle: 'Zɔzɔa kuna',
       backgroundDoneTitle: 'Dɔ si le megbe wu enu',
       backgroundFailedTitle: 'Dɔ si le megbe kuna',
-      creditsTitle: 'Kɔredi',
+      creditsTitle: 'Kɔredi'
     },
     more: count => `${count} rohkem ${count === 1 ? 'notification' : 'notifications'}`,
-    updateReadyMessage: count => `${count} uus muudatus${count === 1 ? '' : 's'} saadaval.`,
+    updateReadyMessage: count => `${count} uus muudatus${count === 1 ? '' : 's'} saadaval.`
   },
   billingBlock: {
     titleOpenamer: 'OpenAmer kɔredi vɔ',
@@ -174,7 +178,7 @@ export const ee = defineLocale({
     openBilling: 'Ʋu gaŋɔɖɔɖo',
     addCredits: 'Tsɔ kɔredi',
     dismiss: 'Ɖe e ɖa',
-    titleProvider: provider => `Sin créditos — ${provider}`,
+    titleProvider: provider => `Sin créditos — ${provider}`
   },
   titlebar: {
     hideSidebar: 'Ɣla laƒe',
@@ -191,7 +195,7 @@ export const ee = defineLocale({
     openStarmap: 'ʋu ŋkuɖodzinu nɔnɔmetata',
     openKeybinds: 'Klaviatu ƒe mɔkpuiewo',
     layoutEditor: 'Ɖoɖo ɖoɖowɔla',
-    layoutEditorTitle: 'Didimbɔ olɔm — ⌘-click di reset didimbɔ',
+    layoutEditorTitle: 'Didimbɔ olɔm — ⌘-click di reset didimbɔ'
   },
   keybinds: {
     title: 'Klaviatu ƒe mɔkpuiewo',
@@ -206,7 +210,7 @@ export const ee = defineLocale({
       profiles: 'Profailwo',
       session: 'Ðoɖo',
       navigation: 'Mɔzɔzɔ',
-      view: 'Nukpɔkpɔ',
+      view: 'Nukpɔkpɔ'
     },
     actions: {
       'keybinds.openPanel': 'Ʋu klaviatɔ mɔ kpuiwo',
@@ -285,10 +289,10 @@ export const ee = defineLocale({
       'composer.slash': 'Slash sedede palette',
       'composer.help': 'Kpekpeɖeŋu kabakaba',
       'composer.history': 'Trɔ popover / ŋgɔgbeŋɔŋlɔ',
-      'composer.cancel': 'Tu popover · tɔtɔ du',
+      'composer.cancel': 'Tu popover · tɔtɔ du'
     },
     subtitle: open => `Haz clic en un acceso directo para reasignarlo · ${open} vuelve a abrir este panel.`,
-    conflictWith: label => `También asignado a “${label}”`,
+    conflictWith: label => `También asignado a “${label}”`
   },
   language: {
     label: 'Gbe',
@@ -297,7 +301,7 @@ export const ee = defineLocale({
     saveError: 'Gbe yeyee mewɔ nu o',
     switchTo: 'Trɔ gbe',
     searchPlaceholder: 'Di gbewo…',
-    noResults: 'Mekpɔ gbe aɖeke o',
+    noResults: 'Mekpɔ gbe aɖeke o'
   },
   settings: {
     closeSettings: 'Tu ɖoɖowo',
@@ -322,11 +326,12 @@ export const ee = defineLocale({
       billing: 'Fexlẽ',
       notifications: 'Nyatakakawo',
       plugins: 'Pluginwo',
-      mcp: 'MCP',
+      mcp: 'MCP'
     },
     plugins: {
       title: 'Desktop pluginwo',
-      blurb: 'UI ƒe kpekpeɖeŋu siwo wokɔ ɖe app sia me — wokplɔ wo ɖe build la me, alo wotsɔ wo de desktop-plugins folder me (tsɔ kpe ɖe siwo OpenAmer ŋlɔ ŋu). Ne wotɔ eɖe asi le plugin ŋu la, eɖea plugin la ɖa enumake eye wòanɔ anyi le restartwo megbe.',
+      blurb:
+        'UI ƒe kpekpeɖeŋu siwo wokɔ ɖe app sia me — wokplɔ wo ɖe build la me, alo wotsɔ wo de desktop-plugins folder me (tsɔ kpe ɖe siwo OpenAmer ŋlɔ ŋu). Ne wotɔ eɖe asi le plugin ŋu la, eɖea plugin la ɖa enumake eye wòanɔ anyi le restartwo megbe.',
       openFolder: 'Ƒo pluginwo ƒe folder',
       rescan: 'Gadzro eŋu',
       reveal: 'Fia le faelwo ƒe dɔdzikpɔla me',
@@ -337,41 +342,42 @@ export const ee = defineLocale({
       kinds: {
         bundled: 'Woƒo ɖekae',
         disk: 'Le diski dzi',
-        runtime: 'Wɔwɔ ɣeyiɣi',
+        runtime: 'Wɔwɔ ɣeyiɣi'
       },
-      count: n => `${n} paigaldatud`,
+      count: n => `${n} paigaldatud`
     },
     notifications: {
       title: 'Nyatakakawo',
-      intro: 'Kɔmpiuta dzi nyatakaka ŋutɔŋutɔwo, siwo vɔ tso app me toast ŋu. Esiawo le ɔfɔ ŋutɔ dzi — kɔmpiuta ɖe sia ɖe léa eƒe ɖoɖowo ɖe eŋu.',
+      intro:
+        'Kɔmpiuta dzi nyatakaka ŋutɔŋutɔwo, siwo vɔ tso app me toast ŋu. Esiawo le ɔfɔ ŋutɔ dzi — kɔmpiuta ɖe sia ɖe léa eƒe ɖoɖowo ɖe eŋu.',
       enableAll: 'Da nyatakakawo dɔ',
       enableAllDesc: 'Ʋuɖɔɖɔ gã. Tsi e ɖe be nyatakakawo katã siwo le ete la nɔ ɖiɖi.',
       focusedHint: 'Wuwu nyatakakawo wɔa dɔ ne OpenAmer le megbe ko.',
       kinds: {
         approval: {
           label: 'Ŋuɖoɖo hiã',
-          description: 'Se aɖe le lalam be nàŋu ɖo alo nàgbe e.',
+          description: 'Se aɖe le lalam be nàŋu ɖo alo nàgbe e.'
         },
         input: {
           label: 'Nuŋlɔɖi hiã',
-          description: 'OpenAmer bia nya aɖe alo ehiã nyatakaka ɣaɣla alo nu ɣaɣla.',
+          description: 'OpenAmer bia nya aɖe alo ehiã nyatakaka ɣaɣla alo nu ɣaɣla.'
         },
         turnDone: {
           label: 'Ŋuɖoɖo le asi',
-          description: 'Go aɖe vɔ esime OpenAmer nɔ megbe.',
+          description: 'Go aɖe vɔ esime OpenAmer nɔ megbe.'
         },
         turnError: {
           label: 'Go kpo nu',
-          description: 'Go aɖe vɔ kple vodada.',
+          description: 'Go aɖe vɔ kple vodada.'
         },
         backgroundDone: {
           label: 'Megbe dɔ vɔ',
-          description: 'Terminal se si woɖo ɖe megbe la vɔ.',
+          description: 'Terminal se si woɖo ɖe megbe la vɔ.'
         },
         credits: {
           label: 'Kredi nyatakakawo',
-          description: 'Krediti ƒe mɔnu wotɔtɔ alo wogbugbɔe.',
-        },
+          description: 'Krediti ƒe mɔnu wotɔtɔ alo wogbugbɔe.'
+        }
       },
       test: 'Ɖo dodokpɔ ƒe nyatakaka ɖa',
       testTitle: 'OpenAmer',
@@ -380,7 +386,7 @@ export const ee = defineLocale({
       testUnsupported: 'Sistem sia mekpena ɖe native nyatakakawo ŋu o.',
       completionSoundTitle: 'Nuwuwu ƒe gbe',
       completionSoundDesc: 'Eƒea gbe ne dɔwɔla ƒe zi wu enu. Tia preset aɖe eye nàkpɔe le afi sia.',
-      completionSoundPreview: 'Kpɔe',
+      completionSoundPreview: 'Kpɔe'
     },
     sections: {
       chat: 'Nuƒoƒo',
@@ -390,7 +396,7 @@ export const ee = defineLocale({
       memory: 'Susu & Nɔnɔme',
       voice: 'Gbe',
       advanced: 'Kpɔtɔ',
-      model: 'model',
+      model: 'model'
     },
     searchPlaceholder: {
       about: 'Tso OpenAmer Desktop ŋu',
@@ -398,25 +404,26 @@ export const ee = defineLocale({
       gateway: 'Gateway ƒe kadodo...',
       keys: 'Di API safuiwo...',
       mcp: 'Di MCP serverwo...',
-      sessions: 'Di session siwo woxɔ ɖo...',
+      sessions: 'Di session siwo woxɔ ɖo...'
     },
     modeOptions: {
       light: {
         label: 'Kekeli',
-        description: 'Desktop ƒe tame kekeliwo',
+        description: 'Desktop ƒe tame kekeliwo'
       },
       dark: {
         label: 'Viviti',
-        description: 'Dɔwɔƒe si me kekeli medze o',
+        description: 'Dɔwɔƒe si me kekeli medze o'
       },
       system: {
         label: 'Sistɛm',
-        description: 'Dze OS ƒe nɔnɔme yome',
-      },
+        description: 'Dze OS ƒe nɔnɔme yome'
+      }
     },
     appearance: {
       title: 'Nɔnɔme',
-      intro: 'Desktɔp ɖeko ƒe nɔnɔme ɖoɖo woe. Mode ɖu kekeli dzi; nɔnɔme ɖu amadede palette kple chat tame ƒe nɔnɔme dzi.',
+      intro:
+        'Desktɔp ɖeko ƒe nɔnɔme ɖoɖo woe. Mode ɖu kekeli dzi; nɔnɔme ɖu amadede palette kple chat tame ƒe nɔnɔme dzi.',
       colorMode: 'Amadede Mode',
       colorModeDesc: 'Tia mode tsi alo na OpenAmer nalɔ̃ wò sistɛm ƒe ɖoɖo.',
       toolViewTitle: 'Tool Call ƒe Fiafia',
@@ -427,7 +434,8 @@ export const ee = defineLocale({
       backdropTitle: 'Chat ƒe megbe',
       backdropDesc: 'Nyuƒoƒo la megbe legba ƒe nɔnɔme ɖeɖe.',
       embedsTitle: 'Nu siwo woŋlɔ ɖe eme',
-      embedsDesc: 'Nukpɔkpɔ nyuiwo tso ƒuƒoƒo bubuwo (YouTube, X, …) gbɔ. Bia fia teƒe si woatsɔ ɖo ɖe eme va seɖoƒe si nèɖe mɔ na ɖe sia ɖe; Ɣesiaɣi tsɔa wo dea eme ɖokui si; Tutu kea kaɖiwo ko.',
+      embedsDesc:
+        'Nukpɔkpɔ nyuiwo tso ƒuƒoƒo bubuwo (YouTube, X, …) gbɔ. Bia fia teƒe si woatsɔ ɖo ɖe eme va seɖoƒe si nèɖe mɔ na ɖe sia ɖe; Ɣesiaɣi tsɔa wo dea eme ɖokui si; Tutu kea kaɖiwo ko.',
       embedsAsk: 'Bia',
       embedsAlways: 'Ɣesiaɣi',
       embedsOff: 'Tutu',
@@ -438,7 +446,8 @@ export const ee = defineLocale({
       themeTitle: 'Nɔnɔme',
       themeDesc: 'Desktop palette ko. Wozãa mode si wotia la ɖe etame.',
       installTitle: 'Ɖo tso VS Code me',
-      installDesc: 'Lɔ Marketplace extension id (e.g. dracula-theme.theme-dracula) ɖe afi sia be nàtrɔ eƒe amadede nɔnɔme ɖe desktop palette me.',
+      installDesc:
+        'Lɔ Marketplace extension id (e.g. dracula-theme.theme-dracula) ɖe afi sia be nàtrɔ eƒe amadede nɔnɔme ɖe desktop palette me.',
       installButton: 'Ɖo',
       installing: 'Wole eɖom…',
       installError: 'Mate ŋu aɖo nɔnɔme ma o.',
@@ -446,8 +455,10 @@ export const ee = defineLocale({
       importedBadge: 'Wotsɔe tso',
       pet: {
         title: 'Xɔlã',
-        intro: 'Xɔ petdex mascot si zɔna le dzedzeme, si le ʋuʋu le app tame eye wòxɔa nɔnɔme ɖe nu si OpenAmer wɔna ŋu — enɔa du ne dɔwɔnuwo le dɔ wɔm, edoa dzidzɔ ne eme kɔ, eye edoa ku ne vodada ɖu.',
-        restartHint: 'Petwo hiã restart kpui — app si le dɔ wɔm la dze egɔme hafi wòtsɔ nɔnɔme sia kpe ɖe eŋu. Do go le OpenAmer me eye nàgbugbɔ eʋu, emegbe nàgbugbɔ va afi sia.',
+        intro:
+          'Xɔ petdex mascot si zɔna le dzedzeme, si le ʋuʋu le app tame eye wòxɔa nɔnɔme ɖe nu si OpenAmer wɔna ŋu — enɔa du ne dɔwɔnuwo le dɔ wɔm, edoa dzidzɔ ne eme kɔ, eye edoa ku ne vodada ɖu.',
+        restartHint:
+          'Petwo hiã restart kpui — app si le dɔ wɔm la dze egɔme hafi wòtsɔ nɔnɔme sia kpe ɖe eŋu. Do go le OpenAmer me eye nàgbugbɔ eʋu, emegbe nàgbugbɔ va afi sia.',
         on: 'Ʋu',
         off: 'Tɔ',
         scaleTitle: 'Lolo',
@@ -479,13 +490,14 @@ export const ee = defineLocale({
         adoptFailed: slug => `No se pudo adoptar ${slug}`,
         uninstallFailed: slug => `No se pudo desinstalar ${slug}`,
         renameFailed: slug => `No se pudo renombrar ${slug}`,
-        exportFailed: slug => `No se pudo exportar ${slug}`,
+        exportFailed: slug => `No se pudo exportar ${slug}`
       },
-      uiScaleDesc: (percent: number) => `Escala el texto y los controles de toda la aplicación. Cmd/Ctrl con +, - y 0 también funciona. Actual: ${percent}%.`,
+      uiScaleDesc: (percent: number) =>
+        `Escala el texto y los controles de toda la aplicación. Cmd/Ctrl con +, - y 0 también funciona. Actual: ${percent}%.`,
       embedsReset: (count: number) => `Nulli ${count} lubatud ${count === 1 ? 'service' : 'services'}`,
       themeProfileNote: profile => `Guardado para el perfil ${profile}: cada perfil mantiene su propio tema.`,
       installPlaceholder: 'väljaandja.laiendus',
-      installed: name => `Instalado “${name}”.`,
+      installed: name => `Instalado “${name}”.`
     },
     about: {
       heading: 'OpenAmer Kɔmpiuta dzi',
@@ -507,12 +519,13 @@ export const ee = defineLocale({
       never: 'gbeɖe',
       justNow: 'fifia',
       version: value => `Versioon ${value}`,
-      updateReady: count => `Hay una nueva actualización disponible (incluye ${count} cambio${count === 1 ? '' : 's'}).`,
+      updateReady: count =>
+        `Hay una nueva actualización disponible (incluye ${count} cambio${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Última comprobación ${age}`,
       branchCommit: (branch, commit) => `Rama ${branch} · Commit ${commit}`,
       minAgo: count => `${count} min tagasi`,
       hoursAgo: count => `${count} tundi tagasi`,
-      daysAgo: count => `${count} päeva tagasi`,
+      daysAgo: count => `${count} päeva tagasi`
     },
     config: {
       none: 'Naneke',
@@ -528,7 +541,8 @@ export const ee = defineLocale({
       imported: 'Woɖe ɖoɖo eme',
       invalidJson: 'Ɖoɖo JSON mesɔ o',
       keepAwakeTitle: 'Mèna kɔmpiuta nadɔ o',
-      keepAwakeDesc: 'Mèna mɔ̃ sia nadɔ o, ale be dɔ siwo zɔa ɣeyiɣi didi alo zã blibo la nakɔ edzi. Ɖiɖi ate ŋu aɖi ƒu ɖaa.',
+      keepAwakeDesc:
+        'Mèna mɔ̃ sia nadɔ o, ale be dɔ siwo zɔa ɣeyiɣi didi alo zã blibo la nakɔ edzi. Ɖiɖi ate ŋu aɖi ƒu ɖaa.'
     },
     credentials: {
       pasteKey: 'Te safui ɖe eme',
@@ -538,7 +552,7 @@ export const ee = defineLocale({
       remove: 'Ɖe ɖa',
       getKey: 'Xɔ safui',
       saving: 'Ele ewlém',
-      pasteLabelKey: label => `Pegar clave ${label}`,
+      pasteLabelKey: label => `Pegar clave ${label}`
     },
     envActions: {
       credentialActions: 'Ðaseɖiwo ŋu dɔwɔwɔwo',
@@ -549,7 +563,7 @@ export const ee = defineLocale({
       replace: 'Ðɔli',
       set: 'Ðo',
       clear: 'Klɔ',
-      actionsFor: label => `Acciones para ${label}`,
+      actionsFor: label => `Acciones para ${label}`
     },
     gateway: {
       loading: 'Ele gateway ɖoɖowo wlem...',
@@ -557,21 +571,26 @@ export const ee = defineLocale({
       unavailableDesc: 'Desktop IPC bridge mefia gateway ɖoɖowo o.',
       title: 'Gateway ƒe kadodo',
       envOverride: 'env ƒe tɔtrɔ',
-      intro: 'OpenAmer Desktop dzea eƒe local gateway dzi le ɖoɖo gbãtɔ nu. Zã remote gateway ne èdi be app sia nakpɔ OpenAmer backend si le dɔ wɔm xoxo le mɔ̃ bubu dzi alo le trusted proxy megbe la dzi. Tia profile le ete be nàna eƒe remote host.',
+      intro:
+        'OpenAmer Desktop dzea eƒe local gateway dzi le ɖoɖo gbãtɔ nu. Zã remote gateway ne èdi be app sia nakpɔ OpenAmer backend si le dɔ wɔm xoxo le mɔ̃ bubu dzi alo le trusted proxy megbe la dzi. Tia profile le ete be nàna eƒe remote host.',
       appliesTo: 'Ewɔa dɔ ɖe',
       allProfiles: 'Profilewo katã',
       defaultConnection: 'Kadodo gbãtɔ na profile ɖe sia ɖe si me eƒe tɔtrɔ mele o.',
       envOverrideTitle: 'Environment variables le desktop session sia dzi kpɔm.',
-      envOverrideDesc: 'Ðe OPENAMER_DESKTOP_REMOTE_URL kple OPENAMER_DESKTOP_REMOTE_TOKEN ɖa be nàzã ɖoɖo si woxe ɖe anyi le ete la.',
+      envOverrideDesc:
+        'Ðe OPENAMER_DESKTOP_REMOTE_URL kple OPENAMER_DESKTOP_REMOTE_TOKEN ɖa be nàzã ɖoɖo si woxe ɖe anyi le ete la.',
       modeTitle: 'Kadodo ƒe nɔnɔme',
       localTitle: 'Afi sia tɔ ʋɔtru',
-      localDesc: 'Dze OpenAmer ƒe megbeƒe ame ŋutɔ tɔ gɔme le localhost dzi. Esia nye gbãtɔ eye wòwɔa dɔ le internet manɔmee.',
+      localDesc:
+        'Dze OpenAmer ƒe megbeƒe ame ŋutɔ tɔ gɔme le localhost dzi. Esia nye gbãtɔ eye wòwɔa dɔ le internet manɔmee.',
       inheritTitle: 'Zã ʋɔtru gbãtɔ',
       inheritDesc: 'Ðe profail sia ƒe tɔtrɔ ɖa eye nàzã kadodo gbãtɔ.',
       remoteTitle: 'Didime ʋɔtru',
       remoteDesc: 'Do desktop ƒe akpa sia kple OpenAmer megbeƒe si le didime.',
-      remoteAuthHint: 'ʋɔtru siwo wolé ɖe dzi zãna OAuth alo zãlaŋkɔ kple nyagbe; siwo ame ŋutɔ lé ɖe eƒe dzi ate ŋu azã session token.',
-      cloudDesc: 'Ge ɖe OpenAmer Cloud eme zi ɖeka eye nàtia le dɔwɔla siwo le wò akɔnta dzi — URL aɖeke meli be nàlɔe ɖe eme o.',
+      remoteAuthHint:
+        'ʋɔtru siwo wolé ɖe dzi zãna OAuth alo zãlaŋkɔ kple nyagbe; siwo ame ŋutɔ lé ɖe eƒe dzi ate ŋu azã session token.',
+      cloudDesc:
+        'Ge ɖe OpenAmer Cloud eme zi ɖeka eye nàtia le dɔwɔla siwo le wò akɔnta dzi — URL aɖeke meli be nàlɔe ɖe eme o.',
       cloudSignIn: 'Ge ɖe OpenAmer Cloud eme',
       cloudSignedIn: 'Ège ɖe OpenAmer Cloud eme',
       cloudNeedsSignIn: 'Ge ɖe OpenAmer Cloud eme be nàkpɔ dɔwɔla siwo le wò akɔnta dzi.',
@@ -587,7 +606,8 @@ export const ee = defineLocale({
       authSignedInOauth: 'Gateway sia zãnɔ OAuth. Ège ɖe eme; session la gbugbɔna eɖokui edziedzi.',
       authNeedsPassword: 'Gateway sia zãnɔ ŋkɔ zãla kple yameŋu. Ge ɖe eme be nàɖe mɔ na desktop app sia.',
       tokenTitle: 'Session tokin',
-      tokenDesc: 'Dashboard session tokin si wozãna na REST kple WebSocket mɔnu. Gblẽ ɖoƒe ɖe ŋu be nàlé tokin si woŋlɔ ɖo la ɖe asi.',
+      tokenDesc:
+        'Dashboard session tokin si wozãna na REST kple WebSocket mɔnu. Gblẽ ɖoƒe ɖe ŋu be nàlé tokin si woŋlɔ ɖo la ɖe asi.',
       savedToken: 'woŋlɔ ɖo',
       pasteSessionToken: 'Lã session tokin ɖe eme',
       testRemote: 'Dodokpɔ remote',
@@ -604,7 +624,7 @@ export const ee = defineLocale({
       cloudNoAgents: {
         before: 'Womekpɔ dɔwɔla aɖeke le akɔnta sia dzi o. Wɔ ɖeka le',
         linkText: 'OpenAmer ʋɔtru',
-        after: ', emegbe gbugbɔ ƒo ƒui.',
+        after: ', emegbe gbugbɔ ƒo ƒui.'
       },
       cloudRefresh: 'Ƒo ƒui',
       cloudConnect: 'Ku ɖe eŋu',
@@ -638,7 +658,8 @@ export const ee = defineLocale({
       applyFailed: 'Mate ŋu atsɔ gateway ƒe ɖoɖowo awɔ dɔ o',
       saveFailed: 'Mate ŋu axla gateway ƒe ɖoɖowo ɖe anyi o',
       sshTitle: 'Do kadodo to SSH dzi',
-      sshDesc: 'Wodze OpenAmer gɔme le adzɔge dzi to SSH dzi, eye wotɔe ɖe app sia me — naneke mele be nàdze egɔme alo nàɖe ɖokuiwò ɖe go o. Ebia SSH mɔnukpɔkpɔ si wɔa dɔ to safui dzi ɖe host la ŋu.',
+      sshDesc:
+        'Wodze OpenAmer gɔme le adzɔge dzi to SSH dzi, eye wotɔe ɖe app sia me — naneke mele be nàdze egɔme alo nàɖe ɖokuiwò ɖe go o. Ebia SSH mɔnukpɔkpɔ si wɔa dɔ to safui dzi ɖe host la ŋu.',
       sshTrustHint: 'Woxɔ host safui gbãtɔ si woɖe fia la dzi se eye wokɔe ɖe anyi; tɔtrɔ siwo gbɔna aƒo kpo.',
       sshHostDesc: 'user@host, alo Host ƒe ŋkɔ tso ~/.ssh/config.',
       sshHostPick: 'Tia host aɖe…',
@@ -658,32 +679,38 @@ export const ee = defineLocale({
       sshButtonsHint: 'Dzra ɖo awɔ dɔ le gɔmedzedze si gbɔna. Ku ɖe eŋu agadɔ go fifia.',
       sshIncompleteHost: 'Ŋlɔ SSH host hafi aku ɖe eŋu.',
       sshErrUnreachable: 'Mate ŋu aɖo host ma ŋu le SSH dzi o. Kpɔ host, port, kple wò network la ɖa.',
-      sshErrAuth: 'SSH ƒe ɖokuidzedo kuna. Tsɔ wò key la de ssh-agent me (ssh-add) alo ɖo IdentityFile ɖe ~/.ssh/config me — OpenAmer zãa ssh le non-interactive mɔnu dzi.',
-      sshErrHostKey: 'Host key la trɔ tso ƒe si nèku ɖe eŋu mamlea. Kpɔe ɖa be ele be enye nenema, ekema wɔ ssh-keygen -R <host> eye nàgadɔ go.',
-      sshErrNotInstalled: 'Womeɖo OpenAmer ɖe remote host la dzi o. Ɖo e ɖe afima (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) alo ɖo OpenAmer ƒe mɔ.',
-      sshErrPlatform: 'Womexɔ remote platform sia o. OpenAmer Desktop SSH mode tsɔa Linux, macOS kple Windows remote hostwo.',
+      sshErrAuth:
+        'SSH ƒe ɖokuidzedo kuna. Tsɔ wò key la de ssh-agent me (ssh-add) alo ɖo IdentityFile ɖe ~/.ssh/config me — OpenAmer zãa ssh le non-interactive mɔnu dzi.',
+      sshErrHostKey:
+        'Host key la trɔ tso ƒe si nèku ɖe eŋu mamlea. Kpɔe ɖa be ele be enye nenema, ekema wɔ ssh-keygen -R <host> eye nàgadɔ go.',
+      sshErrNotInstalled:
+        'Womeɖo OpenAmer ɖe remote host la dzi o. Ɖo e ɖe afima (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) alo ɖo OpenAmer ƒe mɔ.',
+      sshErrPlatform:
+        'Womexɔ remote platform sia o. OpenAmer Desktop SSH mode tsɔa Linux, macOS kple Windows remote hostwo.',
       sshErrTimeout: 'SSH kadodo wu ɣeyiɣi. Host la mate ŋu akpɔe o alo eɖɔli.',
       sshErrUpdateRequired: 'Ɖo OpenAmer yeyee ɖe remote host dzi hafi azɔ Desktop SSH.',
       sshErrUnknown: 'SSH kadodo do kpo.',
       sshHostTitle: 'host',
       sshHostPickTitle: 'host',
       sshPortTitle: 'port',
-      profileConnection: profile => `Conexión utilizada solo cuando “${profile}” es el perfil activo. Elige 'Usar puerta de enlace predeterminada' para eliminar la anulación.`,
+      profileConnection: profile =>
+        `Conexión utilizada solo cuando “${profile}” es el perfil activo. Elige 'Usar puerta de enlace predeterminada' para eliminar la anulación.`,
       cloudTitle: 'OpenAmer Kɔkɔ',
       cloudSignInTitle: 'OpenAmer Kɔkɔ',
       cloudOrgRole: role => `Rol: ${role}`,
       cloudConnectedTo: name => `Conectado a ${name}.`,
       cloudStatusLabel: status => `Olek: ${status}`,
       signInWith: provider => `Iniciar sesión con ${provider}`,
-      authNeedsOauth: provider => `Esta puerta de enlace utiliza OAuth. Inicia sesión con ${provider} para autorizar esta aplicación de escritorio.`,
+      authNeedsOauth: provider =>
+        `Esta puerta de enlace utiliza OAuth. Inicia sesión con ${provider} para autorizar esta aplicación de escritorio.`,
       existingToken: value => `Token existente ${value}`,
       connectedTo: (baseUrl, version) => `Conectado a ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
-      sshReachable: (host, platform) => `Alcanzable: ${host} (${platform}) — OpenAmer encontrado`,
+      sshReachable: (host, platform) => `Alcanzable: ${host} (${platform}) — OpenAmer encontrado`
     },
     keys: {
       loading: 'API safuiwo kple ŋkumeɖeɖewo le xɔxɔm...',
       failedLoad: 'API safuiwo ƒe xɔxɔ do kpo.',
-      empty: 'Nu aɖeke medze ɖoɖo ɖe ha sia me haɖe o.',
+      empty: 'Nu aɖeke medze ɖoɖo ɖe ha sia me haɖe o.'
     },
     mcp: {
       loading: 'MCP serverwo le xɔxɔm...',
@@ -745,10 +772,11 @@ export const ee = defineLocale({
       catalogInstallStarted: name => `Instalando ${name}... se aplicará a las nuevas sesiones al finalizar.`,
       catalogInstallFailed: name => `Error al instalar ${name}`,
       catalogEnvPrompt: name => `${name} nõuab mandaati`,
-      capabilitySummary: (tools, prompts, resources) => `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} lubatud`,
+      capabilitySummary: (tools, prompts, resources) =>
+        `${[`${tools} tools`, ...(prompts ? [`${prompts} prompts`] : []), ...(resources ? [`${resources} resources`] : [])].join(', ')} lubatud`,
       authenticatedMessage: (server, count) => `${server}: ${count} tööriista`,
       enableTool: tool => `Habilitar ${tool}`,
-      disableTool: tool => `Deshabilitar ${tool}`,
+      disableTool: tool => `Deshabilitar ${tool}`
     },
     model: {
       loading: 'Wole model ƒe ɖoɖo lɔm...',
@@ -762,7 +790,8 @@ export const ee = defineLocale({
       defaultsFailed: 'Womexɔ modɛl dzogbenyɔwo ɖe ɖoɖo me o',
       auxiliaryTitle: 'Kpekpeɖeŋu modɛlwo',
       resetAllToMain: 'Trɔ katã ɖe vevitɔ ŋu',
-      auxiliaryDesc: 'Kpekpeɖeŋu dɔwo zɔna le modɛl vevitɔ dzi le dzogbenyɔ me. Tsɔ modɛl tɔxɛ na dɔ ɖe sia ɖe be nàtrɔ eŋu.',
+      auxiliaryDesc:
+        'Kpekpeɖeŋu dɔwo zɔna le modɛl vevitɔ dzi le dzogbenyɔ me. Tsɔ modɛl tɔxɛ na dɔ ɖe sia ɖe be nàtrɔ eŋu.',
       setToMain: 'Ɖo ɖe vevitɔ',
       change: 'Trɔ',
       autoUseMain: 'eɖokui · zã modɛl vevitɔ',
@@ -773,42 +802,43 @@ export const ee = defineLocale({
       tasks: {
         vision: {
           label: 'Nukpɔkpɔ',
-          hint: 'Nɔnɔmetata numekuku',
+          hint: 'Nɔnɔmetata numekuku'
         },
         web_extract: {
           label: 'Web nuɖeɖe',
-          hint: 'Axa ƒe nuŋɔŋlɔ kpui',
+          hint: 'Axa ƒe nuŋɔŋlɔ kpui'
         },
         compression: {
           label: 'Ƒoɖiɖi',
-          hint: 'Yɔyɔ ƒe ɖeɖe ɖoɖo',
+          hint: 'Yɔyɔ ƒe ɖeɖe ɖoɖo'
         },
         skills_hub: {
           label: 'Dɔwɔnukuwo ƒe teƒe',
-          hint: 'Dɔwɔnuku ƒe tiatia',
+          hint: 'Dɔwɔnuku ƒe tiatia'
         },
         approval: {
           label: 'Ɖeɖe mɔ',
-          hint: 'Nunyala ƒe ɖe mɔ ɖokui',
+          hint: 'Nunyala ƒe ɖe mɔ ɖokui'
         },
         mcp: {
           hint: 'MCP dɔwɔnu ƒe mɔɖeɖe',
-          label: 'MCP',
+          label: 'MCP'
         },
         title_generation: {
           label: 'Tanya ɖeɖe',
-          hint: 'Kpekpeɖeŋu ƒe tanyawo',
+          hint: 'Kpekpeɖeŋu ƒe tanyawo'
         },
         curator: {
           label: 'Dɔdzikpɔla',
-          hint: 'Dɔwɔnuku zazã ƒe dzikpɔkpɔ',
-        },
-      },
+          hint: 'Dɔwɔnuku zazã ƒe dzikpɔkpɔ'
+        }
+      }
     },
     providers: {
       connectAccount: 'Te ɖe akɔnta ŋu',
       haveApiKey: 'API safui le asiwòa?',
-      intro: 'Ge ɖe eme kple ŋgɔdonya — API safui aɖeke mele nɔnɔme o. OpenAmer wɔa browser ƒe geɖe eme nɔwò, le app sia me.',
+      intro:
+        'Ge ɖe eme kple ŋgɔdonya — API safui aɖeke mele nɔnɔme o. OpenAmer wɔa browser ƒe geɖe eme nɔwò, le app sia me.',
       connected: 'Ete ɖe ŋu',
       collapse: 'Ɖe ɖa',
       connectAnother: 'Te ɖe dɔwɔla bubu ŋu',
@@ -821,16 +851,17 @@ export const ee = defineLocale({
       noKeysMatch: 'Provider aɖeke medɔ kple wò didi o.',
       localEndpoint: {
         title: 'Endpoint teƒe / tɔxɛ',
-        description: 'Ɖo OpenAmer ɖe endpoint ɖesiaɖe si sɔ kple OpenAI (Zyphra, vLLM, llama.cpp, Ollama, kple bɔbɔe).',
+        description: 'Ɖo OpenAmer ɖe endpoint ɖesiaɖe si sɔ kple OpenAI (Zyphra, vLLM, llama.cpp, Ollama, kple bɔbɔe).'
       },
       loading: 'Le providerwo lɔm...',
       removeConfirm: provider => `¿Eliminar ${provider}?`,
       removeExternalGeneric: provider => `${provider} haldatakse selle enda CLI kaudu — eemalda see seal.`,
       removeKeyManaged: provider => `${provider} on konfigureeritud API võtmega. Eemalda see API võtmetest.`,
-      removeTerminalConfirm: (provider, command) => `¿Desconectar ${provider}? Esto ejecuta "${command}" en la terminal para borrar la credencial.`,
+      removeTerminalConfirm: (provider, command) =>
+        `¿Desconectar ${provider}? Esto ejecuta "${command}" en la terminal para borrar la credencial.`,
       removeTerminalRunning: provider => `Ejecutando desconexión de ${provider} en la terminal…`,
       removedMessage: provider => `${provider} eemaldati.`,
-      failedRemove: provider => `No se pudo eliminar ${provider}`,
+      failedRemove: provider => `No se pudo eliminar ${provider}`
     },
     sessions: {
       loading: 'Le session siwo wokpa ɖo lɔm…',
@@ -841,12 +872,14 @@ export const ee = defineLocale({
       deletePermanently: 'Ɖe ɖa ɖe mavɔ me',
       restored: 'Wogbugbɔe',
       autoArchiveTitle: 'Auto-kpa chat siwo xɔe ɖo',
-      autoArchiveDesc: 'Auto-kpa chat siwo nème ka asi asi na o le ƒe akpa aɖe me. Chat siwo wokɔ̃ ɖo mekpa ɖo gbeɖe o, eye womekuku naneke ɖa o — chat siwo wokpa ɖo zɔna ɖe afi sia ko.',
+      autoArchiveDesc:
+        'Auto-kpa chat siwo nème ka asi asi na o le ƒe akpa aɖe me. Chat siwo wokɔ̃ ɖo mekpa ɖo gbeɖe o, eye womekuku naneke ɖa o — chat siwo wokpa ɖo zɔna ɖe afi sia ko.',
       autoArchiveDaysLabel: 'Kpa ɖo le',
       autoArchiveDaysUnit: 'ŋkeke siwo me dɔwɔwɔ aɖeke mele o',
       autoArchiveFailed: 'Mate ŋu atrɔ asi le auto-nuŋlɔɖi ŋu o',
       defaultDirTitle: 'Dɔwɔwɔ ƒe gbɔgblɔ gɔmeɖoanyi',
-      defaultDirDesc: 'Sesion yeyewo dzea egɔme le gbɔgblɔ sia me negbe ɖe ètia bubu o. Mèɖoe ɖe eŋu o ne nàzã wò aƒe ƒe gbɔgblɔ.',
+      defaultDirDesc:
+        'Sesion yeyewo dzea egɔme le gbɔgblɔ sia me negbe ɖe ètia bubu o. Mèɖoe ɖe eŋu o ne nàzã wò aƒe ƒe gbɔgblɔ.',
       change: 'Trɔ',
       choose: 'Tia',
       clear: 'Klɔ',
@@ -860,7 +893,7 @@ export const ee = defineLocale({
       messages: count => `${count} ${count === 1 ? 'message' : 'messages'}`,
       deleteConfirm: title => `¿Eliminar permanentemente "${title}"? Esta acción no se puede deshacer.`,
       defaultDirUpdated: 'Projekto didim didi — malɔ chat adua (Ctrl/⌘+N).',
-      defaultsTo: label => `Predeterminado a ${label}.`,
+      defaultsTo: label => `Predeterminado a ${label}.`
     },
     toolsets: {
       loadingConfig: 'Ɖoɖo lɔm',
@@ -911,7 +944,7 @@ export const ee = defineLocale({
         selectedTitle: 'Wotia megbeƒe',
         needsSetupHint: 'Àte ŋu atia megbeƒe sia fifi — seɖoƒewo adze anyi va se ɖe ɖoɖo wu enu.',
         selectedMessage: backend => `Terminal commands ${backend} via run-sté. New sessions-sté apply-sté.`,
-        failedSelect: backend => `Failed ${backend} select`,
+        failedSelect: backend => `Failed ${backend} select`
       },
       modelSectionTitle: 'model',
       savedMessage: key => `${key} uuendati.`,
@@ -923,7 +956,8 @@ export const ee = defineLocale({
       selectedMessage: provider => `${provider} active-sté.`,
       failedSelect: provider => `Error al seleccionar ${provider}`,
       openamerAuthNeededMessage: provider => `${provider} saved-sté, OpenAmer Portal sign-in-sté activate-sté.`,
-      postSetupHint: step => `Este backend requiere una instalación única (${step}). Se ejecuta en esta máquina; puede tardar unos minutos.`,
+      postSetupHint: step =>
+        `Este backend requiere una instalación única (${step}). Se ejecuta en esta máquina; puede tardar unos minutos.`,
       postSetupCompleteMessage: step => `${step} installed-sté.`,
       postSetupErrorMessage: step => `Consulta el registro de ${step}.`,
       postSetupFailed: step => `Error al ejecutar la configuración de ${step}`,
@@ -933,10 +967,10 @@ export const ee = defineLocale({
       failedSelectCapability: provider => `Failed ${provider} set`,
       modelCount: count => `${count} malli${count === 1 ? '' : 's'}`,
       modelSelectedMessage: model => `${model} new sessions-sté apply-sté.`,
-      failedSelectModel: model => `Failed ${model} select`,
+      failedSelectModel: model => `Failed ${model} select`
     },
     fieldLabels: FIELD_LABELS,
-    fieldDescriptions: FIELD_DESCRIPTIONS,
+    fieldDescriptions: FIELD_DESCRIPTIONS
   },
   skills: {
     tabSkills: 'Dɔwɔnyawo',
@@ -955,7 +989,8 @@ export const ee = defineLocale({
     noDescription: 'Numeɖeɖe aɖeke meli o.',
     configured: 'Eɖoɖo',
     needsKeys: 'Ehiã safuiwo',
-    visionModelHint: 'Nukpɔkpɔ zãa wò kpeɖeŋu model ƒe ɖoɖo — wotiaa model si kpɔa nɔnɔme le afima, menye le provider ɖeɖe le afi sia o.',
+    visionModelHint:
+      'Nukpɔkpɔ zãa wò kpeɖeŋu model ƒe ɖoɖo — wotiaa model si kpɔa nɔnɔme le afima, menye le provider ɖeɖe le afi sia o.',
     visionModelLink: 'Tia nukpɔkpɔ model le Ɖoɖowo → Modelwo',
     skillsLoadFailed: 'Dɔwɔnyawo mete ŋu ƒo o',
     toolsetsRefreshFailed: 'Dɔwɔnuwo megbugbɔ o',
@@ -973,7 +1008,7 @@ export const ee = defineLocale({
     provenance: {
       agent: 'Wosrɔ̃e',
       bundled: 'Eme tɔ',
-      hub: 'Titina',
+      hub: 'Titina'
     },
     changesApplyNewSessions: 'Trɔtrɔwo wɔ dɔ ɖe seja yeyewo dzi.',
     skillUpdated: 'Wotrɔ dɔnɔnɔ yeyee',
@@ -988,7 +1023,8 @@ export const ee = defineLocale({
       connectingHubs: 'Wole kadonu ge ɖe dɔwɔnuku hub-wo ŋu...',
       connectedHubs: 'Hub-wo siwo kadonu:',
       featured: 'Dɔwɔnuku tɔxɛwo',
-      landingHint: 'Di le hub me be nàkpɔ dɔwɔnuku siwo woate ŋu aɖo ɖe eme tso dzɔdzɔme index, GitHub, kple habɔbɔ tsoƒewo.',
+      landingHint:
+        'Di le hub me be nàkpɔ dɔwɔnuku siwo woate ŋu aɖo ɖe eme tso dzɔdzɔme index, GitHub, kple habɔbɔ tsoƒewo.',
       noResults: 'Womekpɔ dɔwɔnuku si sɔ ɖe hub la me o.',
       installed: 'Woɖoe ɖe eme',
       install: 'Ɖo ɖe eme',
@@ -1006,7 +1042,7 @@ export const ee = defineLocale({
       trust: {
         builtin: 'Eme tɔ',
         trusted: 'Wokɔnɔ eŋu',
-        community: 'Hame',
+        community: 'Hame'
       },
       verdictSafe: 'Dede',
       verdictCaution: 'Kɔkɔbɔ',
@@ -1026,7 +1062,7 @@ export const ee = defineLocale({
       timedOut: sources => `Aika loppui: ${sources}`,
       findings: count => `${count} löydös${count === 1 ? '' : 's'}`,
       installStarted: name => `Asennetaan ${name}...`,
-      uninstallStarted: name => `Poistetaan ${name}...`,
+      uninstallStarted: name => `Poistetaan ${name}...`
     },
     tabMcp: 'MCP',
     toolsetsEnabled: (enabled, total) => `${enabled}/${total} toolsets enabled-sté`,
@@ -1039,7 +1075,7 @@ export const ee = defineLocale({
     usageCount: count => `käytetty ${count}×`,
     emptyNoneFound: noun => `No ${noun} found-sté`,
     emptyNothingMatches: query => `Ei osumia haulle ”${query}”.`,
-    emptyNoneAvailable: noun => `No ${noun} available-sté.`,
+    emptyNoneAvailable: noun => `No ${noun} available-sté.`
   },
   starmap: {
     title: 'Nukoko ƒe Nyaɖeɖefia',
@@ -1055,7 +1091,8 @@ export const ee = defineLocale({
     emptyTitle: 'Womesrɔ̃ naneke haɖe o',
     emptyDesc: 'Ne OpenAmer le dɔwɔna kple nukokowo tum ɖe wò dɔwɔwɔ ŋu la, woadze le afi sia.',
     share: 'Ma map',
-    shareHint: 'Kɔpi kɔdi la be nàma map sia, alo lã kɔdi aɖe be nàƒo. Etsɔa ɖoɖo ko, menye wò nukoko alo dɔwɔna ŋɔŋlɔ o.',
+    shareHint:
+      'Kɔpi kɔdi la be nàma map sia, alo lã kɔdi aɖe be nàƒo. Etsɔa ɖoɖo ko, menye wò nukoko alo dɔwɔna ŋɔŋlɔ o.',
     shareTitle: 'Tsɔ map va / tsɔ map yi',
     sharePlaceholder: 'Lã map kɔdi…',
     copy: 'Kɔpi map kɔdi',
@@ -1066,7 +1103,7 @@ export const ee = defineLocale({
     importedBadge: 'map si woxɔ ɖe eme',
     resetToMine: 'Trɔ yi nye map gbɔ',
     subtitle: (nodes, clusters) => `${nodes} skills ${clusters} categories-sté`,
-    importSuccess: nodes => `Loaded map ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`,
+    importSuccess: nodes => `Loaded map ${nodes} ${nodes === 1 ? 'node' : 'nodes'}.`
   },
   agents: {
     close: 'Tu dɔwɔlawo',
@@ -1096,7 +1133,7 @@ export const ee = defineLocale({
     ageDays: days => `${days}p tagasi`,
     durationSeconds: seconds => `${seconds}s`,
     durationMinutes: (minutes, seconds) => `${minutes}min ${seconds}sek`,
-    tokens: value => `${value} token`,
+    tokens: value => `${value} token`
   },
   commandCenter: {
     close: 'Tu command center',
@@ -1132,7 +1169,7 @@ export const ee = defineLocale({
       referenceImageInvalid: 'Mate ŋu axlẽ nɔnɔmetata si woatsɔ awɔ dɔ ma o. Zã PNG, JPG, WebP, alo GIF.',
       adopt: 'Xɔe',
       startOver: 'Gadze egɔme',
-      hatchRow: (_state, done, total) => `Joonestan kaadri ${done} / ${total}…`,
+      hatchRow: (_state, done, total) => `Joonestan kaadri ${done} / ${total}…`
     },
     branches: 'Alɔwo',
     commands: 'Dɔwɔnawo',
@@ -1154,7 +1191,7 @@ export const ee = defineLocale({
       generatedTag: 'Wodzrae',
       adoptFailed: 'Mate ŋu axɔ aƒelã ma o.',
       toggleFailed: 'Mate ŋu atrɔ aƒelã la o.',
-      noneAvailable: 'Aƒelã aɖeke meli o — tia ɖeka le ete be nàdɔe ɖo.',
+      noneAvailable: 'Aƒelã aɖeke meli o — tia ɖeka le ete be nàdɔe ɖo.'
     },
     installTheme: {
       title: 'Ɖo nɔnɔme…',
@@ -1166,7 +1203,7 @@ export const ee = defineLocale({
       install: 'Ɖo',
       installing: 'Le ɖom...',
       installed: 'Woɖoe',
-      installs: count => `${count} paigaldust`,
+      installs: count => `${count} paigaldust`
     },
     settingsFields: 'Ɖoɖowo ƒe akpawo',
     mcpServers: 'MCP serverwo',
@@ -1175,21 +1212,21 @@ export const ee = defineLocale({
       maintenance: 'Ɖɔɖɔɖo',
       sessions: 'Sessionwo',
       system: 'Sistem',
-      usage: 'Zazã',
+      usage: 'Zazã'
     },
     sectionEntries: {
       usage: {
         title: 'Panel zazã',
-        detail: 'Token, ga, kple dɔwɔwɔ',
+        detail: 'Token, ga, kple dɔwɔwɔ'
       },
       sessions: {
         title: 'Sessionwo ƒe panel',
-        detail: 'Di, te sessionwo ɖe asi, eye nàɖɔ wo ɖo',
+        detail: 'Di, te sessionwo ɖe asi, eye nàɖɔ wo ɖo'
       },
       system: {
         title: 'Sistem ƒe panel',
-        detail: 'Gateway ƒe nɔnɔme, ŋkekegbalẽwo, gbugbɔgadze/ŋuɖoɖo',
-      },
+        detail: 'Gateway ƒe nɔnɔme, ŋkekegbalẽwo, gbugbɔgadze/ŋuɖoɖo'
+      }
     },
     providerNavigate: 'Yi',
     providerSessions: 'Sesɔnwo',
@@ -1213,29 +1250,29 @@ export const ee = defineLocale({
       maintenance: 'Dzɔdzɔgbalẽ, dzokukuwo, kpɔkplɔla kple ŋkuɖɔɖo ƒe nyatakakawo',
       sessions: 'Di eye nàɖɔ sessionwo ɖo',
       system: 'Nɔnɔme, ŋkekegbalẽwo kple sistem ƒe dɔwɔwɔwo',
-      usage: 'Token, gadzɔ kple dɔnukpɔkpɔ ƒe dɔwɔwɔ le ɣeyiɣi me',
+      usage: 'Token, gadzɔ kple dɔnukpɔkpɔ ƒe dɔwɔwɔ le ɣeyiɣi me'
     },
     nav: {
       newChat: {
         title: 'Session yeye',
-        detail: 'Dze session yeye gɔme',
+        detail: 'Dze session yeye gɔme'
       },
       settings: {
         title: 'Ƒoɖoɖowo',
-        detail: 'Ƒo OpenAmer desktop ɖo',
+        detail: 'Ƒo OpenAmer desktop ɖo'
       },
       skills: {
         title: 'Ŋusẽwo',
-        detail: 'Dɔnukpɔkpɔwo, dɔwɔnuwo kple MCP serverwo',
+        detail: 'Dɔnukpɔkpɔwo, dɔwɔnuwo kple MCP serverwo'
       },
       messaging: {
         title: 'Dɔgbeɖeɖe',
-        detail: 'Ƒo Telegram, Slack, Discord kple bubuwo ɖo',
+        detail: 'Ƒo Telegram, Slack, Discord kple bubuwo ɖo'
       },
       artifacts: {
         title: 'Nu siwo wowɔ',
-        detail: 'Kpɔ nu siwo wowɔ la',
-      },
+        detail: 'Kpɔ nu siwo wowɔ la'
+      }
     },
     actionStartedWaiting: 'Nuwɔna dze egɔme, le nɔnɔme lalam...',
     loadingStatus: 'Le nɔnɔme tsɔm...',
@@ -1299,7 +1336,7 @@ export const ee = defineLocale({
       resetConfirm: target => `Kustuta ${target}? See ei saa tagasi pöörata.`,
       resetDone: files => `Kustutatud ${files}.`,
       actionStarted: name => `${name} käivitatud — jälgin logi...`,
-      actionFailed: name => `${name} ebaõnnestus käivitada`,
+      actionFailed: name => `${name} ebaõnnestus käivitada`
     },
     logSearchPlaceholder: 'Ɖe log ŋkɔnyawo me...',
     startInBranch: branch => `Uus vestlus ${branch}`,
@@ -1307,7 +1344,7 @@ export const ee = defineLocale({
     days: count => `${count}p`,
     actualCost: cost => `tegelik ${cost}`,
     noUsage: period => `Kasutust ei ole viimastel ${period} päeval.`,
-    actions: count => `${count} toimingut`,
+    actions: count => `${count} toimingut`
   },
   messaging: {
     search: 'Dii le gbedasiwo me...',
@@ -1322,7 +1359,7 @@ export const ee = defineLocale({
       not_configured: 'Hia ɖoɖo',
       pending_restart: 'Hia gɔmeɖoɖo',
       retrying: 'Gbeɖegbeɖe tem',
-      startup_failed: 'Gɔmeɖoɖo kuna',
+      startup_failed: 'Gɔmeɖoɖo kuna'
     },
     unknown: 'Manyamanya',
     hintPendingRestart: 'Gbugbɔ ʋɔtru la gɔme tso nɔnɔmetata ƒe kpɔtɔ dzi be natsɔ tɔtrɔ sia awɔ dɔ.',
@@ -1349,124 +1386,124 @@ export const ee = defineLocale({
       TELEGRAM_BOT_TOKEN: {
         label: 'Bot ƒe token',
         help: 'Wɔ bot kple @BotFather, emegbe ƒu token si wòna la ɖo.',
-        placeholder: 'Ƒu Telegram bot ƒe token ɖo',
+        placeholder: 'Ƒu Telegram bot ƒe token ɖo'
       },
       TELEGRAM_ALLOWED_USERS: {
         label: 'Telegram zãla ID siwo wode mɔ na',
-        help: 'Wokafu. ID xexlẽme siwo le @userinfobot, wotsɔ koma ɖe wo dome. Ne menye nenema o la, ame sia ame ate ŋu aɖo gbe ɖe wò bot.',
+        help: 'Wokafu. ID xexlẽme siwo le @userinfobot, wotsɔ koma ɖe wo dome. Ne menye nenema o la, ame sia ame ate ŋu aɖo gbe ɖe wò bot.'
       },
       TELEGRAM_PROXY: {
         help: 'Ele hiã ɖeko le netwɔk siwo me woxe Telegram nu la dzi.',
-        label: 'ɔfie URL',
+        label: 'ɔfie URL'
       },
       DISCORD_BOT_TOKEN: {
         label: 'Bot ƒe token',
-        help: 'Wɔ application le Discord Developer Portal, tsɔ bot kpe eŋu, emegbe ƒu eƒe token ɖo.',
+        help: 'Wɔ application le Discord Developer Portal, tsɔ bot kpe eŋu, emegbe ƒu eƒe token ɖo.'
       },
       DISCORD_ALLOWED_USERS: {
         label: 'Discord zãla ID siwo wode mɔ na',
-        help: 'Wokafu. Discord zãla ID siwo wotsɔ koma ɖe wo dome.',
+        help: 'Wokafu. Discord zãla ID siwo wotsɔ koma ɖe wo dome.'
       },
       DISCORD_REPLY_TO_MODE: {
         label: 'Ŋuɖoɖo ƒe nɔnɔme',
-        help: 'gbãtɔ, katã, alo tsi',
+        help: 'gbãtɔ, katã, alo tsi'
       },
       DISCORD_ALLOW_ALL_USERS: {
         label: 'Ɖe mɔ na Discord zãla katã',
-        help: 'Ƒeɖeɖe ko. Ne enye nyateƒe la, ame sia ame ate ŋu aɖo nya ɖe bot ŋu, mɔɖeɖe ƒe ŋkɔxɔ manɔ anyi o.',
+        help: 'Ƒeɖeɖe ko. Ne enye nyateƒe la, ame sia ame ate ŋu aɖo nya ɖe bot ŋu, mɔɖeɖe ƒe ŋkɔxɔ manɔ anyi o.'
       },
       DISCORD_HOME_CHANNEL: {
         label: 'Aƒe ƒe kana ID',
-        help: 'Kana si bot tsɔa ŋgɔdɔnyawo ɖoa ɖa le (cron ƒe tɔtrɔ, ŋkuɖɔɖoɖowo).',
+        help: 'Kana si bot tsɔa ŋgɔdɔnyawo ɖoa ɖa le (cron ƒe tɔtrɔ, ŋkuɖɔɖoɖowo).'
       },
       DISCORD_HOME_CHANNEL_NAME: {
         label: 'Aƒe ƒe kana ƒe ŋkɔ',
-        help: 'Ŋkɔ si woɖena na aƒe ƒe kana le logs kple status output me.',
+        help: 'Ŋkɔ si woɖena na aƒe ƒe kana le logs kple status output me.'
       },
       BLUEBUBBLES_ALLOW_ALL_USERS: {
         label: 'Ɖe mɔ na iMessage zãla katã',
-        help: 'Ne enye nyateƒe la, te BlueBubbles ƒe mɔɖeɖe ŋkɔxɔ dzi.',
+        help: 'Ne enye nyateƒe la, te BlueBubbles ƒe mɔɖeɖe ŋkɔxɔ dzi.'
       },
       MATTERMOST_ALLOW_ALL_USERS: {
-        label: 'Ɖe mɔ na Mattermost zãla katã',
+        label: 'Ɖe mɔ na Mattermost zãla katã'
       },
       MATTERMOST_HOME_CHANNEL: {
-        label: 'Aƒe ƒe kana',
+        label: 'Aƒe ƒe kana'
       },
       QQ_ALLOW_ALL_USERS: {
-        label: 'Ɖe mɔ na QQ zãla katã',
+        label: 'Ɖe mɔ na QQ zãla katã'
       },
       QQBOT_HOME_CHANNEL: {
         label: 'QQ ƒe aƒe kana',
-        help: 'Kana alo ha si nye doƒo na cron ƒe ɖoɖo.',
+        help: 'Kana alo ha si nye doƒo na cron ƒe ɖoɖo.'
       },
       QQBOT_HOME_CHANNEL_NAME: {
-        label: 'QQ ƒe aƒe kana ƒe ŋkɔ',
+        label: 'QQ ƒe aƒe kana ƒe ŋkɔ'
       },
       SLACK_BOT_TOKEN: {
         label: 'Slack bot ƒe token',
         help: 'Zã bot ƒe token si tso OAuth & Permissions me le wò Slack app ƒe ɖoɖo megbe.',
-        placeholder: 'Klɔ Slack bot ƒe token ɖe afi sia',
+        placeholder: 'Klɔ Slack bot ƒe token ɖe afi sia'
       },
       SLACK_APP_TOKEN: {
         label: 'Slack app ƒe token',
         help: 'Zã app-level tɔkɛn si hiã na Socket Mode.',
-        placeholder: 'Lɔ Slack app tɔkɛn.',
+        placeholder: 'Lɔ Slack app tɔkɛn.'
       },
       SLACK_ALLOWED_USERS: {
         label: 'Slack zãla ID siwo woxɔ ɖe edzi',
-        help: 'Wokafu. Slack zãla ID siwo woŋlɔ kple koma.',
+        help: 'Wokafu. Slack zãla ID siwo woŋlɔ kple koma.'
       },
       MATTERMOST_URL: {
         label: 'Server ƒe URL',
-        placeholder: 'https://mattermost.example.com',
+        placeholder: 'https://mattermost.example.com'
       },
       MATTERMOST_TOKEN: {
-        label: 'Bot tɔkɛn',
+        label: 'Bot tɔkɛn'
       },
       MATTERMOST_ALLOWED_USERS: {
         label: 'Zãla ID siwo woxɔ ɖe edzi',
-        help: 'Wokafu. Mattermost zãla ID siwo woŋlɔ kple koma.',
+        help: 'Wokafu. Mattermost zãla ID siwo woŋlɔ kple koma.'
       },
       MATRIX_HOMESERVER: {
         label: 'Homeserver ƒe URL',
-        placeholder: 'https://matrix.org',
+        placeholder: 'https://matrix.org'
       },
       MATRIX_ACCESS_TOKEN: {
-        label: 'Mɔnukpɔkpɔ tɔkɛn',
+        label: 'Mɔnukpɔkpɔ tɔkɛn'
       },
       MATRIX_USER_ID: {
         label: 'Bot zãla ID',
-        placeholder: '@openamer:example.org',
+        placeholder: '@openamer:example.org'
       },
       MATRIX_ALLOWED_USERS: {
         label: 'Matrix zãla ID siwo woxɔ ɖe edzi',
-        help: 'Wokafu. Zãla ID siwo woŋlɔ kple koma le @user:server fɔmat me.',
+        help: 'Wokafu. Zãla ID siwo woŋlɔ kple koma le @user:server fɔmat me.'
       },
       SIGNAL_HTTP_URL: {
         label: 'Signal bridge ƒe URL',
         placeholder: 'http://127.0.0.1:8080',
-        help: 'Signal-cli REST bridge si le dɔ wɔm la ƒe URL.',
+        help: 'Signal-cli REST bridge si le dɔ wɔm la ƒe URL.'
       },
       SIGNAL_ACCOUNT: {
         label: 'Telefon nɔmba',
-        help: 'Xexlẽdzesi si woŋlɔ ɖo kple wò signal-cli bridge.',
+        help: 'Xexlẽdzesi si woŋlɔ ɖo kple wò signal-cli bridge.'
       },
       SIGNAL_ALLOWED_USERS: {
         label: 'Signal zãla siwo ŋu mɔ ɖe',
-        help: 'Wokafu. Signal dzesi siwo wo ma kple kɔma.',
+        help: 'Wokafu. Signal dzesi siwo wo ma kple kɔma.'
       },
       WHATSAPP_ENABLED: {
         label: 'Ʋu WhatsApp bridge',
-        help: 'Toggle si le ete la tsɔa eɖo ɖokui. Mègatsɔ asi aɖe eŋu negbe ne ènya be yé hiãe.',
+        help: 'Toggle si le ete la tsɔa eɖo ɖokui. Mègatsɔ asi aɖe eŋu negbe ne ènya be yé hiãe.'
       },
       WHATSAPP_MODE: {
-        label: 'Bridge ƒe mɔnu',
+        label: 'Bridge ƒe mɔnu'
       },
       WHATSAPP_ALLOWED_USERS: {
         label: 'WhatsApp zãla siwo ŋu mɔ ɖe',
-        help: 'Wokafu. Telefon xexlẽdzesi alo WhatsApp ID siwo wo ma kple kɔma.',
-      },
+        help: 'Wokafu. Telefon xexlẽdzesi alo WhatsApp ID siwo wo ma kple kɔma.'
+      }
     },
     advanced: count => `Täpsemad (${count})`,
     clearField: key => `Tühjenda ${key}`,
@@ -1480,8 +1517,7 @@ export const ee = defineLocale({
     failedUpdate: name => `${name} uuendamine ebaõnnestus`,
     failedSave: name => `${name} salvestamine ebaõnnestus`,
     failedClear: key => `${key} tühjendamine ebaõnnestus`,
-    platformIntro: {
-    },
+    platformIntro: {}
   },
   webhooks: {
     search: 'Di webhooks...',
@@ -1490,7 +1526,8 @@ export const ee = defineLocale({
     hint: 'Subscription ƒe tɔtrɔwo gaa ɖe eŋu enumake ne receiver le dɔ wɔm. Subscription siwo wotɔ ɖe eŋu gbea events siwo gbɔna.',
     empty: 'Webhook subscription aɖeke meli haɖe o.',
     disabledTitle: 'Wotɔ webhook receiver ɖe eŋu.',
-    disabledBody: 'Webhooks nye woa ŋutɔ ƒe gateway platform. Ʋu wo le afi sia be woaxɔ HTTP events siwo gbɔna; chat channels hiã ko ne subscription aɖe tsɔ nu yi Telegram, Discord, Slack alo channel bubu.',
+    disabledBody:
+      'Webhooks nye woa ŋutɔ ƒe gateway platform. Ʋu wo le afi sia be woaxɔ HTTP events siwo gbɔna; chat channels hiã ko ne subscription aɖe tsɔ nu yi Telegram, Discord, Slack alo channel bubu.',
     enable: 'Ʋu webhooks',
     enabling: 'Ele ʋum...',
     enableRow: 'Ʋu',
@@ -1536,7 +1573,7 @@ export const ee = defineLocale({
       telegram: 'Telegram',
       discord: 'Discord',
       slack: 'Slack',
-      email: 'Ilektrik',
+      email: 'Ilektrik'
     },
     subscriptions: (count: number) => `Tilaukset (${count})`,
     enabled: (name: string) => `Käytössä: "${name}"`,
@@ -1545,7 +1582,7 @@ export const ee = defineLocale({
     toggleFailed: (name: string) => `Päivitys epäonnistui: "${name}"`,
     restartFailed: (detail: string) => `Yhdyskäytävän käynnistys epäonnistui${detail}`,
     webhookUrl: 'wɛbhuk URL',
-    createFailed: (detail: string) => `Luominen epäonnistui: ${detail}`,
+    createFailed: (detail: string) => `Luominen epäonnistui: ${detail}`
   },
   profiles: {
     close: 'Tu profailwo',
@@ -1623,7 +1660,7 @@ export const ee = defineLocale({
     skills: count => `${count} ${count === 1 ? 'skill' : 'skills'}`,
     soulPlaceholder: mode => `Süsteemi keele / isiksus selle profiili jaoks.
 Jäta tühjaks, et hoida ${mode} vaikimisi.`,
-    invalidName: hint => `Vigane nimi. ${hint}`,
+    invalidName: hint => `Vigane nimi. ${hint}`
   },
   cron: {
     close: 'Tu cron',
@@ -1637,14 +1674,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       paused: 'wotɔ te',
       disabled: 'meʋu o',
       error: 'vodada',
-      completed: 'wu enu',
+      completed: 'wu enu'
     },
     deliveryLabels: {
       local: 'Desktop sia',
       email: 'E-mail',
       telegram: 'Telegram',
       discord: 'Discord',
-      slack: 'Slack',
+      slack: 'Slack'
     },
     scheduleLabels: {
       daily: 'Gbe sia gbe',
@@ -1653,7 +1690,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       monthly: 'Ɣleti sia ɣleti',
       hourly: 'Gaƒoƒo sia gaƒoƒo',
       'every-15-minutes': 'Aɖabaƒoƒo 15 sia 15',
-      custom: 'Ŋuɖoɖo',
+      custom: 'Ŋuɖoɖo'
     },
     scheduleHints: {
       daily: 'Gbe sia gbe le 9:00 ŋdi',
@@ -1662,7 +1699,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       monthly: 'Ɣleti sia ɣleti ƒe ŋkeke gbãtɔ le 9:00 ŋdi',
       hourly: 'Le gaƒoƒo sia gaƒoƒo ƒe gɔme',
       'every-15-minutes': 'Aɖabaƒoƒo 15 sia 15',
-      custom: 'Cron ƒe nuŋɔŋlɔ ɖoɖo alo amegbetɔ ƒe gbe',
+      custom: 'Cron ƒe nuŋɔŋlɔ ɖoɖo alo amegbetɔ ƒe gbe'
     },
     days: {
       '0': 'Kɔsiɖa',
@@ -1672,11 +1709,12 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       '4': 'Yawoɖa',
       '5': 'Fiɖa',
       '6': 'Memleɖa',
-      '7': 'Kɔsiɖa',
+      '7': 'Kɔsiɖa'
     },
     topOfHour: 'Le gaƒoƒo ɖesiaɖe ƒe gɔme',
     newCron: 'Cron yeye',
-    emptyDescNew: 'Wɔ ɖoɖo be prompt naƒo le cron expression dzi. OpenAmer aƒo e eye wòatsɔ emetsonuwo ayi afisi nètia.',
+    emptyDescNew:
+      'Wɔ ɖoɖo be prompt naƒo le cron expression dzi. OpenAmer aƒo e eye wòatsɔ emetsonuwo ayi afisi nètia.',
     emptyDescSearch: 'Te kpɔ nya gbogbo aɖe si nèdi.',
     emptyTitleNew: 'Wɔɖoɖo dɔwɔna aɖeke meli haɖe o',
     emptyTitleSearch: 'Nu sɔ kplii aɖeke meli o',
@@ -1734,7 +1772,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     createAction: 'Wɔ cron',
     tabs: {
       jobs: 'Dɔwo',
-      blueprints: 'Nuxlɔ̃amewo',
+      blueprints: 'Nuxlɔ̃amewo'
     },
     blueprints: {
       tab: 'Nuxlɔ̃amewo',
@@ -1748,7 +1786,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       loading: 'Nuxlɔ̃amewo le ehehe...',
       failedLoad: 'Nuxlɔ̃amewo mehe o',
       emptyTitle: 'Nuxlɔ̃amewo meli o',
-      emptyDesc: 'Automation nuxlɔ̃amewo meli le backend sia dzi o.',
+      emptyDesc: 'Automation nuxlɔ̃amewo meli le backend sia dzi o.'
     },
     count: count => `${count} ${count === 1 ? 'job' : 'jobs'}`,
     dayFallback: value => `päev ${value}`,
@@ -1757,7 +1795,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     everyDayOfWeekAt: (day, time) => `Iga ${day} kell ${time}`,
     monthlyOnDayAt: (dayOfMonth, time) => `Kuus päeval ${dayOfMonth} kell ${time}`,
     everyHourAt: minute => `Iga tund :${minute}`,
-    actionsFor: title => `Tegevused ${title} jaoks`,
+    actionsFor: title => `Tegevused ${title} jaoks`
   },
   artifacts: {
     search: 'Di nuwɔwɔwo...',
@@ -1791,14 +1829,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     copyUrl: 'Kɔpi URL',
     copyPath: 'Kɔpi mɔ',
     rangeOf: (start, end, total) => `${start}-${end} / ${total}`,
-    goToPage: (itemLabel, page) => `Mine ${itemLabel} lehele ${page}`,
+    goToPage: (itemLabel, page) => `Mine ${itemLabel} lehele ${page}`
   },
   sidebar: {
     nav: {
       'new-session': 'Sesion yeye',
       skills: 'Ŋusẽwo',
       messaging: 'Duɖiɖoɖo',
-      artifacts: 'Nuwɔwɔwo',
+      artifacts: 'Nuwɔwɔwo'
     },
     searchAria: 'Di sesionwo',
     searchPlaceholder: 'Di sesionwo…',
@@ -1849,7 +1887,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       copyPath: 'Kɔpi mɔ',
       removeFromSidebar: 'Ɣlae tso sidebar',
       createFailed: 'Mate ŋu awɔ dɔwɔna o',
-      staleBackend: 'Ƒo OpenAmer megbeƒe yeyee be wòawɔ dɔwɔɖoɖowo — wò megbeƒe xoxo wu desktop app sia (Ƒoɖoɖowo → Yeyeyewo → Megbeƒe).',
+      staleBackend:
+        'Ƒo OpenAmer megbeƒe yeyee be wòawɔ dɔwɔɖoɖowo — wò megbeƒe xoxo wu desktop app sia (Ƒoɖoɖowo → Yeyeyewo → Megbeƒe).',
       deleteConfirm: 'Esia ɖea dɔwɔɖoɖo si woda ɖo la ɖa le OpenAmer me. Fae, git repos kple worktree-wo maɖi asi o.',
       startWork: 'Worktree yeye',
       newWorktreeTitle: 'Worktree yeye',
@@ -1870,14 +1909,16 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       noBranches: 'Mekpɔ branch aɖeke o',
       removeWorktree: 'Ɖe worktree ɖa',
       removeWorktreeFailed: 'Mate ŋu ɖe worktree ɖa o (tɔtrɔ siwo mekɔ ɖe commit me o?)',
-      removeWorktreeConfirm: 'Ɖe e ɖa le git me (etsɔ worktree directory ɖa; branch la gakpɔtɔ li), alo tsɔ lane ɣla tso sidebar la dzi eye nàtsɔ worktree la anɔ disk dzi.',
-      removeWorktreeDirty: 'Worktree sia ƒe tɔtrɔ siwo mekɔ ɖe commit me o li. Tsɔ ŋusẽ ɖe e ɖa (etsɔ tɔtrɔ mawo ɖa), alo tsɔ lane ɣla eye nàtsɔ e anɔ disk dzi.',
+      removeWorktreeConfirm:
+        'Ɖe e ɖa le git me (etsɔ worktree directory ɖa; branch la gakpɔtɔ li), alo tsɔ lane ɣla tso sidebar la dzi eye nàtsɔ worktree la anɔ disk dzi.',
+      removeWorktreeDirty:
+        'Worktree sia ƒe tɔtrɔ siwo mekɔ ɖe commit me o li. Tsɔ ŋusẽ ɖe e ɖa (etsɔ tɔtrɔ mawo ɖa), alo tsɔ lane ɣla eye nàtsɔ e anɔ disk dzi.',
       forceRemove: 'Tsɔ ŋusẽ ɖe e ɖa',
       back: 'Dɔwɔnawo katã',
       branchOff: () => ({ after: '', before: 'branch off ' }),
       enter: label => `Ava ${label}`,
       reorder: label => `Järjesta ${label} uuesti`,
-      toggle: label => `Vaheta ${label} seansse`,
+      toggle: label => `Vaheta ${label} seansse`
     },
     loading: 'Ele lɔm…',
     loadMore: 'Lɔ nu bubu',
@@ -1912,19 +1953,19 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       actionsFor: title => `Tegevused ${title} jaoks`,
       handoffOrigin: platform => `Üle antud ${platform}lt`,
       ownedByProfile: profile => `Profiil: ${profile}`,
-      untitledChat: id => `Vestlus ${id}`,
+      untitledChat: id => `Vestlus ${id}`
     },
     dateDivider: {
       today: 'Ŋdi sia ŋu',
       yesterday: 'Etsɔ',
       thisWeek: 'Kɔsiɖa sia ƒe gɔme',
       lastWeek: 'Kɔsiɖa si va yi',
-      thisMonth: 'Ɣleti sia ƒe gɔme',
+      thisMonth: 'Ɣleti sia ƒe gɔme'
     },
     noMatch: query => `Ükski seanss ei vasta „${query}”.`,
     newSessionIn: label => `Uus seanss ${label}s`,
     showMoreIn: (count, label) => `Näita ${count} veel ${label}s`,
-    loadCount: step => `Lae ${step} veel`,
+    loadCount: step => `Lae ${step} veel`
   },
   composer: {
     placeholderStarting: 'OpenAmer le gɔme dzɔm...',
@@ -1965,7 +2006,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       '/resume': 'yi edzi le ɣeyiɣi si va yi me',
       '/details': 'ɖo nuŋɔŋlɔ ƒe ɖeɖefia ƒe ɖoɖo',
       '/copy': 'kɔpi nu si wotia alo kpeɖeŋutɔ ƒe nya mamlɛtɔ',
-      '/quit': 'do go le openamer',
+      '/quit': 'do go le openamer'
     },
     hotkeyDescs: {
       'composer.mention': 'dzro faɛlwo, foldawo, urls, git ŋu',
@@ -1975,7 +2016,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       'composer.sendQueued': 'Dɔ turn si kplɔe ɖo si le queue me',
       'keybinds.openPanel': 'Klaviatu ƒe mɔxenu katã',
       'composer.cancel': 'Xe popover · ɖe asi le run ŋu',
-      'composer.history': 'Trɔ popover / ŋutinya',
+      'composer.history': 'Trɔ popover / ŋutinya'
     },
     attachUrlTitle: 'Klɔ̃ URL ɖe eŋu',
     attachUrlDesc: 'OpenAmer alɔ axa la eye wòatsɔe ade eme be enye context na turn sia.',
@@ -2019,37 +2060,37 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       codeReview: {
         label: 'Kɔdi ƒe kpɔkpɔ',
         description: 'Kpɔ tɔtrɔ si li fifia ɖa le megbe trɔtrɔwo, goɖoɖo-nu siwo bu, kple dodokpɔ siwo mele o ŋu.',
-        text: 'Taflatse kpɔ esia ɖa le nu gbegblẽwo, megbe trɔtrɔwo, kple dodokpɔ siwo mele o ŋu.',
+        text: 'Taflatse kpɔ esia ɖa le nu gbegblẽwo, megbe trɔtrɔwo, kple dodokpɔ siwo mele o ŋu.'
       },
       implementationPlan: {
         label: 'Dɔwɔwɔ ƒe ɖoɖo',
         description: 'Gblɔ mɔnu do ŋgɔ hafi ka asi kɔdi ŋu be diff la nanɔ kpɔtɔ.',
-        text: 'Taflatse wɔ dɔwɔwɔ ɖoɖo kpui hafi trɔ kɔdi.',
+        text: 'Taflatse wɔ dɔwɔwɔ ɖoɖo kpui hafi trɔ kɔdi.'
       },
       explainThis: {
         label: 'Gblɔ esia me',
         description: 'Gblɔ ale si kɔdi si wotia la wɔa dɔe la me, eye nàbla ka ɖe faɛl vevitɔwo ŋu.',
-        text: 'Taflatse gblɔ ale si esia wɔa dɔe la me, eye nàfia faɛl vevitɔwo mam.',
-      },
+        text: 'Taflatse gblɔ ale si esia wɔa dɔe la me, eye nàfia faɛl vevitɔwo mam.'
+      }
     },
     wakingProfile: profile => `Äratan ${profile}…`,
     newSessionPlaceholders: [
       'Mida me ehitame?',
       'Anna OpenAmerile ülesanne',
-      "Mida sa mõtled?",
+      'Mida sa mõtled?',
       'Kirjelda, mida sa vajad',
       'Mida me peaksime tegema?',
       'Küsi mida tahad',
-      'Alusta eesmärgiga',
+      'Alusta eesmärgiga'
     ],
     followUpPlaceholders: [
       'Saada järgnevalt',
       'Lisa rohkem konteksti',
       'Täpsusta päringut',
-      "Mis järgmisena?",
+      'Mis järgmisena?',
       'Jätka',
       'Suru edasi',
-      'Kohanda või jätka',
+      'Kohanda või jätka'
     ],
     queued: count => `${count} Ootel`,
     queuedPaused: count => `${count} Ootel — peatatud`,
@@ -2057,7 +2098,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     previewLabel: label => `Eelvaade ${label}`,
     couldNotPreview: label => `Ei saanud eelvaadet ${label}`,
     removeAttachment: label => `Eemalda ${label}`,
-    url: 'URL…',
+    url: 'URL…'
   },
   statusStack: {
     agents: 'Dɔwɔlawo',
@@ -2097,7 +2138,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       openPr: 'Ʋu PR',
       ghMissing: 'Ƒo GitHub CLI (gh) ɖe mɔ̃ dzi, eye nàge ɖe eme be nàʋu PRwo',
       agentShip: 'Bia OpenAmer be wòaʋu PR',
-      agentShipPrompt: 'Kpɔ tɔtrɔ siwo li fifia ɖa, wɔ commit wo kple conventional-commit nyatakaka dzedzeme, Ʋu alɔdze la ɖa, eye nàʋu pull request.',
+      agentShipPrompt:
+        'Kpɔ tɔtrɔ siwo li fifia ɖa, wɔ commit wo kple conventional-commit nyatakaka dzedzeme, Ʋu alɔdze la ɖa, eye nàʋu pull request.',
       newBranch: 'Alɔdze yeye',
       worktrees: 'Dɔwɔƒe atiwo',
       changed: count => `${count} muudetud`,
@@ -2106,12 +2148,12 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       commitPlaceholder: 'Mmisa (⌘↵ di commit)',
       branchOffFrom: base => `Uus haru ${base}-st`,
       switchTo: branch => `Vaheta ${branch}-le`,
-      switchFailed: branch => `Ei saanud vahetada ${branch}-le`,
+      switchFailed: branch => `Ei saanud vahetada ${branch}-le`
     },
     background: count => `${count} Taust`,
     subagents: count => `${count} Alamagent${count === 1 ? '' : 's'}`,
     todos: (done, total) => `Ülesanded ${done}/${total}`,
-    exit: code => `välju ${code}`,
+    exit: code => `välju ${code}`
   },
   updates: {
     stages: {
@@ -2126,7 +2168,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       done: 'Yeyegɔ vɔ',
       manual: 'Yeyegɔ tso wò terminal',
       guiSkew: 'Yeyegɔ na desktop app la',
-      error: 'Wotɔ yeyegɔ ɖe eme',
+      error: 'Wotɔ yeyegɔ ɖe eme'
     },
     checking: 'Wole yeyegɔwo dim…',
     checkFailedTitle: 'Mete ŋu kpɔ yeyegɔwo o',
@@ -2145,15 +2187,19 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     updateNow: 'Yeyegɔ fifia',
     maybeLater: 'Ɣeyiɣi bubu',
     manualTitle: 'Wɔ yeyee tso wò terminal',
-    manualBody: 'Ètsɔ OpenAmer ɖo ɖe command line dzi, eyata updates wɔa dɔ le afisia hã. Tsɔ esia ƒu ɖe wò terminal me:',
+    manualBody:
+      'Ètsɔ OpenAmer ɖo ɖe command line dzi, eyata updates wɔa dɔ le afisia hã. Tsɔ esia ƒu ɖe wò terminal me:',
     manualPickedUp: 'OpenAmer axɔ version yeyea ne ègadze eƒe dɔwɔwɔ gbeɖuɖu.',
     guiSkewTitle: 'Wɔ desktop app la yeyee',
-    guiSkewBody: 'Wɔ backend la yeyee, gake desktop app package esia me tɔtrɔ o. Wɔ OpenAmer desktop app la yeyee alo gatsɔe ɖo (wò AppImage / .deb / .rpm) bene wòasɔ kple e.',
+    guiSkewBody:
+      'Wɔ backend la yeyee, gake desktop app package esia me tɔtrɔ o. Wɔ OpenAmer desktop app la yeyee alo gatsɔe ɖo (wò AppImage / .deb / .rpm) bene wòasɔ kple e.',
     copy: 'Kɔpi',
     copied: 'Wokɔpi',
     done: 'Ewu',
-    applyingBody: 'OpenAmer updater la axɔ dɔwɔwɔ le eƒe window ŋutɔ me eye wòagagblɔ OpenAmer ɖe eɖokui si ne ewɔ nuwuwu. Taflatse mègagblɔ OpenAmer ɖe ŋuwò o ne edze update wɔwɔ gɔme.',
-    applyingBodyBackend: 'Remote backend la le update la wɔwɔm eye wòagadze dɔwɔwɔ gɔme. OpenAmer agaƒo ka ɖe eŋu eɖokui si ne egava.',
+    applyingBody:
+      'OpenAmer updater la axɔ dɔwɔwɔ le eƒe window ŋutɔ me eye wòagagblɔ OpenAmer ɖe eɖokui si ne ewɔ nuwuwu. Taflatse mègagblɔ OpenAmer ɖe ŋuwò o ne edze update wɔwɔ gɔme.',
+    applyingBodyBackend:
+      'Remote backend la le update la wɔwɔm eye wòagadze dɔwɔwɔ gɔme. OpenAmer agaƒo ka ɖe eŋu eɖokui si ne egava.',
     applyingClose: 'Window esia atu ne update la le dɔwɔm, ekema OpenAmer agagblɔ eɖokui si.',
     errorTitle: 'Update la me wu nu o',
     errorBody: 'Mègaʋã o — naneke me bu o. Àte ŋu agadze agbagba fifia.',
@@ -2164,13 +2210,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       restarting: 'Backend le dɔwɔwɔ gɔme dzem be wòaxɔ update la…',
       notAvailable: 'Update me li na backend esia o.',
       failed: 'Backend update la me dze o.',
-      noReturn: 'Megbeƒe la megatrɔ va intanɛt dzi o. Etɔtrɔ la ate ŋu anya wu enu o — kpɔ megbeƒe host la.',
+      noReturn: 'Megbeƒe la megatrɔ va intanɛt dzi o. Etɔtrɔ la ate ŋu anya wu enu o — kpɔ megbeƒe host la.'
     },
     appErrors: {
-      updateLocked: 'Wotɔ etɔtrɔ la ɖe eɖi: OpenAmer fesɛ̃ bubu alo terminal si le openamer wɔm lɔ̃ ɖe install sia dzi. Tu eŋu eye nàgadze agbo.',
-      updateFailed: 'Etɔtrɔ la mewɔ nu o. Mèkpa fu o — naneke mebɔ o. Àte ŋu agadze agbo fifia.',
+      updateLocked:
+        'Wotɔ etɔtrɔ la ɖe eɖi: OpenAmer fesɛ̃ bubu alo terminal si le openamer wɔm lɔ̃ ɖe install sia dzi. Tu eŋu eye nàgadze agbo.',
+      updateFailed: 'Etɔtrɔ la mewɔ nu o. Mèkpa fu o — naneke mebɔ o. Àte ŋu agadze agbo fifia.'
     },
-    moreChanges: count => `+ ${count} muudatust${count === 1 ? '' : 's'} kaasatud.`,
+    moreChanges: count => `+ ${count} muudatust${count === 1 ? '' : 's'} kaasatud.`
   },
   install: {
     stageStates: {
@@ -2178,7 +2225,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       running: 'Le install wɔm',
       succeeded: 'Wuwu',
       skipped: 'Wotɔ eŋu',
-      failed: 'Medze o',
+      failed: 'Medze o'
     },
     oneTimeTitle: 'OpenAmer hiã install ɣekaɖe ko',
     installCommand: 'Install sedede',
@@ -2193,7 +2240,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     connectExistingDesc: 'Zã megbeƒe adzɔge kple session token alo browser sign-in. Local install aɖeke madze o.',
     installLocalTitle: 'Install OpenAmer le afi sia',
     installLocalDesc: 'Ɖe OpenAmer ɖe anyi, wɔ eƒe Python nɔnɔme, eye nàƒu backend la ɖe go le kɔmpiuta sia dzi.',
-    localStartUnavailable: 'Tsɔƒe ƒe installation mate ŋu dze egɔme o. Gbugbɔ OpenAmer Desktop dze egɔme eye nàgadze ƒe.',
+    localStartUnavailable:
+      'Tsɔƒe ƒe installation mate ŋu dze egɔme o. Gbugbɔ OpenAmer Desktop dze egɔme eye nàgadze ƒe.',
     remoteSetupTitle: 'Ku ɖe OpenAmer si li xoxo ŋu',
     remoteSetupDesc: 'Ŋlɔ wò gateway URL ɖe eme. OpenAmer Desktop akpɔe nenye be token alo browser sign-in hia.',
     remoteUrlTitle: 'Gateway ƒe URL',
@@ -2219,8 +2267,10 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     failedTitle: 'Dɔɖiɖe medze o',
     settingUpTitle: 'Wɔ OpenAmer Agent ɖoɖo',
     finishingTitle: 'Nu wuwu',
-    failedDesc: 'Install ɖoɖo ɖeka do kpoo. Le Windows dzi la, esia ate ŋu adzɔ ne OpenAmer CLI alo desktop instance bubu le dɔ wɔm. Tɔ́ OpenAmer instance siwo le dɔ wɔm la ɖe, eye nàgadze agbagba. Kpɔ nyatakaka siwo le anyi alo desktop log la be nàkpɔ nu siwo katã dzɔ.',
-    activeDesc: 'Esia nye ɖoɖo si wɔa zi ɖeka ko. OpenAmer installer le dependencies dzidzim eye wòle wò machine ɖoɖom. Launches siwo kplɔe ɖo la ato step sia dzi.',
+    failedDesc:
+      'Install ɖoɖo ɖeka do kpoo. Le Windows dzi la, esia ate ŋu adzɔ ne OpenAmer CLI alo desktop instance bubu le dɔ wɔm. Tɔ́ OpenAmer instance siwo le dɔ wɔm la ɖe, eye nàgadze agbagba. Kpɔ nyatakaka siwo le anyi alo desktop log la be nàkpɔ nu siwo katã dzɔ.',
+    activeDesc:
+      'Esia nye ɖoɖo si wɔa zi ɖeka ko. OpenAmer installer le dependencies dzidzim eye wòle wò machine ɖoɖom. Launches siwo kplɔe ɖo la ato step sia dzi.',
     fetchingManifest: 'Installer manifest lalam...',
     error: 'Kuxi',
     hideOutput: 'Ɣla installer output',
@@ -2232,13 +2282,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     copiedOutput: 'Wokɔe!',
     copyOutput: 'Kɔpi output',
     reloadRetry: 'Gadzra eŋu eye nàgadze agbagba',
-    unsupportedDesc: platform => `Automatiseeritud esimese käivitamise installimine pole ${platform}-l veel saadaval. Ava Terminal ja käivita allolev käsk, siis käivita see rakendus uuesti. Järgmised käivitused jäavad selle sammu vahele.`,
+    unsupportedDesc: platform =>
+      `Automatiseeritud esimese käivitamise installimine pole ${platform}-l veel saadaval. Ava Terminal ja käivita allolev käsk, siis käivita see rakendus uuesti. Järgmised käivitused jäavad selle sammu vahele.`,
     authNeedsOauth: provider => `Logi sisse ${provider}-ga enne selle lüüsi testamist.`,
     signInWith: provider => `Logi sisse ${provider}-ga`,
     testSucceeded: (baseUrl, version) => `Ühendatud ${baseUrl}${version ? ` (${version})` : ''}-ga.`,
     progress: (completed, total) => `${completed} ${total} sammust valmis`,
     currentStage: stage => ` -- praegu: ${stage}`,
-    lines: count => `${count} rida${count === 1 ? '' : 's'}`,
+    lines: count => `${count} rida${count === 1 ? '' : 's'}`
   },
   onboarding: {
     headerTitle: 'Mina míasɔ ɖoɖo na wò kple OpenAmer Agent',
@@ -2258,28 +2309,29 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     apiKeyOptions: {
       fireworks: {
         short: 'model API tẽ',
-        description: 'Mɔ tẽ yi model siwo Fireworks AI wɔ ŋu.',
+        description: 'Mɔ tẽ yi model siwo Fireworks AI wɔ ŋu.'
       },
       openrouter: {
         short: 'safui ɖeka, model geɖewo',
-        description: 'Ewɔa model alafa geɖewo le safui ɖeka megbe. Default nyui na install yeyewo.',
+        description: 'Ewɔa model alafa geɖewo le safui ɖeka megbe. Default nyui na install yeyewo.'
       },
       openai: {
         short: 'GPT-klasi modelwo',
-        description: 'Mɔ tẽ yi OpenAI modelwo ŋu.',
+        description: 'Mɔ tẽ yi OpenAI modelwo ŋu.'
       },
       gemini: {
         short: 'Gemini ƒe modelwo',
-        description: 'Mɔ tɔxɛ yi Google Gemini modelwo ŋu.',
+        description: 'Mɔ tɔxɛ yi Google Gemini modelwo ŋu.'
       },
       xai: {
         short: 'Grok ƒe modelwo',
-        description: 'Mɔ tɔxɛ yi xAI Grok modelwo ŋu.',
+        description: 'Mɔ tɔxɛ yi xAI Grok modelwo ŋu.'
       },
       local: {
         short: 'wo ŋutɔ ƒe host',
-        description: 'Ɖo OpenAmer ɖe local alo wo ŋutɔ ƒe host OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, kple bubuawo) ŋu.',
-      },
+        description:
+          'Ɖo OpenAmer ɖe local alo wo ŋutɔ ƒe host OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, kple bubuawo) ŋu.'
+      }
     },
     backToSignIn: 'Trɔ yi gege ɖe eme',
     getKey: 'Xɔ safui',
@@ -2292,7 +2344,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     flowSubtitles: {
       pkce: 'Ƒu wò browser be nàge ɖe eme, eye wòayi edzi le afi sia',
       device_code: 'Ƒu kpeɖodzi axa ɖe wò browser me — OpenAmer konekt yɔe',
-      external: 'Ge ɖe eme zi ɖeka le wò terminal, eye nàtrɔ va chat',
+      external: 'Ge ɖe eme zi ɖeka le wò terminal, eye nàtrɔ va chat'
     },
     signInFailed: 'Gege ɖe eme do kpo. Gakpɔ egbɔ.',
     pickDifferentProvider: 'Tia provider bubu',
@@ -2316,12 +2368,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     connectedPicking: provider => `${provider} ühendatud. Vaikimisi mudeli valimine...`,
     signInWith: provider => `Logi sisse ${provider}-ga`,
     openedBrowser: provider => `Avame ${provider} teie brauseris.`,
-    autoBrowser: provider => `Avame ${provider} teie brauseris. Autoriseerige OpenAmer seal ja ühendatakse automaatselt — midagi kopeerida või kleepida.`,
-    externalPending: provider => `${provider} logib sisse oma CLI kaudu. Käivitage see käsk terminalis, siis tagasi ja valige "Olen sisse loginud":`,
+    autoBrowser: provider =>
+      `Avame ${provider} teie brauseris. Autoriseerige OpenAmer seal ja ühendatakse automaatselt — midagi kopeerida või kleepida.`,
+    externalPending: provider =>
+      `${provider} logib sisse oma CLI kaudu. Käivitage see käsk terminalis, siis tagasi ja valige "Olen sisse loginud":`,
     deviceCodeOpened: provider => `Avame ${provider} teie brauseris. Sisestage seal see kood:`,
     pro: 'ɛpro',
     price: (input, output) => `${input} sisse / ${output} välja per Mtok`,
-    docs: provider => `${provider} dokumendid`,
+    docs: provider => `${provider} dokumendid`
   },
   modelPicker: {
     title: 'Trɔ model',
@@ -2337,7 +2391,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     freeTier: 'Gratis ɖoɖo',
     priceTitle: 'Nunana / Nudodo ƒe asixɔxɔ na token miliɔn ɖeka',
     wasPrice: 'nɔ',
-    pro: 'ɛpro',
+    pro: 'ɛpro'
   },
   shell: {
     modelOptions: {
@@ -2354,7 +2408,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       max: 'Kɔkɔtɔ',
       updateFailed: 'Model ƒe tiatia ɖɔɖɔɖo do kpo nu',
       fastFailed: 'Kabakaba mɔnu ƒe ɖɔɖɔɖo do kpo nu',
-      ultra: 'ʊltrɔ',
+      ultra: 'ʊltrɔ'
     },
     gatewayMenu: {
       gateway: 'Mɔxenu',
@@ -2369,7 +2423,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       recentActivity: 'Dɔwɔwɔ tsɛŋewo',
       viewAllLogs: 'Kpɔ logwo katã →',
       messagingPlatforms: 'Duɖimeɖoɖo teƒewo',
-      connection: label => `Ühendus: ${label}`,
+      connection: label => `Ühendus: ${label}`
     },
     windowControls: 'Fesre ƒe dɔdzikpɔlawo',
     paneControls: 'Akpa ƒe dɔdzikpɔlawo',
@@ -2379,7 +2433,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       noModels: 'Womekpɔ modelwo o',
       editModels: 'Trɔ modelwo…',
       refreshModels: 'Gbɔ modelwo ŋu',
-      fast: 'Kabakaba',
+      fast: 'Kabakaba'
     },
     approvalMode: {
       title: 'Mɔɖeɖe mode',
@@ -2389,7 +2443,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       smartDescription: 'Kpɔ dɔwo ŋu, eye bia ne ehiã',
       off: 'Tsi',
       offDescription: 'Wɔ dɔ, mɔɖeɖe bia o',
-      ariaLabel: mode => `Kinnitamise režiim: ${mode}`,
+      ariaLabel: mode => `Kinnitamise režiim: ${mode}`
     },
     statusbar: {
       unknown: 'Nya manya',
@@ -2428,13 +2482,13 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
           subagent_definitions: 'nyan agent nyan',
           system_prompt: 'nyan prompt',
           tool_definitions: 'nyan nyan',
-          mcp: 'MCP',
+          mcp: 'MCP'
         },
         empty: 'nyan data na',
         loading: 'nyan fahnu nyan…',
         title: 'Kònsèk fè',
         percentFull: percent => `${percent}% Täis`,
-        tokenSummary: (used, max) => `${used} / ${max} märgid`,
+        tokenSummary: (used, max) => `${used} / ${max} märgid`
       },
       openContextUsage: 'Kòrò kònsèk fè bèl',
       session: 'Sèshèn',
@@ -2464,14 +2518,14 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       running: count => `${count} töötab`,
       cron: 'Cron',
       modelTitle: (provider, model) => `Mudel · ${provider}: ${model}`,
-      providerModelTitle: (provider, model) => `${provider} · ${model}`,
-    },
+      providerModelTitle: (provider, model) => `${provider} · ${model}`
+    }
   },
   modelVisibility: {
     title: 'Modelwo',
     search: 'Di modelwo',
     noAuthenticatedProviders: 'Provider siwo wokpe ɖo meli o.',
-    addProvider: 'Tsɔ provider kpe ɖe eŋu…',
+    addProvider: 'Tsɔ provider kpe ɖe eŋu…'
   },
   rightSidebar: {
     emptyTitle: 'Ƒuƒu',
@@ -2507,7 +2561,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     noFolderSelected: 'kò fè bèl fòr lò',
     folderTip: cwd => `${cwd} — klõpsake kausta muutmiseks`,
     couldNotPreview: path => `Ei saanud eelvaadet ${path}`,
-    unreadableBody: error => `Ei saanud lugeda seda kausta (${error}).`,
+    unreadableBody: error => `Ei saanud lugeda seda kausta (${error}).`
   },
   preview: {
     tab: 'Nukpɔkpɔ',
@@ -2545,7 +2599,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       copySelected: 'Kòpí yii fè kòpí',
       messages: count => `${count} konsooli sõnumit`,
       selected: count => `${count} valitud`,
-      sentMessage: count => `${count} logi kirje ${count === 1 ? 'y' : 'ies'} lisatud kompositorisse`,
+      sentMessage: count => `${count} logi kirje ${count === 1 ? 'y' : 'ies'} lisatud kompositorisse`
     },
     web: {
       appFailedToBoot: 'Konsul app nso nso nso.',
@@ -2568,18 +2622,20 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       restartFailedMessage: 'OpenAmer kò fè server.',
       stillWorking: 'OpenAmer still working, no restart result yet. Server command running in foreground.',
       workspaceReloading: 'Tíng fè, preview fè',
-      moduleMimeDescription: 'Module scripts wrong MIME type. Static server serving Vite/React app instead of dev server.',
+      moduleMimeDescription:
+        'Module scripts wrong MIME type. Static server serving Vite/React app instead of dev server.',
       unreachableDescription: 'Preview page ní fè.',
       fallbackTitle: 'Kònsè',
       lookingRestart: taskId => `OpenAmer otsib taaskäivitamiseks eelvaate serverit (${taskId})`,
       startRestartFailed: message => `Serveri taaskäivitust ei saanud alustada: ${message}`,
-      finishedRestarting: message => `OpenAmer lõpetas eelvaate serveri taaskäivitamise${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer lõpetas eelvaate serveri taaskäivitamise${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Serveri taaskäivitus ebaõnnestus: ${message}`,
       fileChanged: url => `Fail muudeti, laadin eelvaate uuesti: ${url}`,
       filesChanged: (count, url) => `${count} faili muudatust, laadin eelvaate uuesti: ${url}`,
       watchFailed: message => `Eelvaate faili jälgimine ebaõnnestus: ${message}`,
       loadFailedConsole: (code, message) => `Laadimine ebaõnnestus${code ? ` (${code})` : ''}: ${message}`,
-      openTarget: url => `Ava ${url}`,
+      openTarget: url => `Ava ${url}`
     },
     largeTitle: 'Nɔtɔ yɔ̀',
     previewAnyway: 'Preview yɔ̀',
@@ -2597,7 +2653,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     binaryBody: label => `${label} eelvaade võib näidata loetamatut teksti.`,
     largeBody: (label, size) => `${label} on ${size}. OpenAmer näitab ainult esimese 512 KB.`,
     noInlineBody: mimeType => `${mimeType || 'This file type'} saab siiski lisada kontekstina.`,
-    saveFailed: message => `Ei saanud salvestada: ${message}`,
+    saveFailed: message => `Ei saanud salvestada: ${message}`
   },
   desktop: {
     yoloToggleFailed: 'Mate ŋu atrɔ YOLO o',
@@ -2609,7 +2665,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     editFailed: 'Trɔtrɔ do kpo nu',
     resumeFailed: 'Yi edzi do kpo nu',
     resumeStrandedTitle: 'Mate ŋu alɔ sesiɔn sia o',
-    resumeStrandedBody: 'Kadodoa ɖe sesiɔn sia do kpo nu eye eɖokui dzi ɖoɖo gadzɔgadzɔe tsi. Kpɔ eŋu be gateway le dɔwɔm, eyome gadzɔe ake.',
+    resumeStrandedBody:
+      'Kadodoa ɖe sesiɔn sia do kpo nu eye eɖokui dzi ɖoɖo gadzɔgadzɔe tsi. Kpɔ eŋu be gateway le dɔwɔm, eyome gadzɔe ake.',
     resumeRetry: 'Gadzɔe ake',
     nothingToBranch: 'Naneke meli na alɔ o',
     branchNeedsChat: 'Dze dzeɖoɖo gɔme alo yi edzi hafi aƒo alɔ.',
@@ -2653,7 +2710,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     yoloOff: 'YOLO kɔ',
     yoloSystem: active => `YOLO ${active ? 'on' : 'off'} selle sessiooni jaoks`,
     yoloTitle: 'YOLO',
-    profileStatus: current => `Profiil: ${current}. Kasuta /profile <nimi> või "Uus sessioon" valikut, et alustada vestlust teises profiilis.`,
+    profileStatus: current =>
+      `Profiil: ${current}. Kasuta /profile <nimi> või "Uus sessioon" valikut, et alustada vestlust teises profiilis.`,
     noProfileNamed: (target, available) => `Profiili nimega "${target}" pole. Saadaval: ${available}`,
     newChatsProfile: name => `Uued vestlused kasutavad profiili ${name}.`,
     branchTitle: n => `Mustand: Haru #${n}`,
@@ -2665,8 +2723,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       success: platform => `Üle antud ${platform}. Jätka siin igal ajal.`,
       systemNote: platform => `↻ Üle antud ${platform} — jätka siin igal ajal.`,
       failed: error => `Üleandmine ebaõnnestus: ${error}`,
-      timedOut: 'Nunu adi wo nu la anam? `openamer gateway` da na?',
-    },
+      timedOut: 'Nunu adi wo nu la anam? `openamer gateway` da na?'
+    }
   },
   zones: {
     showHeader: 'Tíng fè',
@@ -2711,7 +2769,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     mergeZones: count => `Ühenda ${count} tsooni`,
     customZoneName: count => `Kohandatud ${count}-tsoon`,
     layoutNamePlaceholder: fallback => `Paigutuse nimi (${fallback})`,
-    zoneCount: count => `${count} tsooni`,
+    zoneCount: count => `${count} tsooni`
   },
   assistant: {
     thread: {
@@ -2747,7 +2805,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
           ? 'Will resume when the background task finishes'
           : `Will resume when ${count} background tasks finish`,
       today: time => `Täna, ${time}`,
-      yesterday: time => `Eile, ${time}`,
+      yesterday: time => `Eile, ${time}`
     },
     approval: {
       gatewayDisconnected: 'Kóshóun sín fíí mésí fíí fíí',
@@ -2761,7 +2819,8 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       reject: 'Kóshóun',
       alwaysTitle: 'Fihi wéé yéé yéé fihi…',
       alwaysAllow: 'Fihi wéé',
-      alwaysDescription: pattern => `See lisab „${pattern}“ mustri teie püsivale lubanimekirja (~/.openamer/config.yaml). OpenAmer ei küs enam selliste käskude kohta — selles sessioonis ega mingis tulevases.`,
+      alwaysDescription: pattern =>
+        `See lisab „${pattern}“ mustri teie püsivale lubanimekirja (~/.openamer/config.yaml). OpenAmer ei küs enam selliste käskude kohta — selles sessioonis ega mingis tulevases.`
     },
     clarify: {
       notReady: 'Pidji a bèk a kúntí',
@@ -2775,7 +2834,7 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       continueLabel: 'Sèk',
       lateAnswerTip: 'Bèk a pèdy a níyá fòlúú',
       lateAnswerHint: 'Pèdy a bèk a kòntí. Bèk a níyá fòlúú.',
-      lateAnswer: (question, choice) => `Re: "${question}" — minu vastus: ${choice}`,
+      lateAnswer: (question, choice) => `Re: "${question}" — minu vastus: ${choice}`
     },
     tool: {
       code: 'Kòd',
@@ -2809,123 +2868,123 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
         ranCode: 'Kpojil kode',
         runningCode: 'Sikri',
         ran: 'rɛn',
-        running: 'Kɔm',
+        running: 'Kɔm'
       },
       prefixes: {
         browser: 'Brouxer',
-        web: 'Wep',
+        web: 'Wep'
       },
       titles: {
         browser_click: {
           done: 'Kpojil pèy',
           pending: 'Kpojil pèy',
-          pendingAction: 'Kpojil',
+          pendingAction: 'Kpojil'
         },
         browser_fill: {
           done: 'Kpojil fèe fè',
           pending: 'Kpojil fèe',
-          pendingAction: 'Kpojil fèe',
+          pendingAction: 'Kpojil fèe'
         },
         browser_navigate: {
           done: 'Kpojil pèy',
           pending: 'Kpojil pèy',
-          pendingAction: 'Kpojil pèy',
+          pendingAction: 'Kpojil pèy'
         },
         browser_snapshot: {
           done: 'Kpojil pèy sɔ̚ɔ',
           pending: 'Kpojil sɔ̚ɔ',
-          pendingAction: 'Kpojil sɔ̚ɔ',
+          pendingAction: 'Kpojil sɔ̚ɔ'
         },
         browser_take_screenshot: {
           done: 'Kpojil pèy sɔ̚ɔ',
           pending: 'Kpojil sɔ̚ɔ',
-          pendingAction: 'Kpojil sɔ̚ɔ',
+          pendingAction: 'Kpojil sɔ̚ɔ'
         },
         browser_type: {
           done: 'Kpojil tɔ̚ pèy',
           pending: 'Kpaa ni a',
-          pendingAction: 'Kpaa',
+          pendingAction: 'Kpaa'
         },
         clarify: {
           done: 'Aksa kpe',
           pending: 'Aksa kpe',
-          pendingAction: 'Aksa',
+          pendingAction: 'Aksa'
         },
         cronjob: {
           done: 'Cron tsoo',
           pending: 'Sɔɔ tsoo',
-          pendingAction: 'Sɔɔ',
+          pendingAction: 'Sɔɔ'
         },
         edit_file: {
           done: 'Kpaa fɔ',
           pending: 'Kpaa fɔ',
-          pendingAction: 'Kpaa fɔ',
+          pendingAction: 'Kpaa fɔ'
         },
         execute_code: {
           done: 'Kpaa kɔdɔ',
           pending: 'Kɔdɔ',
-          pendingAction: 'Kɔdɔ',
+          pendingAction: 'Kɔdɔ'
         },
         image_generate: {
           done: 'Kɔɔ kɔ',
           pending: 'Kɔɔ kɔ',
-          pendingAction: 'Kɔɔ',
+          pendingAction: 'Kɔɔ'
         },
         list_files: {
           done: 'Kɔɔ fɔ',
           pending: 'Kɔɔ fɔ',
-          pendingAction: 'Kɔɔ',
+          pendingAction: 'Kɔɔ'
         },
         patch: {
           done: 'Fay patɛd',
           pending: 'Fay pɛtɛ',
-          pendingAction: 'Pɛtɛ',
+          pendingAction: 'Pɛtɛ'
         },
         read_file: {
           done: 'Kpaa fay',
           pending: 'Kpaa fay',
-          pendingAction: 'Kpaa',
+          pendingAction: 'Kpaa'
         },
         search_files: {
           done: 'Sɛkɔ fay',
           pending: 'Sɛkɔ fay',
-          pendingAction: 'Sɛkɔ',
+          pendingAction: 'Sɛkɔ'
         },
         session_search_recall: {
           done: 'Sɛkɔ sesin ahɔm',
           pending: 'Sɛkɔ sesin ahɔm',
-          pendingAction: 'Mafakɔ',
+          pendingAction: 'Mafakɔ'
         },
         terminal: {
           done: 'Yọ akwam',
           pending: 'Yọ akwam',
-          pendingAction: 'Yọ',
+          pendingAction: 'Yọ'
         },
         todo: {
           done: 'Wɔ asiwa',
           pending: 'Asiwa',
-          pendingAction: 'Asiwa',
+          pendingAction: 'Asiwa'
         },
         vision_analyze: {
           done: 'Wɔ teɔme sɛfɔ',
           pending: 'Teɔme sɛfɔ',
-          pendingAction: 'Teɔme',
+          pendingAction: 'Teɔme'
         },
         web_extract: {
           done: 'Wɔ kɔ ate',
           pending: 'Kɔ ate',
-          pendingAction: 'Kɔ',
+          pendingAction: 'Kɔ'
         },
         web_search: {
           done: 'Wɔ mafa web',
           pending: 'Mafa web',
-          pendingAction: 'Mafakɔ',
+          pendingAction: 'Mafakɔ'
         },
         write_file: {
           done: 'Wɔ sɛ file',
           pending: 'Sɛ file',
-          pendingAction: 'Sɛ',
-        },
+          pendingAction: 'Sɛ'
+        }
       },
       recoveredMany: count => `Taastatud pärast ${count} ebaõnnestunud sammuga`,
       failedMany: count => `${count} sammu ebaõnnestus`,
@@ -2935,9 +2994,9 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
         actionTarget: (action, target) => `${action} ${target}`,
         prefixedDone: (prefix, action) => `${prefix} ${action}`,
         runningPrefixedTool: (prefix, action) => `Käivitan ${prefix.toLowerCase()} ${action.toLowerCase()}`,
-        runningTool: action => `Käivitan ${action.toLowerCase()}`,
-      },
-    },
+        runningTool: action => `Käivitan ${action.toLowerCase()}`
+      }
+    }
   },
   ui: {
     pagination: {
@@ -2945,19 +3004,20 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
       previous: 'Pèv',
       previousAria: 'Wo pèv pèg',
       next: 'Nèk',
-      nextAria: 'Nèk pèg',
+      nextAria: 'Nèk pèg'
     },
     sidebar: {
       title: 'sidbar',
       description: 'Wóó pèw sidbar',
-      toggle: 'Wóó sidbar',
+      toggle: 'Wóó sidbar'
     },
     search: {
-      clear: 'Twi switsa',
-    },
+      clear: 'Twi switsa'
+    }
   },
   remoteDisplayBanner: {
-    message: reason => `Renderizado por software activo: se detectó pantalla remota (${reason}). La aceleración por GPU está desactivada para evitar parpadeos.`,
+    message: reason =>
+      `Renderizado por software activo: se detectó pantalla remota (${reason}). La aceleración por GPU está desactivada para evitar parpadeos.`
   },
   prompts: {
     gatewayDisconnected: '`OpenAmer` gateway da adzokwa',
@@ -2968,13 +3028,13 @@ Jäta tühjaks, et hoida ${mode} vaikimisi.`,
     sudoPlaceholder: 'Nkrɛma sudo',
     secretTitle: 'Nkrɛma dɔa',
     secretDesc: 'OpenAmer dɔa nkrɛma kɔ jɛ.',
-    secretPlaceholder: 'Nkrɛma value',
+    secretPlaceholder: 'Nkrɛma value'
   },
   errors: {
     genericFailure: 'Ame a melẽ',
     boundaryTitle: 'Ame a melẽ na interface',
     boundaryDesc: 'View na ame a melẽ. Chats nye settings da safe.',
     reloadWindow: 'Sɛ fenw',
-    openLogs: 'Sɛ logs',
-  },
+    openLogs: 'Sɛ logs'
+  }
 })
